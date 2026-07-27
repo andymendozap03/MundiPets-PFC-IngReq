@@ -1,4 +1,4 @@
-# 🐾 MundiPets – Plataforma para la Gestión Responsable de Mascotas
+# MundiPets – Plataforma para la Gestión Responsable de Mascotas
 
 
 ## Descripción
