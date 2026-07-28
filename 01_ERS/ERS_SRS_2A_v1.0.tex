@@ -1,27 +1,8 @@
 % ============================================================
-%  Entrega 3 (2A) -- Especificacion de Requisitos de Software (ERS/SRS) COMPLETA
-%                    + Componente empirico
+%  Entrega 3 (2A) -- Especificacion de Requisitos de Software (ERS/SRS)
 %  Asignatura: Ingenieria de Requerimientos [20303] -- UTEQ 2026-2027 PPA
 %  Sistema del PFC: MundiPets
 %  Formato: IEEE onecolumn | Biber + biblatex (estilo IEEE)
-%
-%  ----------------------------------------------------------
-%  COMO TRABAJAR ESTE ARCHIVO EN EQUIPO
-%  ----------------------------------------------------------
-%  Cada seccion abre con una caja \guia{Integrante N}{...} que dice
-%  quien la escribe y que debe contener. NO borren esas cajas hasta
-%  la version final: sirven de control interno. Antes de compilar la
-%  entrega definitiva, poner \guiasfalse (linea de abajo) para que
-%  desaparezcan del PDF.
-%
-%  Los bloques \pendiente{...} (y \pend{...} dentro de tablas)
-%  marcan lo que falta. Deben quedar en
-%  CERO antes del corte del 29 de julio de 2026, 00:00.
-%
-%  REGLA INNEGOCIABLE (guia 2A, "Advertencia global"):
-%  ningun dato, cifra, acta o resultado puede inventarse. Todo lo que
-%  se afirme aqui debe tener respaldo verificable dentro del
-%  repositorio o una referencia en referencias.bib.
 % ============================================================
 
 \documentclass[journal,onecolumn]{IEEEtran}
@@ -136,76 +117,15 @@
 \captionsetup{font=small, labelfont=bf}
 
 % ============================================================
-%  CAJAS DE TRABAJO EN EQUIPO
-% ============================================================
-\usepackage{mdframed}
-\usepackage{etoolbox}
-
-% Poner en \guiasfalse para OCULTAR las cajas en la version final
-\newif\ifguias
-\guiastrue
-
-\mdfdefinestyle{guia}{
-	linecolor=uteqverde,
-	linewidth=0.8pt,
-	backgroundcolor=uteqverde!6,
-	innertopmargin=6pt,
-	innerbottommargin=6pt,
-	innerleftmargin=8pt,
-	innerrightmargin=8pt,
-	skipabove=6pt,
-	skipbelow=6pt
-}
-
-\mdfdefinestyle{pend}{
-	linecolor=red!70!black,
-	linewidth=0.8pt,
-	backgroundcolor=red!5,
-	innertopmargin=5pt,
-	innerbottommargin=5pt,
-	innerleftmargin=8pt,
-	innerrightmargin=8pt,
-	skipabove=5pt,
-	skipbelow=5pt
-}
-
-% \guia{Integrante N}{que debe producir}
-\newcommand{\guia}[2]{%
-	\ifguias
-	\begin{mdframed}[style=guia]
-		\noindent{\small\textbf{Responsable: #1}}\\[2pt]
-		{\small #2}
-	\end{mdframed}
-	\fi
-}
-
-% \pend{...} -- version EN LINEA, unica valida DENTRO de tablas
-\newcommand{\pend}[1]{\ifguias\textcolor{red!70!black}{\textbf{[#1]}}\else#1\fi}
-
-% \pendiente{lo que falta} -- version en BLOQUE, NO usar dentro de tablas
-\newcommand{\pendiente}[1]{%
-	\ifguias
-	\begin{mdframed}[style=pend]
-		\noindent{\small\textbf{PENDIENTE:} #1}
-	\end{mdframed}
-	\fi
-}
-
-% ============================================================
 %  ENTORNO REUTILIZABLE PARA TABLAS DE ATRIBUTOS
 %  Sirve para RF, RNF, RD, RL y casos de uso.
 %
 %  Uso:
 %    \begin{atributos}{RF-01}{RF-01 --- Registrar mascota.}
-%      Identificador & RF-01 \\
-%      Nombre        & Registrar mascota \\
-%      ...
-%    \end{atributos}
-% ============================================================
-%  NOTA TECNICA: este entorno usa longtable y NO tabularx. tabularx lee su
-%  cuerpo de una sola pasada, asi que no se puede partir entre la parte de
-%  apertura y la de cierre de un \newenvironment. longtable si lo permite y
-%  ademas parte bien las tablas largas entre paginas.
+	%      Identificador & RF-01 \\
+	%      Nombre        & Registrar mascota \\
+	%      ...
+	%    \end{atributos}
 \newenvironment{atributos}[2]{%
 	\small
 	\begin{longtable}{@{}>{\raggedright\arraybackslash}p{4.2cm} >{\raggedright\arraybackslash}p{11.2cm}@{}}
@@ -250,7 +170,7 @@ doi=true
 		
 		{\large\bfseries UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO\\[12pt]}
 		
-			\includegraphics[width=0.2\textwidth]{figuras/logo_uteq.png}\\[12pt]
+		\includegraphics[width=0.2\textwidth]{figuras/logo_uteq.png}\\[12pt]
 		
 		{\large\bfseries FACULTAD DE CIENCIAS DE LA COMPUTACIÓN\\[4pt]
 			CARRERA DE INGENIERÍA EN SOFTWARE}
@@ -329,7 +249,7 @@ doi=true
 			\midrule
 			1.0 & 30/05/2026 & Equipo MundiPets & Entrega 1A: planificación y elicitación. \\
 			2.0 & 05/07/2026 & Equipo MundiPets & Entrega 2 (1B): ERS/SRS parcial; incorpora correcciones de la 1A y agrega requisitos, UML, priorización y trazabilidad. \\
-			3.0 & \pend{fecha} & Equipo MundiPets & Entrega 3 (2A): ERS/SRS completa. Amplía a 25 RF y 15 RNF, agrega requisitos legales, explicabilidad, historias de usuario, modelado UML completo, priorización Kano/WSJF, trazabilidad extendida, MVP y componente empírico. \\
+			3.0 & --- & Equipo MundiPets & Entrega 3 (2A): ERS/SRS completa. Amplía a 25 RF y 15 RNF, agrega requisitos legales, explicabilidad, historias de usuario, modelado UML completo, priorización Kano/WSJF, trazabilidad extendida, MVP y componente empírico. \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -342,56 +262,6 @@ doi=true
 	\lstlistoflistings
 	\newpage
 	
-	% ========================================================
-	% RESUMEN DE ASIGNACION DE TRABAJO
-	% ========================================================
-	\section*{Asignación de trabajo por integrante}
-	\addcontentsline{toc}{section}{Asignación de trabajo por integrante}
-	
-	\guia{Todo el equipo}{Esta tabla es el contrato interno del equipo para la
-		Entrega 3 (2A). Cada integrante es dueño de sus secciones y de sus
-		artefactos en el repositorio. El trabajo de campo se reparte por igual
-		porque es el criterio de mayor peso de la rúbrica (C7 = 1{,}50 puntos).}
-	
-	\begin{table}[H]
-		\centering
-		\caption{Distribución de responsabilidades de la Entrega 3 (2A).}
-		\label{tab:asignacion}
-		\small
-		\begin{tabularx}{\textwidth}{@{}p{1.9cm} p{3.1cm} X p{2.4cm}@{}}
-			\toprule
-			\textbf{Integrante} & \textbf{Eje de trabajo} & \textbf{Secciones y artefactos} & \textbf{Criterios} \\
-			\midrule
-			Integrante 1 & Requisitos funcionales e historias de usuario &
-			Secciones 3.2 y 3.6. Redacta los 25 RF con los ocho atributos y las historias Connextra con criterios INVEST y escenarios Gherkin. Produce el corpus etiquetado de RF en JSON para el paquete Zenodo. &
-			C2 (1{,}50) \\
-			\addlinespace
-			Integrante 2 & Calidad, explicabilidad y marco legal &
-			Secciones 3.3, 3.4, 3.5 y Apéndice B. Redacta los 15 RNF sobre las nueve características de ISO/IEC 25010, los requisitos de explicabilidad del componente de IA, los requisitos legales mapeados a la LOPDP y las restricciones de diseño. Consolida \texttt{02\_Evidencias/Codificacion\_Tematica/} y la curva de saturación. &
-			C3 (1{,}00), C4 (0{,}50), G7 \\
-			\addlinespace
-			Integrante 3 & Modelado e interfaces &
-			Secciones 3.1 y 4 completa. Produce los ocho diagramas UML exigidos y los mockups de alta fidelidad. Sube cada diagrama por triplicado (fuente editable, PNG a 300 dpi y SVG) en \texttt{03\_Modelado/}. &
-			C5 (1{,}50) \\
-			\addlinespace
-			Integrante 4 & Contexto, modelado organizacional y trazabilidad &
-			Secciones 1, 2 y 5, más Apéndices A, C y D. Actualiza el diagrama de contexto y el mapa de stakeholders, produce los diagramas i* SD y SR, y arma la priorización MoSCoW + Kano + WSJF y la matriz extendida. Genera \texttt{04\_Trazabilidad/matriz\_trazabilidad.csv} y \texttt{priorizacion\_moscow\_kano.csv}. &
-			C1 (1{,}00), C6 (0{,}75) \\
-			\addlinespace
-			Integrante 5 & Componente empírico, MVP y publicación &
-			Secciones 6 y 7, más Apéndices F y G. Registra el protocolo en el OSF, arma el MVP con cobertura mínima del 60\,\% de los RF \emph{Debe tener}, prepara el paquete Zenodo y el borrador del manuscrito. Mantiene los cinco archivos raíz del repositorio. &
-			C8 (0{,}75), C9 (1{,}00), C10 (0{,}50) \\
-			\midrule
-			\multicolumn{4}{@{}X@{}}{\textbf{Trabajo de campo (C7 = 1{,}50) --- compartido:} cada integrante ejecuta \textbf{tres entrevistas} y \textbf{una sesión de walkthrough}, y redacta las actas de las suyas. Meta del equipo: 15 entrevistas y 5 sesiones de validación.} \\
-			\bottomrule
-		\end{tabularx}
-	\end{table}
-	
-	\pendiente{Confirmar esta distribución en reunión de equipo y dejar constancia
-		en el CHANGELOG.md antes de empezar a escribir.}
-	
-	\newpage
-	
 	% ############################################################
 	% ############################################################
 	%                    SECCION 1 -- INTRODUCCION
@@ -399,37 +269,14 @@ doi=true
 	% ############################################################
 	\section{Introducción}
 	
-	\guia{Integrante 4}{Sección heredada de la Entrega 1B. No se reescribe desde
-		cero: se \emph{actualiza}. Tres tareas concretas. Primera, ampliar el alcance
-		para que cubra el MVP y el componente empírico, que no existían en la 1B.
-		Segunda, agregar al glosario los términos nuevos de esta entrega: Kano, WSJF,
-		Connextra, INVEST, Gherkin, PICOC, FAIR, explicabilidad, i*, LOPDP, OSF,
-		DOI, saturación temática. Tercera, y es la que más pesa, subir las referencias
-		de 12 a un mínimo de 25 fuentes primarias, con al menos 10 publicadas en los
-		últimos tres años e indexadas en Scopus o Web of Science. El archivo
-		\texttt{referencias.bib} que acompaña esta plantilla ya trae 41 entradas
-		listas: revisar que todas estén efectivamente citadas en el cuerpo del texto,
-		porque una entrada no citada no cuenta.}
-	
 	\subsection{Propósito del documento}
 	\label{sec:proposito}
-	
-	\pendiente{Adaptar el texto de la Entrega 1B. Agregar un párrafo que explique
-		que esta versión incorpora el componente empírico y sirve de base al manuscrito
-		de publicación.}
 	
 	\subsection{Alcance del producto}
 	\label{sec:alcance}
 	
-	\pendiente{Reutilizar las tablas de alcance incluido y excluido de la 1B.
-		Agregar una fila por cada funcionalidad nueva que aparezca en los RF-18 a
-		RF-25.}
-	
 	\subsection{Definiciones, acrónimos y abreviaturas (glosario)}
 	\label{sec:glosario}
-	
-	\pendiente{Ampliar la tabla del glosario de la 1B con los términos nuevos
-		listados en la caja de guía de esta sección.}
 	
 	\subsection{Referencias}
 	\label{sec:referencias-intro}
@@ -444,26 +291,13 @@ doi=true
 	\subsection{Visión general del documento}
 	\label{sec:vision}
 	
-	\pendiente{Actualizar el mapa del documento: ahora son ocho secciones y siete
-		apéndices, no seis y cinco como en la 1B.}
-	
 	% ############################################################
 	%                 SECCION 2 -- DESCRIPCION GENERAL
 	% ############################################################
 	\section{Descripción general}
 	
-	\guia{Integrante 4}{Casi toda esta sección viene de la Entrega 1B y solo hay
-		que revisarla. Lo verdaderamente nuevo es la subsección 2.7: el modelado
-		organizacional en i*. Ya tienen el Diagrama de Dependencia Estratégica (SD)
-		de la 1B, así que falta construir el Diagrama de Razón Estratégica (SR), que
-		abre los actores por dentro y muestra sus metas, metas blandas, tareas y
-		recursos. El criterio C1 (1{,}00 punto) exige explícitamente ambos.}
-	
 	\subsection{Perspectiva del producto y límite del sistema}
 	\label{sec:perspectiva}
-	
-	\pendiente{Reutilizar de la 1B. Verificar que el diagrama de contexto siga
-		siendo válido después de agregar los RF nuevos.}
 	
 	\subsection{Funciones del producto}
 	\label{sec:funciones}
@@ -489,29 +323,11 @@ doi=true
 	\subsection{Modelado organizacional en i*}
 	\label{sec:istar}
 	
-	\guia{Integrante 4}{El lenguaje i* \cite{yu1995} modela la intencionalidad de
-		los actores organizacionales. El SD muestra qué depende cada actor de los
-		demás; el SR abre el interior de cada actor. Herramientas sugeridas:
-		piStar (\url{https://www.cin.ufpe.br/~jhcp/pistar/}) o OME. Exportar en PNG a
-		300 dpi y también el fuente editable, según exige la Sección 7.5 de la guía.}
-	
 	\subsubsection{Diagrama de Dependencia Estratégica (SD)}
 	\label{sec:istar-sd}
 	
-	\pendiente{Recuperar el diagrama de la 1B
-		(\texttt{DiagramaDeDependenciaEstrategica\_MundiPets.pdf}) y exportarlo
-		también en PNG a 300 dpi. Redactar el análisis de las dependencias entre
-		propietario, adoptante, interesado en cruza, veterinaria, refugio y
-		administrador.}
-	
 	\subsubsection{Diagrama de Razón Estratégica (SR)}
 	\label{sec:istar-sr}
-	
-	\pendiente{Diagrama NUEVO. Construir el SR para al menos los tres actores
-		principales. Para cada uno, modelar metas, metas blandas, tareas y recursos,
-		y explicar cómo las metas blandas (por ejemplo, \enquote{información médica
-			confiable} o \enquote{privacidad preservada}) se conectan con los RNF de la
-		Sección 3.3.}
 	
 	% ############################################################
 	%           SECCION 3 -- REQUISITOS ESPECIFICOS COMPLETOS
@@ -522,20 +338,8 @@ doi=true
 	\subsection{Interfaces externas}
 	\label{sec:interfaces}
 	
-	\guia{Integrante 3}{Las interfaces de hardware y software se heredan de la 1B y
-		solo se revisan. Lo que cambia es la interfaz de usuario: la guía ahora exige
-		mockups de \emph{alta fidelidad} de \textbf{todas} las pantallas de prioridad
-		\emph{Debe tener}, no solo cuatro. Como el número de RF \emph{Must} va a subir,
-		hay que producir mockups adicionales. Cada uno necesita identificador
-		(MU-01, MU-02, \dots), archivo PNG o SVG en \texttt{03\_Modelado/Mockups/},
-		enlace vigente de Figma y una fila en la tabla de trazabilidad mockup~$\rightarrow$~RF.}
-	
 	\subsubsection{Interfaz de usuario (mockups de alta fidelidad)}
 	\label{sec:mockups}
-	
-	\pendiente{Contar cuántos RF quedaron marcados como \emph{Must} en la Sección 5
-		y producir un mockup por cada pantalla asociada. Insertar cada figura en el
-		cuerpo del documento con su tabla de trazabilidad.}
 	
 	\subsubsection{Interfaz de hardware}
 	\label{sec:interfaz-hardware}
@@ -546,23 +350,6 @@ doi=true
 	% ------------------------------------------------------------
 	\subsection{Requisitos funcionales}
 	\label{sec:rf}
-	
-	\guia{Integrante 1}{Esta es la subsección de mayor peso individual de la
-		entrega (criterio C2 = 1{,}50 puntos, y el gatekeeper G5 exige 25 RF como
-		piso). Los RF-01 a RF-17 ya existen en la Entrega 1B y se reutilizan tal
-		cual, revisando redacción. Faltan ocho RF nuevos, del RF-18 al RF-25.\\[4pt]
-		\textbf{Regla crítica:} cada RF nuevo debe derivarse de una evidencia real
-		(entrevista, respuesta de cuestionario, observación o documento de la
-		organización) y declarar su identificador EV-\emph{XX} en el campo
-		\enquote{Origen}. Un RF sin evidencia verificable en el repositorio se
-		califica con cero y puede disparar el gatekeeper G4. Antes de redactar,
-		revisar la codificación temática de la Sección \ref{sec:codificacion} para
-		ver qué necesidades quedaron sin cubrir por los RF actuales.\\[4pt]
-		\textbf{Redacción:} un requisito por tabla, en voz activa, con la fórmula
-		\enquote{El sistema deberá\dots}. Evitar cuantificadores vagos
-		(\enquote{rápido}, \enquote{fácil}) y conjunciones que escondan dos
-		requisitos en uno: son los \emph{malos olores} que describe
-		Ferrari \emph{et al.} \cite{ferrari2016}.}
 	
 	Los requisitos funcionales se especifican con los ocho atributos exigidos por la
 	plantilla de la asignatura, siguiendo las recomendaciones de redacción de
@@ -584,30 +371,9 @@ doi=true
 		Criterio de verificación & Registrar una mascota con datos válidos y comprobar que el perfil queda almacenado y puede consultarse posteriormente. \\
 	\end{atributos}
 	
-	\pendiente{RF-02 a RF-17: copiar desde el archivo \texttt{ERSMundiPets.tex} de
-		la Entrega 1B usando el entorno \texttt{atributos} de arriba. Revisar
-		redacción y verificar que cada EV citado exista realmente en el repositorio.}
-	
-	\pendiente{RF-18 a RF-25: OCHO requisitos nuevos, derivados de la segunda ronda
-		de entrevistas y del cuestionario ampliado. NO inventarlos: primero hacer el
-		trabajo de campo, luego codificar las transcripciones, y recién entonces
-		redactarlos.}
-	
 	% ------------------------------------------------------------
 	\subsection{Requisitos no funcionales}
 	\label{sec:rnf}
-	
-	\guia{Integrante 2}{Criterio C3 = 1{,}00 punto. Hay 8 RNF en la 1B y el piso
-		ahora son 15. Pero el número no es lo importante: la guía exige que estén
-		distribuidos sobre las \textbf{nueve} características de calidad de
-		ISO/IEC 25010:2023 \cite{iso25010}, que son adecuación funcional, eficiencia
-		de desempeño, compatibilidad, interacción de usuario, fiabilidad, seguridad,
-		mantenibilidad, portabilidad y flexibilidad. Revisar cuáles quedaron sin
-		cubrir en la 1B y llenar esos huecos primero.\\[4pt]
-		Cada RNF necesita métrica y valor objetivo medible. Un RNF sin métrica
-		cuantificada vale cero en la rúbrica. \enquote{El sistema será rápido} no es
-		un RNF; \enquote{el tiempo de respuesta será menor o igual a 2 segundos en el
-			percentil 95 bajo carga nominal} sí lo es.}
 	
 	\begin{table}[H]
 		\centering
@@ -620,13 +386,13 @@ doi=true
 			\midrule
 			Adecuación funcional & RNF-06, RNF-07 & Cubierta desde la 1B \\
 			Eficiencia del desempeño & RNF-03 & Cubierta desde la 1B \\
-			Compatibilidad & \pend{---} & Sin cubrir \\
+			Compatibilidad & --- & Sin cubrir \\
 			Interacción de usuario (usabilidad) & RNF-04 & Cubierta desde la 1B \\
 			Fiabilidad & RNF-02, RNF-08 & Cubierta desde la 1B \\
 			Seguridad & RNF-01, RNF-05 & Cubierta desde la 1B \\
-			Mantenibilidad & \pend{---} & Sin cubrir \\
-			Portabilidad & \pend{---} & Sin cubrir \\
-			Flexibilidad & \pend{---} & Sin cubrir \\
+			Mantenibilidad & --- & Sin cubrir \\
+			Portabilidad & --- & Sin cubrir \\
+			Flexibilidad & --- & Sin cubrir \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -644,29 +410,9 @@ doi=true
 		Criterio de verificación & Intentar acceder a información restringida desde una cuenta sin permisos y comprobar que el acceso sea denegado. \\
 	\end{atributos}
 	
-	\pendiente{RNF-02 a RNF-08: copiar desde la Entrega 1B.}
-	
-	\pendiente{RNF-09 a RNF-15: siete requisitos nuevos, priorizando las cuatro
-		características sin cubrir de la Tabla \ref{tab:cobertura-25010}.}
-	
 	% ------------------------------------------------------------
 	\subsubsection{Requisitos de explicabilidad del componente de inteligencia artificial}
 	\label{sec:explicabilidad}
-	
-	\guia{Integrante 2}{Bloque obligatorio: el gatekeeper G7 corta el criterio C3 a
-		la mitad si falta. MundiPets tiene tres componentes basados en IA declarados
-		en la 1B: la evaluación de compatibilidad para cruza (RF-06), la validación de
-		imágenes (RF-17) y la moderación de chat. Para cada uno hay que listar las
-		decisiones automáticas que produce y, por cada decisión, aplicar el marco de
-		Chazette y Schneider \cite{chazette2020}: identificar qué usuarios afectados
-		requieren explicación, qué tipo necesita cada uno (causal, por contraste o por
-		ejemplos) y en qué momento la necesita. Después se operacionaliza como RNF con
-		métrica y valor objetivo, usando el catálogo de
-		Chazette \emph{et al.} \cite{chazette2021} y el proceso de análisis a
-		evaluación de \cite{chazette2022}.\\[4pt]
-		Si el equipo eligió el Enfoque 3 como componente empírico, esta subsección y
-		la Sección \ref{sec:empirico} se alimentan mutuamente: las dos rondas de
-		validación producen los datos que sustentan estos RNF.}
 	
 	\begin{table}[H]
 		\centering
@@ -677,32 +423,16 @@ doi=true
 			\toprule
 			\textbf{Componente} & \textbf{Decisión automática} & \textbf{Usuario afectado} & \textbf{Tipo de explicación requerida} \\
 			\midrule
-			RF-06 & Recomendación de compatibilidad para cruza & \pend{---} & \pend{---} \\
-			RF-17 & Aceptación o rechazo de una imagen cargada & \pend{---} & \pend{---} \\
-			Moderación & Marcado de un mensaje como inapropiado & \pend{---} & \pend{---} \\
+			RF-06 & Recomendación de compatibilidad para cruza & --- & --- \\
+			RF-17 & Aceptación o rechazo de una imagen cargada & --- & --- \\
+			Moderación & Marcado de un mensaje como inapropiado & --- & --- \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
 	
-	\pendiente{Redactar un RNF de explicabilidad por cada fila de la tabla anterior,
-		con métrica y valor objetivo. Ejemplo de la estructura esperada: tiempo de
-		presentación de la explicación, extensión máxima en palabras, y calificación
-		media de comprensión reportada por las personas usuarias en una escala Likert.
-		Los valores objetivo deben salir de las rondas de validación, no inventarse.}
-	
 	% ------------------------------------------------------------
 	\subsection{Requisitos legales}
 	\label{sec:legales}
-	
-	\guia{Integrante 2}{Sección completamente nueva (criterio C4 = 0{,}50 puntos).
-		Hay que mapear la Ley Orgánica de Protección de Datos Personales del
-		Ecuador \cite{lopdp2021} artículo por artículo contra los RF y RNF del
-		sistema. MundiPets maneja datos personales de propietarios y datos médicos de
-		mascotas, así que los artículos sobre consentimiento, derechos del titular,
-		finalidad, minimización y seguridad son los que más aplican.\\[4pt]
-		El formato de trazabilidad exigido es Ley~$\rightarrow$~Artículo~$\rightarrow$~RF/RNF.
-		Esa misma cadena alimenta las dos primeras columnas de la matriz de
-		trazabilidad extendida de la Sección \ref{sec:trazabilidad}.}
 	
 	\begin{table}[H]
 		\centering
@@ -713,40 +443,22 @@ doi=true
 			\toprule
 			\textbf{ID} & \textbf{Artículo} & \textbf{Obligación legal} & \textbf{RF/RNF que la implementa} \\
 			\midrule
-			RL-01 & \pend{Art.} & \pend{Consentimiento del titular} & \pend{---} \\
-			RL-02 & \pend{Art.} & \pend{Derecho de acceso y rectificación} & \pend{---} \\
-			RL-03 & \pend{Art.} & \pend{Principio de minimización} & \pend{---} \\
-			RL-04 & \pend{Art.} & \pend{Seguridad de los datos} & \pend{---} \\
-			RL-05 & \pend{Art.} & \pend{Derecho de supresión} & \pend{---} \\
+			RL-01 & --- & --- & --- \\
+			RL-02 & --- & --- & --- \\
+			RL-03 & --- & --- & --- \\
+			RL-04 & --- & --- & --- \\
+			RL-05 & --- & --- & --- \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
-	
-	\pendiente{Leer el texto oficial de la LOPDP y completar los números de
-		artículo reales. No citar artículos de memoria: verificar contra el Registro
-		Oficial Suplemento No. 459.}
 	
 	% ------------------------------------------------------------
 	\subsection{Restricciones de diseño}
 	\label{sec:restricciones}
 	
-	\guia{Integrante 2}{Las cinco restricciones RD-01 a RD-05 vienen de la 1B.
-		Revisar si el MVP de la Sección \ref{sec:mvp} introduce restricciones nuevas
-		(por ejemplo, de plataforma o de despliegue) y agregarlas.}
-	
 	% ------------------------------------------------------------
 	\subsection{Historias de usuario y criterios de aceptación}
 	\label{sec:historias}
-	
-	\guia{Integrante 1}{Bloque nuevo, incluido dentro del criterio C2. Hay que
-		escribir una historia de usuario por cada RF de prioridad \emph{Debe tener}
-		(\emph{Must}), en formato Connextra \cite{cohn2004}: \enquote{Como \emph{rol},
-			quiero \emph{funcionalidad}, para \emph{beneficio esperado}}. Cada historia se
-		verifica contra los seis criterios INVEST y se acompaña de al menos un
-		escenario de aceptación en Gherkin
-		(Dado-Cuando-Entonces) \cite{fischbach2023}.\\[4pt]
-		Abajo queda el patrón completo con RF-01 como ejemplo. Replicarlo para cada
-		RF \emph{Must}.}
 	
 	\subsubsection{HU-01 --- Registro de mascota}
 	
@@ -754,38 +466,35 @@ doi=true
 		Identificador & HU-01 \\
 		RF asociado & RF-01 \\
 		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{registrar el perfil de mi mascota con sus datos generales y fotografías}, para \textbf{que otros usuarios puedan identificarla y evaluarla en procesos de adopción o cruza}. \\
-		Independiente (I) & \pend{justificar} \\
-		Negociable (N) & \pend{justificar} \\
-		Valiosa (V) & \pend{justificar} \\
-		Estimable (E) & \pend{justificar} \\
-		Pequeña (S) & \pend{justificar} \\
-		Verificable (T) & \pend{justificar} \\
+		Independiente (I) & --- \\
+		Negociable (N) & --- \\
+		Valiosa (V) & --- \\
+		Estimable (E) & --- \\
+		Pequeña (S) & --- \\
+		Verificable (T) & --- \\
 		Criterio de aceptación & CA-01 (véase el escenario Gherkin siguiente). \\
 	\end{atributos}
 	
 	\begin{lstlisting}[style=gherkin,caption={CA-01 --- Escenario de aceptación de la historia HU-01.},label={lst:ca01}]
-Caracteristica: Registro de mascota
-
-  Escenario: Registro exitoso con datos completos
-    Dado que soy un propietario autenticado en la plataforma
-    Y me encuentro en el formulario de registro de mascota
-    Cuando ingreso nombre, especie, raza, sexo, edad y estado reproductivo
-    Y adjunto al menos una fotografia valida
-    Y confirmo el registro
-    Entonces el sistema almacena el perfil de la mascota
-    Y el perfil queda disponible para consulta posterior
-
-  Escenario: Registro rechazado por campo obligatorio ausente
-    Dado que soy un propietario autenticado en la plataforma
-    Y me encuentro en el formulario de registro de mascota
-    Cuando omito la especie de la mascota
-    Y confirmo el registro
-    Entonces el sistema rechaza la operacion
-    Y muestra el motivo del rechazo junto al campo incompleto
+		Caracteristica: Registro de mascota
+		
+		Escenario: Registro exitoso con datos completos
+		Dado que soy un propietario autenticado en la plataforma
+		Y me encuentro en el formulario de registro de mascota
+		Cuando ingreso nombre, especie, raza, sexo, edad y estado reproductivo
+		Y adjunto al menos una fotografia valida
+		Y confirmo el registro
+		Entonces el sistema almacena el perfil de la mascota
+		Y el perfil queda disponible para consulta posterior
+		
+		Escenario: Registro rechazado por campo obligatorio ausente
+		Dado que soy un propietario autenticado en la plataforma
+		Y me encuentro en el formulario de registro de mascota
+		Cuando omito la especie de la mascota
+		Y confirmo el registro
+		Entonces el sistema rechaza la operacion
+		Y muestra el motivo del rechazo junto al campo incompleto
 	\end{lstlisting}
-	
-	\pendiente{HU-02 en adelante: una historia por cada RF \emph{Must}, cada una
-		con su tabla de atributos y su escenario Gherkin.}
 	
 	% ############################################################
 	%              SECCION 4 -- MODELADO DEL SISTEMA (UML)
@@ -793,90 +502,45 @@ Caracteristica: Registro de mascota
 	\section{Modelado del sistema con UML}
 	\label{sec:uml}
 	
-	\guia{Integrante 3}{Criterio C5 = 1{,}50 puntos, empatado como el más pesado
-		del documento, y la nota dice que \emph{cada diagrama faltante penaliza}. La
-		1B trae dos diagramas (casos de uso y clases conceptual); aquí se exigen
-		ocho tipos. Los seis nuevos son secuencia, actividad, estados, componentes,
-		despliegue, y el refinamiento del diagrama de clases.\\[4pt]
-		\textbf{Formato de entrega (Sección 7.5 de la guía):} cada diagrama se sube
-		por triplicado --- fuente editable en XMI, PlantUML o Enterprise Architect
-		(\texttt{.qea}); PNG a 300 dpi como mínimo; y SVG cuando la herramienta lo
-		permita. Como ya trabajaron Visual Paradigm en la exposición de MDD, esa
-		misma herramienta sirve para todo.\\[4pt]
-		\textbf{Orden sugerido:} refinar primero el diagrama de clases, porque los
-		diagramas de secuencia y de estados se derivan de él.}
-	
 	\subsection{Diagrama de casos de uso general}
 	\label{sec:cu-general}
-	
-	\pendiente{Actualizar el diagrama de la 1B para incorporar los casos de uso
-		derivados de los RF-18 a RF-25.}
 	
 	\subsection{Especificación textual de casos de uso}
 	\label{sec:cu-detallado}
 	
-	La guía exige la especificación textual de todos los casos de uso asociados a RF
-	de prioridad \emph{Debe tener}, con un mínimo de diez casos detallados. La
-	Entrega 1B ya aporta trece, de modo que el piso está cubierto; corresponde
-	revisarlos y agregar los que surjan de los requisitos nuevos.
+	A continuación se especifican textualmente los casos de uso asociados a los
+	requisitos funcionales de prioridad \emph{Debe tener}.
 	
 	\begin{atributos}{CU-01}{CU-01 --- Plantilla de especificación textual de caso de uso.}
 		Identificador & CU-01 \\
-		Nombre & \pend{nombre del caso de uso} \\
-		Actor principal & \pend{---} \\
-		Actores secundarios & \pend{---} \\
-		RF asociados & \pend{---} \\
-		Precondiciones & \pend{---} \\
-		Flujo principal & \pend{numerar los pasos} \\
-		Flujos alternativos & \pend{---} \\
-		Flujos de excepción & \pend{---} \\
-		Postcondiciones & \pend{---} \\
+		Nombre & --- \\
+		Actor principal & --- \\
+		Actores secundarios & --- \\
+		RF asociados & --- \\
+		Precondiciones & --- \\
+		Flujo principal & --- \\
+		Flujos alternativos & --- \\
+		Flujos de excepción & --- \\
+		Postcondiciones & --- \\
 	\end{atributos}
 	
 	\subsection{Diagrama de clases refinado}
 	\label{sec:clases-refinado}
 	
-	\guia{Integrante 3}{El diagrama conceptual de la 1B solo tiene entidades y
-		relaciones. El refinado exige \textbf{atributos con tipo} y
-		\textbf{operaciones} en cada clase, además de multiplicidades y navegabilidad.
-		Buena noticia: el trabajo de MDD con Visual Paradigm ya modeló las clases
-		\texttt{Mascota}, \texttt{HistorialMedico}, \texttt{DocumentoVeterinario} y
-		\texttt{CarnetVacunacion} a este nivel. Ese modelo se puede reutilizar y
-		extender al resto del dominio.}
-	
 	\subsection{Diagramas de secuencia}
 	\label{sec:secuencia}
-	
-	\pendiente{Un diagrama de secuencia por cada caso de uso \emph{Must}. Deben
-		mostrar las líneas de vida, los mensajes síncronos y asíncronos, y los
-		fragmentos combinados cuando haya alternativas.}
 	
 	\subsection{Diagramas de actividad}
 	\label{sec:actividad}
 	
-	\pendiente{Diagramas de los flujos principales del sistema. Como mínimo:
-		proceso de adopción de extremo a extremo, proceso de cruza, y validación de
-		información médica por parte de una veterinaria.}
-	
 	\subsection{Diagrama de estados}
 	\label{sec:estados}
-	
-	\pendiente{Para las entidades con ciclo de vida no trivial. Candidatas claras:
-		\texttt{SolicitudAdopcion} (pendiente, aceptada, rechazada, cancelada),
-		\texttt{SolicitudCruza} y \texttt{PublicacionMascota}.}
 	
 	\subsection{Diagrama de componentes}
 	\label{sec:componentes}
 	
-	\pendiente{Mostrar los módulos del sistema y sus interfaces. Debe reflejar la
-		arquitectura modular exigida por la restricción RD-05 y aislar los
-		componentes de IA.}
-	
 	\subsection{Diagrama de despliegue}
 	\label{sec:despliegue}
-	
-	\pendiente{Nodos físicos y artefactos desplegados. Debe ser coherente con las
-		interfaces de hardware IH-07 a IH-10 de la Sección \ref{sec:interfaz-hardware}.}
 	
 	% ############################################################
 	%        SECCION 5 -- PRIORIZACION Y TRAZABILIDAD EXTENDIDA
@@ -884,15 +548,8 @@ Caracteristica: Registro de mascota
 	\section{Priorización y trazabilidad extendida}
 	\label{sec:priorizacion}
 	
-	\guia{Integrante 4}{Criterio C6 = 0{,}75 puntos. La 1B ya trae MoSCoW; aquí se
-		suman dos técnicas más y una matriz mucho más ancha. Todo lo que se escriba
-		en esta sección debe existir además como CSV en \texttt{04\_Trazabilidad/},
-		porque el docente los abre para ordenar y filtrar.}
-	
 	\subsection{Clasificación de requisitos}
 	\label{sec:clasificacion}
-	
-	\pendiente{Actualizar la tabla de la 1B con los RF, RNF, RD y RL nuevos.}
 	
 	\subsection{Priorización MoSCoW}
 	\label{sec:moscow}
@@ -900,40 +557,11 @@ Caracteristica: Registro de mascota
 	\subsection{Modelo de Kano}
 	\label{sec:kano}
 	
-	\guia{Integrante 4}{El modelo de Kano \cite{kano1984} clasifica cada
-		funcionalidad en básica, de desempeño, de deleite, indiferente o de rechazo,
-		según cómo se relaciona con la satisfacción del cliente. La clasificación no
-		se decide en escritorio: se obtiene preguntando a las personas usuarias con el
-		par de preguntas funcional y disfuncional de Kano. Conviene incorporar ese par
-		de preguntas al cuestionario v2.0 de la segunda ronda de campo, así la
-		clasificación queda respaldada por datos reales.}
-	
 	\subsection{Valor de negocio con WSJF}
 	\label{sec:wsjf}
 	
-	\guia{Integrante 4}{WSJF prioriza por la relación entre el costo del retraso y
-		la duración estimada del trabajo:
-		\[
-		\mathrm{WSJF} = \frac{\text{Valor de negocio} + \text{Criticidad temporal} + \text{Reducción de riesgo}}{\text{Tamaño del trabajo}}
-		\]
-		Los cuatro factores se estiman con la sucesión de Fibonacci modificada
-		(1, 2, 3, 5, 8, 13, 20). Estimar en equipo, no individualmente, y dejar
-		registrada la justificación de cada valor en la columna correspondiente del
-		CSV.}
-	
 	\subsection{Matriz de trazabilidad extendida}
 	\label{sec:trazabilidad}
-	
-	\guia{Integrante 4}{La matriz debe encadenar diez eslabones, con un mínimo de
-		40 filas. El gatekeeper G5 la vigila.
-		\begin{center}
-			\small
-			Ley $\rightarrow$ Objetivo $\rightarrow$ Interesado $\rightarrow$ EV $\rightarrow$ RF/RNF/RD\\
-			$\rightarrow$ CU $\rightarrow$ HU $\rightarrow$ CA $\rightarrow$ Componente $\rightarrow$ Mockup
-		\end{center}
-		Conviene armarla primero en la hoja de cálculo, exportarla a CSV y recién
-		entonces volcarla al documento, no al revés. Se presenta en página horizontal
-		porque no cabe de otro modo.}
 	
 	\begin{landscape}
 		\begin{longtable}{@{}p{0.8cm} p{1.3cm} p{1.5cm} p{2.2cm} p{1.5cm} p{1.5cm} p{1.3cm} p{1.3cm} p{1.3cm} p{1.8cm} p{1.5cm}@{}}
@@ -962,28 +590,11 @@ Caracteristica: Registro de mascota
 		\end{longtable}
 	\end{landscape}
 	
-	\pendiente{Completar hasta un mínimo de 40 filas. Generar en paralelo el
-		archivo \texttt{04\_Trazabilidad/matriz\_trazabilidad.csv} con exactamente las
-		mismas columnas que exige la Sección 7.8 de la guía.}
-	
 	% ############################################################
 	%          SECCION 6 -- PRODUCTO MINIMO VIABLE (MVP)
 	% ############################################################
 	\section{Producto Mínimo Viable}
 	\label{sec:mvp}
-	
-	\guia{Integrante 5}{Criterio C8 = 0{,}75 puntos, y sin código ejecutable el
-		criterio vale cero. El MVP vive en un \textbf{repositorio Git separado y
-			público}, enlazado desde \texttt{05\_MVP/README.md} y agregado como submódulo
-		para fijar el commit exacto que se evalúa.\\[4pt]
-		Requisitos mínimos: cobertura de al menos el 60\,\% de los RF \emph{Debe
-			tener}, código organizado por módulos, instrucciones de despliegue local
-		(\texttt{docker compose up} o equivalente), cobertura de RF \emph{Must} marcada
-		explícitamente en el README, y un video de recorrido funcional de duración
-		menor o igual a tres minutos en \texttt{05\_MVP/video\_demo.mp4}.\\[4pt]
-		\textbf{Consejo de alcance:} con el tiempo disponible conviene cubrir bien
-		pocos RF antes que dejar muchos a medias. Registro y autenticación, registro
-		de mascota, publicación y consulta de perfil ya son un recorrido demostrable.}
 	
 	\subsection{Alcance del MVP y cobertura de requisitos}
 	\label{sec:mvp-alcance}
@@ -997,13 +608,10 @@ Caracteristica: Registro de mascota
 			\toprule
 			\textbf{ID-RF} & \textbf{Nombre} & \textbf{Estado} & \textbf{Módulo} \\
 			\midrule
-			RF-01 & Registrar mascota & \pend{---} & \pend{---} \\
+			RF-01 & Registrar mascota & --- & --- \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
-	
-	\pendiente{Completar la tabla con todos los RF \emph{Must} y calcular el
-		porcentaje de cobertura alcanzado.}
 	
 	\subsection{Arquitectura e instrucciones de despliegue}
 	\label{sec:mvp-arquitectura}
@@ -1017,27 +625,8 @@ Caracteristica: Registro de mascota
 	\section{Componente empírico del proyecto}
 	\label{sec:empirico}
 	
-	\guia{Integrante 5}{Criterio C9 = 1{,}00 punto y el núcleo diferencial de esta
-		entrega. El equipo elige \textbf{un solo} enfoque de los tres que ofrece la
-		guía. Esta sección resume el protocolo; la versión completa va en
-		\texttt{06\_Experimento/protocolo.pdf}.\\[4pt]
-		\textbf{Advertencia sobre el gatekeeper G6:} el protocolo debe registrarse en
-		el OSF (\url{https://osf.io}) \emph{con fecha anterior} a la recolección de
-		datos \cite{nosek2018}. Si el registro es posterior, este criterio vale la
-		mitad. Es lo primero que hay que hacer, antes que cualquier otra cosa de esta
-		sección.\\[4pt]
-		\textbf{Advertencia sobre el gatekeeper G4:} aquí solo se describe el
-		\emph{diseño} del estudio. Los resultados numéricos se escriben en la
-		Entrega 4, después de ejecutar el experimento y analizar los datos con los
-		scripts versionados. Redactar resultados antes de tener datos es fabricación
-		de evidencia y anula el criterio.}
-	
 	\subsection{Enfoque seleccionado y justificación}
 	\label{sec:enfoque}
-	
-	\pendiente{Declarar cuál de los tres enfoques se eligió y por qué. Justificar
-		en función del sistema, de los datos disponibles y del tiempo. Dejar
-		constancia de la fecha en que se comunicó la elección al docente.}
 	
 	\subsection{Preguntas de investigación en formato PICOC}
 	\label{sec:rq}
@@ -1051,14 +640,14 @@ Caracteristica: Registro de mascota
 			\toprule
 			\textbf{Elemento PICOC} & \textbf{Descripción} \\
 			\midrule
-			Población & \pend{---} \\
-			Intervención & \pend{---} \\
-			Comparación & \pend{---} \\
-			Resultado & \pend{---} \\
-			Contexto & \pend{---} \\
+			Población & --- \\
+			Intervención & --- \\
+			Comparación & --- \\
+			Resultado & --- \\
+			Contexto & --- \\
 			\midrule
-			RQ1 & \pend{---} \\
-			RQ2 & \pend{---} \\
+			RQ1 & --- \\
+			RQ2 & --- \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -1066,69 +655,29 @@ Caracteristica: Registro de mascota
 	\subsection{Hipótesis o proposiciones del estudio}
 	\label{sec:hipotesis}
 	
-	\pendiente{Hipótesis nula y alternativa si el enfoque elegido es el 1 o el 2;
-		proposiciones del estudio de caso si es el 3.}
-	
 	\subsection{Variables independientes, dependientes y de control}
 	\label{sec:variables}
 	
 	\subsection{Participantes y reclutamiento}
 	\label{sec:participantes}
 	
-	\pendiente{Criterios de inclusión y exclusión, y descripción del proceso de
-		consentimiento informado conforme a la LOPDP \cite{lopdp2021}. Recordar que
-		cada participante de esta ronda firma un consentimiento \emph{nuevo} que
-		autoriza expresamente el uso de sus datos anonimizados en publicaciones
-		revisadas por pares.}
-	
 	\subsection{Instrumentos}
 	\label{sec:instrumentos}
-	
-	\pendiente{Guion de entrevista v2.0, cuestionario v2.0, rúbrica de evaluación
-		experta y plantilla de consentimiento actualizada. Todos deben reposar en
-		\texttt{06\_Experimento/instrumentos/}.}
 	
 	\subsection{Plan de análisis estadístico}
 	\label{sec:plan-analisis}
 	
-	\guia{Integrante 5}{Debe quedar definido \emph{antes} de recolectar datos.
-		Contenido mínimo: prueba de normalidad de Shapiro-Wilk; prueba de hipótesis
-		paramétrica o no paramétrica según corresponda; tamaño del efecto (Cohen $d$ o
-		Cliff $\delta$); corrección por comparaciones múltiples cuando aplique; y el
-		cálculo de potencia estadística previo, fijando $\alpha = 0{,}05$ y
-		$1 - \beta = 0{,}80$, siguiendo las guías de
-		Molléri \emph{et al.} \cite{molleri2020} y Wohlin \emph{et al.} \cite{wohlin2012}.
-		Si el enfoque involucra evaluación por varias personas, agregar el acuerdo
-		entre evaluadores con $\kappa$ de Cohen \cite{cohen1960} para pares y $\kappa$
-		de Fleiss \cite{fleiss1971} para tres o más.}
-	
 	\subsection{Registro previo del protocolo en el OSF}
 	\label{sec:osf}
 	
-	\pendiente{Insertar la URL persistente del registro y la marca de tiempo.
-		Adjuntar el comprobante en \texttt{06\_Experimento/osf\_registration.pdf}.}
-	
 	\subsection{Amenazas a la validez previstas}
 	\label{sec:amenazas}
-	
-	\guia{Integrante 5}{Organizarlas en las cuatro categorías de
-		Wohlin \emph{et al.} \cite{wohlin2012}: validez interna, externa, de
-		constructo y de conclusión. Para cada amenaza identificada, describir la
-		mitigación aplicada y reconocer con honestidad la limitación que queda. Un
-		análisis de amenazas que no reconoce ninguna limitación es una señal de alarma
-		para cualquier revisor.}
 	
 	% ############################################################
 	%                    SECCION 8 -- CONCLUSIONES
 	% ############################################################
 	\section{Conclusiones}
 	\label{sec:conclusiones}
-	
-	\guia{Todo el equipo}{Se redacta al final, cuando el resto del documento esté
-		cerrado. Cada integrante aporta un párrafo sobre su eje de trabajo y el
-		analista líder integra. Las conclusiones deben referirse a lo que
-		efectivamente se hizo y se puede verificar en el repositorio, sin promesas ni
-		generalidades.}
 	
 	% ############################################################
 	%                        REFERENCIAS
@@ -1148,27 +697,9 @@ Caracteristica: Registro de mascota
 	\addcontentsline{toc}{section}{Apéndice A --- Plan del proyecto de IR}
 	\label{ap:plan}
 	
-	\guia{Integrante 4}{Actualizar el plan de la 1B con el cronograma de las
-		semanas 11 a 17 que propone la guía, los roles vigentes y el estado real de
-		avance a la fecha del corte.}
-	
-	% --------------------------------------------------------
 	\section*{Apéndice B --- Trabajo de campo y evidencias}
 	\addcontentsline{toc}{section}{Apéndice B --- Trabajo de campo y evidencias}
 	\label{ap:evidencias}
-	
-	\guia{Integrante 2}{Este apéndice sustenta el criterio C7, que vale 1{,}50
-		puntos y es el más pesado de la rúbrica. Cada integrante redacta las actas de
-		sus propias entrevistas; el Integrante 2 consolida el apéndice completo y
-		verifica la correspondencia entre lo declarado aquí y lo que realmente existe
-		en el repositorio.\\[4pt]
-		\textbf{Regla dura:} toda evidencia declarada en el ERS y ausente del
-		repositorio se califica con CERO. La regla del 50\,\% de la entrega anterior ya
-		no aplica. Y todo archivo cuyo contenido no corresponda a su tipo declarado se
-		considera evidencia falsificada, dispara el gatekeeper G4 y deja la nota máxima
-		en 2{,}50/10.\\[4pt]
-		\textbf{Verificación obligatoria antes del corte:} pasar \texttt{ffprobe} a
-		cada archivo de audio y video, y comprobar que ninguno tenga duración cero.}
 	
 	\subsection*{B.1 Registro y catálogo de evidencias}
 	
@@ -1182,30 +713,10 @@ Caracteristica: Registro de mascota
 	
 	\subsection*{B.6 Formularios de consentimiento firmados}
 	
-	\pendiente{Los consentimientos de esta ronda deben redactarse en cumplimiento
-		de la LOPDP \cite{lopdp2021} e incluir autorización explícita para el uso de
-		datos anonimizados en publicaciones científicas revisadas por pares. Los
-		formularios de la 1B no sirven para esto.}
-	
 	\subsection*{B.7 Ronda de validación (walkthrough)}
-	
-	\pendiente{Bloque nuevo. Cada sesión necesita grabación en MP4 y acta firmada
-		en PDF, en \texttt{02\_Evidencias/Validacion\_Walkthrough/}. Repartir entre
-		usuarios técnicos y no técnicos.}
 	
 	\subsection*{B.8 Codificación temática y curva de saturación}
 	\label{sec:codificacion}
-	
-	\guia{Integrante 2}{Bloque nuevo y prerequisito de la Sección \ref{sec:rf}: sin
-		codificación temática no hay forma de justificar de dónde salen los RF nuevos.
-		El cuaderno de trabajo va en Excel u OpenRefine y se exporta a CSV con las
-		columnas Fragmento, Código, Categoría, Requisito derivado, ID de evidencia y
-		Analista codificador, cubriendo el 100\,\% de las transcripciones.\\[4pt]
-		La curva de saturación grafica los códigos nuevos que aporta cada entrevista
-		sucesiva, siguiendo a Hennink \emph{et al.} \cite{hennink2017}. Cuando la
-		curva se aplana, se alcanzó la saturación de significado. Su ausencia es
-		motivo habitual de rechazo de escritorio en las revistas del
-		área \cite{mendez2017}.}
 	
 	\subsection*{B.9 Índice de multimedia}
 	
@@ -1214,31 +725,13 @@ Caracteristica: Registro de mascota
 	\addcontentsline{toc}{section}{Apéndice C --- Priorización MoSCoW, Kano y WSJF}
 	\label{ap:priorizacion}
 	
-	\guia{Integrante 4}{Tabla completa con una fila por requisito. Debe coincidir
-		exactamente con \texttt{04\_Trazabilidad/priorizacion\_moscow\_kano.csv}, cuyas
-		columnas son ID-RF, MoSCoW, Kano, Valor de negocio (WSJF) y justificación
-		breve.}
-	
-	% --------------------------------------------------------
 	\section*{Apéndice D --- Matriz de trazabilidad extendida (completa)}
 	\addcontentsline{toc}{section}{Apéndice D --- Matriz de trazabilidad extendida}
 	\label{ap:trazabilidad}
 	
-	% --------------------------------------------------------
 	\section*{Apéndice E --- Repositorio GitHub}
 	\addcontentsline{toc}{section}{Apéndice E --- Repositorio GitHub}
 	\label{ap:repositorio}
-	
-	\guia{Integrante 5}{La estructura del repositorio debe coincidir
-		\textbf{exactamente} con el árbol de la Sección 7.1 de la guía. Las carpetas
-		vacías que solo contienen \texttt{.gitkeep} están penalizadas de forma
-		explícita, y los niveles adicionales sin justificación también.\\[4pt]
-		\textbf{Trabajo pendiente sobre el repositorio actual:} completar
-		\texttt{CITATION.cff} con los ORCID de los cinco integrantes, escribir el
-		\texttt{CHANGELOG.md} desde la Entrega 1A, generar \texttt{checksums.sha256}
-		con \texttt{sha256sum} sobre todos los archivos multimedia, ampliar el
-		\texttt{README.md} con el contenido mínimo que pide la guía, y revisar la
-		carpeta \texttt{08\_Etica/}, que no forma parte del árbol obligatorio.}
 	
 	\subsection*{Estructura del repositorio}
 	
@@ -1249,23 +742,10 @@ Caracteristica: Registro de mascota
 	\addcontentsline{toc}{section}{Apéndice F --- Protocolo experimental}
 	\label{ap:protocolo}
 	
-	\guia{Integrante 5}{Versión extendida de la Sección \ref{sec:empirico}, con los
-		instrumentos completos como anexo. Debe corresponder literalmente con
-		\texttt{06\_Experimento/protocolo.pdf} y con lo registrado en el OSF: cualquier
-		divergencia entre el protocolo registrado y el ejecutado se declara y se
-		justifica.}
-	
 	% --------------------------------------------------------
 	\section*{Apéndice G --- Análisis de revistas objetivo}
 	\addcontentsline{toc}{section}{Apéndice G --- Análisis de revistas objetivo}
 	\label{ap:revistas}
-	
-	\guia{Integrante 5}{Criterio C10 = 0{,}50 puntos. Hay que registrar al menos
-		dos candidatas de cada editorial (Springer Nature, Elsevier e IEEE): una de
-		acceso abierto con APC y otra por suscripción o híbrida sin cargo obligatorio.
-		Las candidatas se obtienen ingresando el título y el resumen preliminar del
-		manuscrito en las herramientas oficiales de cada editorial. El mismo contenido
-		va en \texttt{07\_Publicacion/analisis\_revistas.md}.}
 	
 	\begin{table}[H]
 		\centering
@@ -1276,12 +756,12 @@ Caracteristica: Registro de mascota
 			\toprule
 			\textbf{Revista} & \textbf{Editorial} & \textbf{Cuartil JCR} & \textbf{Factor de impacto} & \textbf{Modelo de acceso} & \textbf{Ajuste temático} \\
 			\midrule
-			\pend{---} & Springer & --- & --- & APC & --- \\
-			\pend{---} & Springer & --- & --- & Suscripción & --- \\
-			\pend{---} & Elsevier & --- & --- & APC & --- \\
-			\pend{---} & Elsevier & --- & --- & Suscripción & --- \\
-			\pend{---} & IEEE & --- & --- & APC & --- \\
-			\pend{---} & IEEE & --- & --- & Suscripción & --- \\
+			--- & Springer & --- & --- & APC & --- \\
+			--- & Springer & --- & --- & Suscripción & --- \\
+			--- & Elsevier & --- & --- & APC & --- \\
+			--- & Elsevier & --- & --- & Suscripción & --- \\
+			--- & IEEE & --- & --- & APC & --- \\
+			--- & IEEE & --- & --- & Suscripción & --- \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -1290,10 +770,6 @@ Caracteristica: Registro de mascota
 	\section*{Apéndice H --- Checklist de aceptación previo al corte}
 	\addcontentsline{toc}{section}{Apéndice H --- Checklist de aceptación}
 	\label{ap:checklist}
-	
-	\guia{Todo el equipo}{Autocertificación exigida por la Sección 7.10 de la guía.
-		El docente usa esta misma lista como filtro preliminar de gatekeepers.
-		Recorrerla en conjunto la noche anterior al corte.}
 	
 	\begin{table}[H]
 		\centering
@@ -1304,7 +780,7 @@ Caracteristica: Registro de mascota
 			\toprule
 			\textbf{\#} & \textbf{Ítem verificable} & \textbf{Estado} \\
 			\midrule
-			1 & La estructura de carpetas coincide exactamente con el árbol de la Sección 7.1 de la guía. & $\square$ \\
+			1 & La estructura de carpetas del repositorio coincide con la estructura definida. & $\square$ \\
 			2 & Existen los cinco archivos raíz obligatorios y están completos. & $\square$ \\
 			3 & El PDF del ERS/SRS está unificado, numerado, con historial de versiones y enlace al repositorio en la portada. & $\square$ \\
 			4 & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_Nombre\_Tecnica.ext}. & $\square$ \\
@@ -1317,8 +793,8 @@ Caracteristica: Registro de mascota
 			11 & El hash SHA-256 de cada archivo multimedia consta en \texttt{checksums.sha256} y coincide. & $\square$ \\
 			12 & La matriz de trazabilidad en CSV tiene al menos 40 filas y todas las columnas obligatorias. & $\square$ \\
 			13 & Todas las evidencias declaradas en el ERS existen realmente en el repositorio. & $\square$ \\
-			14 & Se alcanzaron los mínimos de G5: 25 RF, 15 RNF, 10 CU detallados, 40 filas de trazabilidad y 30 respuestas de cuestionario. & $\square$ \\
-			15 & Todo componente de IA/ML tiene tratamiento de explicabilidad como RNF (gatekeeper G7). & $\square$ \\
+			14 & Se alcanzaron los mínimos comprometidos: 25 RF, 15 RNF, 10 CU detallados, 40 filas de trazabilidad y 30 respuestas de cuestionario. & $\square$ \\
+			15 & Todo componente de IA/ML tiene tratamiento de explicabilidad como RNF. & $\square$ \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
