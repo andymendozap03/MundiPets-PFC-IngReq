@@ -951,6 +951,390 @@ doi=true
 		Criterio de verificación & Registrar una mascota con datos válidos y comprobar que el perfil queda almacenado y puede consultarse posteriormente. \\
 	\end{atributos}
 	
+	\subsubsection{RF-02 --- Gestionar historial médico de la mascota}
+	
+	\begin{atributos}{RF-02}{RF-02 --- Gestionar historial médico de la mascota.}
+		Identificador & RF-02 \\
+		Nombre & Gestionar historial médico de la mascota \\
+		Descripción & El sistema deberá permitir registrar y actualizar el historial médico de una mascota, incluyendo vacunas (con su cepa/marca y profesional aplicador), desparasitaciones, enfermedades, alergias, cirugías, tratamientos y controles veterinarios. \\
+		Actor & Propietario de mascota, Veterinaria \\
+		Origen (ID de evidencia) & EV-01, EV-02, EV-03, EV-04, EV-05, EV-06, EV-07, EV-15, EV-16 \\
+		Entradas & Vacunas (cepa, aplicador), desparasitaciones, enfermedades, alergias, cirugías, tratamientos, controles médicos, observaciones. \\
+		Salidas & Historial médico actualizado. \\
+		Precondiciones & La mascota debe estar registrada en el sistema. \\
+		Postcondiciones & El historial médico queda actualizado y disponible para usuarios autorizados. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Registrar nuevos antecedentes médicos y verificar que aparecen correctamente dentro del historial clínico de la mascota. \\
+	\end{atributos}
+	
+	\subsubsection{RF-03 --- Consultar perfil completo de una mascota}
+	
+	\begin{atributos}{RF-03}{RF-03 --- Consultar perfil completo de una mascota.}
+		Identificador & RF-03 \\
+		Nombre & Consultar perfil completo de una mascota \\
+		Descripción & El sistema deberá permitir visualizar el perfil completo de una mascota mostrando su información general, historial médico autorizado, fotografías, comportamiento, vacunas, edad, raza para procesos de adopción o cruza. \\
+		Actor & Propietario de mascota, Adoptante, Interesado en cruza \\
+		Origen (ID de evidencia) & EV-02, EV-04, EV-05, EV-06, EV-07, EV-14 \\
+		Entradas & Identificador de la mascota. \\
+		Salidas & Perfil completo de la mascota. \\
+		Precondiciones & La mascota debe existir y el usuario debe tener permisos para visualizar la información correspondiente. \\
+		Postcondiciones & El usuario obtiene la información necesaria para tomar decisiones sobre adopción o cruza. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Consultar una mascota registrada y comprobar que se muestra toda la información autorizada. \\
+	\end{atributos}
+	
+	\subsubsection{RF-04 --- Buscar y filtrar mascotas}
+	
+	\begin{atributos}{RF-04}{RF-04 --- Buscar y filtrar mascotas.}
+		Identificador & RF-04 \\
+		Nombre & Buscar y filtrar mascotas \\
+		Descripción & El sistema deberá permitir buscar mascotas aplicando filtros como especie, raza, edad, ubicación, estado de salud, tamaño, temperamento y disponibilidad para adopción o cruza. \\
+		Actor & Adoptante, Interesado en cruza \\
+		Origen (ID de evidencia) & EV-07, EV-08 \\
+		Entradas & Criterios de búsqueda y filtros seleccionados. \\
+		Salidas & Lista de mascotas que cumplen los criterios establecidos. \\
+		Precondiciones & Deben existir mascotas registradas en la plataforma. \\
+		Postcondiciones & Se muestran únicamente las mascotas que cumplen los filtros aplicados. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Aplicar diferentes filtros, incluidos tamaño y temperamento, y comprobar que los resultados corresponden con los criterios seleccionados. \\
+	\end{atributos}
+	
+	\subsubsection{RF-05 --- Gestionar solicitudes de adopción}
+	
+	\begin{atributos}{RF-05}{RF-05 --- Gestionar solicitudes de adopción.}
+		Identificador & RF-05 \\
+		Nombre & Gestionar solicitudes de adopción \\
+		Descripción & El sistema deberá permitir que un usuario interesado envíe solicitudes de adopción, incluyendo su fotografía de perfil, y que el propietario pueda aceptarlas o rechazarlas después de revisar la información del solicitante. \\
+		Actor & Adoptante, Propietario de mascota \\
+		Origen (ID de evidencia) & EV-01, EV-02, EV-03, EV-05, EV-06, EV-08 \\
+		Entradas & Solicitud de adopción, información y fotografía del solicitante. \\
+		Salidas & Solicitud registrada y estado de aceptación o rechazo. \\
+		Precondiciones & La mascota debe estar disponible para adopción. \\
+		Postcondiciones & La solicitud queda registrada con su estado correspondiente. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Registrar una solicitud y comprobar que el propietario puede visualizar el perfil del solicitante y gestionarla correctamente. \\
+	\end{atributos}
+	
+	\subsubsection{RF-06 --- Evaluar compatibilidad entre mascotas para cruza}
+	
+	\begin{atributos}{RF-06}{RF-06 --- Evaluar compatibilidad entre mascotas para cruza.}
+		Identificador & RF-06 \\
+		Nombre & Evaluar compatibilidad entre mascotas para cruza \\
+		Descripción & El sistema deberá evaluar la compatibilidad entre dos mascotas registradas para procesos de cruza, considerando su raza, edad, estado de salud, antecedentes genéticos, parentesco, comportamiento e historial médico. \\
+		Actor & Propietario de mascota, Interesado en cruza \\
+		Origen (ID de evidencia) & EV-01 a EV-08, EV-11, EV-13, EV-14, EV-15, EV-16 \\
+		Entradas & Selección de dos mascotas registradas. \\
+		Salidas & Información comparativa para evaluar la compatibilidad, junto con una advertencia de que el resultado es orientativo y no sustituye la evaluación de un veterinario. \\
+		Precondiciones & Ambas mascotas deben encontrarse registradas. \\
+		Postcondiciones & El usuario dispone de información suficiente para decidir si continúa con el proceso de cruza. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Seleccionar dos mascotas y comprobar que el sistema presenta la información comparativa junto con la advertencia orientativa. \\
+	\end{atributos}
+	
+	\subsubsection{RF-07 --- Sistema de mensajería entre usuarios}
+	
+	\begin{atributos}{RF-07}{RF-07 --- Sistema de mensajería entre usuarios.}
+		Identificador & RF-07 \\
+		Nombre & Sistema de mensajería entre usuarios \\
+		Descripción & El sistema deberá permitir la comunicación entre propietarios e interesados mediante mensajes para coordinar procesos de adopción y cruza. \\
+		Actor & Propietario de mascota, Adoptante, Interesado en cruza \\
+		Origen (ID de evidencia) & EV-02, EV-07, EV-08 \\
+		Entradas & Mensaje enviado por un usuario. \\
+		Salidas & Conversación registrada entre los usuarios. \\
+		Precondiciones & Ambos usuarios deben encontrarse registrados. \\
+		Postcondiciones & El mensaje queda almacenado y disponible para ambos participantes. \\
+		Prioridad (MoSCoW) & Could \\
+		Criterio de verificación & Enviar un mensaje entre dos usuarios y verificar que ambos puedan visualizarlo. \\
+	\end{atributos}
+	
+	\subsubsection{RF-08 --- Gestionar solicitudes de cruza}
+	
+	\begin{atributos}{RF-08}{RF-08 --- Gestionar solicitudes de cruza.}
+		Identificador & RF-08 \\
+		Nombre & Gestionar solicitudes de cruza \\
+		Descripción & El sistema deberá permitir que los propietarios soliciten procesos de cruza entre mascotas y que el propietario de la otra mascota pueda aceptar o rechazar la solicitud con base en la información disponible. \\
+		Actor & Propietario de mascota, Interesado en cruza \\
+		Origen (ID de evidencia) & EV-01, EV-02, EV-03, EV-05, EV-06, EV-07 \\
+		Entradas & Solicitud de cruza, identificación de ambas mascotas. \\
+		Salidas & Solicitud registrada con estado pendiente, aceptada o rechazada. \\
+		Precondiciones & Ambas mascotas deben estar registradas y disponibles para cruza. \\
+		Postcondiciones & La solicitud queda almacenada y actualizada con el estado correspondiente. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Registrar una solicitud de cruza y verificar que el propietario receptor pueda aceptarla o rechazarla correctamente. \\
+	\end{atributos}
+	
+	\subsubsection{RF-09 --- Validar la información médica de una mascota}
+	
+	\begin{atributos}{RF-09}{RF-09 --- Validar la información médica de una mascota.}
+		Identificador & RF-09 \\
+		Nombre & Validar la información médica de una mascota \\
+		Descripción & El sistema deberá permitir que una veterinaria autorizada valide la información médica registrada de una mascota, indicando que los datos han sido verificados por un profesional. \\
+		Actor & Veterinaria \\
+		Origen (ID de evidencia) & EV-03, EV-05, EV-07, EV-15, EV-16 \\
+		Entradas & Historial médico, carnet de vacunación, controles veterinarios y documentos clínicos. \\
+		Salidas & Información médica validada con su respectiva identificación de verificación. \\
+		Precondiciones & La mascota debe encontrarse registrada y disponer de información médica cargada en el sistema. \\
+		Postcondiciones & La información médica queda marcada como validada por una veterinaria autorizada. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Validar el historial médico de una mascota y comprobar que el sistema muestre el estado de información validada. \\
+	\end{atributos}
+	
+	\subsubsection{RF-10 --- Gestionar recordatorios de controles preventivos}
+	
+	\begin{atributos}{RF-10}{RF-10 --- Gestionar recordatorios de controles preventivos.}
+		Identificador & RF-10 \\
+		Nombre & Gestionar recordatorios de controles preventivos \\
+		Descripción & El sistema deberá generar recordatorios por notificación en la aplicación y WhatsApp para informar al propietario sobre próximas vacunas, desparasitaciones y controles veterinarios, enviándolos con una semana y un día de anticipación. \\
+		Actor & Propietario de mascota \\
+		Origen (ID de evidencia) & EV-02, EV-04, EV-06, EV-11 \\
+		Entradas & Fechas de vacunas, controles veterinarios y desparasitaciones. \\
+		Salidas & Notificaciones o recordatorios generados por el sistema en los dos momentos definidos. \\
+		Precondiciones & Deben existir fechas registradas para los controles preventivos de la mascota. \\
+		Postcondiciones & El propietario recibe el recordatorio correspondiente antes de la fecha programada. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Registrar una fecha de vacunación próxima y verificar que el sistema genere el recordatorio una semana y un día antes. \\
+	\end{atributos}
+	
+	\subsubsection{RF-11 --- Administrar la privacidad de la información}
+	
+	\begin{atributos}{RF-11}{RF-11 --- Administrar la privacidad de la información.}
+		Identificador & RF-11 \\
+		Nombre & Administrar la privacidad de la información \\
+		Descripción & El sistema deberá permitir que el propietario determine qué información de su mascota y de su perfil podrá ser visualizada por otros usuarios, protegiendo los datos considerados sensibles (ubicación, datos de contacto y afecciones específicas). \\
+		Actor & Propietario de mascota \\
+		Origen (ID de evidencia) & EV-02, EV-05, EV-06, EV-07, EV-08, EV-09, EV-10, EV-14, EV-18 \\
+		Entradas & Configuración de privacidad seleccionada por el propietario. \\
+		Salidas & Permisos de visualización actualizados. \\
+		Precondiciones & El propietario debe encontrarse autenticado en el sistema. \\
+		Postcondiciones & La información se muestra únicamente a los usuarios autorizados según la configuración establecida. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Modificar la configuración de privacidad y comprobar que la información restringida no sea visible para usuarios no autorizados. \\
+	\end{atributos}
+	
+	\subsubsection{RF-12 --- Verificar la identidad de los usuarios}
+	
+	\begin{atributos}{RF-12}{RF-12 --- Verificar la identidad de los usuarios.}
+		Identificador & RF-12 \\
+		Nombre & Verificar la identidad de los usuarios \\
+		Descripción & El sistema deberá permitir verificar la identidad de los usuarios mediante el registro y validación de la información requerida antes de participar en procesos de adopción o cruza. \\
+		Actor & Propietario de mascota, Adoptante, Interesado en cruza \\
+		Origen (ID de evidencia) & EV-01, EV-03, EV-07, EV-08, EV-09 \\
+		Entradas & Información de identificación del usuario. \\
+		Salidas & Usuario verificado dentro de la plataforma. \\
+		Precondiciones & El usuario debe haber iniciado el proceso de registro. \\
+		Postcondiciones & El usuario obtiene el estado de identidad verificada. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Registrar un usuario con la documentación requerida y verificar que el sistema indique correctamente el estado de verificación. \\
+	\end{atributos}
+	
+	\subsubsection{RF-13 --- Registrar publicaciones de mascotas}
+	
+	\begin{atributos}{RF-13}{RF-13 --- Registrar publicaciones de mascotas.}
+		Identificador & RF-13 \\
+		Nombre & Registrar publicaciones de mascotas \\
+		Descripción & El sistema deberá permitir al propietario publicar una mascota indicando si estará disponible para adopción, cruza o ambas opciones, incluyendo toda la información autorizada del perfil de la mascota. \\
+		Actor & Propietario de mascota \\
+		Origen (ID de evidencia) & EV-01, EV-02, EV-04, EV-06, EV-07, EV-08 \\
+		Entradas & Tipo de publicación, fotografías, descripción y disponibilidad. \\
+		Salidas & Publicación visible para otros usuarios. \\
+		Precondiciones & La mascota debe estar registrada en el sistema. \\
+		Postcondiciones & La mascota queda publicada según el tipo de proceso seleccionado. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Publicar una mascota y comprobar que aparezca correctamente en el listado de adopciones o cruzas. \\
+	\end{atributos}
+	
+	\subsubsection{RF-14 --- Gestionar carnet de vacunación}
+	
+	\begin{atributos}{RF-14}{RF-14 --- Gestionar carnet de vacunación.}
+		Identificador & RF-14 \\
+		Nombre & Gestionar carnet de vacunación \\
+		Descripción & El sistema deberá permitir registrar, actualizar y consultar el carnet de vacunación de cada mascota, mostrando el historial de vacunas aplicadas, fechas, próximas dosis y su estado de vigencia. \\
+		Actor & Propietario de mascota, Veterinaria \\
+		Origen (ID de evidencia) & EV-02, EV-03, EV-05, EV-06, EV-07, EV-10, EV-16, EV-18 \\
+		Entradas & Vacuna aplicada, fecha de aplicación, fecha de próxima dosis, observaciones. \\
+		Salidas & Carnet de vacunación actualizado. \\
+		Precondiciones & La mascota debe estar registrada. \\
+		Postcondiciones & El carnet queda actualizado y disponible para consulta por usuarios autorizados. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Registrar una vacuna y comprobar que aparezca correctamente en el carnet de vacunación. \\
+	\end{atributos}
+	
+	\subsubsection{RF-15 --- Consultar el historial de procesos de adopción y cruza}
+	
+	\begin{atributos}{RF-15}{RF-15 --- Consultar el historial de procesos de adopción y cruza.}
+		Identificador & RF-15 \\
+		Nombre & Consultar el historial de procesos de adopción y cruza \\
+		Descripción & El sistema deberá permitir al propietario consultar el historial de solicitudes y procesos de adopción y cruza asociados a sus mascotas, incluyendo su estado y fecha de realización. \\
+		Actor & Propietario de mascota \\
+		Origen (ID de evidencia) & EV-01, EV-02, EV-04, EV-06 \\
+		Entradas & Identificador del propietario o de la mascota. \\
+		Salidas & Historial de solicitudes y procesos realizados. \\
+		Precondiciones & Deben existir procesos registrados asociados al propietario. \\
+		Postcondiciones & El propietario visualiza el historial actualizado de sus procesos. \\
+		Prioridad (MoSCoW) & Could \\
+		Criterio de verificación & Consultar el historial de un propietario con procesos registrados y comprobar que la información mostrada corresponda a los registros almacenados. \\
+	\end{atributos}
+	
+	\subsubsection{RF-16 --- Gestionar antecedentes genéticos y parentesco de la mascota}
+	
+	\begin{atributos}{RF-16}{RF-16 --- Gestionar antecedentes genéticos y parentesco de la mascota.}
+		Identificador & RF-16 \\
+		Nombre & Gestionar antecedentes genéticos y parentesco de la mascota \\
+		Descripción & El sistema deberá permitir registrar y consultar los antecedentes genéticos y el grado de parentesco de una mascota, incluyendo información sobre enfermedades hereditarias y linaje para apoyar los procesos de cruza responsable y la evaluación de compatibilidad. \\
+		Actor & Propietario de mascota, Veterinaria \\
+		Origen (ID de evidencia) & EV-01, EV-03, EV-05, EV-07, EV-14, EV-15 \\
+		Entradas & Información de linaje, antecedentes genéticos, enfermedades hereditarias, grado de parentesco y observaciones. \\
+		Salidas & Antecedentes genéticos y parentesco registrados y disponibles para consulta. \\
+		Precondiciones & La mascota debe estar registrada en el sistema. \\
+		Postcondiciones & Los antecedentes genéticos quedan asociados al perfil de la mascota y podrán ser utilizados en la evaluación de compatibilidad para cruza. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Registrar antecedentes genéticos y parentesco para una mascota y comprobar que la información quede almacenada y pueda consultarse posteriormente. \\
+	\end{atributos}
+	
+	\subsubsection{RF-17 --- Validar imágenes}
+	
+	\begin{atributos}{RF-17}{RF-17 --- Validar imágenes.}
+		Identificador & RF-17 \\
+		Nombre & Validar imágenes \\
+		Descripción & El sistema deberá utilizar un componente de inteligencia artificial para validar las imágenes cargadas por los usuarios, verificando que correspondan al tipo de contenido esperado y rechazando aquellas que sean inapropiadas o no cumplan con los criterios establecidos. \\
+		Actor & Propietario de mascota, Veterinaria \\
+		Origen (ID de evidencia) & EV-01, EV-03, EV-05, EV-07, EV-08 \\
+		Entradas & Imagen cargada por el usuario. \\
+		Salidas & Resultado de la validación y aceptación o rechazo de la imagen. \\
+		Precondiciones & El usuario debe encontrarse autenticado y seleccionar una imagen para cargar. \\
+		Postcondiciones & La imagen queda almacenada si supera la validación; de lo contrario, se rechaza mostrando el motivo correspondiente. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Cargar imágenes válidas e inválidas y comprobar que el sistema las acepta o rechaza según corresponda. \\
+	\end{atributos}
+	
+	\subsubsection{RF-18 --- Gestionar el flujo de solicitud de adopción por etapas}
+	
+	\begin{atributos}{RF-18}{RF-18 --- Gestionar el flujo de solicitud de adopción por etapas.}
+		Identificador & RF-18 \\
+		Nombre & Gestionar el flujo de solicitud de adopción por etapas \\
+		Descripción & El sistema deberá guiar la solicitud de adopción a través de etapas secuenciales (formulario, entrevista, visita al hogar, periodo de prueba y compromiso firmado), mostrando al solicitante y al propietario el estado de cumplimiento de cada etapa. \\
+		Actor & Adoptante, Propietario de mascota \\
+		Origen (ID de evidencia) & EV-11, EV-16 \\
+		Entradas & Formulario de solicitud, resultado de entrevista, resultado de visita, resultado de periodo de prueba, compromiso firmado. \\
+		Salidas & Estado de la solicitud actualizado por etapa. \\
+		Precondiciones & La mascota debe estar disponible para adopción y el usuario debe estar verificado (RF-12). \\
+		Postcondiciones & La solicitud queda marcada como completada, rechazada o pendiente en la etapa correspondiente. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Avanzar una solicitud a través de las cinco etapas y comprobar que el estado se actualiza correctamente en cada una. \\
+	\end{atributos}
+	
+	\subsubsection{RF-19 --- Validar certificados veterinarios antes de habilitar la cruza}
+	
+	\begin{atributos}{RF-19}{RF-19 --- Validar certificados veterinarios antes de habilitar la cruza.}
+		Identificador & RF-19 \\
+		Nombre & Validar certificados veterinarios antes de habilitar la cruza \\
+		Descripción & El sistema deberá permitir adjuntar certificados veterinarios de ambas mascotas y que una veterinaria registrada los valide antes de habilitar la opción de cruza. \\
+		Actor & Propietario de mascota, Veterinaria \\
+		Origen (ID de evidencia) & EV-11 \\
+		Entradas & Certificado veterinario digitalizado, identificador de la mascota. \\
+		Salidas & Estado de validación del certificado y habilitación o bloqueo de la opción de cruza. \\
+		Precondiciones & Ambas mascotas deben estar registradas y contar con antecedentes genéticos (RF-16). \\
+		Postcondiciones & La opción de cruza queda habilitada solo si ambos certificados fueron validados. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Adjuntar un certificado, hacerlo validar por una veterinaria y comprobar que la opción de cruza se habilita únicamente tras la validación. \\
+	\end{atributos}
+	
+	\subsubsection{RF-20 --- Coordinar encuentros de socialización supervisados}
+	
+	\begin{atributos}{RF-20}{RF-20 --- Coordinar encuentros de socialización supervisados.}
+		Identificador & RF-20 \\
+		Nombre & Coordinar encuentros de socialización supervisados \\
+		Descripción & El sistema deberá permitir a los propietarios coordinar encuentros presenciales entre mascotas y sus dueños en espacios públicos, con fines de socialización previa a procesos de adopción o cruza. \\
+		Actor & Propietario de mascota \\
+		Origen (ID de evidencia) & EV-13 \\
+		Entradas & Fecha, lugar y mascotas/propietarios invitados al encuentro. \\
+		Salidas & Encuentro programado y notificado a los participantes. \\
+		Precondiciones & Ambos propietarios deben estar registrados y verificados. \\
+		Postcondiciones & El encuentro queda registrado en el historial de interacciones de ambas mascotas. \\
+		Prioridad (MoSCoW) & Could \\
+		Criterio de verificación & Programar un encuentro entre dos usuarios y comprobar que ambos reciben la notificación correspondiente. \\
+	\end{atributos}
+	
+	\subsubsection{RF-21 --- Registrar el identificador de microchip de la mascota}
+	
+	\begin{atributos}{RF-21}{RF-21 --- Registrar el identificador de microchip de la mascota.}
+		Identificador & RF-21 \\
+		Nombre & Registrar el identificador de microchip de la mascota \\
+		Descripción & El sistema deberá permitir registrar y consultar el número de microchip de identificación de una mascota como parte de su perfil. \\
+		Actor & Propietario de mascota, Veterinaria \\
+		Origen (ID de evidencia) & EV-16 \\
+		Entradas & Número de microchip, fecha de implantación. \\
+		Salidas & Microchip asociado al perfil de la mascota. \\
+		Precondiciones & La mascota debe estar registrada. \\
+		Postcondiciones & El identificador de microchip queda disponible para consulta por usuarios autorizados. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Registrar un número de microchip y comprobar que se muestra correctamente en el perfil de la mascota. \\
+	\end{atributos}
+	
+	\subsubsection{RF-22 --- Dar seguimiento post-adopción}
+	
+	\begin{atributos}{RF-22}{RF-22 --- Dar seguimiento post-adopción.}
+		Identificador & RF-22 \\
+		Nombre & Dar seguimiento post-adopción \\
+		Descripción & El sistema deberá permitir mantener un contacto periódico entre adoptante y propietario original tras completarse una adopción, registrando un compromiso firmado y el estado del seguimiento. \\
+		Actor & Adoptante, Propietario de mascota \\
+		Origen (ID de evidencia) & EV-16, EV-10 \\
+		Entradas & Compromiso de adopción firmado, mensajes o reportes periódicos de seguimiento. \\
+		Salidas & Historial de seguimiento post-adopción de la mascota. \\
+		Precondiciones & La adopción debe haberse completado (RF-18). \\
+		Postcondiciones & El seguimiento queda registrado y disponible para consulta por el propietario original. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Completar una adopción y comprobar que el sistema habilita el registro de al menos un reporte de seguimiento posterior. \\
+	\end{atributos}
+	
+	\subsubsection{RF-23 --- Emitir alertas de riesgo sanitario o físico en interacciones y cruces}
+	
+	\begin{atributos}{RF-23}{RF-23 --- Emitir alertas de riesgo sanitario o físico en interacciones y cruces.}
+		Identificador & RF-23 \\
+		Nombre & Emitir alertas de riesgo sanitario o físico en interacciones y cruces \\
+		Descripción & El sistema deberá emitir una alerta cuando se intente registrar una interacción o solicitud de cruza entre mascotas que presenten una disparidad de tamaño significativa o una enfermedad contagiosa activa registrada en el historial médico. \\
+		Actor & Propietario de mascota, Interesado en cruza \\
+		Origen (ID de evidencia) & EV-09, EV-12, EV-15, EV-18 \\
+		Entradas & Datos de tamaño, edad y estado de salud de ambas mascotas. \\
+		Salidas & Alerta de riesgo con el motivo detectado. \\
+		Precondiciones & Ambas mascotas deben tener su historial médico y antecedentes genéticos registrados. \\
+		Postcondiciones & La alerta queda visible antes de confirmar la interacción o solicitud. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Intentar registrar una interacción entre mascotas con disparidad de tamaño o enfermedad contagiosa activa y comprobar que el sistema muestra la alerta correspondiente. \\
+	\end{atributos}
+	
+	\subsubsection{RF-24 --- Registrar trazabilidad de cepa, lote y aplicador de cada vacuna}
+	
+	\begin{atributos}{RF-24}{RF-24 --- Registrar trazabilidad de cepa, lote y aplicador de cada vacuna.}
+		Identificador & RF-24 \\
+		Nombre & Registrar trazabilidad de cepa, lote y aplicador de cada vacuna \\
+		Descripción & El sistema deberá permitir registrar, además de la fecha, la cepa o marca del biológico y el profesional que aplicó cada vacuna dentro del carnet de vacunación. \\
+		Actor & Veterinaria, Propietario de mascota \\
+		Origen (ID de evidencia) & EV-15, EV-16 \\
+		Entradas & Cepa/marca del biológico, nombre del aplicador, fecha de aplicación. \\
+		Salidas & Registro de vacuna con trazabilidad completa. \\
+		Precondiciones & La mascota debe estar registrada y contar con carnet de vacunación (RF-14). \\
+		Postcondiciones & El registro de trazabilidad queda disponible para consulta por usuarios autorizados. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Registrar una vacuna con cepa y aplicador, y comprobar que ambos datos aparecen en el carnet. \\
+	\end{atributos}
+	
+	\subsubsection{RF-25 --- Publicar aviso de mascota extraviada}
+	
+	\begin{atributos}{RF-25}{RF-25 --- Publicar aviso de mascota extraviada.}
+		Identificador & RF-25 \\
+		Nombre & Publicar aviso de mascota extraviada \\
+		Descripción & El sistema deberá permitir al propietario publicar un aviso público de mascota extraviada, incluyendo fotografías, identificador de microchip y datos de contacto para facilitar su localización. \\
+		Actor & Propietario de mascota \\
+		Origen (ID de evidencia) & EV-12, EV-16 \\
+		Entradas & Fotografías, última ubicación conocida, número de microchip, datos de contacto. \\
+		Salidas & Aviso de mascota extraviada visible públicamente. \\
+		Precondiciones & La mascota debe estar registrada en el sistema. \\
+		Postcondiciones & El aviso queda visible hasta que el propietario lo marque como resuelto. \\
+		Prioridad (MoSCoW) & Could \\
+		Criterio de verificación & Publicar un aviso de mascota extraviada y comprobar que aparece visible para otros usuarios con los datos de contacto. \\
+	\end{atributos}
+	
 	% ------------------------------------------------------------
 	\subsection{Requisitos no funcionales}
 	\label{sec:rnf}
@@ -966,13 +1350,13 @@ doi=true
 			\midrule
 			Adecuación funcional & RNF-06, RNF-07 & Cubierta desde la 1B \\
 			Eficiencia del desempeño & RNF-03 & Cubierta desde la 1B \\
-			Compatibilidad & --- & Sin cubrir \\
-			Interacción de usuario (usabilidad) & RNF-04 & Cubierta desde la 1B \\
+			Compatibilidad & RNF-09 & Cubierta en esta entrega (2A) \\
+			Interacción de usuario (usabilidad) & RNF-04, RNF-13, RNF-14, RNF-15 & Cubierta y ampliada con explicabilidad \\
 			Fiabilidad & RNF-02, RNF-08 & Cubierta desde la 1B \\
-			Seguridad & RNF-01, RNF-05 & Cubierta desde la 1B \\
-			Mantenibilidad & --- & Sin cubrir \\
-			Portabilidad & --- & Sin cubrir \\
-			Flexibilidad & --- & Sin cubrir \\
+			Seguridad & RNF-01, RNF-05, RNF-16 & Cubierta y ampliada en esta entrega \\
+			Mantenibilidad & RNF-10 & Cubierta en esta entrega (2A) \\
+			Portabilidad & RNF-11 & Cubierta en esta entrega (2A) \\
+			Flexibilidad & RNF-12 & Cubierta en esta entrega (2A) \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -982,7 +1366,7 @@ doi=true
 	\begin{atributos}{RNF-01}{RNF-01 --- Protección de la información de propietarios y mascotas.}
 		Identificador & RNF-01 \\
 		Nombre & Protección de la información de propietarios y mascotas \\
-		Característica ISO/IEC 25010 & Seguridad \\
+		Característica ISO 25010 & Seguridad \\
 		Descripción & El sistema deberá impedir el acceso no autorizado a la información personal de los propietarios y al historial médico de las mascotas, garantizando que durante las pruebas de seguridad no se produzcan accesos exitosos por parte de usuarios sin los permisos correspondientes. \\
 		Métrica & Porcentaje de accesos no autorizados exitosos. \\
 		Valor objetivo & 0\,\% de accesos no autorizados durante las pruebas del sistema. \\
@@ -990,9 +1374,212 @@ doi=true
 		Criterio de verificación & Intentar acceder a información restringida desde una cuenta sin permisos y comprobar que el acceso sea denegado. \\
 	\end{atributos}
 	
+	\subsubsection{RNF-02 --- Disponibilidad del sistema}
+	
+	\begin{atributos}{RNF-02}{RNF-02 --- Disponibilidad del sistema.}
+		Identificador & RNF-02 \\
+		Nombre & Disponibilidad del sistema \\
+		Característica ISO 25010 & Fiabilidad \\
+		Descripción & El sistema deberá mantenerse disponible para los usuarios con una disponibilidad mínima del 99\,\% mensual, permitiendo el acceso continuo a sus funcionalidades durante la operación normal de la plataforma. \\
+		Métrica & Porcentaje de disponibilidad mensual. \\
+		Valor objetivo & $\geq$ 99\,\% de disponibilidad mensual. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Monitorear la disponibilidad del sistema durante un mes de operación y comprobar que cumple el porcentaje establecido. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-03 --- Tiempo de respuesta del sistema}
+	
+	\begin{atributos}{RNF-03}{RNF-03 --- Tiempo de respuesta del sistema.}
+		Identificador & RNF-03 \\
+		Nombre & Tiempo de respuesta del sistema \\
+		Característica ISO 25010 & Eficiencia de desempeño \\
+		Descripción & El sistema deberá responder a las consultas de perfiles de mascotas, historial médico y resultados de búsqueda en un tiempo máximo de 2 segundos en el percentil 95, bajo una carga nominal de 100 usuarios concurrentes. \\
+		Métrica & Tiempo de respuesta en el percentil 95 (P95) bajo carga nominal. \\
+		Valor objetivo & $\leq$ 2 segundos (P95) con 100 usuarios concurrentes. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Ejecutar una prueba de carga con 100 usuarios concurrentes y comprobar que el percentil 95 del tiempo de respuesta no supera el valor objetivo. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-04 --- Facilidad de uso de la plataforma}
+	
+	\begin{atributos}{RNF-04}{RNF-04 --- Facilidad de uso de la plataforma.}
+		Identificador & RNF-04 \\
+		Nombre & Facilidad de uso de la plataforma \\
+		Característica ISO 25010 & Interacción de usuario \\
+		Descripción & La interfaz del sistema deberá permitir que al menos el 90\,\% de los usuarios completen las tareas principales (registrar una mascota, consultar su información y enviar solicitudes de adopción o cruza) sin necesidad de capacitación previa, y alcanzar una puntuación media $\geq$ 80/100 en la escala System Usability Scale (SUS). \\
+		Métrica & Porcentaje de usuarios que completan las tareas sin asistencia y puntuación media SUS. \\
+		Valor objetivo & $\geq$ 90\,\% de finalización sin ayuda; puntuación SUS media $\geq$ 80/100. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Realizar pruebas de usabilidad con usuarios representativos, medir el porcentaje de finalización sin ayuda y aplicar el cuestionario SUS al finalizar. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-05 --- Integridad de la información médica}
+	
+	\begin{atributos}{RNF-05}{RNF-05 --- Integridad de la información médica.}
+		Identificador & RNF-05 \\
+		Nombre & Integridad de la información médica \\
+		Característica ISO 25010 & Seguridad \\
+		Descripción & El sistema deberá garantizar que únicamente los usuarios autorizados puedan modificar el historial médico de una mascota, evitando que durante las pruebas se produzcan modificaciones no autorizadas. \\
+		Métrica & Porcentaje de modificaciones no autorizadas permitidas. \\
+		Valor objetivo & 0\,\% de modificaciones no autorizadas durante las pruebas. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Intentar modificar un historial médico desde un usuario sin permisos y comprobar que el sistema rechaza la operación. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-06 --- Exactitud del componente de inteligencia artificial}
+	
+	\begin{atributos}{RNF-06}{RNF-06 --- Exactitud del componente de inteligencia artificial.}
+		Identificador & RNF-06 \\
+		Nombre & Exactitud del componente de inteligencia artificial \\
+		Característica ISO 25010 & Adecuación funcional \\
+		Descripción & El componente de inteligencia artificial deberá generar recomendaciones de compatibilidad para procesos de cruza con una coincidencia mínima del 85\,\% respecto a las evaluaciones realizadas por médicos veterinarios durante las pruebas de validación. \\
+		Métrica & Porcentaje de recomendaciones consideradas adecuadas por un médico veterinario durante las pruebas. \\
+		Valor objetivo & $\geq$ 85\,\% de coincidencia con la evaluación veterinaria. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Comparar las recomendaciones emitidas por la IA con las evaluaciones de veterinarios sobre un conjunto representativo de casos de prueba. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-07 --- Precisión en la validación de imágenes}
+	
+	\begin{atributos}{RNF-07}{RNF-07 --- Precisión en la validación de imágenes.}
+		Identificador & RNF-07 \\
+		Nombre & Precisión en la validación de imágenes \\
+		Característica ISO 25010 & Adecuación funcional \\
+		Descripción & El componente de inteligencia artificial deberá clasificar correctamente al menos el 95\,\% de las imágenes cargadas como válidas o inválidas según el tipo de fotografía esperado. \\
+		Métrica & Porcentaje de clasificación correcta de imágenes. \\
+		Valor objetivo & $\geq$ 95\,\%. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Evaluar el componente con un conjunto de imágenes etiquetadas y comprobar que la tasa de clasificación correcta sea igual o superior al 95\,\%. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-08 --- Actualización de la información registrada}
+	
+	\begin{atributos}{RNF-08}{RNF-08 --- Actualización de la información registrada.}
+		Identificador & RNF-08 \\
+		Nombre & Actualización de la información registrada \\
+		Característica ISO 25010 & Fiabilidad \\
+		Descripción & El sistema deberá reflejar las actualizaciones realizadas sobre la información de mascotas, historiales médicos y publicaciones en un tiempo máximo de 5 segundos, garantizando que los usuarios consulten información actualizada. \\
+		Métrica & Tiempo transcurrido entre el registro de una actualización y su disponibilidad para consulta. \\
+		Valor objetivo & $\leq$ 5 segundos. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Actualizar la información de una mascota y comprobar que los cambios sean visibles para los usuarios autorizados en un tiempo máximo de 5 segundos. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-09 --- Interoperabilidad de notificaciones con canales externos}
+	
+	\begin{atributos}{RNF-09}{RNF-09 --- Interoperabilidad de notificaciones con canales externos.}
+		Identificador & RNF-09 \\
+		Nombre & Interoperabilidad de notificaciones con canales externos \\
+		Característica ISO 25010 & Compatibilidad \\
+		Descripción & El sistema deberá integrarse con servicios externos de mensajería (WhatsApp Business API) para el envío de recordatorios de controles preventivos (RF-10), garantizando la entrega correcta del mensaje sin duplicarlo ni perderlo. \\
+		Métrica & Porcentaje de notificaciones entregadas correctamente al canal externo. \\
+		Valor objetivo & $\geq$ 98\,\% de notificaciones entregadas correctamente en pruebas de integración. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Enviar un lote de notificaciones de prueba a través de la integración con WhatsApp y verificar la tasa de entrega correcta. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-10 --- Facilidad de mantenimiento del código}
+	
+	\begin{atributos}{RNF-10}{RNF-10 --- Facilidad de mantenimiento del código.}
+		Identificador & RNF-10 \\
+		Nombre & Facilidad de mantenimiento del código \\
+		Característica ISO 25010 & Mantenibilidad \\
+		Descripción & El sistema deberá organizarse en módulos independientes (gestión de mascotas, adopción/cruza, mensajería, componente de IA), de forma que una modificación en un módulo no requiera cambios en más del 10\,\% de los archivos de otro módulo, en línea con RD-05. \\
+		Métrica & Porcentaje de archivos modificados fuera del módulo afectado ante un cambio de prueba. \\
+		Valor objetivo & $\leq$ 10\,\% de archivos modificados fuera del módulo afectado. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Aplicar un cambio de prueba en un módulo y medir el porcentaje de archivos modificados en los demás módulos. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-11 --- Portabilidad entre navegadores y dispositivos}
+	
+	\begin{atributos}{RNF-11}{RNF-11 --- Portabilidad entre navegadores y dispositivos.}
+		Identificador & RNF-11 \\
+		Nombre & Portabilidad entre navegadores y dispositivos \\
+		Característica ISO 25010 & Portabilidad \\
+		Descripción & La plataforma web deberá funcionar correctamente en los navegadores Chrome, Firefox y Safari (dos últimas versiones estables) y adaptarse de forma responsiva a pantallas móviles y de escritorio. \\
+		Métrica & Porcentaje de funcionalidades Must que operan sin errores por navegador/dispositivo probado. \\
+		Valor objetivo & 100\,\% de las funcionalidades Must operativas en los 3 navegadores y en resolución móvil y de escritorio. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Ejecutar las pruebas funcionales de los RF Must en cada navegador y tamaño de pantalla y verificar la ausencia de errores bloqueantes. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-12 --- Escalabilidad ante crecimiento de usuarios}
+	
+	\begin{atributos}{RNF-12}{RNF-12 --- Escalabilidad ante crecimiento de usuarios.}
+		Identificador & RNF-12 \\
+		Nombre & Escalabilidad ante crecimiento de usuarios \\
+		Característica ISO 25010 & Flexibilidad \\
+		Descripción & El sistema deberá soportar el incremento de usuarios concurrentes sin degradar significativamente el tiempo de respuesta definido en RNF-03, permitiendo escalar horizontalmente los servidores de aplicación. \\
+		Métrica & Tiempo de respuesta (P95) al triplicar la carga nominal de usuarios concurrentes. \\
+		Valor objetivo & $\leq$ 3 segundos (P95) con 300 usuarios concurrentes (el triple de la carga nominal). \\
+		Prioridad (MoSCoW) & Could \\
+		Criterio de verificación & Ejecutar una prueba de carga con el triple de usuarios concurrentes y comprobar que el P95 del tiempo de respuesta no supera el valor objetivo. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-13 --- Explicabilidad de la recomendación de compatibilidad para cruza (RF-06)}
+	
+	\begin{atributos}{RNF-13}{RNF-13 --- Explicabilidad de la recomendación de compatibilidad para cruza (RF-06).}
+		Identificador & RNF-13 \\
+		Nombre & Explicabilidad de la recomendación de compatibilidad para cruza \\
+		Característica ISO 25010 & Interacción de usuario (Explicabilidad) \\
+		Descripción & El sistema deberá presentar, junto con el resultado de compatibilidad para cruza, una explicación causal de los factores que influyeron en el resultado (raza, edad, estado de salud, antecedentes genéticos), en un máximo de 60 palabras y con un tiempo de generación no mayor a 2 segundos. \\
+		Métrica & Tiempo de generación de la explicación y calificación media de comprensión (escala Likert 1--5). \\
+		Valor objetivo & $\leq$ 2 segundos, $\leq$ 60 palabras, calificación media de comprensión $\geq$ 4/5. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Solicitar una evaluación de compatibilidad, comprobar tiempo/extensión de la explicación y aplicar una encuesta de comprensión a usuarios técnicos y no técnicos ($\geq$ 4/5 de calificación media). \\
+	\end{atributos}
+	
+	\subsubsection{RNF-14 --- Explicabilidad del rechazo o aceptación de imágenes (RF-17)}
+	
+	\begin{atributos}{RNF-14}{RNF-14 --- Explicabilidad del rechazo o aceptación de imágenes (RF-17).}
+		Identificador & RNF-14 \\
+		Nombre & Explicabilidad del rechazo o aceptación de imágenes \\
+		Característica ISO 25010 & Interacción de usuario (Explicabilidad) \\
+		Descripción & Cuando una imagen sea rechazada por el componente de inteligencia artificial, el sistema deberá informar el motivo específico (contenido inapropiado, imagen borrosa, tipo de fotografía incorrecto) mediante una explicación por contraste, en un máximo de 30 palabras. \\
+		Métrica & Porcentaje de rechazos con motivo específico mostrado y calificación media de comprensión (Likert 1--5). \\
+		Valor objetivo & 100\,\% de los rechazos con motivo específico; calificación media de comprensión $\geq$ 4/5. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Cargar imágenes inválidas, comprobar que cada rechazo muestra un motivo específico, y encuestar la comprensión del motivo mostrado. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-15 --- Explicabilidad de la moderación de mensajes}
+	
+	\begin{atributos}{RNF-15}{RNF-15 --- Explicabilidad de la moderación de mensajes.}
+		Identificador & RNF-15 \\
+		Nombre & Explicabilidad de la moderación de mensajes \\
+		Característica ISO 25010 & Interacción de usuario (Explicabilidad) \\
+		Descripción & Cuando un mensaje sea marcado como inapropiado por el componente de moderación automática, el sistema deberá notificar la categoría de infracción detectada (lenguaje ofensivo, spam, solicitud de pago externo) mediante una explicación por ejemplos, antes de bloquear el envío. \\
+		Métrica & Porcentaje de mensajes moderados con categoría mostrada y calificación media de comprensión (Likert 1--5). \\
+		Valor objetivo & 100\,\% de mensajes moderados con categoría mostrada; calificación media de comprensión $\geq$ 4/5. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Enviar mensajes de prueba con contenido inapropiado y comprobar que se muestra la categoría de infracción antes de bloquear el envío; encuestar la comprensión de la notificación. \\
+	\end{atributos}
+	
+	\subsubsection{RNF-16 --- Confidencialidad de datos de ubicación y contacto}
+	
+	\begin{atributos}{RNF-16}{RNF-16 --- Confidencialidad de datos de ubicación y contacto.}
+		Identificador & RNF-16 \\
+		Nombre & Confidencialidad de datos de ubicación y contacto \\
+		Característica ISO 25010 & Seguridad \\
+		Descripción & El sistema deberá ocultar por defecto la ubicación exacta y los datos de contacto directo del propietario, mostrando únicamente una zona aproximada (radio $\geq$ 1 km) a usuarios no autorizados, en cumplimiento del principio de minimización de la LOPDP. \\
+		Métrica & Porcentaje de perfiles donde la ubicación exacta y el contacto directo permanecen ocultos por defecto. \\
+		Valor objetivo & 100\,\% de los perfiles con ubicación y contacto ocultos por defecto. \\
+		Prioridad (MoSCoW) & Must \\
+		Criterio de verificación & Consultar el perfil de una mascota desde una cuenta sin autorización específica y comprobar que solo se muestra la zona aproximada, no la dirección exacta ni el contacto directo. \\
+	\end{atributos}
+	
 	% ------------------------------------------------------------
 	\subsubsection{Requisitos de explicabilidad del componente de inteligencia artificial}
 	\label{sec:explicabilidad}
+	
+	Los tres componentes de inteligencia artificial de MundiPets toman decisiones
+	que afectan directamente a los usuarios, por lo que el Art.~20 de la LOPDP
+	(RL-06, Tabla~\ref{tab:legales}) reconoce al titular el derecho a no ser objeto
+	de una decisión basada únicamente en valoraciones automatizadas sin recibir una
+	explicación motivada. La Tabla~\ref{tab:componentes-ia} identifica cada
+	componente y el tipo de explicación exigido; los requisitos RNF-13, RNF-14 y
+	RNF-15 especifican estas necesidades de forma medible y verificable.
 	
 	\begin{table}[H]
 		\centering
@@ -1003,9 +1590,11 @@ doi=true
 			\toprule
 			\textbf{Componente} & \textbf{Decisión automática} & \textbf{Usuario afectado} & \textbf{Tipo de explicación requerida} \\
 			\midrule
-			RF-06 & Recomendación de compatibilidad para cruza & --- & --- \\
-			RF-17 & Aceptación o rechazo de una imagen cargada & --- & --- \\
-			Moderación & Marcado de un mensaje como inapropiado & --- & --- \\
+			RF-06 & Recomendación de compatibilidad para cruza & Propietario de mascota, interesado en cruza & Explicación causal de los factores considerados (raza, edad, estado de salud, antecedentes genéticos) --- especificada en RNF-13 \\
+			\addlinespace
+			RF-17 & Aceptación o rechazo de una imagen cargada & Propietario de mascota, veterinaria & Explicación por contraste con el motivo específico del rechazo --- especificada en RNF-14 \\
+			\addlinespace
+			Moderación & Marcado de un mensaje como inapropiado & Usuarios del módulo de mensajería (RF-07) & Explicación por ejemplos con la categoría de infracción detectada --- especificada en RNF-15 \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -1014,20 +1603,42 @@ doi=true
 	\subsection{Requisitos legales}
 	\label{sec:legales}
 	
+	El marco normativo aplicable es la Ley Orgánica de Protección de Datos Personales
+	(LOPDP) del Ecuador. La LOPDP define \emph{titular} como la persona natural cuyos
+	datos son objeto de tratamiento; esto implica que el historial médico de la mascota
+	no constituye, en sí mismo, un dato personal protegido. El titular de derechos es
+	siempre el propietario (persona natural), y los datos de la mascota quedan
+	protegidos en la medida en que revelan información sobre él --- ubicación, hábitos,
+	capacidad económica o comportamiento. La Tabla~\ref{tab:legales} traza cada
+	artículo de la ley hasta el requisito que lo implementa.
+	
 	\begin{table}[H]
 		\centering
 		\caption{Trazabilidad Ley $\rightarrow$ Artículo $\rightarrow$ Requisito.}
 		\label{tab:legales}
 		\small
-		\begin{tabularx}{\textwidth}{@{}p{1.6cm} p{2.0cm} p{4.2cm} X@{}}
+		\begin{tabularx}{\textwidth}{@{}p{1.1cm} p{1.9cm} p{5.4cm} X@{}}
 			\toprule
-			\textbf{ID} & \textbf{Artículo} & \textbf{Obligación legal} & \textbf{RF/RNF que la implementa} \\
+			\textbf{ID} & \textbf{Artículo (LOPDP)} & \textbf{Obligación legal} & \textbf{RF/RNF/RD que la implementa} \\
 			\midrule
-			RL-01 & --- & --- & --- \\
-			RL-02 & --- & --- & --- \\
-			RL-03 & --- & --- & --- \\
-			RL-04 & --- & --- & --- \\
-			RL-05 & --- & --- & --- \\
+			RL-01 & Art. 7 y 8 & El tratamiento de datos personales del propietario debe basarse en un consentimiento libre, específico, informado e inequívoco, revocable en cualquier momento. & RF-01 (registro con aceptación de términos), RF-12 (verificación de identidad), Apéndice B.6 (consentimientos de campo) \\
+			\addlinespace
+			RL-02 & Art. 12 y 13 & El titular debe ser informado sobre la finalidad, el responsable y las transferencias de sus datos, y tiene derecho a acceder gratuitamente a ellos dentro de 15 días. & RF-03 (consultar perfil completo), RF-11 (privacidad) \\
+			\addlinespace
+			RL-03 & Art. 14 & El titular tiene derecho a la rectificación y actualización de sus datos inexactos o incompletos, en un plazo de 15 días. & RF-02 (gestionar historial médico), RF-14 (carnet de vacunación) \\
+			\addlinespace
+			RL-04 & Art. 15 & El titular tiene derecho a solicitar la eliminación de sus datos personales cuando revoque el consentimiento o estos ya no sean necesarios. & RD-06 (Mecanismo de eliminación de cuenta y datos personales) \\
+			\addlinespace
+			RL-05 & Art. 10 lit. e) y j) & Los datos deben limitarse a lo estrictamente necesario para la finalidad (minimización) y protegerse frente a accesos no autorizados (seguridad). & RF-11 (privacidad), RNF-01 y RNF-16 (protección/confidencialidad de ubicación y contacto) \\
+			\addlinespace
+			RL-06 & Art. 20 & El titular tiene derecho a no ser objeto de una decisión basada únicamente en valoraciones automatizadas sin recibir una explicación motivada sobre ella. & RF-06 (evaluación de compatibilidad por IA), RNF-13, RNF-14, RNF-15 (explicabilidad) --- este artículo es la base legal directa de todo el bloque de explicabilidad \\
+			\addlinespace
+			RL-07 & Art. 25, 26 y 30 & Los datos sensibles y los datos de salud del propietario requieren consentimiento explícito y confidencialidad reforzada; el historial clínico de la mascota se protege como extensión indirecta de esos datos. & RD-04 (protección de datos personales), RNF-01, RNF-05 \\
+			\addlinespace
+			RL-08 & Art. 39 & El sistema debe implementar protección de datos desde el diseño y por defecto, tratando solo los datos estrictamente necesarios para cada finalidad. & RD-02 (acceso basado en roles), RNF-16 (confidencialidad de ubicación/contacto) \\
+			\addlinespace
+			RL-09 & Art. 43 y 46 & Ante una vulneración de seguridad que afecte derechos del titular, debe notificarse a la Autoridad de Protección de Datos en máximo 5 días y al titular afectado en máximo 3 días. & RD-07 (Protocolo de notificación de vulneraciones de seguridad) \\
+			\addlinespace
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -1035,6 +1646,111 @@ doi=true
 	% ------------------------------------------------------------
 	\subsection{Restricciones de diseño}
 	\label{sec:restricciones}
+	
+	Las restricciones de diseño acotan el espacio de soluciones admisibles. Las
+	restricciones RD-01 a RD-05 se heredan de la Entrega 2 (1B); RD-06 a RD-09 se
+	incorporan en esta entrega tras el análisis legal de la Sección~\ref{sec:legales},
+	que evidenció obligaciones de la LOPDP sin cobertura en los requisitos existentes.
+	
+	\subsubsection{RD-01 --- Integración de componentes de inteligencia artificial}
+	
+	\begin{atributos}{RD-01}{RD-01 --- Integración de componentes de inteligencia artificial.}
+		Identificador & RD-01 \\
+		Nombre & Integración de componentes de inteligencia artificial \\
+		Descripción & El sistema deberá incorporar componentes de inteligencia artificial para la evaluación de compatibilidad entre mascotas y la validación de imágenes cargadas por los usuarios. \\
+		Justificación & La solución propuesta incorpora IA como parte del valor agregado del sistema para mejorar la confiabilidad de los procesos de cruza y la validación del contenido publicado. \\
+		Impacto & Arquitectura del sistema, módulo de IA y procesamiento de imágenes. \\
+		Prioridad (MoSCoW) & Must \\
+	\end{atributos}
+	
+	\subsubsection{RD-02 --- Acceso basado en roles}
+	
+	\begin{atributos}{RD-02}{RD-02 --- Acceso basado en roles.}
+		Identificador & RD-02 \\
+		Nombre & Acceso basado en roles \\
+		Descripción & El sistema deberá implementar un mecanismo de control de acceso basado en roles para diferenciar los permisos de propietarios, veterinarias y administradores. \\
+		Justificación & Las entrevistas muestran que cada tipo de usuario realiza funciones distintas y accede a diferente información; refuerza además RL-05 y RL-08 (minimización y protección desde el diseño, Art. 10 y 39 LOPDP). \\
+		Impacto & Seguridad, autenticación, autorización y diseño de la base de datos. \\
+		Prioridad (MoSCoW) & Must \\
+	\end{atributos}
+	
+	\subsubsection{RD-03 --- Validación profesional de la información médica}
+	
+	\begin{atributos}{RD-03}{RD-03 --- Validación profesional de la información médica.}
+		Identificador & RD-03 \\
+		Nombre & Validación profesional de la información médica \\
+		Descripción & El sistema deberá permitir que la validación de la información médica sea realizada únicamente por veterinarias autorizadas. \\
+		Justificación & Los veterinarios entrevistados (EV-15, EV-16) resaltan la importancia de que la información médica sea confiable y verificable. \\
+		Impacto & Diseño de usuarios, permisos y módulo de historial médico. \\
+		Prioridad (MoSCoW) & Must \\
+	\end{atributos}
+	
+	\subsubsection{RD-04 --- Protección de datos personales}
+	
+	\begin{atributos}{RD-04}{RD-04 --- Protección de datos personales.}
+		Identificador & RD-04 \\
+		Nombre & Protección de datos personales \\
+		Descripción & El sistema deberá diseñarse para proteger la información personal de los propietarios y la información clínica de las mascotas mediante mecanismos de autenticación y autorización, aplicando el principio de protección de datos desde el diseño y por defecto (Art. 39 LOPDP). \\
+		Justificación & Los entrevistados consideran prioritaria la privacidad de la información registrada (EV-09, EV-10, EV-18); implementa directamente RL-05, RL-07 y RL-08. \\
+		Impacto & Seguridad, arquitectura del sistema y base de datos. \\
+		Prioridad (MoSCoW) & Must \\
+	\end{atributos}
+	
+	\subsubsection{RD-05 --- Arquitectura modular del sistema}
+	
+	\begin{atributos}{RD-05}{RD-05 --- Arquitectura modular del sistema.}
+		Identificador & RD-05 \\
+		Nombre & Arquitectura modular del sistema \\
+		Descripción & El sistema deberá organizarse en módulos independientes para facilitar el mantenimiento y la incorporación de nuevas funcionalidades, como componentes de inteligencia artificial o nuevos procesos relacionados con mascotas. \\
+		Justificación & La plataforma integra funcionalidades de gestión, adopción, cruza e IA, por lo que una arquitectura modular facilitará su evolución y mantenimiento; sustenta directamente RNF-10 (mantenibilidad). \\
+		Impacto & Arquitectura del software y organización del código fuente. \\
+		Prioridad (MoSCoW) & Must \\
+	\end{atributos}
+	
+	\subsubsection{RD-06 --- Mecanismo de eliminación de cuenta y datos personales}
+	
+	\begin{atributos}{RD-06}{RD-06 --- Mecanismo de eliminación de cuenta y datos personales.}
+		Identificador & RD-06 \\
+		Nombre & Mecanismo de eliminación de cuenta y datos personales \\
+		Descripción & El sistema deberá permitir que el propietario solicite la eliminación de su cuenta y de los datos personales asociados, ejecutando la supresión (o anonimización cuando exista obligación legal de conservación) dentro de un plazo definido. \\
+		Justificación & El Art. 15 de la LOPDP reconoce el derecho de eliminación del titular; ningún RF de los 25 definidos cubría esta función (vacío detectado en 3.4, RL-04). \\
+		Impacto & Modelo de datos, módulo de cuentas, políticas de retención y borrado en cascada del historial médico y publicaciones asociadas. \\
+		Prioridad (MoSCoW) & Must \\
+	\end{atributos}
+	
+	\subsubsection{RD-07 --- Protocolo de notificación de vulneraciones de seguridad}
+	
+	\begin{atributos}{RD-07}{RD-07 --- Protocolo de notificación de vulneraciones de seguridad.}
+		Identificador & RD-07 \\
+		Nombre & Protocolo de notificación de vulneraciones de seguridad \\
+		Descripción & El sistema deberá contar con un mecanismo de detección y registro de incidentes de seguridad que permita notificar a la Autoridad de Protección de Datos Personales en un máximo de 5 días y al titular afectado en un máximo de 3 días, cuando el incidente comprometa sus derechos. \\
+		Justificación & Los Art. 43 y 46 de la LOPDP exigen esta notificación; no existía ningún RD que la contemplara (vacío detectado en 3.4, RL-09). \\
+		Impacto & Arquitectura de monitoreo/logging, módulo de administración, procedimiento operativo del equipo responsable del tratamiento. \\
+		Prioridad (MoSCoW) & Must \\
+	\end{atributos}
+	
+	\subsubsection{RD-08 --- Dependencia de servicios externos de mensajería}
+	
+	\begin{atributos}{RD-08}{RD-08 --- Dependencia de servicios externos de mensajería.}
+		Identificador & RD-08 \\
+		Nombre & Dependencia de servicios externos de mensajería \\
+		Descripción & El sistema deberá integrarse con un proveedor externo de mensajería (WhatsApp Business API) para el envío de recordatorios (RF-10), quedando su disponibilidad condicionada a las políticas y disponibilidad de dicho proveedor. \\
+		Justificación & La evidencia de campo (EV-11) muestra una fuerte preferencia de los usuarios por recibir recordatorios por ese canal; sustenta RNF-09 (compatibilidad). \\
+		Impacto & Arquitectura de integración externa; requiere canal de respaldo (notificación in-app) ante caídas del proveedor. \\
+		Prioridad (MoSCoW) & Should \\
+	\end{atributos}
+	
+	\subsubsection{RD-09 --- Anonimización de evidencias de campo para publicación abierta (nueva)}
+	
+	\begin{atributos}{RD-09}{RD-09 --- Anonimización de evidencias de campo para publicación abierta (nueva).}
+		Identificador & RD-09 \\
+		Nombre & Anonimización de evidencias de campo para publicación abierta \\
+		Descripción & El equipo deberá anonimizar o seudonimizar las transcripciones, videos y respuestas de cuestionario antes de incluirlas en el conjunto de datos abierto (Zenodo/OSF), removiendo identificadores directos del propietario. \\
+		Justificación & Los Art. 30 a 32 de la LOPDP exigen anonimización para el tratamiento de datos de salud con fines de investigación; los consentimientos firmados (Apéndice B.6) ya autorizan explícitamente el uso de datos anonimizados en publicaciones científicas. \\
+		Impacto & Proceso de preparación de datos para la Entrega 4 (paquete FAIR), scripts de anonimización, README\_dataset.md. \\
+		Prioridad (MoSCoW) & Must \\
+	\end{atributos}
+	
 	
 	% ------------------------------------------------------------
 	\subsection{Historias de usuario y criterios de aceptación}
@@ -1497,7 +2213,126 @@ doi=true
 	
 	\subsection*{B.1 Registro y catálogo de evidencias}
 	
+	La Tabla~\ref{tab:catalogo-evidencias} consolida las dieciocho evidencias de campo
+	recogidas por el equipo, indicando el tipo de instrumento aplicado, el participante
+	o fuente, los requisitos derivados de cada una y si se cuenta con el consentimiento
+	informado firmado correspondiente (Apéndice~B.6).
+	
+	{\small
+		\begin{longtable}{@{}>{\raggedright\arraybackslash}p{1.2cm} >{\raggedright\arraybackslash}p{3.1cm} >{\raggedright\arraybackslash}p{3.1cm} >{\raggedright\arraybackslash}p{6.0cm} >{\raggedright\arraybackslash}p{1.4cm}@{}}
+			\caption{Registro y catálogo de evidencias del trabajo de campo.}
+			\label{tab:catalogo-evidencias}\\
+			\toprule
+			\textbf{ID-EV} & \textbf{Tipo de evidencia} & \textbf{Fuente / participante} & \textbf{Requisitos derivados} & \textbf{Consent.} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{5}{@{}l}{\small\itshape (continuación)}\\
+			\toprule
+			\textbf{ID-EV} & \textbf{Tipo de evidencia} & \textbf{Fuente / participante} & \textbf{Requisitos derivados} & \textbf{Consent.} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			EV-01 & Entrevista grabada, audio, video y consentimiento & Joseph Orlando Saltos Tello, propietario de mascota & RF-01, RF-03, RF-05, RF-07, RF-08, RF-12, RF-13 & Sí \\
+			\addlinespace
+			EV-02 & Entrevista grabada, audio, video y consentimiento & Lesly Sheyla Flores Secaira, propietaria de mascota & RF-01, RF-02, RF-03, RF-05, RF-07, RF-08, RF-10, RF-11, RF-13, RF-14, RF-15 & Sí \\
+			\addlinespace
+			EV-03 & Entrevista grabada, audio, video y consentimiento & Mariella Fernanda Chacón Morales, médica veterinaria & RF-01, RF-02, RF-05, RF-06, RF-08, RF-09, RF-12, RF-14, RF-16, RF-17, RNF-01, RNF-05, RNF-06, RNF-07, RD-03, RD-04 & Sí \\
+			\addlinespace
+			EV-04 & Entrevista grabada, audio, video y consentimiento & Kevin Andrés Rosado Palma, veterinario & RF-02, RF-03, RF-06, RF-10, RF-13, RF-15, RNF-06, RNF-08, RD-03 & Sí \\
+			\addlinespace
+			EV-05 & Entrevista grabada, audio, video y consentimiento & Bryan Steven Monserrate Arévalo, médico veterinario & RF-01, RF-02, RF-03, RF-05, RF-06, RF-08, RF-09, RF-11, RF-13, RF-14, RF-16, RF-17, RNF-01, RNF-05, RD-03, RD-04 & Sí \\
+			\addlinespace
+			EV-06 & Entrevista grabada, audio, video y consentimiento & Elizabeth Mendoza Arana, propietaria de mascota & RF-01, RF-02, RF-03, RF-05, RF-08, RF-10, RF-11, RF-13, RF-14, RF-15 & Sí \\
+			\addlinespace
+			EV-07 & Cuestionario digital, formularios y resultados exportados & Usuarios potenciales encuestados & RF-01, RF-03, RF-04, RF-06, RF-07, RF-08, RF-11, RF-12, RF-13, RF-17, RNF-03, RNF-04, RNF-07 & No \\
+			\addlinespace
+			EV-08 & Observación presencial del proceso actual en una clínica veterinaria, con fotografías fechadas del entorno y consentimiento informado firmado por la veterinaria observada & Veterinaria ``Amigo fiel'' & RF-01, RF-03, RF-04, RF-05, RF-06, RF-07, RF-11, RF-12, RF-13, RF-17, RNF-01, RNF-04 & Si \\
+			\addlinespace
+			EV-09 & Entrevista grabada, audio, video y consentimiento & Fernando Arraes, propietario de mascota & RF-11, RF-12, RF-23, RNF-09 & Si \\
+			\addlinespace
+			EV-10 & Entrevista grabada, audio, video y consentimiento & José Nivela, propietario de mascota & RF-11, RF-14, RF-22 & Si \\
+			\addlinespace
+			EV-11 & Entrevista grabada, audio, video y consentimiento & Adriana Zulema Córdova, usuaria potencial & RF-06, RF-10, RF-18, RF-19, RNF-13 & Sí \\
+			\addlinespace
+			EV-12 & Entrevista grabada, audio, video y consentimiento & Esperanza Sánchez Zumba, usuaria potencial & RF-23, RF-25 & Sí \\
+			\addlinespace
+			EV-13 & Entrevista grabada, audio, video y consentimiento & Johan Alcivar, usuario potencial & RF-06, RF-20, RNF-13 & Sí \\
+			\addlinespace
+			EV-14 & Entrevista grabada, audio, video y consentimiento & Manuel Francisco Morales Haz, usuario potencial & RF-03, RF-06, RF-11, RF-16 & Sí \\
+			\addlinespace
+			EV-15 & Entrevista grabada, audio, video y consentimiento & Mayerli Vélez, veterinaria & RF-02, RF-09, RF-16, RF-23, RF-24, RNF-13 & Sí \\
+			\addlinespace
+			EV-16 & Entrevista grabada, audio, video y consentimiento & John Hernán Párraga Vélez, veterinario & RF-02, RF-09, RF-14, RF-18, RF-21, RF-22, RF-24, RNF-13 & Sí \\
+			\addlinespace
+			EV-17 & Entrevista grabada, audio, video y consentimiento & Angelina Julcey Llerena Abril, usuaria potencial & Refuerza RNF-13 & Sí \\
+			\addlinespace
+			EV-18 & Entrevista grabada, audio, video y consentimiento & Milena Noemí Molina Ortega, usuaria potencial & RF-11, RF-23, RNF-09, RD-04 & Sí \\
+			\addlinespace
+		\end{longtable}
+	}
+	
 	\subsection*{B.2 Guion y guía de entrevista v2.0}
+	
+	Se emplearon dos guiones diferenciados según el perfil del participante. La
+	Guía~A se aplicó a dueños de mascota y usuarios potenciales; la Guía~B, a
+	profesionales veterinarios.
+	
+	\subsubsection*{Guía A --- Dueños de mascota y usuarios potenciales}
+	
+	\textbf{Objetivo:} conocer los riesgos, la información relevante y las
+	consideraciones éticas para el desarrollo de una solución a la problemática.\\
+	\textbf{Duración estimada:} 15--20 minutos.\\
+	\textbf{Modalidad:} videollamada, con grabación de audio y video previo
+	consentimiento informado (Apéndice~B.6).\\
+	\textbf{Instrucciones para el entrevistador:} leer y hacer firmar el
+	consentimiento informado antes de iniciar la grabación; formular las preguntas en
+	el orden dado, permitiendo respuestas abiertas.
+	
+	\begin{enumerate}[leftmargin=*, itemsep=1pt]
+		\item ¿Cómo suele conocer el estado de salud de su mascota?
+		\item ¿Qué información considera necesaria antes de dejar a su mascota interactuar con otras mascotas?
+		\item ¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios?
+		\item ¿Qué información considera privada o sensible sobre su mascota?
+		\item ¿Qué información considera necesaria sobre el historial médico de una mascota?
+		\item ¿Qué información considera más importante conocer sobre una mascota antes de adoptarla?
+		\item ¿Qué problemas considera más comunes en procesos de adopción?
+		\item ¿Qué factores influyen en su decisión al momento de elegir una mascota?
+		\item ¿Cómo decide si una mascota es compatible con otra?
+		\item ¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas?
+	\end{enumerate}
+	
+	\subsubsection*{Guía B --- Veterinarios y veterinarias}
+	
+	\textbf{Objetivo:} conocer los riesgos, la información relevante y las
+	consideraciones éticas desde el criterio clínico-profesional.\\
+	\textbf{Duración estimada:} 15--25 minutos.\\
+	\textbf{Modalidad:} videollamada, con grabación de audio y video previo
+	consentimiento informado (Apéndice~B.6).\\
+	\textbf{Instrucciones para el entrevistador:} las mismas que en la Guía~A. Esta
+	guía profundiza en el criterio clínico-profesional que complementa la perspectiva
+	de los propietarios recogida en la Guía~A.
+	
+	\begin{enumerate}[leftmargin=*, itemsep=1pt]
+		\item ¿Qué información considera más importante conocer sobre una mascota?
+		\item ¿Qué datos ayudan a entender mejor el estado general de una mascota?
+		\item ¿Qué antecedentes considera importantes conocer sobre una mascota?
+		\item ¿Qué riesgos existen cuando no se conoce suficiente información sobre una mascota?
+		\item ¿Cómo influye la edad de una mascota en su cuidado y comportamiento?
+		\item ¿Cómo influye la raza en las necesidades de una mascota?
+		\item ¿Qué datos de la mascota considera sensibles?
+		\item ¿Qué enfermedades o condiciones considera importante registrar en una mascota?
+		\item ¿Qué información involucra el perfil médico de una mascota?
+		\item ¿Cómo puede verificarse si una mascota cuenta con controles médicos adecuados?
+		\item ¿Cómo evalúa si una adopción puede considerarse responsable?
+		\item ¿Qué información considera importante antes de entregar una mascota en adopción?
+		\item ¿Cómo afectan las adopciones informales al bienestar animal?
+		\item ¿Qué información considera esencial antes de recomendar un cruce entre mascotas?
+		\item ¿Cómo puede identificarse si dos mascotas son compatibles entre sí?
+		\item ¿Cómo identifica posibles riesgos en procesos de reproducción entre mascotas?
+		\item ¿Cómo afectan los cruces irresponsables a las mascotas?
+	\end{enumerate}
+	
 	
 	\subsection*{B.3 Actas de entrevista firmadas}
 	
