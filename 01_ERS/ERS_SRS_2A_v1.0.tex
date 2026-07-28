@@ -272,11 +272,257 @@ doi=true
 	\subsection{Propósito del documento}
 	\label{sec:proposito}
 	
+	El propósito de este documento es establecer la Especificación de Requisitos de
+	Software (ERS/SRS) completa del sistema MundiPets, siguiendo una estructura
+	basada en el estándar IEEE/ISO/IEC 29148:2018 \cite{iso29148}. Esta
+	especificación tiene como finalidad documentar de manera clara, organizada y
+	verificable los requisitos funcionales, no funcionales, legales, restricciones,
+	actores, interfaces, modelos y criterios de trazabilidad que servirán como base
+	para el desarrollo del sistema.
+	
+	Este documento está dirigido al equipo de desarrollo, analistas, modeladores,
+	verificadores, docente evaluador y demás stakeholders relacionados con el
+	proyecto. Su contenido permitirá comprender qué necesidades debe satisfacer
+	MundiPets, cómo se relacionan los usuarios con el sistema y qué condiciones
+	deben cumplirse para considerar que la solución propuesta responde al problema
+	identificado.
+	
+	La ERS/SRS apoyará las fases de análisis, diseño, implementación, pruebas y
+	validación del ciclo de vida del software. En la fase de análisis, permitirá
+	consolidar las necesidades obtenidas durante la elicitación de requisitos. En
+	la fase de diseño, servirá como referencia para definir la arquitectura,
+	interfaces y modelos del sistema. En la implementación, orientará al equipo
+	sobre las funcionalidades que deben desarrollarse. En las pruebas, facilitará
+	la verificación de cada requisito mediante criterios claros y medibles.
+	Finalmente, en la validación, permitirá comprobar si el producto cumple con
+	las expectativas de los usuarios y stakeholders.
+	
+	Respecto a la Entrega 2 (1B), esta versión amplía el propósito del documento en
+	dos direcciones. Por un lado, incorpora un componente empírico
+	(Sección~\ref{sec:empirico}) que valida, mediante un protocolo experimental
+	registrado y ejecutado con rigor metodológico, aspectos concretos del sistema
+	especificado. Por otro lado, sirve de base directa al manuscrito de
+	publicación científica derivado del proyecto, de modo que la trazabilidad
+	entre evidencia, requisito y resultado experimental documentada aquí es también
+	el sustento metodológico de dicho manuscrito.
+	
+	Aplicado al proyecto MundiPets, este documento formaliza los requisitos de una
+	red social orientada a facilitar procesos de adopción y cruza responsable de
+	mascotas. El sistema busca centralizar la publicación de perfiles de mascotas,
+	la consulta de información relevante, la comunicación entre usuarios y el
+	apoyo de actores como propietarios, adoptantes, interesados en cruza, refugios
+	y veterinarias. De esta manera, la ERS/SRS se convierte en una base técnica
+	para guiar el desarrollo de una plataforma más transparente, segura y
+	organizada para la gestión de estos procesos.
+	
 	\subsection{Alcance del producto}
 	\label{sec:alcance}
 	
+	El alcance de MundiPets comprende el desarrollo de una plataforma digital
+	orientada a facilitar los procesos de adopción y cruza responsable de
+	mascotas. El sistema busca centralizar la información de las mascotas,
+	permitir la publicación de perfiles, apoyar la búsqueda de animales
+	disponibles, facilitar la comunicación entre usuarios y fortalecer la
+	confiabilidad de la información registrada. De esta manera, MundiPets responde
+	a la necesidad de contar con un canal más organizado, transparente y seguro
+	para conectar propietarios, adoptantes, interesados en cruza, refugios y
+	veterinarias.
+	
+	Además, MundiPets incorpora funcionalidades de apoyo basadas en inteligencia
+	artificial, orientadas a mejorar la calidad de la información publicada, la
+	seguridad de las interacciones y la responsabilidad en los procesos de
+	adopción y cruza. Estas funcionalidades no reemplazan la evaluación de
+	profesionales veterinarios ni toman decisiones definitivas sobre la salud o
+	reproducción de las mascotas; su propósito es brindar alertas, recomendaciones
+	preliminares y mecanismos de validación o moderación dentro de la plataforma.
+	
+	En esta entrega, el alcance se amplía además con un Producto Mínimo Viable
+	(MVP, Sección~\ref{sec:mvp}) que demuestra de forma ejecutable un subconjunto
+	de los requisitos \emph{Debe tener}, y con el componente empírico
+	(Sección~\ref{sec:empirico}) que evalúa formalmente aspectos del sistema
+	especificado.
+	
+	\begin{longtable}{|p{4cm}|p{11cm}|}
+		\caption{Alcance incluido en MundiPets.} \label{tab:alcance_incluido} \\
+		\hline
+		\textbf{Alcance incluido en MundiPets} & \textbf{Descripción} \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Alcance incluido en MundiPets} & \textbf{Descripción} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot
+		
+		Registro de mascotas & El sistema permite registrar datos básicos de las mascotas, como nombre, edad, sexo, raza, fotografías y características generales. \\
+		\hline
+		Perfil médico de la mascota & El sistema permite registrar información relacionada con vacunas, desparasitación, enfermedades previas, alergias, cirugías, tratamientos, estado reproductivo y antecedentes clínicos. \\
+		\hline
+		Carga y consulta de documentos veterinarios & El sistema permite adjuntar o consultar documentos relacionados con la mascota, como carnés de vacunación, certificados o registros veterinarios. \\
+		\hline
+		Publicación de mascotas en adopción & Los propietarios y refugios pueden publicar mascotas disponibles para adopción, incluyendo información relevante para que los interesados evalúen el proceso. \\
+		\hline
+		Publicación de mascotas para cruza & Los propietarios pueden publicar mascotas disponibles para procesos de cruza responsable, considerando datos básicos, reproductivos, sanitarios y de comportamiento. \\
+		\hline
+		Búsqueda de mascotas & Los usuarios pueden buscar mascotas disponibles para adopción o cruza mediante criterios como raza, edad, sexo, ubicación, estado reproductivo u otra información relevante. \\
+		\hline
+		Consulta de información de mascotas & Los adoptantes e interesados en cruza pueden consultar información básica, médica y sanitaria necesaria para tomar decisiones más informadas. \\
+		\hline
+		Comunicación entre usuarios & El sistema permite la comunicación entre propietarios, adoptantes, interesados en cruza, refugios y veterinarias para coordinar procesos relacionados con adopción, cruza o validación de información. \\
+		\hline
+		Participación de refugios & Los refugios o asociaciones protectoras pueden publicar mascotas rescatadas con el objetivo de aumentar su visibilidad y facilitar procesos de adopción responsable. \\
+		\hline
+		Validación de información médica & Las veterinarias pueden apoyar la revisión o validación de información sanitaria y documentos médicos registrados en la plataforma. \\
+		\hline
+		Protección de información sensible & El sistema considera mecanismos para proteger datos personales y médicos sensibles, permitiendo que solo la información necesaria sea visible según el tipo de usuario o proceso. \\
+		\hline
+		Verificación de imagen mediante IA & El sistema analiza la imagen subida al perfil de una mascota para verificar si corresponde a una mascota y evitar fotografías irrelevantes, ofensivas o no relacionadas con el propósito de la plataforma. \\
+		\hline
+		Apoyo inteligente para compatibilidad de cruza & El sistema compara datos básicos, sanitarios, reproductivos y genéticos de dos mascotas para generar una recomendación preliminar sobre si el cruce parece viable, riesgoso o requiere revisión veterinaria. \\
+		\hline
+		Moderación de chat mediante IA & El sistema analiza los mensajes enviados entre usuarios para detectar lenguaje ofensivo, spam, conversaciones fuera de tema o contenido no relacionado con adopción, cruza o bienestar animal. \\
+		\hline
+		Sugerencias inteligentes para completar perfiles & El sistema advierte al usuario cuando el perfil de una mascota tiene información incompleta, especialmente en campos importantes como vacunas, desparasitación, edad, raza, estado reproductivo, antecedentes médicos o fotografías. \\
+		\hline
+		Recomendaciones básicas de cuidado & El sistema muestra recomendaciones generales relacionadas con el cuidado responsable de mascotas, sin sustituir la orientación profesional veterinaria. \\
+		\hline
+		Producto Mínimo Viable (MVP) & Se desarrolla un MVP ejecutable que cubre al menos el 60\,\% de los RF de prioridad \emph{Debe tener}, con código versionado, instrucciones de despliegue y evidencia de funcionamiento. \\
+		\hline
+		Componente empírico & Se diseña, registra y ejecuta un protocolo de evaluación empírica de aspectos del sistema, con preguntas de investigación, plan de análisis y amenazas a la validez declaradas. \\
+		\hline
+	\end{longtable}
+	
+	\begin{longtable}{|p{4cm}|p{11cm}|}
+		\caption{Alcance excluido en MundiPets.} \label{tab:alcance_excluido} \\
+		\hline
+		\textbf{Alcance excluido en MundiPets} & \textbf{Descripción} \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Alcance excluido en MundiPets} & \textbf{Descripción} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot
+		
+		Diagnóstico veterinario automático & MundiPets no diagnostica enfermedades, condiciones clínicas ni tratamientos. Cualquier información generada por el sistema tiene carácter orientativo y debe ser confirmada por un profesional veterinario. \\
+		\hline
+		Atención veterinaria presencial o teleconsulta médica & El sistema no reemplaza una consulta veterinaria ni ofrece atención médica directa a las mascotas. \\
+		\hline
+		Decisión definitiva sobre cruza & La IA puede generar recomendaciones preliminares sobre compatibilidad, pero no autoriza ni rechaza de forma definitiva un proceso de cruza. La decisión final depende de los propietarios y, cuando corresponda, de una veterinaria. \\
+		\hline
+		Evaluación genética avanzada & El sistema no realiza estudios genéticos complejos ni pruebas de laboratorio para determinar parentesco, enfermedades hereditarias o compatibilidad genética avanzada. \\
+		\hline
+		Gestión clínica completa de veterinarias & MundiPets no funciona como sistema administrativo interno de clínicas veterinarias para facturación, inventario, agenda médica completa, historias clínicas institucionales o gestión de empleados. \\
+		\hline
+		Pago en línea de servicios & En esta versión no se contempla la integración con pasarelas de pago para consultas, adopciones, servicios veterinarios, publicaciones destacadas o procesos de cruza. \\
+		\hline
+		Transporte o entrega física de mascotas & El sistema no gestiona la logística de traslado, entrega o transporte de mascotas entre usuarios, refugios o veterinarias. \\
+		\hline
+		Garantía legal de adopciones o cruces & MundiPets facilita la conexión entre usuarios, pero no actúa como entidad legal que garantice contratos, acuerdos, responsabilidades posteriores o cumplimiento de condiciones entre las partes. \\
+		\hline
+		Moderación humana permanente & La IA puede ayudar a detectar contenido sospechoso o fuera de tema, pero el sistema no garantiza una revisión humana permanente de todos los mensajes o publicaciones. \\
+		\hline
+		Red social de contenido general & MundiPets no es una red social abierta para publicaciones ajenas al bienestar animal, adopción, cruza, perfiles de mascotas o comunicación relacionada con estos procesos. \\
+		\hline
+		Sustitución de documentos veterinarios oficiales & El sistema puede almacenar o mostrar documentos, pero no reemplaza certificados, carnés, registros o documentos oficiales emitidos por una veterinaria. \\
+		\hline
+		Verificación absoluta de identidad & El sistema puede incorporar mecanismos básicos de seguridad, pero no garantiza una verificación legal completa de identidad como la realizada por entidades públicas o financieras. \\
+		\hline
+	\end{longtable}
+	
 	\subsection{Definiciones, acrónimos y abreviaturas (glosario)}
 	\label{sec:glosario}
+	
+	Esta sección define los términos técnicos, acrónimos y abreviaturas utilizados
+	en la Especificación de Requisitos de Software del sistema MundiPets. Su
+	finalidad es mantener una terminología uniforme, evitar ambigüedades y
+	asegurar que todos los interesados interpreten de manera consistente los
+	conceptos empleados en el documento. Respecto a la Entrega 1B, se incorporan
+	los términos propios de esta entrega: priorización avanzada (Kano, WSJF),
+	historias de usuario (Connextra, INVEST, Gherkin), el marco de preguntas de
+	investigación PICOC, los principios FAIR de gestión de datos, explicabilidad
+	de sistemas de IA, el lenguaje de modelado organizacional i*, el marco legal
+	LOPDP, el repositorio OSF, el identificador DOI y la saturación temática.
+	
+	\begin{longtable}{|p{2.2cm}|p{3.3cm}|p{9.5cm}|}
+		\caption{Definiciones, acrónimos y abreviaturas (Glosario).} \label{tab:glosario_ers} \\
+		\hline
+		\textbf{Abreviatura / Sigla} & \textbf{Término} & \textbf{Definición} \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Abreviatura / Sigla} & \textbf{Término} & \textbf{Definición} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot
+		
+		ERS & Especificación de Requisitos de Software & Documento técnico que describe de forma estructurada los requisitos que debe cumplir un sistema \cite{atoum2021}. \\ \hline
+		
+		IEEE/ISO/IEC 29148:2018 & Requirements engineering (Estándar) & Estándar utilizado como referencia para estructurar, documentar y evaluar requisitos de software de forma clara, verificable y trazable \cite{iso29148}. \\ \hline
+		
+		IEEE/ISO/IEC 25010:2023 & Systems and software Quality Requirements and Evaluation (Modelo de calidad) & Norma internacional que define el modelo de calidad del producto de software, usado para evaluar características como seguridad, usabilidad, rendimiento, fiabilidad y mantenibilidad \cite{iso25010}. \\ \hline
+		
+		--- & Requirements engineering: fundamentals, principles, and techniques & Disciplina encargada de identificar, analizar, documentar, validar y gestionar las necesidades de los stakeholders para transformarlas en requisitos claros del sistema \cite{pohl2025}. \\ \hline
+		
+		--- & Requisito & Necesidad, condición o capacidad que debe cumplir el sistema para satisfacer a los usuarios o restricciones del proyecto \cite{gobov2023}. \\ \hline
+		
+		RF & Requisito Funcional & Describe una función, servicio o comportamiento que el sistema debe ejecutar \cite{said2026}. \\ \hline
+		
+		RNF & Requisito No Funcional & Define criterios de calidad del sistema, como seguridad, rendimiento, usabilidad, disponibilidad o mantenibilidad \cite{bhar2026}. \\ \hline
+		
+		RD & Restricción de diseño & Condición impuesta sobre la arquitectura o el diseño del sistema que limita las decisiones técnicas posibles. \\ \hline
+		
+		RL & Requisito legal & Obligación derivada de una norma jurídica vigente que el sistema debe cumplir, mapeada a un artículo específico. \\ \hline
+		
+		--- & Actor & Entidad externa que interactúa con el sistema, como un usuario y administrador \cite{blasco2020, vranic2023}. \\ \hline
+		
+		--- & Stakeholder & Persona, grupo u organización que tiene interés, influencia o afectación directa o indirecta sobre el sistema \cite{khan2022}. \\ \hline
+		
+		--- & Caso de uso & Descripción estructurada de una interacción entre un actor y el sistema para cumplir un objetivo específico \cite{vranic2023}. \\ \hline
+		
+		UML & Lenguaje Unificado de Modelado & Utilizado para representar casos de uso, clases, relaciones y otros elementos del sistema \cite{narulita2024}. \\ \hline
+		
+		MoSCoW & Must have, Should have, Could have, Won't have & Técnica de priorización que clasifica requisitos según su nivel de importancia crítica \cite{vijayakumar2024}. \\ \hline
+		
+		Kano & Modelo de Kano & Técnica de priorización que clasifica una funcionalidad en básica, de desempeño, de deleite, indiferente o de rechazo según su efecto en la satisfacción del cliente \cite{kano1984}. \\ \hline
+		
+		WSJF & Weighted Shortest Job First & Técnica de priorización que ordena el trabajo según la relación entre el costo del retraso (valor de negocio, criticidad temporal y reducción de riesgo) y el tamaño estimado del trabajo. \\ \hline
+		
+		--- & Historia de usuario (formato Connextra) & Enunciado breve de una necesidad funcional en la forma \enquote{Como \emph{rol}, quiero \emph{funcionalidad}, para \emph{beneficio}} \cite{cohn2004}. \\ \hline
+		
+		INVEST & Independent, Negotiable, Valuable, Estimable, Small, Testable & Conjunto de seis criterios de calidad para evaluar una historia de usuario. \\ \hline
+		
+		--- & Gherkin & Lenguaje estructurado para redactar escenarios de aceptación en formato Dado-Cuando-Entonces \cite{fischbach2023}. \\ \hline
+		
+		PICOC & Población, Intervención, Comparación, Resultado, Contexto & Marco para estructurar preguntas de investigación en estudios empíricos de ingeniería de software. \\ \hline
+		
+		FAIR & Findable, Accessible, Interoperable, Reusable & Principios que orientan la gestión de datos de investigación para que sean localizables, accesibles, interoperables y reutilizables. \\ \hline
+		
+		--- & Explicabilidad & Capacidad de un sistema de inteligencia artificial de ofrecer a las personas afectadas una explicación comprensible de una decisión automática \cite{chazette2020}. \\ \hline
+		
+		i* & Lenguaje de modelado i-star & Lenguaje de modelado organizacional orientado a metas, usado para representar la intencionalidad de los actores mediante los diagramas SD y SR \cite{yu1995}. \\ \hline
+		
+		SD & Diagrama de Dependencia Estratégica & Diagrama i* que muestra las dependencias entre actores organizacionales sin abrir su estructura interna. \\ \hline
+		
+		SR & Diagrama de Razón Estratégica & Diagrama i* que abre la estructura interna de cada actor, mostrando sus metas, metas blandas, tareas y recursos. \\ \hline
+		
+		LOPDP & Ley Orgánica de Protección de Datos Personales & Norma ecuatoriana que regula el tratamiento de datos personales \cite{lopdp2021}. \\ \hline
+		
+		OSF & Open Science Framework & Plataforma de acceso abierto usada para el registro previo de protocolos de investigación \cite{nosek2018}. \\ \hline
+		
+		DOI & Digital Object Identifier & Identificador persistente y único asignado a un recurso digital, como un conjunto de datos o una publicación. \\ \hline
+		
+		--- & Saturación temática & Punto en el análisis cualitativo en el que entrevistas adicionales dejan de aportar códigos nuevos \cite{hennink2017}. \\ \hline
+	\end{longtable}
 	
 	\subsection{Referencias}
 	\label{sec:referencias-intro}
@@ -291,6 +537,34 @@ doi=true
 	\subsection{Visión general del documento}
 	\label{sec:vision}
 	
+	El presente documento se organiza como una Especificación de Requisitos de
+	Software (ERS/SRS) completa para el sistema MundiPets, con el propósito de
+	presentar de forma clara y ordenada la información necesaria para comprender,
+	diseñar, implementar, validar y evaluar empíricamente la plataforma. En la
+	Sección 1 (Introducción), se presenta el propósito del documento, el alcance
+	del producto, el glosario, las referencias y esta visión general. En la
+	Sección 2 (Descripción general), se describe la perspectiva del producto, sus
+	funciones principales, los tipos de usuarios, el mapa de stakeholders, el
+	entorno operativo, las suposiciones y dependencias, y el modelado
+	organizacional en i* mediante los diagramas SD y SR.
+	
+	En la Sección 3 (Requisitos específicos completos), se detallan las interfaces
+	externas, los 25 requisitos funcionales, los 15 requisitos no funcionales, los
+	requisitos de explicabilidad del componente de inteligencia artificial, los
+	requisitos legales derivados de la LOPDP, las restricciones de diseño y las
+	historias de usuario con sus criterios de aceptación. En la Sección 4
+	(Modelado del sistema con UML), se presentan los ocho diagramas UML exigidos.
+	En la Sección 5 (Priorización y trazabilidad extendida), se presenta la
+	clasificación de requisitos, la priorización MoSCoW, Kano y WSJF, y la matriz
+	de trazabilidad extendida de diez eslabones. La Sección 6 (Producto Mínimo
+	Viable) documenta el MVP ejecutable y su cobertura de requisitos. La Sección 7
+	(Componente empírico) documenta el protocolo de evaluación empírica del
+	proyecto. Finalmente, la Sección 8 (Conclusiones) resume los resultados
+	principales del documento, mientras que los apéndices reúnen el plan del
+	proyecto, las evidencias de campo, la priorización y trazabilidad extendidas,
+	el repositorio GitHub, el protocolo experimental y el análisis de revistas
+	objetivo.
+	
 	% ############################################################
 	%                 SECCION 2 -- DESCRIPCION GENERAL
 	% ############################################################
@@ -299,35 +573,341 @@ doi=true
 	\subsection{Perspectiva del producto y límite del sistema}
 	\label{sec:perspectiva}
 	
+	MundiPets se concibe como un sistema independiente, es decir, no reemplaza ni
+	se integra como módulo de otro software existente en la organización. Sin
+	embargo, para operar correctamente requiere comunicarse con actores externos
+	que aportan o consumen información crítica para el funcionamiento del sistema,
+	tal como se aprecia en el diagrama de dependencias estratégicas
+	(Figura~\ref{fig:contexto}).
+	
+	El límite del sistema comprende únicamente los procesos de gestión de perfiles
+	de mascotas, publicación de anuncios de adopción/cruza, búsqueda y
+	comunicación entre usuarios, y el registro de información sanitaria validada.
+	Quedan fuera del límite del sistema: la atención veterinaria en sí misma, el
+	transporte de mascotas y cualquier gestión legal de tenencia, las cuales son
+	responsabilidad de los actores externos correspondientes. Este límite se
+	mantiene vigente en la presente entrega; los requisitos funcionales nuevos
+	(RF-18 a RF-25) se ubican dentro de los procesos ya delimitados y no
+	requieren extender la frontera del sistema.
+	
+	Los actores externos identificados son:
+	\begin{itemize}[leftmargin=*]
+		\item \textbf{Propietario de mascota:} publica los datos completos de su mascota y depende del sistema para encontrar un adoptante adecuado o un interesado en cruza.
+		\item \textbf{Adoptante:} depende del sistema para buscar mascotas disponibles y obtener información completa y confiable sobre ellas.
+		\item \textbf{Interesado en cruza:} depende del sistema para consultar información genética y sanitaria confiable de las mascotas publicadas.
+		\item \textbf{Veterinaria:} valida y certifica la información médica y sanitaria que ingresa al sistema, actuando como fuente externa de confianza.
+		\item \textbf{Refugio de animales:} utiliza el sistema como canal para dar visibilidad a mascotas rescatadas y lograr su adopción.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figuras/DiagramaDeDependenciaEstrategica_MundiPets.png}
+		\caption{Diagrama de dependencias estratégicas (SD) del sistema MundiPets.}
+		\label{fig:contexto}
+	\end{figure}
+	
+	Con el fin de representar gráficamente el límite del sistema descrito
+	anteriormente, se presenta el diagrama contextual de MundiPets
+	(Figura~\ref{fig:diagrama_contexto}), el cual ilustra al sistema como una caja
+	única que recibe y envía información hacia los actores externos con los que
+	interactúa, sin detallar los procesos internos que lo componen. Este diagrama
+	permite visualizar de forma clara el alcance del sistema y los flujos de
+	información que cruzan su frontera.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figuras/DiagramaContexto_MundiPets.png}
+		\caption{Diagrama contextual del sistema MundiPets.}
+		\label{fig:diagrama_contexto}
+	\end{figure}
+	
 	\subsection{Funciones del producto}
 	\label{sec:funciones}
+	
+	A continuación se resumen, a alto nivel, las funciones principales que ofrece
+	MundiPets, agrupadas por módulo:
+	
+	\begin{itemize}[leftmargin=*]
+		\item \textbf{Gestión de perfiles de mascotas:} permite a los propietarios registrar, editar y publicar la información de sus mascotas (datos generales, historial médico, estado reproductivo).
+		\item \textbf{Búsqueda y filtrado:} permite a adoptantes e interesados en cruza buscar mascotas disponibles según criterios como raza, edad, ubicación y propósito (adopción o cruza).
+		\item \textbf{Publicación de disponibilidad:} permite a propietarios y refugios publicar mascotas disponibles para adopción o cruza responsable.
+		\item \textbf{Validación de información médica:} permite que las veterinarias asociadas verifiquen y certifiquen la información sanitaria y genética cargada en el sistema.
+		\item \textbf{Comunicación entre usuarios:} habilita el contacto entre propietario, adoptante e interesado en cruza para coordinar el proceso una vez identificado el interés mutuo.
+		\item \textbf{Gestión de mascotas rescatadas:} permite a los refugios de animales publicar y dar seguimiento a mascotas rescatadas en proceso de adopción.
+		\item \textbf{Reporte de conversaciones sospechosas:} permite a los usuarios reportar interacciones, mensajes o publicaciones que consideren fraudulentas, irresponsables o inapropiadas, fortaleciendo la seguridad y la confianza dentro de la plataforma.
+		\item \textbf{Apoyo basado en inteligencia artificial:} incorpora funcionalidades de soporte orientadas a mejorar la calidad de la información publicada, la seguridad de las interacciones y la responsabilidad en los procesos de adopción y cruza, mediante alertas, recomendaciones preliminares y mecanismos de validación o moderación dentro de la plataforma. Estas funcionalidades no reemplazan la evaluación de profesionales veterinarios ni toman decisiones definitivas sobre la salud o reproducción de las mascotas.
+	\end{itemize}
 	
 	\subsection{Clases y características de usuarios}
 	\label{sec:perfiles}
 	
+	El sistema MundiPets está dirigido a diferentes clases de usuarios que
+	participan en los procesos de registro de mascotas, adopción, cruza
+	responsable y revisión de información sanitaria. Cada perfil tiene
+	necesidades, funciones y niveles de acceso distintos, por lo que es necesario
+	identificarlos de forma clara para definir correctamente los requisitos del
+	sistema. Esta clasificación permite comprender qué acciones puede realizar
+	cada usuario dentro de la plataforma y cómo se relaciona con los demás actores
+	del sistema.
+	
+	\begin{longtable}{|p{2.2cm}|p{3.4cm}|p{3.4cm}|p{3.7cm}|p{1.2cm}|}
+		\caption{Clases y características de usuarios del sistema MundiPets.} \label{tab:clases_usuario} \\
+		\hline
+		\textbf{Clase de usuario} & \textbf{Descripción del perfil} & \textbf{Necesidades principales} & \textbf{Funciones principales} & \textbf{Nivel de acceso} \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Clase de usuario} & \textbf{Descripción del perfil} & \textbf{Necesidades principales} & \textbf{Funciones principales} & \textbf{Nivel de acceso} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot
+		
+		Propietario de mascota & Persona que registra y administra la información de su mascota dentro de MundiPets. Puede publicar su mascota para adopción o para un proceso de cruza responsable. & Necesita guardar datos completos de su mascota, actualizar su información, publicar su disponibilidad y revisar las solicitudes que recibe. & Crear y editar perfiles de mascotas, subir fotografías, registrar información médica básica, publicar mascotas para adopción o cruza, revisar solicitudes y comunicarse con otros usuarios. & Medio \\ \hline
+		
+		Adoptante & Persona interesada en encontrar una mascota para adoptar. Necesita información clara antes de tomar una decisión. & Necesita buscar mascotas disponibles, revisar sus datos principales, conocer su estado general y contactar al propietario o refugio. & Explorar mascotas disponibles, usar filtros de búsqueda, revisar perfiles, enviar solicitudes de adopción y comunicarse con propietarios o refugios. & Medio \\ \hline
+		
+		Interesado en cruza & Persona que busca una mascota compatible para realizar una cruza responsable. Requiere revisar información sanitaria y reproductiva antes de contactar al propietario. & Necesita consultar datos de salud, antecedentes, estado reproductivo y compatibilidad básica de la mascota. & Buscar mascotas disponibles para cruza, consultar perfiles, revisar información sanitaria referencial, enviar solicitudes de cruza y comunicarse con el propietario. & Medio \\ \hline
+		
+		Refugio de animales & Organización que registra y publica mascotas rescatadas para facilitar su adopción responsable. & Necesita dar visibilidad a las mascotas rescatadas, actualizar su disponibilidad, recibir solicitudes y comunicarse con posibles adoptantes. & Registrar mascotas rescatadas, publicar perfiles para adopción, actualizar estados, revisar solicitudes y comunicarse con adoptantes. & Alto \\ \hline
+		
+		Veterinaria & Profesional o entidad que revisa documentos e información sanitaria de las mascotas registradas en la plataforma. & Necesita revisar documentos autorizados, verificar información sanitaria referencial y registrar observaciones cuando sea necesario. & Revisar carnés o certificados veterinarios, validar o rechazar información sanitaria referencial y emitir observaciones dentro del sistema. & Alto \\ \hline
+	\end{longtable}
+	
 	\subsection{Mapa de stakeholders}
 	\label{sec:stakeholders}
+	
+	MundiPets involucra a diferentes stakeholders que influyen directa o
+	indirectamente en el desarrollo del sistema. Cada uno tiene intereses,
+	necesidades y niveles de participación distintos dentro del proyecto.
+	Identificarlos permite comprender quiénes usarán la plataforma, quiénes
+	aportan información para los requisitos, quiénes validan el contenido
+	sanitario y quiénes supervisan el cumplimiento académico y técnico del
+	documento ERS/SRS.
+	
+	\begin{longtable}{|p{1.8cm}|p{2.4cm}|p{1cm}|p{1cm}|p{3.7cm}|p{3.6cm}|}
+		\caption{Mapa de stakeholders del sistema MundiPets.} \label{tab:matriz_stakeholders} \\
+		\hline
+		\textbf{Stakeholder} & \textbf{Interés en el sistema} & \textbf{Poder} & \textbf{Interés} & \textbf{Necesidades y expectativas} & \textbf{Estrategia de gestión} \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Stakeholder} & \textbf{Interés en el sistema} & \textbf{Poder} & \textbf{Interés} & \textbf{Necesidades y expectativas} & \textbf{Estrategia de gestión} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot
+		
+		Propietario de mascota & Registrar y publicar información de sus mascotas para adopción o cruza responsable. & Medio & Alto & Crear perfiles completos, recibir solicitudes, comunicarse con interesados y mantener actualizada la información de sus mascotas. & Mantener informado y considerar sus necesidades en los requisitos de perfiles, publicaciones y solicitudes. \\ \hline
+		
+		Adoptante & Buscar mascotas disponibles para adopción con información clara y confiable. & Medio & Alto & Consultar perfiles, revisar datos básicos y sanitarios, aplicar filtros y enviar solicitudes de adopción. & Mantener informado y validar con este perfil las funciones de búsqueda, consulta y solicitud de adopción. \\ \hline
+		
+		Interesado en cruza & Encontrar mascotas compatibles para un proceso de cruza responsable. & Medio & Alto & Revisar información sanitaria, reproductiva y de comportamiento antes de contactar al propietario. & Mantener informado y considerar sus necesidades en los requisitos de cruza, compatibilidad y comunicación. \\ \hline
+		
+		Refugio de animales & Publicar mascotas rescatadas y facilitar procesos de adopción responsable. & Alto & Alto & Registrar varias mascotas, actualizar disponibilidad, recibir solicitudes y dar seguimiento a posibles adoptantes. & Gestionar de cerca, porque puede aportar reglas reales sobre adopción, seguimiento y publicación de mascotas rescatadas. \\ \hline
+		
+		Veterinarios & Revisar información sanitaria y documentos veterinarios registrados en la plataforma. & Alto & Alto & Validar información referencial, revisar carnés o certificados y registrar observaciones técnicas. & Gestionar de cerca mediante consultas sobre vacunas, documentos, salud animal y límites del sistema. \\ \hline
+		
+		Equipo desarrollador & Analizar, diseñar y documentar los requisitos del sistema MundiPets. & Alto & Alto & Contar con requisitos claros, viables, verificables y trazables para desarrollar el sistema. & Gestionar de cerca, asegurando comunicación constante, control de cambios y revisión técnica. \\ \hline
+		
+		Docente evaluador & Revisar el cumplimiento académico, metodológico y técnico de la ERS/SRS. & Alto & Alto & Verificar que el documento cumpla la estructura ERS/SRS, los mínimos solicitados y la trazabilidad. & Gestionar de cerca mediante revisión continua del documento, corrección de observaciones y cumplimiento de criterios. \\ \hline
+	\end{longtable}
 	
 	\subsubsection{Matriz poder/interés}
 	\label{sec:poder-interes}
 	
+	\begin{longtable}{|p{3.0cm}|p{1.4cm}|p{1.4cm}|p{3.8cm}|p{4.2cm}|}
+		\caption{Matriz poder/interés de stakeholders del sistema MundiPets.} \label{tab:clasificacion_stakeholders} \\
+		\hline
+		\textbf{Stakeholder} & \textbf{Poder} & \textbf{Interés} & \textbf{Clasificación} & \textbf{Estrategia} \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Stakeholder} & \textbf{Poder} & \textbf{Interés} & \textbf{Clasificación} & \textbf{Estrategia} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot
+		
+		Refugio de animales & Alto & Alto & Actor clave & Gestionar de cerca \\ \hline
+		
+		Veterinarios & Alto & Alto & Actor clave técnico & Gestionar de cerca \\ \hline
+		
+		Equipo desarrollador & Alto & Alto & Actor técnico principal & Gestionar de cerca \\ \hline
+		
+		Docente evaluador & Alto & Alto & Actor académico clave & Gestionar de cerca \\ \hline
+		
+		Propietario de mascota & Medio & Alto & Usuario principal & Mantener informado y consultar \\ \hline
+		
+		Adoptante & Medio & Alto & Usuario principal & Mantener informado y consultar \\ \hline
+		
+		Interesado en cruza & Medio & Alto & Usuario principal & Mantener informado y consultar \\ \hline
+	\end{longtable}
+	
 	\subsubsection{Conflictos potenciales entre stakeholders}
 	\label{sec:conflictos}
+	
+	\begin{longtable}{|p{2.2cm}|p{2.2cm}|p{2.8cm}|p{3.2cm}|p{3.3cm}|}
+		\caption{Conflictos potenciales entre stakeholders del sistema MundiPets.} \label{tab:matriz_conflictos} \\
+		\hline
+		\textbf{Conflicto potencial} & \textbf{Stakeholders involucrados} & \textbf{Causa del conflicto} & \textbf{Impacto posible en el sistema} & \textbf{Estrategia de gestión} \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Conflicto potencial} & \textbf{Stakeholders involucrados} & \textbf{Causa del conflicto} & \textbf{Impacto posible en el sistema} & \textbf{Estrategia de gestión} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot
+		
+		Publicación de información incompleta de mascotas & Propietario de mascota, adoptante y refugio. & Algunos usuarios pueden publicar mascotas sin datos suficientes sobre salud, edad, comportamiento o disponibilidad. & Decisiones de adopción o cruza con información incompleta, menor confianza en la plataforma y aumento de solicitudes mal gestionadas. & Definir campos obligatorios, mostrar alertas de perfil incompleto y permitir revisión por el refugio cuando corresponda. \\ \hline
+		
+		Confianza en la información sanitaria & Propietario de mascota, veterinaria, adoptante e interesado en cruza. & La información médica puede ser registrada por usuarios sin respaldo documental. & Riesgo de que adoptantes o interesados en cruza tomen decisiones con datos poco confiables. & Solicitar documentos veterinarios, permitir validación sanitaria referencial y mostrar el estado de revisión de cada documento. \\ \hline
+		
+		Privacidad de datos personales y médicos & Propietario, adoptante, interesado en cruza y veterinaria. & Algunos usuarios pueden querer ver más información de la permitida, especialmente datos médicos o de contacto. & Exposición innecesaria de datos sensibles y pérdida de confianza en el sistema. & Definir permisos por rol, limitar datos visibles y permitir acceso solo a la información necesaria según el proceso. \\ \hline
+		
+		Cruza irresponsable o mal interpretada & Propietario de mascota, interesado en cruza y veterinaria. & Los usuarios pueden interpretar la compatibilidad como autorización definitiva para realizar una cruza. & Riesgos sanitarios, reproductivos o éticos si se realiza una cruza sin revisión profesional. & Aclarar que la plataforma solo ofrece información referencial y recomendar validación veterinaria antes de cualquier decisión. \\ \hline
+		
+		Diferencias entre necesidades de usuarios y alcance académico & Docente evaluador, equipo desarrollador y usuarios potenciales. & Los usuarios pueden esperar más funciones de las que el proyecto puede desarrollar en esta fase. & Sobrecarga de requisitos, aumento del alcance y dificultad para cumplir la entrega. & Mantener documentado el alcance, clasificar funciones futuras como mejora posterior y priorizar requisitos esenciales. \\ \hline
+		
+		Validación documental limitada & Veterinaria y propietario de mascota. & La veterinaria puede revisar documentos, pero no reemplaza una consulta médica ni una historia clínica oficial. & Confusión sobre el valor legal o clínico de la validación realizada en la plataforma. & Usar el término ``validación referencial'', no ``certificación clínica'', y aclarar los límites del sistema. \\ \hline
+		
+		Comunicación inadecuada entre usuarios & Propietario, adoptante e interesado en cruza. & Pueden generarse mensajes fuera de tema, spam, lenguaje ofensivo o acuerdos externos no controlados. & Disminución de la confianza, reportes frecuentes y uso inadecuado de la plataforma. & Incorporar reglas de comunicación, advertencias sobre acuerdos externos y mecanismos básicos para reportar interacciones inadecuadas. \\ \hline
+	\end{longtable}
 	
 	\subsection{Entorno operativo}
 	\label{sec:entorno}
 	
+	MundiPets opera como una aplicación web responsiva, accesible desde
+	navegadores de escritorio y dispositivos móviles, sin requerir instalación
+	adicional por parte del usuario final.
+	
+	\textbf{Requisitos del lado del cliente:}
+	\begin{itemize}[leftmargin=*]
+		\item Navegador web actualizado (Google Chrome, Mozilla Firefox, Microsoft Edge o Safari, en sus versiones recientes).
+		\item Conexión a internet estable (mínimo 1 Mbps) para la carga de imágenes y sincronización de datos.
+		\item Dispositivo con pantalla táctil o mouse/teclado (smartphone, tablet o computador).
+	\end{itemize}
+	
+	\textbf{Requisitos del lado del servidor:}
+	\begin{itemize}[leftmargin=*]
+		\item Servidor con soporte para alojamiento web (hosting propio o servicio en la nube).
+		\item Base de datos relacional o no relacional según la tecnología seleccionada en la fase de diseño.
+		\item Almacenamiento para archivos multimedia (fotografías de mascotas y certificados veterinarios).
+	\end{itemize}
+	
+	Estos requisitos se ajustan al contexto real de uso, en el cual tanto los
+	propietarios de mascotas como las veterinarias consultadas acceden
+	habitualmente a internet mediante teléfonos inteligentes. Para el Producto
+	Mínimo Viable (Sección~\ref{sec:mvp}), el entorno operativo se acota a un
+	despliegue local reproducible mediante contenedores, sin necesidad de
+	infraestructura de producción.
+	
 	\subsection{Suposiciones y dependencias}
 	\label{sec:suposiciones}
+	
+	\textbf{Suposiciones:}
+	\begin{itemize}[leftmargin=*]
+		\item Se asume que los propietarios de mascotas y las veterinarias consultadas cuentan con acceso regular a internet.
+		\item Se asume que las veterinarias aliadas estarán dispuestas a validar la información médica cargada por los propietarios, según lo expresado en las entrevistas realizadas.
+		\item Se asume que los usuarios proporcionarán información veraz sobre sus mascotas al momento del registro.
+		\item Se asume que el volumen inicial de usuarios permitirá operar con una infraestructura básica de hosting durante la primera fase del proyecto.
+	\end{itemize}
+	
+	\textbf{Dependencias externas:}
+	\begin{itemize}[leftmargin=*]
+		\item El sistema depende de veterinarias externas para la validación y certificación de la información médica y sanitaria de las mascotas (ver diagrama de dependencias, Figura~\ref{fig:contexto}).
+		\item El sistema depende de refugios de animales como fuente de información sobre mascotas rescatadas disponibles para adopción.
+		\item Podría requerirse la integración con un servicio externo de notificaciones (correo electrónico o mensajería) para alertar a los usuarios sobre nuevas coincidencias o mensajes.
+		\item El sistema depende de un proveedor de hosting/almacenamiento en la nube para el despliegue y la persistencia de archivos multimedia.
+	\end{itemize}
 	
 	\subsection{Modelado organizacional en i*}
 	\label{sec:istar}
 	
+	El lenguaje i* \cite{yu1995} modela la intencionalidad de los actores
+	organizacionales mediante dos diagramas complementarios. El Diagrama de
+	Dependencia Estratégica (SD) muestra qué depende cada actor de los demás sin
+	detallar su estructura interna; el Diagrama de Razón Estratégica (SR) abre el
+	interior de cada actor y expone sus metas, metas blandas, tareas y recursos.
+	
 	\subsubsection{Diagrama de Dependencia Estratégica (SD)}
 	\label{sec:istar-sd}
 	
+	La Figura~\ref{fig:contexto} (Sección~\ref{sec:perspectiva}) corresponde al
+	Diagrama de Dependencia Estratégica del sistema MundiPets. En él, el
+	propietario de mascota depende del sistema para encontrar un adoptante o un
+	interesado en cruza adecuado; el adoptante y el interesado en cruza dependen
+	del sistema para obtener información confiable sobre las mascotas publicadas;
+	la veterinaria actúa como fuente externa de confianza al validar y certificar
+	la información médica; y el refugio de animales depende del sistema como
+	canal de visibilidad para las mascotas rescatadas. Estas dependencias
+	delimitan el conjunto de actores que después se abren en el Diagrama de
+	Razón Estratégica.
+	
 	\subsubsection{Diagrama de Razón Estratégica (SR)}
 	\label{sec:istar-sr}
+	
+	La Figura~\ref{fig:sr} presenta el Diagrama de Razón Estratégica para los tres
+	actores principales del sistema: la Veterinaria, el Propietario de mascota y
+	el Adoptante/Interesado en cruza.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{figuras/DiagramaDeRazonEstrategica_MundiPets.png}
+		\caption{Diagrama de Razón Estratégica (SR) del sistema MundiPets.}
+		\label{fig:sr}
+	\end{figure}
+	
+	Para el actor \textbf{Veterinaria}, la meta \emph{garantizar la salud y el
+		bienestar de las mascotas} se descompone (mediante descomposición AND) en tres
+	tareas: atender la consulta clínica, registrar vacunas e historial médico, y
+	emitir el certificado sanitario firmado. Las dos últimas tareas producen los
+	recursos \emph{registro clínico y certificado digital}, que a su vez alimentan
+	la dependencia de tipo recurso \enquote{certificado de salud} hacia el actor
+	Propietario de mascota. Estas tareas contribuyen positivamente a las metas
+	blandas \emph{bienestar animal / reputación profesional},
+	\emph{información confiable} y \emph{autenticidad y trazabilidad}, conectando
+	directamente con RNF-05 (integridad de la información médica) y con el
+	requisito legal de minimización de datos sanitarios.
+	
+	Para el actor \textbf{Propietario de mascota}, la meta \emph{gestionar mi
+		mascota de forma responsable} se descompone en las tareas registrar y
+	administrar el perfil de la mascota, publicar en adopción o cruza, y
+	controlar la visibilidad de mis datos. Las dos primeras tareas usan el
+	recurso compartido \emph{perfil de mascota (fotos, datos, historial)} y
+	contribuyen a las metas blandas \emph{facilidad de uso} y
+	\emph{adopción/cruza responsable}; la tarea de control de visibilidad
+	contribuye a la meta blanda \emph{privacidad de los datos}, y la publicación
+	del perfil alimenta la dependencia de tipo recurso \enquote{publicación con
+		datos completos y actualizados} hacia el actor Adoptante/Interesado en cruza.
+	Estas metas blandas se conectan con RNF-01 (protección de la información) y
+	RNF-04 (facilidad de uso de la plataforma).
+	
+	Para el actor \textbf{Adoptante/Interesado en cruza}, la meta \emph{encontrar
+		y adoptar una mascota adecuada} se descompone en buscar y revisar
+	publicaciones, contactar y enviar una solicitud de adopción o cruza, y
+	verificar el certificado de la veterinaria. Las dos primeras tareas usan el
+	recurso \emph{catálogo y formulario de solicitud} y contribuyen a las metas
+	blandas \emph{facilidad de uso} e \emph{interacción segura}; la verificación
+	del certificado contribuye a la meta blanda \emph{decisión informada}, que se
+	conecta con RNF-06 (exactitud del componente de inteligencia artificial de
+	evaluación de compatibilidad) y con los requisitos de explicabilidad de la
+	Sección~\ref{sec:explicabilidad}.
+	
+	El SR evidencia así cómo las metas blandas de los tres actores --
+	\emph{información confiable}, \emph{privacidad de los datos} e
+	\emph{interacción segura}, entre otras -- no son aspiraciones abstractas, sino
+	que se materializan en los requisitos no funcionales concretos definidos en la
+	Sección~\ref{sec:rnf}.
 	
 	% ############################################################
 	%           SECCION 3 -- REQUISITOS ESPECIFICOS COMPLETOS
@@ -551,14 +1131,161 @@ doi=true
 	\subsection{Clasificación de requisitos}
 	\label{sec:clasificacion}
 	
+	En esta sección se presenta la clasificación general de los requisitos
+	definidos para MundiPets, organizándolos según su identificador, nombre y
+	tipo. La Tabla~\ref{tab:lista_requisitos_completa} recoge los 17 requisitos
+	funcionales, 8 requisitos no funcionales y 5 restricciones de diseño heredados
+	de la Entrega 2 (1B). Los identificadores RF-18 a RF-25, RNF-09 a RNF-15 y
+	RL-01 a RL-05 se incorporan a esta tabla en cuanto queden redactados en las
+	Secciones~\ref{sec:rf}, \ref{sec:rnf} y \ref{sec:legales}, respectivamente,
+	para completar el piso mínimo de 25 RF y 15 RNF exigido por esta entrega.
+	
+	\begin{longtable}{|p{2.6cm}|p{8.5cm}|p{3.5cm}|}
+		\caption{Clasificación de requisitos y restricciones.} \label{tab:lista_requisitos_completa} \\
+		\hline
+		\textbf{Identificador} & \textbf{Nombre del requisito} & \textbf{Clasificación} \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{Identificador} & \textbf{Nombre del requisito} & \textbf{Clasificación} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot
+		
+		RF-01 & Registrar mascota & Requisito funcional \\ \hline
+		RF-02 & Gestionar historial médico de la mascota & Requisito funcional \\ \hline
+		RF-03 & Consultar perfil completo de una mascota & Requisito funcional \\ \hline
+		RF-04 & Buscar y filtrar mascotas & Requisito funcional \\ \hline
+		RF-05 & Gestionar solicitudes de adopción & Requisito funcional \\ \hline
+		RF-06 & Evaluar compatibilidad entre mascotas para cruza & Requisito funcional \\ \hline
+		RF-07 & Sistema de mensajería entre usuarios & Requisito funcional \\ \hline
+		RF-08 & Gestionar solicitudes de cruza & Requisito funcional \\ \hline
+		RF-09 & Validar la información médica de una mascota & Requisito funcional \\ \hline
+		RF-10 & Gestionar recordatorios de controles preventivos & Requisito funcional \\ \hline
+		RF-11 & Administrar la privacidad de la información & Requisito funcional \\ \hline
+		RF-12 & Verificar la identidad de los usuarios & Requisito funcional \\ \hline
+		RF-13 & Registrar publicaciones de mascotas & Requisito funcional \\ \hline
+		RF-14 & Gestionar carnet de vacunación & Requisito funcional \\ \hline
+		RF-15 & Consultar el historial de procesos de adopción y cruza & Requisito funcional \\ \hline
+		RF-16 & Gestionar antecedentes genéticos y parentesco de la mascota & Requisito funcional \\ \hline
+		RF-17 & Validar imágenes mediante inteligencia artificial & Requisito funcional \\ \hline
+		RF-18--RF-25 & \emph{Pendientes de la segunda ronda de campo (Sección~\ref{sec:rf})} & Requisito funcional \\ \hline
+		RNF-01 & Protección de la información de propietarios y mascotas & Requisito no funcional \\ \hline
+		RNF-02 & Disponibilidad del sistema & Requisito no funcional \\ \hline
+		RNF-03 & Tiempo de respuesta del sistema & Requisito no funcional \\ \hline
+		RNF-04 & Facilidad de uso de la plataforma & Requisito no funcional \\ \hline
+		RNF-05 & Integridad de la información médica & Requisito no funcional \\ \hline
+		RNF-06 & Exactitud del componente de inteligencia artificial & Requisito no funcional \\ \hline
+		RNF-07 & Precisión en la validación de imágenes & Requisito no funcional \\ \hline
+		RNF-08 & Actualización de la información registrada & Requisito no funcional \\ \hline
+		RNF-09--RNF-15 & \emph{Pendientes de la segunda ronda de campo (Sección~\ref{sec:rnf})} & Requisito no funcional \\ \hline
+		RD-01 & Integración de componentes de inteligencia artificial & Restricción de diseño \\ \hline
+		RD-02 & Acceso basado en roles & Restricción de diseño \\ \hline
+		RD-03 & Validación profesional de la información médica & Restricción de diseño \\ \hline
+		RD-04 & Protección de datos personales & Restricción de diseño \\ \hline
+		RD-05 & Arquitectura modular del sistema & Restricción de diseño \\ \hline
+		RL-01--RL-05 & \emph{Pendientes del mapeo LOPDP (Sección~\ref{sec:legales})} & Requisito legal \\ \hline
+	\end{longtable}
+	
+	\newpage
+	
 	\subsection{Priorización MoSCoW}
 	\label{sec:moscow}
+	
+	A continuación se presenta una muestra con las 7 clasificaciones iniciales más
+	críticas del proyecto MundiPets, heredadas y validadas desde la Entrega 2
+	(1B). La documentación completa de las 30 especificaciones vigentes puede
+	consultarse en el \textbf{\hyperref[tab:priorizacion_moscow_completa]{Apéndice
+			C --- Priorización MoSCoW, Kano y WSJF (detalle)}}, junto con su
+	clasificación Kano y su valor WSJF.
+	
+	\begin{longtable}{|p{1cm}|p{3.1cm}|p{1.0cm}|p{1.3cm}|p{7.5cm}|}
+		\caption{Muestra de la Priorización MoSCoW de Requisitos MundiPets.} \label{tab:priorizacion_moscow_parcial} \\
+		\hline
+		\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{Prioridad} & \textbf{Justificación} \\
+		\hline
+		\endfirsthead
+		\hline
+		\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{Prioridad} & \textbf{Justificación} \\
+		\hline
+		\endhead
+		
+		RF-01 & Registrar mascota & RF & Must & Es el pilar del sistema; la plataforma exige almacenar información general y fotografías para habilitar futuras consultas, adopciones o cruzas. \\ \hline
+		
+		RF-02 & Gestionar historial médico de la mascota & RF & Must & Crítico para la salud animal. Permite actualizar vacunas, enfermedades y tratamientos, garantizando transparencia en los procesos. \\ \hline
+		
+		RF-03 & Consultar perfil completo de una mascota & RF & Must & Fundamental para que los adoptantes o interesados en cruza obtengan información autorizada y tomen decisiones basadas en el historial. \\ \hline
+		
+		RF-04 & Buscar y filtrar mascotas & RF & Should & Importante para la usabilidad al aplicar criterios como raza o ubicación, pero el sistema podría operar con listas generales inicialmente. \\ \hline
+		
+		RNF-01 & Protección de la información de propietarios y mascotas & RNF & Must & Requisito estricto de seguridad funcional; debe garantizar un 0\% de accesos no autorizados a datos personales. \\ \hline
+		
+		RNF-02 & Disponibilidad del sistema & RNF & Must & Crítico para la operatividad de MundiPets, exigiendo una tasa mínima del 99\% mensual para asegurar acceso continuo. \\ \hline
+		
+		RD-01 & Integración de componentes de inteligencia artificial & RD & Must & Restricción ineludible. La arquitectura debe estructurarse obligatoriamente para alojar módulos de IA, principal valor agregado de MundiPets. \\ \hline
+	\end{longtable}
+	
+	\textbf{Justificación de Must/Won't}
+	
+	\textbf{Must Have} \\
+	Los requisitos clasificados como Must Have corresponden a funcionalidades
+	indispensables para el funcionamiento del sistema, tales como el registro de
+	mascotas, la gestión del historial médico, la autenticación de usuarios y la
+	evaluación de compatibilidad para cruza mediante inteligencia artificial. La
+	ausencia de cualquiera de estos requisitos impediría cumplir los objetivos
+	principales del proyecto.
+	
+	\textbf{Won't Have} \\
+	En la presente versión del proyecto no se identificaron requisitos
+	clasificados como Won't Have, ya que todos los requisitos levantados fueron
+	considerados necesarios (Must), importantes (Should) o deseables (Could) para
+	el alcance definido. Por ello, no existen funcionalidades descartadas
+	explícitamente para futuras versiones.
 	
 	\subsection{Modelo de Kano}
 	\label{sec:kano}
 	
 	\subsection{Valor de negocio con WSJF}
 	\label{sec:wsjf}
+	
+	La técnica WSJF (Weighted Shortest Job First) ordena el trabajo pendiente
+	según la relación entre el costo del retraso y el tamaño estimado del
+	trabajo, siguiendo la fórmula:
+	\[
+	\mathrm{WSJF} = \frac{\text{Valor de negocio} + \text{Criticidad temporal} + \text{Reducción de riesgo}}{\text{Tamaño del trabajo}}
+	\]
+	Los cuatro factores se estiman en equipo con la sucesión de Fibonacci
+	modificada (1, 2, 3, 5, 8, 13, 20). A continuación se presenta una muestra de
+	7 requisitos con su estimación preliminar; la tabla completa con los 30
+	requisitos vigentes (RF-01 a RF-17, RNF-01 a RNF-08 y RD-01 a RD-05) se
+	presenta en el \textbf{\hyperref[tab:priorizacion_moscow_completa]{Apéndice
+			C}}, junto con MoSCoW y Kano. La estimación de esta muestra es un borrador
+	de trabajo sujeto a validación y ajuste por consenso del equipo completo antes
+	del corte; los RF-18 a RF-25 y RNF-09 a RNF-15 se estiman en cuanto queden
+	redactados.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Muestra de la estimación WSJF de requisitos MundiPets.}
+		\label{tab:wsjf_parcial}
+		\small
+		\begin{tabularx}{\textwidth}{@{}p{1.1cm} p{1.3cm} p{1.3cm} p{1.3cm} p{1.3cm} p{1.2cm}@{}}
+			\toprule
+			\textbf{ID} & \textbf{Valor de negocio} & \textbf{Criticidad temporal} & \textbf{Reducción de riesgo} & \textbf{Tamaño} & \textbf{WSJF} \\
+			\midrule
+			RF-01 & 13 & 8 & 5 & 5 & 5.2 \\
+			RF-02 & 13 & 8 & 8 & 8 & 3.6 \\
+			RF-03 & 8 & 5 & 3 & 3 & 5.3 \\
+			RF-04 & 5 & 3 & 2 & 5 & 2.0 \\
+			RNF-01 & 13 & 13 & 13 & 5 & 7.8 \\
+			RNF-02 & 8 & 8 & 8 & 8 & 3.0 \\
+			RD-01 & 13 & 8 & 8 & 13 & 2.2 \\
+			\bottomrule
+		\end{tabularx}
+	\end{table}
 	
 	\subsection{Matriz de trazabilidad extendida}
 	\label{sec:trazabilidad}
@@ -697,6 +1424,73 @@ doi=true
 	\addcontentsline{toc}{section}{Apéndice A --- Plan del proyecto de IR}
 	\label{ap:plan}
 	
+	\textbf{Roles del equipo (vigentes para la Entrega 3, 2A):}
+	
+	\begin{table}[H]
+		\caption{Roles asignados al equipo del proyecto MundiPets.}
+		\centering
+		\begin{tabularx}{\linewidth}{|X|X|}
+			\hline
+			\textbf{Integrante} & \textbf{Rol} \\
+			\hline
+			Fuertes Arraes Edson Daniel & Analista líder -- coordina el equipo, valida con el cliente, redacta los requisitos funcionales e historias de usuario, gestiona el repositorio. \\
+			\hline
+			Gutiérrez Ortega Génesis Adriana & Verificador -- controla la calidad de los requisitos no funcionales, la explicabilidad, el marco legal y las evidencias de campo. \\
+			\hline
+			Mendoza Párraga Andy Johel & Documentador -- estructura el ERS/SRS según IEEE 29148, contexto, modelado organizacional y trazabilidad. \\
+			\hline
+			Morales Sánchez Gary Alejandro & Modelador -- construye los ocho diagramas UML exigidos y los mockups de alta fidelidad. \\
+			\hline
+			Nieves Sánchez Jimmy Samuel & Verificador -- responsable del componente empírico, el MVP y el paquete de publicación. \\
+			\hline
+		\end{tabularx}
+	\end{table}
+	
+	\textbf{Cronograma del proyecto (actualizado a la Entrega 3, 2A):}
+	
+	\begin{table}[H]
+		\caption{Cronograma de la Ingeniería de Requisitos -- MundiPets (Semestre 2026-2027 PPA).}
+		\centering
+		
+		\begin{tabularx}{\linewidth}{|C{2.5cm}|X|C{2.8cm}|}
+			\hline
+			\textbf{Semana / Fecha} & \textbf{Actividad} & \textbf{Estado} \\
+			\hline
+			Semanas 1--3 (04--24 may.) & Selección del sistema real (MundiPets), planificación de la Ingeniería de Requisitos y definición de roles del equipo. & Completado \\
+			\hline
+			\textbf{Semana 4 (25--31 may.)} & \textbf{Primer avance:} Planificación + Elicitación inicial (Entrega 1A). Ejecución de entrevistas estructuradas a stakeholders (17--29 may.). & Completado \\
+			\hline
+			Semanas 5--8 (01--28 jun.) & Consolidación de requisitos crudos, análisis y clasificación (RF/RNF/restricciones), modelado UML inicial (casos de uso y clases conceptual). & Completado \\
+			\hline
+			\textbf{Semana 9 (29 jun.--05 jul.)} & \textbf{Segundo avance:} ERS/SRS parcial -- requisitos formalizados (plantilla de 8 atributos), RNF cuantificados, modelado UML e interfaces, priorización MoSCoW y trazabilidad parcial (Entrega 2/1B). & Completado \\
+			\hline
+			Semanas 10--11 (06--19 jul.) & Segunda ronda de elicitación: entrevistas y sesiones de walkthrough adicionales, ampliación del cuestionario (v2.0) para cubrir Kano, codificación temática de las transcripciones y curva de saturación. & En curso \\
+			\hline
+			Semana 12 (20--26 jul.) & Redacción de los RF-18 a RF-25 y RNF-09 a RNF-15 a partir de la codificación temática, mapeo legal LOPDP, construcción del diagrama de Razón Estratégica (SR) y refinamiento del diagrama de clases. & En curso \\
+			\hline
+			\textbf{Semana 13 (27 jul.--02 ago.)} & \textbf{Tercer avance:} ERS Completo con Validación y Trazabilidad -- documento de especificación de requisitos completo, validado y con trazabilidad total evidencia--requisito--caso de uso, priorización Kano/WSJF, MVP y protocolo del componente empírico registrado en el OSF. & Planificado \\
+			\hline
+			Semanas 14--16 (03--23 ago.) & Ejecución del componente empírico, desarrollo del MVP, revisión integral del documento y ajustes finales según observaciones del docente. & Planificado \\
+			\hline
+			\textbf{Semana 17 (24--30 ago.)} & \textbf{Cuarto avance:} Proyecto Integrador Final -- entrega y sustentación del documento ERS/SRS completo del Proyecto Fin de Curso. & Planificado \\
+			\hline
+		\end{tabularx}
+	\end{table}
+	
+	\textbf{Técnicas de elicitación seleccionadas:}
+	
+	Para esta entrega se mantiene la entrevista estructurada como técnica
+	principal, complementada con sesiones de \emph{walkthrough} para la
+	validación de los requisitos ya especificados. La segunda ronda de campo
+	amplía el cuestionario aplicado en la 1B (versión 2.0) con las preguntas
+	funcional y disfuncional del modelo de Kano para cada funcionalidad candidata,
+	de modo que la priorización Kano de la Sección~\ref{sec:kano} quede
+	respaldada por datos reales y no por criterio de escritorio. Esta técnica se
+	complementa con la codificación temática de las transcripciones
+	(Apéndice~B.8), que es el insumo directo para derivar los ocho requisitos
+	funcionales nuevos (RF-18 a RF-25) exigidos por esta entrega.
+	
+	% --------------------------------------------------------
 	\section*{Apéndice B --- Trabajo de campo y evidencias}
 	\addcontentsline{toc}{section}{Apéndice B --- Trabajo de campo y evidencias}
 	\label{ap:evidencias}
@@ -725,10 +1519,201 @@ doi=true
 	\addcontentsline{toc}{section}{Apéndice C --- Priorización MoSCoW, Kano y WSJF}
 	\label{ap:priorizacion}
 	
+	La Tabla~\ref{tab:priorizacion_moscow_completa} consolida, para cada uno de
+	los 30 requisitos vigentes desde la Entrega 2 (1B), su clasificación MoSCoW
+	(heredada y validada), su clasificación Kano (pendiente de la segunda ronda
+	de campo, Sección~\ref{sec:kano}) y su valor WSJF estimado en equipo
+	(Sección~\ref{sec:wsjf}). Debe coincidir con el archivo
+	\texttt{04\_Trazabilidad/priorizacion\_moscow\_kano.csv}. Los identificadores
+	RF-18 a RF-25 y RNF-09 a RNF-15 se incorporan a esta tabla en cuanto queden
+	redactados y priorizados.
+	
+	\begin{landscape}
+		\begin{longtable}{@{}p{1.2cm} p{3.6cm} p{1.0cm} p{1.3cm} p{1.3cm} p{1.1cm} p{6.5cm}@{}}
+			\caption{Priorización MoSCoW, Kano y WSJF completa de requisitos MundiPets.} \label{tab:priorizacion_moscow_completa} \\
+			\toprule
+			\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{MoSCoW} & \textbf{Kano} & \textbf{WSJF} & \textbf{Justificación breve} \\
+			\midrule
+			\endfirsthead
+			
+			\multicolumn{7}{@{}l}{\small\itshape (continuación de la Tabla \ref{tab:priorizacion_moscow_completa})}\\
+			\toprule
+			\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{MoSCoW} & \textbf{Kano} & \textbf{WSJF} & \textbf{Justificación breve} \\
+			\midrule
+			\endhead
+			
+			\midrule
+			\multicolumn{7}{r@{}}{\small\itshape continúa en la página siguiente}\\
+			\endfoot
+			
+			\bottomrule
+			\endlastfoot
+			
+			RF-01 & Registrar mascota & RF & Must & --- & 5.2 & Pilar del sistema; habilita consultas, adopciones y cruzas posteriores. \\ \midrule
+			
+			RF-02 & Gestionar historial médico de la mascota & RF & Must & --- & 3.6 & Crítico para la salud animal y la transparencia de vacunas/tratamientos. \\ \midrule
+			
+			RF-03 & Consultar perfil completo de una mascota & RF & Must & --- & 5.3 & Fundamental para decisiones informadas de adoptantes e interesados en cruza. \\ \midrule
+			
+			RF-04 & Buscar y filtrar mascotas & RF & Should & --- & 2.0 & Mejora la usabilidad; el sistema podría operar inicialmente con listas generales. \\ \midrule
+			
+			RF-05 & Gestionar solicitudes de adopción & RF & Must & --- & 4.2 & Núcleo del modelo operativo: enviar, aceptar o rechazar intenciones de adopción. \\ \midrule
+			
+			RF-06 & Evaluar compatibilidad entre mascotas para cruza & RF & Must & --- & 3.3 & Requisito diferenciador; usa IA para evaluar genética y salud antes de cruzar. \\ \midrule
+			
+			RF-07 & Sistema de mensajería entre usuarios & RF & Could & --- & 1.6 & Deseable para coordinar procesos; el contacto inicial podría derivarse a canales externos. \\ \midrule
+			
+			RF-08 & Gestionar solicitudes de cruza & RF & Must & --- & 3.8 & Operación central del modelo de negocio para procesos de cruza responsable. \\ \midrule
+			
+			RF-09 & Validar la información médica de una mascota & RF & Must & --- & 4.0 & Imprescindible para la confiabilidad clínica de los datos registrados. \\ \midrule
+			
+			RF-10 & Gestionar recordatorios de controles preventivos & RF & Should & --- & 1.8 & Aporta valor al bienestar animal sin bloquear el flujo principal de adopciones. \\ \midrule
+			
+			RF-11 & Administrar la privacidad de la información & RF & Must & --- & 6.0 & Mandatorio por seguridad; el propietario define qué información es visible. \\ \midrule
+			
+			RF-12 & Verificar la identidad de los usuarios & RF & Must & --- & 4.4 & Indispensable para evitar fraudes en procesos de adopción o cruza. \\ \midrule
+			
+			RF-13 & Registrar publicaciones de mascotas & RF & Must & --- & 5.6 & Necesario para que el propietario active la disponibilidad de su mascota. \\ \midrule
+			
+			RF-14 & Gestionar carnet de vacunación & RF & Must & --- & 3.0 & Crítico para la trazabilidad sanitaria y el estado de vigencia de las dosis. \\ \midrule
+			
+			RF-15 & Consultar el historial de procesos de adopción y cruza & RF & Could & --- & 1.4 & Aporta visibilidad retrospectiva sin interferir en el registro de nuevas solicitudes. \\ \midrule
+			
+			RF-16 & Gestionar antecedentes genéticos y parentesco de la mascota & RF & Must & --- & 2.6 & Base de datos técnica obligatoria para la evaluación de compatibilidad genética. \\ \midrule
+			
+			RF-17 & Validar imágenes mediante inteligencia artificial & RF & Should & --- & 2.2 & Modera contenido inapropiado; mitigable en una primera fase con revisión reactiva. \\ \midrule
+			
+			RNF-01 & Protección de la información de propietarios y mascotas & RNF & Must & --- & 7.8 & Seguridad estricta: 0\,\% de accesos no autorizados exigido. \\ \midrule
+			
+			RNF-02 & Disponibilidad del sistema & RNF & Must & --- & 3.0 & Crítico para la operatividad continua (99\,\% mensual). \\ \midrule
+			
+			RNF-03 & Tiempo de respuesta del sistema & RNF & Should & --- & 2.4 & Mejora la eficiencia; variaciones leves no inhabilitan el uso. \\ \midrule
+			
+			RNF-04 & Facilidad de uso de la plataforma & RNF & Should & --- & 2.1 & Deseable para la adopción masiva (90\,\% de usuarios independientes). \\ \midrule
+			
+			RNF-05 & Integridad de la información médica & RNF & Must & --- & 5.5 & Innegociable: impide alteraciones no autorizadas de expedientes clínicos. \\ \midrule
+			
+			RNF-06 & Exactitud del componente de inteligencia artificial & RNF & Must & --- & 3.2 & Crucial: la IA debe alcanzar $\ge$ 85\,\% de coincidencia con diagnóstico real. \\ \midrule
+			
+			RNF-07 & Precisión en la validación de imágenes & RNF & Should & --- & 1.9 & Optimiza el filtrado; perfeccionable progresivamente tras el lanzamiento. \\ \midrule
+			
+			RNF-08 & Actualización de la información registrada & RNF & Should & --- & 1.7 & Da fiabilidad; tiempos marginalmente superiores son tolerables inicialmente. \\ \midrule
+			
+			RD-01 & Integración de componentes de inteligencia artificial & RD & Must & --- & 2.2 & Restricción ineludible: la arquitectura debe alojar módulos de IA. \\ \midrule
+			
+			RD-02 & Acceso basado en roles & RD & Must & --- & 4.5 & Base de la autenticación: separa permisos entre roles del sistema. \\ \midrule
+			
+			RD-03 & Validación profesional de la información médica & RD & Must & --- & 3.4 & La confianza clínica exige que solo veterinarias validen datos médicos. \\ \midrule
+			
+			RD-04 & Protección de datos personales & RD & Must & --- & 4.8 & Obligatorio por diseño: protege mediante autenticación datos sensibles. \\ \midrule
+			
+			RD-05 & Arquitectura modular del sistema & RD & Should & --- & 1.5 & Facilita escalar la IA y añadir funcionalidades a futuro. \\
+			
+		\end{longtable}
+	\end{landscape}
+	
+	% --------------------------------------------------------
 	\section*{Apéndice D --- Matriz de trazabilidad extendida (completa)}
 	\addcontentsline{toc}{section}{Apéndice D --- Matriz de trazabilidad extendida}
 	\label{ap:trazabilidad}
 	
+	La Tabla~\ref{tab:matriz_trazabilidad_completa} extiende la matriz parcial de
+	30 filas heredada de la Entrega 2 (1B) al formato de diez eslabones exigido
+	por esta entrega (Ley~$\rightarrow$~Objetivo~$\rightarrow$~Interesado~$\rightarrow$~EV~$\rightarrow$~RF/RNF/RD~$\rightarrow$~CU~$\rightarrow$~HU~$\rightarrow$~CA~$\rightarrow$~Componente~$\rightarrow$~Mockup).
+	Las columnas Ley, Objetivo y Stakeholder se completan a partir del mapeo legal
+	de la Sección~\ref{sec:legales} y del mapa de stakeholders de la
+	Sección~\ref{sec:stakeholders}; las columnas HU, CA y Mockup se completan a
+	medida que se redactan las historias de usuario (Sección~\ref{sec:historias})
+	y los mockups de alta fidelidad (Sección~\ref{sec:mockups}). Debe coincidir
+	con el archivo \texttt{04\_Trazabilidad/matriz\_trazabilidad.csv}. Se
+	requiere un mínimo de 40 filas; las diez filas restantes se completan con las
+	relaciones derivadas de los RF-18 a RF-25.
+	
+	\begin{landscape}
+		\begin{longtable}{@{}p{0.8cm} p{1.3cm} p{1.5cm} p{2.2cm} p{1.5cm} p{1.8cm} p{1.6cm} p{1.3cm} p{1.3cm} p{1.3cm} p{1.5cm}@{}}
+			\caption{Matriz de trazabilidad extendida del proyecto MundiPets.} \label{tab:matriz_trazabilidad_completa} \\
+			\toprule
+			\textbf{ID} & \textbf{Ley} & \textbf{Artículo} & \textbf{Objetivo} & \textbf{Stake\-holder} & \textbf{ID-EV} & \textbf{ID-RF/RNF/RD} & \textbf{ID-CU} & \textbf{ID-HU} & \textbf{ID-CA} & \textbf{Mockup} \\
+			\midrule
+			\endfirsthead
+			
+			\multicolumn{11}{@{}l}{\small\itshape (continuación de la Tabla \ref{tab:matriz_trazabilidad_completa})}\\
+			\toprule
+			\textbf{ID} & \textbf{Ley} & \textbf{Artículo} & \textbf{Objetivo} & \textbf{Stake\-holder} & \textbf{ID-EV} & \textbf{ID-RF/RNF/RD} & \textbf{ID-CU} & \textbf{ID-HU} & \textbf{ID-CA} & \textbf{Mockup} \\
+			\midrule
+			\endhead
+			
+			\midrule
+			\multicolumn{11}{r@{}}{\small\itshape continúa en la página siguiente}\\
+			\endfoot
+			
+			\bottomrule
+			\endlastfoot
+			
+			TR-01 & --- & --- & Registro de mascota & Propietario & EV-02, EV-03, EV-05, EV-08 & RF-01 & CU-01 & HU-01 & CA-01 & MU-01 \\ \midrule
+			
+			TR-02 & LOPDP & --- & Registro clínico & Veterinaria & EV-01, EV-04 & RF-02 & CU-02 & --- & --- & --- \\ \midrule
+			
+			TR-03 & LOPDP & --- & Consulta de perfil médico & Adoptante & EV-04, EV-06, EV-08 & RF-03 & CU-10 & --- & --- & --- \\ \midrule
+			
+			TR-04 & --- & --- & Búsqueda de mascotas & Adoptante & EV-07, EV-08 & RF-04 & CU-11 & --- & --- & --- \\ \midrule
+			
+			TR-05 & --- & --- & Publicación en adopción & Propietario & EV-01, EV-02, EV-03, EV-08 & RF-05 & CU-04 & --- & --- & --- \\ \midrule
+			
+			TR-06 & --- & --- & Evaluación de compatibilidad & Interesado en cruza & EV-04, EV-05, EV-06, EV-08 & RF-06 & CU-13 & --- & --- & --- \\ \midrule
+			
+			TR-07 & LOPDP & --- & Mensajería entre usuarios & Propietario & EV-02, EV-07, EV-08 & RF-07 & CU-08 & --- & --- & --- \\ \midrule
+			
+			TR-08 & --- & --- & Solicitudes de cruza & Interesado en cruza & EV-01, EV-03, EV-05 & RF-08 & CU-05 & --- & --- & --- \\ \midrule
+			
+			TR-09 & --- & --- & Validación de información médica & Veterinaria & EV-03, EV-05, EV-07 & RF-09 & CU-09 & --- & --- & --- \\ \midrule
+			
+			TR-10 & --- & --- & Controles preventivos & Propietario & EV-02, EV-04, EV-06 & RF-10 & CU-12 & --- & --- & --- \\ \midrule
+			
+			TR-11 & LOPDP & --- & Administrar privacidad & Propietario & EV-02, EV-05, EV-06, EV-07, EV-08 & RF-11 & CU-06 & --- & --- & --- \\ \midrule
+			
+			TR-12 & LOPDP & --- & Verificar identidad & Todos los usuarios & EV-01, EV-03, EV-07, EV-08 & RF-12 & (Transversal a Onboarding) & --- & --- & --- \\ \midrule
+			
+			TR-13 & --- & --- & Registrar publicaciones & Propietario / Refugio & EV-01, EV-02, EV-07, EV-08 & RF-13 & CU-04 & --- & --- & --- \\ \midrule
+			
+			TR-14 & --- & --- & Carnet de vacunación & Veterinaria & EV-03, EV-05, EV-07 & RF-14 & CU-03 & --- & --- & --- \\ \midrule
+			
+			TR-15 & --- & --- & Historial de procesos & Propietario & EV-01, EV-02, EV-04, EV-06 & RF-15 & CU-07 & --- & --- & --- \\ \midrule
+			
+			TR-16 & --- & --- & Antecedentes genéticos & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RF-16 & CU-02 & --- & --- & --- \\ \midrule
+			
+			TR-17 & --- & --- & Validación de imágenes por IA & Propietario & EV-01, EV-03, EV-07, EV-08 & RF-17 & (Transversal a Publicaciones) & --- & --- & --- \\ \midrule
+			
+			TR-18 & LOPDP & --- & Protección de la información & Propietario / Veterinaria & EV-05, EV-06, EV-07, EV-08 & RNF-01 & CU-06 & --- & --- & --- \\ \midrule
+			
+			TR-19 & --- & --- & Disponibilidad del sistema & Todos los usuarios & EV-01 a EV-07 & RNF-02 & (Transversal) & --- & --- & --- \\ \midrule
+			
+			TR-20 & --- & --- & Tiempo de respuesta & Todos los usuarios & EV-01 a EV-07 & RNF-03 & CU-11 & --- & --- & --- \\ \midrule
+			
+			TR-21 & --- & --- & Facilidad de uso & Todos los usuarios & EV-01 a EV-08 & RNF-04 & (Transversal / UI) & --- & --- & --- \\ \midrule
+			
+			TR-22 & LOPDP & --- & Integridad info. médica & Veterinaria & EV-03, EV-05, EV-07 & RNF-05 & CU-02 & --- & --- & --- \\ \midrule
+			
+			TR-23 & --- & --- & Exactitud componente IA & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RNF-06 & CU-13 & --- & --- & --- \\ \midrule
+			
+			TR-24 & --- & --- & Precisión validación imágenes & Propietario & EV-01, EV-03, EV-05, EV-07 & RNF-07 & (Transversal a Media) & --- & --- & --- \\ \midrule
+			
+			TR-25 & --- & --- & Actualización de información & Todos los usuarios & EV-01 a EV-07 & RNF-08 & CU-01 & --- & --- & --- \\ \midrule
+			
+			TR-26 & --- & --- & Integración de IA & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RD-01 & CU-13 & --- & --- & --- \\ \midrule
+			
+			TR-27 & LOPDP & --- & Acceso basado en roles & Todos los usuarios & EV-01 a EV-07 & RD-02 & (Transversal a Seguridad) & --- & --- & --- \\ \midrule
+			
+			TR-28 & --- & --- & Validación profesional & Veterinaria & EV-03, EV-05, EV-07 & RD-03 & CU-09 & --- & --- & --- \\ \midrule
+			
+			TR-29 & LOPDP & --- & Protección de datos & Propietario & EV-02, EV-05, EV-06, EV-07 & RD-04 & CU-06 & --- & --- & --- \\ \midrule
+			
+			TR-30 & --- & --- & Arquitectura modular & Equipo desarrollador & Derivado del equipo de desarrollo & RD-05 & (Transversal a Diseño) & --- & --- & --- \\
+			
+		\end{longtable}
+	\end{landscape}
+	
+	% --------------------------------------------------------
 	\section*{Apéndice E --- Repositorio GitHub}
 	\addcontentsline{toc}{section}{Apéndice E --- Repositorio GitHub}
 	\label{ap:repositorio}
