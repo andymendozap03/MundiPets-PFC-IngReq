@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Evaluación de compatibilidad</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container">
+  <div class="breadcrumb"><a href="pet-detail.html" id="backLink">Perfil de mascota</a> &gt; Evaluar compatibilidad</div>
+  <h1>Evaluación de compatibilidad</h1>
+
+  <div class="card">
+    <label>Mascota base</label>
+    <div class="text-muted" id="petAName" style="font-weight:700; color:var(--text);"></div>
+
+    <label>Comparar con</label>
+    <select id="petBSelect"></select>
+
+    <button class="btn btn-primary mt-16" id="evalBtn">Evaluar compatibilidad</button>
+  </div>
+
+  <div id="resultArea"></div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  const user = Auth.requireLogin();
+  renderTopbar(user);
+
+  const petId = qs("petId");
+  const petA = DB.get("pets", petId);
+  if (!petA) window.location.href = "explore.html";
+  document.getElementById("backLink").href = `pet-detail.html?id=${petId}`;
+  document.getElementById("petAName").textContent = `${petA.photo} ${petA.name} — ${petA.breed}, ${petA.age}`;
+
+  const candidates = DB.all("pets").filter((p) => p.id !== petA.id && p.species === petA.species && p.status === "Cruza responsable" && p.sex !== petA.sex);
+  const otherCandidates = DB.all("pets").filter((p) => p.id !== petA.id && p.species === petA.species && p.sex !== petA.sex && p.status !== "Cruza responsable");
+  const options = candidates.length ? candidates : otherCandidates;
+
+  document.getElementById("petBSelect").innerHTML = options.length
+    ? options.map((p) => `<option value="${p.id}">${p.photo} ${p.name} — ${p.breed}, ${p.age}</option>`).join("")
+    : `<option value="">No hay mascotas compatibles registradas del sexo opuesto</option>`;
+
+  function parseAgeYears(ageStr) {
+    const m = /([\d.]+)\s*(año|meses)/i.exec(ageStr || "");
+    if (!m) return 1;
+    const val = parseFloat(m[1]);
+    return /mes/i.test(m[2]) ? val / 12 : val;
+  }
+
+  function sizeRank(size) { return { "Pequeño": 1, "Mediano": 2, "Grande": 3 }[size] || 2; }
+
+  document.getElementById("evalBtn").addEventListener("click", () => {
+    const petB = DB.get("pets", document.getElementById("petBSelect").value);
+    if (!petB) { toast("Selecciona una mascota válida"); return; }
+
+    const factors = [];
+    let score = 0;
+    let maxScore = 0;
+
+    // Factor 1: parentesco conocido (RD/RL-06 explicabilidad)
+    maxScore += 1;
+    const genA = DB.all("genetics").find((g) => g.petId === petA.id);
+    const genB = DB.all("genetics").find((g) => g.petId === petB.id);
+    const relatedFlag = genA && genB && genA.parentage && genB.parentage && genA.parentage === genB.parentage && genA.parentage !== "Desconocido";
+    factors.push({ label: "Parentesco conocido", ok: !relatedFlag, value: relatedFlag ? "Posible parentesco compartido" : "No detectado" });
+    if (!relatedFlag) score += 1;
+
+    // Factor 2: estado sanitario (ambas con historial validado)
+    maxScore += 1;
+    const medA = DB.all("medicalRecords").some((r) => r.petId === petA.id && r.validated);
+    const medB = DB.all("medicalRecords").some((r) => r.petId === petB.id && r.validated);
+    factors.push({ label: "Estado sanitario referencial", ok: medA && medB, value: (medA && medB) ? "Ambos al día" : "Historial incompleto o sin validar" });
+    if (medA && medB) score += 1;
+
+    // Factor 3: edad reproductiva adecuada (1-8 anios aprox)
+    maxScore += 1;
+    const ageA = parseAgeYears(petA.age);
+    const ageB = parseAgeYears(petB.age);
+    const ageOk = ageA >= 1 && ageA <= 8 && ageB >= 1 && ageB <= 8;
+    factors.push({ label: "Edad reproductiva", ok: ageOk, value: ageOk ? "Adecuada" : "Fuera del rango recomendado (1-8 años)" });
+    if (ageOk) score += 1;
+
+    // Factor 4: disparidad de tamaño (RF-23 alerta de riesgo)
+    const sizeDiff = Math.abs(sizeRank(petA.size) - sizeRank(petB.size));
+    const sizeRisk = sizeDiff >= 2;
+
+    // Factor 5: enfermedad contagiosa activa (heuristica simple sobre texto)
+    const contagious = (genA && /parvovirus|moquillo|leucemia|contagiosa/i.test(genA.hereditaryConditions || "")) ||
+                        (genB && /parvovirus|moquillo|leucemia|contagiosa/i.test(genB.hereditaryConditions || ""));
+
+    const pct = Math.round((score / maxScore) * 100);
+    let level = "Compatibilidad baja", levelClass = "badge-red";
+    if (pct >= 80) { level = "Compatibilidad alta"; levelClass = "badge-green"; }
+    else if (pct >= 50) { level = "Compatibilidad media"; levelClass = "badge-amber"; }
+
+    DB.insert("compatibilityEvaluations", { petAId: petA.id, petBId: petB.id, score: pct, evaluatedBy: user.id, date: new Date().toISOString().slice(0, 10) });
+
+    const alerts = [];
+    if (sizeRisk) alerts.push("Disparidad de tamaño significativa entre las mascotas: mayor riesgo físico durante la cruza.");
+    if (contagious) alerts.push("Se detectó una posible enfermedad contagiosa activa en el historial de una de las mascotas.");
+    if (relatedFlag) alerts.push("Ambas mascotas comparten un grado de parentesco conocido: riesgo genético de consanguinidad.");
+
+    document.getElementById("resultArea").innerHTML = `
+      <div class="card mt-24">
+        <div class="split" style="align-items:center;">
+          <div class="text-center">
+            <div style="font-size:44px;">${petA.photo}</div>
+            <div style="font-weight:700;">${escapeHtml(petA.name)}</div>
+            <div class="text-muted" style="font-size:13px;">${escapeHtml(petA.breed)} · ${escapeHtml(petA.age)} · ${escapeHtml(petA.sex)}</div>
+          </div>
+          <div class="text-center">
+            <div style="font-size:44px;">${petB.photo}</div>
+            <div style="font-weight:700;">${escapeHtml(petB.name)}</div>
+            <div class="text-muted" style="font-size:13px;">${escapeHtml(petB.breed)} · ${escapeHtml(petB.age)} · ${escapeHtml(petB.sex)}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="flex-between">
+          <h2>Resultado de compatibilidad</h2>
+          <span class="badge ${levelClass}">${level}</span>
+        </div>
+        ${factors.map((f) => `
+          <div class="setting-row">
+            <div class="label">${f.label}</div>
+            <div>${f.value} ${f.ok ? "✅" : "⚠️"}</div>
+          </div>
+        `).join("")}
+
+        ${alerts.length ? `<div class="warn-banner info-banner mt-16">⚠️ Alertas de riesgo (RF-23):<br>${alerts.map((a) => "• " + a).join("<br>")}</div>` : ""}
+
+        <div class="info-banner">La evaluación de compatibilidad es orientativa y se genera con reglas explícitas sobre parentesco, estado sanitario y edad (no un modelo de IA en este MVP). Consulte con un veterinario calificado antes de proceder con el proceso de cruza.</div>
+
+        <div class="flex gap-12 mt-16">
+          <a href="pet-detail.html?id=${petId}" class="btn btn-secondary">Volver al perfil</a>
+          <a href="request.html?petId=${petB.id}" class="btn btn-primary">Solicitar cruza</a>
+        </div>
+      </div>
+    `;
+  });
+</script>
+</body>
+</html>

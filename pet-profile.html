@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Mi mascota</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container">
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> &gt; <a href="dashboard.html">Mis mascotas</a> &gt; <span id="crumbName"></span></div>
+  <div class="flex-between mt-16" style="flex-wrap:wrap; gap:10px;">
+    <div class="flex gap-12" style="align-items:center;">
+      <div style="font-size:44px;" id="petEmoji"></div>
+      <div>
+        <h1 id="petName" style="margin-bottom:0;"></h1>
+        <div id="petMeta" class="text-muted"></div>
+      </div>
+    </div>
+    <div id="petStatusBadge"></div>
+  </div>
+
+  <div class="split mt-24">
+    <div>
+      <div class="card">
+        <h2>Descripción</h2>
+        <p id="petDesc" class="text-muted"></p>
+        <label>Estado de publicación</label>
+        <select id="petStatusSelect">
+          <option value="Adopción">Adopción</option>
+          <option value="Cruza responsable">Cruza responsable</option>
+        </select>
+        <button class="btn btn-secondary btn-sm mt-16" id="saveStatusBtn">Guardar publicación (RF-13)</button>
+      </div>
+
+      <div class="card">
+        <div class="flex-between">
+          <h2>Historial médico</h2>
+        </div>
+        <div id="recordList"></div>
+        <button class="btn btn-secondary btn-sm mt-16" id="addRecordBtn">+ Agregar registro de salud</button>
+      </div>
+
+      <div class="card">
+        <h2>Antecedentes genéticos</h2>
+        <div id="geneticsBox"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h2>Privacidad de mi mascota (RF-11)</h2>
+        <p class="text-muted" style="margin-top:-6px;">Define quién puede visualizar los datos sanitarios y de contacto vinculados a tu mascota.</p>
+        <div id="privacyList"></div>
+        <div class="info-banner">Estos ajustes no afectan la validación de MundiPets. Las veterinarias registradas siempre tendrán acceso al historial médico completo.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  const user = Auth.requireLogin();
+  renderTopbar(user);
+
+  const petId = qs("id");
+  let pet = DB.get("pets", petId);
+  if (!pet) { window.location.href = "dashboard.html"; }
+
+  function render() {
+    pet = DB.get("pets", petId);
+    document.getElementById("crumbName").textContent = pet.name;
+    document.getElementById("petEmoji").textContent = pet.photo;
+    document.getElementById("petName").textContent = pet.name;
+    document.getElementById("petMeta").textContent = `${pet.breed} · ${pet.age} · ${pet.sex} · 📍 ${pet.city}`;
+    document.getElementById("petStatusBadge").innerHTML = badgeForPetStatus(pet.status);
+    document.getElementById("petDesc").textContent = pet.description || "Sin descripción registrada.";
+    document.getElementById("petStatusSelect").value = pet.status;
+
+    const records = DB.all("medicalRecords").filter((r) => r.petId === petId);
+    document.getElementById("recordList").innerHTML = records.length ? records.map((r) => `
+      <div class="record-row">
+        <div class="left">
+          <span>${r.validated ? "🛡️" : "📄"}</span>
+          <div>
+            <div style="font-weight:600;">${escapeHtml(r.type)}</div>
+            <div class="text-muted" style="font-size:12px;">Fecha: ${escapeHtml(r.date)} ${r.validated ? "· Validado por veterinaria" : "· Pendiente de validación"}</div>
+          </div>
+        </div>
+        ${badgeForMedicalStatus(r.status)}
+      </div>
+    `).join("") : `<p class="text-muted">Sin registros médicos aún.</p>`;
+
+    const gen = DB.all("genetics").find((g) => g.petId === petId);
+    document.getElementById("geneticsBox").innerHTML = gen ? `
+      <p><strong>Linaje:</strong> ${escapeHtml(gen.lineage)}</p>
+      <p><strong>Enfermedades hereditarias:</strong> ${escapeHtml(gen.hereditaryConditions)}</p>
+      <p><strong>Parentesco:</strong> ${escapeHtml(gen.parentage)}</p>
+      ${gen.notes ? `<p class="text-muted">${escapeHtml(gen.notes)}</p>` : ""}
+    ` : `<p class="text-muted">Sin antecedentes genéticos registrados.</p>`;
+
+    const privacyLabels = {
+      medicalHistory: "Historial médico completo",
+      location: "Ubicación exacta",
+      contact: "Datos de contacto",
+      photos: "Fotos de la mascota",
+      genetics: "Antecedentes genéticos"
+    };
+    document.getElementById("privacyList").innerHTML = Object.keys(privacyLabels).map((key) => {
+      const current = pet.privacy[key] || "verified";
+      const options = [["public", "Todos"], ["verified", "Verificados"], ["private", "Privado"]];
+      return `
+        <div class="setting-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+          <div class="label">${privacyLabels[key]}</div>
+          <div class="segmented">
+            ${options.map(([val, label]) => `<button type="button" data-key="${key}" data-val="${val}" class="${current === val ? "active" : ""}">${label}</button>`).join("")}
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    document.querySelectorAll("#privacyList button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const patch = { ...pet.privacy, [btn.dataset.key]: btn.dataset.val };
+        DB.update("pets", petId, { privacy: patch });
+        toast("Preferencia de privacidad actualizada");
+        render();
+      });
+    });
+  }
+
+  document.getElementById("saveStatusBtn").addEventListener("click", () => {
+    DB.update("pets", petId, { status: document.getElementById("petStatusSelect").value });
+    toast("Publicación actualizada");
+    render();
+  });
+
+  document.getElementById("addRecordBtn").addEventListener("click", () => {
+    const type = prompt("Tipo de registro (ej. Vacuna, Desparasitación, Cirugía, Control veterinario):");
+    if (!type) return;
+    const date = prompt("Fecha (YYYY-MM-DD):", new Date().toISOString().slice(0, 10));
+    DB.insert("medicalRecords", { petId, type, date: date || "", status: "Por renovar", validated: false });
+    toast("Registro médico agregado, pendiente de validación veterinaria");
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Registrar mascota</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container">
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> &gt; <a href="dashboard.html">Mis mascotas</a> &gt; Agregar mascota</div>
+  <h1>Registrar nueva mascota</h1>
+
+  <div class="steps" id="steps"></div>
+
+  <div class="card" id="stepContent"></div>
+
+  <div class="flex-between">
+    <button class="btn btn-secondary" id="btnPrev">Anterior</button>
+    <button class="btn btn-primary" id="btnNext">Siguiente</button>
+  </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  const user = Auth.requireLogin();
+  renderTopbar(user);
+
+  const STEP_LABELS = ["Datos generales", "Fotos", "Historial médico", "Antecedentes genéticos"];
+  let step = 0;
+  const form = {
+    name: "", species: "Perro", breed: "", sex: "Macho", age: "", size: "Mediano",
+    reproductiveStatus: "Entero", description: "", photo: "🐾",
+    vaccineDate: "", dewormDate: "", certDate: "",
+    lineage: "", hereditaryConditions: "", parentage: "", genNotes: ""
+  };
+
+  function renderSteps() {
+    document.getElementById("steps").innerHTML = STEP_LABELS.map((label, i) => {
+      const cls = i < step ? "done" : i === step ? "active" : "";
+      const icon = i < step ? "✓" : (i + 1);
+      const line = i < STEP_LABELS.length - 1 ? '<div class="step-line"></div>' : "";
+      return `<div class="step ${cls}"><span class="step-circle">${icon}</span><span>${i + 1}. ${label}</span></div>${line}`;
+    }).join("");
+  }
+
+  const speciesOptions = ["Perro", "Gato", "Otro"];
+  const sexOptions = ["Macho", "Hembra"];
+  const sizeOptions = ["Pequeño", "Mediano", "Grande"];
+  const petEmoji = { Perro: "🐕", Gato: "🐈", Otro: "🐾" };
+
+  function renderStepContent() {
+    const c = document.getElementById("stepContent");
+    if (step === 0) {
+      c.innerHTML = `
+        <h2>Datos generales</h2>
+        <label>Nombre</label>
+        <input type="text" id="f_name" value="${escapeHtml(form.name)}" placeholder="Firulais">
+        <div class="grid-2">
+          <div>
+            <label>Especie</label>
+            <select id="f_species">${speciesOptions.map((s) => `<option ${s === form.species ? "selected" : ""}>${s}</option>`).join("")}</select>
+          </div>
+          <div>
+            <label>Sexo</label>
+            <select id="f_sex">${sexOptions.map((s) => `<option ${s === form.sex ? "selected" : ""}>${s}</option>`).join("")}</select>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <label>Raza</label>
+            <input type="text" id="f_breed" value="${escapeHtml(form.breed)}" placeholder="Mestizo">
+          </div>
+          <div>
+            <label>Edad</label>
+            <input type="text" id="f_age" value="${escapeHtml(form.age)}" placeholder="2 años">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <label>Tamaño</label>
+            <select id="f_size">${sizeOptions.map((s) => `<option ${s === form.size ? "selected" : ""}>${s}</option>`).join("")}</select>
+          </div>
+          <div>
+            <label>Estado reproductivo</label>
+            <select id="f_repro">
+              <option ${form.reproductiveStatus === "Entero" ? "selected" : ""}>Entero</option>
+              <option ${form.reproductiveStatus === "Esterilizado" ? "selected" : ""}>Esterilizado</option>
+            </select>
+          </div>
+        </div>
+        <label>Descripción</label>
+        <textarea id="f_desc" placeholder="Cuéntanos sobre el temperamento y comportamiento de la mascota...">${escapeHtml(form.description)}</textarea>
+      `;
+    } else if (step === 1) {
+      c.innerHTML = `
+        <h2>Fotos</h2>
+        <p class="text-muted">Elige un ícono representativo (RF-17 valida imágenes con IA en la versión completa; en este MVP se simula con una selección directa).</p>
+        <div class="grid-3" id="photoPicker">
+          ${["🐕", "🐈", "🐶", "🐕‍🦺", "🐩", "🐾"].map((e) => `
+            <div class="card compact text-center" data-emoji="${e}" style="cursor:pointer; font-size:40px; ${form.photo === e ? "border-color:#2563eb; border-width:2px;" : ""}">${e}</div>
+          `).join("")}
+        </div>
+      `;
+      document.querySelectorAll("#photoPicker [data-emoji]").forEach((el) => {
+        el.addEventListener("click", () => { form.photo = el.dataset.emoji; renderStepContent(); });
+      });
+    } else if (step === 2) {
+      c.innerHTML = `
+        <h2>Historial médico referencial</h2>
+        <p class="text-muted">Registra y adjunta los documentos sanitarios vigentes de tu mascota. Serán revisados por nuestro equipo (RF-02, RF-14).</p>
+        <label>Fecha de vacuna antirrábica</label>
+        <input type="date" id="f_vaccine" value="${form.vaccineDate}">
+        <label>Fecha de desparasitación interna</label>
+        <input type="date" id="f_deworm" value="${form.dewormDate}">
+        <label>Fecha de certificado veterinario oficial</label>
+        <input type="date" id="f_cert" value="${form.certDate}">
+        <div class="info-banner">Los documentos médicos serán validados por una veterinaria registrada antes de habilitar la mascota para adopción o cruza responsable.</div>
+      `;
+    } else {
+      c.innerHTML = `
+        <h2>Antecedentes genéticos</h2>
+        <p class="text-muted">Información de linaje y parentesco para apoyar procesos de cruza responsable (RF-16).</p>
+        <label>Linaje / pedigrí</label>
+        <input type="text" id="f_lineage" value="${escapeHtml(form.lineage)}" placeholder="Sin registro de pedigrí">
+        <label>Enfermedades hereditarias conocidas</label>
+        <input type="text" id="f_conditions" value="${escapeHtml(form.hereditaryConditions)}" placeholder="Ninguna reportada">
+        <label>Grado de parentesco conocido</label>
+        <input type="text" id="f_parentage" value="${escapeHtml(form.parentage)}" placeholder="Desconocido">
+        <label>Observaciones</label>
+        <textarea id="f_gennotes">${escapeHtml(form.genNotes)}</textarea>
+      `;
+    }
+    document.getElementById("btnPrev").style.visibility = step === 0 ? "hidden" : "visible";
+    document.getElementById("btnNext").textContent = step === STEP_LABELS.length - 1 ? "Registrar mascota" : "Siguiente";
+  }
+
+  function collectStep() {
+    if (step === 0) {
+      form.name = document.getElementById("f_name").value.trim();
+      form.species = document.getElementById("f_species").value;
+      form.sex = document.getElementById("f_sex").value;
+      form.breed = document.getElementById("f_breed").value.trim();
+      form.age = document.getElementById("f_age").value.trim();
+      form.size = document.getElementById("f_size").value;
+      form.reproductiveStatus = document.getElementById("f_repro").value;
+      form.description = document.getElementById("f_desc").value.trim();
+      if (!form.name || !form.breed || !form.age) {
+        toast("Completa nombre, raza y edad antes de continuar (campo obligatorio)");
+        return false;
+      }
+      if (form.photo === "🐾" && petEmoji[form.species]) form.photo = petEmoji[form.species];
+    } else if (step === 2) {
+      form.vaccineDate = document.getElementById("f_vaccine").value;
+      form.dewormDate = document.getElementById("f_deworm").value;
+      form.certDate = document.getElementById("f_cert").value;
+    } else if (step === 3) {
+      form.lineage = document.getElementById("f_lineage").value.trim();
+      form.hereditaryConditions = document.getElementById("f_conditions").value.trim();
+      form.parentage = document.getElementById("f_parentage").value.trim();
+      form.genNotes = document.getElementById("f_gennotes").value.trim();
+    }
+    return true;
+  }
+
+  document.getElementById("btnPrev").addEventListener("click", () => {
+    if (step > 0) { step--; renderSteps(); renderStepContent(); }
+  });
+
+  document.getElementById("btnNext").addEventListener("click", () => {
+    if (!collectStep()) return;
+    if (step < STEP_LABELS.length - 1) {
+      step++;
+      renderSteps();
+      renderStepContent();
+    } else {
+      finish();
+    }
+  });
+
+  function finish() {
+    const pet = DB.insert("pets", {
+      ownerId: user.id, name: form.name, species: form.species, breed: form.breed,
+      sex: form.sex, age: form.age, size: form.size, city: user.city || "Quevedo",
+      reproductiveStatus: form.reproductiveStatus, status: "Adopción", photo: form.photo,
+      description: form.description,
+      privacy: { medicalHistory: "pending", location: "private", contact: "verified", photos: "public", genetics: "pending" }
+    });
+
+    if (form.vaccineDate) DB.insert("medicalRecords", { petId: pet.id, type: "Vacuna antirrábica", date: form.vaccineDate, status: "Vigente", validated: false });
+    if (form.dewormDate) DB.insert("medicalRecords", { petId: pet.id, type: "Desparasitación interna", date: form.dewormDate, status: "Vigente", validated: false });
+    if (form.certDate) DB.insert("medicalRecords", { petId: pet.id, type: "Certificado veterinario oficial", date: form.certDate, status: "Por renovar", validated: false });
+
+    if (form.lineage || form.hereditaryConditions || form.parentage || form.genNotes) {
+      DB.insert("genetics", {
+        petId: pet.id, lineage: form.lineage || "Sin registro de pedigrí",
+        hereditaryConditions: form.hereditaryConditions || "Ninguna reportada",
+        parentage: form.parentage || "Desconocido", notes: form.genNotes
+      });
+    }
+
+    toast("Mascota registrada correctamente");
+    setTimeout(() => { window.location.href = `pet-profile.html?id=${pet.id}`; }, 900);
+  }
+
+  renderSteps();
+  renderStepContent();
+</script>
+</body>
+</html>

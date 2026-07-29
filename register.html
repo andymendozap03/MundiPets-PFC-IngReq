@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Crear cuenta</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container-narrow" style="padding-top:10px;">
+  <div class="breadcrumb"><a href="index.html">Inicio</a> &gt; Crear cuenta</div>
+  <h1>Crear cuenta</h1>
+  <p class="subtitle">Regístrate en MundiPets para adoptar o gestionar cruzas responsables en Los Ríos.</p>
+
+  <form class="card" id="registerForm">
+    <label for="name">Nombre completo</label>
+    <input type="text" id="name" placeholder="Ana Adoptante" required>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" placeholder="ana.adoptante@ejemplo.com" required>
+
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" placeholder="********" required minlength="6">
+
+    <label for="password2">Confirmar contraseña</label>
+    <input type="password" id="password2" placeholder="********" required minlength="6">
+
+    <label>Tipo de perfil / Rol</label>
+    <div class="segmented" id="roleSegmented">
+      <button type="button" data-role="propietario">Propietario</button>
+      <button type="button" data-role="adoptante" class="active">Adoptante</button>
+      <button type="button" data-role="interesado_cruza">Cruza</button>
+      <button type="button" data-role="veterinaria">Veterinaria</button>
+    </div>
+
+    <label>Documento de identidad oficial (Cédula / Pasaporte)</label>
+    <div class="upload-box" id="docUpload">
+      <div>📄</div>
+      <div>Arrastra tu documento de identidad o haz clic para seleccionar</div>
+      <small>Formatos permitidos: PDF, JPG, PNG (Máx. 5MB) — simulado, no se sube a ningún servidor</small>
+      <input type="file" id="docFile" style="display:none;">
+    </div>
+    <div class="field-hint" id="docFileName"></div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="terms" required>
+      <label for="terms" style="display:inline; margin:0; font-weight:400;">
+        Declaro conocer y aceptar los <strong>términos y condiciones de uso</strong> de MundiPets
+        y me comprometo al bienestar animal.
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mt-24">Crear cuenta</button>
+  </form>
+
+  <div class="info-banner text-center" id="pendingBanner" style="display:none;">
+    ● Pendiente de verificación de identidad de MundiPets
+  </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  renderTopbar(null);
+
+  let selectedRole = "adoptante";
+  document.querySelectorAll("#roleSegmented button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#roleSegmented button").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      selectedRole = btn.dataset.role;
+    });
+  });
+
+  document.getElementById("docUpload").addEventListener("click", () => document.getElementById("docFile").click());
+  document.getElementById("docFile").addEventListener("change", (e) => {
+    const f = e.target.files[0];
+    document.getElementById("docFileName").textContent = f ? `Archivo seleccionado: ${f.name}` : "";
+  });
+
+  document.getElementById("registerForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const password2 = document.getElementById("password2").value;
+
+    if (password !== password2) {
+      toast("Las contraseñas no coinciden");
+      return;
+    }
+    if (DB.all("users").some((u) => u.email.toLowerCase() === email.toLowerCase())) {
+      toast("Ya existe una cuenta con ese correo");
+      return;
+    }
+
+    const user = DB.insert("users", {
+      name, email, role: selectedRole, city: "Quevedo",
+      verified: false, docStatus: "Pendiente"
+    });
+
+    document.getElementById("registerForm").style.display = "none";
+    document.getElementById("pendingBanner").style.display = "block";
+    toast("Cuenta creada. RF-12: identidad marcada como pendiente de verificación.");
+
+    Auth.login(user.id);
+    setTimeout(() => { window.location.href = "dashboard.html"; }, 1800);
+  });
+</script>
+</body>
+</html>

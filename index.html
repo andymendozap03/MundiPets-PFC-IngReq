@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Iniciar sesión</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container-narrow" style="padding-top:20px;">
+  <h1 style="text-align:center;">MundiPets</h1>
+  <p class="subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">
+    Red social para adopción y cruza responsable de mascotas en Los Ríos, Ecuador.
+    Selecciona una cuenta de demostración para continuar (MVP con datos ficticios).
+  </p>
+
+  <div class="card">
+    <h2>Cuentas de demostración</h2>
+    <p class="text-muted" style="margin-top:-6px;">No se usan contraseñas reales: este MVP simula la sesión para fines de evaluación académica.</p>
+    <div id="userList"></div>
+  </div>
+
+  <div class="card compact text-center">
+    <span class="text-muted">¿Primera vez? </span>
+    <a href="register.html" class="btn btn-secondary btn-sm" style="margin-left:8px;">Crear cuenta nueva</a>
+  </div>
+
+  <div class="text-center mt-16">
+    <a href="#" id="resetDataBtn" class="reset-link">Restablecer datos de ejemplo</a>
+  </div>
+</div>
+
+<footer class="dev-footer">MundiPets · MVP académico · Proyecto Fin de Curso — Ingeniería de Requerimientos [20303] · UTEQ</footer>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  renderTopbar(null);
+  attachResetButton();
+
+  const roleIcon = { propietario: "🏠", adoptante: "🐾", interesado_cruza: "🧬", veterinaria: "🩺" };
+  const users = DB.all("users");
+  const list = document.getElementById("userList");
+  list.innerHTML = users.map((u) => `
+    <div class="setting-row">
+      <div class="flex gap-12" style="align-items:center;">
+        <span class="avatar">${initials(u.name)}</span>
+        <div>
+          <div style="font-weight:700;">${escapeHtml(u.name)}</div>
+          <div class="text-muted" style="font-size:13px;">${roleIcon[u.role] || ""} ${Auth.roleLabel(u.role)} · ${escapeHtml(u.city)}</div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="enter('${u.id}')">Ingresar</button>
+    </div>
+  `).join("");
+
+  function enter(userId) {
+    Auth.login(userId);
+    window.location.href = "dashboard.html";
+  }
+
+  // Si ya hay sesion activa, ir directo al dashboard
+  if (Auth.current()) {
+    // no auto-redirect para permitir cambiar de cuenta de demo facilmente
+  }
+</script>
+</body>
+</html>

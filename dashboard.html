@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Dashboard</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container">
+  <div class="breadcrumb">Dashboard</div>
+  <div class="flex-between mt-16" style="flex-wrap:wrap; gap:10px;">
+    <div>
+      <h1 id="pageTitle">Panel</h1>
+      <p class="subtitle" id="pageSubtitle"></p>
+    </div>
+    <div id="pageAction"></div>
+  </div>
+
+  <div id="content"></div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  const user = Auth.requireLogin();
+  if (user) {
+    renderTopbar(user);
+    render();
+  }
+
+  function render() {
+    if (user.role === "propietario") renderOwner();
+    else if (user.role === "veterinaria") renderVet();
+    else renderAdopter();
+  }
+
+  function renderOwner() {
+    document.getElementById("pageTitle").textContent = "Mis mascotas";
+    document.getElementById("pageSubtitle").textContent = "Administra los perfiles, historial médico y solicitudes de tus mascotas.";
+    document.getElementById("pageAction").innerHTML = `<a href="pet-add.html" class="btn btn-primary">+ Registrar mascota</a>`;
+
+    const pets = DB.all("pets").filter((p) => p.ownerId === user.id);
+    const requests = DB.all("requests").filter((r) => r.ownerId === user.id);
+
+    let html = "";
+    if (pets.length === 0) {
+      html += `<div class="card empty-state">Aún no has registrado mascotas. <a href="pet-add.html">Registrar la primera</a>.</div>`;
+    } else {
+      html += pets.map((p) => `
+        <div class="pet-row">
+          <div style="font-size:36px;">${p.photo}</div>
+          <div class="info">
+            <div class="name">${escapeHtml(p.name)}</div>
+            <div class="meta">${escapeHtml(p.breed)} · ${escapeHtml(p.age)} · ${escapeHtml(p.sex)} · 📍 ${escapeHtml(p.city)}</div>
+          </div>
+          <div class="right">
+            ${badgeForPetStatus(p.status)}
+            <a href="pet-profile.html?id=${p.id}" class="btn btn-secondary btn-sm">Gestionar</a>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    html += `<h2 class="mt-24">Solicitudes recibidas</h2>`;
+    if (requests.length === 0) {
+      html += `<div class="card empty-state">No tienes solicitudes de adopción o cruza por ahora.</div>`;
+    } else {
+      html += requests.map((r) => {
+        const pet = DB.get("pets", r.petId);
+        const requester = DB.get("users", r.requesterId);
+        return `
+          <div class="pet-row">
+            <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+            <div class="info">
+              <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"} — ${r.type === "cruza" ? "Cruza responsable" : "Adopción"}</div>
+              <div class="meta">Solicitante: ${requester ? escapeHtml(requester.name) : "—"} · Etapa ${r.stage}/5</div>
+            </div>
+            <div class="right">
+              ${badgeForRequestStatus(r.status)}
+              <a href="request.html?id=${r.id}" class="btn btn-secondary btn-sm">Ver</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    document.getElementById("content").innerHTML = html;
+  }
+
+  function renderAdopter() {
+    const isCruza = user.role === "interesado_cruza";
+    document.getElementById("pageTitle").textContent = isCruza ? "Mascotas para cruza" : "Explorar mascotas";
+    document.getElementById("pageSubtitle").textContent = "Encuentra mascotas disponibles y da seguimiento a tus solicitudes.";
+    document.getElementById("pageAction").innerHTML = `<a href="explore.html" class="btn btn-primary">Explorar mascotas</a>`;
+
+    const myRequests = DB.all("requests").filter((r) => r.requesterId === user.id);
+    const followUps = DB.all("followUps").filter((f) => {
+      const req = DB.get("requests", f.requestId);
+      return req && req.requesterId === user.id;
+    });
+
+    let html = `<h2>Mis solicitudes</h2>`;
+    if (myRequests.length === 0) {
+      html += `<div class="card empty-state">Aún no has enviado solicitudes. <a href="explore.html">Explora mascotas disponibles</a>.</div>`;
+    } else {
+      html += myRequests.map((r) => {
+        const pet = DB.get("pets", r.petId);
+        return `
+          <div class="pet-row">
+            <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+            <div class="info">
+              <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"} — ${r.type === "cruza" ? "Cruza responsable" : "Adopción"}</div>
+              <div class="meta">Etapa ${r.stage}/5 · ${r.stages[r.stage - 1] || ""}</div>
+            </div>
+            <div class="right">
+              ${badgeForRequestStatus(r.status)}
+              <a href="request.html?id=${r.id}" class="btn btn-secondary btn-sm">Ver</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    if (followUps.length) {
+      html += `<h2 class="mt-24">Seguimiento post-adopción</h2>`;
+      html += followUps.map((f) => {
+        const pet = DB.get("pets", f.petId);
+        return `
+          <div class="pet-row">
+            <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+            <div class="info">
+              <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"}</div>
+              <div class="meta">${escapeHtml(f.note)}</div>
+            </div>
+            <div class="right">
+              <span class="badge badge-amber">${escapeHtml(f.status)}</span>
+              <a href="post-adoption.html?petId=${f.petId}" class="btn btn-secondary btn-sm">Ver</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    document.getElementById("content").innerHTML = html;
+  }
+
+  function renderVet() {
+    document.getElementById("pageTitle").textContent = "Agenda de revisiones";
+    document.getElementById("pageSubtitle").textContent = "Valida el historial médico y los certificados cargados por los propietarios.";
+    document.getElementById("pageAction").innerHTML = `<a href="vet-panel.html" class="btn btn-primary">Ir al panel de validaciones</a>`;
+
+    const records = DB.all("medicalRecords");
+    const pending = records.filter((r) => !r.validated);
+    const validated = records.filter((r) => r.validated);
+
+    document.getElementById("content").innerHTML = `
+      <div class="grid-3">
+        <div class="card compact text-center"><div style="font-size:26px; font-weight:800;">${pending.length}</div><div class="text-muted">Pendientes</div></div>
+        <div class="card compact text-center"><div style="font-size:26px; font-weight:800;">0</div><div class="text-muted">En revisión</div></div>
+        <div class="card compact text-center"><div style="font-size:26px; font-weight:800;">${validated.length}</div><div class="text-muted">Validadas</div></div>
+      </div>
+      <h2 class="mt-24">Pendientes de hoy</h2>
+      ${pending.length === 0 ? '<div class="card empty-state">No hay documentos pendientes de validación.</div>' : pending.map((r) => {
+        const pet = DB.get("pets", r.petId);
+        return `
+          <div class="pet-row">
+            <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+            <div class="info">
+              <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"} — ${escapeHtml(r.type)}</div>
+              <div class="meta">Fecha: ${escapeHtml(r.date)}</div>
+            </div>
+            <div class="right">
+              ${badgeForMedicalStatus(r.status)}
+              <a href="vet-panel.html?recordId=${r.id}" class="btn btn-secondary btn-sm">Revisar</a>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    `;
+  }
+</script>
+</body>
+</html>
