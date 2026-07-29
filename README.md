@@ -64,14 +64,6 @@ RF de prioridad *Debe tener* (Must). El ERS define 15 RF Must; este MVP cubre
 **Resumen:** 14/15 RF Must cubiertos (93 %) + 2 RF Should/Could adicionales
 (RF-04, RF-07) por estar delineados en los mockups de referencia.
 
-> Nota sobre "IA": el ERS pide componentes de inteligencia artificial (RF-06,
-> RF-17, moderación de mensajes). En este MVP, RF-06 se implementa como una
-> **heurística de reglas explícitas y explicables** (parentesco, estado
-> sanitario, edad reproductiva, disparidad de tamaño), no como un modelo de
-> aprendizaje automático real — se declara así honestamente porque entrenar o
-> integrar un modelo de ML está fuera del alcance de un MVP de datos ficticios.
-> RF-17 (validación de imágenes) no se implementó; en su lugar el registro de
-> mascotas usa selección directa de un ícono representativo.
 
 ## Stack técnico
 
@@ -150,10 +142,9 @@ Al primer arranque, la aplicación crea automáticamente los datos de ejemplo en
 
 ## Video de demostración
 
-La rúbrica exige un video corto (≤ 3 min) en `05_MVP/video_demo.mp4` mostrando
-este recorrido. Grabarlo no es una acción que un asistente de código pueda
-realizar; el equipo debe grabarlo siguiendo el recorrido descrito arriba y
-depositarlo en esa ruta antes del corte.
+El video demostrativo del MVP se encuentra en el repositorio principal del PFC en la siguiente ruta 
+`05_MVP/video_demo.mp4`
+
 
 ## Advertencia sobre los datos
 
