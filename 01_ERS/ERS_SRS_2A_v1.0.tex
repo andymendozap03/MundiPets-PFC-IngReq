@@ -178,13 +178,12 @@ doi=true
 		\vspace{0.8cm}
 		
 		{\normalsize\bfseries TEMA:}\\[4pt]
-		{\normalsize PROYECTO FIN DE CURSO: ENTREGA 3 (2A) --- ESPECIFICACIÓN DE\\
-			REQUISITOS COMPLETA + COMPONENTE EMPÍRICO}\\[4pt]
+		{\normalsize PROYECTO FIN DE CURSO: ENTREGA 2A --- ERS COMPLETO CON VALIDACIÓN Y TRAZABILIDAD}\\[4pt]
 		
 		\vspace{0.5cm}
 		
 		{\normalsize\bfseries MATERIA:}\\[4pt]
-		{\normalsize INGENIERÍA DE REQUERIMIENTOS [20303]}
+		{\normalsize INGENIERÍA DE REQUERIMIENTOS}
 		
 		\vspace{0.5cm}
 		
@@ -202,10 +201,10 @@ doi=true
 		{\small Rol: Verificador}\\[6pt]
 		
 		\textit{MENDOZA PÁRRAGA ANDY JOHEL},~CI: 1251401590,~amedozap9@uteq.edu.ec\\
-		{\small Rol: Documentador}\\[6pt]
+		{\small Rol: Modelador}\\[6pt]
 		
 		\textit{MORALES SÁNCHEZ GARY ALEJANDRO},~CI: 1251154173,~gmoraless2@uteq.edu.ec\\
-		{\small Rol: Modelador}\\[6pt]
+		{\small Rol: Documentador}\\[6pt]
 		
 		\textit{NIEVES SÁNCHEZ JIMMY SAMUEL},~CI: 1250907878,~jnievess@uteq.edu.ec\\
 		{\small Rol: Verificador}
@@ -221,11 +220,10 @@ doi=true
 		\textbf{Repositorio GitHub:}\\
 		\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}
 		
-		\vspace{0.4cm}
+		\vspace{1cm}
 		
 		{\small Firma electrónica del analista líder: \rule{5cm}{0.4pt}}
 		
-		\vspace{0.8cm}
 		
 		{\normalsize\bfseries QUEVEDO -- LOS RÍOS -- ECUADOR}\\[4pt]
 		{\normalsize\bfseries 2026 -- 2027 PPA}
@@ -249,7 +247,7 @@ doi=true
 			\midrule
 			1.0 & 30/05/2026 & Equipo MundiPets & Entrega 1A: planificación y elicitación. \\
 			2.0 & 05/07/2026 & Equipo MundiPets & Entrega 2 (1B): ERS/SRS parcial; incorpora correcciones de la 1A y agrega requisitos, UML, priorización y trazabilidad. \\
-			3.0 & --- & Equipo MundiPets & Entrega 3 (2A): ERS/SRS completa. Amplía a 25 RF y 15 RNF, agrega requisitos legales, explicabilidad, historias de usuario, modelado UML completo, priorización Kano/WSJF, trazabilidad extendida, MVP y componente empírico. \\
+			3.0 & 29/07/2026 & Equipo MundiPets & Entrega 3 (2A): ERS/SRS completa. Amplía a 25 RF, 16 RNF y 9 RD, agrega requisitos legales, explicabilidad, historias de usuario, modelado UML completo, priorización Kano/WSJF, trazabilidad extendida, MVP y componente empírico. \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -503,9 +501,9 @@ doi=true
 		
 		--- & Gherkin & Lenguaje estructurado para redactar escenarios de aceptación en formato Dado-Cuando-Entonces \cite{fischbach2023}. \\ \hline
 		
-		PICOC & Población, Intervención, Comparación, Resultado, Contexto & Marco para estructurar preguntas de investigación en estudios empíricos de ingeniería de software. \\ \hline
+		PICOC & Población, Intervención, Comparación, Resultado, Contexto & Marco para estructurar preguntas de investigación en estudios empíricos de ingeniería de software \cite{kitchenham2007}. \\ \hline
 		
-		FAIR & Findable, Accessible, Interoperable, Reusable & Principios que orientan la gestión de datos de investigación para que sean localizables, accesibles, interoperables y reutilizables. \\ \hline
+		FAIR & Findable, Accessible, Interoperable, Reusable & Principios que orientan la gestión de datos de investigación para que sean localizables, accesibles, interoperables y reutilizables \cite{wilkinson2016}. \\ \hline
 		
 		--- & Explicabilidad & Capacidad de un sistema de inteligencia artificial de ofrecer a las personas afectadas una explicación comprensible de una decisión automática \cite{chazette2020}. \\ \hline
 		
@@ -522,6 +520,14 @@ doi=true
 		DOI & Digital Object Identifier & Identificador persistente y único asignado a un recurso digital, como un conjunto de datos o una publicación. \\ \hline
 		
 		--- & Saturación temática & Punto en el análisis cualitativo en el que entrevistas adicionales dejan de aportar códigos nuevos \cite{hennink2017}. \\ \hline
+		
+		MVP & Producto Mínimo Viable & Versión del producto con el conjunto mínimo de funcionalidades que permite validar hipótesis de valor con usuarios reales; en este proyecto, cobertura mínima del 60\,\% de los RF \emph{Debe tener}. \\ \hline
+		
+		EV-XX & Identificador de evidencia & Código que vincula cada requisito con el archivo de evidencia primaria (entrevista, cuestionario u observación) que lo respalda dentro del repositorio. \\ \hline
+		
+		LLM & Modelo de lenguaje de gran escala & Modelo de aprendizaje profundo entrenado sobre grandes volúmenes de texto, capaz de generar lenguaje natural \cite{cheng2026, vogelsang2024}. \\ \hline
+		
+		--- & Zenodo & Repositorio de datos abiertos operado por el CERN donde se deposita el conjunto de datos del proyecto con licencia CC BY 4.0 y DOI persistente, siguiendo los principios FAIR \cite{wilkinson2016}. \\ \hline
 	\end{longtable}
 	
 	\subsection{Referencias}
@@ -2052,18 +2058,29 @@ doi=true
 	\subsection{Historias de usuario y criterios de aceptación}
 	\label{sec:historias}
 	
+	Se presenta una historia de usuario por cada requisito funcional de prioridad
+	\emph{Must}, redactada en formato Connextra (\emph{Como} rol, \emph{quiero}
+	funcionalidad, \emph{para} beneficio esperado). Cada historia se verifica contra
+	los seis criterios INVEST \cite{cohn2004} y se acompaña de al menos un
+	escenario de aceptación expresado en Gherkin (Dado--Cuando--Entonces). Los
+	requisitos de prioridad \emph{Should} y \emph{Could} no generan historia de
+	usuario en esta entrega, conforme a la regla establecida en la plantilla de la
+	asignatura. La correspondencia completa entre historias, requisitos funcionales
+	y casos de uso se registra en la matriz de trazabilidad extendida
+	(Apéndice~\ref{ap:trazabilidad}).
+	
 	\subsubsection{HU-01 --- Registro de mascota}
 	
 	\begin{atributos}{HU-01}{HU-01 --- Historia de usuario asociada al RF-01.}
 		Identificador & HU-01 \\
 		RF asociado & RF-01 \\
 		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{registrar el perfil de mi mascota con sus datos generales y fotografías}, para \textbf{que otros usuarios puedan identificarla y evaluarla en procesos de adopción o cruza}. \\
-		Independiente (I) & --- \\
-		Negociable (N) & --- \\
-		Valiosa (V) & --- \\
-		Estimable (E) & --- \\
-		Pequeña (S) & --- \\
-		Verificable (T) & --- \\
+		Independiente (I) & No depende de que otra historia esté terminada; es el primer paso del flujo y ninguna otra HU debe completarse antes. \\
+		Negociable (N) & El conjunto exacto de campos (p.\,ej. si la raza es obligatoria) puede negociarse con el equipo sin cambiar el objetivo de la historia. \\
+		Valiosa (V) & Sin esta historia no existe ninguna mascota en el sistema, por lo que ninguna otra funcionalidad (adopción, cruza, historial médico) puede operar. \\
+		Estimable (E) & Estimable con facilidad porque es un formulario de registro estándar con validación de campos. \\
+		Pequeña (S) & Cabe en una sola iteración; cubre solo la creación del perfil, no el historial médico ni las publicaciones. \\
+		Verificable (T) & Verificable registrando una mascota con datos válidos y confirmando que el perfil se almacena y puede consultarse. \\
 		Criterio de aceptación & CA-01 (véase el escenario Gherkin siguiente). \\
 	\end{atributos}
 	
@@ -2086,6 +2103,437 @@ doi=true
 		Y confirmo el registro
 		Entonces el sistema rechaza la operacion
 		Y muestra el motivo del rechazo junto al campo incompleto
+	\end{lstlisting}
+	
+	\subsubsection{HU-02 --- Gestión del historial médico}
+	
+	\begin{atributos}{HU-02}{HU-02 --- Historia de usuario asociada al RF-02.}
+		Identificador & HU-02 \\
+		RF asociado & RF-02 \\
+		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{registrar y actualizar el historial médico de mi mascota}, para \textbf{mantener un registro confiable de su estado de salud}. \\
+		Independiente (I) & Depende únicamente de que la mascota ya esté registrada (RF-01), no de ninguna otra historia de usuario. \\
+		Negociable (N) & El equipo puede negociar cuántos campos clínicos se capturan en la primera versión sin afectar el objetivo central. \\
+		Valiosa (V) & Entrega un beneficio directo al propietario y a la veterinaria, porque un historial confiable respalda decisiones de adopción y cruza. \\
+		Estimable (E) & Estimable porque reutiliza el mismo patrón de formulario que HU-01, con una lista de eventos clínicos. \\
+		Pequeña (S) & Se limita a registrar y actualizar el historial, sin incluir la validación por veterinaria (esa es HU-07). \\
+		Verificable (T) & Verificable registrando un nuevo antecedente médico y comprobando que aparece en el historial. \\
+		Criterio de aceptación & CA-02 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-02 --- Escenario de aceptación de la historia HU-02.},label={lst:ca02}]
+		Caracteristica: Gestion del historial medico
+		
+		Escenario: Registro exitoso de un antecedente medico
+		Dado que soy un propietario autenticado con una mascota registrada
+		Y me encuentro en el formulario de historial medico
+		Cuando ingreso una vacuna con su fecha de aplicacion
+		Y confirmo el registro
+		Entonces el sistema almacena el antecedente medico
+		Y el historial se actualiza con el nuevo registro
+		
+		Escenario: Registro rechazado por dato obligatorio ausente
+		Dado que soy un propietario autenticado con una mascota registrada
+		Y me encuentro en el formulario de historial medico
+		Cuando omito la fecha de aplicacion de la vacuna
+		Y confirmo el registro
+		Entonces el sistema rechaza la operacion
+		Y muestra el motivo del rechazo junto al campo incompleto
+	\end{lstlisting}
+	
+	\subsubsection{HU-03 --- Consulta de perfil de mascota}
+	
+	\begin{atributos}{HU-03}{HU-03 --- Historia de usuario asociada al RF-03.}
+		Identificador & HU-03 \\
+		RF asociado & RF-03 \\
+		Historia (Connextra) & Como \textbf{adoptante}, quiero \textbf{consultar el perfil completo de una mascota}, para \textbf{decidir si quiero iniciar un proceso de adopción o cruza}. \\
+		Independiente (I) & Puede desarrollarse en paralelo a otras historias porque solo depende de que existan mascotas registradas (RF-01). \\
+		Negociable (N) & El nivel de detalle mostrado (p.\,ej. si se incluye el árbol genealógico) es negociable con el equipo. \\
+		Valiosa (V) & Da al adoptante o interesado en cruza la información necesaria para tomar una decisión informada. \\
+		Estimable (E) & Estimable porque consiste en una vista de solo lectura sobre datos ya modelados en otras historias. \\
+		Pequeña (S) & Se limita a la consulta; no incluye la lógica de permisos avanzados de privacidad (esa es HU-08). \\
+		Verificable (T) & Verificable consultando una mascota registrada y comprobando que se muestra toda la información autorizada. \\
+		Criterio de aceptación & CA-03 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-03 --- Escenario de aceptación de la historia HU-03.},label={lst:ca03}]
+		Caracteristica: Consulta de perfil de mascota
+		
+		Escenario: Consulta exitosa de un perfil autorizado
+		Dado que soy un usuario autenticado
+		Y existe una mascota registrada con perfil publico
+		Cuando selecciono la mascota desde el listado
+		Entonces el sistema muestra su informacion general, fotografias e historial medico autorizado
+		
+		Escenario: Intento de consulta de informacion restringida
+		Dado que un dato del perfil de la mascota esta marcado como privado
+		Y soy un usuario sin permisos sobre ese dato
+		Cuando consulto el perfil de la mascota
+		Entonces el sistema no muestra el dato restringido
+		Y muestra unicamente la informacion autorizada
+	\end{lstlisting}
+	
+	\subsubsection{HU-04 --- Solicitud de adopción}
+	
+	\begin{atributos}{HU-04}{HU-04 --- Historia de usuario asociada al RF-05.}
+		Identificador & HU-04 \\
+		RF asociado & RF-05 \\
+		Historia (Connextra) & Como \textbf{adoptante}, quiero \textbf{enviar una solicitud de adopción con mi información de perfil}, para \textbf{que el propietario evalúe si puedo adoptar a su mascota}. \\
+		Independiente (I) & Depende de que la mascota esté publicada (RF-13) y el usuario esté verificado (RF-12), pero puede probarse de forma independiente con datos de prueba. \\
+		Negociable (N) & Los campos exactos del formulario de solicitud son negociables entre el equipo y el propietario del producto. \\
+		Valiosa (V) & Habilita el flujo central de adopción de la plataforma, uno de sus dos objetivos de negocio principales. \\
+		Estimable (E) & Estimable porque combina un formulario conocido con una máquina de estados simple (pendiente, aceptada o rechazada). \\
+		Pequeña (S) & Cubre solo el envío y la decisión inicial, sin las etapas posteriores del proceso (esas están en HU-13). \\
+		Verificable (T) & Verificable registrando una solicitud y comprobando que el propietario puede aceptarla o rechazarla. \\
+		Criterio de aceptación & CA-04 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-04 --- Escenario de aceptación de la historia HU-04.},label={lst:ca04}]
+		Caracteristica: Solicitudes de adopcion
+		
+		Escenario: Envio exitoso de una solicitud de adopcion
+		Dado que soy un adoptante autenticado y verificado
+		Y la mascota esta disponible para adopcion
+		Cuando envio mi solicitud con mi informacion de perfil
+		Entonces el sistema registra la solicitud con estado pendiente
+		Y el propietario puede visualizarla
+		
+		Escenario: Rechazo de una solicitud de adopcion
+		Dado que existe una solicitud de adopcion pendiente
+		Y soy el propietario de la mascota
+		Cuando rechazo la solicitud
+		Entonces el sistema actualiza el estado a rechazada
+		Y el adoptante recibe la notificacion correspondiente
+	\end{lstlisting}
+	
+	\subsubsection{HU-05 --- Evaluación de compatibilidad para cruza}
+	
+	\begin{atributos}{HU-05}{HU-05 --- Historia de usuario asociada al RF-06.}
+		Identificador & HU-05 \\
+		RF asociado & RF-06 \\
+		Historia (Connextra) & Como \textbf{interesado en cruza}, quiero \textbf{conocer el nivel de compatibilidad entre dos mascotas}, para \textbf{decidir con mejor información si continuar con el proceso de cruza}. \\
+		Independiente (I) & Depende de que ambas mascotas tengan antecedentes genéticos (RF-16) e historial médico (RF-02) registrados, pero la lógica de evaluación puede construirse y probarse de forma aislada. \\
+		Negociable (N) & Los criterios exactos de ponderación del algoritmo de compatibilidad se pueden ajustar con el equipo sin cambiar el propósito de la historia. \\
+		Valiosa (V) & Reduce el riesgo de cruces problemáticos, un valor identificado directamente en la codificación temática de las entrevistas. \\
+		Estimable (E) & Estimable, aunque de mayor esfuerzo por combinar varias fuentes de datos; se puede descomponer en tareas técnicas claras. \\
+		Pequeña (S) & Pequeña dentro de su alcance porque solo produce el resultado comparativo, sin incluir la alerta de riesgo (esa es HU-15). \\
+		Verificable (T) & Verificable seleccionando dos mascotas y comprobando que el sistema presenta la comparación junto con la advertencia orientativa. \\
+		Criterio de aceptación & CA-05 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-05 --- Escenario de aceptación de la historia HU-05.},label={lst:ca05}]
+		Caracteristica: Evaluacion de compatibilidad para cruza
+		
+		Escenario: Evaluacion exitosa de compatibilidad
+		Dado que ambas mascotas tienen su historial medico y antecedentes geneticos registrados
+		Cuando selecciono las dos mascotas para evaluar compatibilidad
+		Entonces el sistema muestra la informacion comparativa
+		Y muestra la advertencia de que el resultado es orientativo y no sustituye la evaluacion de un veterinario
+		
+		Escenario: Evaluacion no disponible por informacion incompleta
+		Dado que una de las mascotas no tiene antecedentes geneticos registrados
+		Cuando intento evaluar la compatibilidad entre ambas
+		Entonces el sistema indica que falta informacion
+		Y no genera el resultado comparativo
+	\end{lstlisting}
+	
+	\subsubsection{HU-06 --- Solicitud de cruza}
+	
+	\begin{atributos}{HU-06}{HU-06 --- Historia de usuario asociada al RF-08.}
+		Identificador & HU-06 \\
+		RF asociado & RF-08 \\
+		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{solicitar un proceso de cruza con otra mascota registrada}, para \textbf{iniciar el proceso de forma formal dentro de la plataforma}. \\
+		Independiente (I) & Depende de que ambas mascotas estén registradas y publicadas para cruza (RF-13), pero su lógica de aceptación o rechazo es independiente de otras historias. \\
+		Negociable (N) & El equipo puede negociar si la solicitud incluye o no un mensaje adicional al propietario receptor. \\
+		Valiosa (V) & Habilita el segundo flujo de negocio central de la plataforma (la cruza), tan importante como la adopción. \\
+		Estimable (E) & Estimable porque reutiliza el mismo patrón de máquina de estados que HU-04. \\
+		Pequeña (S) & Limitada al envío y respuesta de la solicitud, sin incluir la validación de certificados veterinarios (esa es RF-19, Should). \\
+		Verificable (T) & Verificable registrando una solicitud de cruza y comprobando que el propietario receptor puede aceptarla o rechazarla. \\
+		Criterio de aceptación & CA-06 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-06 --- Escenario de aceptación de la historia HU-06.},label={lst:ca06}]
+		Caracteristica: Solicitudes de cruza
+		
+		Escenario: Envio exitoso de una solicitud de cruza
+		Dado que ambas mascotas estan registradas y disponibles para cruza
+		Cuando el propietario de una de ellas envia la solicitud
+		Entonces el sistema registra la solicitud con estado pendiente
+		
+		Escenario: Aceptacion de una solicitud de cruza
+		Dado que existe una solicitud de cruza pendiente
+		Y soy el propietario receptor
+		Cuando acepto la solicitud
+		Entonces el sistema actualiza el estado a aceptada
+		Y notifica al propietario solicitante
+	\end{lstlisting}
+	
+	\subsubsection{HU-07 --- Validación de información médica}
+	
+	\begin{atributos}{HU-07}{HU-07 --- Historia de usuario asociada al RF-09.}
+		Identificador & HU-07 \\
+		RF asociado & RF-09 \\
+		Historia (Connextra) & Como \textbf{veterinaria}, quiero \textbf{validar la información médica registrada de una mascota}, para \textbf{dejar constancia de que los datos fueron verificados por un profesional}. \\
+		Independiente (I) & Depende de que exista un historial médico cargado (RF-02), pero la acción de validación es una funcionalidad independiente y acotada. \\
+		Negociable (N) & El equipo puede negociar si la validación se hace por evento clínico individual o sobre el historial completo. \\
+		Valiosa (V) & Aporta confianza a adoptantes e interesados en cruza, un factor identificado como crítico en las entrevistas con veterinarias. \\
+		Estimable (E) & Estimable porque es una acción simple de cambio de estado sobre datos ya existentes. \\
+		Pequeña (S) & Se limita a la validación; no incluye la carga original del historial (esa es HU-02). \\
+		Verificable (T) & Verificable validando un historial médico y comprobando que el sistema muestra el estado de información validada. \\
+		Criterio de aceptación & CA-07 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-07 --- Escenario de aceptación de la historia HU-07.},label={lst:ca07}]
+		Caracteristica: Validacion de informacion medica
+		
+		Escenario: Validacion exitosa por una veterinaria autorizada
+		Dado que soy una veterinaria autenticada
+		Y existe un historial medico cargado para una mascota
+		Cuando reviso la informacion y confirmo su validacion
+		Entonces el sistema marca el historial como validado
+		Y registra mi identificacion como veterinaria verificadora
+		
+		Escenario: Intento de validacion por un usuario no autorizado
+		Dado que soy un usuario autenticado sin rol de veterinaria
+		Cuando intento validar el historial medico de una mascota
+		Entonces el sistema rechaza la operacion
+		Y muestra un mensaje indicando que no cuento con los permisos necesarios
+	\end{lstlisting}
+	
+	\subsubsection{HU-08 --- Administración de privacidad}
+	
+	\begin{atributos}{HU-08}{HU-08 --- Historia de usuario asociada al RF-11.}
+		Identificador & HU-08 \\
+		RF asociado & RF-11 \\
+		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{configurar qué información de mi mascota y de mi perfil pueden ver otros usuarios}, para \textbf{proteger mis datos sensibles}. \\
+		Independiente (I) & Puede desarrollarse de forma independiente porque actúa como una capa de permisos sobre datos ya existentes. \\
+		Negociable (N) & El conjunto de niveles de privacidad (p.\,ej. público, solo interesados verificados, privado) es negociable con el equipo. \\
+		Valiosa (V) & Responde directamente a una preocupación identificada en la codificación temática sobre exposición de datos de contacto y ubicación. \\
+		Estimable (E) & Estimable porque es un módulo de configuración de permisos, un patrón conocido. \\
+		Pequeña (S) & Se limita a la configuración y aplicación de los permisos, no a la lógica de cada RF que consulta esos datos. \\
+		Verificable (T) & Verificable modificando la configuración de privacidad y comprobando que la información restringida no es visible para usuarios no autorizados. \\
+		Criterio de aceptación & CA-08 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-08 --- Escenario de aceptación de la historia HU-08.},label={lst:ca08}]
+		Caracteristica: Administracion de privacidad
+		
+		Escenario: Restriccion exitosa de un dato sensible
+		Dado que soy un propietario autenticado
+		Cuando marco mi numero de contacto como privado
+		Entonces el sistema deja de mostrar ese dato a otros usuarios
+		
+		Escenario: Un usuario sin permisos intenta ver un dato restringido
+		Dado que un dato del perfil esta marcado como privado
+		Y soy un usuario sin permisos sobre ese dato
+		Cuando consulto el perfil
+		Entonces el sistema no muestra el dato restringido
+	\end{lstlisting}
+	
+	\subsubsection{HU-09 --- Verificación de identidad}
+	
+	\begin{atributos}{HU-09}{HU-09 --- Historia de usuario asociada al RF-12.}
+		Identificador & HU-09 \\
+		RF asociado & RF-12 \\
+		Historia (Connextra) & Como \textbf{usuario nuevo}, quiero \textbf{verificar mi identidad al registrarme}, para \textbf{poder participar en procesos de adopción o cruza dentro de la plataforma}. \\
+		Independiente (I) & Es una de las primeras historias del flujo de registro y no depende de ninguna otra historia de usuario Must. \\
+		Negociable (N) & El mecanismo exacto de verificación (p.\,ej. documento de identidad o selfie de verificación) es negociable con el equipo. \\
+		Valiosa (V) & Reduce el riesgo de perfiles falsos, un requisito de seguridad y confianza mencionado explícitamente por los participantes entrevistados. \\
+		Estimable (E) & Estimable porque es un flujo de verificación conocido, similar a los de otras plataformas de intercambio entre particulares. \\
+		Pequeña (S) & Limitada a la verificación en sí, sin incluir el registro completo del perfil. \\
+		Verificable (T) & Verificable registrando un usuario con la documentación requerida y comprobando el estado de verificación resultante. \\
+		Criterio de aceptación & CA-09 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-09 --- Escenario de aceptación de la historia HU-09.},label={lst:ca09}]
+		Caracteristica: Verificacion de identidad
+		
+		Escenario: Verificacion exitosa
+		Dado que soy un usuario que completo el registro con mi documentacion
+		Cuando el sistema procesa la verificacion
+		Entonces mi cuenta queda marcada como verificada
+		
+		Escenario: Verificacion rechazada por documentacion invalida
+		Dado que soy un usuario registrado
+		Cuando envio una documentacion ilegible o incompleta
+		Entonces el sistema rechaza la verificacion
+		Y me indica que debo reenviar la documentacion
+	\end{lstlisting}
+	
+	\subsubsection{HU-10 --- Publicación de mascotas}
+	
+	\begin{atributos}{HU-10}{HU-10 --- Historia de usuario asociada al RF-13.}
+		Identificador & HU-10 \\
+		RF asociado & RF-13 \\
+		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{publicar a mi mascota como disponible para adopción o cruza}, para \textbf{que otros usuarios puedan encontrarla y contactarme}. \\
+		Independiente (I) & Depende de que la mascota esté registrada (RF-01), pero es independiente de las solicitudes que después se generen sobre ella. \\
+		Negociable (N) & El equipo puede negociar si se permite publicar simultáneamente para adopción y cruza o exigir elegir una sola opción. \\
+		Valiosa (V) & Es el paso que hace visibles a las mascotas para el resto de usuarios, sin el cual la búsqueda y las solicitudes no tendrían sobre qué operar. \\
+		Estimable (E) & Estimable porque reutiliza los datos ya definidos en el perfil de la mascota. \\
+		Pequeña (S) & Se limita a marcar la disponibilidad y mostrarla en el listado. \\
+		Verificable (T) & Verificable publicando una mascota y comprobando que aparece en el listado correspondiente. \\
+		Criterio de aceptación & CA-10 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-10 --- Escenario de aceptación de la historia HU-10.},label={lst:ca10}]
+		Caracteristica: Publicacion de mascotas
+		
+		Escenario: Publicacion exitosa para adopcion
+		Dado que soy un propietario autenticado con una mascota registrada
+		Cuando marco la mascota como disponible para adopcion
+		Entonces el sistema publica la mascota
+		Y la mascota aparece en el listado de adopcion
+		
+		Escenario: Intento de publicacion de una mascota no registrada
+		Dado que intento publicar una mascota que no existe en el sistema
+		Cuando confirmo la publicacion
+		Entonces el sistema rechaza la operacion
+		Y muestra un mensaje de error
+	\end{lstlisting}
+	
+	\subsubsection{HU-11 --- Gestión del carnet de vacunación}
+	
+	\begin{atributos}{HU-11}{HU-11 --- Historia de usuario asociada al RF-14.}
+		Identificador & HU-11 \\
+		RF asociado & RF-14 \\
+		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{llevar el carnet de vacunación de mi mascota dentro de la plataforma}, para \textbf{tener un registro ordenado y disponible de sus vacunas}. \\
+		Independiente (I) & Depende de que la mascota esté registrada (RF-01), pero no de ninguna otra historia Must. \\
+		Negociable (N) & Negociable si se incluye un recordatorio automático dentro de esta historia, o si eso se deja a RF-10 (Should). \\
+		Valiosa (V) & Da tranquilidad y organización al propietario, y evidencia sanitaria verificable a adoptantes e interesados en cruza. \\
+		Estimable (E) & Estimable porque reutiliza el mismo patrón de historial de HU-02. \\
+		Pequeña (S) & Cubre el registro y consulta del carnet, sin la trazabilidad de cepa y lote (RF-24, Should, fuera del alcance Must). \\
+		Verificable (T) & Verificable registrando una vacuna y comprobando que aparece en el carnet. \\
+		Criterio de aceptación & CA-11 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-11 --- Escenario de aceptación de la historia HU-11.},label={lst:ca11}]
+		Caracteristica: Carnet de vacunacion
+		
+		Escenario: Registro exitoso de una vacuna
+		Dado que soy un propietario autenticado con una mascota registrada
+		Cuando registro una vacuna con su fecha de aplicacion
+		Entonces el sistema actualiza el carnet de vacunacion de la mascota
+		
+		Escenario: Consulta del estado de vigencia de una vacuna
+		Dado que existe una vacuna registrada con fecha de proxima dosis vencida
+		Cuando consulto el carnet de vacunacion
+		Entonces el sistema muestra la vacuna con estado vencido
+	\end{lstlisting}
+	
+	\subsubsection{HU-12 --- Antecedentes genéticos y parentesco}
+	
+	\begin{atributos}{HU-12}{HU-12 --- Historia de usuario asociada al RF-16.}
+		Identificador & HU-12 \\
+		RF asociado & RF-16 \\
+		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{registrar los antecedentes genéticos y el parentesco de mi mascota}, para \textbf{respaldar un proceso de cruza responsable}. \\
+		Independiente (I) & Depende de que la mascota esté registrada (RF-01), pero es independiente de la lógica de evaluación de compatibilidad (RF-06), que solo consume esta información. \\
+		Negociable (N) & El nivel de detalle del árbol genealógico (cuántas generaciones se registran) es negociable con el equipo. \\
+		Valiosa (V) & Es la base de datos que permite evaluar compatibilidad (HU-05) y emitir alertas de riesgo (HU-15), aportando valor directo a la cruza responsable. \\
+		Estimable (E) & Estimable porque es un formulario estructurado similar a los ya definidos. \\
+		Pequeña (S) & Se limita al registro y consulta de esta información, sin la lógica de evaluación. \\
+		Verificable (T) & Verificable registrando antecedentes genéticos y comprobando que quedan almacenados y disponibles para consulta. \\
+		Criterio de aceptación & CA-12 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-12 --- Escenario de aceptación de la historia HU-12.},label={lst:ca12}]
+		Caracteristica: Antecedentes geneticos y parentesco
+		
+		Escenario: Registro exitoso de antecedentes geneticos
+		Dado que soy un propietario autenticado con una mascota registrada
+		Cuando registro el linaje y las enfermedades hereditarias conocidas
+		Entonces el sistema almacena los antecedentes geneticos de la mascota
+		
+		Escenario: Consulta de antecedentes geneticos por un interesado en cruza
+		Dado que una mascota tiene antecedentes geneticos registrados
+		Cuando un interesado en cruza consulta su perfil
+		Entonces el sistema muestra la informacion genetica autorizada
+	\end{lstlisting}
+	
+	\subsubsection{HU-13 --- Flujo de adopción por etapas}
+	
+	\begin{atributos}{HU-13}{HU-13 --- Historia de usuario asociada al RF-18.}
+		Identificador & HU-13 \\
+		RF asociado & RF-18 \\
+		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{que la solicitud de adopción avance por etapas verificables}, para \textbf{asegurarme de que el adoptante cumple los requisitos antes de entregar a mi mascota}. \\
+		Independiente (I) & Depende de que exista una solicitud de adopción aceptada (RF-05), pero la lógica de etapas es un componente independiente que orquesta ese proceso. \\
+		Negociable (N) & El número y orden exacto de las etapas (p.\,ej. si la visita al hogar es obligatoria) es negociable con el equipo y con los hallazgos de campo. \\
+		Valiosa (V) & Responde a un hallazgo directo de las entrevistas: los propietarios quieren garantías antes de entregar una mascota, no solo un formulario. \\
+		Estimable (E) & Es la historia de mayor esfuerzo relativo del conjunto Must, pero estimable porque cada etapa es una tarea técnica acotada. \\
+		Pequeña (S) & Se mantiene pequeña al limitarse a la orquestación de estados, sin implementar el seguimiento post-adopción (ese es HU-14). \\
+		Verificable (T) & Verificable avanzando una solicitud por las cinco etapas y comprobando que el estado se actualiza en cada una. \\
+		Criterio de aceptación & CA-13 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-13 --- Escenario de aceptación de la historia HU-13.},label={lst:ca13}]
+		Caracteristica: Flujo de adopcion por etapas
+		
+		Escenario: Avance exitoso de una etapa del flujo de adopcion
+		Dado que una solicitud de adopcion se encuentra en la etapa de entrevista
+		Cuando registro el resultado exitoso de la entrevista
+		Entonces el sistema avanza la solicitud a la etapa de visita al hogar
+		
+		Escenario: Solicitud detenida por resultado desfavorable en una etapa
+		Dado que una solicitud de adopcion se encuentra en la etapa de visita al hogar
+		Cuando registro un resultado desfavorable de la visita
+		Entonces el sistema marca la solicitud como rechazada
+		Y no permite avanzar a la siguiente etapa
+	\end{lstlisting}
+	
+	\subsubsection{HU-14 --- Seguimiento post-adopción}
+	
+	\begin{atributos}{HU-14}{HU-14 --- Historia de usuario asociada al RF-22.}
+		Identificador & HU-14 \\
+		RF asociado & RF-22 \\
+		Historia (Connextra) & Como \textbf{propietario original}, quiero \textbf{mantener contacto con el adoptante después de completada la adopción}, para \textbf{verificar el bienestar de mi mascota}. \\
+		Independiente (I) & Depende de que exista una adopción completada (RF-18), pero es una funcionalidad independiente de ella una vez alcanzado ese estado. \\
+		Negociable (N) & La frecuencia y el formato de los reportes de seguimiento son negociables con el equipo. \\
+		Valiosa (V) & Responde a una preocupación explícita de los propietarios entrevistados sobre el bienestar de la mascota tras la adopción. \\
+		Estimable (E) & Estimable porque reutiliza el sistema de mensajería (RF-07) y un registro simple de reportes. \\
+		Pequeña (S) & Limitada a habilitar y almacenar el seguimiento, sin lógica adicional de alertas. \\
+		Verificable (T) & Verificable completando una adopción y comprobando que se habilita el registro de al menos un reporte de seguimiento. \\
+		Criterio de aceptación & CA-14 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-14 --- Escenario de aceptación de la historia HU-14.},label={lst:ca14}]
+		Caracteristica: Seguimiento post-adopcion
+		
+		Escenario: Registro exitoso de un reporte de seguimiento
+		Dado que una adopcion fue completada
+		Cuando el propietario original registra un reporte de seguimiento
+		Entonces el sistema lo almacena en el historial de seguimiento de la mascota
+		
+		Escenario: Intento de seguimiento sobre una adopcion no completada
+		Dado que una solicitud de adopcion aun no ha sido completada
+		Cuando intento registrar un reporte de seguimiento
+		Entonces el sistema rechaza la operacion
+	\end{lstlisting}
+	
+	\subsubsection{HU-15 --- Alertas de riesgo en interacciones y cruces}
+	
+	\begin{atributos}{HU-15}{HU-15 --- Historia de usuario asociada al RF-23.}
+		Identificador & HU-15 \\
+		RF asociado & RF-23 \\
+		Historia (Connextra) & Como \textbf{propietario de mascota}, quiero \textbf{recibir una alerta cuando exista un riesgo sanitario o físico en una interacción o cruza}, para \textbf{evitar poner en peligro a mi mascota}. \\
+		Independiente (I) & Depende de que existan historial médico (RF-02) y antecedentes genéticos (RF-16) registrados, pero la lógica de alerta es un componente independiente que evalúa esos datos. \\
+		Negociable (N) & Los criterios exactos que disparan la alerta son negociables y quedan sujetos a ajuste con el equipo veterinario. \\
+		Valiosa (V) & Previene directamente un daño físico a las mascotas, uno de los riesgos identificados con mayor prioridad en la codificación temática. \\
+		Estimable (E) & Estimable porque combina reglas de negocio simples sobre datos ya modelados en otras historias. \\
+		Pequeña (S) & Se limita a la detección y despliegue de la alerta, sin bloquear la operación de forma definitiva. \\
+		Verificable (T) & Verificable intentando registrar una interacción de riesgo y comprobando que el sistema muestra la alerta correspondiente. \\
+		Criterio de aceptación & CA-15 (véase el escenario Gherkin siguiente). \\
+	\end{atributos}
+	
+	\begin{lstlisting}[style=gherkin,caption={CA-15 --- Escenario de aceptación de la historia HU-15.},label={lst:ca15}]
+		Caracteristica: Alertas de riesgo en interacciones y cruces
+		
+		Escenario: Alerta por enfermedad contagiosa activa
+		Dado que una de las mascotas tiene una enfermedad contagiosa activa registrada en su historial medico
+		Cuando intento registrar una interaccion entre ambas mascotas
+		Entonces el sistema muestra una alerta indicando el riesgo detectado
+		
+		Escenario: Interaccion sin riesgo detectado
+		Dado que ninguna de las mascotas presenta condiciones de riesgo registradas
+		Cuando registro la interaccion entre ambas
+		Entonces el sistema permite continuar sin mostrar ninguna alerta
 	\end{lstlisting}
 	
 	% ############################################################
@@ -3223,61 +3671,145 @@ doi=true
 	
 	En esta sección se presenta la clasificación general de los requisitos
 	definidos para MundiPets, organizándolos según su identificador, nombre y
-	tipo. La Tabla~\ref{tab:lista_requisitos_completa} recoge los 17 requisitos
-	funcionales, 8 requisitos no funcionales y 5 restricciones de diseño heredados
-	de la Entrega 2 (1B). Los identificadores RF-18 a RF-25, RNF-09 a RNF-15 y
-	RL-01 a RL-05 se incorporan a esta tabla en cuanto queden redactados en las
-	Secciones~\ref{sec:rf}, \ref{sec:rnf} y \ref{sec:legales}, respectivamente,
-	para completar el piso mínimo de 25 RF y 15 RNF exigido por esta entrega.
+	tipo. La Tabla~\ref{tab:lista_requisitos_completa} recoge los 59 requisitos
+	vigentes de la Entrega 3 (2A): 25 requisitos funcionales (RF-01 a RF-25),
+	16 requisitos no funcionales (RNF-01 a RNF-16), 9 restricciones de diseño
+	(RD-01 a RD-09) y 9 requisitos legales (RL-01 a RL-09), redactados en las
+	Secciones~\ref{sec:rf}, \ref{sec:rnf}, \ref{sec:legales} y
+	\ref{sec:restricciones}. Con ello se supera el piso mínimo de 25 RF y 15 RNF
+	exigido por esta entrega.
 	
-	\begin{longtable}{|p{2.6cm}|p{8.5cm}|p{3.5cm}|}
-		\caption{Clasificación de requisitos y restricciones.} \label{tab:lista_requisitos_completa} \\
+	\begin{longtable}{@{}p{2.2cm} p{7.5cm} p{3.5cm}@{}}
+		\caption{Clasificación de requisitos y restricciones (Entrega 2A).}
+		\label{tab:lista_requisitos_completa} \\
 		\hline
 		\textbf{Identificador} & \textbf{Nombre del requisito} & \textbf{Clasificación} \\
 		\hline
 		\endfirsthead
+		\multicolumn{3}{|l|}{\textit{(continuación)}} \\
 		\hline
 		\textbf{Identificador} & \textbf{Nombre del requisito} & \textbf{Clasificación} \\
 		\hline
 		\endhead
 		\hline
 		\endfoot
+		RF-01 & Registrar mascota & Requisito funcional \\
 		\hline
-		\endlastfoot
-		
-		RF-01 & Registrar mascota & Requisito funcional \\ \hline
-		RF-02 & Gestionar historial médico de la mascota & Requisito funcional \\ \hline
-		RF-03 & Consultar perfil completo de una mascota & Requisito funcional \\ \hline
-		RF-04 & Buscar y filtrar mascotas & Requisito funcional \\ \hline
-		RF-05 & Gestionar solicitudes de adopción & Requisito funcional \\ \hline
-		RF-06 & Evaluar compatibilidad entre mascotas para cruza & Requisito funcional \\ \hline
-		RF-07 & Sistema de mensajería entre usuarios & Requisito funcional \\ \hline
-		RF-08 & Gestionar solicitudes de cruza & Requisito funcional \\ \hline
-		RF-09 & Validar la información médica de una mascota & Requisito funcional \\ \hline
-		RF-10 & Gestionar recordatorios de controles preventivos & Requisito funcional \\ \hline
-		RF-11 & Administrar la privacidad de la información & Requisito funcional \\ \hline
-		RF-12 & Verificar la identidad de los usuarios & Requisito funcional \\ \hline
-		RF-13 & Registrar publicaciones de mascotas & Requisito funcional \\ \hline
-		RF-14 & Gestionar carnet de vacunación & Requisito funcional \\ \hline
-		RF-15 & Consultar el historial de procesos de adopción y cruza & Requisito funcional \\ \hline
-		RF-16 & Gestionar antecedentes genéticos y parentesco de la mascota & Requisito funcional \\ \hline
-		RF-17 & Validar imágenes mediante inteligencia artificial & Requisito funcional \\ \hline
-		RF-18--RF-25 & \emph{Pendientes de la segunda ronda de campo (Sección~\ref{sec:rf})} & Requisito funcional \\ \hline
-		RNF-01 & Protección de la información de propietarios y mascotas & Requisito no funcional \\ \hline
-		RNF-02 & Disponibilidad del sistema & Requisito no funcional \\ \hline
-		RNF-03 & Tiempo de respuesta del sistema & Requisito no funcional \\ \hline
-		RNF-04 & Facilidad de uso de la plataforma & Requisito no funcional \\ \hline
-		RNF-05 & Integridad de la información médica & Requisito no funcional \\ \hline
-		RNF-06 & Exactitud del componente de inteligencia artificial & Requisito no funcional \\ \hline
-		RNF-07 & Precisión en la validación de imágenes & Requisito no funcional \\ \hline
-		RNF-08 & Actualización de la información registrada & Requisito no funcional \\ \hline
-		RNF-09--RNF-15 & \emph{Pendientes de la segunda ronda de campo (Sección~\ref{sec:rnf})} & Requisito no funcional \\ \hline
-		RD-01 & Integración de componentes de inteligencia artificial & Restricción de diseño \\ \hline
-		RD-02 & Acceso basado en roles & Restricción de diseño \\ \hline
-		RD-03 & Validación profesional de la información médica & Restricción de diseño \\ \hline
-		RD-04 & Protección de datos personales & Restricción de diseño \\ \hline
-		RD-05 & Arquitectura modular del sistema & Restricción de diseño \\ \hline
-		RL-01--RL-05 & \emph{Pendientes del mapeo LOPDP (Sección~\ref{sec:legales})} & Requisito legal \\ \hline
+		RF-02 & Gestionar historial médico de la mascota & Requisito funcional \\
+		\hline
+		RF-03 & Consultar perfil completo de una mascota & Requisito funcional \\
+		\hline
+		RF-04 & Buscar y filtrar mascotas & Requisito funcional \\
+		\hline
+		RF-05 & Gestionar solicitudes de adopción & Requisito funcional \\
+		\hline
+		RF-06 & Evaluar compatibilidad entre mascotas para cruza & Requisito funcional \\
+		\hline
+		RF-07 & Sistema de mensajería entre usuarios & Requisito funcional \\
+		\hline
+		RF-08 & Gestionar solicitudes de cruza & Requisito funcional \\
+		\hline
+		RF-09 & Validar la información médica de una mascota & Requisito funcional \\
+		\hline
+		RF-10 & Gestionar recordatorios de controles preventivos & Requisito funcional \\
+		\hline
+		RF-11 & Administrar la privacidad de la información & Requisito funcional \\
+		\hline
+		RF-12 & Verificar la identidad de los usuarios & Requisito funcional \\
+		\hline
+		RF-13 & Registrar publicaciones de mascotas & Requisito funcional \\
+		\hline
+		RF-14 & Gestionar carnet de vacunación & Requisito funcional \\
+		\hline
+		RF-15 & Consultar el historial de procesos de adopción y cruza & Requisito funcional \\
+		\hline
+		RF-16 & Gestionar antecedentes genéticos y parentesco de la mascota & Requisito funcional \\
+		\hline
+		RF-17 & Validar imágenes & Requisito funcional \\
+		\hline
+		RF-18 & Gestionar el flujo de solicitud de adopción por etapas & Requisito funcional \\
+		\hline
+		RF-19 & Validar certificados veterinarios antes de habilitar la cruza & Requisito funcional \\
+		\hline
+		RF-20 & Coordinar encuentros de socialización supervisados & Requisito funcional \\
+		\hline
+		RF-21 & Registrar el identificador de microchip de la mascota & Requisito funcional \\
+		\hline
+		RF-22 & Dar seguimiento post-adopción & Requisito funcional \\
+		\hline
+		RF-23 & Emitir alertas de riesgo sanitario o físico en interacciones y cruces & Requisito funcional \\
+		\hline
+		RF-24 & Registrar trazabilidad de cepa, lote y aplicador de cada vacuna & Requisito funcional \\
+		\hline
+		RF-25 & Publicar aviso de mascota extraviada & Requisito funcional \\
+		\hline
+		RNF-01 & Protección de la información de propietarios y mascotas & Requisito no funcional \\
+		\hline
+		RNF-02 & Disponibilidad del sistema & Requisito no funcional \\
+		\hline
+		RNF-03 & Tiempo de respuesta del sistema & Requisito no funcional \\
+		\hline
+		RNF-04 & Facilidad de uso de la plataforma & Requisito no funcional \\
+		\hline
+		RNF-05 & Integridad de la información médica & Requisito no funcional \\
+		\hline
+		RNF-06 & Exactitud del componente de inteligencia artificial & Requisito no funcional \\
+		\hline
+		RNF-07 & Precisión en la validación de imágenes & Requisito no funcional \\
+		\hline
+		RNF-08 & Actualización de la información registrada & Requisito no funcional \\
+		\hline
+		RNF-09 & Interoperabilidad de notificaciones con canales externos & Requisito no funcional \\
+		\hline
+		RNF-10 & Facilidad de mantenimiento del código & Requisito no funcional \\
+		\hline
+		RNF-11 & Portabilidad entre navegadores y dispositivos & Requisito no funcional \\
+		\hline
+		RNF-12 & Escalabilidad ante crecimiento de usuarios & Requisito no funcional \\
+		\hline
+		RNF-13 & Explicabilidad de la recomendación de compatibilidad para cruza & Requisito no funcional \\
+		\hline
+		RNF-14 & Explicabilidad del rechazo o aceptación de imágenes & Requisito no funcional \\
+		\hline
+		RNF-15 & Explicabilidad de la moderación de mensajes & Requisito no funcional \\
+		\hline
+		RNF-16 & Confidencialidad de datos de ubicación y contacto & Requisito no funcional \\
+		\hline
+		RD-01 & Integración de componentes de inteligencia artificial & Restricción de diseño \\
+		\hline
+		RD-02 & Acceso basado en roles & Restricción de diseño \\
+		\hline
+		RD-03 & Validación profesional de la información médica & Restricción de diseño \\
+		\hline
+		RD-04 & Protección de datos personales & Restricción de diseño \\
+		\hline
+		RD-05 & Arquitectura modular del sistema & Restricción de diseño \\
+		\hline
+		RD-06 & Mecanismo de eliminación de cuenta y datos personales & Restricción de diseño \\
+		\hline
+		RD-07 & Protocolo de notificación de vulneraciones de seguridad & Restricción de diseño \\
+		\hline
+		RD-08 & Dependencia de servicios externos de mensajería & Restricción de diseño \\
+		\hline
+		RD-09 & Anonimización de evidencias de campo para publicación abierta & Restricción de diseño \\
+		\hline
+		RL-01 & Consentimiento libre, específico, informado e inequívoco & Requisito legal \\
+		\hline
+		RL-02 & Información de finalidad y derecho de acceso & Requisito legal \\
+		\hline
+		RL-03 & Derecho de rectificación y actualización & Requisito legal \\
+		\hline
+		RL-04 & Derecho de supresión de datos personales & Requisito legal \\
+		\hline
+		RL-05 & Minimización y seguridad de los datos & Requisito legal \\
+		\hline
+		RL-06 & Derecho a explicación de decisiones automatizadas & Requisito legal \\
+		\hline
+		RL-07 & Confidencialidad reforzada de datos sensibles y de salud & Requisito legal \\
+		\hline
+		RL-08 & Protección de datos desde el diseño y por defecto & Requisito legal \\
+		\hline
+		RL-09 & Notificación de vulneraciones de seguridad & Requisito legal \\
 	\end{longtable}
 	
 	\newpage
@@ -3285,37 +3817,146 @@ doi=true
 	\subsection{Priorización MoSCoW}
 	\label{sec:moscow}
 	
-	A continuación se presenta una muestra con las 7 clasificaciones iniciales más
-	críticas del proyecto MundiPets, heredadas y validadas desde la Entrega 2
-	(1B). La documentación completa de las 30 especificaciones vigentes puede
-	consultarse en el \textbf{\hyperref[tab:priorizacion_moscow_completa]{Apéndice
-			C --- Priorización MoSCoW, Kano y WSJF (detalle)}}, junto con su
-	clasificación Kano y su valor WSJF.
+	La Tabla~\ref{tab:priorizacion_moscow_parcial} presenta la priorización
+	MoSCoW extendida de los 59 requisitos vigentes del proyecto, actualizando y
+	ampliando la clasificación heredada de la Entrega 2 (1B) con los
+	identificadores incorporados en esta entrega (RF-18 a RF-25, RNF-09 a
+	RNF-16, RD-06 a RD-09 y RL-01 a RL-09). La misma priorización, junto con su
+	clasificación Kano y su valor WSJF, se consolida en el
+	\textbf{\hyperref[tab:priorizacion_moscow_completa]{Apéndice C --- Priorización
+			MoSCoW, Kano y WSJF (detalle)}}.
 	
-	\begin{longtable}{|p{1cm}|p{3.1cm}|p{1.0cm}|p{1.3cm}|p{7.5cm}|}
-		\caption{Muestra de la Priorización MoSCoW de Requisitos MundiPets.} \label{tab:priorizacion_moscow_parcial} \\
+	\begin{longtable}{@{}p{1.6cm} p{4.8cm} p{1.6cm} p{5.2cm}@{}}
+		\caption{Priorización MoSCoW extendida (Entrega 2A).}
+		\label{tab:priorizacion_moscow_parcial} \\
 		\hline
-		\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{Prioridad} & \textbf{Justificación} \\
+		\textbf{ID} & \textbf{Requisito} & \textbf{Prioridad} & \textbf{Justificación} \\
 		\hline
 		\endfirsthead
+		\multicolumn{4}{|l|}{\textit{(continuación)}} \\
 		\hline
-		\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{Prioridad} & \textbf{Justificación} \\
+		\textbf{ID} & \textbf{Requisito} & \textbf{Prioridad} & \textbf{Justificación} \\
 		\hline
 		\endhead
-		
-		RF-01 & Registrar mascota & RF & Must & Es el pilar del sistema; la plataforma exige almacenar información general y fotografías para habilitar futuras consultas, adopciones o cruzas. \\ \hline
-		
-		RF-02 & Gestionar historial médico de la mascota & RF & Must & Crítico para la salud animal. Permite actualizar vacunas, enfermedades y tratamientos, garantizando transparencia en los procesos. \\ \hline
-		
-		RF-03 & Consultar perfil completo de una mascota & RF & Must & Fundamental para que los adoptantes o interesados en cruza obtengan información autorizada y tomen decisiones basadas en el historial. \\ \hline
-		
-		RF-04 & Buscar y filtrar mascotas & RF & Should & Importante para la usabilidad al aplicar criterios como raza o ubicación, pero el sistema podría operar con listas generales inicialmente. \\ \hline
-		
-		RNF-01 & Protección de la información de propietarios y mascotas & RNF & Must & Requisito estricto de seguridad funcional; debe garantizar un 0\% de accesos no autorizados a datos personales. \\ \hline
-		
-		RNF-02 & Disponibilidad del sistema & RNF & Must & Crítico para la operatividad de MundiPets, exigiendo una tasa mínima del 99\% mensual para asegurar acceso continuo. \\ \hline
-		
-		RD-01 & Integración de componentes de inteligencia artificial & RD & Must & Restricción ineludible. La arquitectura debe estructurarse obligatoriamente para alojar módulos de IA, principal valor agregado de MundiPets. \\ \hline
+		\hline
+		\endfoot
+		RF-01 & Registrar mascota & Must & Es el pilar del sistema; sin este RF no puede existir ningún perfil de mascota ni proceso posterior. \\
+		\hline
+		RF-02 & Gestionar historial médico & Must & Crítico para la salud animal y para RL-03 (rectificación de datos médicos). \\
+		\hline
+		RF-03 & Consultar perfil completo & Must & Fundamental para que adoptantes e interesados en cruza tomen decisiones informadas; sustenta RL-02. \\
+		\hline
+		RF-04 & Buscar y filtrar mascotas & Should & Mejora la usabilidad, pero el sistema puede operar inicialmente con listas generales. \\
+		\hline
+		RF-05 & Gestionar solicitudes de adopción & Must & Núcleo del modelo operativo de la plataforma. \\
+		\hline
+		RF-06 & Evaluar compatibilidad para cruza & Must & Requisito diferenciador que usa IA; motivó RD-01 y exige la explicabilidad de RL-06. \\
+		\hline
+		RF-07 & Sistema de mensajería & Could & Deseable para coordinar procesos, pero el contacto inicial puede derivarse a canales externos si hay limitaciones de tiempo. \\
+		\hline
+		RF-08 & Gestionar solicitudes de cruza & Must & Operación central del modelo de negocio junto a RF-05. \\
+		\hline
+		RF-09 & Validar información médica & Must & Imprescindible para la confiabilidad clínica del sistema. \\
+		\hline
+		RF-10 & Recordatorios de controles preventivos & Should & Aporta valor de bienestar animal, pero no bloquea el flujo principal de adopciones. \\
+		\hline
+		RF-11 & Administrar privacidad & Must & Mandatorio por RL-02 y RL-05; es el RF más citado en las entrevistas (9 EV). \\
+		\hline
+		RF-12 & Verificar identidad de usuarios & Must & Indispensable para evitar fraude; sustenta el consentimiento de RL-01. \\
+		\hline
+		RF-13 & Registrar publicaciones & Must & Necesario para que un propietario active la disponibilidad de su mascota. \\
+		\hline
+		RF-14 & Gestionar carnet de vacunación & Must & Crítico para la trazabilidad sanitaria; sustenta RL-03. \\
+		\hline
+		RF-15 & Consultar historial de procesos & Could & Aporta trazabilidad al usuario, pero no es indispensable para completar una adopción o cruza. \\
+		\hline
+		RF-16 & Antecedentes genéticos y parentesco & Must & Necesario para que RF-06 pueda evaluar compatibilidad de forma responsable. \\
+		\hline
+		RF-17 & Validar imágenes con IA & Should & Refuerza la seguridad del contenido, pero el sistema puede operar con moderación manual inicial. \\
+		\hline
+		RF-18 & Flujo de adopción por etapas & Must & Formaliza el proceso de adopción responsable identificado en la segunda ronda de campo (EV-11, EV-16). \\
+		\hline
+		RF-19 & Validar certificados veterinarios antes de cruza & Should & Refuerza la confiabilidad de RF-06, pero no bloquea su funcionamiento básico. \\
+		\hline
+		RF-20 & Encuentros de socialización supervisados & Could & Valor deseable de bienestar animal, mencionado por un solo participante (EV-13). \\
+		\hline
+		RF-21 & Registrar identificador de microchip & Should & Aporta trazabilidad complementaria al carnet de vacunación. \\
+		\hline
+		RF-22 & Seguimiento post-adopción & Must & Cierra el ciclo de responsabilidad de RF-18, exigido por participantes de la segunda ronda. \\
+		\hline
+		RF-23 & Alertas de riesgo sanitario o físico & Must & Mitiga un riesgo real de seguridad y salud animal detectado en varias entrevistas (EV-09, EV-12, EV-15, EV-18). \\
+		\hline
+		RF-24 & Trazabilidad de cepa, lote y aplicador & Should & Complementa RF-14 con datos adicionales de trazabilidad, no bloqueante. \\
+		\hline
+		RF-25 & Aviso de mascota extraviada & Could & Funcionalidad de valor social, pero fuera del núcleo de adopción/cruza del sistema. \\
+		\hline
+		RNF-01 & Protección de información de propietarios y mascotas & Must & Requisito estricto de seguridad; sustenta RL-05 y RL-07. \\
+		\hline
+		RNF-02 & Disponibilidad del sistema & Must & Crítico para la operatividad continua de la plataforma. \\
+		\hline
+		RNF-03 & Tiempo de respuesta del sistema & Should & Mejora la experiencia, pero el sistema es funcional con tiempos mayores en una primera versión. \\
+		\hline
+		RNF-04 & Facilidad de uso de la plataforma & Should & Relevante para adopción del producto, pero no bloquea sus funciones. \\
+		\hline
+		RNF-05 & Integridad de la información médica & Must & Evita modificaciones no autorizadas del historial clínico; sustenta RL-07. \\
+		\hline
+		RNF-06 & Exactitud del componente de IA & Must & Sin una precisión mínima, RF-06 pierde su valor diferenciador. \\
+		\hline
+		RNF-07 & Precisión en validación de imágenes & Should & Mejora la calidad del contenido, pero RF-17 puede operar con una tasa de error inicial mayor. \\
+		\hline
+		RNF-08 & Actualización de la información registrada & Should & Mejora la confianza del usuario, no bloquea el flujo principal. \\
+		\hline
+		RNF-09 & Interoperabilidad de notificaciones & Should & Aporta valor (recordatorios por WhatsApp), pero el sistema opera sin ella mediante notificación interna. \\
+		\hline
+		RNF-10 & Facilidad de mantenimiento del código & Should & Importante para sostenibilidad técnica, pero no bloquea la operación funcional del MVP. \\
+		\hline
+		RNF-11 & Portabilidad entre navegadores & Should & Necesaria para alcance de usuarios, pero el sistema puede operar inicialmente en un navegador principal. \\
+		\hline
+		RNF-12 & Escalabilidad ante crecimiento de usuarios & Could & Deseable a mediano plazo; no crítica mientras la base de usuarios sea reducida. \\
+		\hline
+		RNF-13 & Explicabilidad de compatibilidad para cruza & Must & Exigido por el derecho legal a explicación (RL-06) sobre decisiones automatizadas del RF-06. \\
+		\hline
+		RNF-14 & Explicabilidad de rechazo de imágenes & Should & Mejora la confianza del usuario, pero el sistema puede operar con un mensaje de rechazo genérico inicialmente. \\
+		\hline
+		RNF-15 & Explicabilidad de moderación de mensajes & Should & Igual que RNF-14: deseable para confianza, no bloqueante. \\
+		\hline
+		RNF-16 & Confidencialidad de ubicación y contacto & Must & Obligación legal directa (RL-05, principio de minimización). \\
+		\hline
+		RD-01 & Integración de componentes de IA & Must & Restricción ineludible: arquitectura del principal valor agregado de MundiPets. \\
+		\hline
+		RD-02 & Acceso basado en roles & Must & Mandatorio para diferenciar permisos de propietarios, veterinarias y administradores; sustenta RL-05 y RL-08. \\
+		\hline
+		RD-03 & Validación profesional de la información médica & Must & Exigido por los veterinarios entrevistados para garantizar confiabilidad clínica. \\
+		\hline
+		RD-04 & Protección de datos personales & Must & Implementa directamente RL-05, RL-07 y RL-08. \\
+		\hline
+		RD-05 & Arquitectura modular del sistema & Must & Facilita mantenimiento e incorporación de nuevas funcionalidades; sustenta RNF-10. \\
+		\hline
+		RD-06 & Eliminación de cuenta y datos personales & Must & Obligación legal ineludible (RL-04, derecho de supresión); sin este mecanismo el sistema incumple la LOPDP. \\
+		\hline
+		RD-07 & Protocolo de notificación de vulneraciones & Must & Exigido por RL-09 con plazos legales estrictos (5 y 3 días). \\
+		\hline
+		RD-08 & Dependencia de servicios externos de mensajería & Should & Aporta valor (RF-10) pero requiere un canal de respaldo ante caídas del proveedor. \\
+		\hline
+		RD-09 & Anonimización de evidencias para publicación abierta & Must & Exigido por los Art. 30-32 LOPDP para el uso de datos de investigación en el paquete FAIR. \\
+		\hline
+		RL-01 & Consentimiento libre, específico, informado e inequívoco & Must & Toda obligación legal es no negociable: su incumplimiento expone al proyecto a responsabilidad legal. \\
+		\hline
+		RL-02 & Información de finalidad y derecho de acceso & Must & Ídem: obligación legal directa (Art. 12-13 LOPDP). \\
+		\hline
+		RL-03 & Derecho de rectificación y actualización & Must & Ídem: obligación legal directa (Art. 14 LOPDP). \\
+		\hline
+		RL-04 & Derecho de supresión de datos personales & Must & Ídem: obligación legal directa (Art. 15 LOPDP). \\
+		\hline
+		RL-05 & Minimización y seguridad de los datos & Must & Ídem: obligación legal directa (Art. 10 LOPDP). \\
+		\hline
+		RL-06 & Derecho a explicación de decisiones automatizadas & Must & Ídem: obligación legal directa (Art. 20 LOPDP); base de todo el bloque de explicabilidad. \\
+		\hline
+		RL-07 & Confidencialidad reforzada de datos sensibles y de salud & Must & Ídem: obligación legal directa (Art. 25-30 LOPDP). \\
+		\hline
+		RL-08 & Protección de datos desde el diseño y por defecto & Must & Ídem: obligación legal directa (Art. 39 LOPDP). \\
+		\hline
+		RL-09 & Notificación de vulneraciones de seguridad & Must & Ídem: obligación legal directa (Art. 43 y 46 LOPDP), con plazos estrictos. \\
 	\end{longtable}
 	
 	\textbf{Justificación de Must/Won't}
@@ -3341,41 +3982,91 @@ doi=true
 	\subsection{Valor de negocio con WSJF}
 	\label{sec:wsjf}
 	
-	La técnica WSJF (Weighted Shortest Job First) ordena el trabajo pendiente
-	según la relación entre el costo del retraso y el tamaño estimado del
-	trabajo, siguiendo la fórmula:
+	La técnica WSJF (\emph{Weighted Shortest Job First}) ordena el trabajo
+	pendiente según la relación entre el costo del retraso y el tamaño estimado
+	del trabajo, siguiendo la fórmula:
 	\[
 	\mathrm{WSJF} = \frac{\text{Valor de negocio} + \text{Criticidad temporal} + \text{Reducción de riesgo}}{\text{Tamaño del trabajo}}
 	\]
 	Los cuatro factores se estiman en equipo con la sucesión de Fibonacci
-	modificada (1, 2, 3, 5, 8, 13, 20). A continuación se presenta una muestra de
-	7 requisitos con su estimación preliminar; la tabla completa con los 30
-	requisitos vigentes (RF-01 a RF-17, RNF-01 a RNF-08 y RD-01 a RD-05) se
-	presenta en el \textbf{\hyperref[tab:priorizacion_moscow_completa]{Apéndice
-			C}}, junto con MoSCoW y Kano. La estimación de esta muestra es un borrador
-	de trabajo sujeto a validación y ajuste por consenso del equipo completo antes
-	del corte; los RF-18 a RF-25 y RNF-09 a RNF-15 se estiman en cuanto queden
-	redactados.
+	modificada (1, 2, 3, 5, 8, 13, 20).
 	
-	\begin{table}[H]
-		\centering
-		\caption{Muestra de la estimación WSJF de requisitos MundiPets.}
-		\label{tab:wsjf_parcial}
-		\small
-		\begin{tabularx}{\textwidth}{@{}p{1.1cm} p{1.3cm} p{1.3cm} p{1.3cm} p{1.3cm} p{1.2cm}@{}}
-			\toprule
-			\textbf{ID} & \textbf{Valor de negocio} & \textbf{Criticidad temporal} & \textbf{Reducción de riesgo} & \textbf{Tamaño} & \textbf{WSJF} \\
-			\midrule
-			RF-01 & 13 & 8 & 5 & 5 & 5.2 \\
-			RF-02 & 13 & 8 & 8 & 8 & 3.6 \\
-			RF-03 & 8 & 5 & 3 & 3 & 5.3 \\
-			RF-04 & 5 & 3 & 2 & 5 & 2.0 \\
-			RNF-01 & 13 & 13 & 13 & 5 & 7.8 \\
-			RNF-02 & 8 & 8 & 8 & 8 & 3.0 \\
-			RD-01 & 13 & 8 & 8 & 13 & 2.2 \\
-			\bottomrule
-		\end{tabularx}
-	\end{table}
+	El equipo estimó los cuatro factores de WSJF para los 21 RF de prioridad
+	\emph{Must} y \emph{Should}, apoyándose en evidencia ya disponible para
+	reducir la arbitrariedad de la estimación: el número de evidencias (EV) que
+	respaldan cada RF (Apéndice B.1) como indicador de valor de negocio, y la
+	existencia de una obligación legal asociada (RL, Sección \ref{sec:legales})
+	como indicador de criticidad temporal. Los RF de prioridad \emph{Could}
+	(RF-07, RF-15, RF-20, RF-25) se excluyeron del ejercicio por ser ya la
+	prioridad más baja de MoSCoW.
+	
+	\begin{longtable}{@{}p{1.4cm} p{5.4cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.5cm} p{1.3cm}@{}}
+		\caption{Ranking WSJF de los RF \emph{Must} y \emph{Should} de MundiPets.}
+		\label{tab:wsjf} \\
+		\hline
+		\textbf{ID-RF} & \textbf{Nombre} & \textbf{Valor} & \textbf{Criticidad} & \textbf{Riesgo} & \textbf{Tamaño} & \textbf{WSJF} \\
+		\hline
+		\endfirsthead
+		\multicolumn{7}{|l|}{\textit{(continuación)}} \\
+		\hline
+		\textbf{ID-RF} & \textbf{Nombre} & \textbf{Valor} & \textbf{Criticidad} & \textbf{Riesgo} & \textbf{Tamaño} & \textbf{WSJF} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		RF-01 & Registrar mascota & 20 & 13 & 13 & 5 & \textbf{9,20} \\
+		\hline
+		RF-03 & Consultar perfil completo & 13 & 8 & 5 & 3 & \textbf{8,67} \\
+		\hline
+		RF-13 & Registrar publicaciones de mascotas & 13 & 5 & 3 & 3 & \textbf{7,00} \\
+		\hline
+		RF-12 & Verificar identidad de usuarios & 8 & 8 & 13 & 5 & \textbf{5,80} \\
+		\hline
+		RF-11 & Administrar privacidad de la información & 20 & 13 & 13 & 8 & \textbf{5,75} \\
+		\hline
+		RF-09 & Validar información médica & 8 & 5 & 8 & 5 & \textbf{4,20} \\
+		\hline
+		RF-14 & Gestionar carnet de vacunación & 8 & 8 & 5 & 5 & \textbf{4,20} \\
+		\hline
+		RF-02 & Gestionar historial médico & 13 & 8 & 8 & 8 & \textbf{3,63} \\
+		\hline
+		RF-05 & Gestionar solicitudes de adopción & 13 & 8 & 8 & 8 & \textbf{3,63} \\
+		\hline
+		RF-21 & Registrar identificador de microchip & 3 & 1 & 2 & 2 & \textbf{3,00} \\
+		\hline
+		RF-08 & Gestionar solicitudes de cruza & 13 & 5 & 5 & 8 & \textbf{2,88} \\
+		\hline
+		RF-10 & Recordatorios de controles preventivos & 8 & 3 & 3 & 5 & \textbf{2,80} \\
+		\hline
+		RF-24 & Trazabilidad de cepa/lote/aplicador & 3 & 2 & 3 & 3 & \textbf{2,67} \\
+		\hline
+		RF-23 & Alertas de riesgo sanitario/físico & 8 & 5 & 8 & 8 & \textbf{2,63} \\
+		\hline
+		RF-19 & Validar certificados veterinarios & 5 & 3 & 5 & 5 & \textbf{2,60} \\
+		\hline
+		RF-16 & Antecedentes genéticos y parentesco & 8 & 3 & 5 & 8 & \textbf{2,00} \\
+		\hline
+		RF-04 & Buscar y filtrar mascotas & 5 & 2 & 2 & 5 & \textbf{1,80} \\
+		\hline
+		RF-06 & Evaluar compatibilidad para cruza & 20 & 8 & 5 & 20 & \textbf{1,65} \\
+		\hline
+		RF-22 & Seguimiento post-adopción & 5 & 2 & 3 & 8 & \textbf{1,25} \\
+		\hline
+		RF-18 & Flujo de adopción por etapas & 8 & 3 & 5 & 13 & \textbf{1,23} \\
+		\hline
+		RF-17 & Validar imágenes con IA & 8 & 3 & 5 & 13 & \textbf{1,23} \\
+	\end{longtable}
+	
+	\textbf{Lectura del resultado.} El ranking confirma un patrón esperable en
+	WSJF: no siempre lo más valioso encabeza la lista. RF-06 (evaluar
+	compatibilidad para cruza) y RF-17 (validar imágenes con IA) tienen alto
+	valor de negocio pero también el mayor tamaño de trabajo por su componente
+	de inteligencia artificial, lo que los desplaza hacia el final del orden de
+	implementación sugerido --- son valiosos, pero no lo más rápido de
+	entregar. En contraste, RF-01, RF-03 y RF-13 combinan alto valor con bajo
+	tamaño de trabajo, por lo que encabezan la secuencia recomendada; esto es
+	además coherente con el alcance del MVP definido en la Sección
+	\ref{sec:mvp-alcance}.
 	
 	\subsection{Matriz de trazabilidad extendida}
 	\label{sec:trazabilidad}
@@ -3416,25 +4107,313 @@ doi=true
 	\subsection{Alcance del MVP y cobertura de requisitos}
 	\label{sec:mvp-alcance}
 	
-	\begin{table}[H]
-		\centering
-		\caption{Cobertura de los requisitos funcionales \emph{Debe tener} en el MVP.}
-		\label{tab:cobertura-mvp}
-		\small
-		\begin{tabularx}{\textwidth}{@{}p{1.6cm} X p{2.6cm} p{2.4cm}@{}}
-			\toprule
-			\textbf{ID-RF} & \textbf{Nombre} & \textbf{Estado} & \textbf{Módulo} \\
-			\midrule
-			RF-01 & Registrar mascota & --- & --- \\
-			\bottomrule
-		\end{tabularx}
-	\end{table}
+	El Producto Mínimo Viable (MVP) de MundiPets es una aplicación web
+	ejecutable, denominada \texttt{MVP\_MundiPets}, que materializa el
+	subconjunto de requisitos funcionales de mayor prioridad definido en la
+	Sección~\ref{sec:rf}, con el propósito de demostrar de forma tangible el
+	comportamiento del sistema descrito en esta especificación. El MVP se
+	implementó íntegramente con tecnologías del lado del cliente (HTML5, CSS3 y
+	JavaScript sin frameworks ni proceso de compilación) y persiste su
+	información en el almacenamiento local del navegador
+	(\texttt{localStorage}) en lugar de un servidor de base de datos real. Se
+	trata de una decisión de diseño coherente con el alcance de un prototipo
+	funcional de demostración académica y no de un sistema en producción; por
+	lo mismo, el MVP no satisface todavía las restricciones de arquitectura y
+	de protección de datos declaradas en RD-04, RD-05 y RD-06, que
+	corresponden al sistema en producción y no a este prototipo.
+	
+	La rúbrica de la asignatura exige una cobertura mínima del 60\,\% de los
+	requisitos funcionales de prioridad \emph{Must}. Según la priorización
+	MoSCoW de la Sección~\ref{sec:moscow}, el proyecto tiene 15 RF de prioridad
+	\emph{Must}, de los cuales el MVP cubre los 15 (100\,\%). Uno de ellos,
+	RF-12, se cubre en modo simulado (selección de rol de demostración en lugar
+	de verificación de identidad real), por lo que, con un criterio conservador
+	que descuente ese caso, la cobertura efectiva es de 14 de 15
+	(93,3\,\%). En cualquiera de las dos lecturas se supera con holgura el
+	mínimo exigido. Adicionalmente, el MVP incorpora dos requisitos de
+	prioridad \emph{Should} y \emph{Could} (RF-04 y RF-07, respectivamente) que
+	ya estaban delineados en los mockups de referencia de la
+	Sección~\ref{sec:mockups}, por lo que se incluyeron sin
+	representar un esfuerzo de alcance adicional significativo. Los 8 requisitos
+	restantes, todos de prioridad \emph{Should} o \emph{Could}, no se
+	implementaron en esta iteración y se documentan explícitamente en la
+	Tabla~\ref{tab:cobertura-mvp} para mantener la trazabilidad y servir de
+	insumo directo a las siguientes iteraciones del producto.
+	
+	\begin{longtable}{@{}p{1.5cm} p{5.2cm} p{1.7cm} p{3.0cm} p{3.4cm}@{}}
+		\caption{Cobertura de los requisitos funcionales en el MVP MundiPets.}
+		\label{tab:cobertura-mvp} \\
+		\hline
+		\textbf{ID-RF} & \textbf{Nombre} & \textbf{Prioridad} & \textbf{Estado en el MVP} & \textbf{Módulo / pantalla} \\
+		\hline
+		\endfirsthead
+		\multicolumn{5}{|l|}{\textit{(continuación)}} \\
+		\hline
+		\textbf{ID-RF} & \textbf{Nombre} & \textbf{Prioridad} & \textbf{Estado en el MVP} & \textbf{Módulo / pantalla} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		RF-01 & Registrar mascota & Must & Cubierto & \texttt{pet-add.html} \\
+		\hline
+		RF-02 & Gestionar historial médico de la mascota & Must & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html} \\
+		\hline
+		RF-03 & Consultar perfil completo de una mascota & Must & Cubierto & \texttt{pet-detail.html}, \texttt{pet-profile.html} \\
+		\hline
+		RF-04 & Buscar y filtrar mascotas & Should & Cubierto (adicional) & \texttt{explore.html} \\
+		\hline
+		RF-05 & Gestionar solicitudes de adopción & Must & Cubierto & \texttt{request.html} \\
+		\hline
+		RF-06 & Evaluar compatibilidad entre mascotas para cruza & Must & Cubierto (heurística explicable) & \texttt{compatibility.html} \\
+		\hline
+		RF-07 & Sistema de mensajería entre usuarios & Could & Cubierto (adicional) & \texttt{request.html} (panel de chat) \\
+		\hline
+		RF-08 & Gestionar solicitudes de cruza & Must & Cubierto & \texttt{request.html} (tipo \emph{Cruza responsable}) \\
+		\hline
+		RF-09 & Validar la información médica de una mascota & Must & Cubierto & \texttt{vet-panel.html} \\
+		\hline
+		RF-10 & Gestionar recordatorios de controles preventivos & Should & No implementado & --- \\
+		\hline
+		RF-11 & Administrar la privacidad de la información & Must & Cubierto & \texttt{pet-profile.html} \\
+		\hline
+		RF-12 & Verificar la identidad de los usuarios & Must & Cubierto (simulado) & \texttt{register.html} \\
+		\hline
+		RF-13 & Registrar publicaciones de mascotas & Must & Cubierto & \texttt{pet-profile.html}, \texttt{explore.html} \\
+		\hline
+		RF-14 & Gestionar carnet de vacunación & Must & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html} \\
+		\hline
+		RF-15 & Consultar el historial de procesos de adopción y cruza & Could & No implementado & --- \\
+		\hline
+		RF-16 & Gestionar antecedentes genéticos y parentesco de la mascota & Must & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html} \\
+		\hline
+		RF-17 & Validar imágenes & Should & No implementado (selección directa de ícono) & --- \\
+		\hline
+		RF-18 & Gestionar el flujo de solicitud de adopción por etapas & Must & Cubierto & \texttt{request.html} \\
+		\hline
+		RF-19 & Validar certificados veterinarios antes de habilitar la cruza & Should & No implementado & --- \\
+		\hline
+		RF-20 & Coordinar encuentros de socialización supervisados & Could & No implementado & --- \\
+		\hline
+		RF-21 & Registrar el identificador de microchip de la mascota & Should & No implementado & --- \\
+		\hline
+		RF-22 & Dar seguimiento post-adopción & Must & Cubierto & \texttt{post-adoption.html} \\
+		\hline
+		RF-23 & Emitir alertas de riesgo sanitario o físico en interacciones y cruces & Must & Cubierto & \texttt{compatibility.html} \\
+		\hline
+		RF-24 & Registrar trazabilidad de cepa, lote y aplicador de cada vacuna & Should & No implementado & --- \\
+		\hline
+		RF-25 & Publicar aviso de mascota extraviada & Could & No implementado & --- \\
+	\end{longtable}
+	
+	El equipo declara de forma explícita, en línea con la regla operativa según
+	la cual ningún componente de inteligencia artificial puede quedar solo
+	declarado, que el RF-06 (evaluación de compatibilidad entre mascotas para
+	cruza) \textbf{no} se implementó mediante un modelo de aprendizaje
+	automático entrenado, sino mediante una heurística de reglas explícitas y
+	explicables que evalúa el parentesco conocido, el estado sanitario
+	referencial y la edad reproductiva de ambas mascotas, complementada con la
+	detección de disparidad de tamaño y de enfermedades contagiosas activas
+	para la emisión de alertas de riesgo (RF-23). Por su naturaleza, esta
+	heurística satisface de forma directa el requisito de explicabilidad
+	RNF-13 y el derecho a explicación de RL-06, ya que la pantalla de
+	resultados muestra la regla concreta que originó cada advertencia; lo que
+	no satisface todavía es el umbral de exactitud de RNF-06, definido para el
+	componente de aprendizaje automático del sistema en producción. Entrenar o
+	integrar un modelo de aprendizaje automático real está fuera del alcance de
+	un MVP construido sobre datos ficticios, y así se documenta en el propio
+	repositorio. Por su parte, el RF-17 (validación de imágenes contra las
+	políticas de contenido de la plataforma) tampoco se implementó en esta
+	iteración: el registro de mascotas utiliza en su lugar la selección directa
+	de un ícono representativo de la especie, lo que evita la carga de archivos
+	y la necesidad de un mecanismo de validación real.
 	
 	\subsection{Arquitectura e instrucciones de despliegue}
 	\label{sec:mvp-arquitectura}
 	
+	La arquitectura del MVP se organiza en tres capas dentro de una aplicación
+	estática, con una página por vista: once páginas HTML independientes que
+	comparten una hoja de estilos y tres módulos de JavaScript. La capa de
+	presentación está compuesta por los archivos HTML y por
+	\texttt{css/styles.css}, que define un diseño responsivo mediante CSS Grid
+	y Flexbox con puntos de quiebre para dispositivos móviles, tabletas y
+	escritorio, en coherencia con el requisito de portabilidad RNF-11. La capa
+	de lógica de sesión, implementada en \texttt{js/auth.js}, simula la
+	verificación de identidad exigida por RF-12 mediante la selección de un rol
+	de demostración (Propietario, Adoptante, Interesado en cruza o
+	Veterinaria), sin un mecanismo de autenticación por contraseña real,
+	decisión declarada explícitamente tanto en el código como en la
+	documentación del repositorio. La capa de datos, implementada en
+	\texttt{js/db.js}, expone una interfaz de operaciones CRUD genéricas
+	(\texttt{all}, \texttt{get}, \texttt{insert}, \texttt{update},
+	\texttt{remove}, \texttt{reset}) sobre ocho colecciones del dominio
+	--usuarios, mascotas, historiales médicos, antecedentes genéticos,
+	solicitudes, mensajes, evaluaciones de compatibilidad y seguimientos
+	post-adopción--, persistidas en su totalidad en el \texttt{localStorage}
+	del navegador bajo una única clave versionada
+	(\texttt{mundipets\_db\_v1}). Esta separación en capas responde a la
+	restricción de arquitectura modular RD-05 en su expresión mínima viable.
+	
+	\begin{longtable}{@{}p{4.2cm} p{10.6cm}@{}}
+		\caption{Estructura del repositorio \texttt{MVP\_MundiPets} y trazabilidad a requisitos funcionales.}
+		\label{tab:estructura-mvp} \\
+		\hline
+		\textbf{Archivo / carpeta} & \textbf{Contenido y requisitos que soporta} \\
+		\hline
+		\endfirsthead
+		\multicolumn{2}{|l|}{\textit{(continuación)}} \\
+		\hline
+		\textbf{Archivo / carpeta} & \textbf{Contenido y requisitos que soporta} \\
+		\hline
+		\endhead
+		\hline
+		\endfoot
+		\texttt{index.html} & Inicio de sesión mediante selección de cuenta de demostración; enlace para restablecer los datos de ejemplo. \\
+		\hline
+		\texttt{register.html} & Formulario de creación de cuenta y verificación de identidad simulada (RF-12). \\
+		\hline
+		\texttt{dashboard.html} & Panel de inicio diferenciado según el rol activo (Propietario, Adoptante, Interesado en cruza o Veterinaria); implementa el acceso basado en roles de RD-02. \\
+		\hline
+		\texttt{pet-add.html} & Asistente de registro de mascota en cuatro pasos: datos generales, fotografía representativa, historial médico y carnet de vacunación, y antecedentes genéticos (RF-01, RF-02, RF-14, RF-16). \\
+		\hline
+		\texttt{pet-profile.html} & Perfil propio de la mascota, con edición del historial médico, la publicación y la configuración de privacidad por campo sensible (RF-03, RF-11, RF-13). \\
+		\hline
+		\texttt{explore.html} & Búsqueda y filtrado de mascotas publicadas por especie, estado de interés y ubicación aproximada (RF-04). \\
+		\hline
+		\texttt{pet-detail.html} & Perfil público de una mascota, con la información filtrada según el nivel de acceso del usuario consultante (RF-03, RNF-16). \\
+		\hline
+		\texttt{request.html} & Formulario y seguimiento de solicitudes de adopción o cruza por etapas, con panel de mensajería asociado a cada solicitud (RF-05, RF-07, RF-08, RF-18). \\
+		\hline
+		\texttt{compatibility.html} & Evaluación de compatibilidad entre dos mascotas mediante una heurística de reglas explícitas, con emisión de alertas de riesgo (RF-06, RF-23, RNF-13). \\
+		\hline
+		\texttt{vet-panel.html} & Panel de validación veterinaria de documentos e historiales médicos pendientes (RF-09, RD-03). \\
+		\hline
+		\texttt{post-adoption.html} & Registro y consulta del seguimiento posterior a una adopción completada (RF-22). \\
+		\hline
+		\texttt{css/styles.css} & Hoja de estilos única con diseño responsivo mediante CSS Grid y Flexbox, y puntos de quiebre para dispositivos móviles, tabletas y escritorio (RNF-11). \\
+		\hline
+		\texttt{js/db.js} & Capa de acceso a datos sobre \texttt{localStorage}: define las colecciones del dominio (usuarios, mascotas, historiales médicos, antecedentes genéticos, solicitudes, mensajes, evaluaciones de compatibilidad y seguimientos), el conjunto de datos ficticios de arranque y las operaciones CRUD genéricas. \\
+		\hline
+		\texttt{js/auth.js} & Gestión de la sesión activa mediante selección de rol, sin autenticación por contraseña, simulando de forma declarada el resultado de RF-12. \\
+		\hline
+		\texttt{js/utils.js} & Funciones auxiliares compartidas entre pantallas: construcción de la barra superior según el rol, insignias de estado y notificaciones emergentes. \\
+	\end{longtable}
+	
+	Al primer arranque de la aplicación, la capa de datos detecta la ausencia de
+	información en el \texttt{localStorage} y crea automáticamente un conjunto
+	de datos ficticios de demostración: cuatro usuarios (un propietario, un
+	adoptante, un interesado en cruza y una veterinaria) y cuatro mascotas
+	(Firulais, Michi, Toby y Luna) con historiales médicos, antecedentes
+	genéticos y una solicitud de adopción en curso, todos inspirados en los
+	mockups de referencia presentados en la
+	Sección~\ref{sec:mockups}. La pantalla de inicio de sesión incluye
+	además un enlace de \enquote{Restablecer datos de ejemplo}, que permite
+	reiniciar el estado de la demostración en cualquier momento sin intervención
+	manual sobre el almacenamiento del navegador.
+	
+	El despliegue local del MVP no requiere instalación de dependencias, gestor
+	de paquetes ni contenedores, dado que se trata de una aplicación estática
+	sin backend. El repositorio documenta tres formas equivalentes de
+	ejecutarlo: levantar un servidor HTTP simple con Python
+	(\texttt{python -m http.server 8000}) o con Node.js (\texttt{npx serve .})
+	y abrir la dirección local resultante en el navegador, o bien abrir
+	directamente el archivo \texttt{index.html} mediante doble clic. Esta
+	última opción es funcional en la mayoría de navegadores modernos, pero el
+	modo \texttt{file://} impone restricciones sobre el \texttt{localStorage} en
+	algunos de ellos, por lo que se recomienda cualquiera de las dos primeras
+	para obtener un comportamiento idéntico en todos los navegadores.
+	
 	\subsection{Evidencia de funcionamiento}
 	\label{sec:mvp-evidencia}
+	
+	El repositorio documenta un recorrido funcional guiado de cinco pasos que
+	ejercita los requisitos funcionales \emph{Must} cubiertos y sirve de guion
+	tanto para la validación manual del equipo como para el video de
+	demostración exigido por la rúbrica:
+	
+	\begin{enumerate}[leftmargin=*]
+		\item \textbf{Ingreso como Carlos Zambrano (Propietario):} registro de
+		una mascota nueva mediante el asistente de cuatro pasos, configuración
+		de la privacidad de sus campos sensibles y publicación para adopción
+		(RF-01, RF-02, RF-11, RF-13, RF-14, RF-16).
+		\item \textbf{Ingreso como Ana Adoptante:} exploración de mascotas con
+		filtros, consulta del perfil de Firulais, envío de una solicitud de
+		adopción y conversación mediante el chat asociado a la solicitud
+		(RF-03, RF-04, RF-05, RF-07, RF-12 en su forma simulada).
+		\item \textbf{Retorno como Carlos Zambrano:} avance de la solicitud a
+		través de las cinco etapas definidas (formulario, entrevista, visita al
+		hogar, periodo de prueba y compromiso firmado) hasta su finalización, y
+		revisión del registro de seguimiento post-adopción generado
+		automáticamente (RF-18, RF-22).
+		\item \textbf{Ingreso como la Dra. Melissa Vera (Veterinaria):}
+		apertura del panel de validaciones y resolución de un documento médico
+		pendiente, con opción de validarlo o rechazarlo (RF-09).
+		\item \textbf{Ingreso como Jorge Intriago (Interesado en cruza):}
+		consulta del perfil de Toby, publicado para cruza responsable,
+		evaluación de compatibilidad con otra mascota del sistema y revisión
+		del resultado explicado junto con las alertas de riesgo generadas
+		(RF-06, RF-08, RF-23).
+	\end{enumerate}
+	
+	Al momento de esta redacción, el código del MVP se encuentra completo y
+	verificado localmente siguiendo el recorrido anterior. El repositorio
+	incluye asimismo una advertencia explícita de que todos los usuarios,
+	mascotas, historiales médicos, solicitudes y mensajes contenidos en el MVP
+	son ficticios y se generaron exclusivamente con fines de demostración
+	académica, sin representar personas, animales ni información sanitaria
+	reales, en coherencia con la restricción de anonimización RD-09.
+	
+	Las Figuras~\ref{fig:mvp-login} a \ref{fig:mvp-postadopcion} documentan las
+	pantallas principales de ese recorrido, capturadas sobre la ejecución local
+	del MVP.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.92\textwidth]{figuras/MVP-01_InicioSesion_MundiPets.png}
+		\caption{Pantalla de inicio de sesión del MVP (\texttt{index.html}). Se
+			presentan las cuatro cuentas de demostración correspondientes a los roles
+			del sistema --- Ana Adoptante, Carlos Zambrano (propietario), Dra. Melissa
+			Vera (veterinaria) y Jorge Intriago (interesado en cruza) --- junto con la
+			declaración explícita de que no se emplean contraseñas reales, que
+			materializa la forma simulada de RF-12, y el enlace de restablecimiento
+			de los datos de ejemplo.}
+		\label{fig:mvp-login}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.92\textwidth]{figuras/MVP-02_PanelAdoptante_MundiPets.png}
+		\caption{Panel de inicio diferenciado por rol (\texttt{dashboard.html}) para
+			la cuenta de Ana Adoptante. La vista lista las solicitudes activas con su
+			etapa vigente (\enquote{Etapa 2/5 --- Entrevista}) y los seguimientos
+			post-adopción pendientes, evidenciando el acceso basado en roles de RD-02
+			y los requisitos RF-18 y RF-22.}
+		\label{fig:mvp-dashboard}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.92\textwidth]{figuras/MVP-03_SolicitudAdopcion_MundiPets.png}
+		\caption{Detalle de una solicitud de adopción (\texttt{request.html}) con el
+			indicador de las cinco etapas del proceso (formulario, entrevista, visita
+			al hogar, periodo de prueba y compromiso firmado) y el panel de mensajería
+			asociado a la solicitud, que implementan RF-05, RF-07 y RF-18.}
+		\label{fig:mvp-solicitud}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.92\textwidth]{figuras/MVP-04_SeguimientoPostAdopcion_MundiPets.png}
+		\caption{Registro de seguimiento post-adopción (\texttt{post-adoption.html})
+			generado automáticamente al completarse la quinta etapa de la solicitud.
+			La vista muestra el compromiso firmado, la fecha del próximo reporte y el
+			estado de la mascota adoptada, correspondientes a RF-22.}
+		\label{fig:mvp-postadopcion}
+	\end{figure}
+	
+	El video de recorrido funcional, de duración menor o igual a tres minutos,
+	se encuentra en \texttt{05\_MVP/video\_demo.mp4}, y el enlace al repositorio
+	público del MVP, junto con el commit exacto evaluado, se declara en
+	\texttt{05\_MVP/README.md} y en el Apéndice~\ref{ap:repositorio}.
 	
 	% ############################################################
 	%            SECCION 7 -- COMPONENTE EMPIRICO
@@ -3444,6 +4423,47 @@ doi=true
 	
 	\subsection{Enfoque seleccionado y justificación}
 	\label{sec:enfoque}
+	
+	El equipo optó por el \textbf{Enfoque 2 --- Detectar automáticamente
+		ambigüedad y malos olores en los requisitos}, descartando el Enfoque 1
+	(comparación de la calidad de los RF frente a un LLM) y el Enfoque 3
+	(validación de requisitos de explicabilidad del componente de IA).
+	
+	\textbf{Justificación en función del sistema.} MundiPets cuenta, desde la
+	Entrega 2 (1B), con un corpus consolidado de especificación (17 RF, 8 RNF y
+	5 restricciones de diseño), que constituye el insumo directo sobre el cual
+	puede ejecutarse un detector de ambigüedad sin depender de instrumentos
+	adicionales de recolección con usuarios externos al proyecto.
+	
+	\textbf{Justificación en función de los datos disponibles.} Como parte de la
+	revisión y refinamiento del SRS parcial, el equipo ya efectuó un primer
+	ejercicio de identificación manual de defectos de redacción sobre RF-01 a
+	RF-17 y RNF-01 a RNF-08, detectando patrones de ambigüedad, terminología
+	imprecisa y requisitos no verificables consistentes con los \emph{malos
+		olores} descritos por Ferrari \emph{et al.} \cite{ferrari2016}. Este
+	antecedente ofrece una base real sobre la cual diseñar y calibrar el
+	detector automático, en lugar de partir desde cero.
+	
+	\textbf{Justificación en función del tiempo.} Independientemente del tiempo
+	total disponible en el cronograma de la asignatura, el costo temporal de
+	cada enfoque no depende solo de la duración del periodo, sino de la
+	\emph{naturaleza de su ruta crítica}. Los Enfoques 1 y 3 dependen de
+	reclutar y coordinar agendas con personas ajenas al equipo, lo cual introduce
+	una latencia que no se reduce aunque se disponga de más semanas: el
+	Enfoque 1 requiere entre tres y cinco personas evaluadoras externas
+	dispuestas a calificar a ciegas dos conjuntos de al menos 50 RF cada uno, y
+	el Enfoque 3 requiere doce participantes externos distribuidos en dos rondas
+	de validación moderada, con la consiguiente necesidad de encontrar,
+	convocar y agendar a cada uno. En ambos casos, el tiempo de ejecución queda
+	sujeto a la disponibilidad de terceros, un factor fuera del control directo
+	del equipo. El Enfoque 2, en cambio, mantiene su ruta crítica dentro del
+	equipo: solo requiere tres personas expertas ya identificadas y la
+	construcción de un detector automático (un script propio o una herramienta
+	existente), ambas tareas ejecutables sin depender de la disponibilidad de
+	terceros. Por esta razón, el Enfoque 2 ofrece el menor riesgo de cronograma
+	de los tres, con independencia de cuántas semanas se le asignen.
+	
+	La decisión fue adoptada internamente por el equipo.
 	
 	\subsection{Preguntas de investigación en formato PICOC}
 	\label{sec:rq}
@@ -3457,14 +4477,37 @@ doi=true
 			\toprule
 			\textbf{Elemento PICOC} & \textbf{Descripción} \\
 			\midrule
-			Población & --- \\
-			Intervención & --- \\
-			Comparación & --- \\
-			Resultado & --- \\
-			Contexto & --- \\
+			Población & Conjunto de requisitos funcionales (RF), no funcionales
+			(RNF) y restricciones de diseño (RD) especificados para el sistema
+			MundiPets, redactados según la plantilla de ocho atributos exigida
+			por la asignatura y vigentes al momento de la ejecución del
+			experimento. \\
+			Intervención & Clasificación automática de cada requisito como
+			\emph{ambiguo} o \emph{no ambiguo} mediante un detector basado en
+			reglas, que identifica cuantificadores vagos, conjunciones
+			múltiples que ocultan más de un requisito, voz pasiva y ausencia
+			de criterio de verificación explícito. \\
+			Comparación & Clasificación manual e independiente del mismo
+			conjunto de requisitos, realizada por tres personas expertas en
+			Ingeniería de Requisitos, sin conocimiento previo de la salida del
+			detector (evaluación a ciegas). \\
+			Resultado & Precisión, exhaustividad (\emph{recall}) y medida
+			F1 del detector automático tomando como referencia el consenso
+			experto; acuerdo inter-evaluador mediante $\kappa$ de Cohen entre
+			pares de expertos y $\kappa$ de Fleiss para el conjunto de los
+			tres. \\
+			Contexto & Proyecto académico de la asignatura de Ingeniería de
+			Requerimientos [20303] (UTEQ, 2026-2027 PPA), aplicado al sistema
+			real MundiPets, con especificación redactada en español. \\
 			\midrule
-			RQ1 & --- \\
-			RQ2 & --- \\
+			RQ1 & ¿Con qué precisión, exhaustividad y medida F1 replica un
+			detector automático basado en reglas el juicio consensuado de
+			personas expertas al clasificar como ambiguos los requisitos
+			especificados para MundiPets? \\
+			RQ2 & ¿Qué patrones de desacuerdo predominan entre el detector
+			automático y el juicio experto, y qué explican sobre las
+			limitaciones de un enfoque basado en reglas frente al juicio
+			humano en la identificación de ambigüedad? \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -3472,23 +4515,293 @@ doi=true
 	\subsection{Hipótesis o proposiciones del estudio}
 	\label{sec:hipotesis}
 	
+	Al tratarse del Enfoque 2, el diseño corresponde a un cuasi-experimento y
+	requiere hipótesis nula y alternativa, no proposiciones de estudio de caso.
+	
+	\textbf{H\textsubscript{0} (hipótesis nula):} la clasificación producida
+	por el detector automático de ambigüedad no guarda asociación con la
+	clasificación de consenso de las personas expertas; el acuerdo observado
+	entre ambas ($\kappa$ de Cohen) no es significativamente distinto del
+	acuerdo esperado por azar ($\kappa = 0$).
+	
+	\textbf{H\textsubscript{1} (hipótesis alternativa):} la clasificación
+	producida por el detector automático de ambigüedad guarda asociación
+	significativa con la clasificación de consenso de las personas expertas;
+	el acuerdo observado entre ambas es significativamente mayor que el
+	esperado por azar ($\kappa > 0$).
+	
+	Esta hipótesis se contrasta mediante la prueba de significancia del
+	$\kappa$ de Cohen descrita en la Sección \ref{sec:plan-analisis}. La
+	pregunta RQ2, al ser de carácter exploratorio sobre los patrones de
+	desacuerdo, no se somete a prueba de hipótesis: se responde mediante
+	análisis cualitativo de los casos en los que el detector y el consenso
+	experto difieren, siguiendo el sexto paso descrito para el Enfoque 2 en la
+	guía de la asignatura.
+	
 	\subsection{Variables independientes, dependientes y de control}
 	\label{sec:variables}
+	
+	\textbf{Variable independiente.} El método de clasificación aplicado a
+	cada requisito, con dos niveles: (a) detector automático basado en reglas
+	y (b) consenso de las tres personas expertas.
+	
+	\textbf{Variable dependiente.} La clasificación resultante de cada
+	requisito como \emph{ambiguo} o \emph{no ambiguo} (variable categórica
+	binaria), a partir de la cual se calculan las métricas de acuerdo
+	declaradas en la Sección \ref{sec:plan-analisis} (precisión, exhaustividad,
+	medida F1 y $\kappa$).
+	
+	\textbf{Variables de control.}
+	\begin{itemize}[leftmargin=*]
+		\item \textbf{Tipo de requisito} (RF, RNF o RD), para verificar que el
+		desempeño del detector no varíe sistemáticamente según el tipo de
+		artefacto evaluado.
+		\item \textbf{Configuración fija del detector}: el conjunto de reglas
+		(cuantificadores vagos, conjunciones múltiples, voz pasiva, ausencia de
+		criterio de verificación) permanece invariable durante toda la
+		ejecución del experimento; ninguna regla se ajusta después de observar
+		resultados parciales.
+		\item \textbf{Orden de presentación} de los requisitos a las personas
+		expertas, aleatorizado de forma independiente para cada evaluador, con
+		el fin de controlar efectos de fatiga o de orden.
+		\item \textbf{Cegamiento del juicio experto}: ninguna persona
+		evaluadora tiene acceso a la salida del detector ni a la clasificación
+		de las demás personas evaluadoras antes de completar la propia.
+	\end{itemize}
 	
 	\subsection{Participantes y reclutamiento}
 	\label{sec:participantes}
 	
+	El estudio involucra dos grupos con roles distintos: las personas expertas
+	que ejecutan la clasificación de referencia, y el equipo de MundiPets, que
+	construye y aplica el detector automático sin participar en la
+	clasificación experta, para preservar la independencia del juicio.
+	
+	\textbf{Personas expertas.} El panel está compuesto por tres Ingenieros de
+	Software graduados de la Universidad Técnica Estatal de Quevedo (UTEQ) (dos
+	mujeres y un hombre), ya contactados y confirmados para participar en el
+	estudio.
+	
+	\textbf{Criterios de inclusión:} (a) título profesional de tercer nivel en
+	Ingeniería de Software o carrera afín; (b) formación o experiencia
+	demostrable en especificación y análisis de requisitos de software; (c)
+	disponibilidad para completar la clasificación dentro del cronograma del
+	estudio.
+	
+	\textbf{Criterios de exclusión:} (a) pertenecer al equipo de desarrollo de
+	MundiPets; (b) haber participado en la redacción de los RF, RNF o RD que
+	conforman la población del estudio (Sección \ref{sec:rq}).
+	
+	\textbf{Proceso de consentimiento informado.} Cada persona evaluadora firma
+	un consentimiento informado específico para este rol, redactado en
+	cumplimiento de la Ley Orgánica de Protección de Datos Personales del
+	Ecuador \cite{lopdp2021}, que autoriza expresamente su participación como
+	evaluadora experta y el uso de la clasificación producida --de forma
+	anonimizada-- en publicaciones científicas revisadas por pares. La
+	plantilla se detalla en la Sección \ref{sec:instrumentos}.
+	
 	\subsection{Instrumentos}
 	\label{sec:instrumentos}
+	
+	Los instrumentos del Enfoque 2 son dos:
+	
+	\begin{enumerate}[leftmargin=*]
+		\item \textbf{Rúbrica de clasificación experta}
+		(\texttt{rubrica\_clasificacion\_experta.xlsx}): libro con hoja de
+		instrucciones, hoja de criterios de referencia para identificar
+		ambigüedad, y hoja de evaluación en la que cada persona evaluadora
+		registra, para cada requisito, su identificador, el texto completo,
+		la clasificación (\emph{ambiguo} / \emph{no ambiguo}), el tipo de
+		mal olor detectado y una justificación breve. Los requisitos se
+		presentan sin indicar su tipo (RF, RNF o RD) y en orden aleatorizado,
+		para reducir sesgos de expectativa. Una hoja adicional, de uso
+		exclusivo del equipo, conserva la clave que vincula cada identificador
+		anónimo con el requisito real y la salida del detector.
+		\item \textbf{Plantilla de consentimiento para evaluadores expertos}
+		(\texttt{consentimiento\_evaluador\_experto.docx}): adapta el formato
+		de consentimiento ya utilizado en la Entrega 1B para entrevistas,
+		ajustado al rol de evaluador experto e incorporando la autorización
+		explícita para el uso de datos anonimizados en publicaciones
+		revisadas por pares, conforme a la LOPDP \cite{lopdp2021}.
+	\end{enumerate}
 	
 	\subsection{Plan de análisis estadístico}
 	\label{sec:plan-analisis}
 	
+	\textbf{Análisis principal (RQ1, H\textsubscript{0}/H\textsubscript{1}).}
+	Se calculan precisión, exhaustividad y medida F1 del detector automático
+	tomando como referencia el consenso experto (Sección \ref{sec:hipotesis}).
+	La hipótesis se contrasta mediante una prueba de significancia del $\kappa$
+	de Cohen (estadístico $z = \kappa / SE_{\kappa}$, contra la distribución
+	normal estándar), mientras que la magnitud del acuerdo se interpreta como
+	el tamaño del efecto, usando la escala de Landis y Koch: 0,00--0,20 leve;
+	0,21--0,40 aceptable; 0,41--0,60 moderado; 0,61--0,80 sustancial;
+	0,81--1,00 casi perfecto.
+	
+	\textbf{Acuerdo inter-evaluador.} $\kappa$ de Cohen \cite{cohen1960} para
+	cada par de las tres personas expertas, y $\kappa$ de Fleiss
+	\cite{fleiss1971} para el conjunto de las tres, interpretados con la misma
+	escala de Landis y Koch. Un acuerdo experto bajo relativizaría cualquier
+	conclusión sobre el desempeño del detector, ya que el propio consenso de
+	referencia quedaría en duda.
+	
+	\textbf{Prueba de normalidad (Shapiro-Wilk).} Se aplica sobre la variable
+	continua \emph{nivel de confianza} (escala 1--5) registrada en la rúbrica
+	de evaluación (Sección \ref{sec:instrumentos}), como paso previo al
+	análisis exploratorio secundario descrito a continuación.
+	
+	\textbf{Análisis secundario (RQ2, exploratorio).} Para caracterizar los
+	casos de desacuerdo entre el detector y el consenso experto, se compara el
+	nivel de confianza reportado por las personas expertas entre los
+	requisitos donde el detector coincide con el consenso y aquellos donde
+	difiere. Si Shapiro-Wilk no rechaza normalidad, se usa la prueba t de
+	Student para muestras independientes y el tamaño del efecto se reporta
+	como $d$ de Cohen; en caso contrario, se usa la prueba U de Mann-Whitney y
+	el tamaño del efecto como $\delta$ de Cliff. Este análisis es exploratorio
+	y se complementa con la nota cualitativa de desacuerdos exigida por el
+	sexto paso del Enfoque 2 en la guía de la asignatura.
+	
+	\textbf{Corrección por comparaciones múltiples.} Si además se reportan
+	métricas de acuerdo desagregadas por tipo de requisito (RF, RNF, RD) como
+	análisis exploratorio adicional, los valores $p$ resultantes de esas tres
+	comparaciones relacionadas se ajustan mediante el procedimiento de
+	Benjamini-Hochberg (control de la tasa de falsos descubrimientos).
+	
+	\textbf{Cálculo de potencia estadística.} Conforme a Molléri \emph{et al.}
+	\cite{molleri2020} y Wohlin \emph{et al.} \cite{wohlin2012}, se fija
+	$\alpha = 0{,}05$ y $1 - \beta = 0{,}80$. Dado que el tamaño de la
+	población está acotado por el corpus real de especificación disponible
+	(Sección \ref{sec:enfoque}) y no por una meta de reclutamiento ampliable,
+	el cálculo de potencia se reporta en sentido inverso: en lugar de fijar un
+	$N$ objetivo, se determina la sensibilidad mínima (el valor mínimo de
+	$\kappa$ detectable) que el diseño puede identificar con ese $\alpha$ y
+	esa potencia, dado el $N$ realmente disponible al momento de la ejecución.
+	Este cálculo se documentará con el valor real de $N$ y se versionará junto
+	con el resto del análisis.
+	
+	\textbf{Reproducibilidad.} Todos los cálculos anteriores se ejecutan
+	mediante scripts versionados en \texttt{06\_Experimento/scripts\_analisis/}
+	(Python, con \texttt{SciPy}/\texttt{statsmodels} o R); ninguna cifra o
+	tabla de esta sección se produce de forma manual, conforme a la regla de
+	la guía de la asignatura.
+	
 	\subsection{Registro previo del protocolo en el OSF}
 	\label{sec:osf}
 	
+	El protocolo del Enfoque 2 se registró en el Open Science Framework
+	\cite{nosek2018}, mediante la plantilla \emph{OSF Preregistration}, el
+	\textbf{27 de julio de 2026 a las 10:49:41 a.\,m.} (hora de Ecuador), antes
+	de distribuir la rúbrica de clasificación al panel experto y antes de
+	ejecutar el detector automático sobre el corpus de requisitos. El registro
+	puede consultarse en:
+	\url{https://osf.io/zr2s7/overview?view_only=545c488adaf64b99b254adde0e6cb7a5}.
+	Al momento de redactar esta sección, el registro se encuentra en estado
+	\emph{pendiente de aprobación} (moderación estándar de OSF posterior al
+	envío); esto no afecta la validez de la marca de tiempo, ya que el
+	contenido del registro queda congelado desde el momento del envío, con
+	independencia de su posterior aprobación.
+	
 	\subsection{Amenazas a la validez previstas}
 	\label{sec:amenazas}
+	
+	\textbf{Validez interna.}
+	\begin{itemize}[leftmargin=*]
+		\item \emph{Sesgo de diseño del detector.} El equipo que construye el
+		detector ya conoce, por la revisión manual previa realizada durante
+		el refinamiento del SRS parcial (Sección \ref{sec:enfoque}), algunos
+		de los defectos presentes en RF-01 a RF-17, lo que podría calibrar
+		las reglas hacia esos casos conocidos e inflar artificialmente la
+		precisión. \textbf{Mitigación:}
+		las reglas del detector (Sección \ref{sec:enfoque}) se fijan y
+		documentan antes de recibir la clasificación de los tres expertos
+		sobre el conjunto completo, y se aplican sin modificación posterior
+		(Sección \ref{sec:variables}). \textbf{Limitación reconocida:} el
+		sesgo no se elimina por completo, porque el conocimiento previo del
+		equipo sobre una parte del corpus es inevitable; se atenúa
+		parcialmente al incluir en la población los RF-18 a RF-25, que no
+		formaron parte de esa revisión previa.
+		\item \emph{Efecto de orden o fatiga en la evaluación experta.}
+		Evaluar un conjunto largo de requisitos de forma consecutiva puede
+		degradar el juicio hacia el final del ejercicio. \textbf{Mitigación:}
+		orden de presentación aleatorizado de forma independiente para cada
+		evaluador (Sección \ref{sec:variables}). \textbf{Limitación
+			reconocida:} la aleatorización distribuye el efecto pero no lo
+		elimina; no se mide directamente si la fatiga afectó casos
+		específicos.
+	\end{itemize}
+	
+	\textbf{Validez externa.}
+	\begin{itemize}[leftmargin=*]
+		\item \emph{Corpus de un solo sistema y dominio.} Los requisitos
+		provienen únicamente de MundiPets, redactados en español por un solo
+		equipo estudiantil en el dominio veterinario/adopción de mascotas.
+		\textbf{Mitigación:} el contexto queda documentado explícitamente en
+		el marco PICOC (Sección \ref{sec:rq}) para que cualquier lector pueda
+		evaluar la transferibilidad. \textbf{Limitación reconocida:} no puede
+		afirmarse que el desempeño del detector generalice a otros dominios,
+		idiomas o equipos con distinto nivel de experiencia; el estudio se
+		declara como un caso único, no como una validación general del
+		detector.
+		\item \emph{Homogeneidad del panel experto.} Las tres personas
+		evaluadoras son Ingenieras e Ingeniero de Software graduados de la
+		misma universidad (UTEQ). \textbf{Mitigación:} el perfil exacto del
+		panel se documenta en la Sección \ref{sec:participantes}.
+		\textbf{Limitación reconocida:} no se garantiza representatividad de
+		la diversidad de juicio experto que existiría con un panel de otras
+		instituciones o con mayor trayectoria profesional.
+	\end{itemize}
+	
+	\textbf{Validez de constructo.}
+	\begin{itemize}[leftmargin=*]
+		\item \emph{Binarización de un fenómeno gradual.} La ambigüedad
+		rara vez es todo-o-nada; reducirla a \emph{ambiguo}/\emph{no ambiguo}
+		simplifica un constructo más complejo. \textbf{Mitigación:} la
+		rúbrica captura matices adicionales mediante el campo \emph{tipo de
+			mal olor detectado} y el \emph{nivel de confianza} (Sección
+		\ref{sec:instrumentos}). \textbf{Limitación reconocida:} la variable
+		principal de análisis sigue siendo binaria; se acepta esta
+		simplificación como necesaria para el análisis cuantitativo dentro
+		del tiempo disponible.
+		\item \emph{Alcance limitado de un detector basado en reglas.} El
+		detector identifica ambigüedad léxica y sintáctica (cuantificadores
+		vagos, voz pasiva, conjunciones múltiples), pero no ambigüedad
+		semántica de dominio que solo una persona con conocimiento
+		veterinario puede reconocer. \textbf{Mitigación:} el alcance de las
+		reglas se documenta explícitamente y no se presenta el detector como
+		un sustituto general del juicio experto. \textbf{Limitación
+			reconocida:} la comparación mide específicamente cuánta ambigüedad
+		\emph{detectable por reglas léxicas} coincide con el juicio experto
+		global, no toda forma posible de ambigüedad.
+	\end{itemize}
+	
+	\textbf{Validez de conclusión.}
+	\begin{itemize}[leftmargin=*]
+		\item \emph{Tamaño de muestra reducido.} La población disponible
+		(Sección \ref{sec:enfoque}) es menor al mínimo de 50 requisitos
+		sugerido por la guía de la asignatura para este enfoque, lo que
+		reduce la potencia para detectar valores pequeños de $\kappa$ como
+		significativamente distintos de cero. \textbf{Mitigación:} el plan
+		de análisis (Sección \ref{sec:plan-analisis}) reporta explícitamente
+		la sensibilidad mínima detectable dado el $N$ real, en vez de ocultar
+		la limitación. \textbf{Limitación reconocida:} con un $N$ reducido,
+		el estudio puede no tener potencia suficiente para detectar niveles
+		de acuerdo moderados-bajos como estadísticamente significativos; los
+		resultados de la Entrega 4 deberán interpretarse con este límite en
+		mente.
+		\item \emph{Panel experto mínimo.} Solo tres personas conforman el
+		consenso de referencia, el mínimo aceptado por la guía; con un panel
+		tan pequeño, la opinión de una sola persona pesa proporcionalmente
+		más sobre el consenso. \textbf{Mitigación:} se calcula
+		explícitamente el acuerdo inter-evaluador mediante $\kappa$ de Fleiss
+		antes de aceptar el consenso como válido. \textbf{Limitación
+			reconocida:} un panel de tres es más vulnerable a la idiosincrasia
+		individual que el panel de cinco recomendado por la guía, al que no
+		se llega por restricciones de tiempo.
+	\end{itemize}
+	
+	% ############################################################
+	%                    SECCION 8 -- CONCLUSIONES
+	% ############################################################
 	
 	% ############################################################
 	%                    SECCION 8 -- CONCLUSIONES
@@ -3718,10 +5031,44 @@ doi=true
 	
 	\subsection*{B.7 Ronda de validación (walkthrough)}
 	
+	La rúbrica exige un mínimo de 6 sesiones de validación (3 con usuarios
+	técnicos y 3 con usuarios no técnicos), cada una con grabación en MP4 y
+	acta firmada en PDF, en \texttt{02\_Evidencias/Validacion\_Walkthrough/}.
+	A la fecha de este corte se han ejecutado 3 de las 6 sesiones mínimas:
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\caption{Sesiones de validación walkthrough ejecutadas.}
+		\label{tab:walkthrough}
+		\begin{tabularx}{\textwidth}{@{}p{2.6cm} p{3.2cm} p{2.4cm} p{1.8cm} X@{}}
+			\toprule
+			\textbf{Participante} & \textbf{Perfil} & \textbf{Duración} & \textbf{Fecha} & \textbf{RF validados} \\
+			\midrule
+			Mayerli Vélez & Técnico (veterinaria) & 12:09 min & 27/07/2026 & RF-01 a RF-06, RF-08 \\
+			Lesly Flores & No técnico (propietaria) & 16:11 min & 27/07/2026 & RF-01 a RF-06, RF-08, RF-11 \\
+			Johan Alcivar & No técnico (propietario) & 25:40 min & 27/07/2026 & RF-01 a RF-17 (conjunto completo) \\
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	Las 3 sesiones restantes (2 con perfil técnico y 1 con perfil no técnico) se
+	ejecutan antes del corte de la entrega y se incorporan a la
+	Tabla~\ref{tab:walkthrough} con el mismo formato, junto con su grabación en
+	MP4 y su acta firmada en PDF.
+	
+	
 	\subsection*{B.8 Codificación temática y curva de saturación}
 	\label{sec:codificacion}
 	
 	\subsection*{B.9 Índice de multimedia}
+	
+	Los archivos de audio, video y fotografía asociados a cada evidencia EV-01 a
+	EV-18 se almacenan en \texttt{02\_Evidencias/}, organizados por técnica de
+	elicitación y nombrados con el patrón \texttt{EV-XX\_tecnica\_fecha}. Todos
+	los archivos están cubiertos por el consentimiento informado correspondiente
+	(Apéndice~B.6) y se publican únicamente en su versión anonimizada, conforme
+	a la restricción RD-09.
 	
 	% --------------------------------------------------------
 	\section*{Apéndice C --- Priorización MoSCoW, Kano y WSJF (detalle)}
@@ -3729,16 +5076,21 @@ doi=true
 	\label{ap:priorizacion}
 	
 	La Tabla~\ref{tab:priorizacion_moscow_completa} consolida, para cada uno de
-	los 30 requisitos vigentes desde la Entrega 2 (1B), su clasificación MoSCoW
-	(heredada y validada), su clasificación Kano (pendiente de la segunda ronda
-	de campo, Sección~\ref{sec:kano}) y su valor WSJF estimado en equipo
-	(Sección~\ref{sec:wsjf}). Debe coincidir con el archivo
-	\texttt{04\_Trazabilidad/priorizacion\_moscow\_kano.csv}. Los identificadores
-	RF-18 a RF-25 y RNF-09 a RNF-15 se incorporan a esta tabla en cuanto queden
-	redactados y priorizados.
+	los 59 requisitos vigentes de esta entrega, su clasificación MoSCoW
+	(Sección~\ref{sec:moscow}), su clasificación Kano (pendiente de la segunda
+	ronda de campo, Sección~\ref{sec:kano}) y su valor WSJF estimado en equipo
+	(Sección~\ref{sec:wsjf}). El valor WSJF se calculó únicamente para los 21 RF
+	de prioridad \emph{Must} y \emph{Should}; los RF de prioridad \emph{Could},
+	así como los RNF, las restricciones de diseño y los requisitos legales, se
+	marcan con \enquote{---} porque no forman parte del ejercicio de ordenamiento
+	por costo de retraso: los RL son obligaciones legales no negociables y los
+	RNF y RD son transversales a varios RF. Esta tabla debe coincidir con el
+	archivo \texttt{04\_Trazabilidad/priorizacion\_moscow\_kano.csv} y con la
+	plantilla de estimación \texttt{plantilla\_wsjf.xlsx} versionada en la misma
+	carpeta.
 	
 	\begin{landscape}
-		\begin{longtable}{@{}p{1.2cm} p{3.6cm} p{1.0cm} p{1.3cm} p{1.3cm} p{1.1cm} p{6.5cm}@{}}
+		\begin{longtable}{@{}p{1.2cm} p{5.2cm} p{1.0cm} p{1.3cm} p{1.3cm} p{1.1cm} p{6.5cm}@{}}
 			\caption{Priorización MoSCoW, Kano y WSJF completa de requisitos MundiPets.} \label{tab:priorizacion_moscow_completa} \\
 			\toprule
 			\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{MoSCoW} & \textbf{Kano} & \textbf{WSJF} & \textbf{Justificación breve} \\
@@ -3758,70 +5110,68 @@ doi=true
 			\bottomrule
 			\endlastfoot
 			
-			RF-01 & Registrar mascota & RF & Must & --- & 5.2 & Pilar del sistema; habilita consultas, adopciones y cruzas posteriores. \\ \midrule
-			
-			RF-02 & Gestionar historial médico de la mascota & RF & Must & --- & 3.6 & Crítico para la salud animal y la transparencia de vacunas/tratamientos. \\ \midrule
-			
-			RF-03 & Consultar perfil completo de una mascota & RF & Must & --- & 5.3 & Fundamental para decisiones informadas de adoptantes e interesados en cruza. \\ \midrule
-			
-			RF-04 & Buscar y filtrar mascotas & RF & Should & --- & 2.0 & Mejora la usabilidad; el sistema podría operar inicialmente con listas generales. \\ \midrule
-			
-			RF-05 & Gestionar solicitudes de adopción & RF & Must & --- & 4.2 & Núcleo del modelo operativo: enviar, aceptar o rechazar intenciones de adopción. \\ \midrule
-			
-			RF-06 & Evaluar compatibilidad entre mascotas para cruza & RF & Must & --- & 3.3 & Requisito diferenciador; usa IA para evaluar genética y salud antes de cruzar. \\ \midrule
-			
-			RF-07 & Sistema de mensajería entre usuarios & RF & Could & --- & 1.6 & Deseable para coordinar procesos; el contacto inicial podría derivarse a canales externos. \\ \midrule
-			
-			RF-08 & Gestionar solicitudes de cruza & RF & Must & --- & 3.8 & Operación central del modelo de negocio para procesos de cruza responsable. \\ \midrule
-			
-			RF-09 & Validar la información médica de una mascota & RF & Must & --- & 4.0 & Imprescindible para la confiabilidad clínica de los datos registrados. \\ \midrule
-			
-			RF-10 & Gestionar recordatorios de controles preventivos & RF & Should & --- & 1.8 & Aporta valor al bienestar animal sin bloquear el flujo principal de adopciones. \\ \midrule
-			
-			RF-11 & Administrar la privacidad de la información & RF & Must & --- & 6.0 & Mandatorio por seguridad; el propietario define qué información es visible. \\ \midrule
-			
-			RF-12 & Verificar la identidad de los usuarios & RF & Must & --- & 4.4 & Indispensable para evitar fraudes en procesos de adopción o cruza. \\ \midrule
-			
-			RF-13 & Registrar publicaciones de mascotas & RF & Must & --- & 5.6 & Necesario para que el propietario active la disponibilidad de su mascota. \\ \midrule
-			
-			RF-14 & Gestionar carnet de vacunación & RF & Must & --- & 3.0 & Crítico para la trazabilidad sanitaria y el estado de vigencia de las dosis. \\ \midrule
-			
-			RF-15 & Consultar el historial de procesos de adopción y cruza & RF & Could & --- & 1.4 & Aporta visibilidad retrospectiva sin interferir en el registro de nuevas solicitudes. \\ \midrule
-			
-			RF-16 & Gestionar antecedentes genéticos y parentesco de la mascota & RF & Must & --- & 2.6 & Base de datos técnica obligatoria para la evaluación de compatibilidad genética. \\ \midrule
-			
-			RF-17 & Validar imágenes mediante inteligencia artificial & RF & Should & --- & 2.2 & Modera contenido inapropiado; mitigable en una primera fase con revisión reactiva. \\ \midrule
-			
-			RNF-01 & Protección de la información de propietarios y mascotas & RNF & Must & --- & 7.8 & Seguridad estricta: 0\,\% de accesos no autorizados exigido. \\ \midrule
-			
-			RNF-02 & Disponibilidad del sistema & RNF & Must & --- & 3.0 & Crítico para la operatividad continua (99\,\% mensual). \\ \midrule
-			
-			RNF-03 & Tiempo de respuesta del sistema & RNF & Should & --- & 2.4 & Mejora la eficiencia; variaciones leves no inhabilitan el uso. \\ \midrule
-			
-			RNF-04 & Facilidad de uso de la plataforma & RNF & Should & --- & 2.1 & Deseable para la adopción masiva (90\,\% de usuarios independientes). \\ \midrule
-			
-			RNF-05 & Integridad de la información médica & RNF & Must & --- & 5.5 & Innegociable: impide alteraciones no autorizadas de expedientes clínicos. \\ \midrule
-			
-			RNF-06 & Exactitud del componente de inteligencia artificial & RNF & Must & --- & 3.2 & Crucial: la IA debe alcanzar $\ge$ 85\,\% de coincidencia con diagnóstico real. \\ \midrule
-			
-			RNF-07 & Precisión en la validación de imágenes & RNF & Should & --- & 1.9 & Optimiza el filtrado; perfeccionable progresivamente tras el lanzamiento. \\ \midrule
-			
-			RNF-08 & Actualización de la información registrada & RNF & Should & --- & 1.7 & Da fiabilidad; tiempos marginalmente superiores son tolerables inicialmente. \\ \midrule
-			
-			RD-01 & Integración de componentes de inteligencia artificial & RD & Must & --- & 2.2 & Restricción ineludible: la arquitectura debe alojar módulos de IA. \\ \midrule
-			
-			RD-02 & Acceso basado en roles & RD & Must & --- & 4.5 & Base de la autenticación: separa permisos entre roles del sistema. \\ \midrule
-			
-			RD-03 & Validación profesional de la información médica & RD & Must & --- & 3.4 & La confianza clínica exige que solo veterinarias validen datos médicos. \\ \midrule
-			
-			RD-04 & Protección de datos personales & RD & Must & --- & 4.8 & Obligatorio por diseño: protege mediante autenticación datos sensibles. \\ \midrule
-			
-			RD-05 & Arquitectura modular del sistema & RD & Should & --- & 1.5 & Facilita escalar la IA y añadir funcionalidades a futuro. \\
-			
+			RF-01 & Registrar mascota & RF & Must & --- & 9,20 & Es el pilar del sistema; sin este RF no puede existir ningún perfil de mascota ni proceso posterior. \\ \midrule
+			RF-02 & Gestionar historial médico & RF & Must & --- & 3,63 & Crítico para la salud animal y para RL-03 (rectificación de datos médicos). \\ \midrule
+			RF-03 & Consultar perfil completo & RF & Must & --- & 8,67 & Fundamental para que adoptantes e interesados en cruza tomen decisiones informadas; sustenta RL-02. \\ \midrule
+			RF-04 & Buscar y filtrar mascotas & RF & Should & --- & 1,80 & Mejora la usabilidad, pero el sistema puede operar inicialmente con listas generales. \\ \midrule
+			RF-05 & Gestionar solicitudes de adopción & RF & Must & --- & 3,63 & Núcleo del modelo operativo de la plataforma. \\ \midrule
+			RF-06 & Evaluar compatibilidad para cruza & RF & Must & --- & 1,65 & Requisito diferenciador que usa IA; motivó RD-01 y exige la explicabilidad de RL-06. \\ \midrule
+			RF-07 & Sistema de mensajería & RF & Could & --- & --- & Deseable para coordinar procesos, pero el contacto inicial puede derivarse a canales externos si hay limitaciones de tiempo. \\ \midrule
+			RF-08 & Gestionar solicitudes de cruza & RF & Must & --- & 2,88 & Operación central del modelo de negocio junto a RF-05. \\ \midrule
+			RF-09 & Validar información médica & RF & Must & --- & 4,20 & Imprescindible para la confiabilidad clínica del sistema. \\ \midrule
+			RF-10 & Recordatorios de controles preventivos & RF & Should & --- & 2,80 & Aporta valor de bienestar animal, pero no bloquea el flujo principal de adopciones. \\ \midrule
+			RF-11 & Administrar privacidad & RF & Must & --- & 5,75 & Mandatorio por RL-02 y RL-05; es el RF más citado en las entrevistas (9 EV). \\ \midrule
+			RF-12 & Verificar identidad de usuarios & RF & Must & --- & 5,80 & Indispensable para evitar fraude; sustenta el consentimiento de RL-01. \\ \midrule
+			RF-13 & Registrar publicaciones & RF & Must & --- & 7,00 & Necesario para que un propietario active la disponibilidad de su mascota. \\ \midrule
+			RF-14 & Gestionar carnet de vacunación & RF & Must & --- & 4,20 & Crítico para la trazabilidad sanitaria; sustenta RL-03. \\ \midrule
+			RF-15 & Consultar historial de procesos & RF & Could & --- & --- & Aporta trazabilidad al usuario, pero no es indispensable para completar una adopción o cruza. \\ \midrule
+			RF-16 & Antecedentes genéticos y parentesco & RF & Must & --- & 2,00 & Necesario para que RF-06 pueda evaluar compatibilidad de forma responsable. \\ \midrule
+			RF-17 & Validar imágenes con IA & RF & Should & --- & 1,23 & Refuerza la seguridad del contenido, pero el sistema puede operar con moderación manual inicial. \\ \midrule
+			RF-18 & Flujo de adopción por etapas & RF & Must & --- & 1,23 & Formaliza el proceso de adopción responsable identificado en la segunda ronda de campo (EV-11, EV-16). \\ \midrule
+			RF-19 & Validar certificados veterinarios antes de cruza & RF & Should & --- & 2,60 & Refuerza la confiabilidad de RF-06, pero no bloquea su funcionamiento básico. \\ \midrule
+			RF-20 & Encuentros de socialización supervisados & RF & Could & --- & --- & Valor deseable de bienestar animal, mencionado por un solo participante (EV-13). \\ \midrule
+			RF-21 & Registrar identificador de microchip & RF & Should & --- & 3,00 & Aporta trazabilidad complementaria al carnet de vacunación. \\ \midrule
+			RF-22 & Seguimiento post-adopción & RF & Must & --- & 1,25 & Cierra el ciclo de responsabilidad de RF-18, exigido por participantes de la segunda ronda. \\ \midrule
+			RF-23 & Alertas de riesgo sanitario o físico & RF & Must & --- & 2,63 & Mitiga un riesgo real de seguridad y salud animal detectado en varias entrevistas (EV-09, EV-12, EV-15, EV-18). \\ \midrule
+			RF-24 & Trazabilidad de cepa, lote y aplicador & RF & Should & --- & 2,67 & Complementa RF-14 con datos adicionales de trazabilidad, no bloqueante. \\ \midrule
+			RF-25 & Aviso de mascota extraviada & RF & Could & --- & --- & Funcionalidad de valor social, pero fuera del núcleo de adopción/cruza del sistema. \\ \midrule
+			RNF-01 & Protección de información de propietarios y mascotas & RNF & Must & --- & --- & Requisito estricto de seguridad; sustenta RL-05 y RL-07. \\ \midrule
+			RNF-02 & Disponibilidad del sistema & RNF & Must & --- & --- & Crítico para la operatividad continua de la plataforma. \\ \midrule
+			RNF-03 & Tiempo de respuesta del sistema & RNF & Should & --- & --- & Mejora la experiencia, pero el sistema es funcional con tiempos mayores en una primera versión. \\ \midrule
+			RNF-04 & Facilidad de uso de la plataforma & RNF & Should & --- & --- & Relevante para adopción del producto, pero no bloquea sus funciones. \\ \midrule
+			RNF-05 & Integridad de la información médica & RNF & Must & --- & --- & Evita modificaciones no autorizadas del historial clínico; sustenta RL-07. \\ \midrule
+			RNF-06 & Exactitud del componente de IA & RNF & Must & --- & --- & Sin una precisión mínima, RF-06 pierde su valor diferenciador. \\ \midrule
+			RNF-07 & Precisión en validación de imágenes & RNF & Should & --- & --- & Mejora la calidad del contenido, pero RF-17 puede operar con una tasa de error inicial mayor. \\ \midrule
+			RNF-08 & Actualización de la información registrada & RNF & Should & --- & --- & Mejora la confianza del usuario, no bloquea el flujo principal. \\ \midrule
+			RNF-09 & Interoperabilidad de notificaciones & RNF & Should & --- & --- & Aporta valor (recordatorios por WhatsApp), pero el sistema opera sin ella mediante notificación interna. \\ \midrule
+			RNF-10 & Facilidad de mantenimiento del código & RNF & Should & --- & --- & Importante para sostenibilidad técnica, pero no bloquea la operación funcional del MVP. \\ \midrule
+			RNF-11 & Portabilidad entre navegadores & RNF & Should & --- & --- & Necesaria para alcance de usuarios, pero el sistema puede operar inicialmente en un navegador principal. \\ \midrule
+			RNF-12 & Escalabilidad ante crecimiento de usuarios & RNF & Could & --- & --- & Deseable a mediano plazo; no crítica mientras la base de usuarios sea reducida. \\ \midrule
+			RNF-13 & Explicabilidad de compatibilidad para cruza & RNF & Must & --- & --- & Exigido por el derecho legal a explicación (RL-06) sobre decisiones automatizadas del RF-06. \\ \midrule
+			RNF-14 & Explicabilidad de rechazo de imágenes & RNF & Should & --- & --- & Mejora la confianza del usuario, pero el sistema puede operar con un mensaje de rechazo genérico inicialmente. \\ \midrule
+			RNF-15 & Explicabilidad de moderación de mensajes & RNF & Should & --- & --- & Igual que RNF-14: deseable para confianza, no bloqueante. \\ \midrule
+			RNF-16 & Confidencialidad de ubicación y contacto & RNF & Must & --- & --- & Obligación legal directa (RL-05, principio de minimización). \\ \midrule
+			RD-01 & Integración de componentes de IA & RD & Must & --- & --- & Restricción ineludible: arquitectura del principal valor agregado de MundiPets. \\ \midrule
+			RD-02 & Acceso basado en roles & RD & Must & --- & --- & Mandatorio para diferenciar permisos de propietarios, veterinarias y administradores; sustenta RL-05 y RL-08. \\ \midrule
+			RD-03 & Validación profesional de la información médica & RD & Must & --- & --- & Exigido por los veterinarios entrevistados para garantizar confiabilidad clínica. \\ \midrule
+			RD-04 & Protección de datos personales & RD & Must & --- & --- & Implementa directamente RL-05, RL-07 y RL-08. \\ \midrule
+			RD-05 & Arquitectura modular del sistema & RD & Must & --- & --- & Facilita mantenimiento e incorporación de nuevas funcionalidades; sustenta RNF-10. \\ \midrule
+			RD-06 & Eliminación de cuenta y datos personales & RD & Must & --- & --- & Obligación legal ineludible (RL-04, derecho de supresión); sin este mecanismo el sistema incumple la LOPDP. \\ \midrule
+			RD-07 & Protocolo de notificación de vulneraciones & RD & Must & --- & --- & Exigido por RL-09 con plazos legales estrictos (5 y 3 días). \\ \midrule
+			RD-08 & Dependencia de servicios externos de mensajería & RD & Should & --- & --- & Aporta valor (RF-10) pero requiere un canal de respaldo ante caídas del proveedor. \\ \midrule
+			RD-09 & Anonimización de evidencias para publicación abierta & RD & Must & --- & --- & Exigido por los Art. 30-32 LOPDP para el uso de datos de investigación en el paquete FAIR. \\ \midrule
+			RL-01 & Consentimiento libre, específico, informado e inequívoco & RL & Must & --- & --- & Toda obligación legal es no negociable: su incumplimiento expone al proyecto a responsabilidad legal. \\ \midrule
+			RL-02 & Información de finalidad y derecho de acceso & RL & Must & --- & --- & Ídem: obligación legal directa (Art. 12-13 LOPDP). \\ \midrule
+			RL-03 & Derecho de rectificación y actualización & RL & Must & --- & --- & Ídem: obligación legal directa (Art. 14 LOPDP). \\ \midrule
+			RL-04 & Derecho de supresión de datos personales & RL & Must & --- & --- & Ídem: obligación legal directa (Art. 15 LOPDP). \\ \midrule
+			RL-05 & Minimización y seguridad de los datos & RL & Must & --- & --- & Ídem: obligación legal directa (Art. 10 LOPDP). \\ \midrule
+			RL-06 & Derecho a explicación de decisiones automatizadas & RL & Must & --- & --- & Ídem: obligación legal directa (Art. 20 LOPDP); base de todo el bloque de explicabilidad. \\ \midrule
+			RL-07 & Confidencialidad reforzada de datos sensibles y de salud & RL & Must & --- & --- & Ídem: obligación legal directa (Art. 25-30 LOPDP). \\ \midrule
+			RL-08 & Protección de datos desde el diseño y por defecto & RL & Must & --- & --- & Ídem: obligación legal directa (Art. 39 LOPDP). \\ \midrule
+			RL-09 & Notificación de vulneraciones de seguridad & RL & Must & --- & --- & Ídem: obligación legal directa (Art. 43 y 46 LOPDP), con plazos estrictos. \\
 		\end{longtable}
 	\end{landscape}
 	
-	% --------------------------------------------------------
 	\section*{Apéndice D --- Matriz de trazabilidad extendida (completa)}
 	\addcontentsline{toc}{section}{Apéndice D --- Matriz de trazabilidad extendida}
 	\label{ap:trazabilidad}
@@ -3834,9 +5184,10 @@ doi=true
 	Sección~\ref{sec:stakeholders}; las columnas HU, CA y Mockup se completan a
 	medida que se redactan las historias de usuario (Sección~\ref{sec:historias})
 	y los mockups de alta fidelidad (Sección~\ref{sec:mockups}). Debe coincidir
-	con el archivo \texttt{04\_Trazabilidad/matriz\_trazabilidad.csv}. Se
-	requiere un mínimo de 40 filas; las diez filas restantes se completan con las
-	relaciones derivadas de los RF-18 a RF-25.
+	con el archivo \texttt{04\_Trazabilidad/matriz\_trazabilidad.csv}. La matriz alcanza las 40 filas
+	exigidas: las diez filas finales (TR-31 a TR-40) recogen las relaciones
+	derivadas de los RF-18 a RF-25, del RNF-16 y del RD-09 incorporados en esta
+	entrega.
 	
 	\begin{landscape}
 		\begin{longtable}{@{}p{0.8cm} p{1.3cm} p{1.5cm} p{2.2cm} p{1.5cm} p{1.8cm} p{1.6cm} p{1.3cm} p{1.3cm} p{1.3cm} p{1.5cm}@{}}
@@ -3861,35 +5212,35 @@ doi=true
 			
 			TR-01 & --- & --- & Registro de mascota & Propietario & EV-02, EV-03, EV-05, EV-08 & RF-01 & CU-01 & HU-01 & CA-01 & MU-01 \\ \midrule
 			
-			TR-02 & LOPDP & --- & Registro clínico & Veterinaria & EV-01, EV-04 & RF-02 & CU-02 & --- & --- & --- \\ \midrule
+			TR-02 & LOPDP & --- & Registro clínico & Veterinaria & EV-01, EV-04 & RF-02 & CU-02 & HU-02 & CA-02 & --- \\ \midrule
 			
-			TR-03 & LOPDP & --- & Consulta de perfil médico & Adoptante & EV-04, EV-06, EV-08 & RF-03 & CU-10 & --- & --- & --- \\ \midrule
+			TR-03 & LOPDP & --- & Consulta de perfil médico & Adoptante & EV-04, EV-06, EV-08 & RF-03 & CU-10 & HU-03 & CA-03 & --- \\ \midrule
 			
 			TR-04 & --- & --- & Búsqueda de mascotas & Adoptante & EV-07, EV-08 & RF-04 & CU-11 & --- & --- & --- \\ \midrule
 			
-			TR-05 & --- & --- & Publicación en adopción & Propietario & EV-01, EV-02, EV-03, EV-08 & RF-05 & CU-04 & --- & --- & --- \\ \midrule
+			TR-05 & --- & --- & Publicación en adopción & Propietario & EV-01, EV-02, EV-03, EV-08 & RF-05 & CU-04 & HU-04 & CA-04 & --- \\ \midrule
 			
-			TR-06 & --- & --- & Evaluación de compatibilidad & Interesado en cruza & EV-04, EV-05, EV-06, EV-08 & RF-06 & CU-13 & --- & --- & --- \\ \midrule
+			TR-06 & --- & --- & Evaluación de compatibilidad & Interesado en cruza & EV-04, EV-05, EV-06, EV-08 & RF-06 & CU-13 & HU-05 & CA-05 & --- \\ \midrule
 			
 			TR-07 & LOPDP & --- & Mensajería entre usuarios & Propietario & EV-02, EV-07, EV-08 & RF-07 & CU-08 & --- & --- & --- \\ \midrule
 			
-			TR-08 & --- & --- & Solicitudes de cruza & Interesado en cruza & EV-01, EV-03, EV-05 & RF-08 & CU-05 & --- & --- & --- \\ \midrule
+			TR-08 & --- & --- & Solicitudes de cruza & Interesado en cruza & EV-01, EV-03, EV-05 & RF-08 & CU-05 & HU-06 & CA-06 & --- \\ \midrule
 			
-			TR-09 & --- & --- & Validación de información médica & Veterinaria & EV-03, EV-05, EV-07 & RF-09 & CU-09 & --- & --- & --- \\ \midrule
+			TR-09 & --- & --- & Validación de información médica & Veterinaria & EV-03, EV-05, EV-07 & RF-09 & CU-09 & HU-07 & CA-07 & --- \\ \midrule
 			
 			TR-10 & --- & --- & Controles preventivos & Propietario & EV-02, EV-04, EV-06 & RF-10 & CU-12 & --- & --- & --- \\ \midrule
 			
-			TR-11 & LOPDP & --- & Administrar privacidad & Propietario & EV-02, EV-05, EV-06, EV-07, EV-08 & RF-11 & CU-06 & --- & --- & --- \\ \midrule
+			TR-11 & LOPDP & --- & Administrar privacidad & Propietario & EV-02, EV-05, EV-06, EV-07, EV-08 & RF-11 & CU-06 & HU-08 & CA-08 & --- \\ \midrule
 			
-			TR-12 & LOPDP & --- & Verificar identidad & Todos los usuarios & EV-01, EV-03, EV-07, EV-08 & RF-12 & (Transversal a Onboarding) & --- & --- & --- \\ \midrule
+			TR-12 & LOPDP & --- & Verificar identidad & Todos los usuarios & EV-01, EV-03, EV-07, EV-08 & RF-12 & (Transversal a Onboarding) & HU-09 & CA-09 & --- \\ \midrule
 			
-			TR-13 & --- & --- & Registrar publicaciones & Propietario / Refugio & EV-01, EV-02, EV-07, EV-08 & RF-13 & CU-04 & --- & --- & --- \\ \midrule
+			TR-13 & --- & --- & Registrar publicaciones & Propietario / Refugio & EV-01, EV-02, EV-07, EV-08 & RF-13 & CU-04 & HU-10 & CA-10 & --- \\ \midrule
 			
-			TR-14 & --- & --- & Carnet de vacunación & Veterinaria & EV-03, EV-05, EV-07 & RF-14 & CU-03 & --- & --- & --- \\ \midrule
+			TR-14 & --- & --- & Carnet de vacunación & Veterinaria & EV-03, EV-05, EV-07 & RF-14 & CU-03 & HU-11 & CA-11 & --- \\ \midrule
 			
 			TR-15 & --- & --- & Historial de procesos & Propietario & EV-01, EV-02, EV-04, EV-06 & RF-15 & CU-07 & --- & --- & --- \\ \midrule
 			
-			TR-16 & --- & --- & Antecedentes genéticos & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RF-16 & CU-02 & --- & --- & --- \\ \midrule
+			TR-16 & --- & --- & Antecedentes genéticos & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RF-16 & CU-02 & HU-12 & CA-12 & --- \\ \midrule
 			
 			TR-17 & --- & --- & Validación de imágenes por IA & Propietario & EV-01, EV-03, EV-07, EV-08 & RF-17 & (Transversal a Publicaciones) & --- & --- & --- \\ \midrule
 			
@@ -3917,7 +5268,27 @@ doi=true
 			
 			TR-29 & LOPDP & --- & Protección de datos & Propietario & EV-02, EV-05, EV-06, EV-07 & RD-04 & CU-06 & --- & --- & --- \\ \midrule
 			
-			TR-30 & --- & --- & Arquitectura modular & Equipo desarrollador & Derivado del equipo de desarrollo & RD-05 & (Transversal a Diseño) & --- & --- & --- \\
+			TR-30 & --- & --- & Arquitectura modular & Equipo desarrollador & Derivado del equipo de desarrollo & RD-05 & (Transversal a Diseño) & --- & --- & --- \\ \midrule
+			
+			TR-31 & --- & --- & Flujo de adopción por etapas & Adoptante / Propietario & EV-11, EV-16 & RF-18 & CU-04 & HU-13 & CA-13 & --- \\ \midrule
+			
+			TR-32 & LOPDP & Art. 12 & Validación de certificados veterinarios & Veterinaria & EV-11 & RF-19 & CU-09 & --- & --- & --- \\ \midrule
+			
+			TR-33 & --- & --- & Encuentros de socialización supervisados & Propietario & EV-13 & RF-20 & CU-08 & --- & --- & --- \\ \midrule
+			
+			TR-34 & --- & --- & Identificador de microchip & Propietario / Veterinaria & EV-16 & RF-21 & CU-01 & --- & --- & --- \\ \midrule
+			
+			TR-35 & --- & --- & Seguimiento post-adopción & Adoptante / Propietario & EV-10, EV-16 & RF-22 & CU-07 & HU-14 & CA-14 & --- \\ \midrule
+			
+			TR-36 & --- & --- & Alertas de riesgo sanitario o físico & Propietario / Interesado en cruza & EV-09, EV-12, EV-15, EV-18 & RF-23 & CU-06 & HU-15 & CA-15 & --- \\ \midrule
+			
+			TR-37 & LOPDP & Art. 4 & Trazabilidad de cepa, lote y aplicador & Veterinaria / Propietario & EV-15, EV-16 & RF-24 & CU-03 & --- & --- & --- \\ \midrule
+			
+			TR-38 & --- & --- & Aviso de mascota extraviada & Propietario & EV-12, EV-16 & RF-25 & CU-04 & --- & --- & --- \\ \midrule
+			
+			TR-39 & LOPDP & Art. 9 & Confidencialidad de ubicación y contacto & Propietario & EV-12, EV-16 & RNF-16 & CU-06 & HU-08 & CA-08 & --- \\ \midrule
+			
+			TR-40 & LOPDP & Art. 30--32 & Anonimización de evidencias de campo & Equipo investigador & EV-01 a EV-18 & RD-09 & (Transversal a Datos) & --- & --- & --- \\
 			
 		\end{longtable}
 	\end{landscape}
@@ -3927,14 +5298,87 @@ doi=true
 	\addcontentsline{toc}{section}{Apéndice E --- Repositorio GitHub}
 	\label{ap:repositorio}
 	
-	\subsection*{Estructura del repositorio}
+	El trabajo del equipo se versiona en el repositorio público
+	\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}, cuya
+	estructura de carpetas se muestra en el Código~\ref{lst:estructura_repo}. La
+	organización sigue el orden de las entregas de la asignatura y cada carpeta
+	numerada corresponde a un artefacto citado en el cuerpo de este documento.
+	
+	\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq.},label={lst:estructura_repo}]
+		MundiPets-PFC-IngReq/
+		|-- 01_ERS/
+		|   |-- ERS_SRS_2A_v1_2.tex        % documento maestro
+		|   |-- referencias.bib            % 41 fuentes primarias
+		|   |-- figuras/                   % diagramas i*, UML y mockups
+		|   `-- ERS_SRS_2A_v1_2.pdf        % compilado de la entrega
+		|-- 02_Evidencias/
+		|   |-- Entrevistas/               % actas firmadas (B.3)
+		|   |-- Cuestionarios/             % exportaciones v2.0 (B.4)
+		|   |-- Observacion/               % registros de campo (B.5)
+		|   |-- Consentimientos/           % formularios firmados (B.6)
+		|   |-- Validacion_Walkthrough/    % ronda de validacion (B.7)
+		|   `-- Codificacion/              % curva de saturacion (B.8)
+		|-- 03_Corpus/
+		|   |-- corpus_RF_MundiPets_2A.json  % 25 RF etiquetados, CC BY 4.0
+		|   `-- README_dataset.md            % metadatos FAIR y licencia
+		|-- 04_Trazabilidad/
+		|   |-- matriz_trazabilidad.csv    % 40 filas, diez eslabones
+		|   `-- priorizacion_moscow_kano.csv
+		|-- 05_MVP/
+		|   |-- README.md                  % instrucciones de despliegue
+		|   |-- src/                       % codigo fuente del MVP
+		|   `-- video_demo.mp4             % evidencia de funcionamiento
+		|-- 06_Experimento/
+		|   |-- protocolo.pdf              % protocolo registrado en OSF
+		|   |-- instrumentos/              % plantillas de anotacion
+		|   `-- scripts_analisis/          % scripts de kappa y estadistica
+		`-- README.md                      % descripcion general del proyecto
+	\end{lstlisting}
+	
+	El archivo \texttt{03\_Corpus/corpus\_RF\_MundiPets\_2A.json} contiene los 25
+	requisitos funcionales de la Sección~\ref{sec:rf} serializados con los once
+	atributos del esquema de la plantilla (identificador, nombre, descripción,
+	actor, origen de evidencia, entradas, salidas, precondiciones,
+	postcondiciones, prioridad MoSCoW y criterio de verificación). Este archivo
+	es el insumo directo del detector automático de ambigüedad descrito en la
+	Sección~\ref{sec:empirico} y se deposita en Zenodo bajo licencia CC BY 4.0
+	con DOI persistente, conforme a los principios FAIR \cite{wilkinson2016}.
 	
 	\subsection*{Historial de commits}
+	
+	El historial completo de commits, con autoría por integrante, se consulta en
+	la pestaña \emph{Commits} del repositorio. El equipo mantiene mensajes de
+	commit en formato convencional (\texttt{docs(ers): \dots},
+	\texttt{feat(mvp): \dots}), de modo que la contribución individual de cada
+	integrante sea verificable para la evaluación de la asignatura.
 	
 	% --------------------------------------------------------
 	\section*{Apéndice F --- Protocolo experimental}
 	\addcontentsline{toc}{section}{Apéndice F --- Protocolo experimental}
 	\label{ap:protocolo}
+	
+	El protocolo experimental del componente empírico se distribuye además como
+	documento independiente y autocontenido en
+	\texttt{06\_Experimento/protocolo.pdf}, compilado a partir de
+	\texttt{protocolo\_experimental.tex}, cuyo contenido corresponde
+	literalmente al de la Sección~\ref{sec:empirico} de este documento. Su
+	bibliografía se gestiona en \texttt{seccion7\_referencias.bib}, subconjunto
+	de \texttt{referencias.bib} que contiene únicamente las siete entradas
+	efectivamente citadas en esa sección.
+	
+	El protocolo quedó registrado de forma previa en el Open Science Framework
+	\cite{nosek2018} antes de distribuir la rúbrica de clasificación al panel
+	experto y antes de ejecutar el detector automático sobre el corpus de
+	requisitos, conforme se detalla en la Sección~\ref{sec:osf}. Los
+	instrumentos completos --- la rúbrica de clasificación experta
+	(\texttt{rubrica\_clasificacion\_experta.xlsx}) y la plantilla de
+	consentimiento para personas evaluadoras
+	(\texttt{consentimiento\_evaluador\_experto.docx}) --- se anexan al
+	protocolo independiente y se versionan en
+	\texttt{06\_Experimento/instrumentos/}. Cualquier divergencia entre el
+	protocolo registrado en el OSF y el efectivamente ejecutado se declarará y
+	justificará de forma explícita en la Entrega 4, junto con los resultados
+	del análisis estadístico descrito en la Sección~\ref{sec:plan-analisis}.
 	
 	% --------------------------------------------------------
 	\section*{Apéndice G --- Análisis de revistas objetivo}
