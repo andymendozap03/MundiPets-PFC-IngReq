@@ -1,0 +1,107 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {table}{\numberline {1}{\ignorespaces Historial de versiones del documento.}}{1}{table.caption.1}%
+\contentsline {table}{\numberline {2}{\ignorespaces Alcance incluido en MundiPets.}}{10}{table.2}%
+\contentsline {table}{\numberline {3}{\ignorespaces Alcance excluido en MundiPets.}}{11}{table.3}%
+\contentsline {table}{\numberline {4}{\ignorespaces Definiciones, acrónimos y abreviaturas (Glosario).}}{12}{table.4}%
+\contentsline {table}{\numberline {5}{\ignorespaces Clases y características de usuarios del sistema MundiPets.}}{17}{table.5}%
+\contentsline {table}{\numberline {6}{\ignorespaces Mapa de stakeholders del sistema MundiPets.}}{18}{table.6}%
+\contentsline {table}{\numberline {7}{\ignorespaces Matriz poder/interés de stakeholders del sistema MundiPets.}}{18}{table.7}%
+\contentsline {table}{\numberline {8}{\ignorespaces Conflictos potenciales entre stakeholders del sistema MundiPets.}}{19}{table.8}%
+\contentsline {table}{\numberline {9}{\ignorespaces Matriz de especificación y trazabilidad de las interfaces de usuario.}}{27}{table.9}%
+\contentsline {table}{\numberline {10}{\ignorespaces Interfaces de software del sistema MundiPets.}}{29}{table.10}%
+\contentsline {table}{\numberline {11}{\ignorespaces RF-01 --- Registrar mascota.}}{29}{table.11}%
+\contentsline {table}{\numberline {12}{\ignorespaces RF-02 --- Gestionar historial médico de la mascota.}}{30}{table.12}%
+\contentsline {table}{\numberline {13}{\ignorespaces RF-03 --- Consultar perfil completo de una mascota.}}{30}{table.13}%
+\contentsline {table}{\numberline {14}{\ignorespaces RF-04 --- Buscar y filtrar mascotas.}}{30}{table.14}%
+\contentsline {table}{\numberline {15}{\ignorespaces RF-05 --- Gestionar solicitudes de adopción.}}{31}{table.15}%
+\contentsline {table}{\numberline {16}{\ignorespaces RF-06 --- Evaluar compatibilidad entre mascotas para cruza.}}{31}{table.16}%
+\contentsline {table}{\numberline {17}{\ignorespaces RF-07 --- Sistema de mensajería entre usuarios.}}{31}{table.17}%
+\contentsline {table}{\numberline {18}{\ignorespaces RF-08 --- Gestionar solicitudes de cruza.}}{32}{table.18}%
+\contentsline {table}{\numberline {19}{\ignorespaces RF-09 --- Validar la información médica de una mascota.}}{32}{table.19}%
+\contentsline {table}{\numberline {20}{\ignorespaces RF-10 --- Gestionar recordatorios de controles preventivos.}}{32}{table.20}%
+\contentsline {table}{\numberline {21}{\ignorespaces RF-11 --- Administrar la privacidad de la información.}}{33}{table.21}%
+\contentsline {table}{\numberline {22}{\ignorespaces RF-12 --- Verificar la identidad de los usuarios.}}{33}{table.22}%
+\contentsline {table}{\numberline {23}{\ignorespaces RF-13 --- Registrar publicaciones de mascotas.}}{33}{table.23}%
+\contentsline {table}{\numberline {24}{\ignorespaces RF-14 --- Gestionar carnet de vacunación.}}{34}{table.24}%
+\contentsline {table}{\numberline {25}{\ignorespaces RF-15 --- Consultar el historial de procesos de adopción y cruza.}}{34}{table.25}%
+\contentsline {table}{\numberline {26}{\ignorespaces RF-16 --- Gestionar antecedentes genéticos y parentesco de la mascota.}}{34}{table.26}%
+\contentsline {table}{\numberline {27}{\ignorespaces RF-17 --- Validar imágenes.}}{35}{table.27}%
+\contentsline {table}{\numberline {28}{\ignorespaces RF-18 --- Gestionar el flujo de solicitud de adopción por etapas.}}{35}{table.28}%
+\contentsline {table}{\numberline {29}{\ignorespaces RF-19 --- Validar certificados veterinarios antes de habilitar la cruza.}}{35}{table.29}%
+\contentsline {table}{\numberline {30}{\ignorespaces RF-20 --- Coordinar encuentros de socialización supervisados.}}{36}{table.30}%
+\contentsline {table}{\numberline {31}{\ignorespaces RF-21 --- Registrar el identificador de microchip de la mascota.}}{36}{table.31}%
+\contentsline {table}{\numberline {32}{\ignorespaces RF-22 --- Dar seguimiento post-adopción.}}{36}{table.32}%
+\contentsline {table}{\numberline {33}{\ignorespaces RF-23 --- Emitir alertas de riesgo sanitario o físico en interacciones y cruces.}}{36}{table.33}%
+\contentsline {table}{\numberline {34}{\ignorespaces RF-24 --- Registrar trazabilidad de cepa, lote y aplicador de cada vacuna.}}{37}{table.34}%
+\contentsline {table}{\numberline {35}{\ignorespaces RF-25 --- Publicar aviso de mascota extraviada.}}{37}{table.35}%
+\contentsline {table}{\numberline {36}{\ignorespaces Cobertura de las nueve características de calidad de ISO/IEC 25010:2023.}}{38}{table.caption.13}%
+\contentsline {table}{\numberline {37}{\ignorespaces RNF-01 --- Protección de la información de propietarios y mascotas.}}{38}{table.37}%
+\contentsline {table}{\numberline {38}{\ignorespaces RNF-02 --- Disponibilidad del sistema.}}{38}{table.38}%
+\contentsline {table}{\numberline {39}{\ignorespaces RNF-03 --- Tiempo de respuesta del sistema.}}{38}{table.39}%
+\contentsline {table}{\numberline {40}{\ignorespaces RNF-04 --- Facilidad de uso de la plataforma.}}{39}{table.40}%
+\contentsline {table}{\numberline {41}{\ignorespaces RNF-05 --- Integridad de la información médica.}}{39}{table.41}%
+\contentsline {table}{\numberline {42}{\ignorespaces RNF-06 --- Exactitud del componente de inteligencia artificial.}}{39}{table.42}%
+\contentsline {table}{\numberline {43}{\ignorespaces RNF-07 --- Precisión en la validación de imágenes.}}{40}{table.43}%
+\contentsline {table}{\numberline {44}{\ignorespaces RNF-08 --- Actualización de la información registrada.}}{40}{table.44}%
+\contentsline {table}{\numberline {45}{\ignorespaces RNF-09 --- Interoperabilidad de notificaciones con canales externos.}}{40}{table.45}%
+\contentsline {table}{\numberline {46}{\ignorespaces RNF-10 --- Facilidad de mantenimiento del código.}}{40}{table.46}%
+\contentsline {table}{\numberline {47}{\ignorespaces RNF-11 --- Portabilidad entre navegadores y dispositivos.}}{41}{table.47}%
+\contentsline {table}{\numberline {48}{\ignorespaces RNF-12 --- Escalabilidad ante crecimiento de usuarios.}}{41}{table.48}%
+\contentsline {table}{\numberline {49}{\ignorespaces RNF-13 --- Explicabilidad de la recomendación de compatibilidad para cruza (RF-06).}}{41}{table.49}%
+\contentsline {table}{\numberline {50}{\ignorespaces RNF-14 --- Explicabilidad del rechazo o aceptación de imágenes (RF-17).}}{42}{table.50}%
+\contentsline {table}{\numberline {51}{\ignorespaces RNF-15 --- Explicabilidad de la moderación de mensajes.}}{42}{table.51}%
+\contentsline {table}{\numberline {52}{\ignorespaces RNF-16 --- Confidencialidad de datos de ubicación y contacto.}}{42}{table.52}%
+\contentsline {table}{\numberline {53}{\ignorespaces Componentes de inteligencia artificial de MundiPets y sus necesidades de explicación.}}{43}{table.caption.14}%
+\contentsline {table}{\numberline {54}{\ignorespaces Trazabilidad Ley $\rightarrow $ Artículo $\rightarrow $ Requisito.}}{44}{table.caption.15}%
+\contentsline {table}{\numberline {55}{\ignorespaces RD-01 --- Integración de componentes de inteligencia artificial.}}{44}{table.55}%
+\contentsline {table}{\numberline {56}{\ignorespaces RD-02 --- Acceso basado en roles.}}{45}{table.56}%
+\contentsline {table}{\numberline {57}{\ignorespaces RD-03 --- Validación profesional de la información médica.}}{45}{table.57}%
+\contentsline {table}{\numberline {58}{\ignorespaces RD-04 --- Protección de datos personales.}}{45}{table.58}%
+\contentsline {table}{\numberline {59}{\ignorespaces RD-05 --- Arquitectura modular del sistema.}}{45}{table.59}%
+\contentsline {table}{\numberline {60}{\ignorespaces RD-06 --- Mecanismo de eliminación de cuenta y datos personales.}}{46}{table.60}%
+\contentsline {table}{\numberline {61}{\ignorespaces RD-07 --- Protocolo de notificación de vulneraciones de seguridad.}}{46}{table.61}%
+\contentsline {table}{\numberline {62}{\ignorespaces RD-08 --- Dependencia de servicios externos de mensajería.}}{46}{table.62}%
+\contentsline {table}{\numberline {63}{\ignorespaces RD-09 --- Anonimización de evidencias de campo para publicación abierta (nueva).}}{46}{table.63}%
+\contentsline {table}{\numberline {64}{\ignorespaces HU-01 --- Historia de usuario asociada al RF-01.}}{47}{table.64}%
+\contentsline {table}{\numberline {65}{\ignorespaces HU-02 --- Historia de usuario asociada al RF-02.}}{48}{table.65}%
+\contentsline {table}{\numberline {66}{\ignorespaces HU-03 --- Historia de usuario asociada al RF-03.}}{48}{table.66}%
+\contentsline {table}{\numberline {67}{\ignorespaces HU-04 --- Historia de usuario asociada al RF-05.}}{49}{table.67}%
+\contentsline {table}{\numberline {68}{\ignorespaces HU-05 --- Historia de usuario asociada al RF-06.}}{49}{table.68}%
+\contentsline {table}{\numberline {69}{\ignorespaces HU-06 --- Historia de usuario asociada al RF-08.}}{50}{table.69}%
+\contentsline {table}{\numberline {70}{\ignorespaces HU-07 --- Historia de usuario asociada al RF-09.}}{51}{table.70}%
+\contentsline {table}{\numberline {71}{\ignorespaces HU-08 --- Historia de usuario asociada al RF-11.}}{51}{table.71}%
+\contentsline {table}{\numberline {72}{\ignorespaces HU-09 --- Historia de usuario asociada al RF-12.}}{52}{table.72}%
+\contentsline {table}{\numberline {73}{\ignorespaces HU-10 --- Historia de usuario asociada al RF-13.}}{52}{table.73}%
+\contentsline {table}{\numberline {74}{\ignorespaces HU-11 --- Historia de usuario asociada al RF-14.}}{53}{table.74}%
+\contentsline {table}{\numberline {75}{\ignorespaces HU-12 --- Historia de usuario asociada al RF-16.}}{53}{table.75}%
+\contentsline {table}{\numberline {76}{\ignorespaces HU-13 --- Historia de usuario asociada al RF-18.}}{54}{table.76}%
+\contentsline {table}{\numberline {77}{\ignorespaces HU-14 --- Historia de usuario asociada al RF-22.}}{54}{table.77}%
+\contentsline {table}{\numberline {78}{\ignorespaces HU-15 --- Historia de usuario asociada al RF-23.}}{55}{table.78}%
+\contentsline {table}{\numberline {79}{\ignorespaces CU-01 --- Registrar mascota.}}{57}{table.79}%
+\contentsline {table}{\numberline {80}{\ignorespaces CU-02 --- Registrar historial médico y antecedentes genéticos.}}{58}{table.80}%
+\contentsline {table}{\numberline {81}{\ignorespaces CU-03 --- Cargar documento veterinario y carnet de vacunación.}}{58}{table.81}%
+\contentsline {table}{\numberline {82}{\ignorespaces CU-04 --- Publicar mascota en adopción.}}{58}{table.82}%
+\contentsline {table}{\numberline {83}{\ignorespaces CU-05 --- Publicar mascota para cruza y gestionar solicitud.}}{59}{table.83}%
+\contentsline {table}{\numberline {84}{\ignorespaces CU-06 --- Evaluar compatibilidad de cruza.}}{59}{table.84}%
+\contentsline {table}{\numberline {85}{\ignorespaces CU-07 --- Consultar historial de procesos de adopción y cruza.}}{60}{table.85}%
+\contentsline {table}{\numberline {86}{\ignorespaces CU-08 --- Gestionar comunicación entre usuarios.}}{60}{table.86}%
+\contentsline {table}{\numberline {87}{\ignorespaces CU-09 --- Validar información médica.}}{61}{table.87}%
+\contentsline {table}{\numberline {88}{\ignorespaces CU-10 --- Consultar perfil médico.}}{61}{table.88}%
+\contentsline {table}{\numberline {89}{\ignorespaces CU-11 --- Buscar mascota disponible.}}{62}{table.89}%
+\contentsline {table}{\numberline {90}{\ignorespaces CU-12 --- Configurar privacidad médica.}}{62}{table.90}%
+\contentsline {table}{\numberline {91}{\ignorespaces CU-13 --- Verificación de parentesco previa a la evaluación de compatibilidad.}}{63}{table.91}%
+\contentsline {table}{\numberline {92}{\ignorespaces Clasificación de requisitos y restricciones (Entrega 2A).}}{89}{table.92}%
+\contentsline {table}{\numberline {93}{\ignorespaces Priorización MoSCoW extendida (Entrega 2A).}}{92}{table.93}%
+\contentsline {table}{\numberline {94}{\ignorespaces Ranking WSJF de los RF \emph {Must} y \emph {Should} de MundiPets.}}{95}{table.94}%
+\contentsline {table}{\numberline {95}{\ignorespaces Matriz de trazabilidad extendida del proyecto MundiPets.}}{97}{table.95}%
+\contentsline {table}{\numberline {96}{\ignorespaces Cobertura de los requisitos funcionales en el MVP MundiPets.}}{98}{table.96}%
+\contentsline {table}{\numberline {97}{\ignorespaces Estructura del repositorio \texttt {MVP\_MundiPets} y trazabilidad a requisitos funcionales.}}{100}{table.97}%
+\contentsline {table}{\numberline {98}{\ignorespaces Preguntas de investigación estructuradas según el marco PICOC.}}{104}{table.caption.53}%
+\contentsline {table}{\numberline {99}{\ignorespaces Roles asignados al equipo del proyecto MundiPets.}}{110}{table.caption.54}%
+\contentsline {table}{\numberline {100}{\ignorespaces Cronograma de la Ingeniería de Requisitos -- MundiPets (Semestre 2026-2027 PPA).}}{110}{table.caption.55}%
+\contentsline {table}{\numberline {101}{\ignorespaces Registro y catálogo de evidencias del trabajo de campo.}}{111}{table.101}%
+\contentsline {table}{\numberline {102}{\ignorespaces Sesiones de validación walkthrough ejecutadas.}}{113}{table.caption.56}%
+\contentsline {table}{\numberline {103}{\ignorespaces Priorización MoSCoW, Kano y WSJF completa de requisitos MundiPets.}}{114}{table.103}%
+\contentsline {table}{\numberline {104}{\ignorespaces Matriz de trazabilidad extendida del proyecto MundiPets.}}{120}{table.104}%
+\contentsline {table}{\numberline {105}{\ignorespaces Comparación de revistas objetivo candidatas.}}{125}{table.caption.57}%
+\contentsline {table}{\numberline {106}{\ignorespaces Checklist de aceptación de la Entrega 3 (2A).}}{125}{table.caption.58}%

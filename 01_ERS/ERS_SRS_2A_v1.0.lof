@@ -1,0 +1,49 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {figure}{\numberline {1}{\ignorespaces Diagrama de dependencias estratégicas (SD) del sistema MundiPets.}}{15}{figure.caption.2}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Diagrama contextual del sistema MundiPets.}}{16}{figure.caption.3}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Diagrama de Razón Estratégica (SR) del sistema MundiPets.}}{21}{figure.caption.4}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Mockup MU-01: Crear cuenta.}}{22}{figure.caption.5}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Mockup MU-02: Registrar mascota.}}{23}{figure.caption.6}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Mockup MU-03: Agenda veterinaria y validación documental.}}{23}{figure.caption.7}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Mockup MU-04: Feed de publicaciones (búsqueda y filtrado).}}{24}{figure.caption.8}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Mockup MU-05: Solicitud de adopción o cruza.}}{24}{figure.caption.9}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Mockup MU-06: Perfil de mascota.}}{25}{figure.caption.10}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Mockup MU-07: Evaluación de compatibilidad.}}{26}{figure.caption.11}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Mockup MU-08: Configuración de privacidad de la mascota.}}{27}{figure.caption.12}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Diagrama de casos de uso general del sistema MundiPets.}}{57}{figure.caption.16}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Diagrama de clases refinado del sistema MundiPets.}}{64}{figure.caption.17}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Diagrama de secuencia del caso de uso CU-01 --- Registrar mascota.}}{65}{figure.caption.18}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Diagrama de secuencia del caso de uso CU-02 --- Registrar historial médico y antecedentes genéticos.}}{65}{figure.caption.19}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Diagrama de secuencia del caso de uso CU-03 --- Cargar documento veterinario y carnet de vacunación.}}{66}{figure.caption.20}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Diagrama de secuencia del caso de uso CU-04 --- Publicar mascota en adopción.}}{66}{figure.caption.21}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Diagrama de secuencia del caso de uso CU-05 --- Publicar mascota para cruza y gestionar solicitud.}}{67}{figure.caption.22}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Diagrama de secuencia del caso de uso CU-06 --- Evaluar compatibilidad de cruza.}}{67}{figure.caption.23}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Diagrama de secuencia del caso de uso CU-07 --- Consultar historial de procesos de adopción y cruza.}}{68}{figure.caption.24}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Diagrama de secuencia del caso de uso CU-08 --- Gestionar comunicación entre usuarios.}}{68}{figure.caption.25}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Diagrama de secuencia del caso de uso CU-09 --- Validar información médica.}}{69}{figure.caption.26}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Diagrama de secuencia del caso de uso CU-10 --- Consultar perfil médico.}}{69}{figure.caption.27}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Diagrama de secuencia del caso de uso CU-11 --- Buscar mascota disponible.}}{70}{figure.caption.28}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Diagrama de secuencia del caso de uso CU-12 --- Configurar privacidad médica.}}{70}{figure.caption.29}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Diagrama de secuencia del caso de uso CU-13 --- Verificación de parentesco previa a la evaluación de compatibilidad.}}{71}{figure.caption.30}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Diagrama de actividad del caso de uso CU-01 --- Registrar mascota.}}{72}{figure.caption.31}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Diagrama de actividad del caso de uso CU-02 --- Registrar historial médico y antecedentes genéticos.}}{73}{figure.caption.32}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Diagrama de actividad del caso de uso CU-03 --- Cargar documento veterinario y carnet de vacunación.}}{74}{figure.caption.33}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Diagrama de actividad del caso de uso CU-04 --- Publicar mascota en adopción.}}{75}{figure.caption.34}%
+\contentsline {figure}{\numberline {31}{\ignorespaces Diagrama de actividad del caso de uso CU-05 --- Publicar mascota para cruza.}}{76}{figure.caption.35}%
+\contentsline {figure}{\numberline {32}{\ignorespaces Diagrama de actividad del caso de uso CU-06 --- Evaluar compatibilidad de cruza.}}{77}{figure.caption.36}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Diagrama de actividad del caso de uso CU-07 --- Consultar historial de procesos de adopción y cruza.}}{78}{figure.caption.37}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Diagrama de actividad del caso de uso CU-08 --- Gestionar comunicación entre usuarios.}}{79}{figure.caption.38}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Diagrama de actividad del caso de uso CU-09 --- Validar información médica.}}{80}{figure.caption.39}%
+\contentsline {figure}{\numberline {36}{\ignorespaces Diagrama de actividad del caso de uso CU-10 --- Consultar perfil médico.}}{81}{figure.caption.40}%
+\contentsline {figure}{\numberline {37}{\ignorespaces Diagrama de actividad del caso de uso CU-11 --- Buscar mascota disponible.}}{82}{figure.caption.41}%
+\contentsline {figure}{\numberline {38}{\ignorespaces Diagrama de actividad del caso de uso CU-12 --- Configurar privacidad médica.}}{83}{figure.caption.42}%
+\contentsline {figure}{\numberline {39}{\ignorespaces Diagrama de actividad del caso de uso CU-13 --- Verificación de parentesco previa a la evaluación de compatibilidad.}}{84}{figure.caption.43}%
+\contentsline {figure}{\numberline {40}{\ignorespaces Diagrama de estados del perfil de mascota.}}{85}{figure.caption.44}%
+\contentsline {figure}{\numberline {41}{\ignorespaces Diagrama de estados de una solicitud de adopción o cruza.}}{86}{figure.caption.45}%
+\contentsline {figure}{\numberline {42}{\ignorespaces Diagrama de estados de verificación de documentos médicos.}}{87}{figure.caption.46}%
+\contentsline {figure}{\numberline {43}{\ignorespaces Diagrama de componentes del sistema MundiPets.}}{88}{figure.caption.47}%
+\contentsline {figure}{\numberline {44}{\ignorespaces Diagrama de despliegue del sistema MundiPets.}}{89}{figure.caption.48}%
+\contentsline {figure}{\numberline {45}{\ignorespaces Pantalla de inicio de sesión del MVP (\texttt {index.html}). Se presentan las cuatro cuentas de demostración correspondientes a los roles del sistema --- Ana Adoptante, Carlos Zambrano (propietario), Dra. Melissa Vera (veterinaria) y Jorge Intriago (interesado en cruza) --- junto con la declaración explícita de que no se emplean contraseñas reales, que materializa la forma simulada de RF-12, y el enlace de restablecimiento de los datos de ejemplo.}}{101}{figure.caption.49}%
+\contentsline {figure}{\numberline {46}{\ignorespaces Panel de inicio diferenciado por rol (\texttt {dashboard.html}) para la cuenta de Ana Adoptante. La vista lista las solicitudes activas con su etapa vigente (\enquote {Etapa 2/5 --- Entrevista}) y los seguimientos post-adopción pendientes, evidenciando el acceso basado en roles de RD-02 y los requisitos RF-18 y RF-22.}}{102}{figure.caption.50}%
+\contentsline {figure}{\numberline {47}{\ignorespaces Detalle de una solicitud de adopción (\texttt {request.html}) con el indicador de las cinco etapas del proceso (formulario, entrevista, visita al hogar, periodo de prueba y compromiso firmado) y el panel de mensajería asociado a la solicitud, que implementan RF-05, RF-07 y RF-18.}}{102}{figure.caption.51}%
+\contentsline {figure}{\numberline {48}{\ignorespaces Registro de seguimiento post-adopción (\texttt {post-adoption.html}) generado automáticamente al completarse la quinta etapa de la solicitud. La vista muestra el compromiso firmado, la fecha del próximo reporte y el estado de la mascota adoptada, correspondientes a RF-22.}}{103}{figure.caption.52}%
