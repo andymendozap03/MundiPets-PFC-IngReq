@@ -1,0 +1,5 @@
+﻿Comparacion;Kappa;Acuerdo_observado;Interpretacion
+Experto 1 vs Experto 2;0.8718;0.9400;Casi perfecto
+Experto 1 vs Experto 3;0.7541;0.8800;Sustancial
+Experto 2 vs Experto 3;0.7920;0.9000;Sustancial
+Panel completo: kappa de Fleiss;0.8044;0.9067;Casi perfecto
