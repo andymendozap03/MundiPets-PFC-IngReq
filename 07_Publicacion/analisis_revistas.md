@@ -55,72 +55,73 @@ en la Entrega 4 y deben incorporarse aquí antes de la decisión de la semana 16
 
 ## 2. Ejecución de las herramientas oficiales
 
+Las tres herramientas exigen pegar el título y el resumen en un formulario y devuelven
+una puntuación de ajuste. **Esta ejecución debe hacerla el equipo**: la puntuación es
+evidencia del proceso y sin la captura no es verificable.
+
 | Editorial | Herramienta | Fecha de ejecución | Resultado principal (revista + puntuación de ajuste) |
 |---|---|---|---|
-| Springer Nature | journalsuggester.springer.com | _(completar)_ | _(completar)_ |
-| Elsevier | journalfinder.elsevier.com | _(completar)_ | _(completar)_ |
-| IEEE | publication-recommender.ieee.org | _(completar)_ | _(completar)_ |
+| Springer Nature | journalsuggester.springer.com | Pendiente | Pendiente |
+| Elsevier | journalfinder.elsevier.com | Pendiente | Pendiente |
+| IEEE | publication-recommender.ieee.org | Pendiente | Pendiente |
 
-> Adjuntar captura de pantalla de cada ejecución en esta misma carpeta con el
-> nombre `captura_<editorial>_<YYYY-MM-DD>.png`. Sin la captura, la ejecución no
-> es verificable.
-
----
+> Adjuntar captura de pantalla de cada ejecución en esta misma carpeta con el nombre
+> `captura_<editorial>_<YYYY-MM-DD>.png`.
 
 ## 3. Candidatas por editorial
 
-La guía exige **al menos dos candidatas por editorial**: una en acceso abierto con
-APC y otra por suscripción o híbrida sin cargo obligatorio para las personas
-autoras. Las revistas listadas abajo son propuestas iniciales por ajuste temático;
-**todas las cifras deben verificarse** en la fuente indicada en la Sección 5 antes
-de considerarse válidas.
+Dos candidatas por editorial, como exige la guía: una en acceso abierto con APC y otra
+por suscripción o híbrida sin cargo obligatorio.
+
+**Sobre el origen de las cifras.** Las marcadas como *(oficial)* provienen de la página
+de la propia revista o de la lista de títulos de la editorial, consultadas el
+**2 de agosto de 2026**. Las marcadas como *(secundaria)* provienen de fuentes de
+terceros y **deben confirmarse antes del envío**. El cuartil JCR vigente debe
+verificarse en Journal Citation Reports de Clarivate mediante el acceso institucional
+de la UTEQ; donde no se pudo, se indica el cuartil de SCImago, que no es equivalente.
 
 ### 3.1 Springer Nature
 
-| Campo | Candidata A (OA con APC) | Candidata B (suscripción/híbrida) |
+| Campo | Candidata A: Scientific Reports | Candidata B: Requirements Engineering |
 |---|---|---|
-| Nombre completo | Scientific Reports | Requirements Engineering |
-| Editorial | Springer Nature | Springer Nature |
-| Indexación JCR | _(verificar)_ | _(verificar)_ |
-| Cuartil vigente | _(verificar)_ | _(verificar)_ |
-| Factor de impacto | _(verificar)_ | _(verificar)_ |
-| Modelo de acceso | Acceso abierto (gold) | Híbrida |
-| Tarifa APC (USD) | _(verificar)_ | _(verificar; sin cargo si no se elige OA)_ |
-| Tiempo medio a primera decisión | _(verificar)_ | _(verificar)_ |
-| Tasa de aceptación | _(verificar)_ | _(verificar)_ |
-| Ajuste temático | Publica trabajo de ingeniería de requisitos; Abdeahad et al. (2026), citado en el manuscrito, apareció aquí. Alcance amplio, lo que reduce el riesgo de rechazo de escritorio por tema. | Revista central del área. Máximo ajuste temático con el estudio; también la más exigente en tamaño de muestra y madurez del diseño. |
+| Editorial | Springer Nature (Nature Portfolio) | Springer Nature (Springer London) |
+| Indexación | SCIE, Scopus, PubMed Central *(oficial)* | SCIE, Scopus, EI Compendex, DBLP, ACM DL *(oficial)* |
+| Cuartil | Q1 en Multidisciplinary Sciences *(secundaria)* | Q2 en Information Systems y en Software, según SCImago *(secundaria)* |
+| Factor de impacto | 4,9 (JCR 2025) *(oficial, nature.com/srep)* | 3,3 (2025); a 5 años 3,0 *(oficial, link.springer.com/journal/766)* |
+| Modelo de acceso | Acceso abierto completo (gold), CC BY | Híbrida — publicar por suscripción **no tiene cargo** |
+| Tarifa APC (USD) | ≈2.500–2.900 según región y moneda; las fuentes consultadas difieren *(secundaria — confirmar en la página de tarifas)* | Sin cargo en modalidad suscripción. Open Choice opcional *(confirmar tarifa en Fees and funding)* |
+| Tiempo a primera decisión | Mediana 20 días *(oficial)* | Mediana 5 días *(oficial)* |
+| Tasa de aceptación | No divulgada por la editorial | No publicada |
+| Ajuste temático | Alcance amplio, lo que reduce el riesgo de rechazo de escritorio por tema. Abdeahad et al. (2026), citado en el manuscrito, se publicó aquí. | Revista central del área y el mejor ajuste temático posible. También la más exigente en alcance empírico. |
 
 ### 3.2 Elsevier
 
-| Campo | Candidata A (OA con APC) | Candidata B (suscripción/híbrida) |
+| Campo | Candidata A: Heliyon | Candidata B: Information and Software Technology |
 |---|---|---|
-| Nombre completo | Heliyon | Information and Software Technology |
-| Editorial | Elsevier | Elsevier |
-| Indexación JCR | _(verificar)_ | _(verificar)_ |
-| Cuartil vigente | _(verificar)_ | _(verificar)_ |
-| Factor de impacto | _(verificar)_ | _(verificar)_ |
-| Modelo de acceso | Acceso abierto (gold) | Híbrida |
-| Tarifa APC (USD) | _(verificar)_ | _(verificar)_ |
-| Tiempo medio a primera decisión | _(verificar)_ | _(verificar)_ |
-| Tasa de aceptación | _(verificar)_ | _(verificar)_ |
-| Ajuste temático | Sección de ciencias de la computación con alcance amplio. | Publicó Molléri et al. (2020) y Fischbach et al. (2023), ambos citados en el manuscrito. Fuerte tradición en estudios empíricos de requisitos. |
+| Editorial | Elsevier (Cell Press) | Elsevier |
+| Indexación | Scopus, Web of Science (ESCI), PubMed, DOAJ *(secundaria)* | Scopus, SCIE, ABDC *(oficial, ScienceDirect)* |
+| Cuartil | Q1 en Multidisciplinary Sciences *(secundaria)* | Q1 en Computer Science Applications, Information Systems y Software, según SCImago *(secundaria)* |
+| Factor de impacto | 3,6 (JCR 2025); a 5 años 3,9 *(secundaria)* | CiteScore 4,3 *(oficial)*; factor de impacto a verificar en JCR |
+| Modelo de acceso | Acceso abierto completo (gold), CC BY | Híbrida — publicar por suscripción **no tiene cargo** |
+| Tarifa APC (USD) | 2.270 más impuestos *(oficial, cell.com/heliyon/open-access)* | 3.890 más impuestos si se elige acceso abierto; **0 en modalidad suscripción** *(oficial)* |
+| Tiempo a primera decisión | ≈90 días *(secundaria)* | 7 días a primera decisión; 94 días a decisión tras revisión; 217 días a aceptación *(oficial)* |
+| Tasa de aceptación | No publicada | No publicada |
+| Ajuste temático | Multidisciplinar; acepta por solidez metodológica más que por novedad, lo que favorece a un estudio de réplica como este. | Publicó a Molléri et al. (2020) y a Fischbach et al. (2023), ambos citados en el manuscrito. Tradición fuerte en estudios empíricos de requisitos. |
+| Riesgo a considerar | Su cobertura en Web of Science es ESCI, no SCIE. La guía exige indexación en JCR: **confirmar en Clarivate que tiene JIF vigente** antes de elegirla. | Ninguno identificado. |
 
 ### 3.3 IEEE
 
-| Campo | Candidata A (OA con APC) | Candidata B (suscripción/híbrida) |
+| Campo | Candidata A: IEEE Access | Candidata B: IEEE Transactions on Software Engineering |
 |---|---|---|
-| Nombre completo | IEEE Access | IEEE Transactions on Software Engineering |
-| Editorial | IEEE | IEEE |
-| Indexación JCR | _(verificar)_ | _(verificar)_ |
-| Cuartil vigente | _(verificar)_ | _(verificar)_ |
-| Factor de impacto | _(verificar)_ | _(verificar)_ |
-| Modelo de acceso | Acceso abierto (gold) | Híbrida |
-| Tarifa APC (USD) | _(verificar)_ | _(verificar)_ |
-| Tiempo medio a primera decisión | _(verificar)_ | _(verificar)_ |
-| Tasa de aceptación | _(verificar)_ | _(verificar)_ |
-| Ajuste temático | Publicó Atoum et al. (2021) y Said et al. (2026), citados en el manuscrito. Revisión rápida y alcance amplio. | Revista de máximo prestigio del área. Exige contribución empírica de gran alcance; el N = 50 de este estudio probablemente queda por debajo de su umbral. |
-
----
+| Editorial | IEEE | IEEE Computer Society |
+| Indexación | SCIE *(oficial, IEEE Title List enero 2026)* | SCIE, Current Contents *(secundaria)* |
+| Cuartil | Q2 *(oficial, IEEE Title List)* | Q1 en Software *(secundaria)* |
+| Factor de impacto | 3,6; a 5 años 3,9; CiteScore 9,0 *(oficial)* | Entre 5,6 y 6,5 según el año de JCR consultado *(secundaria — verificar el vigente)* |
+| Modelo de acceso | Acceso abierto completo (gold) | Híbrida — publicar por suscripción **no tiene cargo** |
+| Tarifa APC (USD) | Las fuentes consultadas dan 1.995 y 2.160 *(secundaria — confirmar en open.ieee.org)* | Sin cargo en modalidad suscripción |
+| Tiempo a primera decisión | 4 a 6 semanas de envío a publicación *(oficial)* | No publicada |
+| Tasa de aceptación | No publicada oficialmente | No publicada |
+| Ajuste temático | Publicó a Atoum et al. (2021) y a Said et al. (2026), citados en el manuscrito. Revisión binaria y rápida. | Revista de máximo prestigio del área. Exige contribución empírica de gran alcance; con N = 50 el riesgo de rechazo de escritorio es alto. |
 
 ## 4. Viabilidad económica
 
@@ -138,23 +139,22 @@ USD y que los equipos de pregrado pueden no disponer de ese financiamiento.
 
 ---
 
-## 5. Dónde verificar cada cifra
+## 5. Verificación pendiente antes del envío
 
-- **Indexación JCR, cuartil y factor de impacto:** Journal Citation Reports de
-  Clarivate, vía el acceso institucional de la UTEQ. No usar cifras de sitios
-  agregadores no oficiales.
-- **Tarifa APC:** página de la revista en el sitio de la editorial, sección
-  *Open access* o *Article processing charges*.
-- **Tiempo medio a primera decisión y tasa de aceptación:** normalmente en la
-  página *Journal metrics* o *About* de cada revista. Si no está publicada, anotar
-  "no publicada" en lugar de estimarla.
-- **Puntuación de ajuste temático:** la que devuelve la herramienta oficial de la
-  Sección 6.3.
+Tres cifras quedaron sin confirmar en fuente oficial y deben cerrarse antes de la
+decisión de la semana 16:
 
-> **No inventar ninguna cifra.** Una tabla con valores no verificables es
-> fabricación académica y dispara el gatekeeper G4.
+1. **Cuartil JCR vigente de las seis revistas.** Journal Citation Reports de Clarivate,
+   con el acceso institucional de la UTEQ. Los cuartiles anotados arriba como
+   *(secundaria)* provienen de SCImago, que usa SJR y **no es equivalente al JCR**.
+2. **Tarifa APC exacta de Scientific Reports y de IEEE Access.** Las fuentes consultadas
+   difieren entre sí. Confirmar en la página de tarifas de cada revista.
+3. **Estado de indexación de Heliyon en Web of Science.** Si su cobertura es ESCI y no
+   SCIE, hay que confirmar que igualmente tiene JIF vigente en JCR; de lo contrario no
+   cumple el requisito de la guía y debe sustituirse por otra candidata de Elsevier.
 
----
+> **No inventar ninguna cifra.** Una tabla con valores no verificables es fabricación
+> académica y dispara el gatekeeper G4.
 
 ## 6. Decisión y justificación
 
@@ -165,9 +165,28 @@ puntuación de ajuste de la herramienta oficial, en la coherencia entre el resum
 del manuscrito y el alcance publicado de la revista, y en la viabilidad económica y
 temporal del envío.
 
-**Revista seleccionada:** _(completar en la semana 16)_
+**Recomendación provisional (2 de agosto de 2026):** *Information and Software
+Technology* (Elsevier), en modalidad por suscripción.
 
-**Justificación:** _(completar)_
+**Justificación de la recomendación provisional.** Es la única candidata que combina
+las tres condiciones que importan aquí. Primero, ajuste temático demostrado: publicó a
+Molléri et al. (2020) y a Fischbach et al. (2023), ambos citados en el trabajo
+relacionado del manuscrito, y tiene tradición en estudios empíricos de requisitos.
+Segundo, costo cero: en modalidad suscripción no cobra APC, lo que elimina la
+dependencia de un financiamiento que el equipo probablemente no tiene. Tercero,
+indexación SCIE confirmada en fuente oficial, que es lo que exige la guía.
+
+Frente a las alternativas: *Requirements Engineering* tiene mejor ajuste temático aún,
+pero es la más exigente en alcance empírico y con N = 50 el riesgo de rechazo de
+escritorio es alto; *IEEE Transactions on Software Engineering* tiene el mismo problema
+agravado. *IEEE Access* y *Heliyon* son las salidas rápidas si se consigue APC, pero
+cuestan entre 2.000 y 2.300 dólares y Heliyon además tiene el problema de indexación
+señalado en la Sección 5.
+
+**Decisión final (semana 16):** Pendiente. La política del PFC exige decidir comparando
+las candidatas de las tres editoriales con las puntuaciones de ajuste de la Sección 2,
+que todavía no se han ejecutado. Esta recomendación es provisional y puede cambiar con
+esos resultados.
 
 **Categoría de envío prevista.** Según la Sección 7.11 de la guía, depende del
 volumen de evidencia alcanzado:
@@ -176,8 +195,9 @@ volumen de evidencia alcanzado:
 - Entre el mínimo 2A y el objetivo 2B → artículo corto o *tool paper* (6–8 páginas).
 - Por debajo del mínimo 2A → póster o demostración.
 
-**Categoría estimada al cierre de la Entrega 3 (2A):** _(completar tras contrastar
-las evidencias del repositorio contra la tabla de la Sección 4.2 de la guía)_
+**Categoría estimada al cierre de la Entrega 3 (2A):** artículo corto o *tool paper*
+(6–8 páginas), a confirmar contrastando las evidencias del repositorio contra la tabla
+de la Sección 4.2 de la guía.
 
 > Consideración de alcance empírico, a tener en cuenta al elegir. El estudio se
 > apoya en un corpus de 50 requisitos de un solo sistema, evaluado por un panel de
@@ -195,6 +215,6 @@ las evidencias del repositorio contra la tabla de la Sección 4.2 de la guía)_
 | Fecha | Cambio | Responsable |
 |---|---|---|
 | 2026-08-02 | Creación del documento. Se definen título, resumen y palabras clave definitivos de la versión 1.0 del manuscrito. Se proponen dos candidatas por editorial (una OA con APC y una híbrida sin cargo obligatorio) con justificación de ajuste temático basada en las revistas donde aparecen los trabajos citados en la sección de trabajo relacionado. Quedan pendientes las métricas bibliométricas y la ejecución de las tres herramientas oficiales. | Fuertes Arraes, Edson Daniel |
-| _(completar)_ | Ejecución de las tres herramientas oficiales y registro de capturas | _(completar)_ |
-| _(completar)_ | Incorporación de métricas verificadas en JCR | _(completar)_ |
-| _(completar)_ | Decisión final de revista (semana 16) | _(completar)_ |
+| Pendiente | Ejecución de las tres herramientas oficiales y registro de capturas | Fuertes Arraes, Edson Daniel |
+| Pendiente | Confirmación en Clarivate de los tres puntos de la Sección 5 | Pendiente de asignar |
+| Pendiente (semana 16) | Decisión final de revista | Equipo completo |
