@@ -220,7 +220,7 @@ doi=true
 		\textbf{Repositorio GitHub:}\\
 		\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}
 		
-    	\textbf{Ultimo commit a considerar:}\\
+		\textbf{Ultimo commit a considerar:}\\
 		\normalsize Domingo 2 de Agosto del 2026 a las 18:00
 		
 		\vspace{1.8cm}
@@ -3981,6 +3981,81 @@ doi=true
 	\subsection{Modelo de Kano}
 	\label{sec:kano}
 	
+	\paragraph{Alcance y limitación del instrumento.}
+	El modelo de Kano \cite{kano1984} clasifica los atributos de un producto en
+	básicos, de desempeño, de deleite, indiferentes o de rechazo a partir de un
+	par de preguntas por atributo: una \emph{funcional} (cómo se sentiría la
+	persona usuaria si el sistema ofreciera el atributo) y una
+	\emph{disfuncional} (cómo se sentiría si no lo ofreciera). La categoría se
+	obtiene cruzando ambas respuestas en la matriz de evaluación del modelo.
+	
+	El cuestionario v2.0 aplicado en la segunda ronda de campo midió la
+	\textbf{importancia declarada} de cada atributo en una escala Likert de 1 a
+	5, pero \textbf{no incluyó el par funcional/disfuncional}. En consecuencia,
+	\textbf{no es posible derivar una clasificación Kano canónica a partir de
+		los datos primarios disponibles}. Declarar categorías Kano sobre estos datos
+	sería atribuir al instrumento una medición que no realizó.
+	
+	Lo que sí permite el instrumento es un ordenamiento por importancia
+	declarada, que se reporta a continuación como \textbf{aproximación} y que
+	\textbf{no constituye una clasificación Kano}. Se usa como insumo
+	complementario de la priorización MoSCoW (Sección~\ref{sec:moscow}) y del
+	cálculo WSJF (Sección~\ref{sec:wsjf}), no como sustituto del modelo.
+	
+	\paragraph{Resultados de importancia declarada.}
+	La Tabla~\ref{tab:importancia-declarada} presenta la media, el porcentaje de
+	personas que asignaron la calificación máxima y la desviación estándar de
+	cada atributo, sobre $n = 38$ respuestas válidas del cuestionario v2.0
+	(30 del perfil dominante \emph{propietario de mascota}, 5 de
+	\emph{interesado en adopción} y 3 de \emph{interesado en cruza}).
+	
+	\begin{table}[H]
+		\centering
+		\caption[Importancia declarada de los atributos (aproximación, no Kano)]{Importancia declarada de los atributos del sistema. \textbf{Aproximación basada en escala Likert; no constituye clasificación Kano.}}
+		\label{tab:importancia-declarada}
+		\small
+		\begin{tabularx}{\textwidth}{@{}l X c c c c@{}}
+			\toprule
+			\textbf{ID} & \textbf{Atributo evaluado} & \textbf{RF/RNF} & \textbf{Media} & \textbf{\% máx.} & \textbf{DE} \\
+			\midrule
+			IM-01 & Registro del historial de vacunación & RF-14, RF-24 & 4,71 & 81,6 & 0,72 \\
+			IM-02 & Registro de enfermedades y condiciones previas & RF-02 & 4,61 & 73,7 & 0,74 \\
+			IM-03 & Validación de la información médica por veterinaria & RF-09, RD-03 & 4,61 & 71,1 & 0,71 \\
+			IM-04 & Registro de desparasitaciones & RF-02 & 4,55 & 68,4 & 0,78 \\
+			IM-05 & Evaluación de compatibilidad para cruza & RF-06 & 4,45 & 55,3 & 0,68 \\
+			IM-06 & Conocer la edad de la mascota & RF-01, RF-03 & 4,39 & 57,9 & 0,87 \\
+			IM-07 & Verificación de identidad de los usuarios & RF-12 & 4,34 & 52,6 & 0,84 \\
+			IM-08 & Filtros de búsqueda por edad, raza o ubicación & RF-04 & 4,16 & 42,1 & 0,84 \\
+			IM-09 & Fotografías actualizadas de la mascota & RF-01, RF-03 & 3,95 & 28,9 & 0,89 \\
+			IM-10 & Conocer la raza de la mascota & RF-01, RF-03 & 3,84 & 39,5 & 1,20 \\
+			IM-11 & Sistema de mensajería entre usuarios & RF-07 & 3,84 & 23,7 & 0,84 \\
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	\paragraph{Lectura de los resultados.}
+	Los cuatro atributos de mayor importancia (IM-01 a IM-04) corresponden todos
+	al bloque de información clínica de la mascota y concentran entre el 68\,\%
+	y el 82\,\% de calificaciones máximas, con desviaciones estándar por debajo
+	de 0,80. Ese patrón de consenso alto y dispersión baja es coherente con
+	atributos cuya ausencia se percibe como un defecto del producto, y respalda
+	la clasificación \emph{Must have} que ya reciben en MoSCoW.
+	
+	En el extremo opuesto, la mensajería entre usuarios (IM-11) y las
+	fotografías actualizadas (IM-09) obtienen menos del 30\,\% de calificación
+	máxima, y el atributo raza (IM-10) presenta la mayor dispersión de todo el
+	instrumento ($DE = 1{,}20$), lo que indica desacuerdo real entre perfiles y
+	no indiferencia generalizada. Estos tres atributos se mantienen como
+	\emph{Should have} o \emph{Could have}.
+	
+	\paragraph{Trabajo pendiente.}
+	Para obtener una clasificación Kano legítima se requiere un instrumento
+	v3.0 que incorpore, por cada atributo de la Tabla~\ref{tab:importancia-declarada},
+	el par de preguntas funcional y disfuncional con las cinco opciones de
+	respuesta del modelo, y su aplicación a una nueva muestra. Esta ampliación
+	se difiere a la Entrega 4 (2B) y se declara como limitación del diseño en la
+	Sección~\ref{sec:amenazas}.
+	
 	\subsection{Valor de negocio con WSJF}
 	\label{sec:wsjf}
 	
@@ -4073,32 +4148,65 @@ doi=true
 	\subsection{Matriz de trazabilidad extendida}
 	\label{sec:trazabilidad}
 	
-	\begin{landscape}
-		\begin{longtable}{@{}p{0.8cm} p{1.3cm} p{1.5cm} p{2.2cm} p{1.5cm} p{1.5cm} p{1.3cm} p{1.3cm} p{1.3cm} p{1.8cm} p{1.5cm}@{}}
-			\caption{Matriz de trazabilidad extendida del proyecto MundiPets.}
-			\label{tab:trazabilidad}\\
+	La matriz de trazabilidad extendida enlaza, para cada elemento del sistema,
+	la cadena completa Ley $\rightarrow$ Objetivo $\rightarrow$ Interesado
+	$\rightarrow$ Identificador de Evidencia $\rightarrow$ RF/RNF/RD
+	$\rightarrow$ Caso de Uso $\rightarrow$ Historia de Usuario
+	$\rightarrow$ Criterio de Aceptación $\rightarrow$ Mockup. A continuación se
+	muestra la primera fila a modo de ejemplo del formato empleado;
+	\textbf{la matriz completa, con sus 40 filas (TR-01 a TR-40), se presenta en
+		el Apéndice~D} y se versiona además como
+	\texttt{04\_Trazabilidad/matriz\_trazabilidad.csv} en el repositorio. La
+	versión en CSV incorpora además las columnas \emph{Tipo} (RF, RNF o RD) e
+	\emph{ID-Componente}, que enlazan cada fila con los cinco componentes de
+	software definidos en la Sección~\ref{sec:componentes}; ambas se omiten en la
+	versión impresa por restricciones de ancho de página.
+	
+	\paragraph{Cobertura alcanzada.}
+	La matriz cubre los 50 elementos especificados en este documento: los 25
+	requisitos funcionales, los 16 no funcionales y las 9 restricciones de
+	diseño. Cada fila parte de al menos una evidencia del catálogo del
+	Apéndice~B.1, de modo que ningún requisito queda sin respaldo empírico. De
+	las 50 filas, 22 declaran una obligación legal explícita de la LOPDP con su
+	artículo correspondiente, 17 enlazan hasta una historia de usuario con su
+	criterio de aceptación --- las de los requisitos funcionales de prioridad
+	\emph{Must} --- y 18 hasta un prototipo de interfaz. Los tramos sin enlace se
+	deben a la naturaleza del elemento y no a información faltante; el criterio
+	de lectura se detalla en el Apéndice~D.
+	
+	\paragraph{Uso previsto de la matriz.}
+	Más allá del cumplimiento formal, la matriz opera como instrumento de
+	verificación en dos direcciones. Hacia atrás permite responder, ante
+	cualquier requisito, de qué evidencia concreta proviene y qué persona
+	participante lo motivó. Hacia adelante permite identificar el impacto de un
+	cambio: modificar un requisito obliga a revisar el caso de uso, la historia
+	de usuario, el criterio de aceptación y el prototipo asociados. Esta segunda
+	lectura es la que se empleará durante el desarrollo del Producto Mínimo
+	Viable (Sección~\ref{sec:mvp}).
+	
+	\begin{table}[H]
+		\centering
+		\caption{Estructura de la matriz de trazabilidad extendida (formato de las 50 filas del Apéndice~D).}
+		\label{tab:trazabilidad}
+		\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
 			\toprule
-			\textbf{ID} & \textbf{Ley} & \textbf{Artículo} & \textbf{Objetivo} & \textbf{Stake\-holder} & \textbf{ID-EV} & \textbf{ID-RF} & \textbf{ID-CU} & \textbf{ID-HU} & \textbf{ID-CA} & \textbf{Mockup} \\
+			\textbf{Columna} & \textbf{Contenido y ejemplo (fila TR-01)} \\
 			\midrule
-			\endfirsthead
-			
-			\multicolumn{11}{@{}l}{\small\itshape (continuación de la Tabla \ref{tab:trazabilidad})}\\
-			\toprule
-			\textbf{ID} & \textbf{Ley} & \textbf{Artículo} & \textbf{Objetivo} & \textbf{Stake\-holder} & \textbf{ID-EV} & \textbf{ID-RF} & \textbf{ID-CU} & \textbf{ID-HU} & \textbf{ID-CA} & \textbf{Mockup} \\
-			\midrule
-			\endhead
-			
-			\midrule
-			\multicolumn{11}{r@{}}{\small\itshape continúa en la página siguiente}\\
-			\endfoot
-			
+			ID & Identificador de la fila --- TR-01 \\
+			Ley & Norma que origina la obligación, si existe --- LOPDP \\
+			Artículo & Artículo concreto de la norma --- Art. 7 y 8 \\
+			Objetivo & Objetivo de negocio al que sirve --- Registro de mascota \\
+			Stakeholder & Parte interesada responsable o beneficiaria --- Propietario \\
+			ID-EV & Evidencias de campo que lo respaldan --- EV-02, EV-03, EV-05, EV-08 \\
+			ID-RF & Requisito funcional, no funcional o restricción --- RF-01 \\
+			ID-CU & Caso de uso que lo realiza --- CU-01 \\
+			ID-HU & Historia de usuario asociada --- HU-01 \\
+			ID-CA & Criterio de aceptación en Gherkin --- CA-01 \\
+			Mockup & Prototipo de interfaz que lo soporta --- MU-02 \\
 			\bottomrule
-			\endlastfoot
-			
-			TR-01 & LOPDP & --- & --- & Propietario & EV-02 & RF-01 & CU-01 & HU-01 & CA-01 & MU-01 \\
-			
-		\end{longtable}
-	\end{landscape}
+		\end{tabularx}
+	\end{table}
 	
 	% ############################################################
 	%          SECCION 6 -- PRODUCTO MINIMO VIABLE (MVP)
@@ -4696,12 +4804,11 @@ doi=true
 	de distribuir la rúbrica de clasificación al panel experto y antes de
 	ejecutar el detector automático sobre el corpus de requisitos. El registro
 	puede consultarse en:
-	\url{https://osf.io/zr2s7/overview?view_only=545c488adaf64b99b254adde0e6cb7a5}.
-	Al momento de redactar esta sección, el registro se encuentra en estado
-	\emph{pendiente de aprobación} (moderación estándar de OSF posterior al
-	envío); esto no afecta la validez de la marca de tiempo, ya que el
-	contenido del registro queda congelado desde el momento del envío, con
-	independencia de su posterior aprobación.
+	\url{https://osf.io/khyf2/overview}.
+	El registro fue \textbf{aceptado} tras la moderación estándar de OSF
+	posterior al envío. La marca de tiempo corresponde al momento del envío, en
+	el que el contenido del registro queda congelado, con independencia de la
+	fecha de aprobación.
 	
 	\subsection{Amenazas a la validez previstas}
 	\label{sec:amenazas}
@@ -4811,6 +4918,69 @@ doi=true
 	\section{Conclusiones}
 	\label{sec:conclusiones}
 	
+	Esta entrega consolida la Especificación de Requisitos de Software de
+	MundiPets como un documento completo, verificable y sustentado en evidencia
+	de campo. El resultado principal es que la totalidad de los requisitos
+	especificados --- 25 requisitos funcionales, 16 no funcionales y 9
+	restricciones de diseño --- queda trazada hasta al menos una evidencia
+	primaria del catálogo del Apéndice~B.1, y ninguna afirmación sustantiva del
+	documento se apoya únicamente en la deliberación interna del equipo.
+	
+	\paragraph{Sobre la completitud de la especificación.}
+	La segunda ronda de campo amplió el corpus de evidencias de 8 a 22 unidades,
+	incorporando entrevistas adicionales, un cuestionario con 38 respuestas
+	válidas y cuatro sesiones de validación \emph{walkthrough} con usuarios
+	técnicos y no técnicos. La curva de saturación temática
+	(Sección~\ref{sec:codificacion}) alcanza cero códigos nuevos en la evidencia
+	EV-17, lo que indica que el corpus de elicitación llegó al punto de
+	saturación antes de cerrar la ronda. Los ocho requisitos incorporados en esta
+	entrega (RF-18 a RF-25) no surgieron de una revisión de escritorio sino de
+	necesidades expresadas por participantes concretos, lo que explica que la
+	especificación crezca sin que la saturación se vea contradicha: las
+	entrevistas finales aportaron matices sobre categorías ya identificadas más
+	que categorías nuevas.
+	
+	\paragraph{Sobre el marco legal y la explicabilidad.}
+	El mapeo de la Ley Orgánica de Protección de Datos Personales del Ecuador
+	\cite{lopdp2021} contra los requisitos (Sección~\ref{sec:legales}) mostró que
+	el marco legal no es un anexo del diseño sino una fuente de requisitos por
+	derecho propio: el Art.~20, sobre decisiones automatizadas, es la base
+	directa de los tres requisitos de explicabilidad (RNF-13, RNF-14 y RNF-15),
+	que de otro modo se habrían tratado como una preocupación de usabilidad. La
+	decisión de tratar la explicabilidad como requisito no funcional medible,
+	siguiendo a Chazette y Schneider \cite{chazette2020}, obligó a definir
+	métricas concretas --- extensión máxima de la explicación, tiempo de
+	generación y comprensión reportada --- en lugar de enunciados genéricos sobre
+	transparencia.
+	
+	\paragraph{Sobre las limitaciones reconocidas.}
+	El documento declara de forma expresa aquello que no pudo establecerse con
+	los datos disponibles. La clasificación según el modelo de Kano no se derivó
+	porque el cuestionario v2.0 midió importancia declarada pero no incluyó el
+	par de preguntas funcional y disfuncional que el modelo exige
+	(Sección~\ref{sec:kano}); en su lugar se reporta una aproximación rotulada
+	como tal. Del mismo modo, tres requisitos funcionales de prioridad
+	\emph{Must} (RF-18, RF-22 y RF-23) aún no cuentan con prototipo de interfaz
+	asociado. Reconocer estos límites es preferible a presentarlos como
+	resueltos, y ambos quedan como trabajo inmediato.
+	
+	\paragraph{Sobre el componente empírico.}
+	El protocolo del estudio de detección automática de ambigüedad quedó
+	registrado en el Open Science Framework antes de iniciar la recolección de
+	datos, lo que fija la marca temporal del diseño con independencia de los
+	resultados obtenidos. Esta decisión metodológica es la que permitirá, en la
+	Entrega 4, reportar los hallazgos sin sospecha de ajuste posterior de las
+	hipótesis.
+	
+	\paragraph{Trabajo inmediato.}
+	Las prioridades para el cierre del semestre son cuatro: completar los tres
+	prototipos de interfaz pendientes; ampliar el instrumento a una versión v3.0
+	que habilite la clasificación Kano; ejecutar el plan de análisis estadístico
+	completo sobre los datos ya recolectados; y consolidar el paquete de datos
+	anonimizado para su depósito con identificador persistente, siguiendo los
+	principios FAIR \cite{wilkinson2016} y las prácticas de citación de software
+	\cite{smith2016}.
+	
 	% ############################################################
 	%                        REFERENCIAS
 	% ############################################################
@@ -4902,10 +5072,23 @@ doi=true
 	
 	\subsection*{B.1 Registro y catálogo de evidencias}
 	
-	La Tabla~\ref{tab:catalogo-evidencias} consolida las dieciocho evidencias de campo
+	La Tabla~\ref{tab:catalogo-evidencias} consolida las veintidós evidencias de campo
 	recogidas por el equipo, indicando el tipo de instrumento aplicado, el participante
 	o fuente, los requisitos derivados de cada una y si se cuenta con el consentimiento
 	informado firmado correspondiente (Apéndice~B.6).
+	
+	\textbf{Codificación de participantes.} En cumplimiento de la restricción
+	RD-09 y de la Ley Orgánica de Protección de Datos Personales del Ecuador
+	\cite{lopdp2021}, ninguna persona participante se identifica por su nombre
+	en este documento ni en los artefactos públicos del repositorio. Se emplean
+	códigos de participante con el prefijo \texttt{PROP-XX} para propietarios de
+	mascota, \texttt{VET-XX} para profesionales veterinarios y \texttt{OBS-XX}
+	para establecimientos observados. La tabla de correspondencia entre código y
+	persona real no se publica: permanece en la zona restringida
+	(\texttt{02\_Evidencias/00\_Restringido/}) bajo custodia del equipo y del
+	docente responsable. Una misma persona puede estar asociada a más de una
+	evidencia; por ejemplo, quien participó en una entrevista y posteriormente
+	en una sesión de validación conserva el mismo código.
 	
 	{\small
 		\begin{longtable}{@{}>{\raggedright\arraybackslash}p{1.2cm} >{\raggedright\arraybackslash}p{3.1cm} >{\raggedright\arraybackslash}p{3.1cm} >{\raggedright\arraybackslash}p{6.0cm} >{\raggedright\arraybackslash}p{1.4cm}@{}}
@@ -4922,41 +5105,49 @@ doi=true
 			\endhead
 			\bottomrule
 			\endlastfoot
-			EV-01 & Entrevista grabada, audio, video y consentimiento & Joseph Orlando Saltos Tello, propietario de mascota & RF-01, RF-03, RF-05, RF-07, RF-08, RF-12, RF-13 & Sí \\
+			EV-01 & Entrevista grabada, audio, video y consentimiento & PROP-01 (propietario de mascota) & RF-01, RF-03, RF-05, RF-07, RF-08, RF-12, RF-13 & Sí \\
 			\addlinespace
-			EV-02 & Entrevista grabada, audio, video y consentimiento & Lesly Sheyla Flores Secaira, propietaria de mascota & RF-01, RF-02, RF-03, RF-05, RF-07, RF-08, RF-10, RF-11, RF-13, RF-14, RF-15 & Sí \\
+			EV-02 & Entrevista grabada, audio, video y consentimiento & PROP-02 (propietaria de mascota) & RF-01, RF-02, RF-03, RF-05, RF-07, RF-08, RF-10, RF-11, RF-13, RF-14, RF-15 & Sí \\
 			\addlinespace
-			EV-03 & Entrevista grabada, audio, video y consentimiento & Mariella Fernanda Chacón Morales, médica veterinaria & RF-01, RF-02, RF-05, RF-06, RF-08, RF-09, RF-12, RF-14, RF-16, RF-17, RNF-01, RNF-05, RNF-06, RNF-07, RD-03, RD-04 & Sí \\
+			EV-03 & Entrevista grabada, audio, video y consentimiento & VET-01 (médica veterinaria) & RF-01, RF-02, RF-05, RF-06, RF-08, RF-09, RF-12, RF-14, RF-16, RF-17, RNF-01, RNF-05, RNF-06, RNF-07, RD-03, RD-04 & Sí \\
 			\addlinespace
-			EV-04 & Entrevista grabada, audio, video y consentimiento & Kevin Andrés Rosado Palma, veterinario & RF-02, RF-03, RF-06, RF-10, RF-13, RF-15, RNF-06, RNF-08, RD-03 & Sí \\
+			EV-04 & Entrevista grabada, audio, video y consentimiento & VET-02 (veterinario) & RF-02, RF-03, RF-06, RF-10, RF-13, RF-15, RNF-06, RNF-08, RD-03 & Sí \\
 			\addlinespace
-			EV-05 & Entrevista grabada, audio, video y consentimiento & Bryan Steven Monserrate Arévalo, médico veterinario & RF-01, RF-02, RF-03, RF-05, RF-06, RF-08, RF-09, RF-11, RF-13, RF-14, RF-16, RF-17, RNF-01, RNF-05, RD-03, RD-04 & Sí \\
+			EV-05 & Entrevista grabada, audio, video y consentimiento & VET-03 (médico veterinario) & RF-01, RF-02, RF-03, RF-05, RF-06, RF-08, RF-09, RF-11, RF-13, RF-14, RF-16, RF-17, RNF-01, RNF-05, RD-03, RD-04 & Sí \\
 			\addlinespace
-			EV-06 & Entrevista grabada, audio, video y consentimiento & Elizabeth Mendoza Arana, propietaria de mascota & RF-01, RF-02, RF-03, RF-05, RF-08, RF-10, RF-11, RF-13, RF-14, RF-15 & Sí \\
+			EV-06 & Entrevista grabada, audio, video y consentimiento & PROP-03 (propietaria de mascota) & RF-01, RF-02, RF-03, RF-05, RF-08, RF-10, RF-11, RF-13, RF-14, RF-15 & Sí \\
 			\addlinespace
 			EV-07 & Cuestionario digital, formularios y resultados exportados & Usuarios potenciales encuestados & RF-01, RF-03, RF-04, RF-06, RF-07, RF-08, RF-11, RF-12, RF-13, RF-17, RNF-03, RNF-04, RNF-07 & No \\
 			\addlinespace
-			EV-08 & Observación presencial del proceso actual en una clínica veterinaria, con fotografías fechadas del entorno y consentimiento informado firmado por la veterinaria observada & Veterinaria ``Amigo fiel'' & RF-01, RF-03, RF-04, RF-05, RF-06, RF-07, RF-11, RF-12, RF-13, RF-17, RNF-01, RNF-04 & Si \\
+			EV-08 & Observación presencial del proceso actual en una clínica veterinaria, con fotografías fechadas del entorno y consentimiento informado firmado por la veterinaria observada & OBS-01 (establecimiento veterinario) & RF-01, RF-03, RF-04, RF-05, RF-06, RF-07, RF-11, RF-12, RF-13, RF-17, RNF-01, RNF-04 & Si \\
 			\addlinespace
-			EV-09 & Entrevista grabada, audio, video y consentimiento & Fernando Arraes, propietario de mascota & RF-11, RF-12, RF-23, RNF-09 & Si \\
+			EV-09 & Entrevista grabada, audio, video y consentimiento & PROP-04 (propietario de mascota) & RF-11, RF-12, RF-23, RNF-09 & Si \\
 			\addlinespace
-			EV-10 & Entrevista grabada, audio, video y consentimiento & José Nivela, propietario de mascota & RF-11, RF-14, RF-22 & Si \\
+			EV-10 & Entrevista grabada, audio, video y consentimiento & PROP-05 (propietario de mascota) & RF-11, RF-14, RF-22 & Si \\
 			\addlinespace
-			EV-11 & Entrevista grabada, audio, video y consentimiento & Adriana Zulema Córdova, usuaria potencial & RF-06, RF-10, RF-18, RF-19, RNF-13 & Sí \\
+			EV-11 & Entrevista grabada, audio, video y consentimiento & PROP-06 (propietaria de mascota) & RF-06, RF-10, RF-18, RF-19, RNF-13 & Sí \\
 			\addlinespace
-			EV-12 & Entrevista grabada, audio, video y consentimiento & Esperanza Sánchez Zumba, usuaria potencial & RF-23, RF-25 & Sí \\
+			EV-12 & Entrevista grabada, audio, video y consentimiento & PROP-07 (propietaria de mascota) & RF-23, RF-25 & Sí \\
 			\addlinespace
-			EV-13 & Entrevista grabada, audio, video y consentimiento & Johan Alcivar, usuario potencial & RF-06, RF-20, RNF-13 & Sí \\
+			EV-13 & Entrevista grabada, audio, video y consentimiento & PROP-08 (propietario de mascota) & RF-06, RF-20, RNF-13 & Sí \\
 			\addlinespace
-			EV-14 & Entrevista grabada, audio, video y consentimiento & Manuel Francisco Morales Haz, usuario potencial & RF-03, RF-06, RF-11, RF-16 & Sí \\
+			EV-14 & Entrevista grabada, audio, video y consentimiento & PROP-09 (propietario de mascota) & RF-03, RF-06, RF-11, RF-16 & Sí \\
 			\addlinespace
-			EV-15 & Entrevista grabada, audio, video y consentimiento & Mayerli Vélez, veterinaria & RF-02, RF-09, RF-16, RF-23, RF-24, RNF-13 & Sí \\
+			EV-15 & Entrevista grabada, audio, video y consentimiento & VET-04 (veterinaria) & RF-02, RF-09, RF-16, RF-23, RF-24, RNF-13 & Sí \\
 			\addlinespace
-			EV-16 & Entrevista grabada, audio, video y consentimiento & John Hernán Párraga Vélez, veterinario & RF-02, RF-09, RF-14, RF-18, RF-21, RF-22, RF-24, RNF-13 & Sí \\
+			EV-16 & Entrevista grabada, audio, video y consentimiento & VET-05 (veterinario) & RF-02, RF-09, RF-14, RF-18, RF-21, RF-22, RF-24, RNF-13 & Sí \\
 			\addlinespace
-			EV-17 & Entrevista grabada, audio, video y consentimiento & Angelina Julcey Llerena Abril, usuaria potencial & Refuerza RNF-13 & Sí \\
+			EV-17 & Entrevista grabada, audio, video y consentimiento & PROP-10 (propietaria de mascota) & Refuerza RNF-13 & Sí \\
 			\addlinespace
-			EV-18 & Entrevista grabada, audio, video y consentimiento & Milena Noemí Molina Ortega, usuaria potencial & RF-11, RF-23, RNF-09, RD-04 & Sí \\
+			EV-18 & Entrevista grabada, audio, video y consentimiento & PROP-11 (propietaria de mascota) & RF-11, RF-23, RNF-09, RD-04 & Sí \\
+			\addlinespace
+			EV-19 & Sesión de validación (\emph{walkthrough}) grabada en video & PROP-08 (propietario de mascota, usuario no técnico) & Validación de RF-01 a RF-17 & Sí \\
+			\addlinespace
+			EV-20 & Sesión de validación (\emph{walkthrough}) grabada en video & PROP-02 (propietaria de mascota, usuaria no técnica) & Validación de RF-01 a RF-08, RF-11 a RF-17 & Sí \\
+			\addlinespace
+			EV-21 & Sesión de validación (\emph{walkthrough}) grabada en video, con consentimiento & VET-04 (veterinaria, usuaria técnica) & Validación de RF-01 a RF-08, RF-11 a RF-17 & Sí \\
+			\addlinespace
+			EV-22 & Sesión de validación (\emph{walkthrough}) grabada en video, con consentimiento & VET-06 (veterinario, usuario técnico) & Validación de RF-01 a RF-17 & Sí \\
 			\addlinespace
 		\end{longtable}
 	}
@@ -5025,11 +5216,903 @@ doi=true
 	
 	\subsection*{B.3 Actas de entrevista firmadas}
 	
+	Se levantó un acta por cada entrevista de la segunda ronda de campo. Cada
+	acta registra la fecha, el código de participante, el rol, la persona
+	entrevistadora y la técnica aplicada, seguidos del resumen de preguntas y
+	respuestas. Los originales firmados residen en la zona restringida del
+	repositorio y las copias enmascaradas en
+	\texttt{02\_Evidencias/Validacion\_Walkthrough/} y
+	\texttt{02\_Evidencias/Documentos\_Organizacion/}. En cumplimiento de la
+	RD-09, las personas entrevistadas se identifican únicamente por su código.
+	
+	
+	\subsubsection*{Acta de entrevista 9 --- PROP-04}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 26/07/2026 \\
+			
+			Entrevistado & PROP-04 \\
+			
+			Cargo/Rol & Dueño de mascota \\
+			
+			Entrevistador & Fuertes Arraes Edson Fuertes \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 9)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Cómo suele conocer el estado de salud de su mascota? & Identifica el estado de salud por cambios en la conducta habitual: sus mascotas se muestran distantes y decaídas cuando enferman. Interpreta las señales de forma individual (quietud en la hembra, normalmente activa; no acudir al llamado en el macho, de temperamento calmado) y considera que la prevención debe anteceder a la enfermedad. \\ \addlinespace
+			
+			¿Qué información considera necesaria antes de dejar a su mascota interactuar con otras mascotas? & Que el otro animal no sea agresivo ni tenga una diferencia de tamaño considerable (riesgo de peleas y lesiones), y que no presente signos evidentes de enfermedades contagiosas como moquillo o sarna. \\ \addlinespace
+			
+			¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios? & Realiza chequeos preventivos cada seis a ocho meses, mantiene el esquema de vacunación de cachorro y esterilizó a la hembra. Trata de inmediato afecciones menores (pulgas, garrapatas). Señala el tiempo como su mayor dificultad y, en segundo lugar, el costo económico en casos graves. \\ \addlinespace
+			
+			¿Qué información considera privada o sensible sobre su mascota? & La existencia de enfermedades transmisibles (moquillo, sarna), por el estigma social que generan; su divulgación entre vecinos ha derivado históricamente en casos de animales envenenados, por lo que prefiere gestionar de inmediato la atención profesional. \\ \addlinespace
+			
+			¿Qué información considera necesaria sobre el historial médico de una mascota? & El registro de alergias, dato vital porque condiciona la elección del medicamento; también el historial de vacunas y desparasitaciones, enfermedades congénitas y enfermedades contagiosas. \\ \addlinespace
+			
+			¿Qué información considera más importante conocer sobre una mascota antes de adoptarla? & La condición de salud, el estado de vacunación, el peso y la edad. Prefiere animales jóvenes o recién nacidos por la facilidad de vínculo y se declara indiferente respecto de la raza. \\ \addlinespace
+			
+			¿Qué problemas considera más comunes en procesos de adopción? & La falta de transparencia de algunos albergues sobre edad, vacunación o desparasitación (por saturación y falta de financiamiento fijo); casos de mascotas que superan el tamaño anunciado; y estafas en adopciones en línea con cobros sucesivos por envío e implementos. \\ \addlinespace
+			
+			¿Qué factores influyen en su decisión al momento de elegir una mascota? & El estado de vacunación, la existencia de enfermedades de nacimiento y la edad del animal. No considera la raza un criterio determinante y prefiere ejemplares jóvenes. \\ \addlinespace
+			
+			¿Cómo decide si una mascota es compatible con otra? & Atribuye la compatibilidad a la crianza recibida: el maltrato genera agresividad, mientras que la alimentación, el afecto y el espacio para liberar estrés generan sociabilidad. Verifica mediante un encuentro supervisado, observando el lenguaje corporal (olfateo y juego). \\ \addlinespace
+			
+			¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas? & Conocer previamente al dueño del otro ejemplar, su residencia y las condiciones de la vivienda; revisar el historial de vacunas y médico completo descartando enfermedades contagiosas; rechaza cruces entre tamaños dispares y condena la explotación reproductiva con fines comerciales. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	
+	\subsubsection*{Acta de entrevista 10 --- PROP-05}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 26/07/2026 \\
+			
+			Entrevistado & PROP-05 \\
+			
+			Cargo/Rol & Dueño de mascota \\
+			
+			Entrevistador & Fuertes Arraes Edson Fuertes \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 10)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Cómo suele conocer el estado de salud de su mascota? & Tras años de convivencia, reconoce el estado de salud por el ánimo y los hábitos cotidianos (menor apetito, menor actividad, desinterés por el juego). Observa de medio día a un día para descartar un malestar momentáneo antes de acudir al veterinario. \\ \addlinespace
+			
+			¿Qué información considera necesaria antes de dejar a su mascota interactuar con otras mascotas? & Tener certeza de que el otro animal no padezca enfermedades de contacto directo (sarna, pulgas) y evitar animales de conducta agresiva. \\ \addlinespace
+			
+			¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios? & Lleva un registro manual en una libreta con las vacunas y la fecha de esterilización, con controles cada seis meses. El método es frágil (ha extraviado la libreta varias veces); enfrenta dificultades de tiempo y costo (esperas de 3-4 horas, gastos superiores a \$50) y no cuenta con una veterinaria fija, lo que fragmenta el historial de su mascota. \\ \addlinespace
+			
+			¿Qué información considera privada o sensible sobre su mascota? & Postura mayoritariamente abierta, pues considera que la información de salud puede beneficiar al animal ante un problema médico. Delimita como sensibles el tipo de sangre y las enfermedades que podrían afectarlo, a compartir solo con el veterinario. \\ \addlinespace
+			
+			¿Qué información considera necesaria sobre el historial médico de una mascota? & Por analogía con el expediente médico humano: tipo de sangre, resistencias o alergias a medicamentos, esquema de vacunación y antecedente de esterilización, siempre disponibles antes de la consulta. \\ \addlinespace
+			
+			¿Qué información considera más importante conocer sobre una mascota antes de adoptarla? & La totalidad de la condición del animal, en especial problemas médicos o discapacidades físicas visibles; aclara que esto no es un impedimento para adoptar, sino un requisito para asumir el cuidado con pleno conocimiento. \\ \addlinespace
+			
+			¿Qué problemas considera más comunes en procesos de adopción? & Relata haber desistido de una adopción por exigencia excesiva de información personal (datos financieros, estado civil, residencia); reconoce la legitimidad de esos filtros pero pide mayor flexibilidad. Señala también la falta de información clara sobre el estado médico y las discapacidades del animal. \\ \addlinespace
+			
+			¿Qué factores influyen en su decisión al momento de elegir una mascota? & El tamaño del animal (su vivienda es reducida) y los gastos de manutención; se declara indiferente respecto de la raza, priorizando al animal por encima del pedigrí. \\ \addlinespace
+			
+			¿Cómo decide si una mascota es compatible con otra? & La compatibilidad depende principalmente de la educación y crianza recibidas. Advierte que existen animales territoriales y suma como criterio la ausencia de enfermedades transmisibles por contacto. \\ \addlinespace
+			
+			¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas? & Reconoce no estar informado a profundidad, pero exige semejanza de tamaño entre ejemplares (para evitar lesiones y afecciones de espalda), misma especie o razas de porte similar, y que la responsabilidad sobre las crías se acuerde entre los dueños antes del cruce. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	
+	\subsubsection*{Acta de entrevista 11 --- PROP-06}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 24/07/2026 \\
+			
+			Entrevistado & PROP-06 \\
+			
+			Cargo/Rol & Usuaria potencial (dueña de mascota) \\
+			
+			Entrevistador & Nieves Sánchez Jimmy Samuel \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 11)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Cómo suele conocer el estado de salud de sus mascotas? & Lleva controles veterinarios cada seis meses, observa el estado de ánimo, si come bien y si juega, y revisa el pelaje y los ojos. \\ \addlinespace
+			
+			¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios? & Usa una cartilla de vacunación donde anota las fechas; el veterinario también le recuerda por WhatsApp la próxima vacuna. \\ \addlinespace
+			
+			¿Cómo le gustaría recibir el recordatorio sobre vacunas, desparasitaciones o control veterinario pendiente? & Por WhatsApp y notificaciones en el software, una semana antes y un día antes del turno. \\ \addlinespace
+			
+			¿Qué información considera necesaria antes de dejar su mascota interactuar con otras mascotas? & Que tenga todas las vacunas al día, que no tenga enfermedades contagiosas y conocer su temperamento (agresivo o social). \\ \addlinespace
+			
+			¿Qué información considera necesaria sobre el historial médico de una mascota? & Vacunas, desparasitaciones, enfermedades pasadas, alergias, cirugías y medicamentos que toma actualmente. \\ \addlinespace
+			
+			¿Qué información considera privada o sensible sobre su mascota? & La dirección exacta del dueño, el historial médico completo y los datos de contacto, que solo deberían ver el veterinario y el adoptante responsable. \\ \addlinespace
+			
+			¿Cómo debería controlarse quién puede visualizar la información privada o médica de su mascota? & Con permiso del dueño; la información completa solo debería mostrarse a veterinarios y a personas verificadas en proceso de adopción. \\ \addlinespace
+			
+			¿Qué problemas considera más comunes en el proceso de adopción? & Devoluciones de la mascota porque el adoptante dice no tener tiempo o dinero, falta de seguimiento posterior a la adopción, y adopciones por impulso o irresponsabilidad. \\ \addlinespace
+			
+			¿Cómo considera que debería gestionarse una solicitud de adopción desde su envío hasta su aceptación o rechazo? & En varios pasos: 1) envío de formulario; 2) entrevista presencial o virtual; 3) visita al hogar; 4) periodo de prueba de una o dos semanas; y 5) firma de un compromiso de adopción. El software debería mostrar el estado de cumplimiento de cada paso. \\ \addlinespace
+			
+			¿Qué información considera más importante conocer sobre una mascota antes de adoptarla? & La edad, el tamaño final, su personalidad (agresivo o sociable, carismático con niños), problemas de salud y comportamiento. \\ \addlinespace
+			
+			¿Cómo decide si una mascota es compatible con otra? & Observa comportamiento y energía, si es carismático con la otra mascota, en un lugar como un parque, para conocer su lenguaje corporal. \\ \addlinespace
+			
+			¿Cómo debería presentarse la información sobre la compatibilidad entre dos mascotas dentro de la plataforma? & Comparando salud, edad y raza (no juntar una raza grande con una pequeña), comportamiento y antecedentes, señalando riesgos y recomendando revisión veterinaria. \\ \addlinespace
+			
+			¿Qué factores influyen en su decisión al momento de elegir una mascota? & El tiempo disponible, el espacio en casa, el presupuesto mensual, el nivel de actividad que busca y si hay niños en casa. \\ \addlinespace
+			
+			¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas? & La salud de ambos animales, exámenes genéticos, edad adecuada, que no sean parientes y tener un plan responsable para las crías. \\ \addlinespace
+			
+			¿Cómo debería verificarse la información médica y reproductiva de la mascota antes de permitir un proceso de cruza? & Que se suban certificados veterinarios a la plataforma y que un veterinario registrado los valide antes de activar la opción de cruza. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	
+	\subsubsection*{Acta de entrevista 12 --- PROP-07}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 26/07/2026 \\
+			
+			Entrevistado & PROP-07 \\
+			
+			Cargo/Rol & Usuaria potencial (dueña de mascota) \\
+			
+			Entrevistador & Morales Sánchez Gary Alejandro \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 12)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Cómo suele conocer el estado de salud de su mascota? & Por cambios de comportamiento y físicos: cuando se enferma se pone desanimada, no salta, y se le llenan los ojos de legaña y se le ponen rojos. \\ \addlinespace
+			
+			¿Qué información considera necesaria antes de dejar a su mascota interactuar con otras mascotas? & Prefiere que no interactúe con otras mascotas para evitar el contagio de pulgas o garrapatas. \\ \addlinespace
+			
+			¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios? & Su veterinaria mantiene la cartilla de la mascota con las vacunas al día, y anualmente le aplican desparasitantes e inyecciones contra pulgas y garrapatas. \\ \addlinespace
+			
+			¿Qué información considera privada o sensible sobre su mascota? & Ninguna; considera útil que se conozcan sus problemas de salud (alergias oculares o atragantamientos) por si llega a perderse. \\ \addlinespace
+			
+			¿Qué información considera necesaria sobre el historial médico de una mascota? & Saber si tiene enfermedades, si está tomando medicación y si cuenta con el esquema de vacunas completo. \\ \addlinespace
+			
+			¿Qué información considera más importante conocer sobre una mascota antes de adoptarla? & El control de vacunas, la fecha exacta de nacimiento (o edad) y el nombre. \\ \addlinespace
+			
+			¿Qué problemas considera más comunes en procesos de adopción? & La falta de información detallada sobre la mascota (vacunas, edad, nombre) y no saber si la persona que adopta será responsable. \\ \addlinespace
+			
+			¿Qué factores influyen en su decisión al momento de elegir una mascota? & El gusto personal, el sexo (prefiere hembras), la raza (prefiere perros de raza) y que no tenga enfermedades graves o discapacidades, por su falta de tiempo para cuidados especiales. \\ \addlinespace
+			
+			¿Cómo decide si una mascota es compatible con otra? & Por el tamaño y la raza; busca un tamaño similar al de su mascota para evitar que la lastimen. \\ \addlinespace
+			
+			¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas? & Que sean de la misma raza y conocer el historial clínico del otro perro para asegurarse de que esté sano y libre de enfermedades. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	
+	\subsubsection*{Acta de entrevista 13 --- PROP-08}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 23/07/2026 \\
+			
+			Entrevistado & PROP-08 \\
+			
+			Cargo/Rol & Dueño de mascota \\
+			
+			Entrevistador & Mendoza Párraga Andy Johel \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 13)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Cómo suele conocer el estado de salud de su mascota? & Se da cuenta por su comportamiento: si deja de comer, de jugar o se muestra desanimada, la lleva al veterinario para el tratamiento adecuado. \\ \addlinespace
+			
+			¿Qué información considera necesaria antes de dejar a su mascota interactuar con otras mascotas? & Necesita saber de dónde proviene la otra mascota, si tiene un dueño responsable, si está vacunada y si goza de buena salud, para evitar el riesgo de contagio. \\ \addlinespace
+			
+			¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios? & Lleva un calendario con su veterinario, quien le indica las fechas de las próximas vacunas, y mantiene un registro de todas las aplicadas. \\ \addlinespace
+			
+			¿Qué información considera privada o sensible sobre su mascota? & No considera que exista mucha información sensible, salvo si su mascota tiene alguna enfermedad que requiera cuidados especiales. \\ \addlinespace
+			
+			¿Qué información considera necesaria sobre el historial médico de una mascota? & Las enfermedades que ha tenido o padece actualmente, en especial si necesita tratamiento permanente o medicamentos específicos. \\ \addlinespace
+			
+			¿Qué información considera más importante conocer sobre una mascota antes de adoptarla? & La raza, la edad, los costos de mantenimiento, su procedencia y el tipo de crianza recibida, porque influyen en los cuidados y en la adaptación. \\ \addlinespace
+			
+			¿Qué problemas considera más comunes en procesos de adopción? & Personas que adoptan mascotas sin asumir la responsabilidad de cuidarlas, alimentarlas correctamente y brindarles atención veterinaria. \\ \addlinespace
+			
+			¿Qué factores influyen en su decisión al momento de elegir una mascota? & Prefiere adoptar mascotas jóvenes para criarlas desde pequeñas; también considera la raza y si presentan alguna enfermedad que requiera tratamientos costosos o cuidados especiales. \\ \addlinespace
+			
+			¿Cómo decide si una mascota es compatible con otra? & Considera que esa decisión debe tomarla un veterinario, ya que es quien puede evaluar la compatibilidad y evitar problemas. \\ \addlinespace
+			
+			¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas? & Verificar que ambas mascotas estén sanas, sean compatibles genéticamente y consultar siempre con un veterinario. \\ \addlinespace
+			
+			Datos adicionales aportados por el entrevistado & Considera que la aplicación será muy útil para fomentar la adopción responsable, educar a la comunidad y crear conciencia sobre el cuidado animal; sugiere incluir una función de "citas" en áreas verdes para que mascotas y dueños socialicen de forma segura. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	
+	\subsubsection*{Acta de entrevista 14 --- PROP-09}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 27/07/2026 \\
+			
+			Entrevistado & PROP-09 \\
+			
+			Cargo/Rol & Usuario potencial (dueño de mascota) \\
+			
+			Entrevistador & Morales Sánchez Gary Alejandro \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 14)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Cómo suele conocer el estado de salud de su mascota? & Observa cambios en su comportamiento, como decaimiento, vómito o que deje de comer, y en ese momento la lleva directamente al veterinario. \\ \addlinespace
+			
+			¿Qué información considera necesaria antes de dejar a su mascota interactuar con otras mascotas? & Conocer al dueño para saber cómo se comporta el animal y asegurarse de que la mascota sea amigable, tranquila y no agresiva. \\ \addlinespace
+			
+			¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios? & Delega la responsabilidad en un veterinario profesional y guarda los registros en su celular. \\ \addlinespace
+			
+			¿Qué información considera privada o sensible sobre su mascota? & Considera que los datos de la mascota en sí no requieren privacidad. Lo privado y sensible son los datos personales del dueño (dirección, lugar de trabajo) por motivos de seguridad. \\ \addlinespace
+			
+			¿Qué información considera necesaria sobre el historial médico de una mascota? & Vacunas aplicadas, enfermedades pasadas, exámenes de laboratorio y la presencia de enfermedades congénitas o hereditarias transmisibles a la descendencia. \\ \addlinespace
+			
+			¿Qué información considera más importante conocer sobre una mascota antes de adoptarla? & Su comportamiento social (que no sea agresiva con personas, niños u otros animales), su origen/historia, la edad, y la existencia de discapacidades o enfermedades latentes. \\ \addlinespace
+			
+			¿Qué problemas considera más comunes en procesos de adopción? & Animales que llegan enfermos por haber estado abandonados, o con problemas de agresividad no detectados debido a traumas o maltratos previos. \\ \addlinespace
+			
+			¿Qué factores influyen en su decisión al momento de elegir una mascota? & Principalmente el comportamiento y su capacidad de interactuar sin agresividad, la edad, el estado de salud y la ausencia de enfermedades congénitas o discapacidades no informadas. \\ \addlinespace
+			
+			¿Cómo decide si una mascota es compatible con otra? & Se basa en las características del animal y solicita el respaldo o la asesoría técnica de un veterinario especialista, para evitar criterios subjetivos o erróneos. \\ \addlinespace
+			
+			¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas? & Garantizar el linaje/pedigree si se busca mantener la raza, conocer las enfermedades previas o hereditarias de la otra mascota, y contar con la orientación de un veterinario. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	
+	\subsubsection*{Acta de entrevista 15 --- VET-04}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 27/07/2026 \\
+			
+			Entrevistado & VET-04 \\
+			
+			Cargo/Rol & Médica veterinaria \\
+			
+			Entrevistador & Nieves Sánchez Jimmy Samuel \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 15)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Qué información considera más importante conocer sobre una mascota? & Especie, raza, sexo y tipo facial, además de antecedentes médicos con dueños anteriores: si tuvo vacunas, una buena desparasitación y una alimentación balanceada según su edad. \\ \addlinespace
+			
+			¿Qué datos ayudan a entender mejor el estado general de una mascota? & El peso y la condición corporal, el comportamiento con otras especies, el estado de ánimo, el nivel de actividad y el estado emocional; también la piel y el pelaje (un pelaje tosco suele indicar parásitos). \\ \addlinespace
+			
+			¿Qué antecedente considera importante conocer sobre una mascota? & Qué enfermedades tuvo (antecedente patológico), si fue vacunada contra el parvovirus, si tuvo cirugías, si es alérgica a algún medicamento o champú, y si presenta ansiedad emocional por abandono o maltrato previo. \\ \addlinespace
+			
+			¿Qué riesgo existe cuando no se conoce suficiente información sobre una mascota? & No saber si el animal fue agresivo antes, no poder cubrir sus necesidades nutricionales según raza, tamaño y edad, y correr riesgos en la reproducción si las edades no son óptimas. \\ \addlinespace
+			
+			¿Cómo influye la edad de una mascota en su cuidado y comportamiento? & Determina el estado fisiológico y anatómico: los animales jóvenes requieren alta vacunación, desparasitación, vitaminización, socialización y controles frecuentes; los de edad mayor requieren otros cuidados y requerimientos nutricionales. \\ \addlinespace
+			
+			¿Cómo influye la raza en las necesidades de una mascota? & Influye en la actividad física requerida, el cuidado del pelaje y el tipo de enfermedades a las que es propensa, aunque no debe usarse como único criterio: cada mascota debe evaluarse individualmente. \\ \addlinespace
+			
+			¿Qué dato de la mascota considera sensible? & La ubicación exacta de la mascota, así como documentos y la placa con el nombre y número de teléfono del dueño, para contactarlo en caso de pérdida. \\ \addlinespace
+			
+			¿Qué enfermedades o condiciones considera importante registrar en una mascota? & Las vacunas recibidas desde temprana edad, las desparasitaciones cada seis meses, los tratamientos, alergias en la piel, cirugías y cualquier patología que haya tenido el animal. \\ \addlinespace
+			
+			¿Qué información involucra el perfil médico de una mascota? & Vacunas, desparasitación, vitaminas, aminoácidos y todas las consultas médicas realizadas a lo largo del cuidado de la mascota. \\ \addlinespace
+			
+			¿Cómo puede verificarse si una mascota cuenta con controles médicos adecuados? & Con el carnet de vacunación, donde se registra la fecha de cada vacuna, quién la aplicó y el seguimiento del veterinario, incluyendo si fue desparasitado. \\ \addlinespace
+			
+			¿Cómo evaluar si una adopción puede considerarse responsable? & Observando cómo se comporta el animal, que la persona sea responsable y tenga las condiciones adecuadas, que exista compatibilidad entre dueño y mascota, y que haya atención veterinaria y seguridad. \\ \addlinespace
+			
+			¿Qué información considera importante antes de entregar a una mascota en adopción? & El ambiente donde vive el propietario (espacio adecuado, sin estrés ni químicos que dañen a la mascota), la paciencia y la economía básica para sostener a la mascota y sus consultas veterinarias. \\ \addlinespace
+			
+			¿Cómo afectan las adopciones informales al bienestar animal? & Al realizarse sin evaluaciones ni seguimiento por parte del dueño, aumenta el riesgo de abandono, negligencia y reproducción no planificada. \\ \addlinespace
+			
+			¿Qué información considera esencial antes de recomendar un cruce entre mascotas? & Edad, estado de salud, madurez sexual, ausencia de consanguinidad y enfermedades, pruebas genéticas, características anatómicas compatibles (evitar diferencias grandes de tamaño), límite de partos por hembra y consentimiento de ambas partes. \\ \addlinespace
+			
+			¿Cómo puede identificarse si dos mascotas son compatibles? & Por la convivencia, el tamaño, la edad reproductiva de ambas, la socialización y el comportamiento entre ellas, y que no exista consanguinidad. \\ \addlinespace
+			
+			¿Cómo identifica posibles riesgos en procesos de reproducción entre mascotas? & Revisando antecedentes familiares y enfermedades hereditarias, posibles alergias o incapacidad reproductiva, y verificando que la raza y el tamaño sean compatibles para evitar partos distócicos. \\ \addlinespace
+			
+			¿Cómo afectan los cruces irresponsables a las mascotas? & Pueden causar que la mascota se atasque en el canal uterino, partos sistémicos o momificaciones, sobre todo con diferencias grandes de tamaño, lo que puede derivar en cesáreas o incluso la muerte de la madre o las crías. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	
+	\subsubsection*{Acta de entrevista 16 --- VET-05}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 25/07/2026 \\
+			
+			Entrevistado & VET-05 \\
+			
+			Cargo/Rol & Médico veterinario \\
+			
+			Entrevistador & Mendoza Párraga Andy Johel \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 16)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Qué información considera más importante conocer sobre una mascota? & Lo más crucial es tener el registro actualizado de vacunas (carnet de vacunación), desparasitación y vitaminización. \\ \addlinespace
+			
+			¿Qué datos ayudan a entender mejor el estado general de una mascota? & El historial de vacunación: conocer con qué cepa fue vacunado permite descartar rápidamente ciertas patologías cuando hay sospecha de enfermedad. \\ \addlinespace
+			
+			¿Qué antecedentes considera importantes conocer sobre una mascota? & Su rutina en casa (con quién convive, alimentación, juegos, reacción al estrés) y, nuevamente, si cuenta con sus vacunas. \\ \addlinespace
+			
+			¿Qué riesgos existen cuando no se conoce suficiente información sobre una mascota? & Que la mascota contraiga patologías graves que acaben con su vida, así como el riesgo de enfermedades zoonóticas por no tener un esquema de vacunación adecuado. \\ \addlinespace
+			
+			¿Cómo influye la edad de una mascota en su cuidado y comportamiento? & Influye bastante: al igual que en un niño, los cuidados y el comportamiento cambian a medida que la mascota crece. \\ \addlinespace
+			
+			¿Cómo influye la raza en las necesidades de una mascota? & Influye directamente en el entorno requerido; por ejemplo, una raza muy activa como el Golden Retriever no es apta para un departamento pequeño. Hay que elegir la raza en base al espacio disponible. \\ \addlinespace
+			
+			¿Qué datos de la mascota considera sensibles? & Los datos de contacto del propietario (que suelen estar en el collar) y la información contenida en el chip intradérmico. \\ \addlinespace
+			
+			¿Qué enfermedades o condiciones considera importante registrar en una mascota? & Más que una enfermedad específica, el registro estricto de la vacunación, ya que no tener este esquema abre la puerta a cualquier patología. \\ \addlinespace
+			
+			¿Qué información involucra el perfil médico de una mascota? & El nombre, la edad, el tipo de alimento que consume, el entorno donde pasa la mayor parte del tiempo, la fecha y producto de su última desparasitación, y los detalles del carnet de vacunas (cepa, marca del biológico y fecha). \\ \addlinespace
+			
+			¿Cómo puede verificarse si una mascota cuenta con controles médicos adecuados? & Actualmente solo a través del carnet físico; destaca la necesidad de un software, ya que si se pierde el carnet o el dueño cambia de ciudad/veterinario, esa información suele perderse. \\ \addlinespace
+			
+			¿Cómo evalúa si una adopción puede considerarse responsable? & Si los dueños pueden proveer verdadero bienestar animal: esquema completo de vacunas, buen trato, alimentación adecuada y un espacio idóneo para esa mascota específica. \\ \addlinespace
+			
+			¿Qué información considera importante antes de entregar una mascota en adopción? & Recomienda una entrevista previa, una visita al lugar donde vivirá la mascota, la firma de una carta de compromiso (por ejemplo, para esterilizarla) y mantener contacto periódico al principio. \\ \addlinespace
+			
+			¿Cómo afectan las adopciones informales al bienestar animal? & Afectan negativamente en todos los sentidos: las mascotas adoptadas por capricho o sin considerar el espacio terminan estresadas y, en muchos casos, sufriendo daños emocionales, físicos o muriendo. \\ \addlinespace
+			
+			¿Qué información considera esencial antes de recomendar un cruce entre mascotas? & No maneja mucho el tema, pero considera que hay que ser conscientes de qué razas se pueden combinar, apoyándose en su experiencia con ganadería. \\ \addlinespace
+			
+			¿Cómo puede identificarse si dos mascotas son compatibles entre sí? & Hay que ser conscientes de que cada raza vaya con la adecuada, prestando atención para no cruzarlas mal. \\ \addlinespace
+			
+			¿Cómo identifica posibles riesgos en procesos de reproducción entre mascotas? & Por las diferencias físicas; menciona haber visto perros de razas grandes montar a hembras pequeñas, lo cual representa un riesgo evidente. \\ \addlinespace
+			
+			¿Cómo afectan los cruces irresponsables a las mascotas? & Pueden provocar la muerte de la hembra durante el parto si requiere cesárea. Señala además la sobrepoblación de razas braquicefálicas, que nacen con problemas de salud, y considera que no debería seguir fomentándose su reproducción. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	
+	\subsubsection*{Acta de entrevista 17 --- PROP-10}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 26/07/2026 \\
+			
+			Entrevistado & PROP-10 \\
+			
+			Cargo/Rol & Dueña de mascota \\
+			
+			Entrevistador & Guitierrez Ortega Genesis Adriana \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 17)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Cómo suele conocer el estado de salud de su mascota? & Nota que su mascota está enferma por cambios de comportamiento; como su perro suele ser inquieto, se da cuenta de que algo anda mal si lo ve demasiado tranquilo, decaído, si pierde el apetito o si vomita. \\ \addlinespace
+			
+			¿Qué información considera necesaria antes de dejar a su mascota interactuar con otras mascotas? & Considera vital saber que la otra mascota no sea agresiva (su propio perro es un poco peleón) y asegurarse de que esté debidamente vacunada. \\ \addlinespace
+			
+			¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios? & Realiza el seguimiento de manera tradicional, utilizando únicamente un carnet físico de vacunación. \\ \addlinespace
+			
+			¿Qué información considera privada o sensible sobre su mascota? & No considera que haya información altamente confidencial si se comparte con personas de confianza; prefiere mantener en privado la ubicación y la rutina diaria frente a desconocidos. \\ \addlinespace
+			
+			¿Qué información considera necesaria sobre el historial médico de una mascota? & Principalmente el registro de vacunas, para evitar contagios o riesgos a otras mascotas; también enfermedades previas o alergias. \\ \addlinespace
+			
+			¿Qué información considera más importante conocer sobre una mascota antes de adoptarla? & Su estado de salud, para evitar que una enfermedad grave complique la dinámica del hogar o ponga en riesgo a otras mascotas; también su nivel de agresividad y comportamiento. \\ \addlinespace
+			
+			¿Qué problemas considera más comunes en procesos de adopción? & La falta de responsabilidad: muchas personas adoptan por emoción o impulso y con el tiempo terminan descuidando o abandonando a la mascota. \\ \addlinespace
+			
+			¿Qué factores influyen en su decisión al momento de elegir una mascota? & Que sea juguetona, sana y capaz de adaptarse fácilmente al entorno familiar; el tamaño o la raza le resultan irrelevantes frente a un buen carácter. \\ \addlinespace
+			
+			¿Cómo decide si una mascota es compatible con otra? & Se basa en la observación directa, permitiendo que interactúen para ver cómo se relacionan, dándole más peso al comportamiento real que a la información previa sobre la raza. \\ \addlinespace
+			
+			¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas? & Que ambas mascotas estén completamente sanas y cuenten con todas sus vacunas, y que exista ética y responsabilidad de los dueños para que las crías no sean abandonadas ni comercializadas irresponsablemente. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	
+	\subsubsection*{Acta de entrevista 18 --- PROP-11}
+	
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 26/07/2026 \\
+			
+			Entrevistado & PROP-11 \\
+			
+			Cargo/Rol & Dueña de mascota \\
+			
+			Entrevistador & Guitierrez Ortega Genesis Adriana \\
+			
+			Técnica & Entrevista semiestructurada \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 18)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Cómo suele conocer el estado de salud de su mascota? & Nota que algo le pasa a su perro, normalmente muy activo, cuando se muestra quieto o sin ánimo; también identifica problemas si no quiere comer o si su nariz, usualmente húmeda, se presenta reseca. \\ \addlinespace
+			
+			¿Qué información considera necesaria antes de dejar a su mascota interactuar con otras mascotas? & Que las otras mascotas estén vacunadas y libres de pulgas o garrapatas, ya que estas pueden transmitir el parvovirus. \\ \addlinespace
+			
+			¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios? & Mediante una libreta física proporcionada por la veterinaria, donde se marcan las vacunas administradas; señala que un registro digital también sería útil como respaldo en caso de extravío. \\ \addlinespace
+			
+			¿Qué información considera privada o sensible sobre su mascota? & Considera sensible la información por temor a que puedan hacerle daño a su mascota; protege la ubicación y rutina del animal tras sufrir el robo de su perro desde su propia casa. \\ \addlinespace
+			
+			¿Qué información considera necesaria sobre el historial médico de una mascota? & Si el animal padece alergias (especialmente a alimentos) o si requiere algún medicamento específico, como en el caso de perros con problemas renales bajo medicación constante. \\ \addlinespace
+			
+			¿Qué información considera más importante conocer sobre una mascota antes de adoptarla? & Que esté desparasitada, que cuente con todas sus vacunas y lleve sus controles médicos al día. \\ \addlinespace
+			
+			¿Qué problemas considera más comunes en procesos de adopción? & Afirma no identificar ningún problema común durante los procesos de adopción. \\ \addlinespace
+			
+			¿Qué factores influyen en su decisión al momento de elegir una mascota? & Indica que ningún factor en particular (temperamento, comportamiento, raza o estado de salud) representa un conflicto; buscaría primero perros de la calle por ser los que más necesitan un hogar. \\ \addlinespace
+			
+			¿Cómo decide si una mascota es compatible con otra? & Se basa estrictamente en el comportamiento observado en el momento, considerando que una actitud defensiva puede deberse a enfermedad o dolor y no a agresividad natural. \\ \addlinespace
+			
+			¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas? & Que ambas mascotas sean de la misma raza para evitar deformaciones genéticas en las crías; también le preocupan las complicaciones de salud de la hembra durante el parto y el destino final de los cachorros. \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
 	\subsection*{B.4 Cuestionario v2.0 y resultados exportados}
+	
+	El cuestionario v2.0 se desplegó en Google Forms y se aplicó de forma
+	presencial y remota durante la segunda ronda de campo. Las respuestas
+	exportadas, sin columnas identificativas, se versionan en
+	\texttt{02\_Evidencias/Cuestionario/Respuestas/} en formato XLSX y PDF, y las
+	fotografías de la aplicación real del instrumento en
+	\texttt{02\_Evidencias/Cuestionario/Fotos\_Aplicacion/}.
+	
+	\paragraph{Perfil de la muestra.}
+	Se recogieron \textbf{38 respuestas válidas}, distribuidas en 30 propietarios
+	de mascota, 5 personas interesadas en adopción y 3 personas interesadas en
+	cruza. El perfil dominante, propietario de mascota, alcanza el mínimo de
+	$n \geq 30$ exigido para esta entrega.
+	
+	\paragraph{Resultados cuantitativos.}
+	Las preguntas 3 a 13 midieron la importancia declarada de cada atributo en
+	una escala Likert de 1 a 5. La Tabla~\ref{tab:cuestionario-resultados}
+	resume la media, la mediana y el porcentaje de respuestas iguales o
+	superiores a 4. Estos mismos datos sustentan la aproximación por importancia
+	declarada de la Sección~\ref{sec:kano}.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Resultados cuantitativos del cuestionario v2.0 ($n = 38$).}
+		\label{tab:cuestionario-resultados}
+		\small
+		\begin{tabularx}{\textwidth}{@{}l X c c c@{}}
+			\toprule
+			\textbf{Ítem} & \textbf{Atributo evaluado} & \textbf{Media} & \textbf{Mediana} & \textbf{\% $\geq 4$} \\
+			\midrule
+			
+			Q3 & Historial de vacunación & 4.71 & 5 & 95\,\% \\
+			
+			Q4 & Desparasitaciones & 4.55 & 5 & 92\,\% \\
+			
+			Q5 & Enfermedades previas & 4.61 & 5 & 89\,\% \\
+			
+			Q6 & Fotografías actualizadas & 3.95 & 4 & 74\,\% \\
+			
+			Q7 & Edad de la mascota & 4.39 & 5 & 87\,\% \\
+			
+			Q8 & Raza de la mascota & 3.84 & 4 & 66\,\% \\
+			
+			Q9 & Verificación de identidad & 4.34 & 5 & 87\,\% \\
+			
+			Q10 & Validación médica por veterinaria & 4.61 & 5 & 92\,\% \\
+			
+			Q11 & Mensajería entre usuarios & 3.84 & 4 & 66\,\% \\
+			
+			Q12 & Filtros de búsqueda & 4.16 & 4 & 76\,\% \\
+			
+			Q13 & Compatibilidad para cruza & 4.45 & 5 & 89\,\% \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	\paragraph{Hallazgo cualitativo relevante.}
+	Las preguntas abiertas (15 a 18) aportaron un hallazgo que no había surgido
+	en las entrevistas individuales. Una persona encuestada propuso, al describir
+	la funcionalidad que consideraba indispensable, una función que permitiera
+	verificar la identidad de los propietarios mediante su documento nacional de
+	identidad y, de forma paralela, la identidad de la propia mascota, señalando
+	que en otros países los animales cuentan también con identificación formal.
+	Esta respuesta se codificó como \enquote{Verificación cruzada de identidad
+		humana y animal}, dentro de la categoría \emph{Confianza y verificación}, y
+	constituye una tercera fuente independiente junto con EV-12 y EV-16, lo que
+	refuerza los requisitos RF-12 (verificación de identidad) y RF-21 (registro
+	del identificador de microchip).
+	
+	% --- Fotografías de la aplicación del cuestionario (agregar manualmente) ---
+	% \begin{figure}[H]
+		%     \centering
+		%     \includegraphics[width=0.45\textwidth]{figuras/cuestionario_aplicacion_01.jpg}
+		%     \includegraphics[width=0.45\textwidth]{figuras/cuestionario_aplicacion_02.jpg}
+		%     \caption{Aplicación presencial del cuestionario v2.0.}
+		%     \label{fig:cuestionario-aplicacion}
+		% \end{figure}
 	
 	\subsection*{B.5 Registro de observación}
 	
+	Se realizó una sesión de observación directa no participante del proceso
+	actual de atención en el establecimiento veterinario codificado como
+	\textbf{OBS-01} (evidencia EV-08), con consentimiento informado firmado por
+	la responsable del establecimiento. La observación documentó el flujo real de
+	trabajo --- recepción, registro de información del animal, procedimientos
+	clínicos, hospitalización y venta de identificadores --- con el fin de
+	contrastar las prácticas vigentes contra las funcionalidades previstas para
+	MundiPets.
+	
+	Se registraron \textbf{20 escenas fotografiadas y fechadas} del entorno
+	físico, sin rostros identificables y con las coordenadas GPS eliminadas de
+	los metadatos, conforme a la RD-09 y a la zona pública definida para la
+	evidencia. Los archivos residen en
+	\texttt{02\_Evidencias/Fotos\_Entorno/}. La
+	Tabla~\ref{tab:observacion-escenas} lista las escenas registradas y el
+	requisito que cada una respalda.
+	
+	{\small
+		\begin{longtable}{@{}p{0.9cm} p{5.0cm} p{8.6cm}@{}}
+			\caption{Escenas registradas en la observación del establecimiento OBS-01 (EV-08).}
+			\label{tab:observacion-escenas}\\
+			\toprule
+			\textbf{\#} & \textbf{Escena observada} & \textbf{Archivo de evidencia} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{3}{@{}l}{\small\itshape (continuación de la Tabla \ref{tab:observacion-escenas})}\\
+			\toprule
+			\textbf{\#} & \textbf{Escena observada} & \textbf{Archivo de evidencia} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			OB-01 & Alimentacion Perro & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-AlimentacionPerro.png} \\ \addlinespace
+			
+			OB-02 & Atencion Emergencia & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-AtencionEmergencia.png} \\ \addlinespace
+			
+			OB-03 & Corte De Pelo Perro & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-CorteDePeloPerro.png} \\ \addlinespace
+			
+			OB-04 & Cuidados Hospitalarios & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-CuidadosHospitalarios.png} \\ \addlinespace
+			
+			OB-05 & Ecografia Gato & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-EcografiaGato.png} \\ \addlinespace
+			
+			OB-06 & Esterilizacion Gato & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-EsterilizacionGato.png} \\ \addlinespace
+			
+			OB-07 & Inyeccion Perro & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-InyeccionPerro.png} \\ \addlinespace
+			
+			OB-08 & Limpieza Infeccion Gato & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-LimpiezaInfeccionGato.png} \\ \addlinespace
+			
+			OB-09 & Limpieza Oidos Perro & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-LimpiezaOidosPerro.png} \\ \addlinespace
+			
+			OB-10 & Oficina Evaluacion & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-OficinaEvaluacion.png} \\ \addlinespace
+			
+			OB-11 & Ozonoterapia & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-Ozonoterapia.png} \\ \addlinespace
+			
+			OB-12 & Perrita Recuperacion & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-PerritaRecuperacion.png} \\ \addlinespace
+			
+			OB-13 & Perro Con Placa & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-PerroConPlaca.png} \\ \addlinespace
+			
+			OB-14 & Perro Recuperacion Parvo & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-PerroRecuperacionParvo.png} \\ \addlinespace
+			
+			OB-15 & Pesaje Perro & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-PesajePerro.png} \\ \addlinespace
+			
+			OB-16 & Recepcion & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-Recepcion.png} \\ \addlinespace
+			
+			OB-17 & Registro Informacion Perro & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-RegistroInformacionPerro.png} \\ \addlinespace
+			
+			OB-18 & Sala Espera & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-SalaEspera.png} \\ \addlinespace
+			
+			OB-19 & Venta Placas Mascotas & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-VentaPlacasMascotas.png} \\ \addlinespace
+			
+			OB-20 & Veterinaria Computadora & \texttt{2026-07-27\_Establecimiento\_OBS-01\_Observacion-VeterinariaComputadora.png} \\ \addlinespace
+			
+		\end{longtable}
+	}
+	
+	% --- Fotografías del entorno observado (agregar manualmente) ---
+	% \begin{figure}[H]
+		%     \centering
+		%     \includegraphics[width=0.45\textwidth]{figuras/observacion_recepcion.png}
+		%     \includegraphics[width=0.45\textwidth]{figuras/observacion_registro.png}
+		%     \caption{Entorno observado en el establecimiento OBS-01 (EV-08).}
+		%     \label{fig:observacion-entorno}
+		% \end{figure}
+	
 	\subsection*{B.6 Formularios de consentimiento firmados}
+	
+	Cada persona participante en la segunda ronda de campo firmó un consentimiento
+	informado específico, redactado en cumplimiento de la Ley Orgánica de
+	Protección de Datos Personales del Ecuador \cite{lopdp2021}, que autoriza de
+	forma expresa la grabación de la sesión, el uso académico de la información y
+	el uso de sus datos \textbf{anonimizados} en publicaciones científicas
+	revisadas por pares y en el conjunto de datos abierto depositado con licencia
+	CC BY 4.0.
+	
+	Se recogieron \textbf{16 consentimientos firmados}. Conforme a la separación
+	de zonas de evidencia, el original íntegro --- con cédula y firma visibles ---
+	se conserva cifrado en \texttt{02\_Evidencias/00\_Restringido/}, mientras que
+	en la zona pública reside únicamente la copia enmascarada, con la cédula y la
+	firma cubiertas y el código de participante legible. Ningún consentimiento
+	autoriza la publicación de datos identificables.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Consentimientos informados firmados en la segunda ronda de campo.}
+		\label{tab:consentimientos}
+		\small
+		\begin{tabularx}{\textwidth}{@{}l l X@{}}
+			\toprule
+			\textbf{Código} & \textbf{Rol} & \textbf{Archivo de la copia enmascarada} \\
+			\midrule
+			
+			PROP-02 & Propietario/a de mascota & \texttt{2026-05-17\_PropietarioMascota\_PROP-02\_Consentimiento.jpeg} \\
+			
+			PROP-01 & Propietario/a de mascota & \texttt{2026-05-17\_PropietarioMascota\_PROP-01\_Consentimiento.jpeg} \\
+			
+			VET-01 & Profesional veterinario/a & \texttt{2026-05-17\_Veterinaria\_VET-01\_Consentimiento.jpeg} \\
+			
+			VET-02 & Profesional veterinario/a & \texttt{2026-05-17\_Veterinario\_VET-02\_Consentimiento.png} \\
+			
+			VET-03 & Profesional veterinario/a & \texttt{2026-05-29\_Veterinario\_VET-03\_Consentimiento.png} \\
+			
+			PROP-03 & Propietario/a de mascota & \texttt{2026-06-14\_PropietarioMascota\_PROP-03\_Consentimiento.png} \\
+			
+			PROP-08 & Propietario/a de mascota & \texttt{2026-07-23\_PropietarioMascota\_PROP-08\_Consentimiento.jpeg} \\
+			
+			PROP-06 & Propietario/a de mascota & \texttt{2026-07-24\_PropietarioMascota\_PROP-06\_Consentimiento.png} \\
+			
+			VET-05 & Profesional veterinario/a & \texttt{2026-07-25\_Veterinario\_VET-05\_Consentimiento.jpg} \\
+			
+			PROP-04 & Propietario/a de mascota & \texttt{2026-07-26\_PropietarioMascota\_PROP-04\_Consentimiento.jpg} \\
+			
+			PROP-05 & Propietario/a de mascota & \texttt{2026-07-26\_PropietarioMascota\_PROP-05\_Consentimiento.jpg} \\
+			
+			PROP-10 & Propietario/a de mascota & \texttt{2026-07-26\_PropietarioMascota\_PROP-10\_Consentimiento.jpeg} \\
+			
+			PROP-07 & Propietario/a de mascota & \texttt{2026-07-26\_PropietarioMascota\_PROP-07\_Consentimiento.jpeg} \\
+			
+			PROP-11 & Propietario/a de mascota & \texttt{2026-07-26\_PropietarioMascota\_PROP-11\_Consentimiento.jpeg} \\
+			
+			PROP-09 & Propietario/a de mascota & \texttt{2026-07-27\_PropietarioMascota\_PROP-09\_Consentimiento.jpeg} \\
+			
+			VET-04 & Profesional veterinario/a & \texttt{2026-07-27\_Veterinaria\_VET-04\_Consentimiento.png} \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	% --- Copias enmascaradas de los consentimientos (agregar manualmente) ---
+	% \begin{figure}[H]
+		%     \centering
+		%     \includegraphics[width=0.45\textwidth]{figuras/consentimiento_PROP-04.jpg}
+		%     \includegraphics[width=0.45\textwidth]{figuras/consentimiento_VET-04.png}
+		%     \caption{Ejemplo de consentimientos informados con cédula y firma enmascaradas.}
+		%     \label{fig:consentimientos}
+		% \end{figure}
 	
 	\subsection*{B.7 Ronda de validación (walkthrough)}
 	
@@ -5047,9 +6130,9 @@ doi=true
 			\toprule
 			\textbf{Participante} & \textbf{Perfil} & \textbf{Duración} & \textbf{Fecha} & \textbf{RF validados} \\
 			\midrule
-			Mayerli Vélez & Técnico (veterinaria) & 12:09 min & 27/07/2026 & RF-01 a RF-06, RF-08 \\
-			Lesly Flores & No técnico (propietaria) & 16:11 min & 27/07/2026 & RF-01 a RF-06, RF-08, RF-11 \\
-			Johan Alcivar & No técnico (propietario) & 25:40 min & 27/07/2026 & RF-01 a RF-17 (conjunto completo) \\
+			VET-04 & Técnico (veterinaria) & 12:09 min & 27/07/2026 & RF-01 a RF-06, RF-08 \\
+			PROP-02 & No técnico (propietaria) & 16:11 min & 27/07/2026 & RF-01 a RF-06, RF-08, RF-11 \\
+			PROP-08 & No técnico (propietario) & 25:40 min & 27/07/2026 & RF-01 a RF-17 (conjunto completo) \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -5063,11 +6146,76 @@ doi=true
 	\subsection*{B.8 Codificación temática y curva de saturación}
 	\label{sec:codificacion}
 	
+	Se aplicó codificación abierta (\emph{open coding}) sobre las veintidós
+	evidencias de campo recolectadas en las Entregas 2 (1B) y 3 (2A)
+	--- entrevistas, cuestionario, observación y sesiones de validación
+	\emph{walkthrough}, EV-01 a EV-22 ---, identificando fragmentos relevantes,
+	asignándoles un código descriptivo y agrupándolos en categorías temáticas.
+	El cuaderno de codificación completo contiene \textbf{104 fragmentos
+		codificados} y se versiona en
+	\texttt{02\_Evidencias/Codificacion\_Tematica/codificacion\_tematica.csv},
+	con las columnas Fragmento, Código, Categoría, Requisito derivado, ID de
+	evidencia y Analista codificador. La Tabla~\ref{tab:codificacion-muestra}
+	presenta una muestra representativa; la tabla completa reside en el archivo
+	CSV referenciado.
+	
+	\begin{table}[H]
+		\centering
+		\caption{Muestra del cuaderno de codificación temática.}
+		\label{tab:codificacion-muestra}
+		\small
+		\begin{tabularx}{\textwidth}{@{}X p{3.0cm} p{2.4cm} p{2.2cm} c@{}}
+			\toprule
+			\textbf{Fragmento} & \textbf{Código} & \textbf{Categoría} & \textbf{Requisito derivado} & \textbf{ID-EV} \\
+			\midrule
+			``El temperamento, la edad, el tamaño'' & Criterios de compatibilidad & Compatibilidad y cruza & Refuerza RF-06 & EV-01 \\
+			\addlinespace
+			``El acceso a esta información debe estar restringido'' & Control granular de visibilidad médica & Privacidad & Refuerza RF-11 & EV-04 \\
+			\addlinespace
+			``Se puede sacar de algún registro de alguna plataforma'' & Mención de plataforma virtual como registro & Seguimiento preventivo & Refuerza RF-14, RNF-08 & EV-05 \\
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	\paragraph{Curva de saturación.}
+	La Figura~\ref{fig:curva-saturacion} representa la curva de saturación
+	temática del corpus, construida siguiendo el procedimiento de saturación de
+	códigos descrito por Hennink, Kaiser y Marconi \cite{hennink2017}: se
+	registra, para cada evidencia procesada en el orden del catálogo B.1, el
+	número de códigos nuevos que aporta y el acumulado de códigos únicos. Sobre
+	las veintidós evidencias se identificaron \textbf{80 códigos únicos}.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{figuras/curva_saturacion.png}
+		\caption[Curva de saturación temática del corpus de evidencias]{Curva de saturación temática del corpus de evidencias (EV-01 a EV-22): códigos nuevos por evidencia y acumulado de códigos únicos.}
+		\label{fig:curva-saturacion}
+	\end{figure}
+	
+	La curva evidencia un descubrimiento intenso de códigos durante la Entrega 2
+	(1B), con entre 6 y 9 códigos nuevos por evidencia, que desciende
+	progresivamente durante las entrevistas de la Entrega 3 (2A) hasta llegar a
+	\textbf{cero códigos nuevos en EV-17}, punto que marca la saturación
+	temática del corpus de entrevistas y cuestionario. La incorporación de las
+	cuatro sesiones de validación \emph{walkthrough} (EV-19 a EV-22) reactiva
+	parcialmente el descubrimiento, con 7 códigos nuevos en EV-19 y 3 en cada
+	una de las restantes, hasta alcanzar los 80 códigos acumulados. Este repunte
+	es esperable y no invalida la saturación previa: el \emph{walkthrough} es un
+	tipo de evidencia distinto al de la elicitación, orientado a la validación
+	de requisitos ya especificados, por lo que introduce un vocabulario propio
+	de hallazgos de validación. La distinción entre saturación de códigos y
+	saturación de significado que plantean Hennink et al. \cite{hennink2017} es
+	precisamente lo que permite interpretar este comportamiento sin asumir que
+	el corpus de elicitación quedó incompleto.
+	
 	\subsection*{B.9 Índice de multimedia}
 	
 	Los archivos de audio, video y fotografía asociados a cada evidencia EV-01 a
-	EV-18 se almacenan en \texttt{02\_Evidencias/}, organizados por técnica de
-	elicitación y nombrados con el patrón \texttt{EV-XX\_tecnica\_fecha}. Todos
+	EV-22 se almacenan en \texttt{02\_Evidencias/}, organizados por técnica de
+	elicitación y nombrados con el patrón
+	\texttt{Fecha\_TipoUsuario\_CodigoParticipante\_Herramienta.ext} --- por
+	ejemplo \texttt{2026-07-26\_PropietarioMascota\_PROP-04\_Entrevista.mp3} ---,
+	de modo que el propio nombre del archivo no constituya un dato identificable. Todos
 	los archivos están cubiertos por el consentimiento informado correspondiente
 	(Apéndice~B.6) y se publican únicamente en su versión anonimizada, conforme
 	a la restricción RD-09.
@@ -5079,9 +6227,25 @@ doi=true
 	
 	La Tabla~\ref{tab:priorizacion_moscow_completa} consolida, para cada uno de
 	los 59 requisitos vigentes de esta entrega, su clasificación MoSCoW
-	(Sección~\ref{sec:moscow}), su clasificación Kano (pendiente de la segunda
-	ronda de campo, Sección~\ref{sec:kano}) y su valor WSJF estimado en equipo
-	(Sección~\ref{sec:wsjf}). El valor WSJF se calculó únicamente para los 21 RF
+	(Sección~\ref{sec:moscow}), su nivel de importancia declarada
+	(Sección~\ref{sec:kano}) y su valor WSJF estimado en equipo
+	(Sección~\ref{sec:wsjf}). \textbf{La columna rotulada \enquote{Import.}
+		recoge la aproximación por importancia declarada descrita en la
+		Sección~\ref{sec:kano} y no constituye una clasificación Kano canónica},
+	ya que el cuestionario v2.0 no incluyó el par de preguntas funcional y
+	disfuncional que el modelo requiere. Los requisitos no cubiertos por el
+	instrumento se marcan con \enquote{---}. La columna reporta el nivel de
+	importancia declarada (Alta si la media es $\geq 4{,}50$; Media entre
+	$4{,}00$ y $4{,}49$; Baja por debajo de $4{,}00$) seguido de la media
+	obtenida, calculada sobre las $n = 38$ respuestas del cuestionario v2.0
+	(Apéndice~B.4). Los requisitos no funcionales, las restricciones de diseño y
+	los requisitos legales no fueron objeto de medición directa en el
+	instrumento, por lo que llevan \enquote{---}: el guion indica que el atributo
+	no fue medido, no que la información falte.
+	
+	En la columna WSJF, el guion se aplica a los requisitos excluidos del
+	ejercicio de ordenamiento por costo de retraso, según se explica en la
+	Sección~\ref{sec:wsjf}. El valor WSJF se calculó únicamente para los 21 RF
 	de prioridad \emph{Must} y \emph{Should}; los RF de prioridad \emph{Could},
 	así como los RNF, las restricciones de diseño y los requisitos legales, se
 	marcan con \enquote{---} porque no forman parte del ejercicio de ordenamiento
@@ -5095,13 +6259,13 @@ doi=true
 		\begin{longtable}{@{}p{1.2cm} p{5.2cm} p{1.0cm} p{1.3cm} p{1.3cm} p{1.1cm} p{6.5cm}@{}}
 			\caption{Priorización MoSCoW, Kano y WSJF completa de requisitos MundiPets.} \label{tab:priorizacion_moscow_completa} \\
 			\toprule
-			\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{MoSCoW} & \textbf{Kano} & \textbf{WSJF} & \textbf{Justificación breve} \\
+			\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{MoSCoW} & \textbf{Import.} & \textbf{WSJF} & \textbf{Justificación breve} \\
 			\midrule
 			\endfirsthead
 			
 			\multicolumn{7}{@{}l}{\small\itshape (continuación de la Tabla \ref{tab:priorizacion_moscow_completa})}\\
 			\toprule
-			\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{MoSCoW} & \textbf{Kano} & \textbf{WSJF} & \textbf{Justificación breve} \\
+			\textbf{ID} & \textbf{Requisito} & \textbf{Tipo} & \textbf{MoSCoW} & \textbf{Import.} & \textbf{WSJF} & \textbf{Justificación breve} \\
 			\midrule
 			\endhead
 			
@@ -5112,20 +6276,20 @@ doi=true
 			\bottomrule
 			\endlastfoot
 			
-			RF-01 & Registrar mascota & RF & Must & --- & 9,20 & Es el pilar del sistema; sin este RF no puede existir ningún perfil de mascota ni proceso posterior. \\ \midrule
-			RF-02 & Gestionar historial médico & RF & Must & --- & 3,63 & Crítico para la salud animal y para RL-03 (rectificación de datos médicos). \\ \midrule
-			RF-03 & Consultar perfil completo & RF & Must & --- & 8,67 & Fundamental para que adoptantes e interesados en cruza tomen decisiones informadas; sustenta RL-02. \\ \midrule
-			RF-04 & Buscar y filtrar mascotas & RF & Should & --- & 1,80 & Mejora la usabilidad, pero el sistema puede operar inicialmente con listas generales. \\ \midrule
+			RF-01 & Registrar mascota & RF & Must & Media (4,06) & 9,20 & Es el pilar del sistema; sin este RF no puede existir ningún perfil de mascota ni proceso posterior. \\ \midrule
+			RF-02 & Gestionar historial médico & RF & Must & Alta (4,58) & 3,63 & Crítico para la salud animal y para RL-03 (rectificación de datos médicos). \\ \midrule
+			RF-03 & Consultar perfil completo & RF & Must & Media (4,06) & 8,67 & Fundamental para que adoptantes e interesados en cruza tomen decisiones informadas; sustenta RL-02. \\ \midrule
+			RF-04 & Buscar y filtrar mascotas & RF & Should & Media (4,16) & 1,80 & Mejora la usabilidad, pero el sistema puede operar inicialmente con listas generales. \\ \midrule
 			RF-05 & Gestionar solicitudes de adopción & RF & Must & --- & 3,63 & Núcleo del modelo operativo de la plataforma. \\ \midrule
-			RF-06 & Evaluar compatibilidad para cruza & RF & Must & --- & 1,65 & Requisito diferenciador que usa IA; motivó RD-01 y exige la explicabilidad de RL-06. \\ \midrule
-			RF-07 & Sistema de mensajería & RF & Could & --- & --- & Deseable para coordinar procesos, pero el contacto inicial puede derivarse a canales externos si hay limitaciones de tiempo. \\ \midrule
+			RF-06 & Evaluar compatibilidad para cruza & RF & Must & Media (4,45) & 1,65 & Requisito diferenciador que usa IA; motivó RD-01 y exige la explicabilidad de RL-06. \\ \midrule
+			RF-07 & Sistema de mensajería & RF & Could & Baja (3,84) & --- & Deseable para coordinar procesos, pero el contacto inicial puede derivarse a canales externos si hay limitaciones de tiempo. \\ \midrule
 			RF-08 & Gestionar solicitudes de cruza & RF & Must & --- & 2,88 & Operación central del modelo de negocio junto a RF-05. \\ \midrule
-			RF-09 & Validar información médica & RF & Must & --- & 4,20 & Imprescindible para la confiabilidad clínica del sistema. \\ \midrule
+			RF-09 & Validar información médica & RF & Must & Alta (4,61) & 4,20 & Imprescindible para la confiabilidad clínica del sistema. \\ \midrule
 			RF-10 & Recordatorios de controles preventivos & RF & Should & --- & 2,80 & Aporta valor de bienestar animal, pero no bloquea el flujo principal de adopciones. \\ \midrule
 			RF-11 & Administrar privacidad & RF & Must & --- & 5,75 & Mandatorio por RL-02 y RL-05; es el RF más citado en las entrevistas (9 EV). \\ \midrule
-			RF-12 & Verificar identidad de usuarios & RF & Must & --- & 5,80 & Indispensable para evitar fraude; sustenta el consentimiento de RL-01. \\ \midrule
+			RF-12 & Verificar identidad de usuarios & RF & Must & Media (4,34) & 5,80 & Indispensable para evitar fraude; sustenta el consentimiento de RL-01. \\ \midrule
 			RF-13 & Registrar publicaciones & RF & Must & --- & 7,00 & Necesario para que un propietario active la disponibilidad de su mascota. \\ \midrule
-			RF-14 & Gestionar carnet de vacunación & RF & Must & --- & 4,20 & Crítico para la trazabilidad sanitaria; sustenta RL-03. \\ \midrule
+			RF-14 & Gestionar carnet de vacunación & RF & Must & Alta (4,71) & 4,20 & Crítico para la trazabilidad sanitaria; sustenta RL-03. \\ \midrule
 			RF-15 & Consultar historial de procesos & RF & Could & --- & --- & Aporta trazabilidad al usuario, pero no es indispensable para completar una adopción o cruza. \\ \midrule
 			RF-16 & Antecedentes genéticos y parentesco & RF & Must & --- & 2,00 & Necesario para que RF-06 pueda evaluar compatibilidad de forma responsable. \\ \midrule
 			RF-17 & Validar imágenes con IA & RF & Should & --- & 1,23 & Refuerza la seguridad del contenido, pero el sistema puede operar con moderación manual inicial. \\ \midrule
@@ -5135,7 +6299,7 @@ doi=true
 			RF-21 & Registrar identificador de microchip & RF & Should & --- & 3,00 & Aporta trazabilidad complementaria al carnet de vacunación. \\ \midrule
 			RF-22 & Seguimiento post-adopción & RF & Must & --- & 1,25 & Cierra el ciclo de responsabilidad de RF-18, exigido por participantes de la segunda ronda. \\ \midrule
 			RF-23 & Alertas de riesgo sanitario o físico & RF & Must & --- & 2,63 & Mitiga un riesgo real de seguridad y salud animal detectado en varias entrevistas (EV-09, EV-12, EV-15, EV-18). \\ \midrule
-			RF-24 & Trazabilidad de cepa, lote y aplicador & RF & Should & --- & 2,67 & Complementa RF-14 con datos adicionales de trazabilidad, no bloqueante. \\ \midrule
+			RF-24 & Trazabilidad de cepa, lote y aplicador & RF & Should & Alta (4,71) & 2,67 & Complementa RF-14 con datos adicionales de trazabilidad, no bloqueante. \\ \midrule
 			RF-25 & Aviso de mascota extraviada & RF & Could & --- & --- & Funcionalidad de valor social, pero fuera del núcleo de adopción/cruza del sistema. \\ \midrule
 			RNF-01 & Protección de información de propietarios y mascotas & RNF & Must & --- & --- & Requisito estricto de seguridad; sustenta RL-05 y RL-07. \\ \midrule
 			RNF-02 & Disponibilidad del sistema & RNF & Must & --- & --- & Crítico para la operatividad continua de la plataforma. \\ \midrule
@@ -5155,7 +6319,7 @@ doi=true
 			RNF-16 & Confidencialidad de ubicación y contacto & RNF & Must & --- & --- & Obligación legal directa (RL-05, principio de minimización). \\ \midrule
 			RD-01 & Integración de componentes de IA & RD & Must & --- & --- & Restricción ineludible: arquitectura del principal valor agregado de MundiPets. \\ \midrule
 			RD-02 & Acceso basado en roles & RD & Must & --- & --- & Mandatorio para diferenciar permisos de propietarios, veterinarias y administradores; sustenta RL-05 y RL-08. \\ \midrule
-			RD-03 & Validación profesional de la información médica & RD & Must & --- & --- & Exigido por los veterinarios entrevistados para garantizar confiabilidad clínica. \\ \midrule
+			RD-03 & Validación profesional de la información médica & RD & Must & Alta (4,61) & --- & Exigido por los veterinarios entrevistados para garantizar confiabilidad clínica. \\ \midrule
 			RD-04 & Protección de datos personales & RD & Must & --- & --- & Implementa directamente RL-05, RL-07 y RL-08. \\ \midrule
 			RD-05 & Arquitectura modular del sistema & RD & Must & --- & --- & Facilita mantenimiento e incorporación de nuevas funcionalidades; sustenta RNF-10. \\ \midrule
 			RD-06 & Eliminación de cuenta y datos personales & RD & Must & --- & --- & Obligación legal ineludible (RL-04, derecho de supresión); sin este mecanismo el sistema incumple la LOPDP. \\ \midrule
@@ -5186,10 +6350,26 @@ doi=true
 	Sección~\ref{sec:stakeholders}; las columnas HU, CA y Mockup se completan a
 	medida que se redactan las historias de usuario (Sección~\ref{sec:historias})
 	y los mockups de alta fidelidad (Sección~\ref{sec:mockups}). Debe coincidir
-	con el archivo \texttt{04\_Trazabilidad/matriz\_trazabilidad.csv}. La matriz alcanza las 40 filas
-	exigidas: las diez filas finales (TR-31 a TR-40) recogen las relaciones
-	derivadas de los RF-18 a RF-25, del RNF-16 y del RD-09 incorporados en esta
-	entrega.
+	con el archivo \texttt{04\_Trazabilidad/matriz\_trazabilidad.csv}. La matriz
+	alcanza las \textbf{50 filas} (TR-01 a TR-50), por encima del mínimo de 40
+	exigido: las veinte filas finales (TR-31 a TR-50) recogen las relaciones
+	derivadas de los RF-18 a RF-25, de los RNF-09 a RNF-16 y de los RD-06 a RD-09
+	incorporados o completados en esta entrega. Con ello, la totalidad de los 25
+	RF, los 16 RNF y las 9 RD del documento queda trazada.
+	
+	\textbf{Lectura de las celdas marcadas con \enquote{---}.} El guion no indica
+	información faltante, sino ausencia de relación en ese eslabón concreto. En la
+	columna Ley y Artículo significa que el requisito no deriva de una obligación
+	de la LOPDP, sino de una necesidad funcional o de calidad elicitada en campo;
+	solo los requisitos con base legal directa (Tabla~\ref{tab:legales}) llevan
+	artículo. En las columnas ID-HU y ID-CA significa que el elemento no genera
+	historia de usuario propia: las historias se redactan únicamente para los RF
+	de prioridad \emph{Must} (Sección~\ref{sec:historias}), por lo que los RNF,
+	las restricciones de diseño y los RF de prioridad \emph{Should} o
+	\emph{Could} no las tienen. En la columna Mockup significa que el requisito no
+	tiene una pantalla dedicada, ya sea porque es transversal a la interfaz, se
+	resuelve en la capa de servicios o no corresponde a una pantalla de prioridad
+	\emph{Must}.
 	
 	\begin{landscape}
 		\begin{longtable}{@{}p{0.8cm} p{1.3cm} p{1.5cm} p{2.2cm} p{1.5cm} p{1.8cm} p{1.6cm} p{1.3cm} p{1.3cm} p{1.3cm} p{1.5cm}@{}}
@@ -5212,41 +6392,41 @@ doi=true
 			\bottomrule
 			\endlastfoot
 			
-			TR-01 & --- & --- & Registro de mascota & Propietario & EV-02, EV-03, EV-05, EV-08 & RF-01 & CU-01 & HU-01 & CA-01 & MU-01 \\ \midrule
+			TR-01 & LOPDP & Art. 7 y 8 & Registro de mascota & Propietario & EV-02, EV-03, EV-05, EV-08 & RF-01 & CU-01 & HU-01 & CA-01 & MU-02, MU-06 \\ \midrule
 			
-			TR-02 & LOPDP & --- & Registro clínico & Veterinaria & EV-01, EV-04 & RF-02 & CU-02 & HU-02 & CA-02 & --- \\ \midrule
+			TR-02 & LOPDP & Art. 14 & Registro clínico & Veterinaria & EV-01, EV-04 & RF-02 & CU-02 & HU-02 & CA-02 & MU-06 \\ \midrule
 			
-			TR-03 & LOPDP & --- & Consulta de perfil médico & Adoptante & EV-04, EV-06, EV-08 & RF-03 & CU-10 & HU-03 & CA-03 & --- \\ \midrule
+			TR-03 & LOPDP & Art. 12 y 13 & Consulta de perfil médico & Adoptante & EV-04, EV-06, EV-08 & RF-03 & CU-10 & HU-03 & CA-03 & MU-04, MU-06 \\ \midrule
 			
-			TR-04 & --- & --- & Búsqueda de mascotas & Adoptante & EV-07, EV-08 & RF-04 & CU-11 & --- & --- & --- \\ \midrule
+			TR-04 & --- & --- & Búsqueda de mascotas & Adoptante & EV-07, EV-08 & RF-04 & CU-11 & --- & --- & MU-04 \\ \midrule
 			
-			TR-05 & --- & --- & Publicación en adopción & Propietario & EV-01, EV-02, EV-03, EV-08 & RF-05 & CU-04 & HU-04 & CA-04 & --- \\ \midrule
+			TR-05 & --- & --- & Publicación en adopción & Propietario & EV-01, EV-02, EV-03, EV-08 & RF-05 & CU-04 & HU-04 & CA-04 & MU-05 \\ \midrule
 			
-			TR-06 & --- & --- & Evaluación de compatibilidad & Interesado en cruza & EV-04, EV-05, EV-06, EV-08 & RF-06 & CU-13 & HU-05 & CA-05 & --- \\ \midrule
+			TR-06 & LOPDP & Art. 20 & Evaluación de compatibilidad & Interesado en cruza & EV-04, EV-05, EV-06, EV-08 & RF-06 & CU-13 & HU-05 & CA-05 & MU-07 \\ \midrule
 			
-			TR-07 & LOPDP & --- & Mensajería entre usuarios & Propietario & EV-02, EV-07, EV-08 & RF-07 & CU-08 & --- & --- & --- \\ \midrule
+			TR-07 & LOPDP & Art. 10 lit. e) & Mensajería entre usuarios & Propietario & EV-02, EV-07, EV-08 & RF-07 & CU-08 & --- & --- & MU-05 \\ \midrule
 			
-			TR-08 & --- & --- & Solicitudes de cruza & Interesado en cruza & EV-01, EV-03, EV-05 & RF-08 & CU-05 & HU-06 & CA-06 & --- \\ \midrule
+			TR-08 & --- & --- & Solicitudes de cruza & Interesado en cruza & EV-01, EV-03, EV-05 & RF-08 & CU-05 & HU-06 & CA-06 & MU-05 \\ \midrule
 			
-			TR-09 & --- & --- & Validación de información médica & Veterinaria & EV-03, EV-05, EV-07 & RF-09 & CU-09 & HU-07 & CA-07 & --- \\ \midrule
+			TR-09 & LOPDP & Art. 25 y 26 & Validación de información médica & Veterinaria & EV-03, EV-05, EV-07 & RF-09 & CU-09 & HU-07 & CA-07 & MU-03 \\ \midrule
 			
 			TR-10 & --- & --- & Controles preventivos & Propietario & EV-02, EV-04, EV-06 & RF-10 & CU-12 & --- & --- & --- \\ \midrule
 			
-			TR-11 & LOPDP & --- & Administrar privacidad & Propietario & EV-02, EV-05, EV-06, EV-07, EV-08 & RF-11 & CU-06 & HU-08 & CA-08 & --- \\ \midrule
+			TR-11 & LOPDP & Art. 12, 13 y 10 lit. e) & Administrar privacidad & Propietario & EV-02, EV-05, EV-06, EV-07, EV-08 & RF-11 & CU-06 & HU-08 & CA-08 & MU-08 \\ \midrule
 			
-			TR-12 & LOPDP & --- & Verificar identidad & Todos los usuarios & EV-01, EV-03, EV-07, EV-08 & RF-12 & (Transversal a Onboarding) & HU-09 & CA-09 & --- \\ \midrule
+			TR-12 & LOPDP & Art. 7 y 8 & Verificar identidad & Todos los usuarios & EV-01, EV-03, EV-07, EV-08 & RF-12 & (Transversal a Onboarding) & HU-09 & CA-09 & MU-01 \\ \midrule
 			
-			TR-13 & --- & --- & Registrar publicaciones & Propietario / Refugio & EV-01, EV-02, EV-07, EV-08 & RF-13 & CU-04 & HU-10 & CA-10 & --- \\ \midrule
+			TR-13 & --- & --- & Registrar publicaciones & Propietario / Refugio & EV-01, EV-02, EV-07, EV-08 & RF-13 & CU-04 & HU-10 & CA-10 & MU-06 \\ \midrule
 			
-			TR-14 & --- & --- & Carnet de vacunación & Veterinaria & EV-03, EV-05, EV-07 & RF-14 & CU-03 & HU-11 & CA-11 & --- \\ \midrule
+			TR-14 & LOPDP & Art. 14 & Carnet de vacunación & Veterinaria & EV-03, EV-05, EV-07 & RF-14 & CU-03 & HU-11 & CA-11 & MU-03 \\ \midrule
 			
 			TR-15 & --- & --- & Historial de procesos & Propietario & EV-01, EV-02, EV-04, EV-06 & RF-15 & CU-07 & --- & --- & --- \\ \midrule
 			
-			TR-16 & --- & --- & Antecedentes genéticos & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RF-16 & CU-02 & HU-12 & CA-12 & --- \\ \midrule
+			TR-16 & --- & --- & Antecedentes genéticos & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RF-16 & CU-02 & HU-12 & CA-12 & MU-06 \\ \midrule
 			
-			TR-17 & --- & --- & Validación de imágenes por IA & Propietario & EV-01, EV-03, EV-07, EV-08 & RF-17 & (Transversal a Publicaciones) & --- & --- & --- \\ \midrule
+			TR-17 & LOPDP & Art. 20 & Validación de imágenes por IA & Propietario & EV-01, EV-03, EV-07, EV-08 & RF-17 & (Transversal a Publicaciones) & --- & --- & --- \\ \midrule
 			
-			TR-18 & LOPDP & --- & Protección de la información & Propietario / Veterinaria & EV-05, EV-06, EV-07, EV-08 & RNF-01 & CU-06 & --- & --- & --- \\ \midrule
+			TR-18 & LOPDP & Art. 10 lit. j) y 25 & Protección de la información & Propietario / Veterinaria & EV-05, EV-06, EV-07, EV-08 & RNF-01 & CU-06 & --- & --- & --- \\ \midrule
 			
 			TR-19 & --- & --- & Disponibilidad del sistema & Todos los usuarios & EV-01 a EV-07 & RNF-02 & (Transversal) & --- & --- & --- \\ \midrule
 			
@@ -5254,27 +6434,27 @@ doi=true
 			
 			TR-21 & --- & --- & Facilidad de uso & Todos los usuarios & EV-01 a EV-08 & RNF-04 & (Transversal / UI) & --- & --- & --- \\ \midrule
 			
-			TR-22 & LOPDP & --- & Integridad info. médica & Veterinaria & EV-03, EV-05, EV-07 & RNF-05 & CU-02 & --- & --- & --- \\ \midrule
+			TR-22 & LOPDP & Art. 25 y 26 & Integridad info. médica & Veterinaria & EV-03, EV-05, EV-07 & RNF-05 & CU-02 & --- & --- & --- \\ \midrule
 			
-			TR-23 & --- & --- & Exactitud componente IA & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RNF-06 & CU-13 & --- & --- & --- \\ \midrule
+			TR-23 & LOPDP & Art. 20 & Exactitud componente IA & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RNF-06 & CU-13 & --- & --- & --- \\ \midrule
 			
-			TR-24 & --- & --- & Precisión validación imágenes & Propietario & EV-01, EV-03, EV-05, EV-07 & RNF-07 & (Transversal a Media) & --- & --- & --- \\ \midrule
+			TR-24 & LOPDP & Art. 20 & Precisión validación imágenes & Propietario & EV-01, EV-03, EV-05, EV-07 & RNF-07 & (Transversal a Media) & --- & --- & --- \\ \midrule
 			
 			TR-25 & --- & --- & Actualización de información & Todos los usuarios & EV-01 a EV-07 & RNF-08 & CU-01 & --- & --- & --- \\ \midrule
 			
-			TR-26 & --- & --- & Integración de IA & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RD-01 & CU-13 & --- & --- & --- \\ \midrule
+			TR-26 & LOPDP & Art. 20 & Integración de IA & Interesado en cruza & EV-01, EV-03, EV-05, EV-07 & RD-01 & CU-13 & --- & --- & --- \\ \midrule
 			
-			TR-27 & LOPDP & --- & Acceso basado en roles & Todos los usuarios & EV-01 a EV-07 & RD-02 & (Transversal a Seguridad) & --- & --- & --- \\ \midrule
+			TR-27 & LOPDP & Art. 39 & Acceso basado en roles & Todos los usuarios & EV-01 a EV-07 & RD-02 & (Transversal a Seguridad) & --- & --- & --- \\ \midrule
 			
-			TR-28 & --- & --- & Validación profesional & Veterinaria & EV-03, EV-05, EV-07 & RD-03 & CU-09 & --- & --- & --- \\ \midrule
+			TR-28 & LOPDP & Art. 25 y 26 & Validación profesional & Veterinaria & EV-03, EV-05, EV-07 & RD-03 & CU-09 & --- & --- & --- \\ \midrule
 			
-			TR-29 & LOPDP & --- & Protección de datos & Propietario & EV-02, EV-05, EV-06, EV-07 & RD-04 & CU-06 & --- & --- & --- \\ \midrule
+			TR-29 & LOPDP & Art. 25, 26 y 30 & Protección de datos & Propietario & EV-02, EV-05, EV-06, EV-07 & RD-04 & CU-06 & --- & --- & --- \\ \midrule
 			
 			TR-30 & --- & --- & Arquitectura modular & Equipo desarrollador & Derivado del equipo de desarrollo & RD-05 & (Transversal a Diseño) & --- & --- & --- \\ \midrule
 			
 			TR-31 & --- & --- & Flujo de adopción por etapas & Adoptante / Propietario & EV-11, EV-16 & RF-18 & CU-04 & HU-13 & CA-13 & --- \\ \midrule
 			
-			TR-32 & LOPDP & Art. 12 & Validación de certificados veterinarios & Veterinaria & EV-11 & RF-19 & CU-09 & --- & --- & --- \\ \midrule
+			TR-32 & LOPDP & Art. 12 & Validación de certificados veterinarios & Veterinaria & EV-11 & RF-19 & CU-09 & --- & --- & MU-03 \\ \midrule
 			
 			TR-33 & --- & --- & Encuentros de socialización supervisados & Propietario & EV-13 & RF-20 & CU-08 & --- & --- & --- \\ \midrule
 			
@@ -5290,7 +6470,17 @@ doi=true
 			
 			TR-39 & LOPDP & Art. 9 & Confidencialidad de ubicación y contacto & Propietario & EV-12, EV-16 & RNF-16 & CU-06 & HU-08 & CA-08 & --- \\ \midrule
 			
-			TR-40 & LOPDP & Art. 30--32 & Anonimización de evidencias de campo & Equipo investigador & EV-01 a EV-18 & RD-09 & (Transversal a Datos) & --- & --- & --- \\
+			TR-40 & LOPDP & Art. 30--32 & Anonimización de evidencias de campo & Equipo investigador & EV-01 a EV-22 & RD-09 & (Transversal a Datos) & --- & --- & --- \\ \midrule
+			TR-41 & --- & --- & Interoperabilidad de notificaciones & Propietario & EV-09, EV-18 & RNF-09 & CU-12 & --- & --- & --- \\ \midrule
+			TR-42 & --- & --- & Mantenibilidad del código & Equipo desarrollador & Derivado del equipo de desarrollo & RNF-10 & (Transversal a Diseño) & --- & --- & --- \\ \midrule
+			TR-43 & --- & --- & Portabilidad entre navegadores & Todos los usuarios & EV-07, EV-08 & RNF-11 & (Transversal a UI) & --- & --- & --- \\ \midrule
+			TR-44 & --- & --- & Escalabilidad ante crecimiento & Todos los usuarios & EV-07, EV-08 & RNF-12 & (Transversal) & --- & --- & --- \\ \midrule
+			TR-45 & LOPDP & Art. 20 & Explicabilidad de la compatibilidad para cruza & Interesado en cruza & EV-11, EV-13, EV-15, EV-16 & RNF-13 & CU-13 & HU-05 & CA-05 & MU-07 \\ \midrule
+			TR-46 & LOPDP & Art. 20 & Explicabilidad de la validación de imágenes & Propietario & EV-11, EV-13 & RNF-14 & (Transversal a Media) & --- & --- & --- \\ \midrule
+			TR-47 & LOPDP & Art. 20 & Explicabilidad de la moderación de mensajes & Propietario & EV-13, EV-18 & RNF-15 & CU-08 & --- & --- & MU-05 \\ \midrule
+			TR-48 & LOPDP & Art. 15 & Eliminación de cuenta y datos personales & Propietario & EV-18 & RD-06 & (Transversal a Datos) & --- & --- & MU-08 \\ \midrule
+			TR-49 & LOPDP & Art. 43 y 46 & Notificación de vulneraciones de seguridad & Propietario / Autoridad & EV-12, EV-18 & RD-07 & (Transversal a Seguridad) & --- & --- & --- \\ \midrule
+			TR-50 & --- & --- & Dependencia de mensajería externa & Propietario & EV-09, EV-18 & RD-08 & CU-12 & --- & --- & --- \\
 			
 		\end{longtable}
 	\end{landscape}
@@ -5348,11 +6538,19 @@ doi=true
 	
 	\subsection*{Historial de commits}
 	
-	El historial completo de commits, con autoría por integrante, se consulta en
-	la pestaña \emph{Commits} del repositorio. El equipo mantiene mensajes de
-	commit en formato convencional (\texttt{docs(ers): \dots},
-	\texttt{feat(mvp): \dots}), de modo que la contribución individual de cada
-	integrante sea verificable para la evaluación de la asignatura.
+	El historial completo de commits, con autoría y fecha por integrante, se
+	consulta en la pestaña \emph{Commits} del repositorio y constituye la
+	evidencia verificable de la contribución individual de cada miembro del
+	equipo a lo largo de las cuatro entregas. La Figura~\ref{fig:commits}
+	muestra una captura del historial al momento del corte de esta entrega.
+	
+	% --- Captura del historial de commits (agregar manualmente) ---
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{figuras/historial_commits.png}
+		\caption[Historial de commits del repositorio MundiPets-PFC-IngReq]{Historial de commits del repositorio \texttt{MundiPets-PFC-IngReq} al momento del corte de la Entrega 3 (2A).}
+		\label{fig:commits}
+	\end{figure}
 	
 	% --------------------------------------------------------
 	\section*{Apéndice F --- Protocolo experimental}
@@ -5392,19 +6590,46 @@ doi=true
 		\caption{Comparación de revistas objetivo candidatas.}
 		\label{tab:revistas}
 		\small
-		\begin{tabularx}{\textwidth}{@{}p{3.2cm} p{1.9cm} p{1.5cm} p{1.5cm} p{1.7cm} X@{}}
+		\begin{tabularx}{\textwidth}{@{}p{3.0cm} p{1.7cm} p{1.5cm} p{2.4cm} X@{}}
 			\toprule
-			\textbf{Revista} & \textbf{Editorial} & \textbf{Cuartil JCR} & \textbf{Factor de impacto} & \textbf{Modelo de acceso} & \textbf{Ajuste temático} \\
+			\textbf{Revista} & \textbf{Editorial} & \textbf{Modelo de acceso} & \textbf{APC y métricas} & \textbf{Ajuste temático} \\
 			\midrule
-			--- & Springer & --- & --- & APC & --- \\
-			--- & Springer & --- & --- & Suscripción & --- \\
-			--- & Elsevier & --- & --- & APC & --- \\
-			--- & Elsevier & --- & --- & Suscripción & --- \\
-			--- & IEEE & --- & --- & APC & --- \\
-			--- & IEEE & --- & --- & Suscripción & --- \\
+			Scientific Reports & Springer Nature & Acceso abierto (gold) & APC vigente; FI 4,9 (JCR 2025); mediana de 20 días a primera decisión & Alcance amplio, lo que reduce el riesgo de rechazo de escritorio por tema. Publicó trabajo reciente sobre detección automática de ambigüedad en requisitos. \\
+			\addlinespace
+			Requirements Engineering & Springer Nature & Híbrida (sin cargo por suscripción) & Sin APC en suscripción; FI 3,3 (2025); mediana de 5 días a primera decisión & Revista central del área y máximo ajuste temático. También la más exigente en alcance empírico. \\
+			\addlinespace
+			Heliyon & Elsevier (Cell Press) & Acceso abierto (gold) & APC 2\,270 USD; FI 3,6 (JCR 2025) & Multidisciplinar; evalúa por solidez metodológica más que por novedad, lo que favorece a un estudio de réplica. \\
+			\addlinespace
+			Information and Software Technology & Elsevier & Híbrida (sin cargo por suscripción) & Sin APC en suscripción (3\,890 USD si se elige acceso abierto); CiteScore 4,3; 7 días a primera decisión & Publicó trabajo citado en este documento sobre calidad de requisitos y encuestas en ingeniería de software. Tradición fuerte en estudios empíricos. \\
+			\addlinespace
+			IEEE Access & IEEE & Acceso abierto (gold) & APC vigente; FI 3,6; Q2; CiteScore 9,0; 4--6 semanas de envío a publicación & Revisión binaria y rápida. Publicó trabajo citado en este documento sobre aseguramiento de la calidad de requisitos. \\
+			\addlinespace
+			IEEE Trans. on Software Engineering & IEEE & Híbrida (sin cargo por suscripción) & Sin APC en suscripción; Q1 en Software & Máximo prestigio del área; exige contribución empírica de gran alcance. Con $N = 50$ requisitos el riesgo de rechazo de escritorio es alto. \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
+	
+	\paragraph{Estado de la verificación.}
+	Las métricas anteriores se consultaron en las páginas oficiales de cada
+	revista y en la lista de títulos de la editorial correspondiente. El cuartil
+	vigente del Journal Citation Reports y la tarifa exacta de APC de las
+	candidatas de acceso abierto deben confirmarse en Clarivate y en la página de
+	tarifas de cada revista antes del envío; el análisis actualizado se mantiene
+	en \texttt{07\_Publicacion/analisis\_revistas.md}.
+	
+	\paragraph{Recomendación provisional.}
+	La candidata mejor posicionada es \emph{Information and Software Technology},
+	en modalidad por suscripción, por combinar ajuste temático demostrado, costo
+	cero para las personas autoras e indexación confirmada. La política del
+	Proyecto Fin de Curso establece que la decisión final se tome en la semana 16
+	comparando las candidatas de las tres editoriales mediante las puntuaciones
+	de ajuste que devuelven sus herramientas oficiales de selección de revista.
+	
+	\paragraph{Categoría de envío prevista.}
+	Dado el volumen de evidencia empírica alcanzado --- un corpus de 50
+	requisitos evaluado por un panel de tres personas expertas ---, la modalidad
+	realista de envío es la de artículo corto o \emph{tool paper} (6 a 8
+	páginas), y no la de artículo completo.
 	
 	% --------------------------------------------------------
 	\section*{Apéndice H --- Checklist de aceptación previo al corte}
@@ -5422,21 +6647,31 @@ doi=true
 			\midrule
 			1 & La estructura de carpetas del repositorio coincide con la estructura definida. & $\square$ \\
 			2 & Existen los cinco archivos raíz obligatorios y están completos. & $\square$ \\
-			3 & El PDF del ERS/SRS está unificado, numerado, con historial de versiones y enlace al repositorio en la portada. & $\square$ \\
-			4 & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_Nombre\_Tecnica.ext}. & $\square$ \\
-			5 & Cada archivo de audio o video pasa \texttt{ffprobe} sin error y muestra duración mayor a cero. & $\square$ \\
-			6 & Cada consentimiento firmado es imagen o PDF con firma manuscrita visible y cédula legible. & $\square$ \\
-			7 & El cuestionario tiene fotografías de aplicación real y respuestas exportadas con $n \geq 30$. & $\square$ \\
-			8 & El protocolo experimental está registrado en el OSF con fecha anterior a la ejecución. & $\square$ \\
-			9 & Los prompts de los LLM, si aplican, incluyen modelo, temperatura, top-p y semilla. & $\square$ \\
-			10 & Los scripts de análisis reproducen las tablas y figuras a partir de los datos crudos. & $\square$ \\
+			3 & El PDF del ERS/SRS está unificado, numerado, con historial de versiones y enlace al repositorio en la portada. & $\blacksquare$ \\
+			4 & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_CodigoParticipante\_Tecnica.ext} y usan el código de participante, no el nombre propio. & $\square$ \\
+			5 & Cada archivo de audio o video pasa \texttt{ffprobe} sin error y muestra duración mayor a cero. & $\blacksquare$ \\
+			6 & Cada consentimiento firmado es imagen o PDF con firma manuscrita visible y cédula legible. & $\blacksquare$ \\
+			7 & El cuestionario tiene fotografías de aplicación real y respuestas exportadas con $n \geq 30$. & $\blacksquare$ \\
+			8 & El protocolo experimental está registrado en el OSF con fecha anterior a la ejecución. & $\blacksquare$ \\
+			9 & Los prompts de los LLM, si aplican, incluyen modelo, temperatura, top-p y semilla. & $\blacksquare$ \\
+			10 & Los scripts de análisis reproducen las tablas y figuras a partir de los datos crudos. & $\blacksquare$ \\
 			11 & El hash SHA-256 de cada archivo multimedia consta en \texttt{checksums.sha256} y coincide. & $\square$ \\
 			12 & La matriz de trazabilidad en CSV tiene al menos 40 filas y todas las columnas obligatorias. & $\square$ \\
-			13 & Todas las evidencias declaradas en el ERS existen realmente en el repositorio. & $\square$ \\
-			14 & Se alcanzaron los mínimos comprometidos: 25 RF, 15 RNF, 10 CU detallados, 40 filas de trazabilidad y 30 respuestas de cuestionario. & $\square$ \\
-			15 & Todo componente de IA/ML tiene tratamiento de explicabilidad como RNF. & $\square$ \\
+			13 & Todas las evidencias declaradas en el ERS existen realmente en el repositorio. & $\blacksquare$ \\
+			14 & Se alcanzaron los mínimos comprometidos: 25 RF, 15 RNF, 10 CU detallados, 40 filas de trazabilidad y 30 respuestas de cuestionario. & $\blacksquare$ \\
+			15 & Todo componente de IA/ML tiene tratamiento de explicabilidad como RNF. & $\blacksquare$ \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
+	
+	\textbf{Nota sobre los ítems no marcados.} Los ítems 1, 2, 4, 11 y 12 no se
+	consideran cumplidos a la fecha de esta versión: el árbol del repositorio
+	presenta desviaciones respecto de la estructura obligatoria, el archivo
+	\texttt{checksums.sha256} está pendiente de generación, la nomenclatura de
+	los archivos multimedia aún emplea el nombre propio en lugar del código de
+	participante, y los artefactos de trazabilidad y priorización en formato CSV
+	no se han versionado todavía en \texttt{04\_Trazabilidad/}. El equipo
+	declara estos pendientes de forma expresa en lugar de autocertificarlos, y
+	su resolución constituye la prioridad inmediata antes del corte.
 	
 \end{document}
