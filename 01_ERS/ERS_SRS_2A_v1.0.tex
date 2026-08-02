@@ -5012,9 +5012,9 @@ doi=true
 			\hline
 			Gutiérrez Ortega Génesis Adriana & Verificador -- controla la calidad de los requisitos no funcionales, la explicabilidad, el marco legal y las evidencias de campo. \\
 			\hline
-			Mendoza Párraga Andy Johel & Documentador -- estructura el ERS/SRS según IEEE 29148, contexto, modelado organizacional y trazabilidad. \\
+			Mendoza Párraga Andy Johel & Modelador -- construye los ocho diagramas UML exigidos y los mockups de alta fidelidad. \\
 			\hline
-			Morales Sánchez Gary Alejandro & Modelador -- construye los ocho diagramas UML exigidos y los mockups de alta fidelidad. \\
+			Morales Sánchez Gary Alejandro & Documentador -- estructura el ERS/SRS según IEEE 29148, contexto, modelado organizacional y trazabilidad. \\
 			\hline
 			Nieves Sánchez Jimmy Samuel & Verificador -- responsable del componente empírico, el MVP y el paquete de publicación. \\
 			\hline
@@ -5039,11 +5039,11 @@ doi=true
 			\hline
 			\textbf{Semana 9 (29 jun.--05 jul.)} & \textbf{Segundo avance:} ERS/SRS parcial -- requisitos formalizados (plantilla de 8 atributos), RNF cuantificados, modelado UML e interfaces, priorización MoSCoW y trazabilidad parcial (Entrega 2/1B). & Completado \\
 			\hline
-			Semanas 10--11 (06--19 jul.) & Segunda ronda de elicitación: entrevistas y sesiones de walkthrough adicionales, ampliación del cuestionario (v2.0) para cubrir Kano, codificación temática de las transcripciones y curva de saturación. & En curso \\
+			Semanas 10--11 (06--19 jul.) & Segunda ronda de elicitación: entrevistas y sesiones de walkthrough adicionales, ampliación del cuestionario (v2.0) para cubrir Kano, codificación temática de las transcripciones y curva de saturación. & Completado \\
 			\hline
-			Semana 12 (20--26 jul.) & Redacción de los RF-18 a RF-25 y RNF-09 a RNF-15 a partir de la codificación temática, mapeo legal LOPDP, construcción del diagrama de Razón Estratégica (SR) y refinamiento del diagrama de clases. & En curso \\
+			Semana 12 (20--26 jul.) & Redacción de los RF-18 a RF-25 y RNF-09 a RNF-15 a partir de la codificación temática, mapeo legal LOPDP, construcción del diagrama de Razón Estratégica (SR) y refinamiento del diagrama de clases. & Completado \\
 			\hline
-			\textbf{Semana 13 (27 jul.--02 ago.)} & \textbf{Tercer avance:} ERS Completo con Validación y Trazabilidad -- documento de especificación de requisitos completo, validado y con trazabilidad total evidencia--requisito--caso de uso, priorización Kano/WSJF, MVP y protocolo del componente empírico registrado en el OSF. & Planificado \\
+			\textbf{Semana 13 (27 jul.--02 ago.)} & \textbf{Tercer avance:} ERS Completo con Validación y Trazabilidad -- documento de especificación de requisitos completo, validado y con trazabilidad total evidencia--requisito--caso de uso, priorización Kano/WSJF, MVP y protocolo del componente empírico registrado en el OSF. & Completado \\
 			\hline
 			Semanas 14--16 (03--23 ago.) & Ejecución del componente empírico, desarrollo del MVP, revisión integral del documento y ajustes finales según observaciones del docente. & Planificado \\
 			\hline
@@ -6220,6 +6220,199 @@ doi=true
 	(Apéndice~B.6) y se publican únicamente en su versión anonimizada, conforme
 	a la restricción RD-09.
 	
+	\paragraph{Zona restringida --- originales cifrados.}
+	Los archivos de audio y video originales de todas las entrevistas y sesiones
+	de \emph{walkthrough} (EV-01 a EV-22, excepto EV-08, que corresponde a
+	observación sin grabación de audio/video de personas) no se almacenan
+	sueltos en el repositorio: se comprimen y cifran con 7-Zip (AES-256) en un
+	volumen dividido, alojado en
+	\texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/}. El
+	volumen se fragmenta en 67 partes
+	(\texttt{evidencias\_restringidas.7z.001} a
+	\texttt{evidencias\_restringidas.7z.067}) para facilitar la subida al
+	repositorio sin exceder el límite de tamaño por archivo. La contraseña del
+	contenedor se entrega únicamente al docente responsable por el Sistema de
+	Gestión Académica (SGA), conforme a la Sección~4.1 de la Guía y Rúbrica de
+	la Entrega 3 (2A). El detalle de cada archivo interno --- nombre, tipo,
+	fecha, código de participante, duración, códec, tamaño y hash SHA-256 ---
+	consta en \texttt{02\_Evidencias/00\_Restringido/fichas\_tecnicas.csv}, que
+	junto con \texttt{README\_evidencias\_restringidas.md} es de lectura
+	pública y no contiene datos identificables; únicamente el contenido cifrado
+	del volumen \texttt{.7z} los contiene.
+	
+	\paragraph{Zona pública --- entrevistas (EV-01 a EV-06, EV-09 a EV-18).}
+	La transcripción anonimizada de cada entrevista está disponible en
+	\texttt{02\_Evidencias/Transcripciones/}; el audio y video original de cada
+	una reside cifrado en la zona restringida.
+	
+	{\small
+		\begin{longtable}{@{}>{\raggedright\arraybackslash}p{1.4cm} >{\raggedright\arraybackslash}p{1.6cm} >{\raggedright\arraybackslash}p{3.2cm} >{\raggedright\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{6.5cm}@{}}
+			\caption{Índice de multimedia --- entrevistas grabadas (EV-01 a EV-18).}\label{tab:indice-mm-entrevistas}\\
+			\toprule
+			\textbf{EV} & \textbf{Código} & \textbf{Rol} & \textbf{Fecha} & \textbf{Archivo (zona pública)} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{5}{@{}l}{\small\itshape (continuación)}\\
+			\toprule
+			\textbf{EV} & \textbf{Código} & \textbf{Rol} & \textbf{Fecha} & \textbf{Archivo (zona pública)} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			EV-01 & PROP-01 & Propietario de mascota & 17/05/2026 & \texttt{2026-05-17\_PropietarioMascota\_PROP-01\_TranscripcionEntrevista.txt} \\
+			EV-02 & PROP-02 & Propietaria de mascota & 17/05/2026 & \texttt{2026-05-17\_PropietarioMascota\_PROP-02\_TranscripcionEntrevista.txt} \\
+			EV-03 & VET-01 & Médica veterinaria & 17/05/2026 & \texttt{2026-05-17\_Veterinaria\_VET-01\_TranscripcionEntrevista.txt} \\
+			EV-04 & VET-02 & Veterinario & 17/05/2026 & \texttt{2026-05-17\_Veterinario\_VET-04\_TranscripcionEntrevista.txt}$^{\ast}$ \\
+			EV-05 & VET-03 & Médico veterinario & 29/05/2026 & \texttt{2026-05-29\_Veterinario\_VET-03\_TranscripcionEntrevista.txt} \\
+			EV-06 & PROP-03 & Propietaria de mascota & 14/06/2026 & \texttt{2026-06-14\_PropietarioMascota\_PROP-03\_TranscripcionEntrevista.txt} \\
+			EV-09 & PROP-04 & Propietario de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-04\_TranscripcionEntrevista.txt} \\
+			EV-10 & PROP-05 & Propietario de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-05\_TranscripcionEntrevista.txt} \\
+			EV-11 & PROP-06 & Propietaria de mascota & 24/07/2026 & \texttt{2026-07-24\_PropietarioMascota\_PROP-06\_TranscripcionEntrevista.txt} \\
+			EV-12 & PROP-07 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-07\_TranscripcionEntrevista.txt} \\
+			EV-13 & PROP-08 & Propietario de mascota & 23/07/2026 & \texttt{2026-07-23\_PropietarioMascota\_PROP-08\_TranscripcionEntrevista.txt} \\
+			EV-14 & PROP-09 & Propietario de mascota & 25/07/2026 & \texttt{2026-07-25\_PropietarioMascota\_PROP-09\_TranscripcionEntrevista.txt} \\
+			EV-15 & VET-04 & Veterinaria & 27/07/2026 & \texttt{2026-07-27\_Veterinaria\_VET-04\_TranscripcionEntrevista.txt} \\
+			EV-16 & VET-05 & Veterinario & 25/07/2026 & \texttt{2026-07-25\_Veterinario\_VET-05\_TranscripcionEntrevista.txt} \\
+			EV-17 & PROP-10 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-10\_TranscripcionEntrevista.txt} \\
+			EV-18 & PROP-11 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-11\_TranscripcionEntrevista.txt} \\
+		\end{longtable}
+	}
+	
+	{\footnotesize $^{\ast}$\textbf{Nota de consistencia pendiente de verificación.} El nombre de archivo real subido al repositorio para EV-04 identifica al participante como \texttt{VET-04}, mientras que la Tabla~\ref{tab:evidencias} (Apéndice~B.3) de este documento identifica a EV-04 como \texttt{VET-02}. Existe una discrepancia entre el código de participante declarado en el cuerpo del ERS y el nombre de archivo efectivamente subido al repositorio para esta evidencia, que el equipo debe verificar y corregir antes del corte, conforme lo exige el ítem~13 del checklist de aceptación (Apéndice~H).}
+	
+	\paragraph{Zona pública --- observación (EV-08).}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\begin{tabularx}{\textwidth}{@{}l l X l X@{}}
+			\toprule
+			\textbf{EV} & \textbf{Código} & \textbf{Rol} & \textbf{Fecha} & \textbf{Archivo (zona pública)} \\
+			\midrule
+			EV-08 & OBS-01 & Establecimiento veterinario & 27/07/2026 & \texttt{2026-07-27\_Consentimiento\_Observacion\_OBS-01.pdf} + 19 fotografías fechadas del entorno \\
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	Las 19 fotografías fechadas del entorno observado (recepción, sala de
+	espera, procedimientos veterinarios, registro de información, entre otras)
+	residen en \texttt{02\_Evidencias/Fotos\_Entorno/}, sin rostros
+	identificables y sin coordenadas GPS incrustadas, junto con la copia del
+	consentimiento informado firmado por la veterinaria observada.
+	
+	\paragraph{Zona pública --- sesiones de validación \emph{walkthrough} (EV-19 a EV-22).}
+	Se registran 4 sesiones de validación \emph{walkthrough} (2 con usuarios
+	técnicos, 2 con usuarios no técnicos). El acta enmascarada de cada sesión
+	reside en \texttt{02\_Evidencias/Validacion\_Walkthrough/}; la grabación en
+	video de cada sesión reside cifrada en la zona restringida.
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\begin{tabularx}{\textwidth}{@{}l l X X@{}}
+			\toprule
+			\textbf{EV} & \textbf{Código} & \textbf{Rol} & \textbf{Archivo (acta, zona pública)} \\
+			\midrule
+			EV-19 & PROP-08 & Propietario, usuario no técnico & \texttt{Acta\_Walkthrough\_PROP-08\_UsuarioNoTecnico.pdf} \\
+			EV-20 & PROP-02 & Propietaria, usuaria no técnica & \texttt{Acta\_Walkthrough\_PROP-02\_UsuarioNoTecnico.pdf} \\
+			EV-21 & VET-04 & Veterinaria, usuaria técnica & \texttt{Acta\_Walkthrough\_VET-04\_UsuarioTecnico.pdf} \\
+			EV-22 & VET-06 & Veterinario, usuario técnico & \texttt{Acta\_Walkthrough\_VET-06\_UsuarioTecnico.pdf} \\
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	\textbf{Alerta de cumplimiento heredada de la Adenda de Segunda Ronda.} El
+	mínimo 2A de la Sección~4.2 de la guía exige $\geq 3$ sesiones de
+	\emph{walkthrough} y el objetivo 2B declarado por el propio equipo es de 6
+	sesiones (3 técnicas + 3 no técnicas). Con 4 sesiones ejecutadas se cumple
+	el mínimo 2A pero no el objetivo 2B; faltan 1 sesión con usuario técnico y
+	1 con usuario no técnico.
+	
+	\paragraph{Consentimientos informados firmados (16 en total).}
+	Copia enmascarada de cada consentimiento (cédula y firma cubiertas, código
+	de participante legible) en \texttt{02\_Evidencias/Consentimientos/}. El
+	original íntegro de cada uno reside cifrado en la zona restringida.
+	
+	{\small
+		\begin{longtable}{@{}>{\raggedright\arraybackslash}p{2.0cm} >{\raggedright\arraybackslash}p{2.0cm} >{\raggedright\arraybackslash}p{10cm}@{}}
+			\caption{Consentimientos informados firmados --- índice de archivo (segunda ronda).}\label{tab:indice-mm-consentimientos}\\
+			\toprule
+			\textbf{Código} & \textbf{Fecha} & \textbf{Archivo (copia enmascarada, zona pública)} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{3}{@{}l}{\small\itshape (continuación)}\\
+			\toprule
+			\textbf{Código} & \textbf{Fecha} & \textbf{Archivo (copia enmascarada, zona pública)} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			PROP-01 & 17/05/2026 & \texttt{2026-05-17\_PropietarioMascota\_PROP-01\_Consentimiento.jpeg} \\
+			PROP-02 & 17/05/2026 & \texttt{2026-05-17\_PropietariaMascota\_PROP-02\_Consentimiento.jpeg} \\
+			VET-01 & 17/05/2026 & \texttt{2026-05-17\_Veterinaria\_VET-01\_Consentimiento.jpeg} \\
+			VET-02 & 17/05/2026 & \texttt{2026-05-17\_Veterinario\_VET-02\_Consentimiento.png} \\
+			VET-03 & 29/05/2026 & \texttt{2026-05-29\_Veterinario\_VET-03\_Consentimiento.png} \\
+			PROP-03 & 14/06/2026 & \texttt{2026-06-14\_PropietarioMascota\_PROP-03\_Consentimiento.png} \\
+			PROP-08 & 23/07/2026 & \texttt{2026-07-23\_PropietarioMascota\_PROP-08\_Consentimiento.jpeg} \\
+			PROP-06 & 24/07/2026 & \texttt{2026-07-24\_PropietarioMascota\_PROP-06\_Consentimiento.png} \\
+			VET-05 & 25/07/2026 & \texttt{2026-07-25\_Veterinario\_VET-05\_Consentimiento.jpg} \\
+			PROP-04 & 26/07/2026 & \texttt{2026-07-26\_PropiertarioMascota\_PROP-04\_Consentimiento.jpg} \\
+			PROP-05 & 26/07/2026 & \texttt{2026-07-26\_PropiertarioMascota\_PROP-05\_Consentimiento.jpg} \\
+			PROP-07 & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-07\_Consentimiento.jpeg} \\
+			PROP-10 & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-10\_Consentimiento.jpeg} \\
+			PROP-11 & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-11\_Consentimiento.jpeg} \\
+			PROP-09 & 27/07/2026 & \texttt{2026-07-27\_PropietarioMascota\_PROP-09\_Consentimiento.jpeg} \\
+			VET-04 & 27/07/2026 & \texttt{2026-07-27\_Veterinaria\_VET-04\_Consentimiento.png} \\
+		\end{longtable}
+	}
+	
+	\paragraph{Cuestionario digital.}
+	Respuestas exportadas: 38 archivos PDF individuales
+	(\texttt{Cuestionario\_Respuesta1.pdf} a
+	\texttt{Cuestionario\_Respuesta38.pdf}) más la consolidación
+	\texttt{Respuestas\_Cuestionario\_MundiPets.xlsx}, en
+	\texttt{02\_Evidencias/Cuestionario/Respuestas/}. Fotografías de aplicación
+	real: 6 archivos (\texttt{Evidencia- Encuestado\_01.jpeg} a
+	\texttt{EvidenciaEncuestado\_06.jpeg}), en
+	\texttt{02\_Evidencias/Cuestionario- /Fotos\_Aplicacion/}. Se supera el
+	mínimo $n \geq 30$ exigido por la Sección~4.2 de la guía ($n = 38$
+	respuestas registradas).
+	
+	\paragraph{Documentos de la organización.}
+	Cinco documentos anonimizados de tipos distintos en
+	\texttt{02\_Evidencias/Documentos\_Organizacion/}: cartilla de vacunación,
+	control de desparasitación, hemograma, orden de examen y receta de
+	vacunación, todos con fecha 27/07/2026. Se supera el mínimo de 3
+	documentos de tipos distintos exigido por la Sección~4.2 de la guía.
+	
+	\paragraph{Codificación temática.}
+	Tabla de codificación (\texttt{codificacion\_tematica.csv}) y figura de la
+	curva de saturación (\texttt{curva\_saturacion.png}), ambas en
+	\texttt{02\_Evidencias/Codificacion\_Tematica/}, conforme al
+	Apéndice~B.8 de este documento.
+	
+	\paragraph{Resumen de verificación.}
+	
+	\begin{table}[H]
+		\centering
+		\small
+		\caption{Resumen de verificación del índice de multimedia frente a los mínimos de la Sección 4.2 de la Guía y Rúbrica de la Entrega 3 (2A).}
+		\label{tab:resumen-verificacion-mm}
+		\begin{tabularx}{\textwidth}{@{}X l l l@{}}
+			\toprule
+			\textbf{Tipo de evidencia} & \textbf{Cantidad} & \textbf{Mínimo 2A exigido} & \textbf{Estado} \\
+			\midrule
+			Consentimientos firmados & 16 & $\geq 8$ & Cumple \\
+			Entrevistas con audio/video (zona restringida) & 15 & $\geq 8$ & Cumple \\
+			Sesión de observación & 1 (EV-08) & --- & Cumple \\
+			Respuestas de cuestionario & 38 & $n \geq 30$ & Cumple \\
+			Documentos de la organización & 5 & $\geq 3$ & Cumple \\
+			Sesiones de \emph{walkthrough} & 4 (2 téc. + 2 no téc.) & $\geq 3$ (2A) / 6 (2B) & Cumple 2A, falta 2B \\
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+	
+	\newpage
 	% --------------------------------------------------------
 	\section*{Apéndice C --- Priorización MoSCoW, Kano y WSJF (detalle)}
 	\addcontentsline{toc}{section}{Apéndice C --- Priorización MoSCoW, Kano y WSJF}
@@ -6490,51 +6683,141 @@ doi=true
 	\addcontentsline{toc}{section}{Apéndice E --- Repositorio GitHub}
 	\label{ap:repositorio}
 	
-	El trabajo del equipo se versiona en el repositorio público
-	\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}, cuya
-	estructura de carpetas se muestra en el Código~\ref{lst:estructura_repo}. La
-	organización sigue el orden de las entregas de la asignatura y cada carpeta
-	numerada corresponde a un artefacto citado en el cuerpo de este documento.
-	
-	\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq.},label={lst:estructura_repo}]
-		MundiPets-PFC-IngReq/
-		|-- 01_ERS/
-		|   |-- ERS_SRS_2A_v1_2.tex        % documento maestro
-		|   |-- referencias.bib            % 41 fuentes primarias
-		|   |-- figuras/                   % diagramas i*, UML y mockups
-		|   `-- ERS_SRS_2A_v1_2.pdf        % compilado de la entrega
-		|-- 02_Evidencias/
-		|   |-- Entrevistas/               % actas firmadas (B.3)
-		|   |-- Cuestionarios/             % exportaciones v2.0 (B.4)
-		|   |-- Observacion/               % registros de campo (B.5)
-		|   |-- Consentimientos/           % formularios firmados (B.6)
-		|   |-- Validacion_Walkthrough/    % ronda de validacion (B.7)
-		|   `-- Codificacion/              % curva de saturacion (B.8)
-		|-- 03_Corpus/
-		|   |-- corpus_RF_MundiPets_2A.json  % 25 RF etiquetados, CC BY 4.0
-		|   `-- README_dataset.md            % metadatos FAIR y licencia
-		|-- 04_Trazabilidad/
-		|   |-- matriz_trazabilidad.csv    % 40 filas, diez eslabones
-		|   `-- priorizacion_moscow_kano.csv
-		|-- 05_MVP/
-		|   |-- README.md                  % instrucciones de despliegue
-		|   |-- src/                       % codigo fuente del MVP
-		|   `-- video_demo.mp4             % evidencia de funcionamiento
-		|-- 06_Experimento/
-		|   |-- protocolo.pdf              % protocolo registrado en OSF
-		|   |-- instrumentos/              % plantillas de anotacion
-		|   `-- scripts_analisis/          % scripts de kappa y estadistica
-		`-- README.md                      % descripcion general del proyecto
-	\end{lstlisting}
-	
-	El archivo \texttt{03\_Corpus/corpus\_RF\_MundiPets\_2A.json} contiene los 25
-	requisitos funcionales de la Sección~\ref{sec:rf} serializados con los once
-	atributos del esquema de la plantilla (identificador, nombre, descripción,
-	actor, origen de evidencia, entradas, salidas, precondiciones,
-	postcondiciones, prioridad MoSCoW y criterio de verificación). Este archivo
-	es el insumo directo del detector automático de ambigüedad descrito en la
-	Sección~\ref{sec:empirico} y se deposita en Zenodo bajo licencia CC BY 4.0
-	con DOI persistente, conforme a los principios FAIR \cite{wilkinson2016}.
+El trabajo del equipo se versiona en el repositorio
+\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}, cuya
+estructura de carpetas se muestra en el Código~\ref{lst:estructura_repo}. La
+organización sigue el orden de las entregas de la asignatura y de la
+Sección~8.1 de la Guía y Rúbrica de la Entrega 3 (2A), y cada carpeta
+numerada corresponde a un artefacto citado en el cuerpo de este documento.
+La estructura mostrada corresponde al árbol real del repositorio al
+momento del corte, obtenido con el comando \texttt{tree /f} sobre la
+carpeta raíz del proyecto.
+
+\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq (árbol real al corte de la Entrega 3, 2A).},label={lst:estructura_repo}]
+	MundiPets-PFC-IngReq/
+	|-- .gitattributes
+	|-- .gitignore
+	|-- CHANGELOG.md
+	|-- checksums.sha256
+	|-- CITATION.cff
+	|-- LICENSE
+	|-- README.md
+	|
+	|-- 01_ERS/
+	|   |-- ERS_SRS_2A_v1.0.pdf        % compilado de la entrega
+	|   |-- ERS_SRS_2A_v1.0.tex        % documento maestro
+	|   |-- referencias.bib            % fuentes primarias
+	|   `-- figuras/                   % diagramas i*, UML y mockups
+	|
+	|-- 02_Evidencias/
+	|   |-- 00_Restringido/            % [R] cifrado, zona restringida
+	|   |   |-- fichas_tecnicas.csv
+	|   |   |-- README_evidencias_restringidas.md
+	|   |   `-- evidencias_restringidas/
+	|   |       `-- evidencias_restringidas.7z.001 ... .067
+	|   |-- Codificacion_Tematica/     % B.8
+	|   |-- Consentimientos/           % B.6, copias enmascaradas [P]
+	|   |-- Cuestionario/
+	|   |   |-- Fotos_Aplicacion/
+	|   |   `-- Respuestas/
+	|   |-- Documentos_Organizacion/
+	|   |-- Fotos_Entorno/             % B.5, observacion OBS-01
+	|   |-- Transcripciones/           % transcripciones anonimizadas
+	|   `-- Validacion_Walkthrough/    % B.7, actas EV-19 a EV-22
+	|
+	|-- 03_Modelado/
+	|   |-- Diagramas_UML/             % Casos de Uso, Componentes,
+	|   |                              % Contexto, Dependencia y Razon
+	|   |                              % Estrategica, Despliegue,
+	|   |                              % Actividades, Clases, Estados,
+	|   |                              % Secuencia (.png/.svg/.vpp)
+	|   `-- Mockups/                   % MU-01 a MU-08
+	|
+	|-- 04_Trazabilidad/
+	|   |-- matriz_trazabilidad.csv
+	|   `-- priorizacion_moscow_kano.csv
+	|
+	|-- 05_MVP/
+	|   |-- README.md                  % instrucciones de despliegue
+	|   `-- video_demo.mp4             % evidencia de funcionamiento
+	|
+	|-- 06_Experimento/
+	|   |-- osf_registration.pdf       % registro previo aceptado en OSF
+	|   |-- protocolo.pdf              % protocolo experimental (Enfoque 2)
+	|   |-- README_osf_registration.md
+	|   |-- instrumentos/              % rubrica y consentimientos de
+	|   |                              % evaluadores expertos
+	|   |-- prompts_llm/
+	|   |-- resultados/
+	|   |   |-- figuras/               % figura_1 a figura_4
+	|   |   `-- tablas/                % tabla_1 a tabla_7 (CSV)
+	|   `-- scripts_analisis/
+	|       `-- datos_entrada/
+	|
+	|-- 07_Publicacion/
+	|   |-- analisis_revistas.md
+	|   |-- manuscrito_borrador.pdf
+	|   |-- dataset_zenodo/
+	|   |   `-- corpus_RF_MundiPets_2A.json
+	|   `-- manuscrito/                % fuente LaTeX del manuscrito
+	|       `-- bst/                   % estilos bibliograficos Springer
+	|
+	`-- 08_Etica/
+	|-- A01_Protocolo_Investigacion.pdf
+	|-- A02_Instrumentos_Recoleccion.pdf
+	|-- A02.1_Guia_entrevista_semi-estructurada.pdf
+	|-- A02.2_Cuestionario_Encuesta.pdf
+	|-- A02.3_Protocolo_Observacion.pdf
+	|-- A02.4_Guion_Sesion_Design_Thinking.pdf
+	|-- A03_Consentimiento_Informado.pdf
+	|-- A04_Plan_Gestion_Datos.pdf
+	|-- A05_Aval_Institucional.pdf
+	|-- A06_Declaracion_Conflicto_Intereses.pdf
+	|-- A07_Compromiso_Confidencialidad.pdf
+	|-- A08_CV_Docente.pdf
+	|-- A09_Nomina_Equipo.pdf
+	|-- A10_Cronograma_Gantt.pdf
+	|-- A11_Analisis_Riesgos.pdf
+	|-- A13_Participantes_Externos.pdf
+	|-- Adenda_Segunda_Ronda.pdf
+	|-- README_Etica.md
+	`-- Categoria_B/
+	|-- CB01_Aval_Organizacion.pdf
+	|-- CB02_Protocolo_Proteccion_Datos_Personales.pdf
+	|-- CB03_Compromiso_De_No_Uso_De_Datos_Reales.pdf
+	|-- CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
+	`-- CheckList_Categoria_B_MundiPets.pdf
+\end{lstlisting}
+
+\paragraph{Nota sobre el documento A.12.}
+La carpeta \texttt{08\_Etica/} no contiene el documento
+\texttt{A12\_Certificado\_Etica.pdf}. El equipo gestionó la obtención del
+certificado de formación ética en investigación exigido por el Anexo~A.12
+del Paquete Integral de Anexos y Guías, y constató que las opciones
+disponibles (CITI Program, GCP-ICH, CEDIA) requerían un pago para la
+emisión del certificado, inaccesible con los recursos propios del equipo.
+Esta situación fue comunicada de forma expresa al docente responsable, sin
+que este haya proporcionado un certificado propio ni una alternativa
+institucional gratuita. El detalle de esta gestión consta en
+\texttt{08\_Etica/README\_Etica.md}.
+
+\paragraph{Nota sobre la zona restringida.}
+Los archivos de audio y video originales de las entrevistas y sesiones de
+\emph{walkthrough} (Apéndice~B.9) no residen sueltos en
+\texttt{02\_Evidencias/}: se comprimen y cifran con AES-256 en el volumen
+fragmentado \texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/},
+cuya contraseña se entrega únicamente al docente responsable por el SGA,
+conforme a la Sección~4.1 de la Guía y Rúbrica de la Entrega 3 (2A).
+
+El archivo \texttt{07\_Publicacion/dataset\_zenodo/corpus\_RF\_MundiPets\_2A.json}
+contiene los 25 requisitos funcionales de la Sección~\ref{sec:rf}
+serializados con los once atributos del esquema de la plantilla
+(identificador, nombre, descripción, actor, origen de evidencia, entradas,
+salidas, precondiciones, postcondiciones, prioridad MoSCoW y criterio de
+verificación). Este archivo es el insumo directo del detector automático de
+ambigüedad descrito en la Sección~\ref{sec:empirico} y se deposita en
+Zenodo bajo licencia CC BY 4.0 con DOI persistente, conforme a los
+principios FAIR \cite{wilkinson2016}.
 	
 	\subsection*{Historial de commits}
 	
@@ -6645,18 +6928,18 @@ doi=true
 			\toprule
 			\textbf{\#} & \textbf{Ítem verificable} & \textbf{Estado} \\
 			\midrule
-			1 & La estructura de carpetas del repositorio coincide con la estructura definida. & $\square$ \\
-			2 & Existen los cinco archivos raíz obligatorios y están completos. & $\square$ \\
+			1 & La estructura de carpetas del repositorio coincide con la estructura definida. & $\blacksquare$ \\
+			2 & Existen los cinco archivos raíz obligatorios y están completos. & $\blacksquare$ \\
 			3 & El PDF del ERS/SRS está unificado, numerado, con historial de versiones y enlace al repositorio en la portada. & $\blacksquare$ \\
-			4 & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_CodigoParticipante\_Tecnica.ext} y usan el código de participante, no el nombre propio. & $\square$ \\
+			4 & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_CodigoParticipante\_Tecnica.ext} y usan el código de participante, no el nombre propio. & $\blacksquare$ \\
 			5 & Cada archivo de audio o video pasa \texttt{ffprobe} sin error y muestra duración mayor a cero. & $\blacksquare$ \\
 			6 & Cada consentimiento firmado es imagen o PDF con firma manuscrita visible y cédula legible. & $\blacksquare$ \\
 			7 & El cuestionario tiene fotografías de aplicación real y respuestas exportadas con $n \geq 30$. & $\blacksquare$ \\
 			8 & El protocolo experimental está registrado en el OSF con fecha anterior a la ejecución. & $\blacksquare$ \\
 			9 & Los prompts de los LLM, si aplican, incluyen modelo, temperatura, top-p y semilla. & $\blacksquare$ \\
 			10 & Los scripts de análisis reproducen las tablas y figuras a partir de los datos crudos. & $\blacksquare$ \\
-			11 & El hash SHA-256 de cada archivo multimedia consta en \texttt{checksums.sha256} y coincide. & $\square$ \\
-			12 & La matriz de trazabilidad en CSV tiene al menos 40 filas y todas las columnas obligatorias. & $\square$ \\
+			11 & El hash SHA-256 de cada archivo multimedia consta en \texttt{checksums.sha256} y coincide. & $\blacksquare$\\
+			12 & La matriz de trazabilidad en CSV tiene al menos 40 filas y todas las columnas obligatorias. &$\blacksquare$ \\
 			13 & Todas las evidencias declaradas en el ERS existen realmente en el repositorio. & $\blacksquare$ \\
 			14 & Se alcanzaron los mínimos comprometidos: 25 RF, 15 RNF, 10 CU detallados, 40 filas de trazabilidad y 30 respuestas de cuestionario. & $\blacksquare$ \\
 			15 & Todo componente de IA/ML tiene tratamiento de explicabilidad como RNF. & $\blacksquare$ \\
@@ -6664,14 +6947,5 @@ doi=true
 		\end{tabularx}
 	\end{table}
 	
-	\textbf{Nota sobre los ítems no marcados.} Los ítems 1, 2, 4, 11 y 12 no se
-	consideran cumplidos a la fecha de esta versión: el árbol del repositorio
-	presenta desviaciones respecto de la estructura obligatoria, el archivo
-	\texttt{checksums.sha256} está pendiente de generación, la nomenclatura de
-	los archivos multimedia aún emplea el nombre propio en lugar del código de
-	participante, y los artefactos de trazabilidad y priorización en formato CSV
-	no se han versionado todavía en \texttt{04\_Trazabilidad/}. El equipo
-	declara estos pendientes de forma expresa en lugar de autocertificarlos, y
-	su resolución constituye la prioridad inmediata antes del corte.
 	
 \end{document}
