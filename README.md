@@ -1,106 +1,97 @@
-# MundiPets – Plataforma para la Gestión Responsable de Mascotas
-
+# MundiPets — Plataforma para el Cruce y la Adopción Responsable de Mascotas
 
 ## Descripción
 
-**MundiPets** es una plataforma orientada a facilitar la adopción responsable, la cruza responsable y la gestión de información veterinaria de mascotas. El proyecto busca centralizar la información clínica, antecedentes médicos, publicaciones de adopción y procesos de interacción entre propietarios y profesionales veterinarios.
+**MundiPets** es una aplicación web orientada a facilitar la adopción responsable, la evaluación de compatibilidad para cruzas y la gestión del historial médico de mascotas, conectando a propietarios, médicos veterinarios y criadores bajo criterios de bienestar animal y tenencia responsable.
 
-Este repositorio contiene toda la documentación desarrollada durante el Proyecto Fin de Curso (PFC) de la asignatura **Ingeniería de Requerimientos** de la Universidad Técnica Estatal de Quevedo (UTEQ), siguiendo las recomendaciones de la norma **ISO/IEC/IEEE 29148:2018** y el modelo de calidad **ISO/IEC 25010**.
-
----
-
-# Objetivos
-
-- Elicitar requisitos mediante evidencia obtenida de usuarios reales.
-- Elaborar una Especificación de Requisitos de Software (ERS/SRS).
-- Modelar el sistema utilizando UML e i*.
-- Mantener la trazabilidad entre evidencias, requisitos y casos de uso.
-- Diseñar un MVP basado en los requisitos priorizados.
-- Preparar el proyecto para futuras publicaciones científicas.
+Este repositorio contiene toda la documentación desarrollada durante el Proyecto Fin de Curso (PFC) de la asignatura **Ingeniería de Requerimientos [20303]**, cuarto nivel, paralelo B, de la Universidad Técnica Estatal de Quevedo (UTEQ), periodo académico **2026–2027 PPA**, siguiendo el estándar **ISO/IEC/IEEE 29148:2018** y el modelo de calidad **ISO/IEC 25010:2023**.
 
 ---
 
-# Tecnologías y herramientas
+## Objetivos
 
-- LaTeX
-- Git
-- GitHub
+- Elicitar requisitos mediante evidencia real de campo (entrevistas, encuestas, observación, Design Thinking y walkthrough).
+- Elaborar una Especificación de Requisitos de Software (ERS/SRS) completa y trazable, conforme a IEEE/ISO/IEC 29148:2018.
+- Modelar el sistema mediante UML completo y modelado organizacional i* (SD/SR).
+- Mantener la trazabilidad extendida entre evidencias, requisitos, casos de uso, historias de usuario y mockups.
+- Diseñar y desplegar un Producto Mínimo Viable (MVP) basado en los requisitos priorizados (MoSCoW, Kano, WSJF).
+- Ejecutar un componente empírico (detección automática de ambigüedad en requisitos) con registro previo en el Open Science Framework (OSF).
+- Preparar el proyecto para una publicación científica en una revista indexada en el Journal Citation Reports (JCR).
+
+---
+
+## Tecnologías y herramientas
+
+- LaTeX (IEEEtran, biblatex/biber)
+- Git y GitHub
 - Visual Paradigm
 - Draw.io
 - Markdown
 - Visual Studio Code
+- Python (scripts de análisis estadístico del componente empírico)
+- Open Science Framework (OSF) y Zenodo
 
 ---
 
-# Integrantes
+## Integrantes y roles
 
-| Integrante | Rol |
-|------------|-----|
-| Andy Johel Mendoza Párraga | Analista líder |
-| Gary Alejandro Morales Sánchez | Analista de requisitos |
-| Jimmy Samuel Nieves Sánchez | Modelador UML |
-| Edson Daniel Fuertes Arraes | Documentador |
-| Génesis Adriana Gutiérrez Ortega | Verificadora de calidad |
+| Integrante | Cédula | Correo institucional | Rol |
+|---|---|---|---|
+| Fuertes Arraes Edson Daniel | 0929115087 | efuertesa2@uteq.edu.ec | Analista líder |
+| Gutiérrez Ortega Génesis Adriana | 1250274477 | ggutierrezo@uteq.edu.ec | Verificadora |
+| Mendoza Párraga Andy Johel | 1251401590 | amedozap9@uteq.edu.ec | Modelador |
+| Morales Sánchez Gary Alejandro | 1251154173 | gmoraless2@uteq.edu.ec | Documentador |
+| Nieves Sánchez Jimmy Samuel | 1250907878 | jnievess@uteq.edu.ec | Verificador |
 
----
-
-# Responsabilidades
-
-## Andy Johel Mendoza Párraga
-
-- Coordinación general del proyecto.
-- Gestión del repositorio Git.
-- Refinamiento de requisitos.
-- Integración del documento ERS.
-- Validación con stakeholders.
-
-## Gary Alejandro Morales Sánchez
-
-- Requisitos funcionales.
-- Historias de usuario.
-- Trazabilidad.
-- Priorización.
-
-## Jimmy Samuel Nieves Sánchez
-
-- Diagramas UML.
-- Casos de uso.
-- Diagramas de clases.
-- Diagramas de secuencia.
-- Diagramas de actividades.
-- Diagramas de estados.
-
-## Edson Daniel Fuertes Arraes
-
-- Documentación técnica.
-- Organización del ERS.
-- Gestión bibliográfica.
-- Revisión documental.
-
-## Génesis Adriana Gutiérrez Ortega
-
-- Control de calidad.
-- Validación documental.
-- Evidencias.
-- Revisión de cumplimiento de la rúbrica.
+**Docente responsable:** Ing. Gleiston Guerrero Ulloa, PhD — gguerrero@uteq.edu.ec
 
 ---
 
-# Estado del proyecto
+## Responsabilidades
 
-| Entrega | Estado |
-|---------|--------|
-| Entrega 1A | Completada |
-| Entrega 1B | Completada |
-| Entrega 2A | En desarrollo |
+### Fuertes Arraes Edson Daniel — Analista líder
+- Coordinación general del equipo y del cronograma.
+- Validación de requisitos con stakeholders.
+- Redacción de requisitos funcionales e historias de usuario.
+- Gestión del repositorio Git y firma electrónica del documento ERS/SRS.
+
+### Gutiérrez Ortega Génesis Adriana — Verificadora
+- Control de calidad de los requisitos no funcionales.
+- Verificación de los requisitos de explicabilidad (RNF de componentes IA/ML).
+- Verificación del marco legal (trazabilidad LOPDP → RF/RNF).
+- Revisión de evidencias de campo.
+
+### Mendoza Párraga Andy Johel — Modelador
+- Elaboración de los diagramas UML exigidos (casos de uso, clases, secuencia, actividades, estados, componentes, despliegue).
+- Elaboración de los mockups de alta fidelidad (MU-01 a MU-08).
+
+### Morales Sánchez Gary Alejandro — Documentador
+- Estructuración del ERS/SRS conforme a ISO/IEC/IEEE 29148:2018.
+- Descripción general, contexto del sistema y modelado organizacional i* (SD/SR).
+- Consolidación de la matriz de trazabilidad extendida.
+
+### Nieves Sánchez Jimmy Samuel — Verificador
+- Responsable del componente empírico (detección automática de ambigüedad, Enfoque 2).
+- Responsable del Producto Mínimo Viable (MVP).
+- Responsable del paquete de publicación y del conjunto de datos depositado en Zenodo/OSF.
 
 ---
 
-# Estructura del repositorio
+## Estado del proyecto
+
+| Entrega | Hito oficial | Estado |
+|---|---|---|
+| Entrega 1 (1A) | Semana 4 — Planificación y elicitación inicial | Completada |
+| Entrega 2 (1B) | Semana 10 — ERS/SRS parcial | Completada |
+| Entrega 3 (2A) | Semana 13 — ERS/SRS completa, validación, trazabilidad, MVP y componente empírico | Completada |
+| Entrega 4 (2B) / Defensa | Semana 17 — Manuscrito final y defensa | En desarrollo |
+
+---
+
+## Estructura del repositorio
 
 ```text
-MundiPets-PFC-IngReq
-│
+MundiPets-PFC-IngReq/
 ├── .gitattributes
 ├── .gitignore
 ├── CHANGELOG.md
@@ -109,202 +100,236 @@ MundiPets-PFC-IngReq
 ├── LICENSE
 ├── README.md
 │
-├── 01_ERS
-│   └── figuras
+├── 01_ERS/
+│   ├── ERS_SRS_2A_v1.0.pdf
+│   ├── ERS_SRS_2A_v1.0.tex
+│   ├── referencias.bib
+│   └── figuras/
 │
-├── 02_Evidencias
-│   ├── Audio
-│   ├── Codificacion_Tematica
-│   ├── Consentimientos
-│   ├── Cuestionario
-│   │   ├── Fotos_Aplicacion
-│   │   └── Respuestas
-│   ├── Documentos_Organizacion
-│   ├── Fotos_Entorno
-│   ├── Validacion_Walkthrough
-│   └── Video
+├── 02_Evidencias/
+│   ├── 00_Restringido/              # [R] zona restringida, cifrada AES-256
+│   │   ├── fichas_tecnicas.csv
+│   │   ├── README_evidencias_restringidas.md
+│   │   └── evidencias_restringidas/ # volumen 7z fragmentado (audio/video originales)
+│   ├── Codificacion_Tematica/
+│   ├── Consentimientos/             # [P] copias enmascaradas
+│   ├── Cuestionario/
+│   │   ├── Fotos_Aplicacion/
+│   │   └── Respuestas/
+│   ├── Documentos_Organizacion/
+│   ├── Fotos_Entorno/
+│   ├── Transcripciones/
+│   └── Validacion_Walkthrough/
 │
-├── 03_Modelado
-│   ├── Casos de Uso
-│   ├── Diagrama de Contexto
-│   ├── Diagramas de Actividades
-│   ├── Diagramas de Clases
-│   ├── Diagramas de Maquinas de Estado
-│   ├── Diagramas de Secuencia
-│   ├── Diagramas_UML
-│   │   ├── Diagrama de Dependencia Estrategica
-│   │   └── Diagrama de Razon Estrategica
-│   └── Mockups
+├── 03_Modelado/
+│   ├── Diagramas_UML/
+│   │   ├── Casos de Uso/
+│   │   ├── Diagrama de Componentes/
+│   │   ├── Diagrama de Contexto/
+│   │   ├── Diagrama de Dependencia Estrategica/
+│   │   ├── Diagrama de Despliegue/
+│   │   ├── Diagrama de Razon Estrategica/
+│   │   ├── Diagramas de Actividades/
+│   │   ├── Diagramas de Clases/
+│   │   ├── Diagramas de Maquinas de Estado/
+│   │   └── Diagramas de Secuencia/
+│   └── Mockups/
 │
-├── 04_Trazabilidad
+├── 04_Trazabilidad/
+│   ├── matriz_trazabilidad.csv
+│   └── priorizacion_moscow_kano.csv
 │
-├── 05_MVP
+├── 05_MVP/
+│   ├── README.md
+│   └── video_demo.mp4
 │
-├── 06_Experimento
-│   ├── instrumentos
-│   ├── prompts_llm
-│   ├── resultados
-│   └── scripts_analisis
+├── 06_Experimento/
+│   ├── osf_registration.pdf
+│   ├── protocolo.pdf
+│   ├── README_osf_registration.md
+│   ├── instrumentos/
+│   ├── prompts_llm/
+│   ├── resultados/
+│   │   ├── figuras/
+│   │   └── tablas/
+│   └── scripts_analisis/
+│       └── datos_entrada/
 │
-├── 07_Publicacion
-│   └── dataset_zenodo
+├── 07_Publicacion/
+│   ├── analisis_revistas.md
+│   ├── manuscrito_borrador.pdf
+│   ├── dataset_zenodo/
+│   └── manuscrito/
+│       └── bst/
 │
-└── 08_Etica
-    └── Categoria_B
+└── 08_Etica/
+    ├── A01_Protocolo_Investigacion.pdf
+    ├── A02_Instrumentos_Recoleccion.pdf
+    ├── A02.1_Guia_entrevista_semi-estructurada.pdf
+    ├── A02.2_Cuestionario_Encuesta.pdf
+    ├── A02.3_Protocolo_Observacion.pdf
+    ├── A02.4_Guion_Sesion_Design_Thinking.pdf
+    ├── A03_Consentimiento_Informado.pdf
+    ├── A04_Plan_Gestion_Datos.pdf
+    ├── A05_Aval_Institucional.pdf
+    ├── A06_Declaracion_Conflicto_Intereses.pdf
+    ├── A07_Compromiso_Confidencialidad.pdf
+    ├── A08_CV_Docente.pdf
+    ├── A09_Nomina_Equipo.pdf
+    ├── A10_Cronograma_Gantt.pdf
+    ├── A11_Analisis_Riesgos.pdf
+    ├── A13_Participantes_Externos.pdf
+    ├── Adenda_Segunda_Ronda.pdf
+    ├── README_Etica.md
+    └── Categoria_B/
+        ├── CB01_Aval_Organizacion.pdf
+        ├── CB02_Protocolo_Proteccion_Datos_Personales.pdf
+        ├── CB03_Compromiso_De_No_Uso_De_Datos_Reales.pdf
+        ├── CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
+        └── CheckList_Categoria_B_MundiPets.pdf
 ```
+
+> **Nota:** el documento `A12_Certificado_Etica.pdf` no está disponible en `08_Etica/`. El equipo gestionó su obtención y constató que las opciones de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Esta situación fue comunicada al docente responsable sin que se haya recibido una alternativa gratuita. Detalle completo en `08_Etica/README_Etica.md`.
 
 ---
 
-# Compilación del documento ERS
+## Zonas de evidencia
 
-## Requisitos
+Toda la evidencia de campo se organiza en dos zonas, conforme a la Sección 4.1 de la Guía y Rúbrica de la Entrega 3 (2A):
 
-- TeX Live 2024 o superior
-- MiKTeX
+- **Zona pública [P]:** transcripciones anonimizadas, copias enmascaradas de consentimientos (cédula y firma cubiertas), fotografías sin rostros ni coordenadas GPS, respuestas de cuestionario sin columnas identificativas, actas de walkthrough enmascaradas.
+- **Zona restringida [R]:** consentimientos originales, videos y audios sin anonimizar, documentos originales de la organización — todo dentro de `02_Evidencias/00_Restringido/`, en un volumen fragmentado cifrado con AES-256 (7-Zip). La contraseña se entrega únicamente al docente responsable por el Sistema de Gestión Académica (SGA).
+
+Ningún archivo de la zona restringida se duplica sin cifrar en la zona pública.
+
+---
+
+## Compilación del documento ERS/SRS
+
+### Requisitos
+
+- TeX Live 2024 o superior (o MiKTeX)
+- Motor `pdflatex` + `biber` (bibliografía en estilo IEEE vía `biblatex`)
 - Latexmk (opcional)
 
-## Compilar mediante consola
+### Compilar mediante consola
 
 ```bash
 pdflatex ERS_SRS_2A_v1.0.tex
-bibtex ERS_SRS_2A_v1.0
+biber ERS_SRS_2A_v1.0
 pdflatex ERS_SRS_2A_v1.0.tex
 pdflatex ERS_SRS_2A_v1.0.tex
 ```
 
-También puede compilarse directamente utilizando **Overleaf o TeXstudio**.
+También puede compilarse directamente en **Overleaf** o **TeXstudio**. El documento usa `biblatex` con backend `biber` (no `bibtex`) y estilo `ieee`.
 
 ---
 
-# Organización del repositorio
+## Organización del repositorio
 
-## 01_ERS
+### 01_ERS
+Especificación de Requisitos de Software (ERS/SRS) completa, referencias bibliográficas (mínimo 25 fuentes primarias) y figuras (diagramas i*, UML y mockups).
 
-Contiene la Especificación de Requisitos de Software (ERS/SRS), las referencias bibliográficas y las figuras utilizadas en el documento.
+### 02_Evidencias
+Evidencia de campo de la primera y segunda ronda de elicitación: entrevistas (transcripciones en zona pública, audio/video original cifrado en zona restringida), consentimientos informados, cuestionarios, observación, documentos de la organización, validación walkthrough y codificación temática.
 
-## 02_Evidencias
+### 03_Modelado
+Diagrama de contexto, casos de uso, modelado i* (SD/SR), diagramas UML completos (clases, secuencia, actividades, estados, componentes, despliegue) y mockups de alta fidelidad.
 
-Almacena toda la evidencia obtenida durante el proceso de ingeniería de requerimientos:
+### 04_Trazabilidad
+Matriz de trazabilidad extendida (Ley → Objetivo → Interesado → Evidencia → RF/RNF/RD → CU → HU → CA → Componente → Mockup) y priorización MoSCoW + Kano + WSJF.
 
-- Entrevistas en audio.
-- Entrevistas en video.
-- Consentimientos informados.
-- Cuestionarios.
-- Fotografías del entorno.
-- Documentación proporcionada por los stakeholders.
-- Evidencias del walkthrough.
-- Codificación temática.
+### 05_MVP
+Producto Mínimo Viable, con cobertura de al menos el 60 % de los requisitos funcionales de prioridad *Debe tener*, instrucciones de despliegue y video de demostración.
 
-## 03_Modelado
+### 06_Experimento
+Protocolo experimental del componente empírico (Enfoque 2 — detección automática de ambigüedad y malos olores en requisitos), registro previo aceptado en el OSF, instrumentos, resultados y scripts de análisis estadístico.
 
-Contiene todos los modelos desarrollados durante la especificación del sistema:
+### 07_Publicacion
+Análisis de revistas objetivo (Springer Nature, Elsevier, IEEE), borrador del manuscrito y conjunto de datos preparado para depósito en Zenodo con licencia CC BY 4.0.
 
-- Diagrama de contexto.
-- Casos de uso.
-- Diagramas UML.
-- Diagramas i*.
-- Mockups.
-
-## 04_Trazabilidad
-
-Repositorio destinado a la matriz de trazabilidad y priorización de requisitos.
-
-## 05_MVP
-
-Contendrá el Producto Mínimo Viable del sistema.
-
-## 06_Experimento
-
-Incluye el protocolo experimental, instrumentos, prompts utilizados con LLM, resultados y scripts de análisis.
-
-## 07_Publicacion
-
-Contendrá los artefactos necesarios para la publicación científica y el conjunto de datos destinado a Zenodo.
-
-## 08_Etica
-
-Almacena la documentación ética relacionada con el proyecto.
+### 08_Etica
+Documentación ética completa del proyecto (Categoría B — Datos personales), conforme al Paquete Integral de Anexos y Guías de Elaboración de la asignatura.
 
 ---
 
-# Evidencias
+## Evidencias
 
 Las evidencias se obtuvieron mediante:
 
-- Entrevistas semiestructuradas.
-- Observación directa.
-- Cuestionarios.
-- Validación mediante walkthrough.
-- Consentimientos informados.
+- Entrevistas semi-estructuradas (16 entrevistas grabadas, EV-01 a EV-18).
+- Observación directa en un establecimiento veterinario (EV-08).
+- Cuestionario digital (38 respuestas, superando el mínimo n ≥ 30).
+- Validación mediante walkthrough (4 sesiones ejecutadas: 2 con usuarios técnicos, 2 con usuarios no técnicos).
+- 16 consentimientos informados firmados.
 
-Todas las evidencias mantienen su correspondiente trazabilidad dentro del documento ERS.
+Todas las evidencias mantienen su trazabilidad dentro del documento ERS/SRS mediante identificadores EV-01 a EV-22.
 
 ---
 
-# Modelado
+## Modelado
 
 El proyecto incorpora:
 
-- Diagramas de contexto.
-- Diagramas de casos de uso.
-- Diagramas de actividades.
-- Diagramas de clases.
-- Diagramas de secuencia.
-- Diagramas de estados.
-- Modelado organizacional i*.
-- Mockups de alta fidelidad.
+- Diagrama de contexto.
+- Modelado organizacional i* (Diagrama de Dependencia Estratégica y Diagrama de Razón Estratégica).
+- Diagrama general de casos de uso y especificación textual de los casos de uso *Debe tener*.
+- Diagrama de clases refinado.
+- Diagramas de secuencia, actividades, estados, componentes y despliegue.
+- Mockups de alta fidelidad (MU-01 a MU-08).
 
 ---
 
-# Trazabilidad
+## Trazabilidad
 
-El proyecto mantiene la siguiente cadena de trazabilidad:
-
-```
-Stakeholders
-        ↓
- Evidencias
-        ↓
- Objetivos
-        ↓
- Requisitos
-        ↓
- Casos de Uso
-        ↓
- Historias de Usuario
-        ↓
- Mockups
-        ↓
- MVP
-```
-
----
-
-# Control de versiones
-
-El historial de cambios del proyecto se encuentra documentado en:
+El proyecto mantiene la siguiente cadena de trazabilidad extendida:
 
 ```
-CHANGELOG.md
+Ley / Normativa
+      ↓
+ Objetivo
+      ↓
+ Interesado (Stakeholder)
+      ↓
+ Evidencia (EV-XX)
+      ↓
+ Requisito (RF / RNF / RD)
+      ↓
+ Caso de Uso (CU-XX)
+      ↓
+ Historia de Usuario (HU-XX)
+      ↓
+ Criterio de Aceptación (CA-XX)
+      ↓
+ Componente
+      ↓
+ Mockup (MU-XX)
 ```
 
 ---
 
-# Citación
+## Componente empírico
 
-Si utiliza este repositorio con fines académicos, cite el proyecto utilizando el archivo:
+El equipo seleccionó el **Enfoque 2 — Detección automática de ambigüedad y malos olores en los requisitos**. El protocolo fue registrado de forma previa y aceptado en el Open Science Framework antes de ejecutar el detector automático sobre el corpus de requisitos:
 
-```
-CITATION.cff
-```
+**Registro OSF:** https://osf.io/khyf2/overview
 
 ---
 
-# Licencia
+## Control de versiones
 
-Este proyecto se desarrolla exclusivamente con fines académicos dentro de la asignatura **Ingeniería de Requerimientos** de la Universidad Técnica Estatal de Quevedo.
-
-Consulte el archivo **LICENSE** para más información.
+El historial de cambios del proyecto se encuentra documentado en `CHANGELOG.md`.
 
 ---
 
+## Citación
+
+Si utiliza este repositorio con fines académicos, cite el proyecto utilizando el archivo `CITATION.cff`.
+
+---
+
+## Licencia
+
+El código del MVP se publica bajo licencia MIT o Apache-2.0. El documento ERS/SRS y el conjunto de datos anonimizado depositado en Zenodo se publican bajo licencia **Creative Commons Atribución 4.0 Internacional (CC BY 4.0)**. El material de la zona restringida (`02_Evidencias/00_Restringido/`) no se licencia ni se redistribuye. Consulte el archivo `LICENSE` para más información.
+
+Este proyecto se desarrolla exclusivamente con fines académicos dentro de la asignatura **Ingeniería de Requerimientos [20303]** de la Universidad Técnica Estatal de Quevedo (UTEQ), periodo 2026–2027 PPA.
