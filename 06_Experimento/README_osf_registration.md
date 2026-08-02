@@ -27,20 +27,23 @@ la consulta.
 | **Registro** | OSF Registries |
 | **Fecha y hora de registro** | 27 de julio de 2026, 10:49:41 a. m. |
 | **Última actualización** | 27 de julio de 2026, 9:52:43 a. m. |
-| **Estado** | Pending registration approval (moderación estándar de OSF, posterior al envío; no afecta la validez de la marca de tiempo) |
+| **Estado** | **Aprobado** por OSF |
 | **Colaborador(es)** | drumme samuel nieves sanchez |
-| **Enlace de acceso para verificación** | <https://osf.io/zr2s7/overview?view_only=545c488adaf64b99b254adde0e6cb7a5> |
+| **Enlace de acceso directo (sin inicio de sesión)** | <https://osf.io/khyf2/overview> |
 | **DOI** | *(pendiente: completar aquí si OSF ya lo asignó; ver instrucciones abajo)* |
 
 ## Cómo verificar el registro directamente (para el docente)
 
-1. Ingresar al enlace indicado arriba.
-2. El enlace incluye un token de acceso (`view_only=...`), por lo que **no
-   requiere crear una cuenta en OSF** para consultarlo.
+1. Ingresar al enlace indicado arriba: <https://osf.io/khyf2/overview>.
+2. Este enlace lleva **directo a la página del registro**, sin pasar primero
+   por una pantalla de inicio de sesión (a diferencia del enlace usado en un
+   borrador anterior, que era un enlace privado `view_only` y sí requería
+   ese paso intermedio).
 3. En la página se puede confirmar: el título del proyecto, la plantilla
-   utilizada (OSF Preregistration), la fecha exacta de registro, y el
-   contenido completo del formulario de preregistro (hipótesis, variables,
-   plan de análisis, etc., correspondiente a la Sección 7 del ERS).
+   utilizada (OSF Preregistration), la fecha exacta de registro, el estado
+   ya aprobado, y el contenido completo del formulario de preregistro
+   (hipótesis, variables, plan de análisis, etc., correspondiente a la
+   Sección 7 del ERS).
 
 ## Sobre el DOI
 
