@@ -1,0 +1,60 @@
+﻿ID-RF,Requisito,Tipo,MoSCoW,Importancia declarada,Valor de negocio (WSJF),Justificacion breve
+RF-01,Registrar mascota,RF,Must,"Media (4,06)","9,20",Es el pilar del sistema; sin este RF no puede existir ningún perfil de mascota ni proceso posterior.
+RF-02,Gestionar historial médico,RF,Must,"Alta (4,58)","3,63",Crítico para la salud animal y para RL-03 (rectificación de datos médicos).
+RF-03,Consultar perfil completo,RF,Must,"Media (4,06)","8,67",Fundamental para que adoptantes e interesados en cruza tomen decisiones informadas; sustenta RL-02.
+RF-04,Buscar y filtrar mascotas,RF,Should,"Media (4,16)","1,80","Mejora la usabilidad, pero el sistema puede operar inicialmente con listas generales."
+RF-05,Gestionar solicitudes de adopción,RF,Must,,"3,63",Núcleo del modelo operativo de la plataforma.
+RF-06,Evaluar compatibilidad para cruza,RF,Must,"Media (4,45)","1,65",Requisito diferenciador que usa IA; motivó RD-01 y exige la explicabilidad de RL-06.
+RF-07,Sistema de mensajería,RF,Could,"Baja (3,84)",,"Deseable para coordinar procesos, pero el contacto inicial puede derivarse a canales externos si hay limitaciones de tiempo."
+RF-08,Gestionar solicitudes de cruza,RF,Must,,"2,88",Operación central del modelo de negocio junto a RF-05.
+RF-09,Validar información médica,RF,Must,"Alta (4,61)","4,20",Imprescindible para la confiabilidad clínica del sistema.
+RF-10,Recordatorios de controles preventivos,RF,Should,,"2,80","Aporta valor de bienestar animal, pero no bloquea el flujo principal de adopciones."
+RF-11,Administrar privacidad,RF,Must,,"5,75",Mandatorio por RL-02 y RL-05; es el RF más citado en las entrevistas (9 EV).
+RF-12,Verificar identidad de usuarios,RF,Must,"Media (4,34)","5,80",Indispensable para evitar fraude; sustenta el consentimiento de RL-01.
+RF-13,Registrar publicaciones,RF,Must,,"7,00",Necesario para que un propietario active la disponibilidad de su mascota.
+RF-14,Gestionar carnet de vacunación,RF,Must,"Alta (4,71)","4,20",Crítico para la trazabilidad sanitaria; sustenta RL-03.
+RF-15,Consultar historial de procesos,RF,Could,,,"Aporta trazabilidad al usuario, pero no es indispensable para completar una adopción o cruza."
+RF-16,Antecedentes genéticos y parentesco,RF,Must,,"2,00",Necesario para que RF-06 pueda evaluar compatibilidad de forma responsable.
+RF-17,Validar imágenes con IA,RF,Should,,"1,23","Refuerza la seguridad del contenido, pero el sistema puede operar con moderación manual inicial."
+RF-18,Flujo de adopción por etapas,RF,Must,,"1,23","Formaliza el proceso de adopción responsable identificado en la segunda ronda de campo (EV-11, EV-16)."
+RF-19,Validar certificados veterinarios antes de cruza,RF,Should,,"2,60","Refuerza la confiabilidad de RF-06, pero no bloquea su funcionamiento básico."
+RF-20,Encuentros de socialización supervisados,RF,Could,,,"Valor deseable de bienestar animal, mencionado por un solo participante (EV-13)."
+RF-21,Registrar identificador de microchip,RF,Should,,"3,00",Aporta trazabilidad complementaria al carnet de vacunación.
+RF-22,Seguimiento post-adopción,RF,Must,,"1,25","Cierra el ciclo de responsabilidad de RF-18, exigido por participantes de la segunda ronda."
+RF-23,Alertas de riesgo sanitario o físico,RF,Must,,"2,63","Mitiga un riesgo real de seguridad y salud animal detectado en varias entrevistas (EV-09, EV-12, EV-15, EV-18)."
+RF-24,"Trazabilidad de cepa, lote y aplicador",RF,Should,"Alta (4,71)","2,67","Complementa RF-14 con datos adicionales de trazabilidad, no bloqueante."
+RF-25,Aviso de mascota extraviada,RF,Could,,,"Funcionalidad de valor social, pero fuera del núcleo de adopción/cruza del sistema."
+RNF-01,Protección de información de propietarios y mascotas,RNF,Must,,,Requisito estricto de seguridad; sustenta RL-05 y RL-07.
+RNF-02,Disponibilidad del sistema,RNF,Must,,,Crítico para la operatividad continua de la plataforma.
+RNF-03,Tiempo de respuesta del sistema,RNF,Should,,,"Mejora la experiencia, pero el sistema es funcional con tiempos mayores en una primera versión."
+RNF-04,Facilidad de uso de la plataforma,RNF,Should,,,"Relevante para adopción del producto, pero no bloquea sus funciones."
+RNF-05,Integridad de la información médica,RNF,Must,,,Evita modificaciones no autorizadas del historial clínico; sustenta RL-07.
+RNF-06,Exactitud del componente de IA,RNF,Must,,,"Sin una precisión mínima, RF-06 pierde su valor diferenciador."
+RNF-07,Precisión en validación de imágenes,RNF,Should,,,"Mejora la calidad del contenido, pero RF-17 puede operar con una tasa de error inicial mayor."
+RNF-08,Actualización de la información registrada,RNF,Should,,,"Mejora la confianza del usuario, no bloquea el flujo principal."
+RNF-09,Interoperabilidad de notificaciones,RNF,Should,,,"Aporta valor (recordatorios por WhatsApp), pero el sistema opera sin ella mediante notificación interna."
+RNF-10,Facilidad de mantenimiento del código,RNF,Should,,,"Importante para sostenibilidad técnica, pero no bloquea la operación funcional del MVP."
+RNF-11,Portabilidad entre navegadores,RNF,Should,,,"Necesaria para alcance de usuarios, pero el sistema puede operar inicialmente en un navegador principal."
+RNF-12,Escalabilidad ante crecimiento de usuarios,RNF,Could,,,Deseable a mediano plazo; no crítica mientras la base de usuarios sea reducida.
+RNF-13,Explicabilidad de compatibilidad para cruza,RNF,Must,,,Exigido por el derecho legal a explicación (RL-06) sobre decisiones automatizadas del RF-06.
+RNF-14,Explicabilidad de rechazo de imágenes,RNF,Should,,,"Mejora la confianza del usuario, pero el sistema puede operar con un mensaje de rechazo genérico inicialmente."
+RNF-15,Explicabilidad de moderación de mensajes,RNF,Should,,,"Igual que RNF-14: deseable para confianza, no bloqueante."
+RNF-16,Confidencialidad de ubicación y contacto,RNF,Must,,,"Obligación legal directa (RL-05, principio de minimización)."
+RD-01,Integración de componentes de IA,RD,Must,,,Restricción ineludible: arquitectura del principal valor agregado de MundiPets.
+RD-02,Acceso basado en roles,RD,Must,,,"Mandatorio para diferenciar permisos de propietarios, veterinarias y administradores; sustenta RL-05 y RL-08."
+RD-03,Validación profesional de la información médica,RD,Must,"Alta (4,61)",,Exigido por los veterinarios entrevistados para garantizar confiabilidad clínica.
+RD-04,Protección de datos personales,RD,Must,,,"Implementa directamente RL-05, RL-07 y RL-08."
+RD-05,Arquitectura modular del sistema,RD,Must,,,Facilita mantenimiento e incorporación de nuevas funcionalidades; sustenta RNF-10.
+RD-06,Eliminación de cuenta y datos personales,RD,Must,,,"Obligación legal ineludible (RL-04, derecho de supresión); sin este mecanismo el sistema incumple la LOPDP."
+RD-07,Protocolo de notificación de vulneraciones,RD,Must,,,Exigido por RL-09 con plazos legales estrictos (5 y 3 días).
+RD-08,Dependencia de servicios externos de mensajería,RD,Should,,,Aporta valor (RF-10) pero requiere un canal de respaldo ante caídas del proveedor.
+RD-09,Anonimización de evidencias para publicación abierta,RD,Must,,,Exigido por los Art. 30-32 LOPDP para el uso de datos de investigación en el paquete FAIR.
+RL-01,"Consentimiento libre, específico, informado e inequívoco",RL,Must,,,Toda obligación legal es no negociable: su incumplimiento expone al proyecto a responsabilidad legal.
+RL-02,Información de finalidad y derecho de acceso,RL,Must,,,Ídem: obligación legal directa (Art. 12-13 LOPDP).
+RL-03,Derecho de rectificación y actualización,RL,Must,,,Ídem: obligación legal directa (Art. 14 LOPDP).
+RL-04,Derecho de supresión de datos personales,RL,Must,,,Ídem: obligación legal directa (Art. 15 LOPDP).
+RL-05,Minimización y seguridad de los datos,RL,Must,,,Ídem: obligación legal directa (Art. 10 LOPDP).
+RL-06,Derecho a explicación de decisiones automatizadas,RL,Must,,,Ídem: obligación legal directa (Art. 20 LOPDP); base de todo el bloque de explicabilidad.
+RL-07,Confidencialidad reforzada de datos sensibles y de salud,RL,Must,,,Ídem: obligación legal directa (Art. 25-30 LOPDP).
+RL-08,Protección de datos desde el diseño y por defecto,RL,Must,,,Ídem: obligación legal directa (Art. 39 LOPDP).
+RL-09,Notificación de vulneraciones de seguridad,RL,Must,,,"Ídem: obligación legal directa (Art. 43 y 46 LOPDP), con plazos estrictos."
