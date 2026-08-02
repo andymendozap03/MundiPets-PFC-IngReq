@@ -1,0 +1,19 @@
+# Archivos auxiliares de compilación LaTeX (regenerables, no subir)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.fdb_latexmk
+*.fls
+*.nav
+*.snm
+*.vrb
+*.lol

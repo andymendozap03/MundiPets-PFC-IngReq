@@ -1,0 +1,532 @@
+%=====================================================================
+% MundiPets — Parallel manuscript, version 1.0 (Deliverable 3 / 2A, week 13)
+% Springer Nature journal template (sn-jnl.cls, v3.1 December 2024)
+%
+% Empirical component: APPROACH 2 of the course guide —
+% automatic detection of ambiguity and smells in requirements.
+%
+% Closed sections: Introduction, Related Work, Methodology.
+% Results, Discussion, Threats and Conclusions are declared placeholders
+% and MUST NOT be written before Deliverable 4 (2B).
+%
+% Reference style: sn-mathphys-num (numbered). Switch the class option if
+% the finally selected journal requires a different style.
+%=====================================================================
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+
+% Visible marker for values the team must still fill in by hand.
+\newcommand{\TODO}[1]{\textcolor{red}{\textbf{[TO COMPLETE: #1]}}}
+% Marker for content deliberately deferred to Deliverable 4 (2B).
+\newcommand{\DEFERRED}[1]{\textcolor{blue}{\textit{[Deferred to Deliverable 4 (2B): #1]}}}
+
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%
+\newtheorem{proposition}[theorem]{Proposition}%
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+
+\begin{document}
+
+\title[Accuracy of a requirements ambiguity detector]{Accuracy of a
+requirements ambiguity detector: case of a pet social network}
+
+\author*[1]{\fnm{Edson Daniel} \sur{Fuertes Arraes}}\email{efuertesa2@uteq.edu.ec}
+
+\author[1]{\fnm{Génesis Adriana} \sur{Gutiérrez Ortega}}\email{ggutierrezo@uteq.edu.ec}
+
+\author[1]{\fnm{Andy Johel} \sur{Mendoza Párraga}}\email{amedozap9@uteq.edu.ec}
+
+\author[1]{\fnm{Gary Alejandro} \sur{Morales Sánchez}}\email{gmoraless2@uteq.edu.ec}
+
+\author[1]{\fnm{Jimmy Samuel} \sur{Nieves Sánchez}}\email{jnievess@uteq.edu.ec}
+
+\author[1]{\fnm{Gleiston Cicerón} \sur{Guerrero Ulloa}}\email{gguerrero@uteq.edu.ec}
+
+\affil*[1]{\orgdiv{Facultad de Ciencias de la Computación},
+\orgname{Universidad Técnica Estatal de Quevedo},
+\orgaddress{\street{Av. Quito km 1.5 vía a Santo Domingo},
+\city{Quevedo}, \state{Los Ríos}, \country{Ecuador}}}
+
+%%================================%%
+%% Structured abstract             %%
+%%================================%%
+\abstract{\textbf{Context:} Ambiguity is one of the most persistent defects in
+natural-language requirements specifications, and rule-based detectors are
+frequently proposed as a low-cost mechanism to flag it before requirements reach
+design. Evidence on how closely such detectors reproduce human expert judgement
+remains scarce for Spanish-language specifications produced in Latin American
+settings.
+
+\textbf{Objective:} This study measures the extent to which a rule-based
+ambiguity detector replicates the consensus judgement of independent human
+experts over the complete requirements corpus of MundiPets, a real social
+network for responsible pet adoption and breeding, and characterises the
+patterns of disagreement between the two.
+
+\textbf{Methods:} We conducted a paired quasi-experiment over 50 requirements
+(25 functional, 16 non-functional and 9 design constraints) specified according
+to an eight-attribute template. A purpose-built rule-based detector, implemented
+in Python and frozen before data collection, classified each requirement as
+ambiguous or non-ambiguous using four lexical and syntactic rules. In parallel,
+three independent software engineers, blind to the detector output and to one
+another, classified the same requirements in randomised order using a shared
+rubric. The protocol was preregistered on the Open Science Framework before any
+data were collected. Agreement was quantified with precision, recall, $F_1$,
+Cohen's $\kappa$ and Fleiss' $\kappa$.
+
+\textbf{Results:} \DEFERRED{quantitative results are reported in version 2.0 of
+this manuscript, once the full statistical analysis described in Section~3.7 has
+been executed through the versioned scripts.}
+
+\textbf{Conclusion:} \DEFERRED{conclusions follow from the results.}}
+
+\keywords{Requirements Engineering, Empirical Software Engineering, Natural
+Language Processing, Interrater Agreement, Requirements Quality}
+
+\maketitle
+
+%=====================================================================
+\section{Introduction}\label{sec:intro}
+
+MundiPets is a social network for responsible pet adoption and breeding,
+currently under specification for veterinary practices and pet owners in the
+province of Los Ríos, Ecuador. The system lets owners publish verified pet
+profiles, lets registered veterinary practices validate the associated medical
+records, and supports adoption and breeding requests through a staged workflow
+that includes compatibility assessment by an artificial-intelligence component.
+Requirements engineering matters acutely in this domain because a defect in a
+requirement about medical-record validation or about the visibility of an
+owner's location does not merely degrade usability: it propagates into a system
+that handles animal health data and personal data protected under Ecuador's
+Organic Law on Personal Data Protection~\cite{lopdp2021}. Specifying such a
+system with verifiable, unambiguous requirements is therefore a precondition for
+lawful operation rather than a stylistic preference.
+
+Ambiguity remains one of the defects most consistently reported in
+natural-language requirements. The systematic mapping study of Montgomery et
+al.~\cite{montgomery2022} shows that, although requirements quality has been
+studied extensively, empirical work concentrates on a small number of quality
+attributes and rarely validates automated detection against human judgement on
+complete, real specifications. Atoum et al.~\cite{atoum2021} reach a convergent
+conclusion in their systematic review of requirements quality assurance,
+identifying the scarcity of validated automated support as an open challenge.
+Ferrari et al.~\cite{ferrari2016} demonstrated that ambiguity in elicitation is
+entangled with tacit knowledge, which suggests that purely lexical detection has
+an intrinsic ceiling; yet the size of that ceiling has not been quantified for
+specifications written in Spanish, nor for corpora produced by novice analysts,
+the setting in which a large share of requirements documents are in fact
+written. This is the gap the present study addresses.
+
+This paper makes three contributions, each grounded in evidence collected by the
+authors and released as an open dataset:
+\begin{enumerate}
+  \item a quantified comparison between a rule-based ambiguity detector and the
+        blind consensus of three independent human experts over a complete
+        requirements corpus of 50 items --- functional requirements,
+        non-functional requirements and design constraints --- written in
+        Spanish;
+  \item a characterisation of the disagreement patterns between automated and
+        human classification, reported per requirement and per rule, which
+        exposes the specific linguistic phenomena that a rule-based approach
+        systematically over- or under-flags;
+  \item a replication package --- corpus, detector output, expert
+        classifications, analysis scripts and preregistered protocol ---
+        released under CC~BY~4.0 so that the study can be repeated on other
+        corpora and other languages.
+\end{enumerate}
+
+The study answers two research questions:
+
+\begin{itemize}
+  \item[\textbf{RQ1}] With what precision, recall and $F_1$ does a rule-based
+        automatic detector replicate the consensus judgement of human experts
+        when classifying the requirements of MundiPets as ambiguous?
+  \item[\textbf{RQ2}] Which disagreement patterns predominate between the
+        automatic detector and expert judgement, and what do they reveal about
+        the limits of a rule-based approach relative to human judgement in
+        identifying ambiguity?
+\end{itemize}
+
+The remainder of the paper is organised as follows. Section~\ref{sec:related}
+positions the study within the closest related work. Section~\ref{sec:method}
+describes the experimental design, participants, instruments and analysis plan.
+Section~\ref{sec:results} reports the results, Section~\ref{sec:discussion}
+interprets them, Section~\ref{sec:threats} discusses threats to validity, and
+Section~\ref{sec:conclusions} concludes.
+
+%=====================================================================
+\section{Related work}\label{sec:related}
+
+This section is not a full systematic literature review; it follows the
+abbreviated protocol of Kitchenham and Charters~\cite{kitchenham2007},
+reporting a documented search string, explicit inclusion and exclusion criteria,
+the number of studies retrieved and screened, and a comparative table of the
+closest works.
+
+\subsection{Search strategy}\label{subsec:search}
+
+The search string combined three concept blocks:
+
+\begin{quote}\small\ttfamily
+("requirements engineering" OR "software requirements") AND
+("ambiguity" OR "requirements smell" OR "requirements quality") AND
+("automatic detection" OR "rule-based" OR "natural language processing")
+\end{quote}
+
+The string was executed on Scopus and Google Scholar on 2 August 2026,
+restricted to the 2023--2026 period. Inclusion criteria: peer-reviewed
+studies reporting empirical data on the quality, ambiguity or automated analysis
+of natural-language requirements, published in requirements-engineering or
+software-engineering venues. Exclusion criteria: editorials, short contributions
+under four pages, and studies without empirical data. The search retrieved
+689 records in Scopus and 3,670 in Google Scholar. After title and abstract
+screening, 30 records were read in full text and 6 were retained. These were
+combined with eight studies already identified in the project bibliography,
+yielding the 14 entries compared in Table~\ref{tab:related}.
+
+\subsection{Comparison with the closest studies}\label{subsec:comparison}
+
+Table~\ref{tab:related} contrasts the retained studies with the present work.
+The first eight rows correspond to studies already identified in the project
+bibliography; the last six were retained from the search described above.
+
+\begin{table}[h]
+\caption{Comparison with the closest related studies}\label{tab:related}
+\begin{tabular}{@{}p{2.1cm}p{0.7cm}p{2.2cm}p{2.4cm}p{4.0cm}@{}}
+\toprule
+Reference & Year & Study type & Population & Difference with our work \\
+\midrule
+Montgomery et al.~\cite{montgomery2022} & 2022 & Systematic mapping &
+Primary studies on requirements quality & Maps the field but reports no primary
+comparison between an automated detector and expert consensus on a single
+complete corpus. \\
+Atoum et al.~\cite{atoum2021} & 2021 & Systematic review & Literature on
+requirements quality assurance and validation & Identifies the lack of validated
+automation as an open challenge; does not measure detector--expert agreement
+empirically. \\
+Ferrari et al.~\cite{ferrari2016} & 2016 & Empirical study & Elicitation
+interviews & Studies ambiguity as it arises in elicitation and its link to tacit
+knowledge; our unit of analysis is the written requirement in a closed
+specification. \\
+Fischbach et al.~\cite{fischbach2023} & 2023 & Tool evaluation & Conditional
+statements in natural-language requirements & Derives acceptance tests
+automatically; shares the rule/NLP approach but targets test generation, not
+ambiguity classification. \\
+Gobov~\cite{gobov2023} & 2023 & Practitioner survey & Specification and
+modelling techniques in practice & Characterises which techniques practitioners
+use; provides no automated quality measurement. \\
+Said et al.~\cite{said2026} & 2026 & Model evaluation & SRS documents &
+Classifies requirements as functional or non-functional with a learned model;
+our detector targets ambiguity and is rule-based and fully auditable. \\
+Cheng et al.~\cite{cheng2026} & 2026 & Systematic review & Generative AI applied
+to requirements engineering & Surveys generative approaches; we deliberately
+avoid large language models to keep every classification traceable to a named
+rule. \\
+Vogelsang and Fischbach~\cite{vogelsang2024} & 2024 & Methodological guideline &
+LLM use for NLP tasks in RE & Proposes usage guidelines rather than reporting an
+agreement study. \\
+Abdeahad et al.~\cite{abdeahad2026} & 2026 & Model evaluation &
+7,061 requirements from the Fault-Prone SRS benchmark & Achieves high accuracy
+with a deep model, but evaluates against dataset labels rather than against a
+blind expert panel, and the model is not auditable rule by rule. \\
+Fantechi et al.~\cite{fantechi2023} & 2023 & Tool comparison & Three example
+requirements documents & Closest to our design: compares a rule-based tool with
+an LLM on ambiguity. Uses the authors themselves as the reference judgement,
+whereas our reference is a blind panel independent of the specification team. \\
+Talha et al.~\cite{talha2025} & 2025 & Tool evaluation & 1,553 requirements
+across 17 domains & Targets anaphoric and coordination ambiguity with a
+transformer; our detector targets lexical and syntactic smells and is compared
+against human consensus rather than a labelled benchmark. \\
+Alemneh and Berhanu~\cite{alemneh2024} & 2024 & Systematic review & Literature
+on requirements smells and detection techniques & Catalogues detection
+techniques; reports no primary agreement measurement on a real corpus. \\
+Intana et al.~\cite{intana2024} & 2024 & Tool evaluation & Thai-language SRS
+documents & The closest non-English precedent; confirms that language-specific
+evaluation is needed but does not cover Spanish nor report inter-rater
+agreement. \\
+Bashir et al.~\cite{bashir2025} & 2025 & Industrial study & Three railway
+requirements datasets & Reports the over-flagging pattern (high recall, low
+precision) also observed in rule-based tools; uses LLMs, which we deliberately
+avoid for auditability. \\
+\botrule
+\end{tabular}
+\end{table}
+
+The niche of the present study is narrow and, to our knowledge, unoccupied: a
+paired comparison between a frozen, fully documented rule-based detector and the
+blind consensus of independent experts, over the \emph{complete} requirements
+corpus of one real system, specified in Spanish, with the corpus, the detector
+output and the individual expert classifications released as open data. Existing
+work either maps the field without primary agreement data, or evaluates
+detectors on English-language benchmark corpora that were not produced by the
+team reporting the evaluation.
+
+%=====================================================================
+\section{Methodology}\label{sec:method}
+
+The empirical component follows Approach~2 of the course framework ---
+automatic detection of ambiguity and smells in requirements --- and is designed
+as a paired quasi-experiment, reported following the guidelines of Jedlitschka
+et al.~\cite{jedlitschka2008} and the experimental design principles of Wohlin
+et al.~\cite{wohlin2012}. The protocol was preregistered on the Open Science
+Framework~\cite{nosek2018} on 27 July 2026 at 10:49:41 (Ecuador time), before
+the classification rubric was distributed to the expert panel and before the
+detector was executed over the corpus.
+
+\subsection{Research questions in PICOC format}\label{subsec:picoc}
+
+\begin{table}[h]
+\caption{Research questions structured with the PICOC framework}\label{tab:picoc}
+\begin{tabular}{@{}p{2.0cm}p{9.5cm}@{}}
+\toprule
+Element & Description \\
+\midrule
+Population & The set of functional requirements (FR), non-functional
+requirements (NFR) and design constraints (DC) specified for the MundiPets
+system, written according to the eight-attribute template of the course and
+current at the time the experiment was executed. \\
+Intervention & Automatic classification of each requirement as ambiguous or
+non-ambiguous by a rule-based detector that identifies vague quantifiers,
+multiple conjunctions concealing more than one requirement, passive voice, and
+absence of an explicit verification criterion. \\
+Comparison & Manual and independent classification of the same requirement set
+by three experts in requirements engineering, with no prior access to the
+detector output (blind evaluation). \\
+Outcome & Precision, recall and $F_1$ of the automatic detector against expert
+consensus; inter-rater agreement via Cohen's $\kappa$ between pairs and Fleiss'
+$\kappa$ across the three raters. \\
+Context & Academic project of the Requirements Engineering course (Universidad
+Técnica Estatal de Quevedo, 2026--2027 academic period) applied to the real
+MundiPets system, with the specification written in Spanish. \\
+\botrule
+\end{tabular}
+\end{table}
+
+\subsection{Hypotheses}\label{subsec:hypotheses}
+
+RQ1 is tested through the following pair of hypotheses:
+
+\begin{description}
+  \item[$H_0$] The classification produced by the automatic ambiguity detector
+  is not associated with the consensus classification of the experts; the
+  observed agreement between the two (Cohen's $\kappa$) is not significantly
+  different from chance agreement ($\kappa = 0$).
+  \item[$H_1$] The classification produced by the automatic detector is
+  significantly associated with the expert consensus classification; the
+  observed agreement is significantly greater than chance ($\kappa > 0$).
+\end{description}
+
+RQ2 is exploratory and is not subjected to hypothesis testing; it is answered
+through qualitative analysis of the cases where detector and consensus diverge.
+
+\subsection{Variables}\label{subsec:variables}
+
+The \emph{independent variable} is the classification method applied to each
+requirement, with two levels: (a) rule-based automatic detector and (b) consensus
+of the three human experts. The \emph{dependent variable} is the resulting
+binary classification of each requirement as ambiguous or non-ambiguous, from
+which the agreement metrics are computed.
+
+Four \emph{control variables} were fixed. First, requirement type (FR, NFR, DC)
+was recorded to verify that detector performance does not vary systematically
+with the artefact evaluated. Second, the detector configuration --- the four
+rules listed in Section~\ref{subsec:design} --- remained invariant throughout
+execution; no rule was adjusted after observing partial results. Third, the
+presentation order of the requirements was randomised independently for each
+rater to control fatigue and order effects. Fourth, raters were blind both to
+the detector output and to one another's classifications until their own was
+complete.
+
+\subsection{Design and materials}\label{subsec:design}
+
+The corpus comprises the complete set of 50 requirements of the MundiPets
+specification: 25 functional requirements, 16 non-functional requirements and 9
+design constraints. Each requirement was assigned an anonymous identifier
+(REQ-01 to REQ-50), stripped of its type label, and presented to the raters in
+randomised order. A key linking anonymous identifiers to the real requirement
+identifiers and to the detector output was retained by the research team and not
+shared with the raters.
+
+The detector is a purpose-built Python program based on regular expressions. It
+flags a requirement as ambiguous when at least one of four rules fires:
+(i) presence of a vague quantifier; (ii) multiple conjunctions concealing more
+than one requirement in a single statement; (iii) passive voice or absent
+subject; and (iv) absence of an explicit verification criterion. No large
+language model was used at any point of the classification pipeline, which keeps
+every classification decision traceable to a named rule.
+
+\subsection{Participants and recruitment}\label{subsec:participants}
+
+The expert panel comprised three software engineers holding a professional
+degree from the Universidad Técnica Estatal de Quevedo (two women and one man),
+none of whom belonged to the MundiPets team or participated in writing the
+requirements under evaluation. Inclusion criteria were: (a) a professional
+degree in software engineering or a closely related field; (b) demonstrable
+training or experience in requirements specification and analysis; and (c)
+availability to complete the classification within the study schedule.
+
+Each rater signed, on 28 July 2026, an informed consent form specific to this
+role, drafted in compliance with Ecuador's Organic Law on Personal Data
+Protection~\cite{lopdp2021}, explicitly authorising the anonymised use of their
+classifications in peer-reviewed publications and their deposit in an open
+dataset.
+
+\subsection{Instruments}\label{subsec:instruments}
+
+Two instruments were used. The \emph{expert classification rubric} is a workbook
+containing an instruction sheet, a reference-criteria sheet for identifying
+ambiguity, and an evaluation sheet where each rater records, per requirement,
+the identifier, the full text, the classification, the type of smell detected, a
+brief justification and a self-reported confidence level on a 1--5 scale. The
+\emph{expert consent template} adapts the consent form used in the previous
+elicitation round to the rater role, adding the clause on anonymised use in
+peer-reviewed publications.
+
+\subsection{Statistical analysis plan}\label{subsec:analysis}
+
+Because the central variable is categorical, the primary analysis is based on
+agreement metrics rather than mean comparison.
+
+\bmhead{Primary analysis (RQ1, $H_0$/$H_1$)}
+Precision, recall and $F_1$ of the detector are computed against expert
+consensus, defined by majority vote across the three raters. The hypothesis is
+tested through a significance test of Cohen's $\kappa$ (statistic
+$z = \kappa / SE_\kappa$, against the standard normal distribution). The
+magnitude of agreement is interpreted as the effect size using the Landis and
+Koch scale: 0.00--0.20 slight; 0.21--0.40 fair; 0.41--0.60 moderate; 0.61--0.80
+substantial; 0.81--1.00 almost perfect.
+
+\bmhead{Inter-rater agreement}
+Cohen's $\kappa$~\cite{cohen1960} is computed for each pair of raters and
+Fleiss' $\kappa$~\cite{fleiss1971} across the three, interpreted on the same
+scale. Low expert agreement would relativise any conclusion about detector
+performance, since the reference consensus itself would be in doubt.
+
+\bmhead{Normality test}
+The Shapiro--Wilk test is applied to the continuous confidence variable
+(1--5 scale) recorded in the rubric, as a precondition for the secondary
+analysis.
+
+\bmhead{Secondary analysis (RQ2, exploratory)}
+To characterise disagreement, the confidence level reported by the raters is
+compared between requirements where the detector agrees with consensus and those
+where it diverges. If Shapiro--Wilk does not reject normality, an
+independent-samples $t$ test is used with Cohen's $d$ as effect size; otherwise,
+the Mann--Whitney $U$ test with Cliff's $\delta$. This is complemented by a
+qualitative note on each disagreeing requirement.
+
+\bmhead{Correction for multiple comparisons}
+If agreement metrics are additionally reported disaggregated by requirement type
+(FR, NFR, DC), the resulting $p$ values from those three related comparisons are
+adjusted with the Benjamini--Hochberg procedure.
+
+\bmhead{Power}
+Following Molléri et al.~\cite{molleri2020} and Wohlin et al.~\cite{wohlin2012},
+$\alpha = 0.05$ and $1-\beta = 0.80$ are fixed. Because the population size is
+bounded by the real specification corpus rather than by an expandable
+recruitment target, power is reported in reverse: instead of fixing a target
+$N$, we determine the minimum detectable $\kappa$ that the design can identify
+at that $\alpha$ and power, given the available $N = 50$.
+
+\bmhead{Reproducibility}
+All computations are executed through versioned analysis scripts; no figure or
+table is produced manually.
+
+%=====================================================================
+\section{Results}\label{sec:results}
+
+\DEFERRED{this section reports the analysed data without interpretation,
+organised by research question, with every table and figure generated by the
+versioned analysis scripts. It is written only after the full analysis plan of
+Section~\ref{subsec:analysis} has been executed.}
+
+%=====================================================================
+\section{Discussion}\label{sec:discussion}
+
+\DEFERRED{implications for research, implications for practice, and surprising
+or counter-intuitive findings. Every claim must be traceable to a specific datum
+in Section~\ref{sec:results} or to a cited reference.}
+
+%=====================================================================
+\section{Threats to validity}\label{sec:threats}
+
+\DEFERRED{internal, external, construct and conclusion validity following Wohlin
+et al.~\cite{wohlin2012}, with the mitigation applied and the residual
+limitation acknowledged for each threat. The anticipated threats are already
+documented in the preregistered protocol and are carried over here once the
+results are known.}
+
+%=====================================================================
+\section{Conclusions and future work}\label{sec:conclusions}
+
+\DEFERRED{one paragraph per research question, one consolidating the
+contributions promised in Section~\ref{sec:intro}, and one with at least three
+concrete lines of future work.}
+
+%=====================================================================
+\backmatter
+
+\bmhead{Acknowledgements}
+
+The authors thank the three software engineers who served as expert raters and
+the veterinary practice in Quevedo, Ecuador, that granted access to its
+operational context and which remains pseudonymised under the anonymisation
+protocol of this study.
+
+\section*{Declarations}
+
+\begin{itemize}
+\item \textbf{Funding.} This research received no specific grant from any
+funding agency in the public, commercial or not-for-profit sectors.
+\item \textbf{Competing interests.} The authors declare no competing interests.
+\item \textbf{Ethics approval and consent to participate.} The study was
+conducted under the ethics framework of the Requirements Engineering course at
+the Universidad Técnica Estatal de Quevedo. All participants signed an informed
+consent form drafted in compliance with Ecuador's Organic Law on Personal Data
+Protection~\cite{lopdp2021}.
+\item \textbf{Consent for publication.} All participants explicitly authorised
+the use of their anonymised data in peer-reviewed publications and its deposit
+in an open dataset.
+\item \textbf{Data availability.} The preregistered protocol is available on the
+Open Science Framework at https://osf.io/khyf2/overview The anonymised dataset --- labelled requirements corpus, detector output,
+individual expert classifications, traceability matrix and analysis scripts ---
+will be deposited on Zenodo under a CC~BY~4.0 licence with an assigned DOI upon
+acceptance, following the FAIR principles~\cite{wilkinson2016} and the
+software citation principles of Smith et al.~\cite{smith2016}.
+\item \textbf{Materials availability.} Not applicable.
+\item \textbf{Code availability.} The detector and the analysis scripts are
+available in the project repository at
+https://github.com/andymendozap03/MundiPets-PFC-IngReq
+\item \textbf{Author contribution.} E.D.F.A.: conceptualization,
+investigation, writing --- original draft. G.A.G.O.: software (design and
+implementation of the rule-based detector). A.J.M.P.: methodology,
+visualization (system modelling and diagrams). G.A.M.S.: investigation, data
+curation (interviews and transcriptions). J.S.N.S.: formal analysis, data
+curation, project administration (protocol preregistration and statistical
+analysis). G.C.G.U.: supervision, validation. All authors reviewed and approved
+the final manuscript.
+\end{itemize}
+
+\bibliography{referencias}
+
+\end{document}
