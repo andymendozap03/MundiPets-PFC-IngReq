@@ -3,7 +3,7 @@
 **Proyecto:** MundiPets — Detección automática de ambigüedad en requisitos
 **Asignatura:** Ingeniería de Requerimientos [20303] · UTEQ · PPA 2026–2027
 **Documento:** requisito de la Sección 6.4 de la guía de la Entrega 3 (2A), criterio C10
-**Última actualización:** _(completar)_
+**Última actualización:** 2 de agosto de 2026
 **Responsable:** Fuertes Arraes, Edson Daniel (analista líder)
 
 ---
@@ -17,8 +17,34 @@ de la Sección 6.3. No modificar aquí sin actualizar también el manuscrito.
 
 > Accuracy of a requirements ambiguity detector: case of a pet social network
 
-**Resumen** — copiar el campo `\abstract{}` de
-`07_Publicacion/manuscrito/manuscrito_MundiPets_v1_0.tex`.
+**Resumen** (versión 1.0; las secciones de Resultados y Conclusiones se cierran
+en la Entrega 4 y deben incorporarse aquí antes de la decisión de la semana 16)
+
+> **Context.** Ambiguity is one of the most persistent defects in natural-language
+> requirements specifications, and rule-based detectors are frequently proposed as
+> a low-cost mechanism to flag it before requirements reach design. Evidence on how
+> closely such detectors reproduce human expert judgement remains scarce for
+> Spanish-language specifications produced in Latin American settings.
+>
+> **Objective.** This study measures the extent to which a rule-based ambiguity
+> detector replicates the consensus judgement of independent human experts over the
+> complete requirements corpus of MundiPets, a real social network for responsible
+> pet adoption and breeding, and characterises the patterns of disagreement between
+> the two.
+>
+> **Methods.** We conducted a paired quasi-experiment over 50 requirements (25
+> functional, 16 non-functional and 9 design constraints) specified according to an
+> eight-attribute template. A purpose-built rule-based detector, implemented in
+> Python and frozen before data collection, classified each requirement as ambiguous
+> or non-ambiguous using four lexical and syntactic rules. In parallel, three
+> independent software engineers, blind to the detector output and to one another,
+> classified the same requirements in randomised order using a shared rubric. The
+> protocol was preregistered on the Open Science Framework before any data were
+> collected. Agreement was quantified with precision, recall, F1, Cohen's kappa and
+> Fleiss' kappa.
+
+> Para pegar en las herramientas oficiales basta con el bloque de Context, Objective
+> y Methods; los buscadores de las editoriales truncan a unas 250 palabras.
 
 **Palabras clave**
 
@@ -103,9 +129,9 @@ USD y que los equipos de pregrado pueden no disponer de ese financiamiento.
 
 | Pregunta | Respuesta |
 |---|---|
-| ¿El equipo dispone de fondos para APC? | _(completar)_ |
-| ¿La UTEQ tiene convenio transformativo con alguna de las tres editoriales? | _(consultar en la biblioteca institucional)_ |
-| ¿Existe exención o descuento por país (waiver) aplicable a Ecuador? | _(verificar en la política de cada editorial)_ |
+| ¿El equipo dispone de fondos para APC? | _(completar — decisión del equipo)_ |
+| ¿La UTEQ tiene convenio transformativo con alguna de las tres editoriales? | _(consultar en la biblioteca institucional; es la vía que más puede abaratar el envío)_ |
+| ¿Existe exención o descuento por país (waiver) aplicable a Ecuador? | Poco probable. Los programas de exención total de las grandes editoriales suelen restringirse a países clasificados por el Banco Mundial como de ingreso bajo o mediano-bajo, y Ecuador figura como de ingreso mediano-alto. **Verificar caso por caso** en la política de cada editorial antes de descartarlo. |
 
 > Si la respuesta a las tres es negativa, la ruta viable es la candidata B de cada
 > editorial: híbrida sin cargo obligatorio, publicando en modalidad por suscripción.
@@ -153,10 +179,22 @@ volumen de evidencia alcanzado:
 **Categoría estimada al cierre de la Entrega 3 (2A):** _(completar tras contrastar
 las evidencias del repositorio contra la tabla de la Sección 4.2 de la guía)_
 
+> Consideración de alcance empírico, a tener en cuenta al elegir. El estudio se
+> apoya en un corpus de 50 requisitos de un solo sistema, evaluado por un panel de
+> tres personas. *IEEE Transactions on Software Engineering* y *Requirements
+> Engineering* son las de mejor ajuste temático, pero también las que exigen mayor
+> alcance empírico; con este N el riesgo de rechazo de escritorio es alto. Las
+> candidatas realistas para un artículo corto o *tool paper* son *IEEE Access* y
+> *Heliyon*, y entre ellas la decisión depende de si se consigue financiamiento
+> para el APC.
+
 ---
 
 ## 7. Registro de cambios
 
 | Fecha | Cambio | Responsable |
 |---|---|---|
-| _(completar)_ | Creación del documento con candidatas iniciales | _(completar)_ |
+| 2026-08-02 | Creación del documento. Se definen título, resumen y palabras clave definitivos de la versión 1.0 del manuscrito. Se proponen dos candidatas por editorial (una OA con APC y una híbrida sin cargo obligatorio) con justificación de ajuste temático basada en las revistas donde aparecen los trabajos citados en la sección de trabajo relacionado. Quedan pendientes las métricas bibliométricas y la ejecución de las tres herramientas oficiales. | Fuertes Arraes, Edson Daniel |
+| _(completar)_ | Ejecución de las tres herramientas oficiales y registro de capturas | _(completar)_ |
+| _(completar)_ | Incorporación de métricas verificadas en JCR | _(completar)_ |
+| _(completar)_ | Decisión final de revista (semana 16) | _(completar)_ |
