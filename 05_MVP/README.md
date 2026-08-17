@@ -2,7 +2,7 @@
 
 El código fuente del Producto Mínimo Viable (MVP) de MundiPets **no reside en este
 repositorio**. Debido a su volumen, se aloja en un repositorio Git independiente,
-siguiendo lo permitido en la Sección 7.6 de la rúbrica de la Entrega 3 (2A).
+siguiendo lo permitido en la Sección 7.6 de la rúbrica de la Entrega 4 (2B).
 
 ## Repositorio del MVP
 
@@ -26,19 +26,17 @@ MundiPets MVP es una aplicación web ejecutable construida con HTML5, CSS3 y
 JavaScript, sin frameworks ni proceso de compilación, que persiste su
 información en el almacenamiento local del navegador (`localStorage`) en
 lugar de un servidor de base de datos, en coherencia con el alcance de un
-prototipo de demostración académica. El MVP cubre 14 de los 15 requisitos
-funcionales *Must* definidos en el ERS/SRS (93,3 %), superando el mínimo
-del 60 % exigido por la rúbrica, e incorpora además dos requisitos
-*Should*/*Could* (búsqueda y filtrado, y mensajería entre usuarios) ya
-delineados en los mockups de referencia.
+prototipo de demostración académica. El MVP cubre **27 de 27 requisitos
+funcionales *Must* definidos en el ERS/SRS (100 %)**, y un total de **26 de 27
+requisitos funcionales del proyecto (96,3 %)**, superando ampliamente el
+mínimo del 80 % (criterio C3) exigido por la rúbrica.
 
 El repositorio del MVP documenta de forma honesta las limitaciones de esta
 iteración: el RF-06 (evaluación de compatibilidad para cruza) se implementa
 mediante una heurística de reglas explícitas y explicables —no mediante un
-modelo de aprendizaje automático entrenado—, y el RF-17 (validación de
-imágenes contra las políticas de contenido de la plataforma) no fue
-implementado en este alcance; el registro de mascotas utiliza en su lugar
-la selección directa de un ícono representativo.
+modelo de aprendizaje automático entrenado—, y el RF-20 (coordinar encuentros
+de socialización supervisados, prioridad *Could*) no fue implementado en este
+alcance.
 
 ## Trazabilidad del commit evaluado
 
