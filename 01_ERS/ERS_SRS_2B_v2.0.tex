@@ -2587,6 +2587,14 @@ doi=true
 	condicionado; y los diagramas de componentes y de despliegue proyectan el
 	sistema sobre su arquitectura lógica y física.
 	
+	Las extensiones asociadas a RF-26 y RF-27, incorporadas en esta revisión
+	(4.0), se apoyan en los actores, clases, pasos de control y estados ya
+	representados en las figuras vigentes desde la Entrega 3 (2A): ambos
+	requisitos se satisfacen como reglas de negocio internas o como
+	invocaciones adicionales de elementos que los diagramas ya modelan de forma
+	genérica, por lo que ninguna de las figuras de esta sección requiere
+	modificación.
+	
 	% ------------------------------------------------------------
 	\subsection{Diagrama de casos de uso general}
 	\label{sec:cu-general}
@@ -2631,6 +2639,16 @@ doi=true
 	información previamente registrada, sustentando directamente la restricción
 	de diseño RD-03 y el requisito no funcional de integridad de la información
 	médica (RNF-05).
+	
+	Los dos requisitos funcionales incorporados en la revisión 4.0 del ERS,
+	RF-26 (segunda opinión veterinaria) y RF-27 (control de solicitudes
+	repetitivas de cruza), no introducen actores ni casos de uso adicionales al
+	diagrama general: se modelan como flujos alternativos de los casos de uso ya
+	representados \emph{Validar información médica} y \emph{Publicar mascota
+		para cruza y gestionar solicitud}, respectivamente, y quedan detallados a
+	nivel textual en la especificación de dichos casos de uso
+	(Sección~\ref{sec:cu-detallado}), sin requerir cambios en el diagrama
+	general vigente.
 	
 	\begin{figure}[H]
 		\centering
@@ -2776,7 +2794,7 @@ doi=true
 		Nombre & Publicar mascota para cruza y gestionar solicitud \\
 		Actor principal & Propietario de mascota \\
 		Actores secundarios & Interesado en cruza \\
-		RF asociados & RF-08, RF-13, RF-16, RF-19 \\
+		RF asociados & RF-08, RF-13, RF-16, RF-19, RF-27 \\
 		Precondiciones & La mascota está registrada y cuenta con antecedentes genéticos registrados (RF-16). \\
 		Flujo principal &
 		\begin{enumerate}[leftmargin=*, nosep]
@@ -2785,6 +2803,7 @@ doi=true
 			\item El sistema verifica la vigencia del certificado veterinario asociado (RF-19).
 			\item El sistema publica la mascota en el listado de cruza responsable.
 			\item Un interesado en cruza envía una solicitud sobre la publicación.
+			\item El sistema verifica la cantidad de procesos de cruza completados por la mascota en los últimos seis meses (RF-27).
 			\item El sistema registra la solicitud en estado \emph{Pendiente} y notifica al propietario.
 			\item El propietario acepta o rechaza la solicitud.
 			\item El sistema actualiza el estado de la solicitud y notifica al interesado.
@@ -2792,13 +2811,14 @@ doi=true
 		Flujos alternativos &
 		\begin{enumerate}[leftmargin=*, nosep]
 			\item[2.1] No existen antecedentes genéticos: el sistema redirige al propietario al formulario de RF-16 antes de permitir continuar.
-			\item[7.1] El propietario acepta: el sistema habilita el canal de comunicación (CU-08) y la mascota transita a \emph{EnProcesoDeCruza}.
+			\item[6.1] La mascota supera los dos procesos de cruza completados en seis meses: el sistema muestra la alerta de uso repetitivo (RF-27) al propietario y al interesado antes de continuar, sin bloquear de forma definitiva la solicitud.
+			\item[8.1] El propietario acepta: el sistema habilita el canal de comunicación (CU-08) y la mascota transita a \emph{EnProcesoDeCruza}.
 		\end{enumerate} \\
 		Flujos de excepción &
 		\begin{enumerate}[leftmargin=*, nosep]
 			\item[3.1] El certificado veterinario está vencido o no validado: el sistema impide la publicación e informa el requisito pendiente.
 		\end{enumerate} \\
-		Postcondiciones & La publicación de cruza queda activa y las solicitudes recibidas quedan registradas con su estado y fecha para su consulta posterior (CU-07). \\
+		Postcondiciones & La publicación de cruza queda activa y las solicitudes recibidas quedan registradas con su estado y fecha para su consulta posterior (CU-07), incluyendo el conteo actualizado de procesos de cruza de la mascota para la alerta de uso repetitivo (RF-27). \\
 	\end{atributos}
 	
 	\begin{atributos}{CU-06}{CU-06 --- Evaluar compatibilidad de cruza.}
@@ -2890,7 +2910,7 @@ doi=true
 		Nombre & Validar información médica \\
 		Actor principal & Veterinaria \\
 		Actores secundarios & Propietario de mascota \\
-		RF asociados & RF-09, RF-14, RF-24 \\
+		RF asociados & RF-09, RF-14, RF-24, RF-26 \\
 		Precondiciones & La veterinaria está autenticada, su identidad profesional ha sido verificada (RF-12) y existe información médica en estado \emph{PendienteDeValidación}. \\
 		Flujo principal &
 		\begin{enumerate}[leftmargin=*, nosep]
@@ -2904,13 +2924,14 @@ doi=true
 		Flujos alternativos &
 		\begin{enumerate}[leftmargin=*, nosep]
 			\item[4.1] La veterinaria rechaza el registro: el sistema exige el ingreso de una observación técnica antes de confirmar la operación y el registro transita a \emph{Rechazado}.
+			\item[5.1] Una segunda veterinaria autorizada solicita revisar un registro ya validado (RF-26): el sistema le muestra el registro y la validación previa, y permite confirmar o cuestionar el resultado sin sustituir la primera validación.
 		\end{enumerate} \\
 		Flujos de excepción &
 		\begin{enumerate}[leftmargin=*, nosep]
 			\item[4.2] La veterinaria intenta rechazar sin observación técnica: el sistema impide confirmar la operación e indica el campo obligatorio.
 			\item[3.1] El documento adjunto es ilegible: la veterinaria registra la observación correspondiente y el registro se devuelve al propietario para su reemplazo.
 		\end{enumerate} \\
-		Postcondiciones & El registro médico queda en estado \emph{Validado} o \emph{Rechazado} con trazabilidad del profesional responsable y de la fecha de la resolución, en cumplimiento de RD-03 y RNF-05. \\
+		Postcondiciones & El registro médico queda en estado \emph{Validado} o \emph{Rechazado} con trazabilidad del profesional responsable y de la fecha de la resolución, en cumplimiento de RD-03 y RNF-05, y puede quedar con una segunda validación registrada cuando aplica RF-26. \\
 	\end{atributos}
 	
 	\begin{atributos}{CU-10}{CU-10 --- Consultar perfil médico.}
@@ -3028,7 +3049,7 @@ doi=true
 	El diagrama de clases refinado profundiza el modelo conceptual presentado en
 	la Entrega 2 (1B), incorporando los atributos, tipos de dato,
 	multiplicidades y operaciones necesarios para representar con precisión las
-	25 funcionalidades definidas en la Sección~\ref{sec:rf}. El modelo se
+	27 funcionalidades definidas en la Sección~\ref{sec:rf}. El modelo se
 	organiza alrededor de la clase \texttt{Mascota}, que concentra los datos
 	generales exigidos por RF-01 (nombre, especie, raza, sexo, edad y estado
 	reproductivo) y se asocia mediante composición con \texttt{HistorialMedico}
@@ -3059,6 +3080,15 @@ doi=true
 	con una sola mascota registrada. Este nivel de detalle permite que el
 	diagrama sirva como referencia directa para el diseño del modelo de datos en
 	la fase de implementación.
+	
+	Los dos requisitos funcionales agregados en la revisión 4.0 se apoyan
+	íntegramente en las clases ya representadas en el diagrama: RF-26 reutiliza
+	\texttt{HistorialMedico} y la generalización de \texttt{Veterinaria},
+	registrando la segunda validación como una nueva instancia del mismo tipo
+	de registro que ya modela la validación profesional; y RF-27 reutiliza
+	\texttt{SolicitudCruza}, cuyo estado y fecha —ya representados en el
+	diagrama— permiten derivar el conteo de procesos completados sin necesidad
+	de una clase o un atributo visible adicional.
 	
 	\begin{figure}[H]
 		\centering
@@ -3165,8 +3195,12 @@ doi=true
 	(RF-16); solo entonces la solicitud del interesado en cruza puede avanzar
 	hacia el estado pendiente. La respuesta del propietario receptor (aceptar o
 	rechazar) se propaga como un mensaje asíncrono de actualización de estado
-	hacia el objeto \texttt{SolicitudCruza}, coherente con la máquina de estados
-	presentada en la Sección~\ref{sec:estados}.
+	hacia el objeto \texttt{SolicitudCruza}, coherente con la máquina de
+	estados presentada en la Sección~\ref{sec:estados}. La regla de negocio de
+	RF-27, que limita las solicitudes de cruza repetitivas sobre una misma
+	mascota, se aplica dentro del mismo paso en que el sistema registra la
+	solicitud en estado \emph{Pendiente}, ya representado en este diagrama, sin
+	introducir un mensaje adicional entre los objetos.
 	
 	\begin{figure}[H]
 		\centering
@@ -3240,7 +3274,12 @@ doi=true
 	veterinaria registrar una observación técnica antes de poder confirmar la
 	operación, evitando rechazos sin justificación que dificulten la
 	trazabilidad exigida por el marco legal de la
-	Sección~\ref{sec:legales}.
+	Sección~\ref{sec:legales}. La segunda opinión veterinaria de RF-26 se
+	satisface mediante una nueva ejecución de esta misma secuencia sobre un
+	registro que ya se encuentra en estado \emph{Validado}, iniciada por una
+	veterinaria distinta; al modelar de forma genérica al actor
+	\emph{Veterinaria}, el diagrama representa igualmente esta segunda
+	invocación sin requerir elementos adicionales.
 	
 	\begin{figure}[H]
 		\centering
@@ -3412,7 +3451,9 @@ doi=true
 	flujo dirige al propietario hacia el formulario de antecedentes genéticos
 	antes de permitir continuar, garantizando que ninguna mascota quede
 	publicada para cruza sin la información mínima que exige RF-16 para
-	sustentar posteriormente la evaluación de compatibilidad.
+	sustentar posteriormente la evaluación de compatibilidad. La regla de negocio de RF-27 se aplica dentro
+	de la misma actividad de registro de la solicitud ya representada en este
+	diagrama, sin requerir una bifurcación adicional visible.
 	
 	\begin{figure}[H]
 		\centering
@@ -3482,7 +3523,10 @@ doi=true
 	de rechazo, que exige el registro obligatorio de una observación técnica
 	antes de notificar al propietario, en coherencia con la máquina de estados
 	de verificación de documentos presentada en la
-	Sección~\ref{sec:estados}.
+	Sección~\ref{sec:estados}. La segunda opinión veterinaria de RF-26
+	corresponde a una nueva ejecución de este mismo diagrama de actividad sobre
+	un registro ya validado, por lo que no introduce actividades adicionales a
+	las ya representadas.
 	
 	\begin{figure}[H]
 		\centering
@@ -3602,7 +3646,11 @@ doi=true
 	cualquiera de las etapas intermedias. Las transiciones están condicionadas
 	por eventos generados por el propietario (aceptar, rechazar o avanzar de
 	etapa) y quedan registradas para alimentar la consulta de historial de
-	procesos definida en RF-15.
+	procesos definida en RF-15. Cada transición de una solicitud de cruza hacia
+	\emph{Completada} incrementa el contador de procesos completados de la
+	mascota implicada, valor que RF-27 consulta antes de admitir una nueva
+	solicitud sobre la misma mascota y que sustenta la alerta de uso repetitivo
+	sin introducir un estado adicional en esta máquina.
 	
 	\begin{figure}[H]
 		\centering
@@ -3621,7 +3669,10 @@ doi=true
 	RD-03. El estado \emph{Rechazado} incluye obligatoriamente la observación
 	técnica registrada por el profesional, y permite al propietario transitar
 	nuevamente hacia \emph{PendienteDeValidacion} tras corregir o reemplazar el
-	documento observado.
+	documento observado. La segunda validación de RF-26 se registra como un
+	nuevo evento sobre el estado \emph{Validado} ya representado en esta
+	máquina de estados, sin reabrir el registro original ni requerir estados o
+	transiciones adicionales en la figura.
 	
 	\begin{figure}[H]
 		\centering
@@ -3638,10 +3689,11 @@ doi=true
 	(RD-05) en una organización concreta de módulos de software con interfaces
 	explícitas entre ellos. Se identifican cinco componentes principales:
 	Gestión de Mascotas (RF-01, RF-02, RF-13, RF-16, RF-21), Adopción y Cruza
-	(RF-05, RF-08, RF-18, RF-19, RF-20, RF-22), Mensajería (RF-07), Validación
-	Médica (RF-09, RF-14, RF-24) y el componente de Inteligencia Artificial, que
-	agrupa los tres subcomponentes de evaluación de compatibilidad (RF-06),
-	validación de imágenes (RF-17) y moderación de mensajes.
+	(RF-05, RF-08, RF-18, RF-19, RF-20, RF-22, RF-27), Mensajería (RF-07),
+	Validación Médica (RF-09, RF-14, RF-24, RF-26) y el componente de
+	Inteligencia Artificial, que agrupa los tres subcomponentes de evaluación de
+	compatibilidad (RF-06), validación de imágenes (RF-17) y moderación de
+	mensajes.
 	
 	Las dependencias entre componentes se limitan a interfaces bien definidas:
 	el componente de Adopción y Cruza depende de Gestión de Mascotas para
