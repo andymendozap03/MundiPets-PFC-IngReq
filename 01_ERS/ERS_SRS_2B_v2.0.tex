@@ -220,7 +220,7 @@ doi=true
 		\textbf{Repositorio GitHub:}\\
 		\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}
 		
-
+		
 		\vspace{1.8cm}
 		
 		{\small Firma electrónica del analista líder: \rule{5cm}{0.4pt}}
@@ -248,6 +248,7 @@ doi=true
 			1.0 & 30/05/2026 & Equipo MundiPets & Entrega 1A: planificación y elicitación. \\
 			2.0 & 05/07/2026 & Equipo MundiPets & Entrega 2 (1B): ERS/SRS parcial; incorpora correcciones de la 1A y agrega requisitos, UML, priorización y trazabilidad. \\
 			3.0 & 29/07/2026 & Equipo MundiPets & Entrega 3 (2A): ERS/SRS completa. Amplía a 25 RF, 16 RNF y 9 RD, agrega requisitos legales, explicabilidad, historias de usuario, modelado UML completo, priorización Kano/WSJF, trazabilidad extendida, MVP y componente empírico. \\
+			4.0 & 30/08/2026 & Equipo MundiPets & Entrega 4 (2B): revisión de calidad de los requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018 (RF-02, RF-05, RF-12, RF-17, RF-18 y RF-23 corregidos por ambigüedad, duplicidad o inconsistencia) e incorporación de dos nuevos requisitos funcionales, RF-26 y RF-27, a partir de la nueva evidencia recolectada EV-23 (walkthrough/entrevista PROP-12) y EV-24 (walkthrough/entrevista VET-07). \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -1258,10 +1259,10 @@ doi=true
 	\begin{atributos}{RF-02}{RF-02 --- Gestionar historial médico de la mascota.}
 		Identificador & RF-02 \\
 		Nombre & Gestionar historial médico de la mascota \\
-		Descripción & El sistema deberá permitir registrar y actualizar el historial médico de una mascota, incluyendo vacunas (con su cepa/marca y profesional aplicador), desparasitaciones, enfermedades, alergias, cirugías, tratamientos y controles veterinarios. \\
+		Descripción & El sistema deberá permitir registrar el historial médico de una mascota, incluyendo desparasitaciones, enfermedades, alergias, cirugías, tratamientos y controles veterinarios. \\
 		Actor & Propietario de mascota, Veterinaria \\
 		Origen (ID de evidencia) & EV-01, EV-02, EV-03, EV-04, EV-05, EV-06, EV-07, EV-15, EV-16 \\
-		Entradas & Vacunas (cepa, aplicador), desparasitaciones, enfermedades, alergias, cirugías, tratamientos, controles médicos, observaciones. \\
+		Entradas & Desparasitaciones, enfermedades, alergias, cirugías, tratamientos, controles médicos, observaciones. \\
 		Salidas & Historial médico actualizado. \\
 		Precondiciones & La mascota debe estar registrada en el sistema. \\
 		Postcondiciones & El historial médico queda actualizado y disponible para usuarios autorizados. \\
@@ -1306,13 +1307,13 @@ doi=true
 	\begin{atributos}{RF-05}{RF-05 --- Gestionar solicitudes de adopción.}
 		Identificador & RF-05 \\
 		Nombre & Gestionar solicitudes de adopción \\
-		Descripción & El sistema deberá permitir que un usuario interesado envíe solicitudes de adopción, incluyendo su fotografía de perfil, y que el propietario pueda aceptarlas o rechazarlas después de revisar la información del solicitante. \\
+		Descripción & El sistema deberá permitir que un usuario interesado envíe una solicitud de adopción, incluyendo su fotografía de perfil, y que el propietario la acepte o rechace en una primera revisión, con base en la información del solicitante. \\
 		Actor & Adoptante, Propietario de mascota \\
 		Origen (ID de evidencia) & EV-01, EV-02, EV-03, EV-05, EV-06, EV-08 \\
 		Entradas & Solicitud de adopción, información y fotografía del solicitante. \\
-		Salidas & Solicitud registrada y estado de aceptación o rechazo. \\
+		Salidas & Solicitud registrada y estado de aceptación o rechazo de la revisión inicial. \\
 		Precondiciones & La mascota debe estar disponible para adopción. \\
-		Postcondiciones & La solicitud queda registrada con su estado correspondiente. \\
+		Postcondiciones & La solicitud queda registrada como aceptada o rechazada en su revisión inicial; si es aceptada, continúa su ciclo de vida conforme al flujo por etapas de RF-18. \\
 		Prioridad (MoSCoW) & Must \\
 		Criterio de verificación & Registrar una solicitud y comprobar que el propietario puede visualizar el perfil del solicitante y gestionarla correctamente. \\
 	\end{atributos}
@@ -1418,15 +1419,15 @@ doi=true
 	\begin{atributos}{RF-12}{RF-12 --- Verificar la identidad de los usuarios.}
 		Identificador & RF-12 \\
 		Nombre & Verificar la identidad de los usuarios \\
-		Descripción & El sistema deberá permitir verificar la identidad de los usuarios mediante el registro y validación de la información requerida antes de participar en procesos de adopción o cruza. \\
+		Descripción & El sistema deberá verificar la identidad de los usuarios mediante la carga y validación de un documento de identidad oficial y vigente, antes de habilitar su participación en procesos de adopción o cruza. \\
 		Actor & Propietario de mascota, Adoptante, Interesado en cruza \\
 		Origen (ID de evidencia) & EV-01, EV-03, EV-07, EV-08, EV-09 \\
-		Entradas & Información de identificación del usuario. \\
+		Entradas & Documento de identidad oficial (imagen o escaneo), datos personales asociados. \\
 		Salidas & Usuario verificado dentro de la plataforma. \\
 		Precondiciones & El usuario debe haber iniciado el proceso de registro. \\
 		Postcondiciones & El usuario obtiene el estado de identidad verificada. \\
 		Prioridad (MoSCoW) & Must \\
-		Criterio de verificación & Registrar un usuario con la documentación requerida y verificar que el sistema indique correctamente el estado de verificación. \\
+		Criterio de verificación & Registrar un usuario cargando un documento de identidad válido y comprobar que el sistema lo marca como verificado; cargar un documento inválido o ilegible y comprobar que el sistema lo rechaza. \\
 	\end{atributos}
 	
 	\subsubsection{RF-13 --- Registrar publicaciones de mascotas}
@@ -1498,11 +1499,11 @@ doi=true
 	\begin{atributos}{RF-17}{RF-17 --- Validar imágenes.}
 		Identificador & RF-17 \\
 		Nombre & Validar imágenes \\
-		Descripción & El sistema deberá utilizar un componente de inteligencia artificial para validar las imágenes cargadas por los usuarios, verificando que correspondan al tipo de contenido esperado y rechazando aquellas que sean inapropiadas o no cumplan con los criterios establecidos. \\
+		Descripción & El sistema deberá validar que la imagen cargada corresponda visualmente a una mascota y no contenga contenido explícito, violento u ofensivo, conforme a la política de contenido de la plataforma. \\
 		Actor & Propietario de mascota, Veterinaria \\
 		Origen (ID de evidencia) & EV-01, EV-03, EV-05, EV-07, EV-08 \\
 		Entradas & Imagen cargada por el usuario. \\
-		Salidas & Resultado de la validación y aceptación o rechazo de la imagen. \\
+		Salidas & Resultado de la validación (aceptada / rechazada) con el motivo específico del rechazo cuando aplique. \\
 		Precondiciones & El usuario debe encontrarse autenticado y seleccionar una imagen para cargar. \\
 		Postcondiciones & La imagen queda almacenada si supera la validación; de lo contrario, se rechaza mostrando el motivo correspondiente. \\
 		Prioridad (MoSCoW) & Should \\
@@ -1519,7 +1520,7 @@ doi=true
 		Origen (ID de evidencia) & EV-11, EV-16 \\
 		Entradas & Formulario de solicitud, resultado de entrevista, resultado de visita, resultado de periodo de prueba, compromiso firmado. \\
 		Salidas & Estado de la solicitud actualizado por etapa. \\
-		Precondiciones & La mascota debe estar disponible para adopción y el usuario debe estar verificado (RF-12). \\
+		Precondiciones & La solicitud de adopción debe haber sido aceptada en su revisión inicial por el propietario (RF-05), y el usuario debe estar verificado (RF-12). \\
 		Postcondiciones & La solicitud queda marcada como completada, rechazada o pendiente en la etapa correspondiente. \\
 		Prioridad (MoSCoW) & Must \\
 		Criterio de verificación & Avanzar una solicitud a través de las cinco etapas y comprobar que el estado se actualiza correctamente en cada una. \\
@@ -1594,15 +1595,15 @@ doi=true
 	\begin{atributos}{RF-23}{RF-23 --- Emitir alertas de riesgo sanitario o físico en interacciones y cruces.}
 		Identificador & RF-23 \\
 		Nombre & Emitir alertas de riesgo sanitario o físico en interacciones y cruces \\
-		Descripción & El sistema deberá emitir una alerta cuando se intente registrar una interacción o solicitud de cruza entre mascotas que presenten una disparidad de tamaño significativa o una enfermedad contagiosa activa registrada en el historial médico. \\
+		Descripción & El sistema deberá emitir una alerta cuando se intente registrar una interacción o solicitud de cruza entre mascotas que presenten una diferencia de peso corporal registrado superior al 40 \% entre ambas, o cuando alguna tenga una enfermedad contagiosa activa registrada en su historial médico. \\
 		Actor & Propietario de mascota, Interesado en cruza \\
 		Origen (ID de evidencia) & EV-09, EV-12, EV-15, EV-18 \\
-		Entradas & Datos de tamaño, edad y estado de salud de ambas mascotas. \\
+		Entradas & Datos de peso, edad y estado de salud de ambas mascotas. \\
 		Salidas & Alerta de riesgo con el motivo detectado. \\
 		Precondiciones & Ambas mascotas deben tener su historial médico y antecedentes genéticos registrados. \\
 		Postcondiciones & La alerta queda visible antes de confirmar la interacción o solicitud. \\
 		Prioridad (MoSCoW) & Must \\
-		Criterio de verificación & Intentar registrar una interacción entre mascotas con disparidad de tamaño o enfermedad contagiosa activa y comprobar que el sistema muestra la alerta correspondiente. \\
+		Criterio de verificación & Registrar dos mascotas con diferencia de peso superior al 40 \% (o con una enfermedad contagiosa activa) y comprobar que el sistema muestra la alerta correspondiente al intentar la interacción o cruza. \\
 	\end{atributos}
 	
 	\subsubsection{RF-24 --- Registrar trazabilidad de cepa, lote y aplicador de cada vacuna}
@@ -1636,6 +1637,39 @@ doi=true
 		Prioridad (MoSCoW) & Could \\
 		Criterio de verificación & Publicar un aviso de mascota extraviada y comprobar que aparece visible para otros usuarios con los datos de contacto. \\
 	\end{atributos}
+	
+	\subsubsection{RF-26 --- Habilitar validación médica por segunda opinión veterinaria}
+	
+	\begin{atributos}{RF-26}{RF-26 --- Habilitar validación médica por segunda opinión veterinaria.}
+		Identificador & RF-26 \\
+		Nombre & Habilitar validación médica por segunda opinión veterinaria \\
+		Descripción & El sistema deberá permitir que una segunda veterinaria autorizada revise y confirme o cuestione la validación de la información médica de una mascota realizada previamente por otra veterinaria, dejando constancia de ambas validaciones dentro del historial médico. \\
+		Actor & Veterinaria \\
+		Origen (ID de evidencia) & EV-24 \\
+		Entradas & Solicitud de segunda validación, identificador de la mascota, observaciones de la veterinaria revisora. \\
+		Salidas & Estado de la segunda validación (pendiente / confirmada / en desacuerdo) y registro de ambas veterinarias participantes. \\
+		Precondiciones & La información médica de la mascota debe contar con una validación previa realizada por una veterinaria (RF-09). \\
+		Postcondiciones & El historial médico queda con doble validación registrada, indicando concordancia o discrepancia entre ambas veterinarias. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Solicitar la revisión de una segunda veterinaria sobre un historial ya validado y comprobar que el sistema registra el resultado de ambas validaciones. \\
+	\end{atributos}
+	
+	\subsubsection{RF-27 --- Controlar y alertar sobre solicitudes repetitivas de cruza de una misma mascota}
+	
+	\begin{atributos}{RF-27}{RF-27 --- Controlar y alertar sobre solicitudes repetitivas de cruza de una misma mascota.}
+		Identificador & RF-27 \\
+		Nombre & Controlar y alertar sobre solicitudes repetitivas de cruza de una misma mascota \\
+		Descripción & El sistema deberá registrar la cantidad de procesos de cruza completados por cada mascota y emitir una alerta al propietario y al interesado cuando una misma mascota supere dos procesos de cruza completados dentro de un periodo de seis meses. \\
+		Actor & Propietario de mascota, Interesado en cruza \\
+		Origen (ID de evidencia) & EV-23 \\
+		Entradas & Historial de procesos de cruza de la mascota, fecha de cada proceso. \\
+		Salidas & Alerta de uso repetitivo de cruza. \\
+		Precondiciones & La mascota debe contar con al menos un proceso de cruza previo registrado (RF-08, RF-15). \\
+		Postcondiciones & El propietario y el interesado visualizan la alerta antes de confirmar una nueva solicitud de cruza sobre la misma mascota. \\
+		Prioridad (MoSCoW) & Should \\
+		Criterio de verificación & Registrar más de dos procesos de cruza completados para la misma mascota dentro de seis meses y comprobar que el sistema emite la alerta correspondiente. \\
+	\end{atributos}
+	
 	
 	% ------------------------------------------------------------
 	\subsection{Requisitos no funcionales}
@@ -6681,141 +6715,141 @@ doi=true
 	\addcontentsline{toc}{section}{Apéndice E --- Repositorio GitHub}
 	\label{ap:repositorio}
 	
-El trabajo del equipo se versiona en el repositorio
-\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}, cuya
-estructura de carpetas se muestra en el Código~\ref{lst:estructura_repo}. La
-organización sigue el orden de las entregas de la asignatura y de la
-Sección~8.1 de la Guía y Rúbrica de la Entrega 3 (2A), y cada carpeta
-numerada corresponde a un artefacto citado en el cuerpo de este documento.
-La estructura mostrada corresponde al árbol real del repositorio al
-momento del corte, obtenido con el comando \texttt{tree /f} sobre la
-carpeta raíz del proyecto.
-
-\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq (árbol real al corte de la Entrega 3, 2A).},label={lst:estructura_repo}]
-	MundiPets-PFC-IngReq/
-	|-- .gitattributes
-	|-- .gitignore
-	|-- CHANGELOG.md
-	|-- checksums.sha256
-	|-- CITATION.cff
-	|-- LICENSE
-	|-- README.md
-	|
-	|-- 01_ERS/
-	|   |-- ERS_SRS_2A_v1.0.pdf        % compilado de la entrega
-	|   |-- ERS_SRS_2A_v1.0.tex        % documento maestro
-	|   |-- referencias.bib            % fuentes primarias
-	|   `-- figuras/                   % diagramas i*, UML y mockups
-	|
-	|-- 02_Evidencias/
-	|   |-- 00_Restringido/            % [R] cifrado, zona restringida
-	|   |   |-- fichas_tecnicas.csv
-	|   |   |-- README_evidencias_restringidas.md
-	|   |   `-- evidencias_restringidas/
-	|   |       `-- evidencias_restringidas.7z.001 ... .067
-	|   |-- Codificacion_Tematica/     % B.8
-	|   |-- Consentimientos/           % B.6, copias enmascaradas [P]
-	|   |-- Cuestionario/
-	|   |   |-- Fotos_Aplicacion/
-	|   |   `-- Respuestas/
-	|   |-- Documentos_Organizacion/
-	|   |-- Fotos_Entorno/             % B.5, observacion OBS-01
-	|   |-- Transcripciones/           % transcripciones anonimizadas
-	|   `-- Validacion_Walkthrough/    % B.7, actas EV-19 a EV-22
-	|
-	|-- 03_Modelado/
-	|   |-- Diagramas_UML/             % Casos de Uso, Componentes,
-	|   |                              % Contexto, Dependencia y Razon
-	|   |                              % Estrategica, Despliegue,
-	|   |                              % Actividades, Clases, Estados,
-	|   |                              % Secuencia (.png/.svg/.vpp)
-	|   `-- Mockups/                   % MU-01 a MU-08
-	|
-	|-- 04_Trazabilidad/
-	|   |-- matriz_trazabilidad.csv
-	|   `-- priorizacion_moscow_kano.csv
-	|
-	|-- 05_MVP/
-	|   |-- README.md                  % instrucciones de despliegue
-	|   `-- video_demo.mp4             % evidencia de funcionamiento
-	|
-	|-- 06_Experimento/
-	|   |-- osf_registration.pdf       % registro previo aceptado en OSF
-	|   |-- protocolo.pdf              % protocolo experimental (Enfoque 2)
-	|   |-- README_osf_registration.md
-	|   |-- instrumentos/              % rubrica y consentimientos de
-	|   |                              % evaluadores expertos
-	|   |-- prompts_llm/
-	|   |-- resultados/
-	|   |   |-- figuras/               % figura_1 a figura_4
-	|   |   `-- tablas/                % tabla_1 a tabla_7 (CSV)
-	|   `-- scripts_analisis/
-	|       `-- datos_entrada/
-	|
-	|-- 07_Publicacion/
-	|   |-- analisis_revistas.md
-	|   |-- manuscrito_borrador.pdf
-	|   |-- dataset_zenodo/
-	|   |   `-- corpus_RF_MundiPets_2A.json
-	|   `-- manuscrito/                % fuente LaTeX del manuscrito
-	|       `-- bst/                   % estilos bibliograficos Springer
-	|
-	`-- 08_Etica/
-	|-- A01_Protocolo_Investigacion.pdf
-	|-- A02_Instrumentos_Recoleccion.pdf
-	|-- A02.1_Guia_entrevista_semi-estructurada.pdf
-	|-- A02.2_Cuestionario_Encuesta.pdf
-	|-- A02.3_Protocolo_Observacion.pdf
-	|-- A02.4_Guion_Sesion_Design_Thinking.pdf
-	|-- A03_Consentimiento_Informado.pdf
-	|-- A04_Plan_Gestion_Datos.pdf
-	|-- A05_Aval_Institucional.pdf
-	|-- A06_Declaracion_Conflicto_Intereses.pdf
-	|-- A07_Compromiso_Confidencialidad.pdf
-	|-- A08_CV_Docente.pdf
-	|-- A09_Nomina_Equipo.pdf
-	|-- A10_Cronograma_Gantt.pdf
-	|-- A11_Analisis_Riesgos.pdf
-	|-- A13_Participantes_Externos.pdf
-	|-- Adenda_Segunda_Ronda.pdf
-	|-- README_Etica.md
-	`-- Categoria_B/
-	|-- CB01_Aval_Organizacion.pdf
-	|-- CB02_Protocolo_Proteccion_Datos_Personales.pdf
-	|-- CB03_Compromiso_De_No_Uso_De_Datos_Reales.pdf
-	|-- CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
-	`-- CheckList_Categoria_B_MundiPets.pdf
-\end{lstlisting}
-
-\paragraph{Nota sobre el documento A.12.}
-La carpeta \texttt{08\_Etica/} no contiene el documento
-\texttt{A12\_Certificado\_Etica.pdf}. El equipo gestionó la obtención del
-certificado de formación ética en investigación exigido por el Anexo~A.12
-del Paquete Integral de Anexos y Guías, y constató que las opciones
-disponibles (CITI Program, GCP-ICH, CEDIA) requerían un pago para la
-emisión del certificado, inaccesible con los recursos propios del equipo.
-Esta situación fue comunicada de forma expresa al docente responsable, sin
-que este haya proporcionado un certificado propio ni una alternativa
-institucional gratuita. El detalle de esta gestión consta en
-\texttt{08\_Etica/README\_Etica.md}.
-
-\paragraph{Nota sobre la zona restringida.}
-Los archivos de audio y video originales de las entrevistas y sesiones de
-\emph{walkthrough} (Apéndice~B.9) no residen sueltos en
-\texttt{02\_Evidencias/}: se comprimen y cifran con AES-256 en el volumen
-fragmentado \texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/},
-cuya contraseña se entrega únicamente al docente responsable por el SGA,
-conforme a la Sección~4.1 de la Guía y Rúbrica de la Entrega 3 (2A).
-
-El archivo \texttt{07\_Publicacion/dataset\_zenodo/corpus\_RF\_MundiPets\_2A.json}
-contiene los 25 requisitos funcionales de la Sección~\ref{sec:rf}
-serializados con los once atributos del esquema de la plantilla
-(identificador, nombre, descripción, actor, origen de evidencia, entradas,
-salidas, precondiciones, postcondiciones, prioridad MoSCoW y criterio de
-verificación). Este archivo es el insumo directo del detector automático de
-ambigüedad descrito en la Sección~\ref{sec:empirico} y se deposita en
-Zenodo bajo licencia CC BY 4.0 con DOI persistente, conforme a los
-principios FAIR \cite{wilkinson2016}.
+	El trabajo del equipo se versiona en el repositorio
+	\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}, cuya
+	estructura de carpetas se muestra en el Código~\ref{lst:estructura_repo}. La
+	organización sigue el orden de las entregas de la asignatura y de la
+	Sección~8.1 de la Guía y Rúbrica de la Entrega 3 (2A), y cada carpeta
+	numerada corresponde a un artefacto citado en el cuerpo de este documento.
+	La estructura mostrada corresponde al árbol real del repositorio al
+	momento del corte, obtenido con el comando \texttt{tree /f} sobre la
+	carpeta raíz del proyecto.
+	
+	\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq (árbol real al corte de la Entrega 3, 2A).},label={lst:estructura_repo}]
+		MundiPets-PFC-IngReq/
+		|-- .gitattributes
+		|-- .gitignore
+		|-- CHANGELOG.md
+		|-- checksums.sha256
+		|-- CITATION.cff
+		|-- LICENSE
+		|-- README.md
+		|
+		|-- 01_ERS/
+		|   |-- ERS_SRS_2A_v1.0.pdf        % compilado de la entrega
+		|   |-- ERS_SRS_2A_v1.0.tex        % documento maestro
+		|   |-- referencias.bib            % fuentes primarias
+		|   `-- figuras/                   % diagramas i*, UML y mockups
+		|
+		|-- 02_Evidencias/
+		|   |-- 00_Restringido/            % [R] cifrado, zona restringida
+		|   |   |-- fichas_tecnicas.csv
+		|   |   |-- README_evidencias_restringidas.md
+		|   |   `-- evidencias_restringidas/
+		|   |       `-- evidencias_restringidas.7z.001 ... .067
+		|   |-- Codificacion_Tematica/     % B.8
+		|   |-- Consentimientos/           % B.6, copias enmascaradas [P]
+		|   |-- Cuestionario/
+		|   |   |-- Fotos_Aplicacion/
+		|   |   `-- Respuestas/
+		|   |-- Documentos_Organizacion/
+		|   |-- Fotos_Entorno/             % B.5, observacion OBS-01
+		|   |-- Transcripciones/           % transcripciones anonimizadas
+		|   `-- Validacion_Walkthrough/    % B.7, actas EV-19 a EV-22
+		|
+		|-- 03_Modelado/
+		|   |-- Diagramas_UML/             % Casos de Uso, Componentes,
+		|   |                              % Contexto, Dependencia y Razon
+		|   |                              % Estrategica, Despliegue,
+		|   |                              % Actividades, Clases, Estados,
+		|   |                              % Secuencia (.png/.svg/.vpp)
+		|   `-- Mockups/                   % MU-01 a MU-08
+		|
+		|-- 04_Trazabilidad/
+		|   |-- matriz_trazabilidad.csv
+		|   `-- priorizacion_moscow_kano.csv
+		|
+		|-- 05_MVP/
+		|   |-- README.md                  % instrucciones de despliegue
+		|   `-- video_demo.mp4             % evidencia de funcionamiento
+		|
+		|-- 06_Experimento/
+		|   |-- osf_registration.pdf       % registro previo aceptado en OSF
+		|   |-- protocolo.pdf              % protocolo experimental (Enfoque 2)
+		|   |-- README_osf_registration.md
+		|   |-- instrumentos/              % rubrica y consentimientos de
+		|   |                              % evaluadores expertos
+		|   |-- prompts_llm/
+		|   |-- resultados/
+		|   |   |-- figuras/               % figura_1 a figura_4
+		|   |   `-- tablas/                % tabla_1 a tabla_7 (CSV)
+		|   `-- scripts_analisis/
+		|       `-- datos_entrada/
+		|
+		|-- 07_Publicacion/
+		|   |-- analisis_revistas.md
+		|   |-- manuscrito_borrador.pdf
+		|   |-- dataset_zenodo/
+		|   |   `-- corpus_RF_MundiPets_2A.json
+		|   `-- manuscrito/                % fuente LaTeX del manuscrito
+		|       `-- bst/                   % estilos bibliograficos Springer
+		|
+		`-- 08_Etica/
+		|-- A01_Protocolo_Investigacion.pdf
+		|-- A02_Instrumentos_Recoleccion.pdf
+		|-- A02.1_Guia_entrevista_semi-estructurada.pdf
+		|-- A02.2_Cuestionario_Encuesta.pdf
+		|-- A02.3_Protocolo_Observacion.pdf
+		|-- A02.4_Guion_Sesion_Design_Thinking.pdf
+		|-- A03_Consentimiento_Informado.pdf
+		|-- A04_Plan_Gestion_Datos.pdf
+		|-- A05_Aval_Institucional.pdf
+		|-- A06_Declaracion_Conflicto_Intereses.pdf
+		|-- A07_Compromiso_Confidencialidad.pdf
+		|-- A08_CV_Docente.pdf
+		|-- A09_Nomina_Equipo.pdf
+		|-- A10_Cronograma_Gantt.pdf
+		|-- A11_Analisis_Riesgos.pdf
+		|-- A13_Participantes_Externos.pdf
+		|-- Adenda_Segunda_Ronda.pdf
+		|-- README_Etica.md
+		`-- Categoria_B/
+		|-- CB01_Aval_Organizacion.pdf
+		|-- CB02_Protocolo_Proteccion_Datos_Personales.pdf
+		|-- CB03_Compromiso_De_No_Uso_De_Datos_Reales.pdf
+		|-- CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
+		`-- CheckList_Categoria_B_MundiPets.pdf
+	\end{lstlisting}
+	
+	\paragraph{Nota sobre el documento A.12.}
+	La carpeta \texttt{08\_Etica/} no contiene el documento
+	\texttt{A12\_Certificado\_Etica.pdf}. El equipo gestionó la obtención del
+	certificado de formación ética en investigación exigido por el Anexo~A.12
+	del Paquete Integral de Anexos y Guías, y constató que las opciones
+	disponibles (CITI Program, GCP-ICH, CEDIA) requerían un pago para la
+	emisión del certificado, inaccesible con los recursos propios del equipo.
+	Esta situación fue comunicada de forma expresa al docente responsable, sin
+	que este haya proporcionado un certificado propio ni una alternativa
+	institucional gratuita. El detalle de esta gestión consta en
+	\texttt{08\_Etica/README\_Etica.md}.
+	
+	\paragraph{Nota sobre la zona restringida.}
+	Los archivos de audio y video originales de las entrevistas y sesiones de
+	\emph{walkthrough} (Apéndice~B.9) no residen sueltos en
+	\texttt{02\_Evidencias/}: se comprimen y cifran con AES-256 en el volumen
+	fragmentado \texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/},
+	cuya contraseña se entrega únicamente al docente responsable por el SGA,
+	conforme a la Sección~4.1 de la Guía y Rúbrica de la Entrega 3 (2A).
+	
+	El archivo \texttt{07\_Publicacion/dataset\_zenodo/corpus\_RF\_MundiPets\_2A.json}
+	contiene los 25 requisitos funcionales de la Sección~\ref{sec:rf}
+	serializados con los once atributos del esquema de la plantilla
+	(identificador, nombre, descripción, actor, origen de evidencia, entradas,
+	salidas, precondiciones, postcondiciones, prioridad MoSCoW y criterio de
+	verificación). Este archivo es el insumo directo del detector automático de
+	ambigüedad descrito en la Sección~\ref{sec:empirico} y se deposita en
+	Zenodo bajo licencia CC BY 4.0 con DOI persistente, conforme a los
+	principios FAIR \cite{wilkinson2016}.
 	
 	\subsection*{Historial de commits}
 	
