@@ -1,78 +1,128 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MundiPets — Perfil de mascota</title>
-<link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MundiPets — Perfil de mascota</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-<div id="topbar" class="topbar"></div>
+  <div id="topbar" class="topbar"></div>
 
-<div class="container-narrow">
-  <div class="breadcrumb"><a href="explore.html">Explorar mascotas</a> &gt; Perfil</div>
+  <div class="container-narrow">
+    <div class="breadcrumb"><a href="explore.html">Explorar mascotas</a> &gt; Perfil</div>
 
-  <div class="card">
-    <div class="text-center" style="font-size:90px;" id="petEmoji"></div>
-    <span id="statusBadge"></span>
-    <h1 id="petName" style="margin-bottom:4px;"></h1>
-    <div class="text-muted" id="petMeta"></div>
+    <div class="card" style="padding:0; overflow:hidden; border:none; background:transparent; box-shadow:none;">
+      <div class="details-photo-container">
+        <div class="photo-emoji" id="petEmoji"></div>
+        <div class="overlay-badge" id="statusBadge"></div>
+      </div>
 
-    <div class="grid-3 mt-24">
-      <div class="card compact text-center"><div class="text-muted" style="font-size:12px;">Especie</div><div style="font-weight:700;" id="mSpecies"></div></div>
-      <div class="card compact text-center"><div class="text-muted" style="font-size:12px;">Tamaño</div><div style="font-weight:700;" id="mSize"></div></div>
-      <div class="card compact text-center"><div class="text-muted" style="font-size:12px;">Ubicación</div><div style="font-weight:700;" id="mCity"></div></div>
-    </div>
+      <div style="padding: 10px 0;">
+        <h1 id="petName" style="margin-bottom:4px;"></h1>
+        <div class="text-muted" id="petMeta" style="font-size:15px; margin-bottom:20px;"></div>
 
-    <p class="mt-16" id="petDesc"></p>
+        <div class="grid-3-boxes">
+          <div class="box-info">
+            <div class="label">Especie</div>
+            <div class="value" id="mSpecies"></div>
+          </div>
+          <div class="box-info">
+            <div class="label">Tamaño</div>
+            <div class="value" id="mSize"></div>
+          </div>
+          <div class="box-info">
+            <div class="label">Ubicación</div>
+            <div class="value" id="mCity"></div>
+          </div>
+        </div>
 
-    <h2>🛡️ Información sanitaria referencial</h2>
-    <div id="records"></div>
+        <p class="mt-24" id="petDesc" style="font-size:15px; line-height:1.6; color:var(--text);"></p>
 
-    <div class="flex gap-12 mt-24">
-      <a class="btn btn-primary btn-block" id="contactBtn">Contactar propietario</a>
-      <a class="btn btn-secondary" id="compatBtn" style="display:none;">Evaluar compatibilidad</a>
+        <h2 style="margin-top:32px; display:flex; align-items:center; gap:8px;">🛡️ Información sanitaria referencial
+        </h2>
+        <div id="records"></div>
+
+        <div class="flex gap-12 mt-24">
+          <a class="btn btn-primary btn-block" id="contactBtn">Contactar propietario</a>
+          <a class="btn btn-secondary" id="compatBtn" style="display:none;">Evaluar compatibilidad</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<script src="js/db.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/utils.js"></script>
-<script>
-  const user = Auth.requireLogin();
-  renderTopbar(user);
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    const user = Auth.requireLogin();
+    renderTopbar(user);
 
-  const petId = qs("id");
-  const pet = DB.get("pets", petId);
-  if (!pet) window.location.href = "explore.html";
+    const petId = qs("id");
+    const pet = DB.get("pets", petId);
+    if (!pet) window.location.href = "explore.html";
 
-  document.getElementById("petEmoji").textContent = pet.photo;
-  document.getElementById("statusBadge").innerHTML = badgeForPetStatus(pet.status);
-  document.getElementById("petName").textContent = pet.name;
-  document.getElementById("petMeta").textContent = `${pet.breed} · ${pet.age} · ${pet.sex} · ${pet.reproductiveStatus}`;
-  document.getElementById("mSpecies").textContent = pet.species;
-  document.getElementById("mSize").textContent = pet.size;
-  document.getElementById("mCity").textContent = pet.privacy.location === "public" ? pet.city : "Zona aproximada (privado)";
-  document.getElementById("petDesc").textContent = pet.description || "Sin descripción.";
+    document.getElementById("petEmoji").textContent = pet.photo;
+    document.getElementById("statusBadge").innerHTML = badgeForPetStatus(pet.status);
+    document.getElementById("petName").textContent = pet.name;
+    document.getElementById("petMeta").textContent = `${pet.breed} · ${pet.age} · ${pet.sex} · ${pet.reproductiveStatus}`;
+    document.getElementById("mSpecies").textContent = pet.species;
+    document.getElementById("mSize").textContent = pet.size;
+    document.getElementById("mCity").textContent = pet.privacy.location === "public" ? pet.city : "Zona aproximada (privado)";
 
-  const records = DB.all("medicalRecords").filter((r) => r.petId === petId);
-  document.getElementById("records").innerHTML = records.length ? records.map((r) => `
+    if (pet.status === "Extraviada") {
+      document.getElementById("statusBadge").innerHTML = `<span class="badge badge-red">🚨 ¡EXTRAVIADA!</span>`;
+      const owner = DB.get("users", pet.ownerId);
+      document.getElementById("petDesc").innerHTML = `
+      <div class="warn-banner info-banner" style="margin-top:0;"><strong>🚨 AVISO DE EXTRAVÍO:</strong> Esta mascota está extraviada en ${escapeHtml(pet.city)}. Si posees información sobre su paradero, por favor contacta de inmediato al propietario: <strong>${owner ? escapeHtml(owner.name) : "Carlos Zambrano"}</strong> (${owner ? escapeHtml(owner.email) : "—"}).</div>
+      <br>
+      ${escapeHtml(pet.description || "Sin descripción.")}
+      <br><br><strong>Identificador de Microchip:</strong> <code>${escapeHtml(pet.microchip || 'No registrado')}</code>
+    `;
+    } else {
+      document.getElementById("petDesc").innerHTML = `
+      ${escapeHtml(pet.description || "Sin descripción.")}
+      ${pet.microchip ? `<br><br><strong>Identificador de Microchip:</strong> <code>${escapeHtml(pet.microchip)}</code>` : ''}
+    `;
+    }
+
+    const records = DB.all("medicalRecords").filter((r) => r.petId === petId);
+    document.getElementById("records").innerHTML = records.length ? records.map((r) => `
     <div class="record-row">
       <div>${escapeHtml(r.type)}</div>
       ${badgeForMedicalStatus(r.status)}
     </div>
   `).join("") : `<p class="text-muted">Sin información sanitaria registrada aún.</p>`;
 
-  document.getElementById("contactBtn").addEventListener("click", () => {
-    window.location.href = `request.html?petId=${petId}`;
-  });
+    // Antecedentes genéticos y parentesco (RF-16)
+    const gen = DB.all("genetics").find((g) => g.petId === petId);
+    const showGenetics = pet.privacy.genetics === "public" || (pet.privacy.genetics === "verified" && user.verified);
+    if (gen && showGenetics) {
+      const recordsDiv = document.getElementById("records");
+      const genDiv = document.createElement("div");
+      genDiv.className = "card compact";
+      genDiv.style.marginTop = "20px";
+      genDiv.innerHTML = `
+      <h3 style="margin: 0 0 10px 0; font-size:16px;">🧬 Antecedentes Genéticos y Parentesco</h3>
+      <p style="margin:4px 0; font-size:13px;"><strong>Linaje:</strong> ${escapeHtml(gen.lineage)}</p>
+      <p style="margin:4px 0; font-size:13px;"><strong>Enfermedades hereditarias:</strong> ${escapeHtml(gen.hereditaryConditions)}</p>
+      <p style="margin:4px 0; font-size:13px;"><strong>Parentesco:</strong> ${escapeHtml(gen.parentage)}</p>
+    `;
+      recordsDiv.parentNode.insertBefore(genDiv, recordsDiv.nextSibling);
+    }
 
-  if (pet.status === "Cruza responsable" && (user.role === "interesado_cruza" || user.role === "propietario")) {
-    const btn = document.getElementById("compatBtn");
-    btn.style.display = "inline-flex";
-    btn.href = `compatibility.html?petId=${petId}`;
-  }
-</script>
+    document.getElementById("contactBtn").addEventListener("click", () => {
+      window.location.href = `request.html?petId=${petId}`;
+    });
+
+    if (pet.status === "Cruza responsable" && (user.role === "interesado_cruza" || user.role === "propietario")) {
+      const btn = document.getElementById("compatBtn");
+      btn.style.display = "inline-flex";
+      btn.href = `compatibility.html?petId=${petId}`;
+    }
+  </script>
 </body>
+
 </html>

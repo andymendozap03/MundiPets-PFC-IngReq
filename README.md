@@ -3,8 +3,8 @@
 Producto Mínimo Viable (MVP) del sistema **MundiPets**, una red social orientada a
 facilitar procesos de adopción y cruza responsable de mascotas en la provincia de
 Los Ríos, Ecuador. Este entregable corresponde a la Sección 6 del documento
-ERS/SRS completo (`01_ERS/ERS_SRS_2A_v1.0.pdf`) y al insumo `05_MVP/` exigido por
-la rúbrica de la Entrega 3 (2A) de la asignatura Ingeniería de Requerimientos.
+ERS/SRS completo (`01_ERS/ERS_SRS_2B_v1.0.pdf`) y al insumo `05_MVP/` exigido por
+la rúbrica de la Entrega 4 (2B) de la asignatura Ingeniería de Requerimientos.
 
 ## Integrantes del equipo (roles según portada del ERS)
 
@@ -29,41 +29,45 @@ producirse por separado con trabajo de campo real y ubicarse en `02_Evidencias/`
 
 ## Cobertura de Requisitos Funcionales (RF)
 
-Mínimo exigido por la rúbrica (criterio C8): MVP con cobertura **≥ 60 %** de los
-RF de prioridad *Debe tener* (Must). El ERS define 15 RF Must; este MVP cubre
-**14 de 15 (93 %)**, muy por encima del mínimo.
+Mínimo exigido por la rúbrica (criterio C8): MVP con cobertura **≥ 80 %** de los RF de prioridad *Debe tener* (Must). En esta versión actualizada, el MVP cubre **15 de 15 (100%)** de los requisitos *Must*, y un total de **26 de 27 (96.3%)** de todos los requisitos funcionales del proyecto, cumpliendo con la meta de cobertura superior al 80%.
 
-| RF | Nombre | Prioridad | Cubierto | Pantalla(s) |
+| RF | Nombre | Prioridad | Cubierto | Pantalla(s) / Flujo |
 |---|---|---|---|---|
 | RF-01 | Registrar mascota | Must | ✅ Sí | `pet-add.html` |
 | RF-02 | Gestionar historial médico de la mascota | Must | ✅ Sí | `pet-add.html`, `pet-profile.html` |
 | RF-03 | Consultar perfil completo de una mascota | Must | ✅ Sí | `pet-detail.html`, `pet-profile.html` |
-| RF-04 | Buscar y filtrar mascotas | Should | ✅ Sí (extra) | `explore.html` |
+| RF-04 | Buscar y filtrar mascotas | Should | ✅ Sí | `explore.html` |
 | RF-05 | Gestionar solicitudes de adopción | Must | ✅ Sí | `request.html` |
 | RF-06 | Evaluar compatibilidad entre mascotas para cruza | Must | ✅ Sí (heurística explicable, no ML) | `compatibility.html` |
-| RF-07 | Sistema de mensajería entre usuarios | Could | ✅ Sí (extra) | `request.html` (panel de chat) |
+| RF-07 | Sistema de mensajería entre usuarios | Could | ✅ Sí | `request.html` (panel de chat) |
 | RF-08 | Gestionar solicitudes de cruza | Must | ✅ Sí | `request.html` (tipo "Cruza responsable") |
 | RF-09 | Validar la información médica de una mascota | Must | ✅ Sí | `vet-panel.html` |
-| RF-10 | Gestionar recordatorios de controles preventivos | Should | ❌ No implementado | — |
+| RF-10 | Gestionar recordatorios de controles preventivos | Should | ✅ Sí (nuevo) | `dashboard.html` (módulo de alertas + simulación de WhatsApp) |
 | RF-11 | Administrar la privacidad de la información | Must | ✅ Sí | `pet-profile.html` |
-| RF-12 | Verificar la identidad de los usuarios | Must | ✅ Sí (simulado) | `register.html` |
+| RF-12 | Verificar la identidad de los usuarios | Must | ✅ Sí (simulado) | `register.html`, `index.html` (login con credenciales) |
 | RF-13 | Registrar publicaciones de mascotas | Must | ✅ Sí | `pet-profile.html`, `explore.html` |
 | RF-14 | Gestionar carnet de vacunación | Must | ✅ Sí | `pet-add.html`, `pet-profile.html` |
-| RF-15 | Consultar el historial de procesos de adopción y cruza | Could | ❌ No implementado | — |
-| RF-16 | Gestionar antecedentes genéticos y parentesco de la mascota | Must | ✅ Sí | `pet-add.html`, `pet-profile.html` |
-| RF-17 | Validar imágenes | Should | ❌ No implementado (selección directa de ícono) | — |
+| RF-15 | Consultar el historial de procesos de adopción y cruza | Could | ✅ Sí (nuevo) | `dashboard.html` (sección expandible de solicitudes finalizadas) |
+| RF-16 | Gestionar antecedentes genéticos y parentesco de la mascota | Must | ✅ Sí | `pet-add.html`, `pet-profile.html`, `pet-detail.html` |
+| RF-17 | Validar imágenes | Should | ✅ Sí (nuevo) | `pet-add.html` (simulación interactiva de escáner IA en el Paso 2) |
 | RF-18 | Gestionar el flujo de solicitud de adopción por etapas | Must | ✅ Sí | `request.html` |
-| RF-19 | Validar certificados veterinarios antes de habilitar la cruza | Should | ❌ No implementado | — |
+| RF-19 | Validar certificados veterinarios antes de habilitar la cruza | Should | ✅ Sí (nuevo) | `pet-profile.html` (bloqueo si no cuenta con certificado validado) |
 | RF-20 | Coordinar encuentros de socialización supervisados | Could | ❌ No implementado | — |
-| RF-21 | Registrar el identificador de microchip de la mascota | Should | ❌ No implementado | — |
+| RF-21 | Registrar el identificador de microchip de la mascota | Should | ✅ Sí (nuevo) | `pet-add.html`, `pet-profile.html`, `pet-detail.html`, `explore.html` |
 | RF-22 | Dar seguimiento post-adopción | Must | ✅ Sí | `post-adoption.html` |
 | RF-23 | Emitir alertas de riesgo sanitario o físico en interacciones y cruces | Must | ✅ Sí | `compatibility.html` |
-| RF-24 | Registrar trazabilidad de cepa, lote y aplicador de cada vacuna | Should | ❌ No implementado | — |
-| RF-25 | Publicar aviso de mascota extraviada | Could | ❌ No implementado | — |
+| RF-24 | Registrar trazabilidad de cepa, lote y aplicador de cada vacuna | Should | ✅ Sí (nuevo) | `pet-add.html`, `pet-profile.html` (campos del carnet referencial) |
+| RF-25 | Publicar aviso de mascota extraviada | Could | ✅ Sí (nuevo) | `pet-profile.html`, `explore.html` (alerta roja destacada y contacto directo) |
+| RF-26 | Habilitar validación médica por segunda opinión veterinaria | Should | ✅ Sí (nuevo) | `vet-panel.html`, `pet-profile.html` (módulo de doble validación y constancia) |
+| RF-27 | Controlar y alertar sobre solicitudes repetitivas de cruza | Should | ✅ Sí (nuevo) | `compatibility.html` (alerta automatizada por superación de cruzas semestrales) |
 
-**Resumen:** 14/15 RF Must cubiertos (93 %) + 2 RF Should/Could adicionales
-(RF-04, RF-07) por estar delineados en los mockups de referencia.
+**Resumen:** 26/27 RF cubiertos (96.3% de cobertura total y 100% de los requisitos *Debe tener*).
 
+> **Nota sobre los componentes de IA e imágenes:** 
+> * **RF-06 (Compatibilidad):** Implementado mediante reglas heurísticas explícitas (parentesco, alertas sanitarias, edad y disparidad de tamaño).
+> * **RF-17 (Validación de imágenes):** Simulado en el Paso 2 de `pet-add.html` a través de un analizador interactivo que detecta y autoriza/rechaza las fotos (explicabilidad RNF-14).
+> * **RF-10 (Notificaciones de WhatsApp):** Simulado mediante un activador emergente que reproduce el envío del mensaje de control al teléfono del usuario.
+> * **RF-27 (Uso repetitivo):** Probado y disparado automáticamente en la evaluación de compatibilidad de Toby (`p3`), el cual cuenta con historial de cruzas completadas en su base de datos.
 
 ## Stack técnico
 
@@ -139,11 +143,6 @@ Al primer arranque, la aplicación crea automáticamente los datos de ejemplo en
 5. Ingresar como **Jorge Intriago** (Interesado en cruza) → ver a Toby (cruza
    responsable) → evaluar compatibilidad con otra mascota → observar el
    resultado explicado y las alertas de riesgo.
-
-## Video de demostración
-
-El video demostrativo del MVP se encuentra en el repositorio principal del PFC en la siguiente ruta 
-`05_MVP/video_demo.mp4`
 
 
 ## Advertencia sobre los datos

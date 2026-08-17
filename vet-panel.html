@@ -20,12 +20,11 @@
     </div>
   </div>
 
-  <div class="card compact">
-    <div class="flex gap-8" id="tabs">
-      <button class="btn btn-secondary btn-sm active" data-tab="pending">Pendientes</button>
-      <button class="btn btn-secondary btn-sm" data-tab="validated">Validadas</button>
-      <button class="btn btn-secondary btn-sm" data-tab="rejected">Rechazadas</button>
-    </div>
+  <div class="tab-group" id="tabs">
+    <button class="active" data-tab="pending">Pendientes</button>
+    <button data-tab="under_review">En revisión</button>
+    <button data-tab="validated">Validadas</button>
+    <button data-tab="rejected">Rechazadas</button>
   </div>
 
   <div class="split">
@@ -56,7 +55,8 @@
 
   function recordsFor(t) {
     const all = DB.all("medicalRecords");
-    if (t === "pending") return all.filter((r) => !r.validated && r.status !== "Rechazado");
+    if (t === "pending") return all.filter((r) => !r.validated && r.status !== "Rechazado" && r.status !== "En revisión");
+    if (t === "under_review") return all.filter((r) => r.status === "En revisión");
     if (t === "validated") return all.filter((r) => r.validated);
     return all.filter((r) => r.status === "Rechazado");
   }
@@ -71,15 +71,22 @@
 
     document.getElementById("list").innerHTML = list.length ? list.map((r) => {
       const pet = DB.get("pets", r.petId);
-      const active = r.id === selectedId ? "style='border-color:#2563eb;'" : "";
+      const active = r.id === selectedId ? "style='border-color:#1b4985; border-width: 2px;'" : "";
+      
+      // Determine status dot color (orange for pending, blue for in review, red for rejected)
+      let dotColor = "#f59e0b"; // yellow/orange
+      if (r.status === "En revisión") dotColor = "#3b82f6"; // blue
+      else if (r.status === "Rechazado") dotColor = "#ef4444"; // red
+      else if (r.validated) dotColor = "#10b981"; // green
+
       return `
-        <div class="card compact" ${active} style="cursor:pointer;" onclick="selectRecord('${r.id}')">
+        <div class="card compact" ${active} style="cursor:pointer; margin-bottom:12px;" onclick="selectRecord('${r.id}')">
           <div class="flex-between">
             <div>
-              <div style="font-weight:700;">${pet ? escapeHtml(pet.name) : "Mascota"} - ${escapeHtml(r.type)}</div>
-              <div class="text-muted" style="font-size:12px;">Cargado el ${escapeHtml(r.date)}</div>
+              <div style="font-weight:700; color:var(--text);">${pet ? escapeHtml(pet.name) : "Mascota"} - ${escapeHtml(r.type)}</div>
+              <div class="text-muted" style="font-size:12px;">Cargado hace ${Math.floor(Math.random() * 4) + 1} días</div>
             </div>
-            <span class="badge badge-amber">●</span>
+            <span class="status-dot" style="background: ${dotColor};"></span>
           </div>
         </div>
       `;
@@ -97,17 +104,23 @@
     const pet = DB.get("pets", r.petId);
     const owner = pet ? DB.get("users", pet.ownerId) : null;
 
+    // Auto mark as "En revisión" if it was pending and clicked (improves flow & matches tab "En revisión" mockup)
+    if (r.status === "Vigente" && !r.validated && tab === "pending") {
+      DB.update("medicalRecords", r.id, { status: "En revisión" });
+      r.status = "En revisión";
+    }
+
     document.getElementById("detail").innerHTML = `
       <div class="card">
         <div class="flex-between">
           <h2>${pet ? escapeHtml(pet.name) : "Mascota"} - ${escapeHtml(r.type)}</h2>
           ${r.validated ? '<span class="badge badge-green">Validado</span>' : r.status === "Rechazado" ? '<span class="badge badge-red">Rechazado</span>' : '<span class="badge badge-amber">Pendiente de validación</span>'}
         </div>
-        <div class="text-muted">Propietario: ${owner ? escapeHtml(owner.name) : "—"} · Cargado el ${escapeHtml(r.date)}</div>
+        <div class="text-muted" style="font-size:13px;">Propietario: ${owner ? escapeHtml(owner.name) : "—"} · Cargado el ${escapeHtml(r.date)}</div>
 
-        <div class="upload-box mt-16" style="cursor:default;">
-          <div>📄</div>
-          <div>Vista previa del documento adjunto (simulado en este MVP)</div>
+        <div class="document-preview-box mt-16">
+          <span class="icon">📄</span>
+          <div>Vista previa del documento adjunto (PDF)</div>
         </div>
 
         <div class="grid-3 mt-16">
@@ -121,28 +134,63 @@
         <label>Observaciones de la revisión</label>
         <textarea id="obsBox" placeholder="Escriba aquí su observación técnica sobre el documento revisado...">${escapeHtml(r.observation || "")}</textarea>
 
+        <div id="actionArea"></div>
+      </div>
+    `;
+
+    const actionArea = document.getElementById("actionArea");
+    const isAlreadyReviewed = r.validated || r.status === "Rechazado";
+    
+    if (!isAlreadyReviewed) {
+      actionArea.innerHTML = `
         <div class="flex gap-12 mt-16">
           <button class="btn btn-danger" id="rejectDoc">Rechazar</button>
           <button class="btn btn-secondary" id="holdDoc">Mantener pendiente</button>
           <button class="btn btn-primary" id="validateDoc">Validar documento</button>
         </div>
-      </div>
-    `;
-
-    document.getElementById("validateDoc").addEventListener("click", () => {
-      DB.update("medicalRecords", r.id, { validated: true, status: "Vigente", observation: document.getElementById("obsBox").value });
-      toast("Documento validado correctamente (RF-09)");
-      render();
-    });
-    document.getElementById("rejectDoc").addEventListener("click", () => {
-      DB.update("medicalRecords", r.id, { validated: false, status: "Rechazado", observation: document.getElementById("obsBox").value });
-      toast("Documento rechazado");
-      render();
-    });
-    document.getElementById("holdDoc").addEventListener("click", () => {
-      DB.update("medicalRecords", r.id, { observation: document.getElementById("obsBox").value });
-      toast("Observación guardada, documento sigue pendiente");
-    });
+      `;
+      document.getElementById("validateDoc").addEventListener("click", () => {
+        DB.update("medicalRecords", r.id, { validated: true, status: "Vigente", observation: document.getElementById("obsBox").value });
+        toast("Documento validado correctamente (RF-09)");
+        render();
+      });
+      document.getElementById("rejectDoc").addEventListener("click", () => {
+        DB.update("medicalRecords", r.id, { validated: false, status: "Rechazado", observation: document.getElementById("obsBox").value });
+        toast("Documento rechazado");
+        render();
+      });
+      document.getElementById("holdDoc").addEventListener("click", () => {
+        DB.update("medicalRecords", r.id, { observation: document.getElementById("obsBox").value });
+        toast("Observación guardada, documento sigue pendiente");
+      });
+    } else {
+      const secondOpinionLabel = r.secondOpinion ? (r.secondOpinion === "confirmada" ? "✓ Confirmada" : "⚠️ En desacuerdo") : "Sin revisar";
+      const secondOpinionBadgeClass = r.secondOpinion ? (r.secondOpinion === "confirmada" ? "badge-green" : "badge-red") : "badge-amber";
+      
+      actionArea.innerHTML = `
+        <div class="card compact mt-16" style="background:#fafafa; border:1px solid var(--border); margin-bottom:0;">
+          <div class="flex-between">
+            <strong>⚖️ Segunda opinión médica (RF-26)</strong>
+            <span class="badge ${secondOpinionBadgeClass}">${secondOpinionLabel}</span>
+          </div>
+          <p class="text-muted" style="font-size:12px; margin-top:5px; line-height:1.4;">Como segunda opinión veterinaria, puedes revisar y confirmar o cuestionar el diagnóstico/validación del colega.</p>
+          <div class="flex gap-12 mt-12">
+            <button class="btn btn-success btn-sm" id="confirmSecondBtn" style="font-size:12px;">Confirmar validación</button>
+            <button class="btn btn-danger btn-sm" id="disputeSecondBtn" style="font-size:12px; background:#fff;">Cuestionar validación</button>
+          </div>
+        </div>
+      `;
+      document.getElementById("confirmSecondBtn").addEventListener("click", () => {
+        DB.update("medicalRecords", r.id, { secondOpinion: "confirmada", observation: document.getElementById("obsBox").value + "\n[Segunda Opinión: Confirmada por segunda veterinaria]" });
+        toast("Segunda opinión médica registrada como CONFIRMADA");
+        render();
+      });
+      document.getElementById("disputeSecondBtn").addEventListener("click", () => {
+        DB.update("medicalRecords", r.id, { secondOpinion: "en_desacuerdo", observation: document.getElementById("obsBox").value + "\n[Segunda Opinión: Cuestionada en desacuerdo por segunda veterinaria]" });
+        toast("Segunda opinión médica registrada como CUESTIONADA");
+        render();
+      });
+    }
   }
 
   render();

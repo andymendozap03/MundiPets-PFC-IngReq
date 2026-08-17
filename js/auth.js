@@ -4,7 +4,7 @@
  * en localStorage para simular RF-12 (verificar la identidad de los usuarios).
  */
 
-const SESSION_KEY = "mundipets_session_v1";
+const SESSION_KEY = "mundipets_session_v3";
 
 const ROLE_LABELS = {
   propietario: "Propietario de mascota",
@@ -23,6 +23,18 @@ const Auth = {
     } catch (e) {
       return null;
     }
+  },
+  loginWithCredentials(email, password) {
+    const users = DB.all("users");
+    const matchedUser = users.find(u => u.email.trim().toLowerCase() === email.trim().toLowerCase());
+    if (!matchedUser) {
+      return { success: false, message: "El correo electrónico no está registrado." };
+    }
+    if (matchedUser.password !== password) {
+      return { success: false, message: "La contraseña es incorrecta." };
+    }
+    this.login(matchedUser.id);
+    return { success: true, user: matchedUser };
   },
   login(userId) {
     localStorage.setItem(SESSION_KEY, JSON.stringify({ userId }));

@@ -4,47 +4,51 @@
  * No hay backend real; todo se persiste en el navegador (localStorage).
  */
 
-const DB_KEY = "mundipets_db_v1";
-const DB_SESSION_KEY = "mundipets_session_v1";
+const DB_KEY = "mundipets_db_v3";
+const DB_SESSION_KEY = "mundipets_session_v3";
 
 const SEED = {
   users: [
-    { id: "u1", name: "Ana Adoptante", email: "ana.adoptante@ejemplo.com", role: "adoptante", city: "Quevedo", verified: true, docStatus: "Verificado" },
-    { id: "u2", name: "Carlos Zambrano", email: "carlos.zambrano@ejemplo.com", role: "propietario", city: "Quevedo", verified: true, docStatus: "Verificado" },
-    { id: "u3", name: "Dra. Melissa Vera", email: "melissa.vera@ejemplo.com", role: "veterinaria", city: "Buena Fe", verified: true, docStatus: "Verificado" },
-    { id: "u4", name: "Jorge Intriago", email: "jorge.intriago@ejemplo.com", role: "interesado_cruza", city: "Mocache", verified: true, docStatus: "Verificado" }
+    { id: "u1", name: "Ana Adoptante", email: "ana.adoptante@ejemplo.com", password: "ana123", role: "adoptante", city: "Quevedo", verified: true, docStatus: "Verificado" },
+    { id: "u2", name: "Carlos Zambrano", email: "carlos.zambrano@ejemplo.com", password: "carlos123", role: "propietario", city: "Quevedo", verified: true, docStatus: "Verificado" },
+    { id: "u3", name: "Dra. Melissa Vera", email: "melissa.vera@ejemplo.com", password: "melissa123", role: "veterinaria", city: "Buena Fe", verified: true, docStatus: "Verificado" },
+    { id: "u4", name: "Jorge Intriago", email: "jorge.intriago@ejemplo.com", password: "jorge123", role: "interesado_cruza", city: "Mocache", verified: true, docStatus: "Verificado" }
   ],
   pets: [
     {
       id: "p1", ownerId: "u2", name: "Firulais", species: "Perro", breed: "Mestizo", sex: "Macho",
       age: "2 años", size: "Mediano", city: "Quevedo", reproductiveStatus: "Entero",
       status: "Adopción", photo: "🐕", description: "Perro juguetón y sociable, ideal para casa con patio.",
+      microchip: "981022300456128",
       privacy: { medicalHistory: "verified", location: "private", contact: "verified", photos: "public", genetics: "private" }
     },
     {
       id: "p2", ownerId: "u4", name: "Michi", species: "Gato", breed: "Siamés", sex: "Hembra",
       age: "1 año", size: "Pequeño", city: "Buena Fe", reproductiveStatus: "Entera",
       status: "Adopción", photo: "🐈", description: "Gata tranquila, acostumbrada a interiores.",
+      microchip: "",
       privacy: { medicalHistory: "verified", location: "private", contact: "verified", photos: "public", genetics: "private" }
     },
     {
       id: "p3", ownerId: "u4", name: "Toby", species: "Perro", breed: "Labrador", sex: "Macho",
       age: "3 años", size: "Grande", city: "Mocache", reproductiveStatus: "Entero",
       status: "Cruza responsable", photo: "🐕‍🦺", description: "Labrador de línea sana, disponible para cruza responsable.",
+      microchip: "981022300789456",
       privacy: { medicalHistory: "verified", location: "private", contact: "verified", photos: "public", genetics: "verified" }
     },
     {
       id: "p4", ownerId: "u2", name: "Luna", species: "Perro", breed: "Criolla", sex: "Hembra",
       age: "6 meses", size: "Pequeño", city: "Quevedo", reproductiveStatus: "Entera",
       status: "Adopción", photo: "🐶", description: "Cachorra criolla rescatada, muy activa.",
+      microchip: "",
       privacy: { medicalHistory: "pending", location: "private", contact: "verified", photos: "public", genetics: "pending" }
     }
   ],
   medicalRecords: [
-    { id: "m1", petId: "p1", type: "Vacuna antirrábica", date: "2025-03-15", status: "Vigente", strain: "Rabisin", applicator: "Dra. Melissa Vera", validated: true },
-    { id: "m2", petId: "p1", type: "Desparasitación interna", date: "2025-06-01", status: "Vigente", validated: true },
+    { id: "m1", petId: "p1", type: "Vacuna antirrábica", date: "2025-03-15", status: "Vigente", strain: "Rabisin", Lote: "R-90812", applicator: "Dra. Melissa Vera", validated: true },
+    { id: "m2", petId: "p1", type: "Desparasitación interna", date: "2025-06-01", status: "Vigente", strain: "Drontal", Lote: "D-445", applicator: "Dra. Melissa Vera", validated: true },
     { id: "m3", petId: "p1", type: "Certificado veterinario oficial", date: "2025-01-20", status: "Por renovar", validated: false },
-    { id: "m4", petId: "p3", type: "Vacuna polivalente", date: "2025-05-10", status: "Vigente", strain: "Nobivac", applicator: "Dra. Melissa Vera", validated: true },
+    { id: "m4", petId: "p3", type: "Vacuna polivalente", date: "2025-05-10", status: "Vigente", strain: "Nobivac", Lote: "N-7890", applicator: "Dra. Melissa Vera", validated: true },
     { id: "m5", petId: "p3", type: "Certificado veterinario oficial", date: "2025-04-02", status: "Vigente", validated: true },
     { id: "m6", petId: "p2", type: "Vacuna antirrábica", date: "2025-02-11", status: "Vigente", validated: true },
     { id: "m7", petId: "p4", type: "Carnet de vacunación", date: "2026-06-29", status: "Por renovar", validated: false }
@@ -60,6 +64,18 @@ const SEED = {
       conditions: "Casa con patio, tiempo disponible",
       stage: 2, stages: ["Formulario", "Entrevista", "Visita al hogar", "Periodo de prueba", "Compromiso firmado"],
       status: "en_proceso", createdAt: "2026-07-20"
+    },
+    {
+      id: "r2", type: "cruza", petId: "p3", requesterId: "u1", ownerId: "u4",
+      justification: "Cruza controlada anterior.", conditions: "Casa con patio",
+      stage: 5, stages: ["Formulario", "Entrevista", "Visita al hogar", "Periodo de prueba", "Compromiso firmado"],
+      status: "completada", createdAt: "2026-05-10"
+    },
+    {
+      id: "r3", type: "cruza", petId: "p3", requesterId: "u1", ownerId: "u4",
+      justification: "Cruza controlada anterior 2.", conditions: "Casa con patio",
+      stage: 5, stages: ["Formulario", "Entrevista", "Visita al hogar", "Periodo de prueba", "Compromiso firmado"],
+      status: "completada", createdAt: "2026-06-15"
     }
   ],
   messages: [
@@ -70,6 +86,10 @@ const SEED = {
   compatibilityEvaluations: [],
   followUps: [
     { id: "f1", petId: "p1", requestId: "r1", note: "Primer control post-adopción pendiente.", date: "2026-08-15", status: "Pendiente" }
+  ],
+  reminders: [
+    { id: "rem1", petId: "p1", type: "Vacuna contra Parvovirus", date: "2026-08-24", status: "Pendiente", description: "Dosis anual de refuerzo requerida." },
+    { id: "rem2", petId: "p2", type: "Control de Desparasitación", date: "2026-08-20", status: "Pendiente", description: "Tratamiento trimestral preventivo." }
   ]
 };
 

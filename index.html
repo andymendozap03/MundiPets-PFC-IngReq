@@ -1,71 +1,127 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MundiPets — Iniciar sesión</title>
-<link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MundiPets — Iniciar sesión</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-<div id="topbar" class="topbar"></div>
+  <div id="topbar" class="topbar"></div>
 
-<div class="container-narrow" style="padding-top:20px;">
-  <h1 style="text-align:center;">MundiPets</h1>
-  <p class="subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">
-    Red social para adopción y cruza responsable de mascotas en Los Ríos, Ecuador.
-    Selecciona una cuenta de demostración para continuar (MVP con datos ficticios).
-  </p>
+  <div class="container-narrow" style="padding-top:20px;">
+    <h1 style="text-align:center;">MundiPets</h1>
+    <p class="subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">
+      Red social para adopción y cruza responsable de mascotas.
+      Selecciona una cuenta de demostración para continuar.
+    </p>
 
-  <div class="card">
-    <h2>Cuentas de demostración</h2>
-    <p class="text-muted" style="margin-top:-6px;">No se usan contraseñas reales: este MVP simula la sesión para fines de evaluación académica.</p>
-    <div id="userList"></div>
-  </div>
+    <div class="card">
+      <h2>Iniciar sesión</h2>
+      <p class="text-muted" style="margin-top:-6px;">Ingresa las credenciales de uno de los roles para acceder al
+        sistema.</p>
 
-  <div class="card compact text-center">
-    <span class="text-muted">¿Primera vez? </span>
-    <a href="register.html" class="btn btn-secondary btn-sm" style="margin-left:8px;">Crear cuenta nueva</a>
-  </div>
+      <div id="loginForm" style="margin-top: 15px;">
+        <label for="emailInput">Correo electrónico</label>
+        <input type="email" id="emailInput" placeholder="correo@ejemplo.com" required>
 
-  <div class="text-center mt-16">
-    <a href="#" id="resetDataBtn" class="reset-link">Restablecer datos de ejemplo</a>
-  </div>
-</div>
+        <label for="passwordInput" style="margin-top: 10px;">Contraseña</label>
+        <input type="password" id="passwordInput" placeholder="••••••••" required>
 
-<footer class="dev-footer">MundiPets · MVP académico · Proyecto Fin de Curso — Ingeniería de Requerimientos [20303] · UTEQ</footer>
+        <div id="errorMsg" class="warn-banner info-banner" style="display: none; margin-top: 15px; padding: 8px 12px;">
+        </div>
 
-<script src="js/db.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/utils.js"></script>
-<script>
-  renderTopbar(null);
-  attachResetButton();
+        <button class="btn btn-primary btn-block mt-24" id="loginBtn">Iniciar sesión</button>
+      </div>
+    </div>
 
-  const roleIcon = { propietario: "🏠", adoptante: "🐾", interesado_cruza: "🧬", veterinaria: "🩺" };
-  const users = DB.all("users");
-  const list = document.getElementById("userList");
-  list.innerHTML = users.map((u) => `
-    <div class="setting-row">
-      <div class="flex gap-12" style="align-items:center;">
-        <span class="avatar">${initials(u.name)}</span>
-        <div>
-          <div style="font-weight:700;">${escapeHtml(u.name)}</div>
-          <div class="text-muted" style="font-size:13px;">${roleIcon[u.role] || ""} ${Auth.roleLabel(u.role)} · ${escapeHtml(u.city)}</div>
+    <div class="card">
+      <h3>Credenciales de demostración</h3>
+      <p class="text-muted" style="font-size:13px; margin-top:-6px;">Usa estos datos para probar los diferentes flujos y
+        roles del sistema.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div
+          style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #fafafa; font-size: 14px;">
+          <strong>🐾 Adoptante (Ana):</strong><br>
+          Email: <code
+            style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">ana.adoptante@ejemplo.com</code><br>
+          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">ana123</code>
+        </div>
+        <div
+          style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #fafafa; font-size: 14px;">
+          <strong>🏠 Propietario (Carlos):</strong><br>
+          Email: <code
+            style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">carlos.zambrano@ejemplo.com</code><br>
+          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">carlos123</code>
+        </div>
+        <div
+          style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #fafafa; font-size: 14px;">
+          <strong>🩺 Veterinaria (Dra. Melissa):</strong><br>
+          Email: <code
+            style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">melissa.vera@ejemplo.com</code><br>
+          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">melissa123</code>
+        </div>
+        <div
+          style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #fafafa; font-size: 14px;">
+          <strong>🧬 Interesado en Cruza (Jorge):</strong><br>
+          Email: <code
+            style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">jorge.intriago@ejemplo.com</code><br>
+          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">jorge123</code>
         </div>
       </div>
-      <button class="btn btn-primary btn-sm" onclick="enter('${u.id}')">Ingresar</button>
     </div>
-  `).join("");
 
-  function enter(userId) {
-    Auth.login(userId);
-    window.location.href = "dashboard.html";
-  }
+    <div class="card compact text-center">
+      <span class="text-muted">¿Primera vez? </span>
+      <a href="register.html" class="btn btn-secondary btn-sm" style="margin-left:8px;">Crear cuenta nueva</a>
+    </div>
 
-  // Si ya hay sesion activa, ir directo al dashboard
-  if (Auth.current()) {
-    // no auto-redirect para permitir cambiar de cuenta de demo facilmente
-  }
-</script>
+    <div class="text-center mt-16">
+      <a href="#" id="resetDataBtn" class="reset-link">Restablecer datos de ejemplo</a>
+    </div>
+  </div>
+
+  <footer class="dev-footer">MundiPets · MVP académico · Proyecto Fin de Curso — Ingeniería de Requerimientos [20303] ·
+    UTEQ</footer>
+
+  <script src="js/db.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    renderTopbar(null);
+    attachResetButton();
+
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      const email = document.getElementById("emailInput").value.trim();
+      const password = document.getElementById("passwordInput").value.trim();
+      const errEl = document.getElementById("errorMsg");
+
+      if (!email || !password) {
+        errEl.textContent = "Por favor ingresa tanto el correo como la contraseña.";
+        errEl.style.display = "block";
+        return;
+      }
+
+      const res = Auth.loginWithCredentials(email, password);
+      if (res.success) {
+        errEl.style.display = "none";
+        toast("¡Sesión iniciada con éxito! Redirigiendo...");
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 800);
+      } else {
+        errEl.textContent = res.message;
+        errEl.style.display = "block";
+      }
+    });
+
+    // Si ya hay sesion activa, ir directo al dashboard
+    if (Auth.current()) {
+      // no auto-redirect para permitir cambiar de cuenta de demo facilmente
+    }
+  </script>
 </body>
+
 </html>

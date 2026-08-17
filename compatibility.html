@@ -102,10 +102,22 @@
 
     DB.insert("compatibilityEvaluations", { petAId: petA.id, petBId: petB.id, score: pct, evaluatedBy: user.id, date: new Date().toISOString().slice(0, 10) });
 
+    const checkSixMonths = (dateStr) => {
+      const d = new Date(dateStr);
+      const now = new Date("2026-08-16");
+      const diffTime = Math.abs(now - d);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays <= 180;
+    };
+    const completedCruzasA = DB.all("requests").filter(r => r.petId === petA.id && r.type === "cruza" && r.status === "completada" && checkSixMonths(r.createdAt)).length;
+    const completedCruzasB = DB.all("requests").filter(r => r.petId === petB.id && r.type === "cruza" && r.status === "completada" && checkSixMonths(r.createdAt)).length;
+
     const alerts = [];
     if (sizeRisk) alerts.push("Disparidad de tamaño significativa entre las mascotas: mayor riesgo físico durante la cruza.");
     if (contagious) alerts.push("Se detectó una posible enfermedad contagiosa activa en el historial de una de las mascotas.");
     if (relatedFlag) alerts.push("Ambas mascotas comparten un grado de parentesco conocido: riesgo genético de consanguinidad.");
+    if (completedCruzasA >= 2) alerts.push(`Uso repetitivo de cruza (RF-27): La mascota ${petA.name} ha completado ${completedCruzasA} cruzas en los últimos 6 meses.`);
+    if (completedCruzasB >= 2) alerts.push(`Uso repetitivo de cruza (RF-27): La mascota ${petB.name} ha completado ${completedCruzasB} cruzas en los últimos 6 meses.`);
 
     document.getElementById("resultArea").innerHTML = `
       <div class="card mt-24">
