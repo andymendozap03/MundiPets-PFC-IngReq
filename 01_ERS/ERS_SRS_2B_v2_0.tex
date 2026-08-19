@@ -4352,7 +4352,7 @@ doi=true
 	corresponden al sistema en producción y no a este prototipo.
 	
 	La rúbrica de la asignatura exige una cobertura mínima del 60\,\% de los
-	requisitos funcionales de prioridad \emph{Must}, y el criterio C3 de la
+	requisitos funcionales de prioridad \emph{Must}, y el criterio C8 de la
 	Entrega 4 (2B) eleva ese piso al 80\,\%. Según la priorización MoSCoW de
 	la Sección~\ref{sec:moscow}, el proyecto tiene 15 RF de prioridad
 	\emph{Must}, de los cuales el MVP cubre los 15 (100\,\%). Uno de ellos,
@@ -4366,7 +4366,7 @@ doi=true
 	(\emph{Could}, coordinar encuentros de socialización supervisados). En
 	conjunto, el MVP cubre \textbf{26 de los 27 RF vigentes (96,3\,\%)},
 	superando con amplio margen tanto el mínimo histórico del 60\,\% como el
-	80\,\% exigido por el criterio C3 de esta entrega. El único requisito no
+	80\,\% exigido por el criterio C8 de esta entrega. El único requisito no
 	implementado, RF-20, se documenta explícitamente en la
 	Tabla~\ref{tab:cobertura-mvp} para mantener la trazabilidad y servir de
 	insumo directo a las siguientes iteraciones del producto.
@@ -5203,9 +5203,9 @@ doi=true
 			\hline
 			\textbf{Semana 13 (27 jul.--02 ago.)} & \textbf{Tercer avance:} ERS Completo con Validación y Trazabilidad -- documento de especificación de requisitos completo, validado y con trazabilidad total evidencia--requisito--caso de uso, priorización Kano/WSJF, MVP y protocolo del componente empírico registrado en el OSF. & Completado \\
 			\hline
-			Semanas 14--16 (03--23 ago.) & Ejecución del componente empírico, desarrollo del MVP, revisión integral del documento y ajustes finales según observaciones del docente. & Planificado \\
+			Semanas 14--16 (03--23 ago.) & Ejecución del componente empírico, desarrollo del MVP (ampliado a 26 de 27 RF cubiertos), segunda ronda de \emph{walkthrough} con PROP-12 y VET-07 (EV-23, EV-24), revisión integral del documento y ajustes finales según observaciones del docente. & Completado \\
 			\hline
-			\textbf{Semana 17 (24--30 ago.)} & \textbf{Cuarto avance:} Proyecto Integrador Final -- entrega y sustentación del documento ERS/SRS completo del Proyecto Fin de Curso. & Planificado \\
+			\textbf{Semana 17 (24--30 ago.)} & \textbf{Cuarto avance:} Proyecto Integrador Final -- corrección de calidad de los 25 RF vigentes conforme a ISO/IEC/IEEE 29148:2018, incorporación de RF-26 y RF-27 a partir de la nueva evidencia de campo, actualización de la matriz de trazabilidad extendida (61 filas, incluidos los 9 requisitos legales) y entrega y sustentación del documento ERS/SRS completo del Proyecto Fin de Curso. & Completado \\
 			\hline
 		\end{tabularx}
 	\end{table}
@@ -5221,7 +5221,14 @@ doi=true
 	respaldada por datos reales y no por criterio de escritorio. Esta técnica se
 	complementa con la codificación temática de las transcripciones
 	(Apéndice~B.8), que es el insumo directo para derivar los ocho requisitos
-	funcionales nuevos (RF-18 a RF-25) exigidos por esta entrega.
+	funcionales nuevos (RF-18 a RF-25) exigidos por la Entrega 3 (2A). En la
+	presente revisión (4.0) se ejecutaron dos sesiones adicionales que
+	combinan entrevista y \emph{walkthrough} sobre el mismo participante,
+	EV-23 (PROP-12, propietaria de mascota, usuaria no técnica) y EV-24
+	(VET-07, veterinaria, usuaria técnica), con lo que la ronda de validación
+	alcanza las 6 sesiones mínimas exigidas (3 técnicas y 3 no técnicas,
+	Apéndice~B.7). Estas dos evidencias son el origen directo de RF-27 y
+	RF-26, respectivamente.
 	
 	% --------------------------------------------------------
 	\section*{Apéndice B --- Trabajo de campo y evidencias}
@@ -5230,10 +5237,13 @@ doi=true
 	
 	\subsection*{B.1 Registro y catálogo de evidencias}
 	
-	La Tabla~\ref{tab:catalogo-evidencias} consolida las veintidós evidencias de campo
-	recogidas por el equipo, indicando el tipo de instrumento aplicado, el participante
-	o fuente, los requisitos derivados de cada una y si se cuenta con el consentimiento
-	informado firmado correspondiente (Apéndice~B.6).
+	La Tabla~\ref{tab:catalogo-evidencias} consolida las veinticuatro evidencias
+	de campo recogidas por el equipo, indicando el tipo de instrumento
+	aplicado, el participante o fuente, los requisitos derivados de cada una y
+	si se cuenta con el consentimiento informado firmado correspondiente
+	(Apéndice~B.6). Las dos últimas (EV-23 y EV-24), incorporadas en la
+	revisión 4.0, combinan entrevista y sesión de validación
+	\emph{walkthrough} sobre el mismo participante.
 	
 	\textbf{Codificación de participantes.} En cumplimiento de la restricción
 	RD-09 y de la Ley Orgánica de Protección de Datos Personales del Ecuador
@@ -5306,6 +5316,10 @@ doi=true
 			EV-21 & Sesión de validación (\emph{walkthrough}) grabada en video, con consentimiento & VET-04 (veterinaria, usuaria técnica) & Validación de RF-01 a RF-08, RF-11 a RF-17 & Sí \\
 			\addlinespace
 			EV-22 & Sesión de validación (\emph{walkthrough}) grabada en video, con consentimiento & VET-06 (veterinario, usuario técnico) & Validación de RF-01 a RF-17 & Sí \\
+			\addlinespace
+			EV-23 & Entrevista grabada, audio, video, consentimiento, y sesión de validación (\emph{walkthrough}) grabada en video & PROP-12 (propietaria de mascota, usuaria no técnica) & Entrevista: refuerza RF-01 a RF-16; validación de RF-01 a RF-16; origen directo de RF-27 & Sí \\
+			\addlinespace
+			EV-24 & Entrevista grabada, audio, video, consentimiento, y sesión de validación (\emph{walkthrough}) grabada en video & VET-07 (veterinaria, usuaria técnica) & Entrevista: refuerza RF-02, RF-09, RF-16, RF-23, RF-24; validación de RF-01 a RF-17; origen directo de RF-26 & Sí \\
 			\addlinespace
 		\end{longtable}
 	}
@@ -6032,7 +6046,141 @@ doi=true
 			
 		\end{longtable}
 	}
-	
+
+	\subsubsection*{Acta de entrevista 23 --- PROP-12 (EV-23)}
+
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 14/08/2026 \\
+			
+			Entrevistado & PROP-12 \\
+			
+			Cargo/Rol & Propietaria de mascota (usuaria no técnica) \\
+			
+			Entrevistador & Mendoza Párraga Andy Johel \\
+			
+			Técnica & Entrevista semiestructurada, seguida de sesión de validación \emph{walkthrough} (Apéndice~B.7) \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 23)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Cómo suele conocer el estado de salud de su mascota? & Lo nota cuando la mascota se ve más decaída de lo normal, con acciones fuera de lugar respecto a lo habitual, cabizbaja y sin ánimos de comer. \\ \addlinespace
+			
+			¿Qué información considera necesaria antes de dejar a su mascota interactuar con otras mascotas? & Por lo general ninguna en particular, salvo cuando son pequeños por el tema de las vacunas, especialmente si se trata de perros de la calle. \\ \addlinespace
+			
+			¿Cómo suele realizar el seguimiento de vacunas o controles veterinarios? & Lleva a la mascota a la veterinaria; si es pequeña, el control de vacunas inicia entre el primer y el tercer mes de edad, y se evita sacarla al ambiente externo durante aproximadamente seis meses. \\ \addlinespace
+			
+			¿Qué información considera privada o sensible sobre su mascota? & Ninguna; no tiene problema con que esa información sea conocida por otras personas. \\ \addlinespace
+			
+			¿Qué información considera necesaria sobre el historial médico de una mascota? & Si ha tenido alguna enfermedad reciente o secuelas de una enfermedad grave, dado que al no poder comunicarse esa información es indispensable para el control del dueño; también alergias a algún alimento o medicación. \\ \addlinespace
+			
+			¿Qué información considera más importante conocer sobre una mascota antes de adoptarla? & Si ha tenido algún historial de enfermedad, así como cuánto tiempo tiene la mascota y cuál es su edad. \\ \addlinespace
+			
+			¿Qué problemas considera más comunes en procesos de adopción? & El papeleo relacionado con el proceso, así como la comunicación con el anterior dueño o con quien entrega la mascota en adopción. \\ \addlinespace
+			
+			¿Qué factores influyen en su decisión al momento de elegir una mascota? & A quién se le va a adoptar la mascota, es decir, cómo ha sido cuidada y en qué estado se encuentra. \\ \addlinespace
+			
+			¿Cómo decide si una mascota es compatible con otra? & Depende del proceso de cruza: existen cruces inadecuados que generan afecciones (por ejemplo, razas braquiocefálicas con problemas respiratorios); considera que debe evitarse cruzar razas grandes con pequeñas y preferir animales de la misma raza o ambiente. \\ \addlinespace
+			
+			¿Qué aspectos considera importantes antes de permitir el cruce entre mascotas? & Que el cruce se realice en un buen ambiente, sin negligencia, y que ambas mascotas estén aptas (buena salud y control de vacunas al día, sin enfermedades). \\ \addlinespace
+			
+		\end{longtable}
+	}
+
+	\subsubsection*{Acta de entrevista 24 --- VET-07 (EV-24)}
+
+	\begin{table}[H]
+		\centering\small
+		\begin{tabularx}{\textwidth}{@{}l X@{}}
+			\toprule
+			\textbf{Campo} & \textbf{Información} \\
+			\midrule
+			
+			Fecha & 13/08/2026 \\
+			
+			Entrevistado & VET-07 \\
+			
+			Cargo/Rol & Veterinaria \\
+			
+			Entrevistador & Equipo MundiPets \\
+			
+			Técnica & Entrevista semiestructurada por videollamada, seguida de sesión de validación \emph{walkthrough} (Apéndice~B.7) \\
+			
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+
+	{\small
+		\begin{longtable}{@{}p{5.6cm} p{9.4cm}@{}}
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endfirsthead
+			\multicolumn{2}{@{}l}{\small\itshape (continuación del acta 24)}\\
+			\toprule
+			\textbf{Pregunta} & \textbf{Respuesta resumida} \\
+			\midrule
+			\endhead
+			\bottomrule
+			\endlastfoot
+			
+			¿Qué información considera más importante conocer sobre una mascota? & Especie, raza, edad, peso y sexo; también el historial de vacunas, antecedentes médicos y el tipo de alimentación, como base para el cuidado de la mascota. \\ \addlinespace
+			
+			¿Qué datos ayudan a entender mejor el estado general de una mascota? & El apetito, el nivel de energía, cambios de comportamiento, sociabilidad, calidad del pelaje, el peso, y si ha presentado diarreas, vómitos o dolor; también los controles veterinarios periódicos. \\ \addlinespace
+			
+			¿Qué antecedentes considera importantes conocer sobre una mascota? & El historial de vacunación y sus controles periódicos, las desparasitaciones (cada seis meses), enfermedades previas, cirugías, alergias, tratamientos actuales y contacto con otras mascotas enfermas. \\ \addlinespace
+			
+			¿Qué riesgos existen cuando no se conoce suficiente información sobre una mascota? & Riesgo de un mal diagnóstico y de medicación inadecuada, imposibilidad de prevenir enfermedades o detectar a tiempo problemas genéticos, y riesgo de contagio si no se conoce el estado de vacunación o desparasitación. \\ \addlinespace
+			
+			¿Cómo influye la edad de una mascota en su cuidado y comportamiento? & Los cachorros requieren más vacunas, socialización y energía; los adultos jóvenes necesitan mantenimiento y prevención mediante controles y desparasitaciones; los adultos mayores requieren controles más frecuentes por problemas articulares, renales y cardíacos. \\ \addlinespace
+			
+			¿Cómo influye la raza en las necesidades de una mascota? & Cada raza tiene predisposición a ciertas afecciones (por ejemplo, problemas respiratorios en razas braquiocéfalas o problemas de cadera en razas grandes), lo que influye en la alimentación, el ejercicio y el cuidado del pelaje. \\ \addlinespace
+			
+			¿Qué datos de la mascota considera sensibles? & Los datos personales del propietario (nombre, dirección, teléfono), necesarios en caso de extravío, y los datos médicos como enfermedades crónicas y tratamientos, que deben manejarse con ética y privacidad. \\ \addlinespace
+			
+			¿Qué enfermedades o condiciones considera importante registrar en una mascota? & Enfermedades crónicas (diabetes, problemas renales, cardíacos), alergias, otitis, problemas de piel, cirugías o tratamientos prolongados, y si la mascota está esterilizada. \\ \addlinespace
+			
+			¿Qué información involucra el perfil médico de una mascota? & Historial de vacunas, desparasitaciones, enfermedades, cirugías, alergias, medicamentos actuales, peso, raza, edad y resultados de exámenes. \\ \addlinespace
+			
+			¿Cómo puede verificarse si una mascota cuenta con controles médicos adecuados? & Revisando el carné de vacunación (o fotos de este), solicitando registros del veterinario y preguntando la frecuencia de visitas: de dos a tres al año en mascotas sanas, más si presentan enfermedades frecuentes. \\ \addlinespace
+			
+			¿Cómo evalúa si una adopción puede considerarse responsable? & Requiere tiempo, recursos económicos, un espacio adecuado y compromiso de cuidado a largo plazo, no una decisión por impulso o compasión momentánea. \\ \addlinespace
+			
+			¿Qué información considera importante antes de entregar una mascota en adopción? & Edad, estado de salud, vacunas, comportamiento (si es sociable o no), estado de esterilización y necesidades específicas de la mascota. \\ \addlinespace
+			
+			¿Cómo afectan las adopciones informales al bienestar animal? & Suelen carecer de seguimiento y de esterilización completa (con frecuencia solo de las hembras), no se vacuna a la mascota, y aumentan el maltrato, el abandono y la sobrepoblación. \\ \addlinespace
+			
+			¿Qué información considera esencial antes de recomendar un cruce entre mascotas? & Estado de salud, exámenes genéticos, edad, compatibilidad de razas, ausencia de enfermedades hereditarias en ambas mascotas, y si el dueño puede hacerse cargo de las crías. \\ \addlinespace
+			
+			¿Cómo puede identificarse si dos mascotas son compatibles entre sí? & Mediante la evaluación de un veterinario o un etólogo, observando temperamento, tamaño y energía, con presentaciones graduales entre las mascotas. \\ \addlinespace
+			
+			¿Cómo identifica posibles riesgos en procesos de reproducción entre mascotas? & A través de la edad, el tamaño, los antecedentes médicos y la dificultad de parto asociada a la raza; menciona razas pequeñas (Yorkshire terrier, chihuahua) donde el parto puede poner en riesgo a la madre. \\ \addlinespace
+			
+			¿Cómo afectan los cruces irresponsables a las mascotas? & Generan camadas con problemas de salud (cardíacos, renales, malformaciones), aumentan el abandono, se pierden características de raza, se fomenta la sobrepoblación y se causa sufrimiento a los animales. \\ \addlinespace
+			
+		\end{longtable}
+	}
+
 	\subsection*{B.4 Cuestionario v2.0 y resultados exportados}
 	
 	El cuestionario v2.0 se desplegó en Google Forms y se aplicó de forma
@@ -6210,7 +6358,9 @@ doi=true
 	revisadas por pares y en el conjunto de datos abierto depositado con licencia
 	CC BY 4.0.
 	
-	Se recogieron \textbf{16 consentimientos firmados}. Conforme a la separación
+	Se recogieron \textbf{18 consentimientos firmados}, incluidos los de
+	PROP-12 y VET-07 (EV-23, EV-24) incorporados en la revisión 4.0. Conforme
+	a la separación
 	de zonas de evidencia, el original íntegro --- con cédula y firma visibles ---
 	se conserva cifrado en \texttt{02\_Evidencias/00\_Restringido/}, mientras que
 	en la zona pública reside únicamente la copia enmascarada, con la cédula y la
@@ -6259,6 +6409,10 @@ doi=true
 			
 			VET-04 & Profesional veterinario/a & \texttt{2026-07-27\_Veterinaria\_VET-04\_Consentimiento.png} \\
 			
+			PROP-12 & Propietario/a de mascota & \texttt{2026-08-14\_PropietarioMascota\_PROP-12\_Consentimiento.pdf} \\
+			
+			VET-07 & Profesional veterinario/a & \texttt{2026-08-13\_Veterinaria\_VET-07\_Consentimiento.pdf} \\
+			
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -6277,7 +6431,9 @@ doi=true
 	La rúbrica exige un mínimo de 6 sesiones de validación (3 con usuarios
 	técnicos y 3 con usuarios no técnicos), cada una con grabación en MP4 y
 	acta firmada en PDF, en \texttt{02\_Evidencias/Validacion\_Walkthrough/}.
-	A la fecha de este corte se han ejecutado 3 de las 6 sesiones mínimas:
+	Con la incorporación de PROP-12 y VET-07 en la revisión 4.0, se han
+	ejecutado las \textbf{6 sesiones mínimas exigidas} (3 con perfil técnico y
+	3 con perfil no técnico):
 	
 	\begin{table}[H]
 		\centering
@@ -6291,14 +6447,24 @@ doi=true
 			VET-04 & Técnico (veterinaria) & 12:09 min & 27/07/2026 & RF-01 a RF-06, RF-08 \\
 			PROP-02 & No técnico (propietaria) & 16:11 min & 27/07/2026 & RF-01 a RF-06, RF-08, RF-11 \\
 			PROP-08 & No técnico (propietario) & 25:40 min & 27/07/2026 & RF-01 a RF-17 (conjunto completo) \\
+			VET-06 & Técnico (veterinario) & Pendiente de verificación$^{\dagger}$ & Pendiente de verificación$^{\dagger}$ & RF-01 a RF-17 (conjunto completo) \\
+			PROP-12 & No técnico (propietaria) & 22:18 min & 14/08/2026 & RF-01 a RF-16 \\
+			VET-07 & Técnico (veterinaria) & 14:17 min & 13/08/2026 & RF-01 a RF-17 (conjunto completo) \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
 	
-	Las 3 sesiones restantes (2 con perfil técnico y 1 con perfil no técnico) se
-	ejecutan antes del corte de la entrega y se incorporan a la
-	Tabla~\ref{tab:walkthrough} con el mismo formato, junto con su grabación en
-	MP4 y su acta firmada en PDF.
+	{\footnotesize $^{\dagger}$La duración y fecha exactas de la sesión de
+		VET-06 (EV-22) no se registraron en la ficha resumen disponible en la
+		zona pública; el acta firmada en PDF (Apéndice~B.9) confirma la sesión y
+		el alcance de la validación, y el dato pendiente debe completarse desde
+		el archivo original antes del corte final.}
+	
+	Con las 6 sesiones completas, la ronda de validación cubre el conjunto de
+	requisitos de prioridad \emph{Must} y \emph{Should} especificados hasta
+	RF-17; las sesiones de PROP-12 y VET-07 son además el origen directo de
+	RF-27 y RF-26, respectivamente, conforme se detalla en sus actas de
+	entrevista (Apéndice~B.3).
 	
 	
 	\subsection*{B.8 Codificación temática y curva de saturación}
@@ -6369,7 +6535,7 @@ doi=true
 	\subsection*{B.9 Índice de multimedia}
 	
 	Los archivos de audio, video y fotografía asociados a cada evidencia EV-01 a
-	EV-22 se almacenan en \texttt{02\_Evidencias/}, organizados por técnica de
+	EV-24 se almacenan en \texttt{02\_Evidencias/}, organizados por técnica de
 	elicitación y nombrados con el patrón
 	\texttt{Fecha\_TipoUsuario\_CodigoParticipante\_Herramienta.ext} --- por
 	ejemplo \texttt{2026-07-26\_PropietarioMascota\_PROP-04\_Entrevista.mp3} ---,
@@ -6380,15 +6546,18 @@ doi=true
 	
 	\paragraph{Zona restringida --- originales cifrados.}
 	Los archivos de audio y video originales de todas las entrevistas y sesiones
-	de \emph{walkthrough} (EV-01 a EV-22, excepto EV-08, que corresponde a
+	de \emph{walkthrough} (EV-01 a EV-24, excepto EV-08, que corresponde a
 	observación sin grabación de audio/video de personas) no se almacenan
 	sueltos en el repositorio: se comprimen y cifran con 7-Zip (AES-256) en un
 	volumen dividido, alojado en
-	\texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/}. El
-	volumen se fragmenta en 67 partes
+	\texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/}. A la
+	fecha de la Entrega 3 (2A) el volumen se fragmentaba en 67 partes
 	(\texttt{evidencias\_restringidas.7z.001} a
-	\texttt{evidencias\_restringidas.7z.067}) para facilitar la subida al
-	repositorio sin exceder el límite de tamaño por archivo. La contraseña del
+	\texttt{evidencias\_restringidas.7z.067}); con la incorporación de los
+	archivos originales de EV-23 y EV-24 en la revisión 4.0, el volumen cifrado
+	debe regenerarse con las partes adicionales correspondientes antes del
+	corte final, lo cual queda pendiente de ejecución técnica fuera del alcance
+	de esta revisión documental. La contraseña del
 	contenedor se entrega únicamente al docente responsable por el Sistema de
 	Gestión Académica (SGA), conforme a la Sección~4.1 de la Guía y Rúbrica de
 	la Entrega 3 (2A). El detalle de cada archivo interno --- nombre, tipo,
@@ -6405,7 +6574,7 @@ doi=true
 	
 	{\small
 		\begin{longtable}{@{}>{\raggedright\arraybackslash}p{1.4cm} >{\raggedright\arraybackslash}p{1.6cm} >{\raggedright\arraybackslash}p{3.2cm} >{\raggedright\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{6.5cm}@{}}
-			\caption{Índice de multimedia --- entrevistas grabadas (EV-01 a EV-18).}\label{tab:indice-mm-entrevistas}\\
+			\caption{Índice de multimedia --- entrevistas grabadas (EV-01 a EV-18, EV-23 y EV-24).}\label{tab:indice-mm-entrevistas}\\
 			\toprule
 			\textbf{EV} & \textbf{Código} & \textbf{Rol} & \textbf{Fecha} & \textbf{Archivo (zona pública)} \\
 			\midrule
@@ -6433,6 +6602,8 @@ doi=true
 			EV-16 & VET-05 & Veterinario & 25/07/2026 & \texttt{2026-07-25\_Veterinario\_VET-05\_TranscripcionEntrevista.txt} \\
 			EV-17 & PROP-10 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-10\_TranscripcionEntrevista.txt} \\
 			EV-18 & PROP-11 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-11\_TranscripcionEntrevista.txt} \\
+		EV-23 & PROP-12 & Propietaria de mascota (usuaria no técnica) & 14/08/2026 & \texttt{2026-08-14\_PropietarioMascota\_PROP-12\_TranscripcionEntrevista.docx} \\
+		EV-24 & VET-07 & Veterinaria (usuaria técnica) & 13/08/2026 & \texttt{2026-08-13\_Veterinario\_VET-07\_TranscripcionEntrevista.txt} \\
 		\end{longtable}
 	}
 	
@@ -6459,10 +6630,11 @@ doi=true
 	consentimiento informado firmado por la veterinaria observada.
 	
 	\paragraph{Zona pública --- sesiones de validación \emph{walkthrough} (EV-19 a EV-22).}
-	Se registran 4 sesiones de validación \emph{walkthrough} (2 con usuarios
-	técnicos, 2 con usuarios no técnicos). El acta enmascarada de cada sesión
-	reside en \texttt{02\_Evidencias/Validacion\_Walkthrough/}; la grabación en
-	video de cada sesión reside cifrada en la zona restringida.
+	Se registran 6 sesiones de validación \emph{walkthrough} (3 con usuarios
+	técnicos, 3 con usuarios no técnicos), con lo que se completa el objetivo
+	de la Entrega 4 (2B). El acta enmascarada de cada sesión reside en
+	\texttt{02\_Evidencias/Validacion\_Walkthrough/}; la grabación en video de
+	cada sesión reside cifrada en la zona restringida.
 	
 	\begin{table}[H]
 		\centering
@@ -6475,18 +6647,20 @@ doi=true
 			EV-20 & PROP-02 & Propietaria, usuaria no técnica & \texttt{Acta\_Walkthrough\_PROP-02\_UsuarioNoTecnico.pdf} \\
 			EV-21 & VET-04 & Veterinaria, usuaria técnica & \texttt{Acta\_Walkthrough\_VET-04\_UsuarioTecnico.pdf} \\
 			EV-22 & VET-06 & Veterinario, usuario técnico & \texttt{Acta\_Walkthrough\_VET-06\_UsuarioTecnico.pdf} \\
+			EV-23 & PROP-12 & Propietaria, usuaria no técnica & \texttt{Acta\_Walkthrough\_PROP12\_UsuarioNoTecnico.pdf} \\
+			EV-24 & VET-07 & Veterinaria, usuaria técnica & \texttt{Acta\_Walkthrough\_VET07\_UsuarioTecnico.pdf} \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
 	
-	\textbf{Alerta de cumplimiento heredada de la Adenda de Segunda Ronda.} El
-	mínimo 2A de la Sección~4.2 de la guía exige $\geq 3$ sesiones de
-	\emph{walkthrough} y el objetivo 2B declarado por el propio equipo es de 6
-	sesiones (3 técnicas + 3 no técnicas). Con 4 sesiones ejecutadas se cumple
-	el mínimo 2A pero no el objetivo 2B; faltan 1 sesión con usuario técnico y
-	1 con usuario no técnico.
+	\textbf{Cumplimiento del objetivo de la Adenda de Segunda Ronda.} El mínimo
+	2A de la Sección~4.2 de la guía exigía $\geq 3$ sesiones de
+	\emph{walkthrough}, y el objetivo 2B declarado por el propio equipo era de
+	6 sesiones (3 técnicas + 3 no técnicas). Con la incorporación de EV-23 y
+	EV-24 en la revisión 4.0, las 6 sesiones quedan ejecutadas y el objetivo
+	2B se da por cumplido.
 	
-	\paragraph{Consentimientos informados firmados (16 en total).}
+	\paragraph{Consentimientos informados firmados (18 en total).}
 	Copia enmascarada de cada consentimiento (cédula y firma cubiertas, código
 	de participante legible) en \texttt{02\_Evidencias/Consentimientos/}. El
 	original íntegro de cada uno reside cifrado en la zona restringida.
@@ -6521,6 +6695,8 @@ doi=true
 			PROP-11 & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-11\_Consentimiento.jpeg} \\
 			PROP-09 & 27/07/2026 & \texttt{2026-07-27\_PropietarioMascota\_PROP-09\_Consentimiento.jpeg} \\
 			VET-04 & 27/07/2026 & \texttt{2026-07-27\_Veterinaria\_VET-04\_Consentimiento.png} \\
+		PROP-12 & 14/08/2026 & \texttt{2026-08-14\_PropietarioMascota\_PROP-12\_Consentimiento.pdf} \\
+		VET-07 & 13/08/2026 & \texttt{2026-08-13\_Veterinaria\_VET-07\_Consentimiento.pdf} \\
 		\end{longtable}
 	}
 	
