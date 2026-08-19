@@ -4352,20 +4352,22 @@ doi=true
 	corresponden al sistema en producción y no a este prototipo.
 	
 	La rúbrica de la asignatura exige una cobertura mínima del 60\,\% de los
-	requisitos funcionales de prioridad \emph{Must}. Según la priorización
-	MoSCoW de la Sección~\ref{sec:moscow}, el proyecto tiene 15 RF de prioridad
+	requisitos funcionales de prioridad \emph{Must}, y el criterio C3 de la
+	Entrega 4 (2B) eleva ese piso al 80\,\%. Según la priorización MoSCoW de
+	la Sección~\ref{sec:moscow}, el proyecto tiene 15 RF de prioridad
 	\emph{Must}, de los cuales el MVP cubre los 15 (100\,\%). Uno de ellos,
-	RF-12, se cubre en modo simulado (selección de rol de demostración en lugar
-	de verificación de identidad real), por lo que, con un criterio conservador
-	que descuente ese caso, la cobertura efectiva es de 14 de 15
-	(93,3\,\%). En cualquiera de las dos lecturas se supera con holgura el
-	mínimo exigido. Adicionalmente, el MVP incorpora dos requisitos de
-	prioridad \emph{Should} y \emph{Could} (RF-04 y RF-07, respectivamente) que
-	ya estaban delineados en los mockups de referencia de la
-	Sección~\ref{sec:mockups}, por lo que se incluyeron sin
-	representar un esfuerzo de alcance adicional significativo. Los 8 requisitos
-	restantes, todos de prioridad \emph{Should} o \emph{Could}, no se
-	implementaron en esta iteración y se documentan explícitamente en la
+	RF-12, se cubre en modo simulado (selección de rol de demostración en
+	lugar de verificación de identidad real), por lo que, con un criterio
+	conservador que descuente ese caso, la cobertura efectiva de \emph{Must}
+	es de 14 de 15 (93,3\,\%). En una iteración posterior a la Entrega 3 (2A),
+	el equipo amplió además la cobertura de los requisitos \emph{Should} y
+	\emph{Could}: de los 12 requisitos de esas dos prioridades, el MVP cubre
+	actualmente 11 (91,7\,\%), quedando pendiente únicamente RF-20
+	(\emph{Could}, coordinar encuentros de socialización supervisados). En
+	conjunto, el MVP cubre \textbf{26 de los 27 RF vigentes (96,3\,\%)},
+	superando con amplio margen tanto el mínimo histórico del 60\,\% como el
+	80\,\% exigido por el criterio C3 de esta entrega. El único requisito no
+	implementado, RF-20, se documenta explícitamente en la
 	Tabla~\ref{tab:cobertura-mvp} para mantener la trazabilidad y servir de
 	insumo directo a las siguientes iteraciones del producto.
 	
@@ -4389,50 +4391,63 @@ doi=true
 		\hline
 		RF-03 & Consultar perfil completo de una mascota & Must & Cubierto & \texttt{pet-detail.html}, \texttt{pet-profile.html} \\
 		\hline
-		RF-04 & Buscar y filtrar mascotas & Should & Cubierto (adicional) & \texttt{explore.html} \\
+		RF-04 & Buscar y filtrar mascotas & Should & Cubierto & \texttt{explore.html} \\
 		\hline
 		RF-05 & Gestionar solicitudes de adopción & Must & Cubierto & \texttt{request.html} \\
 		\hline
-		RF-06 & Evaluar compatibilidad entre mascotas para cruza & Must & Cubierto (heurística explicable) & \texttt{compatibility.html} \\
+		RF-06 & Evaluar compatibilidad entre mascotas para cruza & Must & Cubierto (heurística explicable, no ML) & \texttt{compatibility.html} \\
 		\hline
-		RF-07 & Sistema de mensajería entre usuarios & Could & Cubierto (adicional) & \texttt{request.html} (panel de chat) \\
+		RF-07 & Sistema de mensajería entre usuarios & Could & Cubierto & \texttt{request.html} (panel de chat) \\
 		\hline
 		RF-08 & Gestionar solicitudes de cruza & Must & Cubierto & \texttt{request.html} (tipo \emph{Cruza responsable}) \\
 		\hline
 		RF-09 & Validar la información médica de una mascota & Must & Cubierto & \texttt{vet-panel.html} \\
 		\hline
-		RF-10 & Gestionar recordatorios de controles preventivos & Should & No implementado & --- \\
+		RF-10 & Gestionar recordatorios de controles preventivos & Should & Cubierto (nuevo) & \texttt{dashboard.html} (módulo de alertas y simulación de WhatsApp) \\
 		\hline
 		RF-11 & Administrar la privacidad de la información & Must & Cubierto & \texttt{pet-profile.html} \\
 		\hline
-		RF-12 & Verificar la identidad de los usuarios & Must & Cubierto (simulado) & \texttt{register.html} \\
+		RF-12 & Verificar la identidad de los usuarios & Must & Cubierto (simulado) & \texttt{register.html}, \texttt{index.html} \\
 		\hline
 		RF-13 & Registrar publicaciones de mascotas & Must & Cubierto & \texttt{pet-profile.html}, \texttt{explore.html} \\
 		\hline
 		RF-14 & Gestionar carnet de vacunación & Must & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html} \\
 		\hline
-		RF-15 & Consultar el historial de procesos de adopción y cruza & Could & No implementado & --- \\
+		RF-15 & Consultar el historial de procesos de adopción y cruza & Could & Cubierto (nuevo) & \texttt{dashboard.html} (sección expandible de solicitudes finalizadas) \\
 		\hline
-		RF-16 & Gestionar antecedentes genéticos y parentesco de la mascota & Must & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html} \\
+		RF-16 & Gestionar antecedentes genéticos y parentesco de la mascota & Must & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html}, \texttt{pet-detail.html} \\
 		\hline
-		RF-17 & Validar imágenes & Should & No implementado (selección directa de ícono) & --- \\
+		RF-17 & Validar imágenes & Should & Cubierto (nuevo, simulado) & \texttt{pet-add.html} (analizador interactivo de IA en el paso 2 del asistente) \\
 		\hline
 		RF-18 & Gestionar el flujo de solicitud de adopción por etapas & Must & Cubierto & \texttt{request.html} \\
 		\hline
-		RF-19 & Validar certificados veterinarios antes de habilitar la cruza & Should & No implementado & --- \\
+		RF-19 & Validar certificados veterinarios antes de habilitar la cruza & Should & Cubierto (nuevo) & \texttt{pet-profile.html} (bloqueo de la opción de cruza sin certificado validado) \\
 		\hline
 		RF-20 & Coordinar encuentros de socialización supervisados & Could & No implementado & --- \\
 		\hline
-		RF-21 & Registrar el identificador de microchip de la mascota & Should & No implementado & --- \\
+		RF-21 & Registrar el identificador de microchip de la mascota & Should & Cubierto (nuevo) & \texttt{pet-add.html}, \texttt{pet-profile.html}, \texttt{pet-detail.html}, \texttt{explore.html} \\
 		\hline
 		RF-22 & Dar seguimiento post-adopción & Must & Cubierto & \texttt{post-adoption.html} \\
 		\hline
 		RF-23 & Emitir alertas de riesgo sanitario o físico en interacciones y cruces & Must & Cubierto & \texttt{compatibility.html} \\
 		\hline
-		RF-24 & Registrar trazabilidad de cepa, lote y aplicador de cada vacuna & Should & No implementado & --- \\
+		RF-24 & Registrar trazabilidad de cepa, lote y aplicador de cada vacuna & Should & Cubierto (nuevo) & \texttt{pet-add.html}, \texttt{pet-profile.html} (campos del carnet referencial) \\
 		\hline
-		RF-25 & Publicar aviso de mascota extraviada & Could & No implementado & --- \\
+		RF-25 & Publicar aviso de mascota extraviada & Could & Cubierto (nuevo) & \texttt{pet-profile.html}, \texttt{explore.html} (alerta destacada y contacto directo) \\
+		\hline
+		RF-26 & Habilitar validación médica por segunda opinión veterinaria & Should & Cubierto (nuevo) & \texttt{vet-panel.html}, \texttt{pet-profile.html} (módulo de doble validación y constancia) \\
+		\hline
+		RF-27 & Controlar y alertar sobre solicitudes repetitivas de cruza de una misma mascota & Should & Cubierto (nuevo) & \texttt{compatibility.html} (alerta automática al superar el umbral semestral de cruzas) \\
 	\end{longtable}
+	
+	\textbf{Resumen:} 26 de 27 RF cubiertos (96,3\,\% de cobertura total y
+	100\,\% de los requisitos \emph{Debe tener}), frente a los 17 de 25
+	(68\,\%) reportados en la Entrega 3 (2A). El incremento corresponde a la
+	implementación, en esta iteración del MVP, de ocho requisitos que antes
+	figuraban como no implementados (RF-10, RF-15, RF-17, RF-19, RF-21, RF-24,
+	RF-25) y a la incorporación de los dos requisitos nuevos de la presente
+	revisión (RF-26, RF-27); el único requisito que permanece sin cubrir es
+	RF-20.
 	
 	El equipo declara de forma explícita, en línea con la regla operativa según
 	la cual ningún componente de inteligencia artificial puede quedar solo
@@ -4450,11 +4465,23 @@ doi=true
 	componente de aprendizaje automático del sistema en producción. Entrenar o
 	integrar un modelo de aprendizaje automático real está fuera del alcance de
 	un MVP construido sobre datos ficticios, y así se documenta en el propio
-	repositorio. Por su parte, el RF-17 (validación de imágenes contra las
-	políticas de contenido de la plataforma) tampoco se implementó en esta
-	iteración: el registro de mascotas utiliza en su lugar la selección directa
-	de un ícono representativo de la especie, lo que evita la carga de archivos
-	y la necesidad de un mecanismo de validación real.
+	repositorio.
+	
+	A diferencia de la Entrega 3 (2A), en esta iteración el RF-17 (validación
+	de imágenes) sí cuenta con una representación funcional, aunque también
+	declarada como simulación: el paso 2 del asistente de registro de mascota
+	(\texttt{pet-add.html}) incorpora un analizador interactivo que evalúa la
+	fotografía cargada y determina su aceptación o rechazo, satisfaciendo la
+	explicabilidad exigida por RNF-14 sin invocar un modelo de visión por
+	computador real. De manera análoga, RF-10 (recordatorios de controles
+	preventivos) simula el canal externo de WhatsApp mediante un disparador
+	emergente que reproduce el envío del mensaje al teléfono del usuario, en
+	lugar de integrar la API real del proveedor descrita en la
+	Sección~\ref{sec:interfaz-software}. Finalmente, RF-27 (control de
+	solicitudes repetitivas de cruza) se probó de forma reproducible sobre el
+	dato ficticio de Toby, cuya base de datos de arranque ya incluye un
+	historial de cruzas completadas suficiente para disparar automáticamente
+	la alerta al evaluar su compatibilidad en \texttt{compatibility.html}.
 	
 	\subsection{Arquitectura e instrucciones de despliegue}
 	\label{sec:mvp-arquitectura}
@@ -4500,27 +4527,27 @@ doi=true
 		\hline
 		\texttt{register.html} & Formulario de creación de cuenta y verificación de identidad simulada (RF-12). \\
 		\hline
-		\texttt{dashboard.html} & Panel de inicio diferenciado según el rol activo (Propietario, Adoptante, Interesado en cruza o Veterinaria); implementa el acceso basado en roles de RD-02. \\
+		\texttt{dashboard.html} & Panel de inicio diferenciado según el rol activo (Propietario, Adoptante, Interesado en cruza o Veterinaria); implementa el acceso basado en roles de RD-02, el módulo de alertas y simulación de recordatorios por WhatsApp (RF-10) y la sección expandible de historial de procesos finalizados (RF-15). \\
 		\hline
-		\texttt{pet-add.html} & Asistente de registro de mascota en cuatro pasos: datos generales, fotografía representativa, historial médico y carnet de vacunación, y antecedentes genéticos (RF-01, RF-02, RF-14, RF-16). \\
+		\texttt{pet-add.html} & Asistente de registro de mascota en cuatro pasos: datos generales, fotografía representativa con analizador interactivo de validación (RF-17), historial médico y carnet de vacunación con trazabilidad de cepa/lote/aplicador (RF-14, RF-24), y antecedentes genéticos (RF-01, RF-02, RF-16), incluyendo el identificador de microchip (RF-21). \\
 		\hline
-		\texttt{pet-profile.html} & Perfil propio de la mascota, con edición del historial médico, la publicación y la configuración de privacidad por campo sensible (RF-03, RF-11, RF-13). \\
+		\texttt{pet-profile.html} & Perfil propio de la mascota, con edición del historial médico, la publicación, la configuración de privacidad por campo sensible (RF-03, RF-11, RF-13), el bloqueo de la opción de cruza sin certificado veterinario validado (RF-19), la publicación de avisos de mascota extraviada (RF-25) y el módulo de doble validación por segunda opinión veterinaria (RF-26). \\
 		\hline
-		\texttt{explore.html} & Búsqueda y filtrado de mascotas publicadas por especie, estado de interés y ubicación aproximada (RF-04). \\
+		\texttt{explore.html} & Búsqueda y filtrado de mascotas publicadas por especie, estado de interés y ubicación aproximada (RF-04), incluyendo el identificador de microchip y los avisos de mascota extraviada en las tarjetas de resultado (RF-21, RF-25). \\
 		\hline
-		\texttt{pet-detail.html} & Perfil público de una mascota, con la información filtrada según el nivel de acceso del usuario consultante (RF-03, RNF-16). \\
+		\texttt{pet-detail.html} & Perfil público de una mascota, con la información filtrada según el nivel de acceso del usuario consultante (RF-03, RNF-16) y el identificador de microchip cuando corresponde (RF-21). \\
 		\hline
 		\texttt{request.html} & Formulario y seguimiento de solicitudes de adopción o cruza por etapas, con panel de mensajería asociado a cada solicitud (RF-05, RF-07, RF-08, RF-18). \\
 		\hline
-		\texttt{compatibility.html} & Evaluación de compatibilidad entre dos mascotas mediante una heurística de reglas explícitas, con emisión de alertas de riesgo (RF-06, RF-23, RNF-13). \\
+		\texttt{compatibility.html} & Evaluación de compatibilidad entre dos mascotas mediante una heurística de reglas explícitas, con emisión de alertas de riesgo (RF-06, RF-23, RNF-13) y de la alerta automática por superación del umbral semestral de cruzas repetitivas (RF-27). \\
 		\hline
-		\texttt{vet-panel.html} & Panel de validación veterinaria de documentos e historiales médicos pendientes (RF-09, RD-03). \\
+		\texttt{vet-panel.html} & Panel de validación veterinaria de documentos e historiales médicos pendientes (RF-09, RD-03), incluyendo el flujo de segunda opinión sobre registros ya validados (RF-26). \\
 		\hline
 		\texttt{post-adoption.html} & Registro y consulta del seguimiento posterior a una adopción completada (RF-22). \\
 		\hline
 		\texttt{css/styles.css} & Hoja de estilos única con diseño responsivo mediante CSS Grid y Flexbox, y puntos de quiebre para dispositivos móviles, tabletas y escritorio (RNF-11). \\
 		\hline
-		\texttt{js/db.js} & Capa de acceso a datos sobre \texttt{localStorage}: define las colecciones del dominio (usuarios, mascotas, historiales médicos, antecedentes genéticos, solicitudes, mensajes, evaluaciones de compatibilidad y seguimientos), el conjunto de datos ficticios de arranque y las operaciones CRUD genéricas. \\
+		\texttt{js/db.js} & Capa de acceso a datos sobre \texttt{localStorage}: define las colecciones del dominio (usuarios, mascotas, historiales médicos, antecedentes genéticos, solicitudes, mensajes, evaluaciones de compatibilidad y seguimientos), el conjunto de datos ficticios de arranque y las operaciones CRUD genéricas. Estas mismas ocho colecciones se ampliaron con los campos necesarios para soportar RF-10, RF-15, RF-17, RF-19, RF-21, RF-24, RF-25, RF-26 y RF-27, sin requerir colecciones adicionales. \\
 		\hline
 		\texttt{js/auth.js} & Gestión de la sesión activa mediante selección de rol, sin autenticación por contraseña, simulando de forma declarada el resultado de RF-12. \\
 		\hline
@@ -4582,6 +4609,18 @@ doi=true
 		del resultado explicado junto con las alertas de riesgo generadas
 		(RF-06, RF-08, RF-23).
 	\end{enumerate}
+	
+	El recorrido anterior ejercita los requisitos \emph{Must} y se mantiene sin
+	cambios respecto a la Entrega 3 (2A). Los requisitos incorporados en esta
+	iteración se ejercitan mediante dos flujos adicionales, no numerados en la
+	secuencia principal por tratarse de prioridad \emph{Should}: en el panel de
+	la Dra. Melissa Vera (\texttt{vet-panel.html}), la segunda opinión
+	veterinaria de RF-26 puede solicitarse sobre un registro ya validado; y al
+	evaluar la compatibilidad de Toby (\texttt{compatibility.html}) como
+	interesado en cruza, la alerta de uso repetitivo de RF-27 se dispara de
+	forma automática y reproducible, dado que su registro de datos ficticios
+	ya incluye un historial de cruzas completadas suficiente para superar el
+	umbral definido.
 	
 	Al momento de esta redacción, el código del MVP se encuentra completo y
 	verificado localmente siguiendo el recorrido anterior. El repositorio
