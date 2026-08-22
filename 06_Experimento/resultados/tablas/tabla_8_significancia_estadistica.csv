@@ -1,0 +1,13 @@
+﻿Métrica;Valor / Estadístico;IC 95% / Detalle
+Exactitud;0.5200;[0.3800, 0.6600]
+Precision;0.4000;[0.2258, 0.5806]
+Sensibilidad;0.6667;[0.4375, 0.8824]
+Especificidad;0.4375;[0.2667, 0.6129]
+F1;0.5000;[0.3077, 0.6667]
+Kappa_detector_consenso;0.0909;[-0.1600, 0.3329]
+;;
+Prueba de hipótesis;Chi-cuadrado de independencia (Pearson, corrección de continuidad);
+Estadístico (chi2);0.1772;gl=1
+Valor p;0.6738;N=50
+Tamaño del efecto (phi);0.0595;
+Interpretación;Con N=50 requisitos, el estudio no alcanza significancia estadística (p=0.6738) para afirmar asociación entre el detector y el consenso experto. Esto es coherente con el tamaño de muestra reducido y debe reportarse como limitación de potencia estadística, no como evidencia de que el detector no funciona.;
