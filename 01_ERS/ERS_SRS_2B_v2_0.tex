@@ -248,7 +248,7 @@ doi=true
 			1.0 & 30/05/2026 & Equipo MundiPets & Entrega 1A: planificación y elicitación. \\
 			2.0 & 05/07/2026 & Equipo MundiPets & Entrega 2 (1B): ERS/SRS parcial; incorpora correcciones de la 1A y agrega requisitos, UML, priorización y trazabilidad. \\
 			3.0 & 29/07/2026 & Equipo MundiPets & Entrega 3 (2A): ERS/SRS completa. Amplía a 25 RF, 16 RNF y 9 RD, agrega requisitos legales, explicabilidad, historias de usuario, modelado UML completo, priorización Kano/WSJF, trazabilidad extendida, MVP y componente empírico. \\
-			4.0 & 30/08/2026 & Equipo MundiPets & Entrega 4 (2B): revisión de calidad de los requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018 (RF-02, RF-05, RF-12, RF-17, RF-18 y RF-23 corregidos por ambigüedad, duplicidad o inconsistencia) e incorporación de dos nuevos requisitos funcionales, RF-26 y RF-27, a partir de la nueva evidencia recolectada EV-23 (walkthrough/entrevista PROP-12) y EV-24 (walkthrough/entrevista VET-07). \\
+			4.0 & 30/08/2026 & Equipo MundiPets & Entrega 4 (2B): revisión de calidad de los requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018 (RF-02, RF-05, RF-12, RF-17, RF-18 y RF-23 corregidos por ambigüedad, duplicidad o inconsistencia) e incorporación de dos nuevos requisitos funcionales, RF-26 y RF-27, a partir de la nueva evidencia recolectada EV-23 (walkthrough/entrevista PROP-12) y EV-24 (walkthrough/entrevista VET-07). Cierre de PE5: el CCB resuelve formalmente las 9 RFC pendientes de la inspección PE4, sin dejar ninguna abierta. Se corrigen RF-06, RF-07, RF-10, RNF-02 y RNF-03 (RFC-I, RFC-F, RFC-C, RFC-E y corrección de alcance derivada de RFC-G); se redefine RNF-15 para ser coherente con RF-07 (RFC-H). Se rechazan formalmente, con justificación, RFC-D (alternativa a RFC-C), la propuesta original de RFC-G (relajar el umbral en vez de acotar el alcance) y RFC-B y RFC-J (requieren evidencia de entrevista no disponible; quedan como limitación de alcance reconocida en RD-06 y RL-01). \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -1327,29 +1327,31 @@ doi=true
 		Actor & Propietario de mascota, Interesado en cruza \\
 		Origen (ID de evidencia) & EV-01 a EV-08, EV-11, EV-13, EV-14, EV-15, EV-16 \\
 		Entradas & Selección de dos mascotas registradas. \\
-		Salidas & Información comparativa para evaluar la compatibilidad, junto con una advertencia de que el resultado es orientativo y no sustituye la evaluación de un veterinario. \\
+		Salidas & Veredicto de compatibilidad en tres niveles discretos --- \emph{compatible}, \emph{compatible con reservas} o \emph{no recomendado}---, acompañado de la explicación exigida por RNF-13 y de una advertencia de que el resultado es orientativo y no sustituye la evaluación de un veterinario. \\
 		Precondiciones & Ambas mascotas deben encontrarse registradas. \\
-		Postcondiciones & El usuario dispone de información suficiente para decidir si continúa con el proceso de cruza. \\
+		Postcondiciones & El usuario dispone de un veredicto clasificado y de su explicación para decidir si continúa con el proceso de cruza. \\
 		Prioridad (MoSCoW) & Must \\
-		Criterio de verificación & Seleccionar dos mascotas y comprobar que el sistema presenta la información comparativa junto con la advertencia orientativa. \\
+		Criterio de verificación & Seleccionar dos mascotas y comprobar que el sistema presenta uno de los tres niveles de veredicto junto con la explicación y la advertencia orientativa. \\
 	\end{atributos}
+	
 	
 	\subsubsection{RF-07 --- Sistema de mensajería entre usuarios}
 	
 	\begin{atributos}{RF-07}{RF-07 --- Sistema de mensajería entre usuarios.}
 		Identificador & RF-07 \\
 		Nombre & Sistema de mensajería entre usuarios \\
-		Descripción & El sistema deberá permitir la comunicación entre propietarios e interesados mediante mensajes para coordinar procesos de adopción y cruza. \\
+		Descripción & El sistema deberá permitir la comunicación entre propietarios e interesados mediante mensajes para coordinar procesos de adopción y cruza, incluyendo la posibilidad de que el usuario reporte un mensaje o interacción como spam, lenguaje ofensivo o intento de acuerdo externo indebido, registrando el motivo del reporte asociado a la conversación. \\
 		Actor & Propietario de mascota, Adoptante, Interesado en cruza \\
 		Origen (ID de evidencia) & EV-02, EV-07, EV-08 \\
-		Entradas & Mensaje enviado por un usuario. \\
-		Salidas & Conversación registrada entre los usuarios. \\
+		Entradas & Mensaje enviado por un usuario; motivo de reporte manual seleccionado por el receptor. \\
+		Salidas & Conversación registrada entre los usuarios; reporte manual registrado y asociado a la conversación cuando corresponde. \\
 		Precondiciones & Ambos usuarios deben encontrarse registrados. \\
-		Postcondiciones & El mensaje queda almacenado y disponible para ambos participantes. \\
+		Postcondiciones & El mensaje queda almacenado y disponible para ambos participantes; si se reporta, el motivo queda vinculado a la conversación para su revisión. \\
 		Prioridad (MoSCoW) & Could \\
-		Criterio de verificación & Enviar un mensaje entre dos usuarios y verificar que ambos puedan visualizarlo. \\
+		Criterio de verificación & Enviar un mensaje entre dos usuarios y verificar que ambos puedan visualizarlo; reportar un mensaje y comprobar que el motivo quede asociado a la conversación. \\
 	\end{atributos}
 	
+
 	\subsubsection{RF-08 --- Gestionar solicitudes de cruza}
 	
 	\begin{atributos}{RF-08}{RF-08 --- Gestionar solicitudes de cruza.}
@@ -1387,16 +1389,17 @@ doi=true
 	\begin{atributos}{RF-10}{RF-10 --- Gestionar recordatorios de controles preventivos.}
 		Identificador & RF-10 \\
 		Nombre & Gestionar recordatorios de controles preventivos \\
-		Descripción & El sistema deberá generar recordatorios por notificación en la aplicación y WhatsApp para informar al propietario sobre próximas vacunas, desparasitaciones y controles veterinarios, enviándolos con una semana y un día de anticipación. \\
+		Descripción & El sistema deberá entregar al propietario, con una semana y un día de anticipación, un recordatorio sobre próximas vacunas, desparasitaciones y controles veterinarios de la mascota, utilizando WhatsApp como canal principal y el canal de notificación in-app como respaldo automático cuando el proveedor externo no esté disponible \\
 		Actor & Propietario de mascota \\
 		Origen (ID de evidencia) & EV-02, EV-04, EV-06, EV-11 \\
-		Entradas & Fechas de vacunas, controles veterinarios y desparasitaciones. \\
-		Salidas & Notificaciones o recordatorios generados por el sistema en los dos momentos definidos. \\
+		Entradas & Fechas de vacunas, controles veterinarios y desparasitaciones; estado de disponibilidad del proveedor externo de mensajería. \\
+		Salidas & Notificaciones o recordatorios generados por el sistema en los dos momentos definidos, por WhatsApp o, en su ausencia, por el canal in-app de respaldo. \\
 		Precondiciones & Deben existir fechas registradas para los controles preventivos de la mascota. \\
-		Postcondiciones & El propietario recibe el recordatorio correspondiente antes de la fecha programada. \\
+		Postcondiciones & El propietario recibe el recordatorio correspondiente antes de la fecha programada, por al menos uno de los dos canales disponibles. \\
 		Prioridad (MoSCoW) & Should \\
-		Criterio de verificación & Registrar una fecha de vacunación próxima y verificar que el sistema genere el recordatorio una semana y un día antes. \\
+		Criterio de verificación & Registrar una fecha de vacunación próxima y verificar que el sistema genere el recordatorio una semana y un día antes; simular la indisponibilidad de WhatsApp y comprobar que el recordatorio se entregue igualmente por el canal in-app. \\
 	\end{atributos}
+	
 	
 	\subsubsection{RF-11 --- Administrar la privacidad de la información}
 	
@@ -1669,8 +1672,6 @@ doi=true
 		Prioridad (MoSCoW) & Should \\
 		Criterio de verificación & Registrar más de dos procesos de cruza completados para la misma mascota dentro de seis meses y comprobar que el sistema emite la alerta correspondiente. \\
 	\end{atributos}
-	
-	
 	% ------------------------------------------------------------
 	\subsection{Requisitos no funcionales}
 	\label{sec:rnf}
@@ -1716,12 +1717,13 @@ doi=true
 		Identificador & RNF-02 \\
 		Nombre & Disponibilidad del sistema \\
 		Característica ISO 25010 & Fiabilidad \\
-		Descripción & El sistema deberá mantenerse disponible para los usuarios con una disponibilidad mínima del 99\,\% mensual, permitiendo el acceso continuo a sus funcionalidades durante la operación normal de la plataforma. \\
-		Métrica & Porcentaje de disponibilidad mensual. \\
-		Valor objetivo & $\geq$ 99\,\% de disponibilidad mensual. \\
+		Descripción & El sistema deberá mantenerse disponible para los usuarios con una disponibilidad mínima del 99\,\% mensual, permitiendo el acceso continuo a sus funcionalidades durante la operación normal de la plataforma. Este criterio aplica exclusivamente al entorno de producción con backend desplegado; no es exigible ni medible sobre el MVP local descrito en la Sección~\ref{sec:mvp-alcance}, al no operar este último en un ambiente de uso continuo que permita demostrar disponibilidad mensual. \\
+		Métrica & Porcentaje de disponibilidad mensual, medido únicamente en producción. \\
+		Valor objetivo & $\geq$ 99\,\% de disponibilidad mensual en producción. \\
 		Prioridad (MoSCoW) & Must \\
-		Criterio de verificación & Monitorear la disponibilidad del sistema durante un mes de operación y comprobar que cumple el porcentaje establecido. \\
+		Criterio de verificación & Monitorear la disponibilidad del sistema en producción durante un mes de operación y comprobar que cumple el porcentaje establecido; no aplica como criterio de aceptación del MVP. \\
 	\end{atributos}
+	
 	
 	\subsubsection{RNF-03 --- Tiempo de respuesta del sistema}
 	
@@ -1729,12 +1731,13 @@ doi=true
 		Identificador & RNF-03 \\
 		Nombre & Tiempo de respuesta del sistema \\
 		Característica ISO 25010 & Eficiencia de desempeño \\
-		Descripción & El sistema deberá responder a las consultas de perfiles de mascotas, historial médico y resultados de búsqueda en un tiempo máximo de 2 segundos en el percentil 95, bajo una carga nominal de 100 usuarios concurrentes. \\
-		Métrica & Tiempo de respuesta en el percentil 95 (P95) bajo carga nominal. \\
-		Valor objetivo & $\leq$ 2 segundos (P95) con 100 usuarios concurrentes. \\
+		Descripción & El sistema deberá responder a las consultas de perfiles de mascotas, historial médico y resultados de búsqueda en un tiempo máximo de 2 segundos en el percentil 95, bajo una carga nominal de 100 usuarios concurrentes. Este criterio aplica exclusivamente al entorno de producción con backend desplegado; no es exigible ni medible sobre el MVP local descrito en la Sección~\ref{sec:mvp-alcance}, que persiste su información en \texttt{localStorage} sin un servidor sobre el cual ejecutar una prueba de carga concurrente. \\
+		Métrica & Tiempo de respuesta en el percentil 95 (P95) bajo carga nominal, medido únicamente en producción. \\
+		Valor objetivo & $\leq$ 2 segundos (P95) con 100 usuarios concurrentes en producción. \\
 		Prioridad (MoSCoW) & Should \\
-		Criterio de verificación & Ejecutar una prueba de carga con 100 usuarios concurrentes y comprobar que el percentil 95 del tiempo de respuesta no supera el valor objetivo. \\
+		Criterio de verificación & Ejecutar una prueba de carga con 100 usuarios concurrentes en el entorno de producción y comprobar que el percentil 95 del tiempo de respuesta no supera el valor objetivo; no aplica como criterio de aceptación del MVP. \\
 	\end{atributos}
+	
 	
 	\subsubsection{RNF-04 --- Facilidad de uso de la plataforma}
 	
@@ -1885,12 +1888,13 @@ doi=true
 		Identificador & RNF-15 \\
 		Nombre & Explicabilidad de la moderación de mensajes \\
 		Característica ISO 25010 & Interacción de usuario (Explicabilidad) \\
-		Descripción & Cuando un mensaje sea marcado como inapropiado por el componente de moderación automática, el sistema deberá notificar la categoría de infracción detectada (lenguaje ofensivo, spam, solicitud de pago externo) mediante una explicación por ejemplos, antes de bloquear el envío. \\
-		Métrica & Porcentaje de mensajes moderados con categoría mostrada y calificación media de comprensión (Likert 1--5). \\
-		Valor objetivo & 100\,\% de mensajes moderados con categoría mostrada; calificación media de comprensión $\geq$ 4/5. \\
+		Descripción & Cuando un mensaje sea reportado por un usuario conforme al mecanismo de reporte manual de RF-07, el sistema deberá notificar al remitente la categoría del motivo señalado (lenguaje ofensivo, spam o acuerdo externo indebido) mediante una explicación por ejemplos. \\
+		Métrica & Porcentaje de reportes procesados con categoría mostrada al remitente y calificación media de comprensión (Likert 1--5). \\
+		Valor objetivo & 100\,\% de reportes procesados con categoría mostrada; calificación media de comprensión $\geq$ 4/5. \\
 		Prioridad (MoSCoW) & Should \\
-		Criterio de verificación & Enviar mensajes de prueba con contenido inapropiado y comprobar que se muestra la categoría de infracción antes de bloquear el envío; encuestar la comprensión de la notificación. \\
+		Criterio de verificación & Reportar un mensaje de prueba mediante el mecanismo de RF-07 y comprobar que el remitente reportado recibe la categoría del motivo señalado. \\
 	\end{atributos}
+	
 	
 	\subsubsection{RNF-16 --- Confidencialidad de datos de ubicación y contacto}
 	
@@ -1957,7 +1961,7 @@ doi=true
 			\toprule
 			\textbf{ID} & \textbf{Artículo (LOPDP)} & \textbf{Obligación legal} & \textbf{RF/RNF/RD que la implementa} \\
 			\midrule
-			RL-01 & Art. 7 y 8 & El tratamiento de datos personales del propietario debe basarse en un consentimiento libre, específico, informado e inequívoco, revocable en cualquier momento. & RF-01 (registro con aceptación de términos), RF-12 (verificación de identidad), Apéndice B.6 (consentimientos de campo) \\
+			RL-01 & Art. 7 y 8 & El tratamiento de datos personales del propietario debe basarse en un consentimiento libre, específico, informado e inequívoco, revocable en cualquier momento. & RF-01 (registro con aceptación de términos), RF-12 (verificación de identidad), Apéndice B.6 (consentimientos de campo) cubren el otorgamiento del consentimiento; la revocación en cualquier momento no cuenta aún con un RF propio (véase nota posterior a esta tabla) \\
 			\addlinespace
 			RL-02 & Art. 12 y 13 & El titular debe ser informado sobre la finalidad, el responsable y las transferencias de sus datos, y tiene derecho a acceder gratuitamente a ellos dentro de 15 días. & RF-03 (consultar perfil completo), RF-11 (privacidad) \\
 			\addlinespace
@@ -1978,6 +1982,7 @@ doi=true
 			\bottomrule
 		\end{tabularx}
 	\end{table}
+	
 	
 	% ------------------------------------------------------------
 	\subsection{Restricciones de diseño}
@@ -2049,10 +2054,11 @@ doi=true
 		Identificador & RD-06 \\
 		Nombre & Mecanismo de eliminación de cuenta y datos personales \\
 		Descripción & El sistema deberá permitir que el propietario solicite la eliminación de su cuenta y de los datos personales asociados, ejecutando la supresión (o anonimización cuando exista obligación legal de conservación) dentro de un plazo definido. \\
-		Justificación & El Art. 15 de la LOPDP reconoce el derecho de eliminación del titular; ningún RF de los 25 definidos cubría esta función (vacío detectado en 3.4, RL-04). \\
+		Justificación & El Art. 15 de la LOPDP reconoce el derecho de eliminación del titular; ningún RF de los 27 vigentes cubre esta función (vacío detectado en 3.4, RL-04). \\
 		Impacto & Modelo de datos, módulo de cuentas, políticas de retención y borrado en cascada del historial médico y publicaciones asociadas. \\
 		Prioridad (MoSCoW) & Must \\
 	\end{atributos}
+	
 	
 	\subsubsection{RD-07 --- Protocolo de notificación de vulneraciones de seguridad}
 	
@@ -3765,7 +3771,17 @@ doi=true
 	\ref{sec:restricciones}. Con ello se supera el piso mínimo de 25 RF y 15 RNF
 	exigido por esta entrega. RF-26 y RF-27 se incorporan a partir de la nueva
 	evidencia recolectada EV-23 (walkthrough/entrevista PROP-12) y EV-24
-	(walkthrough/entrevista VET-07).
+	(walkthrough/entrevista VET-07). Como cierre de la PE5, el Change Control Board resolvió formalmente
+	las 9 RFC pendientes de la inspección PE4 (Sección~\ref{sec:trazabilidad}):
+	se corrigen RF-06, RF-07, RF-10, RNF-02 y RNF-03 (RFC-I, RFC-F, RFC-C,
+	RFC-E y la corrección de alcance derivada de RFC-G); se redefine el
+	alcance de RNF-15 para que sea coherente con RF-07 (RFC-H); y se
+	rechazan formalmente, con justificación registrada, la propuesta
+	original de RFC-G (relajar el umbral de RNF-03) y las RFC-B y RFC-J por
+	no contar con evidencia de entrevista que sustente un requisito
+	funcional nuevo y verificable; estas dos últimas quedan documentadas
+	como limitaciones de alcance reconocidas en RD-06 y RL-01,
+	respectivamente, sin RFC abiertas o sin resolver.
 	
 	\begin{longtable}{@{}p{2.2cm} p{7.5cm} p{3.5cm}@{}}
 		\caption{Clasificación de requisitos y restricciones (Entrega 2A).}
@@ -6470,12 +6486,12 @@ doi=true
 	\subsection*{B.8 Codificación temática y curva de saturación}
 	\label{sec:codificacion}
 	
-	Se aplicó codificación abierta (\emph{open coding}) sobre las veintidós
-	evidencias de campo recolectadas en las Entregas 2 (1B) y 3 (2A)
+	Se aplicó codificación abierta (\emph{open coding}) sobre las veinticuatro
+	evidencias de campo recolectadas en las Entregas 2 (1B), 3 (2A) y 4 (2B)
 	--- entrevistas, cuestionario, observación y sesiones de validación
-	\emph{walkthrough}, EV-01 a EV-22 ---, identificando fragmentos relevantes,
+	\emph{walkthrough}, EV-01 a EV-24 ---, identificando fragmentos relevantes,
 	asignándoles un código descriptivo y agrupándolos en categorías temáticas.
-	El cuaderno de codificación completo contiene \textbf{104 fragmentos
+	El cuaderno de codificación completo contiene \textbf{121 fragmentos
 		codificados} y se versiona en
 	\texttt{02\_Evidencias/Codificacion\_Tematica/codificacion\_tematica.csv},
 	con las columnas Fragmento, Código, Categoría, Requisito derivado, ID de
@@ -6497,6 +6513,10 @@ doi=true
 			``El acceso a esta información debe estar restringido'' & Control granular de visibilidad médica & Privacidad & Refuerza RF-11 & EV-04 \\
 			\addlinespace
 			``Se puede sacar de algún registro de alguna plataforma'' & Mención de plataforma virtual como registro & Seguimiento preventivo & Refuerza RF-14, RNF-08 & EV-05 \\
+			\addlinespace
+			``Evitar el uso indebido o repetitivo de una mascota... maltrato animal'' & Riesgo de maltrato animal por cruces repetitivos & Compatibilidad y cruza & RF-27 (origen directo) & EV-23 \\
+			\addlinespace
+			``Podría funcionar mejor un sistema donde la información sea validada mediante otros colegas'' & Validación médica por pares veterinarios & Confianza y verificación & RF-26 (origen directo) & EV-24 \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -6507,12 +6527,12 @@ doi=true
 	códigos descrito por Hennink, Kaiser y Marconi \cite{hennink2017}: se
 	registra, para cada evidencia procesada en el orden del catálogo B.1, el
 	número de códigos nuevos que aporta y el acumulado de códigos únicos. Sobre
-	las veintidós evidencias se identificaron \textbf{80 códigos únicos}.
+	las veinticuatro evidencias se identificaron \textbf{95 códigos únicos}.
 	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=\textwidth]{figuras/curva_saturacion.png}
-		\caption[Curva de saturación temática del corpus de evidencias]{Curva de saturación temática del corpus de evidencias (EV-01 a EV-22): códigos nuevos por evidencia y acumulado de códigos únicos.}
+		\caption[Curva de saturación temática del corpus de evidencias]{Curva de saturación temática del corpus de evidencias (EV-01 a EV-24): códigos nuevos por evidencia y acumulado de códigos únicos.}
 		\label{fig:curva-saturacion}
 	\end{figure}
 	
@@ -6523,7 +6543,19 @@ doi=true
 	temática del corpus de entrevistas y cuestionario. La incorporación de las
 	cuatro sesiones de validación \emph{walkthrough} (EV-19 a EV-22) reactiva
 	parcialmente el descubrimiento, con 7 códigos nuevos en EV-19 y 3 en cada
-	una de las restantes, hasta alcanzar los 80 códigos acumulados. Este repunte
+	una de las restantes, hasta alcanzar los 80 códigos acumulados al cierre de
+	la Entrega 3 (2A). En la Entrega 4 (2B), la incorporación de EV-23
+	(PROP-12) y EV-24 (VET-07) --- ambas de naturaleza mixta, entrevista
+	semiestructurada seguida de sesión de validación \emph{walkthrough} ---
+	reactiva nuevamente el descubrimiento con una intensidad comparable a la de
+	las primeras entrevistas de campo: 7 códigos nuevos en EV-23 y 8 en EV-24,
+	hasta alcanzar los \textbf{95 códigos acumulados} con los que cierra el
+	corpus de esta revisión. Este segundo repunte, más pronunciado que el de
+	las sesiones de \emph{walkthrough} puras (EV-19 a EV-22), es coherente con
+	el carácter combinado de EV-23 y EV-24: al reintroducir una fase de
+	entrevista semiestructurada antes de la validación, ambas evidencias
+	exploran vocabulario nuevo (por ejemplo, el origen directo de RF-26 y
+	RF-27) además de confirmar códigos ya existentes del corpus. Este repunte
 	es esperable y no invalida la saturación previa: el \emph{walkthrough} es un
 	tipo de evidencia distinto al de la elicitación, orientado a la validación
 	de requisitos ya especificados, por lo que introduce un vocabulario propio
@@ -7010,7 +7042,7 @@ doi=true
 			
 			TR-39 & LOPDP & Art. 9 & Confidencialidad de ubicación y contacto & Propietario & EV-12, EV-16 & RNF-16 & CU-06 & HU-08 & CA-08 & --- \\ \midrule
 			
-			TR-40 & LOPDP & Art. 30--32 & Anonimización de evidencias de campo & Equipo investigador & EV-01 a EV-22 & RD-09 & (Transversal a Datos) & --- & --- & --- \\ \midrule
+			TR-40 & LOPDP & Art. 30--32 & Anonimización de evidencias de campo & Equipo investigador & EV-01 a EV-24 & RD-09 & (Transversal a Datos) & --- & --- & --- \\ \midrule
 			TR-41 & --- & --- & Interoperabilidad de notificaciones & Propietario & EV-09, EV-18 & RNF-09 & CU-12 & --- & --- & --- \\ \midrule
 			TR-42 & --- & --- & Mantenibilidad del código & Equipo desarrollador & Derivado del equipo de desarrollo & RNF-10 & (Transversal a Diseño) & --- & --- & --- \\ \midrule
 			TR-43 & --- & --- & Portabilidad entre navegadores & Todos los usuarios & EV-07, EV-08 & RNF-11 & (Transversal a UI) & --- & --- & --- \\ \midrule
