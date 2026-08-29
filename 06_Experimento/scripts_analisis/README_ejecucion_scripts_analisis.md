@@ -8,10 +8,10 @@ Los datos de entrada viven en `06_Experimento/datos_crudos/`, no dentro de `scri
 
 ```text
 06_Experimento/
-├── README_registro_previo.md
+├── README_osf_registration.md
 ├── protocolo.pdf
-├── registro_previo_protocolo.pdf
-├── bitacora_desviaciones.pdf
+├── osf_registration.pdf
+├── osf_deviations.pdf
 ├── datos_crudos/
 │   ├── evaluacion_expertos.csv
 │   ├── salida_detector.csv
