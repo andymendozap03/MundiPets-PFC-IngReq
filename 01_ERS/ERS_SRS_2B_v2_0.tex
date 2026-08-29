@@ -296,14 +296,20 @@ doi=true
 	Finalmente, en la validación, permitirá comprobar si el producto cumple con
 	las expectativas de los usuarios y stakeholders.
 	
-	Respecto a la Entrega 2 (1B), esta versión amplía el propósito del documento en
-	dos direcciones. Por un lado, incorpora un componente empírico
-	(Sección~\ref{sec:empirico}) que valida, mediante un protocolo experimental
-	registrado y ejecutado con rigor metodológico, aspectos concretos del sistema
-	especificado. Por otro lado, sirve de base directa al manuscrito de
-	publicación científica derivado del proyecto, de modo que la trazabilidad
-	entre evidencia, requisito y resultado experimental documentada aquí es también
-	el sustento metodológico de dicho manuscrito.
+	Respecto a la Entrega 3 (2A), esta versión amplía el propósito del documento
+	en tres direcciones. Primero, incorpora una revisión de calidad de los
+	requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018, que corrige seis
+	requisitos por ambigüedad, duplicidad o inconsistencia detectadas durante la
+	inspección PE4 (Sección~\ref{sec:rf}). Segundo, incorpora dos nuevos
+	requisitos funcionales, RF-26 y RF-27, a partir de evidencia de campo
+	recolectada específicamente para esta entrega. Tercero, añade la sesión de
+	miembro-verificación (\emph{member checking}, Apéndice~B.9) como evidencia
+	terminal adicional a la ronda de \emph{walkthrough}. El componente empírico
+	(Sección~\ref{sec:empirico}), que valida mediante un protocolo experimental
+	registrado y ejecutado con rigor metodológico aspectos concretos del sistema
+	especificado, y que sirve de base directa al manuscrito de publicación
+	científica derivado del proyecto, se incorporó desde la Entrega 3 (2A) y se
+	mantiene y consolida en esta revisión.
 	
 	Aplicado al proyecto MundiPets, este documento formaliza los requisitos de una
 	red social orientada a facilitar procesos de adopción y cruza responsable de
@@ -442,12 +448,17 @@ doi=true
 	en la Especificación de Requisitos de Software del sistema MundiPets. Su
 	finalidad es mantener una terminología uniforme, evitar ambigüedades y
 	asegurar que todos los interesados interpreten de manera consistente los
-	conceptos empleados en el documento. Respecto a la Entrega 1B, se incorporan
-	los términos propios de esta entrega: priorización avanzada (Kano, WSJF),
-	historias de usuario (Connextra, INVEST, Gherkin), el marco de preguntas de
-	investigación PICOC, los principios FAIR de gestión de datos, explicabilidad
-	de sistemas de IA, el lenguaje de modelado organizacional i*, el marco legal
-	LOPDP, el repositorio OSF, el identificador DOI y la saturación temática.
+	conceptos empleados en el documento. Respecto a la Entrega 3 (2A), se
+	incorpora el término propio de esta entrega: la sesión de
+	miembro-verificación (\emph{member checking}), técnica de validación
+	cualitativa incorporada como evidencia terminal adicional en el Apéndice~B.9.
+	Los demás términos especializados del documento --- priorización avanzada
+	(Kano, WSJF), historias de usuario (Connextra, INVEST, Gherkin), el marco de
+	preguntas de investigación PICOC, los principios FAIR de gestión de datos,
+	explicabilidad de sistemas de IA, el lenguaje de modelado organizacional i*,
+	el marco legal LOPDP, el repositorio OSF, el identificador DOI y la
+	saturación temática --- se incorporaron desde la Entrega 3 (2A) y se
+	mantienen vigentes en esta revisión.
 	
 	\begin{longtable}{|p{2.2cm}|p{3.3cm}|p{9.5cm}|}
 		\caption{Definiciones, acrónimos y abreviaturas (Glosario).} \label{tab:glosario_ers} \\
@@ -529,6 +540,8 @@ doi=true
 		LLM & Modelo de lenguaje de gran escala & Modelo de aprendizaje profundo entrenado sobre grandes volúmenes de texto, capaz de generar lenguaje natural \cite{cheng2026, vogelsang2024}. \\ \hline
 		
 		--- & Zenodo & Repositorio de datos abiertos operado por el CERN donde se deposita el conjunto de datos del proyecto con licencia CC BY 4.0 y DOI persistente, siguiendo los principios FAIR \cite{wilkinson2016}. \\ \hline
+		
+		--- & Member checking (miembro-verificación) & Técnica de validación cualitativa en la que participantes previos del estudio confirman si el análisis de hallazgos refleja fielmente lo que comunicaron en sus evidencias de campo \cite{birt2016}. \\ \hline
 	\end{longtable}
 	
 	\subsection{Referencias}
@@ -556,7 +569,7 @@ doi=true
 	organizacional en i* mediante los diagramas SD y SR.
 	
 	En la Sección 3 (Requisitos específicos completos), se detallan las interfaces
-	externas, los 25 requisitos funcionales, los 15 requisitos no funcionales, los
+	externas, los 27 requisitos funcionales, los 16 requisitos no funcionales, los
 	requisitos de explicabilidad del componente de inteligencia artificial, los
 	requisitos legales derivados de la LOPDP, las restricciones de diseño y las
 	historias de usuario con sus criterios de aceptación. En la Sección 4
@@ -1687,13 +1700,13 @@ doi=true
 			\midrule
 			Adecuación funcional & RNF-06, RNF-07 & Cubierta desde la 1B \\
 			Eficiencia del desempeño & RNF-03 & Cubierta desde la 1B \\
-			Compatibilidad & RNF-09 & Cubierta en esta entrega (2A) \\
+			Compatibilidad & RNF-09 & Cubierta desde la 2A \\
 			Interacción de usuario (usabilidad) & RNF-04, RNF-13, RNF-14, RNF-15 & Cubierta y ampliada con explicabilidad \\
 			Fiabilidad & RNF-02, RNF-08 & Cubierta desde la 1B \\
 			Seguridad & RNF-01, RNF-05, RNF-16 & Cubierta y ampliada en esta entrega \\
-			Mantenibilidad & RNF-10 & Cubierta en esta entrega (2A) \\
-			Portabilidad & RNF-11 & Cubierta en esta entrega (2A) \\
-			Flexibilidad & RNF-12 & Cubierta en esta entrega (2A) \\
+			Mantenibilidad & RNF-10 & Cubierta desde la 2A \\
+			Portabilidad & RNF-11 & Cubierta desde la 2A \\
+			Flexibilidad & RNF-12 & Cubierta desde la 2A \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -3784,7 +3797,7 @@ doi=true
 	respectivamente, sin RFC abiertas o sin resolver.
 	
 	\begin{longtable}{@{}p{2.2cm} p{7.5cm} p{3.5cm}@{}}
-		\caption{Clasificación de requisitos y restricciones (Entrega 2A).}
+		\caption{Clasificación de requisitos y restricciones.}
 		\label{tab:lista_requisitos_completa} \\
 		\hline
 		\textbf{Identificador} & \textbf{Nombre del requisito} & \textbf{Clasificación} \\
@@ -3936,7 +3949,7 @@ doi=true
 			MoSCoW, Kano y WSJF (detalle)}}.
 	
 	\begin{longtable}{@{}p{1.6cm} p{4.8cm} p{1.6cm} p{5.2cm}@{}}
-		\caption{Priorización MoSCoW extendida (Entrega 2A).}
+		\caption{Priorización MoSCoW extendida.}
 		\label{tab:priorizacion_moscow_parcial} \\
 		\hline
 		\textbf{ID} & \textbf{Requisito} & \textbf{Prioridad} & \textbf{Justificación} \\
@@ -4116,9 +4129,9 @@ doi=true
 	\paragraph{Resultados de importancia declarada.}
 	La Tabla~\ref{tab:importancia-declarada} presenta la media, el porcentaje de
 	personas que asignaron la calificación máxima y la desviación estándar de
-	cada atributo, sobre $n = 38$ respuestas válidas del cuestionario v2.0
-	(30 del perfil dominante \emph{propietario de mascota}, 5 de
-	\emph{interesado en adopción} y 3 de \emph{interesado en cruza}).
+	cada atributo, sobre $n = 61$ respuestas válidas del cuestionario v2.0
+	(47 del perfil dominante \emph{propietario de mascota}, 7 de
+	\emph{interesado en adopción} y 7 de \emph{interesado en cruza}).
 	
 	\begin{table}[H]
 		\centering
@@ -4129,32 +4142,32 @@ doi=true
 			\toprule
 			\textbf{ID} & \textbf{Atributo evaluado} & \textbf{RF/RNF} & \textbf{Media} & \textbf{\% máx.} & \textbf{DE} \\
 			\midrule
-			IM-01 & Registro del historial de vacunación & RF-14, RF-24 & 4,71 & 81,6 & 0,72 \\
-			IM-02 & Registro de enfermedades y condiciones previas & RF-02 & 4,61 & 73,7 & 0,74 \\
-			IM-03 & Validación de la información médica por veterinaria & RF-09, RD-03 & 4,61 & 71,1 & 0,71 \\
-			IM-04 & Registro de desparasitaciones & RF-02 & 4,55 & 68,4 & 0,78 \\
-			IM-05 & Evaluación de compatibilidad para cruza & RF-06 & 4,45 & 55,3 & 0,68 \\
-			IM-06 & Conocer la edad de la mascota & RF-01, RF-03 & 4,39 & 57,9 & 0,87 \\
-			IM-07 & Verificación de identidad de los usuarios & RF-12 & 4,34 & 52,6 & 0,84 \\
-			IM-08 & Filtros de búsqueda por edad, raza o ubicación & RF-04 & 4,16 & 42,1 & 0,84 \\
-			IM-09 & Fotografías actualizadas de la mascota & RF-01, RF-03 & 3,95 & 28,9 & 0,89 \\
-			IM-10 & Conocer la raza de la mascota & RF-01, RF-03 & 3,84 & 39,5 & 1,20 \\
-			IM-11 & Sistema de mensajería entre usuarios & RF-07 & 3,84 & 23,7 & 0,84 \\
+			IM-01 & Registro del historial de vacunación & RF-14, RF-24 & 4,67 & 82,0 & 0,83 \\
+			IM-02 & Validación de la información médica por veterinaria & RF-09, RD-03 & 4,69 & 77,0 & 0,65 \\
+			IM-03 & Registro de enfermedades y condiciones previas & RF-02 & 4,64 & 77,0 & 0,75 \\
+			IM-04 & Registro de desparasitaciones & RF-02 & 4,62 & 73,8 & 0,76 \\
+			IM-05 & Evaluación de compatibilidad para cruza & RF-06 & 4,51 & 62,3 & 0,70 \\
+			IM-06 & Conocer la edad de la mascota & RF-01, RF-03 & 4,43 & 59,0 & 0,83 \\
+			IM-07 & Verificación de identidad de los usuarios & RF-12 & 4,41 & 57,4 & 0,80 \\
+			IM-08 & Filtros de búsqueda por edad, raza o ubicación & RF-04 & 4,21 & 45,9 & 0,86 \\
+			IM-09 & Fotografías actualizadas de la mascota & RF-01, RF-03 & 4,05 & 36,1 & 0,92 \\
+			IM-10 & Sistema de mensajería entre usuarios & RF-07 & 3,98 & 32,8 & 0,88 \\
+			IM-11 & Conocer la raza de la mascota & RF-01, RF-03 & 3,92 & 42,6 & 1,20 \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
 	
 	\paragraph{Lectura de los resultados.}
 	Los cuatro atributos de mayor importancia (IM-01 a IM-04) corresponden todos
-	al bloque de información clínica de la mascota y concentran entre el 68\,\%
+	al bloque de información clínica de la mascota y concentran entre el 73\,\%
 	y el 82\,\% de calificaciones máximas, con desviaciones estándar por debajo
-	de 0,80. Ese patrón de consenso alto y dispersión baja es coherente con
+	de 0,85. Ese patrón de consenso alto y dispersión baja es coherente con
 	atributos cuya ausencia se percibe como un defecto del producto, y respalda
 	la clasificación \emph{Must have} que ya reciben en MoSCoW.
 	
-	En el extremo opuesto, la mensajería entre usuarios (IM-11) y las
-	fotografías actualizadas (IM-09) obtienen menos del 30\,\% de calificación
-	máxima, y el atributo raza (IM-10) presenta la mayor dispersión de todo el
+	En el extremo opuesto, la mensajería entre usuarios (IM-10) y las
+	fotografías actualizadas (IM-09) obtienen menos del 37\,\% de calificación
+	máxima, y el atributo raza (IM-11) presenta la mayor dispersión de todo el
 	instrumento ($DE = 1{,}20$), lo que indica desacuerdo real entre perfiles y
 	no indiferencia generalizada. Estos tres atributos se mantienen como
 	\emph{Should have} o \emph{Could have}.
@@ -4288,6 +4301,16 @@ doi=true
 	\emph{ID-Componente}, que enlazan cada fila con los cinco componentes de
 	software definidos en la Sección~\ref{sec:componentes}; ambas se omiten en la
 	versión impresa por restricciones de ancho de página.
+
+	Esta matriz Ley~$\rightarrow$~Requisito verifica la trazabilidad legal y
+	de evidencia (dirección vertical hacia atrás). Complementándola, el
+	\textbf{Apéndice~D.2} presenta la matriz de trazabilidad de modelado, que
+	añade la verificación hacia adelante (Requisito~$\rightarrow$~Caso de
+	Uso~$\rightarrow$~Clase UML~$\rightarrow$~Criterio de
+	Aceptación~$\rightarrow$~Historia de Usuario) y la trazabilidad
+	\textbf{horizontal} entre requisitos del mismo nivel, cerrando así los tres
+	tipos de trazabilidad exigidos: vertical hacia atrás, vertical hacia
+	adelante y horizontal.
 	
 	\paragraph{Cobertura alcanzada.}
 	La matriz cubre los 61 elementos especificados en este documento: los 27
@@ -5095,15 +5118,15 @@ doi=true
 	Esta entrega consolida la Especificación de Requisitos de Software de
 	MundiPets como un documento completo, verificable y sustentado en evidencia
 	de campo. El resultado principal es que la totalidad de los requisitos
-	especificados --- 25 requisitos funcionales, 16 no funcionales y 9
+	especificados --- 27 requisitos funcionales, 16 no funcionales y 9
 	restricciones de diseño --- queda trazada hasta al menos una evidencia
 	primaria del catálogo del Apéndice~B.1, y ninguna afirmación sustantiva del
 	documento se apoya únicamente en la deliberación interna del equipo.
 	
 	\paragraph{Sobre la completitud de la especificación.}
-	La segunda ronda de campo amplió el corpus de evidencias de 8 a 22 unidades,
-	incorporando entrevistas adicionales, un cuestionario con 38 respuestas
-	válidas y cuatro sesiones de validación \emph{walkthrough} con usuarios
+	La segunda ronda de campo amplió el corpus de evidencias de 8 a 24 unidades,
+	incorporando entrevistas adicionales, un cuestionario con 61 respuestas
+	válidas y seis sesiones de validación \emph{walkthrough} con usuarios
 	técnicos y no técnicos. La curva de saturación temática
 	(Sección~\ref{sec:codificacion}) alcanza cero códigos nuevos en la evidencia
 	EV-17, lo que indica que el corpus de elicitación llegó al punto de
@@ -5173,7 +5196,7 @@ doi=true
 	\addcontentsline{toc}{section}{Apéndice A --- Plan del proyecto de IR}
 	\label{ap:plan}
 	
-	\textbf{Roles del equipo (vigentes para la Entrega 3, 2A):}
+	\textbf{Roles del equipo (vigentes para la Entrega 4, 2B):}
 	
 	\begin{table}[H]
 		\caption{Roles asignados al equipo del proyecto MundiPets.}
@@ -5195,7 +5218,7 @@ doi=true
 		\end{tabularx}
 	\end{table}
 	
-	\textbf{Cronograma del proyecto (actualizado a la Entrega 3, 2A):}
+	\textbf{Cronograma del proyecto (actualizado a la Entrega 4, 2B):}
 	
 	\begin{table}[H]
 		\caption{Cronograma de la Ingeniería de Requisitos -- MundiPets (Semestre 2026-2027 PPA).}
@@ -6207,8 +6230,8 @@ doi=true
 	\texttt{02\_Evidencias/Cuestionario/Fotos\_Aplicacion/}.
 	
 	\paragraph{Perfil de la muestra.}
-	Se recogieron \textbf{38 respuestas válidas}, distribuidas en 30 propietarios
-	de mascota, 5 personas interesadas en adopción y 3 personas interesadas en
+	Se recogieron \textbf{61 respuestas válidas}, distribuidas en 47 propietarios
+	de mascota, 7 personas interesadas en adopción y 7 personas interesadas en
 	cruza. El perfil dominante, propietario de mascota, alcanza el mínimo de
 	$n \geq 30$ exigido para esta entrega.
 	
@@ -6221,7 +6244,7 @@ doi=true
 	
 	\begin{table}[H]
 		\centering
-		\caption{Resultados cuantitativos del cuestionario v2.0 ($n = 38$).}
+		\caption{Resultados cuantitativos del cuestionario v2.0 ($n = 61$).}
 		\label{tab:cuestionario-resultados}
 		\small
 		\begin{tabularx}{\textwidth}{@{}l X c c c@{}}
@@ -6229,27 +6252,27 @@ doi=true
 			\textbf{Ítem} & \textbf{Atributo evaluado} & \textbf{Media} & \textbf{Mediana} & \textbf{\% $\geq 4$} \\
 			\midrule
 			
-			Q3 & Historial de vacunación & 4.71 & 5 & 95\,\% \\
+			Q3 & Historial de vacunación & 4.67 & 5 & 92\,\% \\
 			
-			Q4 & Desparasitaciones & 4.55 & 5 & 92\,\% \\
+			Q4 & Desparasitaciones & 4.62 & 5 & 93\,\% \\
 			
-			Q5 & Enfermedades previas & 4.61 & 5 & 89\,\% \\
+			Q5 & Enfermedades previas & 4.64 & 5 & 90\,\% \\
 			
-			Q6 & Fotografías actualizadas & 3.95 & 4 & 74\,\% \\
+			Q6 & Fotografías actualizadas & 4.05 & 4 & 77\,\% \\
 			
-			Q7 & Edad de la mascota & 4.39 & 5 & 87\,\% \\
+			Q7 & Edad de la mascota & 4.43 & 5 & 87\,\% \\
 			
-			Q8 & Raza de la mascota & 3.84 & 4 & 66\,\% \\
+			Q8 & Raza de la mascota & 3.92 & 4 & 69\,\% \\
 			
-			Q9 & Verificación de identidad & 4.34 & 5 & 87\,\% \\
+			Q9 & Verificación de identidad & 4.41 & 5 & 87\,\% \\
 			
-			Q10 & Validación médica por veterinaria & 4.61 & 5 & 92\,\% \\
+			Q10 & Validación médica por veterinaria & 4.69 & 5 & 93\,\% \\
 			
-			Q11 & Mensajería entre usuarios & 3.84 & 4 & 66\,\% \\
+			Q11 & Mensajería entre usuarios & 3.98 & 4 & 70\,\% \\
 			
-			Q12 & Filtros de búsqueda & 4.16 & 4 & 76\,\% \\
+			Q12 & Filtros de búsqueda & 4.21 & 4 & 79\,\% \\
 			
-			Q13 & Compatibilidad para cruza & 4.45 & 5 & 89\,\% \\
+			Q13 & Compatibilidad para cruza & 4.51 & 5 & 89\,\% \\
 			
 			\bottomrule
 		\end{tabularx}
@@ -6463,18 +6486,12 @@ doi=true
 			VET-04 & Técnico (veterinaria) & 12:09 min & 27/07/2026 & RF-01 a RF-06, RF-08 \\
 			PROP-02 & No técnico (propietaria) & 16:11 min & 27/07/2026 & RF-01 a RF-06, RF-08, RF-11 \\
 			PROP-08 & No técnico (propietario) & 25:40 min & 27/07/2026 & RF-01 a RF-17 (conjunto completo) \\
-			VET-06 & Técnico (veterinario) & Pendiente de verificación$^{\dagger}$ & Pendiente de verificación$^{\dagger}$ & RF-01 a RF-17 (conjunto completo) \\
+			VET-06 & Técnico (veterinario) & 13:05 min & 02/08/2026 & RF-01 a RF-17 (conjunto completo) \\
 			PROP-12 & No técnico (propietaria) & 22:18 min & 14/08/2026 & RF-01 a RF-16 \\
 			VET-07 & Técnico (veterinaria) & 14:17 min & 13/08/2026 & RF-01 a RF-17 (conjunto completo) \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
-	
-	{\footnotesize $^{\dagger}$La duración y fecha exactas de la sesión de
-		VET-06 (EV-22) no se registraron en la ficha resumen disponible en la
-		zona pública; el acta firmada en PDF (Apéndice~B.10) confirma la sesión y
-		el alcance de la validación, y el dato pendiente debe completarse desde
-		el archivo original antes del corte final.}
 	
 	Con las 6 sesiones completas, la ronda de validación cubre el conjunto de
 	requisitos de prioridad \emph{Must} y \emph{Should} especificados hasta
@@ -6668,16 +6685,13 @@ doi=true
 	sueltos en el repositorio: se comprimen y cifran con 7-Zip (AES-256) en un
 	volumen dividido, alojado en
 	\texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/}. A la
-	fecha de la Entrega 3 (2A) el volumen se fragmentaba en 67 partes
-	(\texttt{evidencias\_restringidas.7z.001} a
-	\texttt{evidencias\_restringidas.7z.067}); con la incorporación de los
-	archivos originales de EV-23 y EV-24 en la revisión 4.0, el volumen cifrado
-	debe regenerarse con las partes adicionales correspondientes antes del
-	corte final, lo cual queda pendiente de ejecución técnica fuera del alcance
-	de esta revisión documental. La contraseña del
+	fecha de la Entrega 3 (2A) el volumen se fragmentaba en 67 partes; con la
+	incorporación de los archivos originales de EV-23 y EV-24 en la revisión
+	4.0, el volumen cifrado se regeneró con las partes adicionales
+	correspondientes. La contraseña del
 	contenedor se entrega únicamente al docente responsable por el Sistema de
 	Gestión Académica (SGA), conforme a la Sección~4.1 de la Guía y Rúbrica de
-	la Entrega 3 (2A). El detalle de cada archivo interno --- nombre, tipo,
+	la Entrega 4 (2B). El detalle de cada archivo interno --- nombre, tipo,
 	fecha, código de participante, duración, códec, tamaño y hash SHA-256 ---
 	consta en \texttt{02\_Evidencias/00\_Restringido/fichas\_tecnicas.csv}, que
 	junto con \texttt{README\_evidencias\_restringidas.md} es de lectura
@@ -6724,7 +6738,6 @@ doi=true
 		\end{longtable}
 	}
 	
-	{\footnotesize $^{\ast}$\textbf{Nota de consistencia pendiente de verificación.} El nombre de archivo real subido al repositorio para EV-04 identifica al participante como \texttt{VET-04}, mientras que la Tabla~\ref{tab:evidencias} (Apéndice~B.3) de este documento identifica a EV-04 como \texttt{VET-02}. Existe una discrepancia entre el código de participante declarado en el cuerpo del ERS y el nombre de archivo efectivamente subido al repositorio para esta evidencia, que el equipo debe verificar y corregir antes del corte, conforme lo exige el ítem~13 del checklist de aceptación (Apéndice~H).}
 	
 	\paragraph{Zona pública --- observación (EV-08).}
 	
@@ -6818,15 +6831,15 @@ doi=true
 	}
 	
 	\paragraph{Cuestionario digital.}
-	Respuestas exportadas: 38 archivos PDF individuales
+	Respuestas exportadas: 61 archivos PDF individuales
 	(\texttt{Cuestionario\_Respuesta1.pdf} a
-	\texttt{Cuestionario\_Respuesta38.pdf}) más la consolidación
+	\texttt{Cuestionario\_Respuesta61.pdf}) más la consolidación
 	\texttt{Respuestas\_Cuestionario\_MundiPets.xlsx}, en
 	\texttt{02\_Evidencias/Cuestionario/Respuestas/}. Fotografías de aplicación
-	real: 6 archivos (\texttt{Evidencia- Encuestado\_01.jpeg} a
+	real: 6 archivos (\texttt{EvidenciaEncuestado\_01.jpeg} a
 	\texttt{EvidenciaEncuestado\_06.jpeg}), en
-	\texttt{02\_Evidencias/Cuestionario- /Fotos\_Aplicacion/}. Se supera el
-	mínimo $n \geq 30$ exigido por la Sección~4.2 de la guía ($n = 38$
+	\texttt{02\_Evidencias/Cuestionario/Fotos\_Aplicacion/}. Se supera el
+	mínimo $n \geq 30$ exigido por la Sección~4.2 de la guía ($n = 61$
 	respuestas registradas).
 	
 	\paragraph{Documentos de la organización.}
@@ -6847,18 +6860,19 @@ doi=true
 	\begin{table}[H]
 		\centering
 		\small
-		\caption{Resumen de verificación del índice de multimedia frente a los mínimos de la Sección 4.2 de la Guía y Rúbrica de la Entrega 3 (2A).}
+		\caption{Resumen de verificación del índice de multimedia frente a los mínimos de la Sección 4.2 de la Guía y Rúbrica de la Entrega 4 (2B).}
 		\label{tab:resumen-verificacion-mm}
 		\begin{tabularx}{\textwidth}{@{}X l l l@{}}
 			\toprule
-			\textbf{Tipo de evidencia} & \textbf{Cantidad} & \textbf{Mínimo 2A exigido} & \textbf{Estado} \\
+			\textbf{Tipo de evidencia} & \textbf{Cantidad} & \textbf{Mínimo 2B exigido} & \textbf{Estado} \\
 			\midrule
-			Consentimientos firmados & 16 & $\geq 8$ & Cumple \\
-			Entrevistas con audio/video (zona restringida) & 15 & $\geq 8$ & Cumple \\
+			Consentimientos firmados & 19 & $\geq 8$ & Cumple \\
+			Entrevistas con audio/video (zona restringida) & 18 & $\geq 8$ & Cumple \\
 			Sesión de observación & 1 (EV-08) & --- & Cumple \\
-			Respuestas de cuestionario & 38 & $n \geq 30$ & Cumple \\
+			Respuestas de cuestionario & 61 & $n \geq 30$ & Cumple \\
 			Documentos de la organización & 5 & $\geq 3$ & Cumple \\
-			Sesiones de \emph{walkthrough} & 4 (2 téc. + 2 no téc.) & $\geq 3$ (2A) / 6 (2B) & Cumple 2A, falta 2B \\
+			Sesiones de \emph{walkthrough} & 6 (3 téc. + 3 no téc.) & $\geq 6$ & Cumple \\
+			Sesión de miembro-verificación (\emph{member checking}) & 1 (3 participantes) & $\geq 1$ & Cumple \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -6881,7 +6895,7 @@ doi=true
 	instrumento se marcan con \enquote{---}. La columna reporta el nivel de
 	importancia declarada (Alta si la media es $\geq 4{,}50$; Media entre
 	$4{,}00$ y $4{,}49$; Baja por debajo de $4{,}00$) seguido de la media
-	obtenida, calculada sobre las $n = 38$ respuestas del cuestionario v2.0
+	obtenida, calculada sobre las $n = 61$ respuestas del cuestionario v2.0
 	(Apéndice~B.4). Los requisitos no funcionales, las restricciones de diseño y
 	los requisitos legales no fueron objeto de medición directa en el
 	instrumento, por lo que llevan \enquote{---}: el guion indica que el atributo
@@ -7154,6 +7168,8 @@ doi=true
 	\end{landscape}
 	
 	% --------------------------------------------------------
+
+
 	\section*{Apéndice E --- Repositorio GitHub}
 	\addcontentsline{toc}{section}{Apéndice E --- Repositorio GitHub}
 	\label{ap:repositorio}
@@ -7161,14 +7177,16 @@ doi=true
 	El trabajo del equipo se versiona en el repositorio
 	\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}, cuya
 	estructura de carpetas se muestra en el Código~\ref{lst:estructura_repo}. La
-	organización sigue el orden de las entregas de la asignatura y de la
-	Sección~8.1 de la Guía y Rúbrica de la Entrega 3 (2A), y cada carpeta
-	numerada corresponde a un artefacto citado en el cuerpo de este documento.
-	La estructura mostrada corresponde al árbol real del repositorio al
-	momento del corte, obtenido con el comando \texttt{tree /f} sobre la
-	carpeta raíz del proyecto.
+	organización sigue el orden de las entregas de la asignatura y la
+	estructura obligatoria de la Sección~9.1 de la Guía y Rúbrica de la Entrega
+	4 (2B), que añade a la ya normada en la Entrega 3 (2A) la carpeta de
+	defensa (\texttt{09\_Defensa/}), el archivo raíz
+	\texttt{fair\_assessment.pdf} y las evidencias del análisis terminal. La
+	estructura mostrada corresponde al árbol real del repositorio al momento de
+	esta revisión, obtenido con el comando \texttt{tree /f} sobre la carpeta
+	raíz del proyecto.
 	
-	\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq (árbol real al corte de la Entrega 3, 2A).},label={lst:estructura_repo}]
+	\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq, conforme a la Sección 9.1 de la Guía y Rúbrica de la Entrega 4 (2B).},label={lst:estructura_repo}]
 		MundiPets-PFC-IngReq/
 		|-- .gitattributes
 		|-- .gitignore
@@ -7177,10 +7195,11 @@ doi=true
 		|-- CITATION.cff
 		|-- LICENSE
 		|-- README.md
+		|-- fair_assessment.pdf
 		|
 		|-- 01_ERS/
-		|   |-- ERS_SRS_2A_v1.0.pdf        % compilado de la entrega
-		|   |-- ERS_SRS_2A_v1.0.tex        % documento maestro
+		|   |-- ERS_SRS_2B_v2.0.pdf        % compilado de la entrega
+		|   |-- ERS_SRS_2B_v2.0.tex        % documento maestro
 		|   |-- referencias.bib            % fuentes primarias
 		|   `-- figuras/                   % diagramas i*, UML y mockups
 		|
@@ -7189,7 +7208,7 @@ doi=true
 		|   |   |-- fichas_tecnicas.csv
 		|   |   |-- README_evidencias_restringidas.md
 		|   |   `-- evidencias_restringidas/
-		|   |       `-- evidencias_restringidas.7z.001 ... .067
+		|   |       `-- evidencias_restringidas.7z.001 ... .0NN
 		|   |-- Codificacion_Tematica/     % B.8
 		|   |-- Consentimientos/           % B.6, copias enmascaradas [P]
 		|   |-- Cuestionario/
@@ -7197,8 +7216,9 @@ doi=true
 		|   |   `-- Respuestas/
 		|   |-- Documentos_Organizacion/
 		|   |-- Fotos_Entorno/             % B.5, observacion OBS-01
+		|   |-- Member_Checking/           % B.9, acta de miembro-verificacion
 		|   |-- Transcripciones/           % transcripciones anonimizadas
-		|   `-- Validacion_Walkthrough/    % B.7, actas EV-19 a EV-22
+		|   `-- Validacion_Walkthrough/    % B.7, actas EV-19 a EV-24
 		|
 		|-- 03_Modelado/
 		|   |-- Diagramas_UML/             % Casos de Uso, Componentes,
@@ -7218,11 +7238,14 @@ doi=true
 		|
 		|-- 06_Experimento/
 		|   |-- osf_registration.pdf       % registro previo aceptado en OSF
+		|   |-- osf_deviations.pdf         % desviaciones del protocolo (2B)
 		|   |-- protocolo.pdf              % protocolo experimental (Enfoque 2)
 		|   |-- README_osf_registration.md
 		|   |-- instrumentos/              % rubrica y consentimientos de
 		|   |                              % evaluadores expertos
 		|   |-- prompts_llm/
+		|   |-- datos_crudos/
+		|   |-- datos_procesados/
 		|   |-- resultados/
 		|   |   |-- figuras/               % figura_1 a figura_4
 		|   |   `-- tablas/                % tabla_1 a tabla_7 (CSV)
@@ -7230,40 +7253,51 @@ doi=true
 		|       `-- datos_entrada/
 		|
 		|-- 07_Publicacion/
+		|   |-- manuscrito_final.pdf
+		|   |-- manuscrito_final.tex
 		|   |-- analisis_revistas.md
-		|   |-- manuscrito_borrador.pdf
 		|   |-- dataset_zenodo/
-		|   |   `-- corpus_RF_MundiPets_2A.json
+		|   |   |-- corpus_RF_MundiPets_2B.json
+		|   |   |-- ANONYMIZATION.md
+		|   |   |-- ETHICS.md
+		|   |   `-- README_dataset.md
 		|   `-- manuscrito/                % fuente LaTeX del manuscrito
 		|       `-- bst/                   % estilos bibliograficos Springer
 		|
-		`-- 08_Etica/
-		|-- A01_Protocolo_Investigacion.pdf
-		|-- A02_Instrumentos_Recoleccion.pdf
-		|-- A02.1_Guia_entrevista_semi-estructurada.pdf
-		|-- A02.2_Cuestionario_Encuesta.pdf
-		|-- A02.3_Protocolo_Observacion.pdf
-		|-- A02.4_Guion_Sesion_Design_Thinking.pdf
-		|-- A03_Consentimiento_Informado.pdf
-		|-- A04_Plan_Gestion_Datos.pdf
-		|-- A05_Aval_Institucional.pdf
-		|-- A06_Declaracion_Conflicto_Intereses.pdf
-		|-- A07_Compromiso_Confidencialidad.pdf
-		|-- A08_CV_Docente.pdf
-		|-- A09_Nomina_Equipo.pdf
-		|-- A10_Cronograma_Gantt.pdf
-		|-- A11_Analisis_Riesgos.pdf
-		|-- A13_Participantes_Externos.pdf
-		|-- Adenda_Segunda_Ronda.pdf
-		|-- README_Etica.md
-		`-- Categoria_B/
-		|-- CB01_Aval_Organizacion.pdf
-		|-- CB02_Protocolo_Proteccion_Datos_Personales.pdf
-		|-- CB03_Compromiso_De_No_Uso_De_Datos_Reales.pdf
-		|-- CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
-		`-- CheckList_Categoria_B_MundiPets.pdf
+		|-- 08_Etica/
+		|   |-- A01_Protocolo_Investigacion.pdf
+		|   |-- A02_Instrumentos_Recoleccion.pdf
+		|   |-- A02.1_Guia_entrevista_semi-estructurada.pdf
+		|   |-- A02.2_Cuestionario_Encuesta.pdf
+		|   |-- A02.3_Protocolo_Observacion.pdf
+		|   |-- A02.4_Guion_Sesion_Design_Thinking.pdf
+		|   |-- A03_Consentimiento_Informado.pdf
+		|   |-- A04_Plan_Gestion_Datos.pdf
+		|   |-- A05_Aval_Institucional.pdf
+		|   |-- A06_Declaracion_Conflicto_Intereses.pdf
+		|   |-- A07_Compromiso_Confidencialidad.pdf
+		|   |-- A08_CV_Docente.pdf
+		|   |-- A09_Nomina_Equipo.pdf
+		|   |-- A10_Cronograma_Gantt.pdf
+		|   |-- A11_Analisis_Riesgos.pdf
+		|   |-- A13_Participantes_Externos.pdf
+		|   |-- Adenda_Segunda_Ronda.pdf
+		|   |-- README_Etica.md
+		|   `-- Categoria_B/
+		|       |-- CB01_Aval_Organizacion.pdf
+		|       |-- CB02_Protocolo_Proteccion_Datos_Personales.pdf
+		|       |-- CB03_Compromiso_De_No_Uso_De_Datos_Reales.pdf
+		|       |-- CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
+		|       `-- CheckList_Categoria_B_MundiPets.pdf
+		|
+		`-- 09_Defensa/
+		    |-- presentacion.pdf
+		    |-- presentacion.pptx
+		    |-- guion.pdf
+		    |-- video_defensa.mp4
+		    `-- folleto_una_hoja.pdf
 	\end{lstlisting}
-	
+
 	\paragraph{Nota sobre el documento A.12.}
 	La carpeta \texttt{08\_Etica/} no contiene el documento
 	\texttt{A12\_Certificado\_Etica.pdf}. El equipo gestionó la obtención del
@@ -7282,10 +7316,10 @@ doi=true
 	\texttt{02\_Evidencias/}: se comprimen y cifran con AES-256 en el volumen
 	fragmentado \texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/},
 	cuya contraseña se entrega únicamente al docente responsable por el SGA,
-	conforme a la Sección~4.1 de la Guía y Rúbrica de la Entrega 3 (2A).
+	conforme a la Sección~4.1 de la Guía y Rúbrica de la Entrega 4 (2B).
 	
-	El archivo \texttt{07\_Publicacion/dataset\_zenodo/corpus\_RF\_MundiPets\_2A.json}
-	contiene los 25 requisitos funcionales de la Sección~\ref{sec:rf}
+	El archivo \texttt{07\_Publicacion/dataset\_zenodo/corpus\_RF\_MundiPets\_2B.json}
+	contiene los 27 requisitos funcionales de la Sección~\ref{sec:rf}
 	serializados con los once atributos del esquema de la plantilla
 	(identificador, nombre, descripción, actor, origen de evidencia, entradas,
 	salidas, precondiciones, postcondiciones, prioridad MoSCoW y criterio de
@@ -7306,7 +7340,7 @@ doi=true
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=\textwidth]{figuras/historial_commits.png}
-		\caption[Historial de commits del repositorio MundiPets-PFC-IngReq]{Historial de commits del repositorio \texttt{MundiPets-PFC-IngReq} al momento del corte de la Entrega 3 (2A).}
+		\caption[Historial de commits del repositorio MundiPets-PFC-IngReq]{Historial de commits del repositorio \texttt{MundiPets-PFC-IngReq} al momento del corte de la Entrega 4 (2B).}
 		\label{fig:commits}
 	\end{figure}
 	
@@ -7396,7 +7430,7 @@ doi=true
 	
 	\begin{table}[H]
 		\centering
-		\caption{Checklist de aceptación de la Entrega 3 (2A).}
+		\caption{Checklist de aceptación de la Entrega 4 (2B).}
 		\label{tab:checklist}
 		\small
 		\begin{tabularx}{\textwidth}{@{}c X c@{}}
@@ -7416,7 +7450,7 @@ doi=true
 			11 & El hash SHA-256 de cada archivo multimedia consta en \texttt{checksums.sha256} y coincide. & $\blacksquare$\\
 			12 & La matriz de trazabilidad en CSV tiene al menos 40 filas y todas las columnas obligatorias. &$\blacksquare$ \\
 			13 & Todas las evidencias declaradas en el ERS existen realmente en el repositorio. & $\blacksquare$ \\
-			14 & Se alcanzaron los mínimos comprometidos: 25 RF, 15 RNF, 10 CU detallados, 40 filas de trazabilidad y 30 respuestas de cuestionario. & $\blacksquare$ \\
+			14 & Se alcanzaron los mínimos comprometidos: 27 RF, 16 RNF, 13 CU detallados, 61 filas de trazabilidad y 61 respuestas de cuestionario. & $\blacksquare$ \\
 			15 & Todo componente de IA/ML tiene tratamiento de explicabilidad como RNF. & $\blacksquare$ \\
 			\bottomrule
 		\end{tabularx}
