@@ -109,8 +109,8 @@
 \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
-\setcounter{secnumdepth}{4}
-\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
 
 % ── Leyendas ────────────────────────────────────────────────
 \usepackage{caption}
@@ -249,7 +249,7 @@ doi=true
 			2.0 & 05/07/2026 & Equipo MundiPets & Entrega 2 (1B): ERS/SRS parcial; incorpora correcciones de la 1A y agrega requisitos, UML, priorización y trazabilidad. \\
 			3.0 & 29/07/2026 & Equipo MundiPets & Entrega 3 (2A): ERS/SRS completa. Amplía a 25 RF, 16 RNF y 9 RD, agrega requisitos legales, explicabilidad, historias de usuario, modelado UML completo, priorización Kano/WSJF, trazabilidad extendida, MVP y componente empírico. \\
 			4.0 & 30/08/2026 & Equipo MundiPets & Entrega 4 (2B): revisión de calidad de los requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018 (RF-02, RF-05, RF-12, RF-17, RF-18 y RF-23 corregidos por ambigüedad, duplicidad o inconsistencia) e incorporación de dos nuevos requisitos funcionales, RF-26 y RF-27, a partir de la nueva evidencia recolectada EV-23 (walkthrough/entrevista PROP-12) y EV-24 (walkthrough/entrevista VET-07). Cierre de PE5: el CCB resuelve formalmente las 9 RFC pendientes de la inspección PE4, sin dejar ninguna abierta. Se corrigen RF-06, RF-07, RF-10, RNF-02 y RNF-03 (RFC-I, RFC-F, RFC-C, RFC-E y corrección de alcance derivada de RFC-G); se redefine RNF-15 para ser coherente con RF-07 (RFC-H). Se rechazan formalmente, con justificación, RFC-D (alternativa a RFC-C), la propuesta original de RFC-G (relajar el umbral en vez de acotar el alcance) y RFC-B y RFC-J (requieren evidencia de entrevista no disponible; quedan como limitación de alcance reconocida en RD-06 y RL-01). \\
-			4.1 & 30/08/2026 & Equipo MundiPets & Cierre de trazabilidad de la Entrega 4 (2B): se redactan las 12 historias de usuario y criterios de aceptación pendientes (HU-16 a HU-27, RF de prioridad \emph{Should}/\emph{Could}), quedando las 27 historias del sistema completas; se incorpora la Sección~\ref{sec:casos-prueba} (Casos de prueba, CP-01 a CP-61) para los 61 elementos vigentes; el Apéndice~D se reconstruye como matriz de trazabilidad única, incorporando las columnas Horizontal, Clase, Proceso, Estado, Caso de Prueba y Estado de la traza junto a las ya existentes, de modo que un solo apéndice cierra los tres tipos de trazabilidad exigidos (hacia atrás, hacia adelante y horizontal) sin dividirlos en apéndices separados; se corrige el enlace de caso de uso de RF-11, RNF-01, RD-04 y RNF-16 (CU-12, Configurar privacidad médica, en lugar de CU-06, que corresponde a la evaluación de compatibilidad de cruza); y se depura la redacción de las Secciones~\ref{sec:kano} y \ref{sec:amenazas} para reflejar el estado de cierre de esta entrega. \\
+			4.1 & 30/08/2026 & Equipo MundiPets & Cierre de trazabilidad de la Entrega 4 (2B): se redactan las 12 historias de usuario y criterios de aceptación pendientes (HU-16 a HU-27, RF de prioridad \emph{Should}/\emph{Could}), quedando las 27 historias del sistema completas; se incorpora la Sección~\ref{sec:casos-prueba} (Casos de prueba, CP-01 a CP-61) para los 61 elementos vigentes; el Apéndice~D se reconstruye como matriz de trazabilidad única de diez columnas (Fuente, Requisito, Caso de Uso, Clase, Proceso, Estado, Criterio, Caso de Prueba, Historia, Estado de la traza), reordenada por tipo de requisito (RF, RNF, RD, RL); la columna Fuente se corrige para usar el código de participante del Apéndice~B.1 (PROP-XX, VET-XX, OBS-01, Encuesta) en lugar del identificador interno de evidencia, reservando la referencia a la LOPDP exclusivamente para los requisitos legales; las columnas Clase y Estado se corrigen para usar exactamente los nombres de clase y de estado del diagrama de clases refinado y de las tres máquinas de estado, detectándose y corrigiéndose una inconsistencia de idioma y de nomenclatura entre la redacción narrativa de dichas secciones y las figuras que describían; se detectan y documentan tres brechas de modelado (RF-21, RF-24 y RF-25) frente al diagrama de clases, con la corrección de atributos y la clase nueva \texttt{LostPetAlert} necesarias para cerrarlas; y se corrige el enlace de caso de uso de RF-11, RNF-01, RD-04 y RNF-16 (CU-12, Configurar privacidad médica, en lugar de CU-06, que corresponde a la evaluación de compatibilidad de cruza). \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -619,6 +619,17 @@ doi=true
 		\item \textbf{Veterinaria:} valida y certifica la información médica y sanitaria que ingresa al sistema, actuando como fuente externa de confianza.
 		\item \textbf{Refugio de animales:} utiliza el sistema como canal para dar visibilidad a mascotas rescatadas y lograr su adopción.
 	\end{itemize}
+
+	El diagrama contextual (Figura~\ref{fig:diagrama_contexto}) incluye
+	además un sexto elemento en la frontera del sistema, \emph{AI
+	service/component}, que no es un interesado humano sino la
+	representación explícita del límite entre la lógica de negocio y los
+	tres componentes de inteligencia artificial (evaluación de
+	compatibilidad, validación de imágenes y moderación de mensajes)
+	descritos en la Sección~\ref{sec:componentes}; se muestra en el diagrama
+	de contexto por tratarse de un servicio con el que el sistema
+	intercambia datos a través de su frontera, aunque no constituya un
+	actor externo en el sentido de la Sección~\ref{sec:perfiles}.
 	
 	\begin{figure}[H]
 		\centering
@@ -3173,64 +3184,68 @@ doi=true
 	% ------------------------------------------------------------
 	\subsection{Diagrama de casos de uso general}
 	\label{sec:cu-general}
-	
+
 	El diagrama de casos de uso general representa de forma integral las
 	principales funcionalidades del sistema MundiPets y su interacción con los
-	cinco actores identificados en la Sección~\ref{sec:perfiles}: Propietario de
-	mascota, Adoptante, Interesado en cruza, Refugio de animales y Veterinaria.
-	El Propietario de mascota concentra el mayor número de asociaciones,
-	participando en \emph{Registrar mascota} (RF-01), \emph{Publicar mascota
-		para cruza} (RF-08, RF-13), \emph{Registrar historial médico} (RF-02) y
-	\emph{Configurar privacidad médica} (RF-11), lo que refleja su rol como el
-	actor que origina la mayor parte de la información que circula por la
-	plataforma. La relación de extensión entre \emph{Registrar historial médico}
-	y \emph{Cargar documento veterinario}, marcada como
-	\enquote{\texttt{extend}}, modela que la carga de certificados (RF-14) es un
-	comportamiento opcional que amplía el registro médico solo cuando el
-	propietario dispone del documento digitalizado, sin que su ausencia impida
-	completar el caso de uso base.
-	
-	Los actores Adoptante e Interesado en cruza comparten un patrón de
-	interacción similar entre sí: ambos requieren \emph{Buscar mascota
-		disponible} (RF-04) o \emph{Evaluar compatibilidad de cruza} (RF-06) antes
-	de decidir, y ambos participan en \emph{Gestionar comunicación entre
-		usuarios} (RF-07) una vez identificado su interés. El punto central del
-	diagrama son las dos relaciones de inclusión, marcadas como
-	\enquote{\texttt{include}}, que conectan \emph{Gestionar proceso de
-		adopción} y \emph{Evaluar compatibilidad de cruza} con \emph{Consultar
-		perfil médico}: estas relaciones formalizan que ningún proceso de adopción
-	o de cruza puede completarse sin que el sistema exponga primero la
-	información sanitaria de la mascota involucrada, en coherencia con RF-03 y
-	con el requisito legal de decisión informada derivado de la LOPDP.
-	
-	El Refugio de animales se modela con un conjunto reducido de asociaciones
-	(\emph{Publicar mascota en adopción} y \emph{Gestionar comunicación entre
-		usuarios}), lo que refleja que su función dentro del sistema es equivalente
+	cinco actores identificados en la Sección~\ref{sec:perfiles}: \emph{Pet
+	owner} (Propietario de mascota), \emph{Adopter} (Adoptante), \emph{Breeding
+	interested party} (Interesado en cruza), \emph{Animal shelter} (Refugio de
+	animales) y \emph{Veterinary clinic} (Veterinaria). El Pet owner concentra
+	el mayor número de asociaciones, participando en \emph{Register pet}
+	(RF-01), \emph{Post pet for breeding} (RF-08, RF-13), \emph{Register
+	medical history} (RF-02) y \emph{Configure medical privacy} (RF-11), lo
+	que refleja su rol como el actor que origina la mayor parte de la
+	información que circula por la plataforma. La relación de extensión entre
+	\emph{Register medical history} y \emph{Upload veterinary document},
+	marcada como \enquote{\texttt{Extend}}, modela que la carga de
+	certificados (RF-14) es un comportamiento opcional que amplía el registro
+	médico solo cuando el propietario dispone del documento digitalizado, sin
+	que su ausencia impida completar el caso de uso base.
+
+	Los actores Adopter y Breeding interested party comparten un patrón de
+	interacción similar entre sí: ambos requieren \emph{Search available pet}
+	(RF-04) o \emph{Evaluate breeding compatibility} (RF-06) antes de decidir,
+	y ambos participan en \emph{Manage communication between users} (RF-07)
+	una vez identificado su interés; el Adopter dispone además de
+	\emph{Check care recommendations}, un caso de uso de apoyo que sugiere
+	pautas de cuidado según especie, raza y edad de la mascota consultada
+	(RF-10). El punto central del diagrama son las dos relaciones de
+	inclusión, marcadas como \enquote{\texttt{Include}}, que conectan
+	\emph{Manage adoption process} y \emph{Evaluate breeding compatibility}
+	con \emph{View medical profile}: estas relaciones formalizan que ningún
+	proceso de adopción o de cruza puede completarse sin que el sistema
+	exponga primero la información sanitaria de la mascota involucrada, en
+	coherencia con RF-03 y con el requisito legal de decisión informada
+	derivado de la LOPDP.
+
+	El Animal shelter se modela con un conjunto reducido de asociaciones
+	(\emph{Post pet for adoption} y \emph{Manage communication between
+	users}), lo que refleja que su función dentro del sistema es equivalente
 	a la de un propietario pero restringida al flujo de adopción de mascotas
 	rescatadas, sin participar en los procesos de cruza. Finalmente, la
-	Veterinaria cierra el ciclo de confianza del sistema a través de
-	\emph{Validar información médica} (RF-09), caso de uso que no se origina en
-	el propietario sino que actúa como contraparte de verificación sobre la
-	información previamente registrada, sustentando directamente la restricción
-	de diseño RD-03 y el requisito no funcional de integridad de la información
-	médica (RNF-05).
-	
+	Veterinary clinic cierra el ciclo de confianza del sistema a través de
+	\emph{Validate medical information} (RF-09), caso de uso que no se origina
+	en el propietario sino que actúa como contraparte de verificación sobre la
+	información previamente registrada, sustentando directamente la
+	restricción de diseño RD-03 y el requisito no funcional de integridad de
+	la información médica (RNF-05).
+
 	Los dos requisitos funcionales incorporados en la revisión 4.0 del ERS,
 	RF-26 (segunda opinión veterinaria) y RF-27 (control de solicitudes
 	repetitivas de cruza), no introducen actores ni casos de uso adicionales al
 	diagrama general: se modelan como flujos alternativos de los casos de uso ya
-	representados \emph{Validar información médica} y \emph{Publicar mascota
-		para cruza y gestionar solicitud}, respectivamente, y quedan detallados a
-	nivel textual en la especificación de dichos casos de uso
-	(Sección~\ref{sec:cu-detallado}), sin requerir cambios en el diagrama
-	general vigente.
-	
+	representados \emph{Validate medical information} y \emph{Post pet for
+	breeding}, respectivamente, y quedan detallados a nivel textual en la
+	especificación de dichos casos de uso (Sección~\ref{sec:cu-detallado}), sin
+	requerir cambios en el diagrama general vigente.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{figuras/DiagramaCasosDeUso_MundiPets.png}
 		\caption{Diagrama de casos de uso general del sistema MundiPets.}
 		\label{fig:cu-general}
 	\end{figure}
+
 	
 	% ------------------------------------------------------------
 	\subsection{Especificación textual de casos de uso}
@@ -3620,564 +3635,770 @@ doi=true
 	% ------------------------------------------------------------
 	\subsection{Diagrama de clases refinado}
 	\label{sec:clases-refinado}
-	
+
 	El diagrama de clases refinado profundiza el modelo conceptual presentado en
 	la Entrega 2 (1B), incorporando los atributos, tipos de dato,
 	multiplicidades y operaciones necesarios para representar con precisión las
-	27 funcionalidades definidas en la Sección~\ref{sec:rf}. El modelo se
-	organiza alrededor de la clase \texttt{Mascota}, que concentra los datos
-	generales exigidos por RF-01 (nombre, especie, raza, sexo, edad y estado
-	reproductivo) y se asocia mediante composición con \texttt{HistorialMedico}
-	(RF-02, RF-14, RF-24), \texttt{AntecedenteGenetico} (RF-16) y
-	\texttt{Microchip} (RF-21), reflejando que estos objetos no tienen sentido
-	de existencia fuera de la mascota a la que pertenecen.
-	
-	Las clases \texttt{Usuario}, \texttt{PropietarioMascota},
-	\texttt{Adoptante}, \texttt{InteresadoEnCruza}, \texttt{RefugioAnimal} y
-	\texttt{Veterinaria} se modelan mediante una jerarquía de generalización a
-	partir de \texttt{Usuario}, que centraliza los atributos comunes de
-	autenticación y verificación de identidad (RF-12) y evita duplicar reglas de
-	acceso entre los distintos roles descritos en RD-02. La clase
-	\texttt{SolicitudAdopcion} incorpora los atributos de etapa exigidos por
-	RF-18 (formulario, entrevista, visita, periodo de prueba y compromiso
-	firmado), mientras que \texttt{SolicitudCruza} se asocia con
-	\texttt{RegistroCompatibilidad} para representar el resultado orientativo
-	generado por el componente de inteligencia artificial (RF-06) y con
-	\texttt{CertificadoVeterinario} para reflejar la validación previa exigida
-	por RF-19.
-	
-	Las clases \texttt{Publicacion}, \texttt{Mensaje}, \texttt{AlertaRiesgo} y
-	\texttt{AvisoExtraviado} completan el modelo, cubriendo respectivamente
-	RF-13, RF-07, RF-23 y RF-25. Las multiplicidades reflejan las reglas de
-	negocio ya validadas en el ERS: una mascota puede tener múltiples registros
-	de historial médico pero pertenece a un único propietario; una solicitud de
-	cruza involucra exactamente dos mascotas; y un aviso de extravío se asocia
-	con una sola mascota registrada. Este nivel de detalle permite que el
-	diagrama sirva como referencia directa para el diseño del modelo de datos en
-	la fase de implementación.
-	
+	27 funcionalidades definidas en la Sección~\ref{sec:rf}. Los nombres de
+	clases, atributos y métodos se mantienen en inglés, tal como fueron
+	modelados en la herramienta UML, para evitar una traducción que introduzca
+	inconsistencias entre el diagrama y el código fuente que lo implementa.
+
+	El modelo se organiza alrededor de la clase \texttt{Pet}, que concentra
+	los datos generales exigidos por RF-01 (\texttt{breed}, \texttt{name},
+	\texttt{species}, \texttt{petPhotos}, \texttt{birthDate}) y se asocia
+	mediante composición (rombo relleno) con \texttt{MedicalHistory}, que
+	incorpora el antecedente genético exigido por RF-16 como su atributo
+	\texttt{geneticBackground} en lugar de una clase separada. \texttt{Pet} se
+	relaciona además con \texttt{PetVaccine} (RF-14), una clase asociativa que
+	enlaza cada aplicación de vacuna con su \texttt{Pet} y su
+	\texttt{Vaccine}; con \texttt{VetDocument} (RF-19), que registra el estado
+	de revisión de cada certificado adjunto; con \texttt{PrivacySettings}
+	(RF-11), que administra la visibilidad de la ubicación y el contacto; y
+	con \texttt{Interaction} (RF-20, RF-23), que registra los encuentros entre
+	dos mascotas y su estado de riesgo.
+
+	Las clases \texttt{Owner}, \texttt{Shelter} y \texttt{Veterinarian} se
+	modelan mediante una jerarquía de generalización a partir de
+	\texttt{User}, que centraliza los atributos comunes de autenticación y
+	verificación de identidad (RF-12) y evita duplicar reglas de acceso entre
+	los distintos roles descritos en RD-02; \texttt{User} envía y recibe
+	instancias de \texttt{Message} (RF-07) y presenta la operación
+	\texttt{verifyIdentity()} exigida por RF-12. La clase
+	\texttt{AdoptionRequest} incorpora los atributos de justificación y
+	condiciones del hogar exigidos por RF-05, mientras que
+	\texttt{BreedingRequest} se asocia con \texttt{CompatibilityEvaluation}
+	para representar el resultado orientativo generado por el componente de
+	inteligencia artificial (RF-06); ninguna de las dos clases de solicitud
+	incorpora de forma explícita las etapas de entrevista, visita y periodo de
+	prueba exigidas por RF-18, que se representan en cambio en la máquina de
+	estados de \texttt{AdoptionRequest} (Sección~\ref{sec:estados}) y no como
+	atributos del diagrama de clases.
+
+	La clase \texttt{Post} centraliza la publicación de disponibilidad
+	exigida por RF-13, y \texttt{VeterinaryEvaluation} registra la validación
+	profesional exigida por RF-09, con las operaciones
+	\texttt{validateHistory()} y \texttt{registerEvaluation()} de
+	\texttt{Veterinarian} como su contraparte de comportamiento. Las
+	multiplicidades reflejan las reglas de negocio ya validadas en el ERS: un
+	\texttt{Pet} puede tener múltiples registros de \texttt{MedicalHistory} y
+	de \texttt{PetVaccine} pero pertenece a un único \texttt{Owner}
+	(asociación \emph{owns}); una \texttt{BreedingRequest} involucra dos
+	mascotas distintas mediante los atributos \texttt{sourcePetId} y
+	\texttt{targetPetId}; y un \texttt{Veterinarian} revisa cero o varios
+	\texttt{VetDocument} y realiza cero o varias \texttt{VeterinaryEvaluation}.
+	Este nivel de detalle permite que el diagrama sirva como referencia
+	directa para el diseño del modelo de datos en la fase de implementación.
+
 	Los dos requisitos funcionales agregados en la revisión 4.0 se apoyan
-	íntegramente en las clases ya representadas en el diagrama: RF-26 reutiliza
-	\texttt{HistorialMedico} y la generalización de \texttt{Veterinaria},
-	registrando la segunda validación como una nueva instancia del mismo tipo
-	de registro que ya modela la validación profesional; y RF-27 reutiliza
-	\texttt{SolicitudCruza}, cuyo estado y fecha —ya representados en el
-	diagrama— permiten derivar el conteo de procesos completados sin necesidad
-	de una clase o un atributo visible adicional.
-	
+	íntegramente en las clases ya representadas en el diagrama: RF-26
+	reutiliza \texttt{MedicalHistory} y la generalización de
+	\texttt{Veterinarian}, registrando la segunda validación como una nueva
+	instancia de \texttt{VeterinaryEvaluation}; y RF-27 reutiliza
+	\texttt{BreedingRequest}, cuyo atributo \texttt{status} --- ya
+	representado en el diagrama --- permite derivar el conteo de procesos en
+	estado \emph{Approved} sin necesidad de una clase o un atributo visible
+	adicional.
+
+	\paragraph{Corrección de modelado incorporada en esta revisión (4.1).}
+	La verificación de esta matriz de trazabilidad contra el diagrama
+	(Apéndice~\ref{ap:trazabilidad}, nota posterior a la
+	Tabla~\ref{tab:matriz_trazabilidad_completa}) había detectado que tres
+	requisitos funcionales no estaban completamente cubiertos por el modelo de
+	clases vigente. Las tres correcciones ya fueron incorporadas por el equipo
+	de modelado: los atributos \texttt{-microchipId~:~string} y
+	\texttt{-microchipDate~:~datetime} en \texttt{Pet} (RF-21); los atributos
+	\texttt{-batchNumber~:~string} y \texttt{-administeredBy~:~string} en
+	\texttt{PetVaccine} (RF-24); y la clase nueva \texttt{LostPetAlert}
+	(RF-25), con los atributos \texttt{-alertId~:~long},
+	\texttt{-petId~:~long}, \texttt{-lastSeenLocation~:~string},
+	\texttt{-lastSeenDate~:~datetime}, \texttt{-contactPhone~:~string} y
+	\texttt{-status~:~string}, y los métodos \texttt{+publishAlert()} y
+	\texttt{+resolveAlert()}, en composición 1 a 0..* con \texttt{Pet} y en
+	asociación 1 a 0..* con \texttt{Owner} (véase el detalle en el
+	Apéndice~\ref{ap:trazabilidad}). La Figura~\ref{fig:clases-refinado}
+	--- exportada como vista general del diagrama --- es aún la versión previa
+	a esta corrección y no muestra los tres cambios; sí se reflejan, en
+	cambio, en la vista parcial \emph{Pets and Health} de la
+	Figura~\ref{fig:clases-pets-health}, exportada con posterioridad. Se
+	recomienda reemplazar la Figura~\ref{fig:clases-refinado} por una versión
+	general actualizada para que ambas vistas sean consistentes entre sí.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaClasesRefinado_MundiPets.png}
-		\caption{Diagrama de clases refinado del sistema MundiPets.}
+		\caption{Diagrama de clases refinado del sistema MundiPets (vista general, previa a la corrección de modelado de RF-21, RF-24 y RF-25).}
 		\label{fig:clases-refinado}
 	\end{figure}
-	
+
+	\paragraph{Vistas parciales del diagrama de clases.}
+	Para facilitar su lectura, el diagrama de clases refinado se exporta
+	también en cuatro vistas parciales correspondientes a los cuatro paquetes
+	en los que se organiza: \emph{Users and Roles}, \emph{Applications and
+	Evaluations}, \emph{Communication and Publications} y \emph{Pets and
+	Health}. Las cuatro vistas son recortes del mismo modelo de la
+	Figura~\ref{fig:clases-refinado} y no introducen clases ni atributos
+	adicionales, salvo la vista \emph{Pets and Health}, que --- al haberse
+	exportado con posterioridad --- sí incorpora ya la corrección de modelado
+	de RF-21, RF-24 y RF-25 descrita anteriormente.
+
+	\subsubsection{Users and Roles}
+
+	Esta vista agrupa la jerarquía de usuarios del sistema: \texttt{User} como
+	superclase, con los atributos de autenticación comunes (\texttt{id},
+	\texttt{firstName}, \texttt{lastName}, \texttt{email}, \texttt{phone},
+	\texttt{profilePhoto}) y las operaciones \texttt{register()},
+	\texttt{updateProfile()}, \texttt{verifyIdentity()} y \texttt{login()}; y
+	sus tres especializaciones por generalización, \texttt{Owner}
+	(\texttt{registerPet()}, \texttt{createPost()}, \texttt{submitRequest()}),
+	\texttt{Shelter} (\texttt{shelterAddress}; \texttt{registerRescuedPet()},
+	\texttt{manageAdoption()}) y \texttt{Veterinarian}
+	(\texttt{licenseNumber}; \texttt{validateHistory()},
+	\texttt{registerEvaluation()}). La multiplicidad \texttt{0..1} junto a
+	\texttt{Veterinarian} refleja que la validación de un registro es
+	realizada por, a lo sumo, una veterinaria a la vez, mientras que el
+	\texttt{1} junto a \texttt{User} en las asociaciones \emph{sends},
+	\emph{receives} y \emph{submits} indica que cada mensaje o solicitud tiene
+	exactamente un usuario emisor.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.95\textwidth]{figuras/DiagramaClasesRefinado_MundiPets_UsersRoles.png}
+		\caption{Diagrama de clases refinado --- vista parcial \emph{Users and Roles}.}
+		\label{fig:clases-users-roles}
+	\end{figure}
+
+	\subsubsection{Applications and Evaluations}
+
+	Esta vista agrupa las tres clases de transacción sobre las que se apoyan
+	los procesos de adopción y cruza: \texttt{AdoptionRequest}
+	(\texttt{justification}, \texttt{homeConditions}, \texttt{userId},
+	\texttt{postId}; \texttt{submitRequest()}, \texttt{approve()},
+	\texttt{reject()}), \texttt{BreedingRequest} (\texttt{sourcePetId},
+	\texttt{targetPetId}, \texttt{requesterId}; \texttt{createRequest()},
+	\texttt{accept()}, \texttt{evaluateCompatibility()},
+	\texttt{checkRiskAlert()}) y \texttt{CompatibilityEvaluation}
+	(\texttt{compatibilityPercentage}, \texttt{recommendation},
+	\texttt{evaluationDate}; \texttt{evaluateCompatibility()}). La relación
+	\emph{is subject to} (0..*) entre \texttt{BreedingRequest} y
+	\texttt{CompatibilityEvaluation} formaliza que una solicitud de cruza
+	puede someterse a más de una evaluación de compatibilidad a lo largo del
+	tiempo, mientras que las relaciones \emph{sourcePet} e \emph{is targeted
+	as destination}, ambas 0..*, reflejan que una misma mascota puede
+	participar como origen o como destino en múltiples solicitudes de cruza
+	distintas.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.95\textwidth]{figuras/DiagramaClasesRefinado_MundiPets_Applications.png}
+		\caption{Diagrama de clases refinado --- vista parcial \emph{Applications and Evaluations}.}
+		\label{fig:clases-applications}
+	\end{figure}
+
+	\subsubsection{Communication and Publications}
+
+	Esta vista, la más reducida de las cuatro, agrupa las dos clases que
+	sostienen RF-07 y RF-13: \texttt{Message} (\texttt{messageId},
+	\texttt{content}, \texttt{senderId}, \texttt{receiverId};
+	\texttt{sendMessage()}, \texttt{deleteMessage()}), asociada 0..* a 0..*
+	con \texttt{User} a través de \emph{sends} y \emph{receives}; y
+	\texttt{Post} (\texttt{postId}, \texttt{type}, \texttt{description},
+	\texttt{status}, \texttt{petId}; \texttt{createPost()},
+	\texttt{closePost()}), asociada 1 a 0..* con \texttt{AdoptionRequest} a
+	través de \emph{receives}, reflejando que una publicación puede recibir
+	cero o varias solicitudes de adopción.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.55\textwidth]{figuras/DiagramaClasesRefinado_MundiPets_CommunicationPublications.png}
+		\caption{Diagrama de clases refinado --- vista parcial \emph{Communication and Publications}.}
+		\label{fig:clases-communication}
+	\end{figure}
+
+	\subsubsection{Pets and Health}
+
+	Esta es la vista más extensa y concentra la clase central del sistema,
+	\texttt{Pet} (\texttt{petId}, \texttt{breed}, \texttt{name},
+	\texttt{species}, \texttt{petPhotos}, \texttt{birthDate}, \texttt{userId},
+	y --- ya incorporados --- \texttt{microchipId} y \texttt{microchipDate};
+	\texttt{registerPet()}, \texttt{updateData()}, \texttt{changeAvailability()}), junto con sus seis asociaciones directas: composición 1 a
+	0..* con \texttt{MedicalHistory} (\emph{has a}), asociación 0..* a 0..*
+	con \texttt{Vaccine} a través de \texttt{PetVaccine} (\emph{has
+	received} --- clase asociativa que ya incorpora \texttt{batchNumber} y
+	\texttt{administeredBy}), asociación 1 a 0..* con \texttt{VetDocument}
+	(\emph{has attached}), asociación 1 a 1 con \texttt{PrivacySettings}
+	(\emph{has a}), asociación 1 a 0..* con \texttt{Interaction}
+	(\emph{participe in}) y composición 1 a 0..* con la clase nueva
+	\texttt{LostPetAlert} (\emph{warning}). Las clases
+	\texttt{VeterinaryEvaluation} (\emph{performs}, 0..* desde
+	\texttt{Veterinarian}) e \texttt{Interaction} sustentan respectivamente
+	RF-09/RF-26 y RF-20/RF-23, esta última mediante su método
+	\texttt{checkRiskAlert()}.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.95\textwidth]{figuras/DiagramaClasesRefinado_MundiPets_PetsHealth.png}
+		\caption{Diagrama de clases refinado --- vista parcial \emph{Pets and Health}, ya con la corrección de modelado de RF-21, RF-24 y RF-25 incorporada.}
+		\label{fig:clases-pets-health}
+	\end{figure}
+
 	% ------------------------------------------------------------
 	\subsection{Diagramas de secuencia}
 	\label{sec:secuencia}
-	
+
 	Los diagramas de secuencia detallan la interacción temporal entre los
 	actores y los objetos del sistema para los trece casos de uso especificados
 	textualmente en la Sección~\ref{sec:cu-detallado}, mostrando el orden de los
 	mensajes intercambiados entre el actor, la interfaz, el controlador y los
 	objetos de dominio involucrados en cada operación. A continuación se
 	presentan los trece diagramas completos (CU-01 a CU-13).
-	
+
+	\paragraph{Nota de verificación (revisión 4.1).} Al contrastar cada figura
+	contra la especificación textual de su caso de uso se detectó que los
+	archivos de cuatro diagramas no corresponden al caso de uso que su nombre
+	de archivo indica: el archivo \texttt{DiagramaSecuencia\_CU-06} contiene en
+	realidad la configuración de privacidad médica (CU-12); el archivo
+	\texttt{DiagramaSecuencia\_CU-07} contiene la gestión de aceptación o
+	rechazo de una solicitud de adopción, sin corresponder de forma exacta a
+	ningún CU numerado de la especificación textual vigente; el archivo
+	\texttt{DiagramaSecuencia\_CU-12} contiene la consulta de recomendaciones
+	de cuidado (relacionada con RF-10), tampoco numerada de forma exacta en la
+	especificación textual; y el archivo \texttt{DiagramaSecuencia\_CU-13}
+	contiene la evaluación de compatibilidad de cruza (CU-06), integrando en
+	un solo diagrama la verificación de parentesco que la especificación
+	textual trata por separado como CU-13. Las cuatro descripciones siguientes
+	documentan el contenido \textbf{real} de cada archivo tal como fue
+	exportado, y se recomienda al equipo renombrar los archivos --- o
+	renumerar las subsecciones CU-06, CU-07, CU-12 y CU-13 de la
+	Sección~\ref{sec:cu-detallado} --- antes de la entrega final, para que el
+	nombre de archivo, el título de la subsección y el contenido de la figura
+	coincidan entre sí.
+
 	\subsubsection{Registrar mascota (CU-01)}
-	
+
 	El diagrama de secuencia de CU-01 ilustra el flujo mediante el cual el
-	propietario, ya autenticado, ingresa los datos generales de la mascota y
-	adjunta al menos una fotografía. La interfaz delega en el controlador la
-	validación de los campos obligatorios definidos en RF-01; ante un campo
-	faltante, el controlador retorna el mensaje de error correspondiente sin
-	invocar la capa de persistencia, evitando así el registro de perfiles
-	incompletos. Cuando la validación es exitosa, el controlador invoca al
-	componente de validación de imágenes (RF-17) antes de confirmar el
-	almacenamiento del perfil, de modo que ninguna fotografía llega a
-	persistirse sin haber sido evaluada por el módulo de inteligencia
-	artificial.
-	
+	propietario, ya autenticado, selecciona \emph{Register pet}, adjunta entre
+	una y cinco fotografías en un ciclo (\emph{loop}) y envía el formulario. El
+	controlador (\texttt{PetController}) valida los campos obligatorios
+	definidos en RF-01 antes de invocar al repositorio; si la validación falla,
+	retorna un mensaje de error específico del campo sin invocar la capa de
+	persistencia, evitando así el registro de perfiles incompletos, y si es
+	exitosa, confirma el registro al propietario.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-01_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-01 --- Registrar mascota.}
 		\label{fig:sec-cu01}
 	\end{figure}
-	
+
 	\subsubsection{Registrar historial médico y antecedentes genéticos (CU-02)}
-	
-	Este diagrama modela la interacción entre el propietario o la veterinaria y
-	el sistema al registrar vacunas, desparasitaciones, enfermedades, alergias,
-	tratamientos y antecedentes genéticos o de parentesco (RF-02, RF-16),
-	incluyendo la trazabilidad de cepa, lote y aplicador exigida por RF-24. La
-	secuencia muestra explícitamente la bifurcación de actor: cuando quien
-	registra la información es una veterinaria, el mensaje de confirmación
-	adicionalmente marca el campo de validación profesional (RD-03), mientras
-	que si el emisor es el propietario, el registro queda almacenado con estado
-	pendiente de validación hasta que una veterinaria lo revise.
-	
+
+	Este diagrama modela la interacción entre el propietario y el sistema al
+	registrar la información médica de la mascota (RF-02). El propietario
+	completa el formulario (\texttt{fillMedicalData}) y lo envía; el
+	controlador (\texttt{MedicalHistoryController}) valida su completitud y lo
+	persiste en el repositorio antes de confirmar el registro, o retorna un
+	mensaje de error específico si algún campo obligatorio falta o es
+	inválido. El diagrama no distingue de forma explícita entre propietario y
+	veterinaria como emisores del registro; esa bifurcación de actor, junto
+	con la trazabilidad de cepa, lote y aplicador exigida por RF-24, se
+	gestiona en el diagrama de estados de verificación de documentos médicos
+	(Sección~\ref{sec:estados}) y en el propio modelo de clases
+	(\texttt{PetVaccine}), no como una rama adicional de esta secuencia.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-02_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-02 --- Registrar historial médico y antecedentes genéticos.}
 		\label{fig:sec-cu02}
 	\end{figure}
-	
+
 	\subsubsection{Cargar documento veterinario y carnet de vacunación (CU-03)}
-	
+
 	El diagrama de secuencia de CU-03 detalla la carga de documentos
-	veterinarios digitalizados y la actualización del carnet de vacunación de la
-	mascota (RF-14). El propietario adjunta el archivo desde la interfaz, la
-	cual delega en el controlador el almacenamiento del documento con estado
-	inicial pendiente de revisión. La secuencia refleja que el documento queda
-	disponible de inmediato para consulta por el propietario, pero su estado de
-	vigencia solo se actualiza a validado una vez que una veterinaria autorizada
-	ejecuta el caso de uso CU-09 sobre dicho archivo, evitando que dos flujos
-	distintos escriban simultáneamente sobre el mismo estado.
-	
+	veterinarios digitalizados (RF-14). El propietario adjunta el archivo; el
+	controlador (\texttt{VetDocumentController}) valida el formato y el tamaño
+	antes de almacenarlo en el servicio externo de archivos
+	(\texttt{FileStorageService}) y de registrar los metadatos del documento en
+	el repositorio. Si el archivo no cumple el formato o el tamaño permitido,
+	el sistema rechaza la carga y muestra el motivo sin llegar a invocar el
+	almacenamiento externo; la validación posterior por parte de una
+	veterinaria autorizada queda representada en el diagrama de estados de
+	verificación de documentos médicos (Sección~\ref{sec:estados}) y no en
+	esta secuencia.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-03_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-03 --- Cargar documento veterinario y carnet de vacunación.}
 		\label{fig:sec-cu03}
 	\end{figure}
-	
+
 	\subsubsection{Publicar mascota en adopción (CU-04)}
-	
+
 	El diagrama de secuencia de CU-04 representa el proceso de publicación
-	descrito en RF-13, en el cual el propietario selecciona una mascota ya
-	registrada, indica el tipo de disponibilidad (adopción, cruza o ambas) y
-	confirma la publicación. Un aspecto relevante de esta secuencia es la
-	verificación de completitud del perfil antes de habilitar el botón de
-	publicación: si faltan campos relevantes como vacunas o fotografías, el
-	sistema muestra una advertencia preventiva en línea con la funcionalidad de
-	sugerencias inteligentes descrita en el alcance del producto, sin bloquear
-	la publicación de forma definitiva.
-	
+	descrito en RF-13. Antes de crear una publicación nueva, el controlador
+	(\texttt{PostController}) verifica si la mascota ya cuenta con una
+	publicación de adopción activa (\texttt{findActivePost}); si no existe
+	ninguna, crea y almacena la nueva publicación, y si ya existe una activa,
+	el sistema evita el duplicado ofreciendo al propietario actualizar la
+	publicación existente en lugar de crear una nueva, confirmando en ambos
+	casos el resultado al usuario.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-04_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-04 --- Publicar mascota en adopción.}
 		\label{fig:sec-cu04}
 	\end{figure}
-	
+
 	\subsubsection{Publicar mascota para cruza y gestionar solicitud (CU-05)}
-	
-	Esta secuencia cubre la publicación de una mascota disponible para cruza
-	responsable y la gestión posterior de la solicitud correspondiente (RF-08,
-	RF-13). El diagrama muestra cómo el controlador verifica, antes de habilitar
-	la publicación, que la mascota cuente con antecedentes genéticos registrados
-	(RF-16); solo entonces la solicitud del interesado en cruza puede avanzar
-	hacia el estado pendiente. La respuesta del propietario receptor (aceptar o
-	rechazar) se propaga como un mensaje asíncrono de actualización de estado
-	hacia el objeto \texttt{SolicitudCruza}, coherente con la máquina de
-	estados presentada en la Sección~\ref{sec:estados}. La regla de negocio de
-	RF-27, que limita las solicitudes de cruza repetitivas sobre una misma
-	mascota, se aplica dentro del mismo paso en que el sistema registra la
-	solicitud en estado \emph{Pendiente}, ya representado en este diagrama, sin
-	introducir un mensaje adicional entre los objetos.
-	
+
+	Esta secuencia cubre específicamente la publicación de una mascota
+	disponible para cruza responsable (RF-08, RF-13). Antes de crear la
+	publicación, el controlador (\texttt{PostController}) obtiene los
+	antecedentes genéticos de la mascota (\texttt{getGeneticBackground}); si
+	el antecedente no está registrado, el sistema rechaza la publicación y
+	solicita al propietario completarlo primero, en cumplimiento de RF-16, y
+	solo si el antecedente existe procede a almacenar la publicación y
+	confirmarla. La gestión posterior de la solicitud recibida de un
+	interesado en cruza --- su aceptación o rechazo por parte del propietario
+	receptor --- y la regla de negocio de RF-27 sobre solicitudes repetitivas
+	no quedan representadas en este diagrama de publicación, sino en el flujo
+	de gestión de solicitudes descrito a continuación (CU-07, según el
+	contenido real de su archivo) y en la máquina de estados de la
+	Sección~\ref{sec:estados}.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-05_MundiPets.png}
-		\caption{Diagrama de secuencia del caso de uso CU-05 --- Publicar mascota para cruza y gestionar solicitud.}
+		\caption{Diagrama de secuencia del caso de uso CU-05 --- Publicar mascota para cruza.}
 		\label{fig:sec-cu05}
 	\end{figure}
-	
-	\subsubsection{Evaluar compatibilidad de cruza (CU-06)}
-	
-	Esta secuencia detalla la interacción más compleja del sistema desde el
-	punto de vista de la inteligencia artificial. Tras la selección de las dos
-	mascotas por parte del usuario, el controlador reúne los antecedentes
-	genéticos, el historial médico y los datos generales de ambas y los envía al
-	componente de evaluación de compatibilidad (RF-06). El diagrama muestra de
-	forma explícita la generación de la explicación causal exigida por RNF-13,
-	la cual se calcula en paralelo al resultado numérico y se adjunta a la
-	respuesta antes de que esta llegue a la interfaz, cumpliendo el límite de
-	dos segundos establecido en dicho requisito no funcional.
-	
+
+	\subsubsection{Configurar privacidad médica (contenido real del archivo CU-06)}
+
+	El archivo \texttt{DiagramaSecuencia\_CU-06} representa la administración
+	de la privacidad de la información descrita en RF-11 (especificada como
+	CU-12 en la Sección~\ref{sec:cu-detallado}; véase la nota de verificación
+	al inicio de esta subsección). El propietario consulta las opciones de
+	visibilidad disponibles y selecciona las reglas para cada categoría de
+	dato; antes de guardar, el controlador (\texttt{PrivacyController})
+	ejecuta \texttt{checkMandatoryVetFields()} para impedir que se restrinja
+	por completo un campo médico obligatorio para la validación veterinaria
+	exigida por RD-03, devolviendo una advertencia específica si se intenta
+	ocultar ese campo en particular, mientras que el resto de la configuración
+	se guarda con normalidad.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-06_MundiPets.png}
-		\caption{Diagrama de secuencia del caso de uso CU-06 --- Evaluar compatibilidad de cruza.}
+		\caption{Diagrama de secuencia --- Configurar privacidad médica (archivo etiquetado CU-06; corresponde a CU-12).}
 		\label{fig:sec-cu06}
 	\end{figure}
-	
-	\subsubsection{Consultar historial de procesos de adopción y cruza (CU-07)}
-	
-	El diagrama de secuencia de CU-07 modela la consulta que realiza el
-	propietario sobre el historial de solicitudes asociadas a sus mascotas
-	(RF-15). El controlador recupera de forma paralela las solicitudes de
-	adopción y de cruza registradas, las combina en una única línea de tiempo
-	ordenada por fecha y las retorna a la interfaz junto con el estado vigente
-	de cada una, sin exponer datos de contacto de los solicitantes que no hayan
-	sido aceptados, en cumplimiento del principio de minimización de datos
-	descrito en RL-05.
-	
+
+	\subsubsection{Gestionar solicitud de adopción (contenido real del archivo CU-07)}
+
+	El archivo \texttt{DiagramaSecuencia\_CU-07} representa la gestión de una
+	solicitud de adopción ya enviada (RF-05, RF-18), complementando la
+	publicación cubierta por CU-04. El adoptante consulta el perfil (CU-10) y
+	envía la solicitud, que el sistema registra en estado \emph{pending} y
+	notifica al propietario o refugio receptor; este revisa la solicitud y
+	decide aceptarla o rechazarla, y el sistema actualiza el estado
+	correspondiente y notifica al adoptante en ambos casos. Esta secuencia es
+	la contraparte, para adopción, de la gestión de solicitud de cruza descrita
+	en el flujo alterno de CU-05.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-07_MundiPets.png}
-		\caption{Diagrama de secuencia del caso de uso CU-07 --- Consultar historial de procesos de adopción y cruza.}
+		\caption{Diagrama de secuencia --- Gestionar solicitud de adopción (archivo etiquetado CU-07).}
 		\label{fig:sec-cu07}
 	\end{figure}
-	
+
 	\subsubsection{Gestionar comunicación entre usuarios (CU-08)}
-	
-	Esta secuencia representa el intercambio de mensajes entre propietario,
-	adoptante e interesado en cruza (RF-07). Cada mensaje enviado pasa primero
-	por el componente de moderación automática antes de almacenarse; si el
-	contenido es marcado como inapropiado, la secuencia se bifurca hacia el
-	flujo de bloqueo, que notifica al remitente la categoría de infracción
-	detectada conforme a la explicación por ejemplos exigida por RNF-15, sin
-	llegar a entregar el mensaje al destinatario. Solo los mensajes que superan
-	la moderación se persisten y se notifican al receptor.
-	
+
+	Esta secuencia representa el intercambio de mensajes entre usuarios
+	(RF-07). El remitente selecciona al destinatario y envía el mensaje; el
+	controlador (\texttt{MessageController}) busca la conversación existente
+	entre ambos o crea una nueva si es la primera interacción
+	(\texttt{opt~[no~previous~conversation~registered]}), almacena el mensaje
+	y notifica al receptor mediante el servicio de notificaciones. El diagrama
+	no representa de forma explícita el paso por un componente de moderación
+	automática ni la bifurcación de bloqueo por contenido inapropiado; la
+	explicación por ejemplos exigida por RNF-15 ante un mensaje reportado se
+	documenta en la especificación textual de RF-07 y en la ficha de RNF-15,
+	no en esta secuencia de envío.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-08_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-08 --- Gestionar comunicación entre usuarios.}
 		\label{fig:sec-cu08}
 	\end{figure}
-	
+
 	\subsubsection{Validar información médica (CU-09)}
-	
+
 	El diagrama de secuencia de CU-09 modela la revisión que realiza la
 	veterinaria sobre el historial médico y los documentos cargados por el
-	propietario (RF-09). La interacción distingue dos caminos alternos: la
-	validación exitosa, que marca la información con el estado validado y la
-	identificación del profesional responsable; y el rechazo, que exige a la
-	veterinaria registrar una observación técnica antes de poder confirmar la
-	operación, evitando rechazos sin justificación que dificulten la
-	trazabilidad exigida por el marco legal de la
-	Sección~\ref{sec:legales}. La segunda opinión veterinaria de RF-26 se
-	satisface mediante una nueva ejecución de esta misma secuencia sobre un
-	registro que ya se encuentra en estado \emph{Validado}, iniciada por una
-	veterinaria distinta; al modelar de forma genérica al actor
-	\emph{Veterinaria}, el diagrama representa igualmente esta segunda
-	invocación sin requerir elementos adicionales.
-	
+	propietario (RF-09). El controlador (\texttt{ValidationController}) reúne
+	el historial médico y los documentos veterinarios de la mascota antes de
+	mostrarlos; la interacción distingue dos caminos alternos: la validación
+	exitosa, que marca la información con estado \emph{validated} y la
+	identificación de la veterinaria responsable; y el rechazo
+	(\texttt{rejectValidation}), que exige registrar el motivo de la
+	inconsistencia antes de notificar al propietario. La segunda opinión
+	veterinaria de RF-26 se satisface mediante una nueva ejecución de esta
+	misma secuencia sobre un registro que ya se encuentra validado, iniciada
+	por una veterinaria distinta.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-09_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-09 --- Validar información médica.}
 		\label{fig:sec-cu09}
 	\end{figure}
-	
+
 	\subsubsection{Consultar perfil médico (CU-10)}
-	
+
 	Esta secuencia detalla la consulta de perfil completo de una mascota
 	(RF-03), incluyendo la aplicación de las reglas de privacidad configuradas
-	por el propietario (RF-11). El controlador determina, antes de retornar la
-	información, cuál es el nivel de acceso del usuario consultante
-	(propietario, adoptante, interesado en cruza o veterinaria) y filtra en
-	consecuencia los campos de ubicación exacta y contacto directo, mostrando
-	únicamente la zona aproximada por defecto conforme a RNF-16.
-	
+	por el propietario (RF-11). El controlador (\texttt{PetProfileController})
+	verifica los permisos de visibilidad del usuario consultante
+	(\texttt{checkVisibilityPermissions}) antes de recuperar los datos
+	generales y el historial médico de la mascota; si el usuario cuenta con
+	permisos completos, recibe el perfil íntegro, y si no los tiene, recibe
+	una versión restringida que omite los campos protegidos por la
+	configuración de privacidad.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-10_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-10 --- Consultar perfil médico.}
 		\label{fig:sec-cu10}
 	\end{figure}
-	
+
 	\subsubsection{Buscar mascota disponible (CU-11)}
-	
+
 	El diagrama de secuencia de CU-11 modela la búsqueda y el filtrado de
-	mascotas disponibles (RF-04). El actor envía los criterios de búsqueda
-	(especie, raza, edad, ubicación aproximada, tamaño, temperamento y
-	disponibilidad) a la interfaz, que los transmite al controlador; este
-	consulta el repositorio de publicaciones activas y retorna únicamente los
-	resultados que cumplen simultáneamente todos los filtros aplicados,
-	ordenados por relevancia o cercanía según la configuración vigente del
-	sistema.
-	
+	mascotas disponibles (RF-04). El adoptante accede a la búsqueda y aplica
+	criterios de filtrado; el controlador (\texttt{SearchController}) consulta
+	el repositorio de publicaciones según dichos criterios
+	(\texttt{findPostsByCriteria}) y retorna la lista de coincidencias, o bien
+	un resultado vacío con el mensaje correspondiente cuando ninguna
+	publicación cumple los filtros aplicados.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-11_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-11 --- Buscar mascota disponible.}
 		\label{fig:sec-cu11}
 	\end{figure}
-	
-	\subsubsection{Configurar privacidad médica (CU-12)}
-	
-	Esta secuencia representa la administración de la privacidad de la
-	información descrita en RF-11. El propietario selecciona, para cada
-	categoría de dato sensible (ubicación, contacto y afecciones específicas),
-	el nivel de visibilidad permitido. El diagrama incluye una validación
-	particular: el controlador impide que el propietario restrinja
-	completamente los campos médicos obligatorios para la validación
-	veterinaria, devolviendo una advertencia si se intenta ocultar información
-	que RD-03 exige mantener visible para las veterinarias autorizadas.
-	
+
+	\subsubsection{Consultar recomendaciones de cuidado (contenido real del archivo CU-12)}
+
+	El archivo \texttt{DiagramaSecuencia\_CU-12} representa la consulta de
+	recomendaciones de cuidado preventivo (relacionada con RF-10), un caso de
+	uso de apoyo identificado en el diagrama de casos de uso general
+	(\emph{Check care recommendations}) que no cuenta con un número CU propio
+	en la especificación textual vigente de la Sección~\ref{sec:cu-detallado}.
+	El controlador (\texttt{CareRecommendationController}) obtiene la
+	especie, la raza y la fecha de nacimiento de la mascota; si ambos datos
+	están especificados, consulta las pautas de cuidado correspondientes y las
+	vacunas pendientes para generar una recomendación específica, y si falta
+	alguno de los dos datos, retorna en su lugar una recomendación básica
+	genérica.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-12_MundiPets.png}
-		\caption{Diagrama de secuencia del caso de uso CU-12 --- Configurar privacidad médica.}
+		\caption{Diagrama de secuencia --- Consultar recomendaciones de cuidado (archivo etiquetado CU-12).}
 		\label{fig:sec-cu12}
 	\end{figure}
-	
-	\subsubsection{Evaluar compatibilidad de cruza --- verificación de parentesco (CU-13)}
-	
-	El diagrama de secuencia de CU-13 complementa a CU-06 al detallar
-	específicamente la verificación de parentesco previa a la evaluación de
-	compatibilidad (RF-06, RF-16). Antes de invocar el componente de
-	inteligencia artificial, el controlador ejecuta una comprobación
-	determinística sobre el grado de parentesco declarado de ambas mascotas; si
-	detecta una relación incompatible, la secuencia se interrumpe y retorna
-	directamente la alerta correspondiente, sin llegar a consumir el servicio de
-	evaluación por IA, lo que además optimiza el uso de dicho componente ante
-	casos que ya son inviables por regla de negocio.
-	
+
+	\subsubsection{Evaluar compatibilidad de cruza (contenido real del archivo CU-13)}
+
+	El archivo \texttt{DiagramaSecuencia\_CU-13} contiene la interacción más
+	compleja del sistema desde el punto de vista de la inteligencia
+	artificial (especificada como CU-06 en la Sección~\ref{sec:cu-detallado};
+	véase la nota de verificación al inicio de esta subsección), e integra en
+	un solo diagrama tanto la evaluación de compatibilidad como la
+	verificación de parentesco que la especificación textual trata por
+	separado como CU-13. Tras la selección de las dos mascotas, el controlador
+	(\texttt{CompatibilityController}) extrae en un ciclo el historial clínico
+	de cada una y envía los datos al servicio externo de inteligencia
+	artificial (\texttt{ExternalAIService}); si el resultado obtenido indica
+	un puntaje de compatibilidad igual o superior a 0.85 y ausencia de
+	consanguinidad, el sistema emite el informe de compatibilidad, y si detecta
+	un campo faltante o consanguinidad, retorna en su lugar una alerta de
+	riesgo biológico sin llegar a emitir una recomendación.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-13_MundiPets.png}
-		\caption{Diagrama de secuencia del caso de uso CU-13 --- Verificación de parentesco previa a la evaluación de compatibilidad.}
+		\caption{Diagrama de secuencia --- Evaluar compatibilidad de cruza y verificación de parentesco (archivo etiquetado CU-13; corresponde a CU-06 y CU-13).}
 		\label{fig:sec-cu13}
 	\end{figure}
-	
-	% ------------------------------------------------------------
+
 	\subsection{Diagramas de actividad}
 	\label{sec:actividad}
-	
+
 	Los diagramas de actividad complementan a los diagramas de secuencia al
 	representar el flujo de control y las decisiones lógicas dentro de cada caso
 	de uso, incluyendo bifurcaciones, uniones y flujos alternos que no se
 	aprecian con la misma claridad en una vista basada en intercambio de
 	mensajes. A continuación se presentan los trece diagramas completos (CU-01 a
-	CU-13), organizados por carriles entre el actor y el sistema.
-	
+	CU-13), organizados por carriles entre el actor y el sistema. El mismo
+	desajuste de numeración documentado en la nota de verificación de la
+	Sección~\ref{sec:secuencia} para los archivos de secuencia se repite de
+	forma idéntica en los archivos de actividad: los identificados como CU-06,
+	CU-07, CU-12 y CU-13 no corresponden al caso de uso que su nombre indica,
+	sino respectivamente a la configuración de privacidad médica (CU-12), la
+	gestión de una solicitud de adopción, la consulta de recomendaciones de
+	cuidado, y la evaluación de compatibilidad de cruza con verificación de
+	parentesco integradas (CU-06 y CU-13).
+
 	\subsubsection{Registrar mascota (CU-01)}
-	
+
 	El diagrama de actividad de CU-01 muestra el flujo completo desde que el
-	propietario accede al formulario de registro hasta la confirmación del
-	perfil. La rama de decisión central evalúa si los campos obligatorios
-	(nombre, especie, raza, sexo, edad, estado reproductivo y al menos una
-	fotografía) están completos; en caso negativo, el flujo retorna al
-	formulario con el campo faltante señalado, sin avanzar hacia la validación
-	de imágenes. Solo cuando la fotografía supera la validación de inteligencia
-	artificial descrita en RF-17 el flujo llega al nodo final de registro
-	exitoso.
-	
+	propietario selecciona \enquote{Register pet} hasta la confirmación del
+	perfil. Tras adjuntar los datos y la fotografía, la rama de decisión
+	central (\emph{Data valid?}) evalúa si los campos obligatorios están
+	completos; en caso negativo, el flujo retorna al formulario mostrando de
+	nuevo la pantalla de registro. Solo cuando los datos son válidos el flujo
+	continúa hacia \emph{Register pet}, \emph{Validate photos} --- la
+	validación de imágenes exigida por RF-17 --- y finalmente el almacenamiento
+	del registro.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.66\textwidth]{figuras/DiagramaActividades_CU-01_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-01 --- Registrar mascota.}
 		\label{fig:act-cu01}
 	\end{figure}
-	
+
 	\subsubsection{Registrar historial médico y antecedentes genéticos (CU-02)}
-	
-	Este diagrama detalla el flujo de registro del historial médico y los
-	antecedentes genéticos de una mascota (RF-02, RF-16). El carril del sistema
-	bifurca el flujo según el tipo de actor que origina la actualización: cuando
-	el emisor es el propietario, la actividad final marca el registro como
-	pendiente de validación profesional; cuando el emisor es una veterinaria, el
-	registro se marca directamente como validado, evitando un doble ciclo de
-	revisión sobre información ya ingresada por un profesional autorizado.
-	
+
+	Este diagrama detalla el flujo de registro del historial médico de una
+	mascota (RF-02): el propietario completa y envía el formulario, y el
+	sistema verifica la completitud de los datos antes de registrar la
+	información o de retornar un mensaje de error específico si algún campo
+	obligatorio falta. El diagrama no distingue una bifurcación de actor entre
+	propietario y veterinaria ni representa de forma explícita la trazabilidad
+	de cepa, lote y aplicador de RF-24; ambos aspectos se gestionan mediante el
+	estado de verificación de documentos médicos (Sección~\ref{sec:estados}) y
+	el modelo de clases, no como ramas visibles de esta actividad.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.56\textwidth]{figuras/DiagramaActividades_CU-02_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-02 --- Registrar historial médico y antecedentes genéticos.}
 		\label{fig:act-cu02}
 	\end{figure}
-	
+
 	\subsubsection{Cargar documento veterinario y carnet de vacunación (CU-03)}
-	
-	El diagrama de actividad de CU-03 representa el flujo de carga de documentos
-	y actualización del carnet de vacunación (RF-14, RF-24). Tras adjuntar el
-	archivo, el sistema ejecuta en paralelo la extracción de metadatos del
-	documento (fecha y tipo) y su almacenamiento físico; ambas ramas se
-	sincronizan en un nodo de unión antes de marcar el documento como pendiente
-	de revisión, estado desde el cual queda habilitado para su posterior
-	validación por parte de una veterinaria en el flujo de CU-09.
-	
+
+	El diagrama de actividad de CU-03 representa el flujo de carga de
+	documentos veterinarios (RF-14). Tras adjuntar el archivo, el sistema
+	valida su formato y tamaño; si la validación falla, retorna un mensaje de
+	rechazo con el motivo, y si es exitosa, almacena el archivo en el servicio
+	externo y registra sus metadatos, dejando el documento disponible de
+	inmediato para consulta, aunque su validación profesional --- en el flujo
+	de CU-09 --- queda pendiente hasta la revisión de una veterinaria
+	autorizada.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.77\textwidth]{figuras/DiagramaActividades_CU-03_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-03 --- Cargar documento veterinario y carnet de vacunación.}
 		\label{fig:act-cu03}
 	\end{figure}
-	
+
 	\subsubsection{Publicar mascota en adopción (CU-04)}
-	
+
 	Este diagrama expone el flujo de publicación para adopción (RF-13),
 	incluyendo la bifurcación que determina si la mascota ya cuenta con una
 	publicación activa. Si existe una publicación previa, el flujo ofrece al
 	propietario actualizarla en lugar de crear un duplicado; si no existe, el
-	sistema procede directamente a validar la completitud del perfil y a
-	publicarlo en el listado de adopciones disponibles, generando la advertencia
-	de perfil incompleto cuando corresponda sin bloquear la publicación.
-	
+	sistema procede directamente a almacenar y publicar la nueva mascota en el
+	listado de adopciones disponibles.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.60\textwidth]{figuras/DiagramaActividades_CU-04_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-04 --- Publicar mascota en adopción.}
 		\label{fig:act-cu04}
 	\end{figure}
-	
+
 	\subsubsection{Publicar mascota para cruza (CU-05)}
-	
-	Este diagrama representa el flujo de publicación para cruza responsable
-	(RF-08, RF-13), que se diferencia del flujo de adopción por incorporar una
-	verificación adicional de antecedentes genéticos y parentesco (RF-16) antes
-	de habilitar la publicación. La bifurcación central del diagrama comprueba
-	si la mascota cuenta con dicha información registrada; si no la tiene, el
-	flujo dirige al propietario hacia el formulario de antecedentes genéticos
-	antes de permitir continuar, garantizando que ninguna mascota quede
-	publicada para cruza sin la información mínima que exige RF-16 para
-	sustentar posteriormente la evaluación de compatibilidad. La regla de negocio de RF-27 se aplica dentro
-	de la misma actividad de registro de la solicitud ya representada en este
-	diagrama, sin requerir una bifurcación adicional visible.
-	
+
+	Este diagrama representa específicamente el flujo de publicación para
+	cruza responsable (RF-08, RF-13). La bifurcación central del diagrama
+	comprueba si la mascota cuenta con antecedentes genéticos registrados; si
+	no los tiene, el flujo dirige al propietario hacia el formulario de
+	antecedentes genéticos antes de permitir continuar, garantizando que
+	ninguna mascota quede publicada para cruza sin la información mínima que
+	exige RF-16. La gestión posterior de la solicitud recibida --- aceptación
+	o rechazo por el propietario receptor --- y la regla de negocio de RF-27
+	sobre solicitudes repetitivas se representan en el flujo de gestión de
+	solicitud de adopción (CU-07, según el contenido real de su archivo), cuyo
+	patrón es análogo para cruza, y en la máquina de estados de la
+	Sección~\ref{sec:estados}.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.75\textwidth]{figuras/DiagramaActividades_CU-05_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-05 --- Publicar mascota para cruza.}
 		\label{fig:act-cu05}
 	\end{figure}
-	
-	\subsubsection{Evaluar compatibilidad de cruza (CU-06)}
-	
-	El diagrama de actividad de CU-06 expone la lógica de decisión que subyace a
-	la recomendación de compatibilidad. Tras la selección de las dos mascotas,
-	el flujo se bifurca según el resultado del análisis de parentesco: si el
-	sistema detecta un grado de parentesco incompatible, se activa el flujo
-	alterno documentado en la especificación textual del caso de uso (flujo
-	alterno 3.1 de la Tabla~\ref{tab:CU-06}), mostrando una alerta explícita
-	antes de presentar cualquier resultado de compatibilidad. Solo cuando no
-	existe dicha incompatibilidad el flujo principal continúa hacia la
-	generación del resultado comparativo y su explicación causal asociada.
-	
+
+	\subsubsection{Configurar privacidad médica (contenido real del archivo CU-06)}
+
+	El diagrama de actividad de \texttt{DiagramaActividades\_CU-06}
+	--- correspondiente a CU-12 en la Sección~\ref{sec:cu-detallado} ---
+	expone la lógica de decisión de la configuración de privacidad (RF-11).
+	Tras seleccionar los datos a compartir y guardar la configuración, la
+	bifurcación central (\emph{Field blocked?}) verifica si algún campo
+	restringido es obligatorio para la validación veterinaria; en caso
+	afirmativo, el sistema muestra una advertencia de visibilidad y no aplica
+	esa restricción puntual, mientras que en caso negativo almacena la
+	configuración completa y actualiza los permisos.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.90\textwidth]{figuras/DiagramaActividades_CU-06_MundiPets.png}
-		\caption{Diagrama de actividad del caso de uso CU-06 --- Evaluar compatibilidad de cruza.}
+		\caption{Diagrama de actividad --- Configurar privacidad médica (archivo etiquetado CU-06; corresponde a CU-12).}
 		\label{fig:act-cu06}
 	\end{figure}
-	
-	\subsubsection{Consultar historial de procesos de adopción y cruza (CU-07)}
-	
-	Este diagrama modela el flujo de consulta del historial de procesos (RF-15).
-	Tras la solicitud del propietario, el sistema recupera en paralelo las
-	solicitudes de adopción y de cruza registradas para sus mascotas, las
-	combina en una sola vista ordenada por fecha y verifica, para cada una, el
-	nivel de información que puede mostrarse según el estado del proceso, antes
-	de presentar la línea de tiempo consolidada al propietario.
-	
+
+	\subsubsection{Gestionar solicitud de adopción (contenido real del archivo CU-07)}
+
+	Este diagrama modela el flujo de gestión de una solicitud de adopción ya
+	enviada (RF-05, RF-18): tras consultar el perfil (CU-10) y enviar la
+	solicitud, el sistema la registra como pendiente y notifica al propietario
+	o refugio; este revisa la solicitud y decide aceptarla o rechazarla
+	(\emph{Accept?}), y el sistema actualiza el estado correspondiente y
+	notifica al adoptante antes de mostrarle el estado final de su solicitud.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.82\textwidth]{figuras/DiagramaActividades_CU-07_MundiPets.png}
-		\caption{Diagrama de actividad del caso de uso CU-07 --- Consultar historial de procesos de adopción y cruza.}
+		\caption{Diagrama de actividad --- Gestionar solicitud de adopción (archivo etiquetado CU-07).}
 		\label{fig:act-cu07}
 	\end{figure}
-	
+
 	\subsubsection{Gestionar comunicación entre usuarios (CU-08)}
-	
+
 	El diagrama de actividad de CU-08 detalla el flujo de envío de un mensaje
-	entre usuarios (RF-07), incluyendo el paso obligatorio por el componente de
-	moderación automática. La bifurcación central determina si el contenido del
-	mensaje es apropiado; en caso negativo, el flujo se dirige hacia la
-	actividad de notificación de la categoría de infracción detectada y el
-	mensaje no llega a entregarse, mientras que en caso afirmativo el mensaje se
-	almacena y se notifica al destinatario de forma inmediata.
-	
+	entre usuarios (RF-07): el sistema busca la conversación existente entre
+	ambos usuarios o crea una nueva si es la primera interacción, almacena el
+	mensaje y notifica al destinatario. El diagrama no representa una
+	bifurcación de moderación automática de contenido; el mecanismo de reporte
+	manual y la explicación por ejemplos de RNF-15 se documentan en la
+	especificación textual de RF-07, no como una actividad de este flujo de
+	envío.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.81\textwidth]{figuras/DiagramaActividades_CU-08_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-08 --- Gestionar comunicación entre usuarios.}
 		\label{fig:act-cu08}
 	\end{figure}
-	
+
 	\subsubsection{Validar información médica (CU-09)}
-	
+
 	Este diagrama representa el flujo de revisión que ejecuta la veterinaria
-	sobre el historial médico y los documentos cargados (RF-09). La bifurcación
-	principal separa el camino de validación exitosa, que actualiza el estado
-	del registro y lo asocia con la identificación del profesional, del camino
-	de rechazo, que exige el registro obligatorio de una observación técnica
-	antes de notificar al propietario, en coherencia con la máquina de estados
-	de verificación de documentos presentada en la
+	sobre el historial médico y los documentos cargados (RF-09). La
+	bifurcación principal separa el camino de validación exitosa, que
+	actualiza el estado del registro y lo asocia con la identificación de la
+	veterinaria, del camino de rechazo, que exige registrar el motivo de la
+	inconsistencia antes de notificar al propietario, en coherencia con la
+	máquina de estados de verificación de documentos presentada en la
 	Sección~\ref{sec:estados}. La segunda opinión veterinaria de RF-26
-	corresponde a una nueva ejecución de este mismo diagrama de actividad sobre
-	un registro ya validado, por lo que no introduce actividades adicionales a
-	las ya representadas.
-	
+	corresponde a una nueva ejecución de este mismo diagrama de actividad
+	sobre un registro ya validado.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.52\textwidth]{figuras/DiagramaActividades_CU-09_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-09 --- Validar información médica.}
 		\label{fig:act-cu09}
 	\end{figure}
-	
+
 	\subsubsection{Consultar perfil médico (CU-10)}
-	
+
 	El diagrama de actividad de CU-10 expone el flujo de consulta de perfil
-	completo de una mascota (RF-03), incluyendo la actividad de filtrado de
-	información sensible según el nivel de acceso del usuario consultante y la
-	configuración de privacidad definida por el propietario (RF-11). El flujo
-	culmina con la presentación diferenciada del perfil, mostrando información
-	ampliada a usuarios autorizados y una versión restringida al resto.
-	
+	completo de una mascota (RF-03), incluyendo la verificación de permisos de
+	visibilidad según la configuración de privacidad definida por el
+	propietario (RF-11). El flujo culmina con la presentación diferenciada del
+	perfil: información completa para usuarios con permisos, y una versión
+	restringida para el resto.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.80\textwidth]{figuras/DiagramaActividades_CU-10_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-10 --- Consultar perfil médico.}
 		\label{fig:act-cu10}
 	\end{figure}
-	
+
 	\subsubsection{Buscar mascota disponible (CU-11)}
-	
+
 	Este diagrama representa el flujo de búsqueda y filtrado de mascotas
 	(RF-04). Tras la selección de criterios por parte del usuario, el sistema
-	aplica de forma secuencial cada filtro sobre el conjunto de publicaciones
-	activas y evalúa si existen resultados; en caso de no existir coincidencias,
-	el flujo ofrece al usuario ajustar los criterios antes de repetir la
-	búsqueda, evitando presentar una lista vacía sin alternativas de acción.
-	
+	aplica los filtros sobre el conjunto de publicaciones activas y evalúa si
+	existen resultados; en caso de no existir coincidencias, el flujo muestra
+	un mensaje informativo en lugar de una lista vacía sin alternativas de
+	acción.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.73\textwidth]{figuras/DiagramaActividades_CU-11_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-11 --- Buscar mascota disponible.}
 		\label{fig:act-cu11}
 	\end{figure}
-	
-	\subsubsection{Configurar privacidad médica (CU-12)}
-	
-	El diagrama de actividad de CU-12 detalla el flujo de configuración de
-	privacidad (RF-11). La bifurcación central verifica si alguno de los campos
-	que el propietario intenta restringir es un campo médico obligatorio para la
-	validación veterinaria; si lo es, el sistema muestra una advertencia y no
-	aplica la restricción sobre ese campo específico, mientras que el resto de
-	la configuración se guarda con normalidad, permitiendo un ajuste parcial en
-	lugar de rechazar la operación completa.
-	
+
+	\subsubsection{Consultar recomendaciones de cuidado (contenido real del archivo CU-12)}
+
+	El diagrama de actividad de \texttt{DiagramaActividades\_CU-12} representa
+	la consulta de recomendaciones de cuidado preventivo asociada a RF-10, el
+	caso de uso de apoyo \emph{Check care recommendations} del diagrama
+	general que no cuenta con número CU propio en la especificación textual.
+	El sistema obtiene los datos de la mascota y, si la especie y la raza
+	están especificadas, consulta las pautas correspondientes y las vacunas
+	pendientes para presentar una recomendación específica; si falta alguno de
+	esos datos, presenta en su lugar una recomendación básica genérica.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.73\textwidth]{figuras/DiagramaActividades_CU-12_MundiPets.png}
-		\caption{Diagrama de actividad del caso de uso CU-12 --- Configurar privacidad médica.}
+		\caption{Diagrama de actividad --- Consultar recomendaciones de cuidado (archivo etiquetado CU-12).}
 		\label{fig:act-cu12}
 	\end{figure}
-	
-	\subsubsection{Evaluar compatibilidad de cruza --- verificación de parentesco (CU-13)}
-	
-	Este diagrama detalla el flujo de verificación de parentesco previo a la
-	evaluación de compatibilidad (RF-06, RF-16). La actividad central compara el
-	linaje declarado de ambas mascotas antes de invocar el componente de
-	inteligencia artificial; si detecta un grado de parentesco incompatible, el
-	flujo se dirige directamente hacia la actividad de alerta explícita y
-	finaliza sin generar una recomendación de compatibilidad, evitando así que
-	el sistema sugiera una cruza que la propia especificación textual del caso
-	de uso (flujo alterno 3.1 de la Tabla~\ref{tab:CU-13}) considera inviable.
-	
+
+	\subsubsection{Evaluar compatibilidad de cruza y verificación de parentesco (contenido real del archivo CU-13)}
+
+	Este diagrama --- correspondiente a CU-06 y CU-13 en la
+	Sección~\ref{sec:cu-detallado} --- expone la lógica de decisión que
+	subyace a la recomendación de compatibilidad, integrando en un solo flujo
+	la verificación de parentesco y la evaluación por inteligencia artificial.
+	Tras la selección de las dos mascotas y la extracción de su historial
+	clínico, el sistema invoca al servicio externo de evaluación; la
+	bifurcación final determina si el puntaje obtenido es igual o superior a
+	0.85 y no existe consanguinidad, en cuyo caso emite el informe de
+	compatibilidad, o si detecta un campo faltante o una relación
+	consanguínea, en cuyo caso dirige el flujo hacia la alerta de riesgo
+	biológico y finaliza sin generar una recomendación, evitando así que el
+	sistema sugiera una cruza que la propia especificación textual del caso de
+	uso (flujo alterno 3.1 de la Tabla~\ref{tab:CU-13}) considera inviable.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1\textwidth]{figuras/DiagramaActividades_CU-13_MundiPets.png}
-		\caption{Diagrama de actividad del caso de uso CU-13 --- Verificación de parentesco previa a la evaluación de compatibilidad.}
+		\caption{Diagrama de actividad --- Evaluar compatibilidad de cruza y verificación de parentesco (archivo etiquetado CU-13; corresponde a CU-06 y CU-13).}
 		\label{fig:act-cu13}
 	\end{figure}
-	
-	% ------------------------------------------------------------
+
 	\subsection{Diagrama de estados}
 	\label{sec:estados}
 	
@@ -4190,65 +4411,81 @@ doi=true
 	veterinarias.
 	
 	\subsubsection{Estados del perfil de mascota}
-	
+
 	El ciclo de vida del perfil de una mascota inicia en el estado
-	\emph{Registrada} una vez completado RF-01, y transita hacia
-	\emph{Publicada} cuando el propietario habilita su disponibilidad para
-	adopción o cruza (RF-13). Desde este estado puede alcanzar
-	\emph{Verificada} cuando una veterinaria valida su información médica
-	(RF-09), o bien \emph{EnProcesoDeAdopcion} / \emph{EnProcesoDeCruza} al
-	aceptarse una solicitud. El estado \emph{Adoptada} es final para el flujo de
-	adopción, pero habilita la transición hacia \emph{EnSeguimiento} definida
-	por RF-22, mientras que el estado \emph{Extraviada}, alcanzable desde
-	cualquier estado activo mediante RF-25, retorna a \emph{Publicada} una vez
-	que el propietario marca el aviso como resuelto.
-	
+	\emph{Drafted} al ejecutarse \texttt{registerPet()} (RF-01), y retorna a
+	\emph{Drafted} si el propietario deja campos incompletos
+	(\emph{notifyOwner()}). Al enviarse el formulario completo
+	(\texttt{submitProfile()}) transita al estado compuesto \emph{Submitted},
+	que verifica secuencialmente \emph{RequiredFieldsChecked},
+	\emph{PhotosAndSpeciesChecked} --- donde se ejecuta la validación de
+	imágenes exigida por RF-17 --- y \emph{SpeciesCompatibilityChecked}. Al
+	completarse esta verificación (\texttt{publishProfile()}), el perfil
+	alcanza el estado \emph{Published} (RF-13), desde el cual una solicitud
+	recibida (\texttt{lockCandidate()}) lo lleva al estado compuesto
+	\emph{matching process}: \emph{ApplicantReviewed},
+	\emph{MeetingCoordinated} y \emph{OutcomeConfirmed}. Si el proceso se
+	retira (\emph{withdraw}), el perfil regresa a \emph{Published}; si se
+	confirma (\emph{matched?~=~yes}), el perfil alcanza el estado final
+	\emph{adopted or matched}, en el que se habilita el seguimiento
+	post-adopción definido por RF-22.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.50\textwidth]{figuras/DiagramaMaquinasEstado_PerfilMascota_MundiPets.png}
 		\caption{Diagrama de estados del perfil de mascota.}
 		\label{fig:est-mascota}
 	\end{figure}
-	
+
 	\subsubsection{Estados de una solicitud de adopción o cruza}
-	
-	Esta máquina de estados formaliza el flujo por etapas exigido por RF-18 para
-	las solicitudes de adopción, y el flujo más simple de aceptación o rechazo
-	definido por RF-08 para las solicitudes de cruza. Una solicitud de adopción
-	avanza secuencialmente por los estados \emph{Pendiente},
-	\emph{EnEntrevista}, \emph{EnVisita}, \emph{EnPeriodoDePrueba} y
-	\emph{Completada}, con la posibilidad de transitar a \emph{Rechazada} desde
-	cualquiera de las etapas intermedias. Las transiciones están condicionadas
-	por eventos generados por el propietario (aceptar, rechazar o avanzar de
-	etapa) y quedan registradas para alimentar la consulta de historial de
-	procesos definida en RF-15. Cada transición de una solicitud de cruza hacia
-	\emph{Completada} incrementa el contador de procesos completados de la
-	mascota implicada, valor que RF-27 consulta antes de admitir una nueva
-	solicitud sobre la misma mascota y que sustenta la alerta de uso repetitivo
-	sin introducir un estado adicional en esta máquina.
-	
+
+	Esta máquina de estados formaliza el flujo por etapas exigido por RF-18
+	para las solicitudes de adopción, y el flujo de aceptación o rechazo
+	definido por RF-08 para las solicitudes de cruza. Una solicitud se crea
+	en el estado \emph{Created} (\texttt{registerRequest()}) y transita a
+	\emph{Submitted} al notificarse al propietario. Desde ahí, al iniciarse
+	la revisión (\texttt{loadRequest()}), alcanza el estado compuesto
+	\emph{Under review}, que verifica secuencialmente
+	\emph{IdentityValidated} (RF-12), \emph{InformationReviewed} y
+	\emph{RequestEvaluated}. Según el resultado de la evaluación, la
+	solicitud transita a \emph{Approved} (\texttt{meetsRequirements}) o a
+	\emph{Rejected} (\texttt{doesNotMeetRequirements}), ambos estados
+	finales; en cualquier punto anterior a la resolución, la solicitud puede
+	transitar a \emph{Cancelled} (\texttt{cancel}), desde donde se confirma
+	su archivado (\texttt{confirmCancellation()}). Estas transiciones quedan
+	registradas para alimentar la consulta de historial de procesos definida
+	en RF-15. Cada transición de una solicitud de cruza hacia \emph{Approved}
+	incrementa el contador de procesos completados de la mascota implicada,
+	valor que RF-27 consulta antes de admitir una nueva solicitud sobre la
+	misma mascota, sin introducir un estado adicional en esta máquina.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.79\textwidth]{figuras/DiagramaMaquinasEstado_Solicitudes_MundiPets.png}
 		\caption{Diagrama de estados de una solicitud de adopción o cruza.}
 		\label{fig:est-solicitud}
 	\end{figure}
-	
+
 	\subsubsection{Estados de verificación de documentos médicos}
-	
-	La tercera máquina de estados corresponde al ciclo de vida de un documento
-	médico cargado por el propietario (carnet de vacunación o certificado
-	veterinario), desde su carga inicial en estado
-	\emph{PendienteDeValidacion} hasta su resolución final en \emph{Validado} o
-	\emph{Rechazado} por parte de una veterinaria autorizada, en cumplimiento de
-	RD-03. El estado \emph{Rechazado} incluye obligatoriamente la observación
-	técnica registrada por el profesional, y permite al propietario transitar
-	nuevamente hacia \emph{PendienteDeValidacion} tras corregir o reemplazar el
-	documento observado. La segunda validación de RF-26 se registra como un
-	nuevo evento sobre el estado \emph{Validado} ya representado en esta
-	máquina de estados, sin reabrir el registro original ni requerir estados o
-	transiciones adicionales en la figura.
-	
+
+	La tercera máquina de estados corresponde al ciclo de vida de un
+	documento médico cargado por el propietario (carnet de vacunación o
+	certificado veterinario), desde su carga inicial en el estado
+	\emph{uploaded} (\texttt{storeFile()}) hasta su ingreso, tras asignarse a
+	una veterinaria (\texttt{assignVet()}), al estado compuesto
+	\emph{Verified}, que verifica secuencialmente \emph{LegibilityChecked},
+	\emph{SourceAndDatesVerified} y \emph{VerdictIssued}, en cumplimiento de
+	RD-03. Del veredicto emitido, el documento transita a \emph{validated}
+	(estado final, si \emph{valid?~=~yes}) o a \emph{rejected} (si
+	\emph{valid?~=~no}), notificándose al propietario
+	(\texttt{notifyOwner()}); desde \emph{rejected}, el propietario puede
+	reenviar el documento (\texttt{resubmitDocument()~/~requeue()}), lo que
+	retorna la máquina al estado compuesto \emph{Verified}. La segunda
+	validación de RF-26 se registra como un nuevo evento sobre el estado
+	\emph{VerdictIssued} ya representado en esta máquina de estados, sin
+	reabrir el registro original ni requerir estados o transiciones
+	adicionales en la figura.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.65\textwidth]{figuras/DiagramaMaquinasEstado_VerificacionDocumentos_MundiPets.png}
@@ -4259,68 +4496,92 @@ doi=true
 	% ------------------------------------------------------------
 	\subsection{Diagrama de componentes}
 	\label{sec:componentes}
-	
+
 	El diagrama de componentes traduce la restricción de arquitectura modular
 	(RD-05) en una organización concreta de módulos de software con interfaces
-	explícitas entre ellos. Se identifican cinco componentes principales:
-	Gestión de Mascotas (RF-01, RF-02, RF-13, RF-16, RF-21), Adopción y Cruza
-	(RF-05, RF-08, RF-18, RF-19, RF-20, RF-22, RF-27), Mensajería (RF-07),
-	Validación Médica (RF-09, RF-14, RF-24, RF-26) y el componente de
-	Inteligencia Artificial, que agrupa los tres subcomponentes de evaluación de
-	compatibilidad (RF-06), validación de imágenes (RF-17) y moderación de
-	mensajes.
-	
-	Las dependencias entre componentes se limitan a interfaces bien definidas:
-	el componente de Adopción y Cruza depende de Gestión de Mascotas para
-	consultar disponibilidad y antecedentes genéticos, pero no accede
-	directamente a su modelo de datos interno; y el componente de Inteligencia
-	Artificial expone una interfaz de evaluación que es consumida tanto por
-	Adopción y Cruza como por Gestión de Mascotas, evitando que cada módulo
-	implemente su propia lógica de IA. Este diseño sustenta directamente la
-	métrica de mantenibilidad definida en RNF-10, según la cual una modificación
-	en un componente no debería requerir cambios en más del 10\,\% de los
-	archivos de otro módulo.
-	
+	explícitas entre ellos. El \emph{web client} accede al sistema
+	exclusivamente a través de la interfaz \texttt{IClientAccess} expuesta por
+	la \emph{internal API layer}, que actúa como fachada única y delega en
+	tres componentes de dominio mediante sus propias interfaces: \emph{pet
+	profiles} (\texttt{IProfile}, RF-01, RF-02, RF-13, RF-16, RF-21, RF-25),
+	\emph{request handling} (\texttt{IRequest}, RF-05, RF-08, RF-18, RF-19,
+	RF-20, RF-22, RF-27) y \emph{medical validation} (\texttt{IMedical},
+	RF-09, RF-14, RF-24, RF-26). Los dos componentes de inteligencia
+	artificial se modelan de forma independiente y son consumidos únicamente
+	por los componentes de dominio que los necesitan, no directamente por la
+	capa de API: \emph{AI image validation} (\texttt{IImageCheck}, RF-17) es
+	consumido por \emph{pet profiles}, y \emph{AI compatibility}
+	(\texttt{IMatching}, RF-06) es consumido por \emph{request handling}. El
+	componente \emph{notifications} (\texttt{IMailer}) es consumido tanto por
+	\emph{request handling} como por \emph{medical validation} a través de la
+	interfaz común \texttt{INotify}, y persiste hacia un \emph{external mail
+	service}; \emph{pet profiles} y \emph{AI compatibility} comparten a su vez
+	el acceso a la \emph{relational database} mediante \texttt{IDataAccess}.
+	El diagrama no representa un componente de \emph{Mensajería} (RF-07) ni un
+	subcomponente de moderación automática de mensajes como elementos
+	independientes; ambos quedan implícitos dentro de \emph{request handling}
+	y del componente de notificaciones respectivamente.
+
+	Las dependencias entre componentes se limitan a interfaces bien definidas y
+	nunca acceden directamente al modelo de datos interno de otro componente:
+	tanto \emph{pet profiles} como \emph{AI compatibility} acceden a la base de
+	datos relacional a través de la misma interfaz \texttt{IDataAccess} en
+	lugar de mantener cada uno su propio acceso, y \emph{request handling}
+	notifica a los usuarios a través de \texttt{INotify} sin conocer el
+	mecanismo de envío subyacente. Este diseño sustenta directamente la
+	métrica de mantenibilidad definida en RNF-10, según la cual una
+	modificación en un componente no debería requerir cambios en más del
+	10\,\% de los archivos de otro módulo.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.75\textwidth]{figuras/DiagramaComponentes_MundiPets.png}
 		\caption{Diagrama de componentes del sistema MundiPets.}
 		\label{fig:componentes}
 	\end{figure}
-	
+
 	% ------------------------------------------------------------
 	\subsection{Diagrama de despliegue}
 	\label{sec:despliegue}
-	
+
 	El diagrama de despliegue representa la distribución física de los
 	componentes del sistema sobre la infraestructura de ejecución, en línea con
 	el entorno operativo descrito en la Sección~\ref{sec:entorno}. Se modelan
-	tres nodos principales: el dispositivo cliente (navegador web en computador,
-	teléfono inteligente o tableta), el servidor de aplicaciones alojado en
-	infraestructura en la nube, que ejecuta los componentes de Gestión de
-	Mascotas, Adopción y Cruza, Mensajería y Validación Médica descritos en la
-	Sección~\ref{sec:componentes}, y un servidor o servicio separado para el
-	componente de Inteligencia Artificial, aislado por motivos de escalabilidad
-	independiente del resto de la lógica de negocio.
-	
-	Un cuarto nodo representa el servidor de base de datos, que persiste tanto
-	la información transaccional del sistema como los archivos multimedia
-	(fotografías de mascotas y documentos veterinarios digitalizados). El
-	diagrama incluye además la dependencia hacia el proveedor externo de
-	mensajería (WhatsApp Business API) descrita en RD-08, necesaria para el
-	envío de los recordatorios de controles preventivos definidos en RF-10. Esta
-	separación de nodos permite que el servicio de inteligencia artificial
-	escale de forma independiente al resto de la aplicación, en coherencia con
-	la restricción de arquitectura modular (RD-05) y con la escalabilidad
-	horizontal exigida por RNF-12.
-	
+	dos nodos cliente --- \emph{user workstation} (navegador de escritorio,
+	con el requisito de hardware IH-01: Windows o Linux, 4~GB de RAM y 2
+	núcleos) y \emph{mobile device} (aplicación móvil empaquetada como
+	\texttt{mundipets.apk}, con el requisito IH-02: Android o iOS y 2~GB de
+	RAM) --- que acceden mediante HTTPS/REST a un único nodo
+	\emph{application server (cloud)}. A diferencia de lo previsto en una
+	revisión anterior de este documento, el servidor de aplicaciones no separa
+	el componente de inteligencia artificial en un nodo propio: aloja en el
+	mismo servidor, junto con los artefactos \texttt{mundipets-api.js} y
+	\texttt{mundipets-web.js}, los cuatro componentes \emph{AI compatibility},
+	\emph{AI image validation}, \emph{authentication service} y
+	\emph{notification module}, bajo el requisito de hardware IH-07 (Linux
+	64~bits, 4~vCPU, 8~GB de RAM y 50~GB de disco SSD NVMe).
+
+	Desde el servidor de aplicaciones se conectan tres nodos de persistencia e
+	integración externa: el \emph{database server} (artefacto
+	\texttt{mundipets\_db}), accedido mediante JDBC/SQL; el \emph{object
+	storage}, que persiste los archivos multimedia (fotografías de mascotas y
+	documentos veterinarios digitalizados) mediante una API compatible con
+	S3; y el \emph{mail server}, accedido mediante SMTP para el envío de
+	notificaciones. El diagrama no representa la dependencia hacia la
+	WhatsApp Business API descrita en RD-08 y RNF-09 para los recordatorios de
+	controles preventivos de RF-10: el canal externo de notificación
+	modelado es exclusivamente el correo electrónico (SMTP), por lo que la
+	integración con WhatsApp queda pendiente de incorporar en una futura
+	versión de este diagrama para que la arquitectura desplegada refleje
+	íntegramente lo exigido por RD-08.
+
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.65\textwidth]{figuras/DiagramaDespliegue_MundiPets.png}
 		\caption{Diagrama de despliegue del sistema MundiPets.}
 		\label{fig:despliegue}
 	\end{figure}
-	
+
 	% ############################################################
 	%        SECCION 5 -- PRIORIZACION Y TRAZABILIDAD EXTENDIDA
 	% ############################################################
@@ -4886,7 +5147,7 @@ en el propio Apéndice~D) ---; y las 27 filas de requisitos funcionales
 alcanzan además una pantalla de alta fidelidad, dedicada o compartida con
 otro RF (Sección~\ref{sec:mockups}), detalle que se consulta en el archivo
 CSV. RF-26 y RF-27, incorporados en la presente revisión (4.0), quedan
-trazados como TR-51 y TR-52, con su evidencia correspondiente (EV-24 y
+trazados como TR-26 y TR-27, con su evidencia correspondiente (EV-24 y
 EV-23) e historia de usuario propia (HU-25 y HU-26), aunque sin obligación
 legal directa por tratarse de requisitos de prioridad \emph{Should}. Los
 tramos sin enlace se deben a la naturaleza del elemento y no a información
@@ -7571,17 +7832,23 @@ La Tabla~\ref{tab:matriz_trazabilidad_completa} es la matriz de trazabilidad
 final del proyecto MundiPets, en el formato mínimo de diez columnas exigido
 por la Guía y Rúbrica de la Entrega 4 (2B): \textbf{Fuente, Requisito, Caso
 de Uso, Clase, Proceso, Estado, Criterio, Caso de Prueba, Historia y Estado
-de la traza}. Esta única tabla cierra los tres tipos de trazabilidad
-exigidos, sin dividirlos en columnas ni en apéndices separados:
+de la traza}. Las filas se ordenan por tipo de requisito --- primero los 27
+funcionales (TR-01 a TR-27), luego los 16 no funcionales (TR-28 a TR-43),
+las 9 restricciones de diseño (TR-44 a TR-52) y finalmente los 9 requisitos
+legales (TR-53 a TR-61) --- para facilitar la lectura y la comparación entre
+elementos del mismo tipo. Esta única tabla cierra los tres tipos de
+trazabilidad exigidos, sin dividirlos en columnas ni en apéndices
+separados:
 
 \begin{itemize}[leftmargin=*]
 	\item \textbf{Trazabilidad vertical hacia atrás}: columna \emph{Fuente},
 	que identifica --- con el código de participante del Apéndice~B.1
 	(PROP-XX para propietarios, VET-XX para veterinarias, OBS-01 para la
-	observación de campo y Encuesta para el cuestionario digital) o con el
-	artículo de la LOPDP cuando aplica --- de qué persona o de qué obligación
-	legal concreta proviene cada requisito, en lugar de limitarse al
-	identificador interno de evidencia (EV-XX).
+	observación de campo y Encuesta para el cuestionario digital) --- de qué
+	persona proviene cada requisito funcional, no funcional o de diseño. Para
+	los nueve requisitos legales, la fuente es en cambio el artículo concreto
+	de la LOPDP, ya que un requisito legal no se elicita de una entrevista
+	sino que deriva directamente del texto de la norma.
 	\item \textbf{Trazabilidad vertical hacia adelante}: columnas \emph{Caso
 	de Uso}, \emph{Clase}, \emph{Proceso}, \emph{Estado}, \emph{Criterio},
 	\emph{Caso de Prueba} e \emph{Historia}, que responden en qué se
@@ -7590,57 +7857,61 @@ exigidos, sin dividirlos en columnas ni en apéndices separados:
 	\item \textbf{Trazabilidad horizontal}: integrada dentro de la propia
 	columna \emph{Fuente} mediante la cláusula \enquote{también...}, que
 	añade el o los requisitos del mismo nivel de los que la fila también se
-	deriva o con los que se relaciona, además de su fuente primaria de
-	evidencia --- por ejemplo, RNF-13 (explicabilidad de la compatibilidad
-	para cruza) declara como fuente tanto la evidencia de campo que motivó la
-	explicabilidad como \enquote{también RF-06, RNF-06}, el requisito y la
-	métrica de los que depende horizontalmente.
+	deriva o con los que se relaciona.
 \end{itemize}
 
-La matriz alcanza las \textbf{61 filas} (TR-01 a TR-61), por encima del
-mínimo de 40 exigido: 27 filas para los requisitos funcionales, 16 para los
-no funcionales, 9 para las restricciones de diseño y 9 para los requisitos
-legales, estas últimas trazadas en sentido inverso --- Ley~$\rightarrow$~Requisito --- ya que para un requisito legal la pregunta
-relevante es qué elemento concreto lo implementa, no de qué participante
-proviene. Se versiona además, con columnas adicionales de detalle
-(Ley, Artículo, ID-EV, Objetivo, Stakeholder, Mockup y componente de
-software), como \texttt{04\_Trazabilidad/matriz\_trazabilidad.csv} en el
-repositorio.
+Se versiona además, con columnas adicionales de detalle (Ley, Artículo,
+ID-EV, Objetivo, Stakeholder, Mockup y componente de software), como
+\texttt{04\_Trazabilidad/matriz\_trazabilidad.csv} en el repositorio.
 
 \paragraph{Descripción de las columnas.}
-\emph{Fuente}: código de participante (Apéndice~B.1) u obligación legal
-(norma y artículo de la LOPDP) de la que proviene el requisito, seguido,
-cuando corresponde, de los requisitos del mismo nivel de los que también
-se deriva (trazabilidad horizontal). \emph{Requisito}: identificador RF,
-RNF, RD o RL de la fila. \emph{Caso de Uso}: caso de uso que realiza el
-requisito (Sección~\ref{sec:cu-detallado}), o su designación transversal
-cuando no corresponde a un caso de uso discreto; para los requisitos
-legales, el caso de uso indicado es el del RF o RNF que materializa la
-obligación. \emph{Clase}: clase del diagrama de clases refinado
-(Sección~\ref{sec:clases-refinado}) que materializa el requisito.
-\emph{Proceso}: módulo funcional de la Sección~\ref{sec:funciones} al que
-pertenece (P1 Gestión de perfiles de mascotas, P2 Búsqueda y filtrado, P3
-Publicación de disponibilidad, P4 Validación de información médica, P5
-Comunicación entre usuarios, P6 Gestión de mascotas rescatadas, P7 Reporte
-de conversaciones sospechosas, P8 Apoyo basado en inteligencia artificial).
-Este proyecto no modela con Diagrama de Flujo de Datos, por lo que esta
-columna usa la agrupación funcional ya definida en la Sección~\ref{sec:funciones} como unidad de proceso de negocio. \emph{Estado}: estado
-concreto de la máquina de estados (Sección~\ref{sec:estados}) que el
-requisito activa o consume --- es un dato del \textbf{dominio del sistema}
-(por ejemplo, una mascota queda en el estado \emph{Registrada}), y no debe
-confundirse con la columna \emph{Estado de la traza}. \emph{Criterio}:
-escenario Gherkin (CA-XX) definido junto a la historia de usuario
-correspondiente (Sección~\ref{sec:historias}). \emph{Caso de Prueba}: ficha
-CP-XX de la Sección~\ref{sec:casos-prueba}. \emph{Historia}: historia de
-usuario (HU-XX) que el requisito utiliza; cuando un requisito no funcional
-reutiliza la historia de un requisito funcional del que depende de forma
-exclusiva --- no transversal ---, se indica entre paréntesis de cuál la
-hereda, en lugar de generar una historia propia sin base real.
-\emph{Estado de la traza}: a diferencia de la columna \emph{Estado}, esta
-no es un dato del sistema sino un \textbf{juicio de calidad sobre la fila
-misma} de la matriz: certifica si la cadena de trazabilidad de ese
-requisito quedó completa, es transversal por diseño, o --- de existir ---
-rota o huérfana (véase el diagnóstico posterior a la tabla).
+\emph{Fuente}: código de participante (Apéndice~B.1) --- o, únicamente
+para los requisitos legales, artículo de la LOPDP --- del que proviene el
+requisito, seguido, cuando corresponde, de los requisitos del mismo nivel
+de los que también se deriva (trazabilidad horizontal). \emph{Requisito}:
+identificador RF, RNF, RD o RL de la fila. \emph{Caso de Uso}: caso de uso
+que realiza el requisito (Sección~\ref{sec:cu-detallado}), o su
+designación transversal cuando no corresponde a un caso de uso discreto;
+para los requisitos legales, el caso de uso indicado es el del RF o RNF
+que materializa la obligación. \emph{Clase}: clase del diagrama de clases
+refinado (Sección~\ref{sec:clases-refinado}, Figura~\ref{fig:clases-refinado}) que
+materializa el requisito, nombrada exactamente como aparece en el
+diagrama. \emph{Proceso}: módulo funcional de la Sección~\ref{sec:funciones} al que pertenece (P1 Gestión de perfiles de mascotas, P2
+Búsqueda y filtrado, P3 Publicación de disponibilidad, P4 Validación de
+información médica, P5 Comunicación entre usuarios, P6 Gestión de mascotas
+rescatadas, P7 Reporte de conversaciones sospechosas, P8 Apoyo basado en
+inteligencia artificial). Este proyecto no modela con Diagrama de Flujo de
+Datos, por lo que esta columna usa la agrupación funcional ya definida en
+la Sección~\ref{sec:funciones} como unidad de proceso de negocio.
+\emph{Estado}: estado concreto de la máquina de estados correspondiente
+(Sección~\ref{sec:estados}) que el requisito activa o consume, nombrado
+exactamente como aparece en el diagrama --- es un dato del \textbf{dominio
+del sistema} (por ejemplo, un perfil de mascota queda en el estado
+\emph{Drafted}), y no debe confundirse con la columna \emph{Estado de la
+traza}. \emph{Criterio}: escenario Gherkin (CA-XX) definido junto a la
+historia de usuario correspondiente (Sección~\ref{sec:historias}).
+\emph{Caso de Prueba}: ficha CP-XX de la Sección~\ref{sec:casos-prueba}.
+\emph{Historia}: historia de usuario (HU-XX) que el requisito utiliza;
+cuando un requisito no funcional reutiliza la historia de un requisito
+funcional del que depende de forma exclusiva --- no transversal ---, se
+indica entre paréntesis de cuál la hereda. \emph{Estado de la traza}: a
+diferencia de la columna \emph{Estado}, esta no es un dato del sistema
+sino un \textbf{juicio de calidad sobre la fila misma} de la matriz:
+certifica si la cadena de trazabilidad de ese requisito quedó completa, es
+transversal por diseño, o --- de existir --- rota o huérfana.
+
+\paragraph{Nota sobre tres brechas de modelado, ya cerradas.} Al verificar
+esta matriz contra el diagrama de clases refinado se habían detectado tres
+requisitos funcionales para los que el modelo de clases no ofrecía un
+atributo o una clase que los materializara por completo: RF-21
+(identificador de microchip, sin atributo en \texttt{Pet}), RF-24 (lote y
+aplicador de la vacuna, sin campo en \texttt{PetVaccine}) y RF-25 (aviso de
+mascota extraviada, sin clase dedicada). Las tres brechas ya fueron
+cerradas por el equipo de modelado (véase la corrección al final de esta
+sección) y las filas correspondientes de la Tabla~\ref{tab:matriz_trazabilidad_completa} reflejan ya la clase real (\texttt{Pet},
+\texttt{PetVaccine} y \texttt{LostPetAlert}, respectivamente), visible en
+la vista parcial \emph{Pets and Health} del diagrama de clases
+(Sección~\ref{sec:clases-refinado}).
 
 \paragraph{Lectura de las celdas marcadas con \enquote{---}.} El guion no
 indica información faltante, sino ausencia de relación real en ese eslabón
@@ -7654,7 +7925,7 @@ transversales lo presentan.
 
 \begin{landscape}
 	\footnotesize
-	\begin{longtable}{@{}p{0.8cm} p{4.4cm} p{1.3cm} p{1.7cm} p{1.9cm} p{1.0cm} p{1.7cm} p{0.9cm} p{0.9cm} p{1.75cm} p{2.2cm}@{}}
+	\begin{longtable}{@{}p{0.8cm} p{4.0cm} p{1.3cm} p{1.7cm} p{2.5cm} p{1.0cm} p{1.9cm} p{0.9cm} p{0.9cm} p{1.75cm} p{2.2cm}@{}}
 		\caption{Matriz de trazabilidad final del proyecto MundiPets.} \label{tab:matriz_trazabilidad_completa} \\
 		\toprule
 		\textbf{ID} & \textbf{Fuente} & \textbf{Requisito} & \textbf{Caso de Uso} & \textbf{Clase} & \textbf{Proceso} & \textbf{Estado} & \textbf{Criterio} & \textbf{CP} & \textbf{Historia} & \textbf{Estado de la traza} \\
@@ -7674,58 +7945,58 @@ transversales lo presentan.
 		\bottomrule
 		\endlastfoot
 
-			TR-01 & LOPDP, Art. 7 y 8; PROP-02, VET-01, VET-03, OBS-01; también RF-12, RF-13 & RF-01 & CU-01 & Mascota & P1 & Registrada & CA-01 & CP-01 & HU-01 & Completa \\ \midrule
-			TR-02 & LOPDP, Art. 14; PROP-01, VET-02; también RF-14, RF-24 & RF-02 & CU-02 & HistorialMedico & P1 & --- & CA-02 & CP-02 & HU-02 & Completa \\ \midrule
-			TR-03 & LOPDP, Art. 12 y 13; VET-02, PROP-03, OBS-01; también RF-04, RF-11 & RF-03 & CU-10 & Mascota & P2 & --- & CA-03 & CP-03 & HU-03 & Completa \\ \midrule
-			TR-04 & Encuesta, OBS-01; también RF-03 & RF-04 & CU-11 & Mascota, Publicacion & P2 & --- & CA-16 & CP-04 & HU-16 & Completa \\ \midrule
-			TR-05 & PROP-01, PROP-02, VET-01, OBS-01; también RF-12, RF-13, RF-18 & RF-05 & CU-04 & SolicitudAdopcion & P3 & Pendiente & CA-04 & CP-05 & HU-04 & Completa \\ \midrule
-			TR-06 & LOPDP, Art. 20; VET-02, VET-03, PROP-03, OBS-01; también RF-16, RF-19, RF-23 & RF-06 & CU-13 & RegistroCompatibilidad & P8 & --- & CA-05 & CP-06 & HU-05 & Completa \\ \midrule
-			TR-07 & LOPDP, Art. 10 lit. e); PROP-02, Encuesta, OBS-01; también RF-05, RF-08, RNF-15 & RF-07 & CU-08 & Mensaje & P5 & --- & CA-17 & CP-07 & HU-17 & Completa \\ \midrule
-			TR-08 & PROP-01, VET-01, VET-03; también RF-13, RF-19, RF-27 & RF-08 & CU-05 & SolicitudCruza & P3 & Pendiente & CA-06 & CP-08 & HU-06 & Completa \\ \midrule
-			TR-09 & LOPDP, Art. 25 y 26; VET-01, VET-03, Encuesta; también RF-02, RF-26 & RF-09 & CU-09 & HistorialMedico, Veterinaria & P4 & PendienteDeValidacion & CA-07 & CP-09 & HU-07 & Completa \\ \midrule
-			TR-10 & PROP-02, VET-02, PROP-03; también RF-14, RD-08 & RF-10 & CU-12 & Mascota & P1 & --- & CA-18 & CP-10 & HU-18 & Completa \\ \midrule
-			TR-11 & LOPDP, Art. 12, 13 y 10 lit. e); PROP-02, VET-03, PROP-03, Encuesta, OBS-01; también RF-03, RD-02 & RF-11 & CU-12 & Usuario & P1 & --- & CA-08 & CP-11 & HU-08 & Completa \\ \midrule
-			TR-12 & LOPDP, Art. 7 y 8; PROP-01, VET-01, Encuesta, OBS-01; también RF-01, RL-01 & RF-12 & (Transversal a Onboarding) & Usuario & P1 & --- & CA-09 & CP-12 & HU-09 & Completa \\ \midrule
-			TR-13 & PROP-01, PROP-02, Encuesta, OBS-01; también RF-01, RF-05, RF-08 & RF-13 & CU-04 & Publicacion & P3 & Publicada & CA-10 & CP-13 & HU-10 & Completa \\ \midrule
-			TR-14 & LOPDP, Art. 14; VET-01, VET-03, Encuesta; también RF-02, RF-24 & RF-14 & CU-03 & HistorialMedico & P1 & PendienteDeValidacion & CA-11 & CP-14 & HU-11 & Completa \\ \midrule
-			TR-15 & PROP-01, PROP-02, VET-02, PROP-03; también RF-05, RF-08, RF-27 & RF-15 & CU-07 & SolicitudAdopcion, SolicitudCruza & P2 & --- & CA-19 & CP-15 & HU-19 & Completa \\ \midrule
-			TR-16 & PROP-01, VET-01, VET-03, Encuesta; también RF-06, RF-19 & RF-16 & CU-02 & AntecedenteGenetico & P1 & --- & CA-12 & CP-16 & HU-12 & Completa \\ \midrule
-			TR-17 & LOPDP, Art. 20; PROP-01, VET-01, Encuesta, OBS-01; también RNF-07, RNF-14 & RF-17 & (Transversal a Publicaciones) & Publicacion & P8 & --- & CA-20 & CP-17 & HU-20 & Completa \\ \midrule
-			TR-18 & LOPDP, Art. 10 lit. j) y 25; VET-03, PROP-03, Encuesta, OBS-01; también RD-04, RL-05, RL-07 & RNF-01 & CU-12 & --- & P1 & --- & --- & CP-28 & --- & Completa (transversal) \\ \midrule
-			TR-19 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta; también RNF-03 & RNF-02 & (Transversal) & --- & Transversal & --- & --- & CP-29 & --- & Completa (transversal) \\ \midrule
-			TR-20 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta; también RNF-02, RNF-12 & RNF-03 & CU-11 & --- & Transversal & --- & --- & CP-30 & --- & Completa (transversal) \\ \midrule
-			TR-21 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta, OBS-01 & RNF-04 & (Transversal / UI) & --- & Transversal & --- & --- & CP-31 & --- & Completa (transversal) \\ \midrule
-			TR-22 & LOPDP, Art. 25 y 26; VET-01, VET-03, Encuesta; también RD-04 & RNF-05 & CU-02 & --- & P1 & --- & --- & CP-32 & --- & Completa (transversal) \\ \midrule
-			TR-23 & LOPDP, Art. 20; PROP-01, VET-01, VET-03, Encuesta; también RF-06, RNF-13 & RNF-06 & CU-13 & --- & P8 & --- & CA-05 (heredado de RF-06) & CP-33 & HU-05 (heredada de RF-06) & Completa \\ \midrule
-			TR-24 & LOPDP, Art. 20; PROP-01, VET-01, VET-03, Encuesta; también RF-17, RNF-14 & RNF-07 & (Transversal a Media) & --- & P8 & --- & CA-20 (heredado de RF-17) & CP-34 & HU-20 (heredada de RF-17) & Completa \\ \midrule
-			TR-25 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta & RNF-08 & CU-01 & --- & P1 & --- & --- & CP-35 & --- & Completa (transversal) \\ \midrule
-			TR-26 & LOPDP, Art. 20; PROP-01, VET-01, VET-03, Encuesta; también RF-06, RF-17, RF-07 & RD-01 & CU-13 & --- & P8 & --- & --- & CP-44 & --- & Completa (transversal) \\ \midrule
-			TR-27 & LOPDP, Art. 39; PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta; también RF-11, RL-05, RL-08 & RD-02 & (Transversal a Seguridad) & Usuario & Transversal & --- & --- & CP-45 & --- & Completa (transversal) \\ \midrule
-			TR-28 & LOPDP, Art. 25 y 26; VET-01, VET-03, Encuesta; también RF-09, RF-19 & RD-03 & CU-09 & --- & P4 & --- & --- & CP-46 & --- & Completa (transversal) \\ \midrule
-			TR-29 & LOPDP, Art. 25, 26 y 30; PROP-02, VET-03, PROP-03, Encuesta; también RNF-01, RL-05, RL-07 & RD-04 & CU-12 & --- & P1 & --- & --- & CP-47 & --- & Completa (transversal) \\ \midrule
-			TR-30 & Equipo desarrollador; también RNF-10 & RD-05 & (Transversal a Diseño) & --- & Transversal & --- & --- & CP-48 & --- & Completa (transversal) \\ \midrule
-			TR-31 & PROP-06, VET-05; también RF-05, RF-22 & RF-18 & CU-04 & SolicitudAdopcion & P3 & EnEntrevista/EnVisita/EnPeriodoDePrueba & CA-13 & CP-18 & HU-13 & Completa \\ \midrule
-			TR-32 & LOPDP, Art. 12; PROP-06; también RF-06, RF-16 & RF-19 & CU-09 & CertificadoVeterinario & P4 & PendienteDeValidacion & CA-21 & CP-19 & HU-21 & Completa \\ \midrule
-			TR-33 & PROP-08; también RF-07 & RF-20 & CU-08 & Mensaje & P5 & --- & CA-27 & CP-20 & HU-27 & Completa (Could) \\ \midrule
-			TR-34 & VET-05; también RF-14, RF-25 & RF-21 & CU-01 & Microchip & P1 & --- & CA-22 & CP-21 & HU-22 & Completa \\ \midrule
-			TR-35 & PROP-05, VET-05; también RF-18 & RF-22 & CU-07 & SolicitudAdopcion & P3 & EnSeguimiento & CA-14 & CP-22 & HU-14 & Completa \\ \midrule
-			TR-36 & PROP-04, PROP-07, VET-04, PROP-11; también RF-06, RF-16 & RF-23 & CU-06 & AlertaRiesgo & P7 & --- & CA-15 & CP-23 & HU-15 & Completa \\ \midrule
-			TR-37 & LOPDP, Art. 4; VET-04, VET-05; también RF-02, RF-14 & RF-24 & CU-03 & HistorialMedico & P1 & PendienteDeValidacion & CA-23 & CP-24 & HU-23 & Completa \\ \midrule
-			TR-38 & PROP-07, VET-05; también RF-21 & RF-25 & CU-04 & AvisoExtraviado & P3 & Extraviada & CA-24 & CP-25 & HU-24 & Completa \\ \midrule
-			TR-39 & LOPDP, Art. 9; PROP-07, VET-05; también RF-11, RL-05, RL-08 & RNF-16 & CU-12 & --- & P1 & --- & CA-08 & CP-43 & HU-08 (heredada de RF-11) & Completa \\ \midrule
-			TR-40 & LOPDP, Art. 30--32; PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta, OBS-01, PROP-04, PROP-05, PROP-06, PROP-07, PROP-08, PROP-09, VET-04, VET-05, PROP-10, PROP-11, VET-06, PROP-12, VET-07 & RD-09 & (Transversal a Datos) & --- & Transversal & --- & --- & CP-52 & --- & Completa (transversal) \\ \midrule
-			TR-41 & PROP-04, PROP-11; también RF-10, RD-08 & RNF-09 & CU-12 & --- & P1 & --- & CA-18 (heredado de RF-10) & CP-36 & HU-18 (heredada de RF-10) & Completa \\ \midrule
-			TR-42 & Equipo desarrollador; también RD-05 & RNF-10 & (Transversal a Diseño) & --- & Transversal & --- & --- & CP-37 & --- & Completa (transversal) \\ \midrule
-			TR-43 & Encuesta, OBS-01 & RNF-11 & (Transversal a UI) & --- & Transversal & --- & --- & CP-38 & --- & Completa (transversal) \\ \midrule
-			TR-44 & Encuesta, OBS-01; también RNF-03 & RNF-12 & (Transversal) & --- & Transversal & --- & --- & CP-39 & --- & Completa (transversal) \\ \midrule
-			TR-45 & LOPDP, Art. 20; PROP-06, PROP-08, VET-04, VET-05; también RF-06, RNF-06, RL-06 & RNF-13 & CU-13 & --- & P8 & --- & CA-05 & CP-40 & HU-05 (heredada de RF-06) & Completa \\ \midrule
-			TR-46 & LOPDP, Art. 20; PROP-06, PROP-08; también RF-17, RNF-07, RL-06 & RNF-14 & (Transversal a Media) & --- & P8 & --- & CA-20 (heredado de RF-17) & CP-41 & HU-20 (heredada de RF-17) & Completa \\ \midrule
-			TR-47 & LOPDP, Art. 20; PROP-08, PROP-11; también RF-07, RL-06 & RNF-15 & CU-08 & --- & P5 & --- & CA-17 (heredado de RF-07) & CP-42 & HU-17 (heredada de RF-07) & Completa \\ \midrule
-			TR-48 & LOPDP, Art. 15; PROP-11; también RL-04 & RD-06 & (Transversal a Datos) & --- & Transversal & --- & --- & CP-49 & --- & Completa (transversal) \\ \midrule
-			TR-49 & LOPDP, Art. 43 y 46; PROP-07, PROP-11; también RL-09 & RD-07 & (Transversal a Seguridad) & --- & Transversal & --- & --- & CP-50 & --- & Completa (transversal) \\ \midrule
-			TR-50 & PROP-04, PROP-11; también RF-10, RNF-09 & RD-08 & CU-12 & --- & P1 & --- & --- & CP-51 & --- & Completa (transversal) \\ \midrule
-			TR-51 & VET-07; también RF-09 & RF-26 & CU-09 & HistorialMedico, Veterinaria & P4 & Validado & CA-25 & CP-26 & HU-25 & Completa \\ \midrule
-			TR-52 & PROP-12; también RF-08, RF-15 & RF-27 & CU-05 & SolicitudCruza & P3 & Completada & CA-26 & CP-27 & HU-26 & Completa \\ \midrule
+			TR-01 & PROP-02, VET-01, VET-03, OBS-01; también RF-12, RF-13 & RF-01 & CU-01 & Pet & P1 & Drafted & CA-01 & CP-01 & HU-01 & Completa \\ \midrule
+			TR-02 & PROP-01, VET-02; también RF-14, RF-24 & RF-02 & CU-02 & MedicalHistory & P1 & --- & CA-02 & CP-02 & HU-02 & Completa \\ \midrule
+			TR-03 & VET-02, PROP-03, OBS-01; también RF-04, RF-11 & RF-03 & CU-10 & Pet & P2 & --- & CA-03 & CP-03 & HU-03 & Completa \\ \midrule
+			TR-04 & Encuesta, OBS-01; también RF-03 & RF-04 & CU-11 & Post & P2 & --- & CA-16 & CP-04 & HU-16 & Completa \\ \midrule
+			TR-05 & PROP-01, PROP-02, VET-01, OBS-01; también RF-12, RF-13, RF-18 & RF-05 & CU-04 & AdoptionRequest & P3 & Created & CA-04 & CP-05 & HU-04 & Completa \\ \midrule
+			TR-06 & VET-02, VET-03, PROP-03, OBS-01; también RF-16, RF-19, RF-23 & RF-06 & CU-13 & CompatibilityEvaluation & P8 & --- & CA-05 & CP-06 & HU-05 & Completa \\ \midrule
+			TR-07 & PROP-02, Encuesta, OBS-01; también RF-05, RF-08, RNF-15 & RF-07 & CU-08 & Message & P5 & --- & CA-17 & CP-07 & HU-17 & Completa \\ \midrule
+			TR-08 & PROP-01, VET-01, VET-03; también RF-13, RF-19, RF-27 & RF-08 & CU-05 & BreedingRequest & P3 & Created & CA-06 & CP-08 & HU-06 & Completa \\ \midrule
+			TR-09 & VET-01, VET-03, Encuesta; también RF-02, RF-26 & RF-09 & CU-09 & MedicalHistory, Veterinarian & P4 & Verified & CA-07 & CP-09 & HU-07 & Completa \\ \midrule
+			TR-10 & PROP-02, VET-02, PROP-03; también RF-14, RD-08 & RF-10 & CU-12 & PetVaccine & P1 & --- & CA-18 & CP-10 & HU-18 & Completa \\ \midrule
+			TR-11 & PROP-02, VET-03, PROP-03, Encuesta, OBS-01; también RF-03, RD-02 & RF-11 & CU-12 & PrivacySettings & P1 & --- & CA-08 & CP-11 & HU-08 & Completa \\ \midrule
+			TR-12 & PROP-01, VET-01, Encuesta, OBS-01; también RF-01, RL-01 & RF-12 & (Transversal a Onboarding) & User & P1 & --- & CA-09 & CP-12 & HU-09 & Completa \\ \midrule
+			TR-13 & PROP-01, PROP-02, Encuesta, OBS-01; también RF-01, RF-05, RF-08 & RF-13 & CU-04 & Post & P3 & Published & CA-10 & CP-13 & HU-10 & Completa \\ \midrule
+			TR-14 & VET-01, VET-03, Encuesta; también RF-02, RF-24 & RF-14 & CU-03 & PetVaccine, Vaccine & P1 & --- & CA-11 & CP-14 & HU-11 & Completa \\ \midrule
+			TR-15 & PROP-01, PROP-02, VET-02, PROP-03; también RF-05, RF-08, RF-27 & RF-15 & CU-07 & AdoptionRequest, BreedingRequest & P2 & --- & CA-19 & CP-15 & HU-19 & Completa \\ \midrule
+			TR-16 & PROP-01, VET-01, VET-03, Encuesta; también RF-06, RF-19 & RF-16 & CU-02 & MedicalHistory & P1 & --- & CA-12 & CP-16 & HU-12 & Completa \\ \midrule
+			TR-17 & PROP-01, VET-01, Encuesta, OBS-01; también RNF-07, RNF-14 & RF-17 & (Transversal a Publicaciones) & Pet, Post & P8 & PhotosAndSpeciesChecked & CA-20 & CP-17 & HU-20 & Completa \\ \midrule
+			TR-18 & PROP-06, VET-05; también RF-05, RF-22 & RF-18 & CU-04 & AdoptionRequest & P3 & Under review & CA-13 & CP-18 & HU-13 & Completa \\ \midrule
+			TR-19 & PROP-06; también RF-06, RF-16 & RF-19 & CU-09 & VetDocument & P4 & Verified & CA-21 & CP-19 & HU-21 & Completa \\ \midrule
+			TR-20 & PROP-08; también RF-07 & RF-20 & CU-08 & Interaction & P5 & --- & CA-27 & CP-20 & HU-27 & Completa (Could) \\ \midrule
+			TR-21 & VET-05; también RF-14, RF-25 & RF-21 & CU-01 & Pet & P1 & --- & CA-22 & CP-21 & HU-22 & Completa \\ \midrule
+			TR-22 & PROP-05, VET-05; también RF-18 & RF-22 & CU-07 & AdoptionRequest & P3 & adopted or matched & CA-14 & CP-22 & HU-14 & Completa \\ \midrule
+			TR-23 & PROP-04, PROP-07, VET-04, PROP-11; también RF-06, RF-16 & RF-23 & CU-06 & Interaction, BreedingRequest & P7 & --- & CA-15 & CP-23 & HU-15 & Completa \\ \midrule
+			TR-24 & VET-04, VET-05; también RF-02, RF-14 & RF-24 & CU-03 & PetVaccine & P1 & --- & CA-23 & CP-24 & HU-23 & Completa \\ \midrule
+			TR-25 & PROP-07, VET-05; también RF-21 & RF-25 & CU-04 & LostPetAlert & P3 & --- & CA-24 & CP-25 & HU-24 & Completa \\ \midrule
+			TR-26 & VET-07; también RF-09 & RF-26 & CU-09 & MedicalHistory, VeterinaryEvaluation & P4 & Verified & CA-25 & CP-26 & HU-25 & Completa \\ \midrule
+			TR-27 & PROP-12; también RF-08, RF-15 & RF-27 & CU-05 & BreedingRequest & P3 & Approved & CA-26 & CP-27 & HU-26 & Completa \\ \midrule
+			TR-28 & VET-03, PROP-03, Encuesta, OBS-01; también RD-04, RL-05, RL-07 & RNF-01 & CU-12 & --- & P1 & --- & --- & CP-28 & --- & Completa (transversal) \\ \midrule
+			TR-29 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta; también RNF-03 & RNF-02 & (Transversal) & --- & Transversal & --- & --- & CP-29 & --- & Completa (transversal) \\ \midrule
+			TR-30 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta; también RNF-02, RNF-12 & RNF-03 & CU-11 & --- & Transversal & --- & --- & CP-30 & --- & Completa (transversal) \\ \midrule
+			TR-31 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta, OBS-01 & RNF-04 & (Transversal / UI) & --- & Transversal & --- & --- & CP-31 & --- & Completa (transversal) \\ \midrule
+			TR-32 & VET-01, VET-03, Encuesta; también RD-04 & RNF-05 & CU-02 & --- & P1 & --- & --- & CP-32 & --- & Completa (transversal) \\ \midrule
+			TR-33 & PROP-01, VET-01, VET-03, Encuesta; también RF-06, RNF-13 & RNF-06 & CU-13 & CompatibilityEvaluation & P8 & --- & CA-05 (heredado de RF-06) & CP-33 & HU-05 (heredada de RF-06) & Completa \\ \midrule
+			TR-34 & PROP-01, VET-01, VET-03, Encuesta; también RF-17, RNF-14 & RNF-07 & (Transversal a Media) & Post & P8 & --- & CA-20 (heredado de RF-17) & CP-34 & HU-20 (heredada de RF-17) & Completa \\ \midrule
+			TR-35 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta & RNF-08 & CU-01 & --- & P1 & --- & --- & CP-35 & --- & Completa (transversal) \\ \midrule
+			TR-36 & PROP-04, PROP-11; también RF-10, RD-08 & RNF-09 & CU-12 & --- & P1 & --- & CA-18 (heredado de RF-10) & CP-36 & HU-18 (heredada de RF-10) & Completa \\ \midrule
+			TR-37 & Equipo desarrollador; también RD-05 & RNF-10 & (Transversal a Diseño) & --- & Transversal & --- & --- & CP-37 & --- & Completa (transversal) \\ \midrule
+			TR-38 & Encuesta, OBS-01 & RNF-11 & (Transversal a UI) & --- & Transversal & --- & --- & CP-38 & --- & Completa (transversal) \\ \midrule
+			TR-39 & Encuesta, OBS-01; también RNF-03 & RNF-12 & (Transversal) & --- & Transversal & --- & --- & CP-39 & --- & Completa (transversal) \\ \midrule
+			TR-40 & PROP-06, PROP-08, VET-04, VET-05; también RF-06, RNF-06, RL-06 & RNF-13 & CU-13 & CompatibilityEvaluation & P8 & --- & CA-05 & CP-40 & HU-05 (heredada de RF-06) & Completa \\ \midrule
+			TR-41 & PROP-06, PROP-08; también RF-17, RNF-07, RL-06 & RNF-14 & (Transversal a Media) & Post & P8 & --- & CA-20 (heredado de RF-17) & CP-41 & HU-20 (heredada de RF-17) & Completa \\ \midrule
+			TR-42 & PROP-08, PROP-11; también RF-07, RL-06 & RNF-15 & CU-08 & Message & P5 & --- & CA-17 (heredado de RF-07) & CP-42 & HU-17 (heredada de RF-07) & Completa \\ \midrule
+			TR-43 & PROP-07, VET-05; también RF-11, RL-05, RL-08 & RNF-16 & CU-12 & --- & P1 & --- & CA-08 & CP-43 & HU-08 (heredada de RF-11) & Completa \\ \midrule
+			TR-44 & PROP-01, VET-01, VET-03, Encuesta; también RF-06, RF-17, RF-07 & RD-01 & CU-13 & --- & P8 & --- & --- & CP-44 & --- & Completa (transversal) \\ \midrule
+			TR-45 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta; también RF-11, RL-05, RL-08 & RD-02 & (Transversal a Seguridad) & User, Owner, Shelter, Veterinarian & Transversal & --- & --- & CP-45 & --- & Completa (transversal) \\ \midrule
+			TR-46 & VET-01, VET-03, Encuesta; también RF-09, RF-19 & RD-03 & CU-09 & VeterinaryEvaluation, Veterinarian & P4 & --- & --- & CP-46 & --- & Completa (transversal) \\ \midrule
+			TR-47 & PROP-02, VET-03, PROP-03, Encuesta; también RNF-01, RL-05, RL-07 & RD-04 & CU-12 & PrivacySettings & P1 & --- & --- & CP-47 & --- & Completa (transversal) \\ \midrule
+			TR-48 & Equipo desarrollador; también RNF-10 & RD-05 & (Transversal a Diseño) & --- & Transversal & --- & --- & CP-48 & --- & Completa (transversal) \\ \midrule
+			TR-49 & PROP-11; también RL-04 & RD-06 & (Transversal a Datos) & --- & Transversal & --- & --- & CP-49 & --- & Completa (transversal) \\ \midrule
+			TR-50 & PROP-07, PROP-11; también RL-09 & RD-07 & (Transversal a Seguridad) & --- & Transversal & --- & --- & CP-50 & --- & Completa (transversal) \\ \midrule
+			TR-51 & PROP-04, PROP-11; también RF-10, RNF-09 & RD-08 & CU-12 & --- & P1 & --- & --- & CP-51 & --- & Completa (transversal) \\ \midrule
+			TR-52 & PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta, OBS-01, PROP-04, PROP-05, PROP-06, PROP-07, PROP-08, PROP-09, VET-04, VET-05, PROP-10, PROP-11, VET-06, PROP-12, VET-07 & RD-09 & (Transversal a Datos) & --- & Transversal & --- & --- & CP-52 & --- & Completa (transversal) \\ \midrule
 			TR-53 & LOPDP, Art. 7 y 8; también RL-02, RD-06 & RL-01 & (Onboarding) & --- & P1 & --- & --- & CP-53 & --- & Completa (transversal) \\ \midrule
 			TR-54 & LOPDP, Art. 12 y 13; también RL-01, RL-03 & RL-02 & CU-10 & --- & P2 & --- & --- & CP-54 & --- & Completa (transversal) \\ \midrule
 			TR-55 & LOPDP, Art. 14; también RL-02, RL-04 & RL-03 & CU-02 & --- & P1 & --- & --- & CP-55 & --- & Completa (transversal) \\ \midrule
@@ -7739,23 +8010,66 @@ transversales lo presentan.
 	\end{longtable}
 \end{landscape}
 
+\subsection*{Corrección de modelado aplicada al diagrama de clases}
+\addcontentsline{toc}{subsection}{Corrección de modelado aplicada al diagrama de clases}
+\label{sec:correccion-clases}
+
+Las tres brechas señaladas en el párrafo anterior ya fueron cerradas por el
+equipo de modelado con los siguientes cambios sobre el diagrama de clases
+refinado, visibles en la vista parcial \emph{Pets and Health}
+(Figura~\ref{fig:clases-pets-health}) aunque todavía no en la vista general
+del diagrama (Figura~\ref{fig:clases-refinado}, pendiente de reexportar):
+
+\begin{itemize}[leftmargin=*]
+	\item \textbf{RF-21 (microchip):} se agregó el atributo
+	\texttt{-microchipId~:~string} y el atributo
+	\texttt{-microchipDate~:~datetime} a la clase \texttt{Pet}. No fue
+	necesario un método nuevo: \texttt{updateData()}, ya existente en
+	\texttt{Pet}, cubre la actualización de este atributo igual que la de
+	cualquier otro dato del perfil.
+	\item \textbf{RF-24 (cepa, lote y aplicador):} se agregaron a la clase
+	\texttt{PetVaccine} los atributos \texttt{-batchNumber~:~string} (lote)
+	y \texttt{-administeredBy~:~string} (aplicador); el atributo
+	\texttt{biologicalAgent~:~Vaccine*} ya existente cubre la cepa o marca
+	del biológico, por lo que no se requirió un atributo adicional para
+	ese dato. Tampoco fue necesario un método nuevo:
+	\texttt{registerApplication()}, ya existente en \texttt{PetVaccine},
+	pasa a registrar también estos dos atributos junto con la fecha y la
+	próxima dosis.
+	\item \textbf{RF-25 (aviso de mascota extraviada):} se incorporó la
+	clase nueva \texttt{LostPetAlert}, dado que ninguna clase existente
+	modelaba un aviso público de extravío con los datos que RF-25 exige. Se
+	detalla a continuación.
+\end{itemize}
+
+\paragraph{Clase nueva: \texttt{LostPetAlert}.}
+
+\begin{atributos}{LostPetAlert}{Especificación de la clase \texttt{LostPetAlert}, incorporada para cerrar RF-25.}
+	Atributos & \texttt{-alertId~:~long}\newline\texttt{-petId~:~long}\newline\texttt{-lastSeenLocation~:~string}\newline\texttt{-lastSeenDate~:~datetime}\newline\texttt{-contactPhone~:~string}\newline\texttt{-status~:~string} (\emph{Active} / \emph{Resolved}) \\
+	Métodos & \texttt{+publishAlert()} --- publica el aviso a partir de los datos del perfil de la mascota y del contacto del propietario.\newline\texttt{+resolveAlert()} --- marca el aviso como \emph{Resolved} y lo retira del listado público. \\
+	Relación con \texttt{Pet} & Composición (rombo relleno) 0..* a 1: cada \texttt{Pet} puede tener cero o varios \texttt{LostPetAlert} a lo largo del tiempo (uno por cada episodio de extravío), y cada aviso pertenece exactamente a una mascota (etiqueta \emph{warning} en el diagrama). \\
+	Relación con \texttt{Owner} & Asociación 1 a 0..*: cada \texttt{Owner} puede publicar cero o varios avisos, y cada aviso es publicado por exactamente un \texttt{Owner} (el método \texttt{publishAlert()} obtiene \texttt{contactPhone} del \texttt{Owner} autenticado). \\
+	Justificación & RF-25 exige fotografías (ya cubiertas por \texttt{Pet.petPhotos}), número de microchip (cubierto por el atributo \texttt{microchipId} agregado a \texttt{Pet} para cerrar RF-21) y datos de contacto y ubicación del extravío, que ninguna otra clase modela; reutilizar \texttt{Post} de forma genérica --- como se documentaba antes de esta corrección --- habría dejado sin modelar \texttt{lastSeenLocation} y \texttt{contactPhone}, exigidos explícitamente por RF-25. \\
+\end{atributos}
+
+Con esta clase incorporada, RF-25 en la Tabla~\ref{tab:matriz_trazabilidad_completa} pasa de \texttt{Post (sin clase dedicada)} a \texttt{LostPetAlert}, y su fila queda con \emph{Estado de la traza} \emph{Completa} en lugar de la brecha señalada.
+
 \subsection*{Diagnóstico de cobertura: huérfanos y cadenas rotas}
 \addcontentsline{toc}{subsection}{Diagnóstico de cobertura: huérfanos y cadenas rotas}
 \label{sec:diagnostico-cobertura}
 
 Conforme al criterio de verificación de esta entrega, se define como
-\textbf{requisito huérfano} aquel que carece de fuente identificable (ya
-verificado como cero casos: las 61 filas declaran al menos un participante,
-una fuente de evidencia agregada o un artículo de la LOPDP) o de todo
-artefacto posterior que lo realice, y como \textbf{cadena rota} aquella en
-la que un artefacto de diseño --- un caso de uso o una clase --- existe sin
-que ningún requisito lo respalde. La revisión de las 61 filas de la
-Tabla~\ref{tab:matriz_trazabilidad_completa} contra el diagrama de casos de
-uso (Sección~\ref{sec:uml}) y el diagrama de clases refinado
-(Sección~\ref{sec:clases-refinado}) no encontró ningún caso de ninguna de
-las dos patologías. La Tabla~\ref{tab:huerfanos} documenta este resultado
-siguiendo el formato exigido para reportar huérfanos y cadenas rotas cuando
-existan.
+\textbf{requisito huérfano} aquel que carece de fuente identificable o de
+todo artefacto posterior que lo realice, y como \textbf{cadena rota}
+aquella en la que un artefacto de diseño --- un caso de uso o una clase ---
+existe sin que ningún requisito lo respalde. La revisión de las 61 filas de
+la Tabla~\ref{tab:matriz_trazabilidad_completa} contra el diagrama de casos
+de uso (Sección~\ref{sec:uml}) y el diagrama de clases refinado
+(Figura~\ref{fig:clases-refinado}) encontró las tres brechas de atributo/clase ya
+señaladas (RF-21, RF-24, RF-25), cerradas mediante la corrección de
+modelado de la subsección anterior; ningún otro requisito, caso de uso o
+clase del diagrama quedó sin correspondencia en la matriz. La
+Tabla~\ref{tab:huerfanos} documenta este resultado.
 
 \begin{table}[H]
 	\centering
@@ -7766,17 +8080,17 @@ existan.
 		\toprule
 		\textbf{Patología} & \textbf{Casos detectados} & \textbf{Acción} \\
 		\midrule
-		Requisito huérfano (sin fuente) & 0 de 61 & No aplica; las 61 filas declaran al menos una fuente (participante, evidencia agregada o artículo de la LOPDP). \\
+		Requisito huérfano (sin fuente) & 0 de 61 & No aplica; las 61 filas declaran al menos una fuente (participante o artículo de la LOPDP). \\
 		\addlinespace
-		Requisito huérfano (sin realización) & 0 de 61 & No aplica; las 61 filas declaran al menos un caso de uso o designación transversal, un proceso funcional y un caso de prueba. \\
+		Requisito con brecha de modelado (clase/atributo faltante) & 3 de 61 & RF-21, RF-24 y RF-25; cerrada mediante la corrección de modelado de esta sección (atributos nuevos en \texttt{Pet} y \texttt{PetVaccine}, y la clase nueva \texttt{LostPetAlert}). \\
 		\addlinespace
 		Cadena rota (caso de uso sin requisito) & 0 de 13 & No aplica; los 13 casos de uso de la Sección~\ref{sec:cu-detallado} están referenciados desde al menos una fila de la matriz. \\
 		\addlinespace
-		Cadena rota (clase sin requisito) & 0 de 14\footnotemark & No aplica; las 14 clases de dominio del diagrama de clases refinado están referenciadas desde al menos una fila de la matriz. \\
+		Cadena rota (clase sin requisito) & 0 de 18\footnotemark & No aplica; las 18 clases del diagrama de clases refinado (17 vigentes más \texttt{LostPetAlert}) están referenciadas desde al menos una fila de la matriz. \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
-\footnotetext{Las cuatro clases restantes del diagrama --- \texttt{PropietarioMascota}, \texttt{Adoptante}, \texttt{InteresadoEnCruza} y \texttt{RefugioAnimal} --- son especializaciones de \texttt{Usuario} que representan roles y se alcanzan a través del actor de cada caso de uso (Sección~\ref{sec:cu-detallado}), no como clase de dominio realizada por un requisito individual; ninguna de las cuatro existe sin un requisito que la origine, por lo que no constituyen una cadena rota.}
+\footnotetext{Las tres clases restantes del diagrama --- \texttt{Owner}, \texttt{Shelter} y \texttt{Veterinarian} --- son especializaciones de \texttt{User} que representan roles y se alcanzan a través del actor de cada caso de uso (Sección~\ref{sec:cu-detallado}), no como clase de dominio realizada por un requisito individual; ninguna de las tres existe sin un requisito que la origine, por lo que no constituyen una cadena rota.}
 
 \subsection*{Sincronización con el tablero de gestión}
 \addcontentsline{toc}{subsection}{Sincronización con el tablero de gestión}
