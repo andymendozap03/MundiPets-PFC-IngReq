@@ -1978,8 +1978,105 @@ doi=true
 			\bottomrule
 		\end{tabularx}
 	\end{table}
+	Los mismos tres componentes cuentan además con un requisito de equidad,
+	una clasificación de riesgo y un plan de monitoreo en producción,
+	detallados en la Sección~\ref{sec:equidad-riesgo-ia}.
 	
+\subsubsection{Equidad, clasificación de riesgo y plan de monitoreo de los componentes de inteligencia artificial}
+\label{sec:equidad-riesgo-ia}
+
+Complementando la exactitud (RNF-06, RNF-07) y la explicabilidad (RNF-13,
+RNF-14, RNF-15) ya especificadas, esta sección define, para cada uno de los
+tres componentes de inteligencia artificial de MundiPets, su requisito de
+equidad, su clasificación de riesgo y su plan de monitoreo en producción,
+de modo que ningún componente de IA quede solo declarado sin una
+especificación medible de estos tres aspectos.
+
+\paragraph{Requisitos de equidad.}
+Cada componente mide la diferencia de desempeño entre subgrupos con
+distinta representación en los datos de referencia, con una brecha máxima
+tolerada expresada en puntos porcentuales. La Tabla~\ref{tab:equidad-ia}
+detalla el requisito de equidad de cada componente.
+
+\begin{table}[H]
+	\centering
+	\caption{Requisitos de equidad de los componentes de inteligencia artificial.}
+	\label{tab:equidad-ia}
+	\small
+	\begin{tabularx}{\textwidth}{@{}p{2.3cm} X p{2.6cm}@{}}
+		\toprule
+		\textbf{Componente} & \textbf{Métrica y subgrupos comparados} & \textbf{Brecha máxima tolerada} \\
+		\midrule
+		\emph{AI compatibility} (RF-06) & Diferencia de tasa de coincidencia con la evaluación veterinaria de referencia entre razas con más de 30 casos en el conjunto de evaluación y razas con menos de 30 casos. & 10 puntos porcentuales \\
+		\addlinespace
+		\emph{AI image validation} (RF-17) & Diferencia de tasa de clasificación correcta entre fotografías tomadas en interiores y en exteriores, condición que afecta la iluminación y la nitidez de la imagen. & 10 puntos porcentuales \\
+		\addlinespace
+		Moderación de mensajes (RF-07) & Diferencia de tasa de falsos bloqueos entre mensajes de longitud breve (menos de 15 palabras) y mensajes de longitud extensa, dado que los mensajes breves ofrecen menos contexto para la clasificación. & 10 puntos porcentuales \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\paragraph{Clasificación de riesgo.}
+Conforme al enfoque basado en niveles de riesgo del Reglamento (UE)
+2024/1689 \cite{euaiact2024}, ninguno de los tres componentes de MundiPets
+pertenece a la categoría de riesgo inaceptable ni de alto riesgo: ninguno
+realiza identificación biométrica, puntuación social ni evaluación de
+acceso a servicios esenciales. La Tabla~\ref{tab:riesgo-ia} detalla la
+clasificación de cada componente.
+
+\begin{table}[H]
+	\centering
+	\caption{Clasificación de riesgo de los componentes de inteligencia artificial.}
+	\label{tab:riesgo-ia}
+	\small
+	\begin{tabularx}{\textwidth}{@{}p{2.3cm} p{2.0cm} X@{}}
+		\toprule
+		\textbf{Componente} & \textbf{Nivel} & \textbf{Justificación} \\
+		\midrule
+		\emph{AI compatibility} (RF-06) & Riesgo limitado & Influye en una decisión con efecto sobre el bienestar animal (proceso de cruza) y está sujeto al derecho a explicación del Art.~20 LOPDP (RL-06), lo que exige las obligaciones de transparencia ya cubiertas por RNF-13. \\
+		\addlinespace
+		\emph{AI image validation} (RF-17) & Riesgo mínimo/limitado & Su salida (aceptar o rechazar una fotografía) no afecta la salud ni la seguridad de personas o animales; la obligación de transparencia ya está cubierta por RNF-14. \\
+		\addlinespace
+		Moderación de mensajes (RF-07) & Riesgo mínimo/limitado & Su salida (bloquear o permitir un mensaje) es revisable por los propios usuarios mediante el canal de comunicación directa; la obligación de transparencia ya está cubierta por RNF-15. \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+En los tres casos, la salida del componente es de apoyo y no de decisión
+definitiva: \emph{AI compatibility} no autoriza ni rechaza un proceso de
+cruza, \emph{AI image validation} no impide de forma permanente la
+publicación de una mascota (el propietario puede volver a intentarlo con
+otra fotografía), y la moderación de mensajes no elimina el mensaje
+original, que permanece disponible para su revisión. Ninguno de los tres
+componentes reemplaza la evaluación veterinaria profesional exigida en
+otras partes del sistema (RF-09, CU-09).
+
+\paragraph{Plan de monitoreo en producción.}
+La Tabla~\ref{tab:monitoreo-ia} define, para cada componente, el
+indicador de desempeño en producción, su frecuencia de medición, el
+umbral de alerta por deriva y el criterio de reentrenamiento o retirada
+temporal.
+
+\begin{table}[H]
+	\centering
+	\caption{Plan de monitoreo en producción de los componentes de inteligencia artificial.}
+	\label{tab:monitoreo-ia}
+	\small
+	\begin{tabularx}{\textwidth}{@{}p{2.0cm} X p{4.3cm}@{}}
+		\toprule
+		\textbf{Componente} & \textbf{Indicador y frecuencia} & \textbf{Umbral de alerta y acción} \\
+		\midrule
+		\emph{AI compatibility} & Coincidencia con la evaluación veterinaria (RNF-06), medida mensualmente sobre una muestra auditada de recomendaciones emitidas. & Caída sostenida por debajo del 85\,\% durante dos meses consecutivos: reentrenar con los casos auditados del período; si no se recupera el umbral en el siguiente ciclo, retirar temporalmente el componente y operar en modo manual (evaluación veterinaria directa). \\
+		\addlinespace
+		\emph{AI image validation} & Tasa de clasificación correcta (RNF-07), medida mensualmente sobre una muestra de imágenes revisadas manualmente como control de calidad. & Caída sostenida por debajo del 95\,\% durante dos meses consecutivos: reentrenar incorporando los casos mal clasificados detectados; si no se recupera, derivar temporalmente las imágenes a revisión manual antes de la publicación. \\
+		\addlinespace
+		Moderación de mensajes & Tasa de falsos bloqueos, medida mensualmente sobre una muestra de mensajes bloqueados revisados manualmente. & Tasa de falsos bloqueos superior al 15\,\% durante un mes de medición: reentrenar con los mensajes mal clasificados identificados; si no mejora, desactivar temporalmente la moderación automática y habilitar el envío directo entre usuarios ya verificados. \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
 	% ------------------------------------------------------------
+	\newpage
 	\subsection{Requisitos legales}
 	\label{sec:legales}
 	
@@ -2023,7 +2120,7 @@ doi=true
 		\end{tabularx}
 	\end{table}
 	
-	
+	\newpage
 	% ------------------------------------------------------------
 	\subsection{Restricciones de diseño}
 	\label{sec:restricciones}
@@ -8138,6 +8235,13 @@ separados:
 	deriva o con los que se relaciona.
 \end{itemize}
 
+El tablero de gestión del proyecto exporta una tarjeta por cada historia
+de usuario (HU-01 a HU-27) y por cada caso de prueba (CP-01 a CP-61),
+enlazada mediante el mismo identificador utilizado en esta matriz, y se
+versiona junto con la exportación completa del tablero en
+\texttt{04\_Trazabilidad/sincronizacion\_tablero.csv} en el repositorio.
+
+
 Se versiona además, con columnas adicionales de detalle (Ley, Artículo,
 ID-EV, Objetivo, Stakeholder, Mockup y componente de software), como
 \texttt{04\_Trazabilidad/matriz\_trazabilidad.csv} en el repositorio.
@@ -8277,57 +8381,7 @@ transversales lo presentan.
 \end{landscape}
 
 
-\subsection*{Diagnóstico de cobertura: huérfanos y cadenas rotas}
-\label{sec:diagnostico-cobertura}
 
-Conforme al criterio de verificación de esta entrega, se define como
-\textbf{requisito huérfano} aquel que carece de fuente identificable o de
-todo artefacto posterior que lo realice, y como \textbf{cadena rota}
-aquella en la que un artefacto de diseño --- un caso de uso o una clase ---
-existe sin que ningún requisito lo respalde. La revisión de las 61 filas de
-la Tabla~\ref{tab:matriz_trazabilidad_completa} contra el diagrama de casos
-de uso (Sección~\ref{sec:uml}) y el diagrama de clases refinado
-(Figura~\ref{fig:clases-refinado}) encontró las tres brechas de atributo/clase ya
-señaladas (RF-21, RF-24, RF-25), cerradas mediante la corrección de
-modelado de la subsección anterior; ningún otro requisito, caso de uso o
-clase del diagrama quedó sin correspondencia en la matriz. La
-Tabla~\ref{tab:huerfanos} documenta este resultado.
-
-\begin{table}[H]
-	\centering
-	\caption{Diagnóstico de huérfanos y cadenas rotas de la matriz de trazabilidad.}
-	\label{tab:huerfanos}
-	\small
-	\begin{tabularx}{\textwidth}{@{}l l X@{}}
-		\toprule
-		\textbf{Patología} & \textbf{Casos detectados} & \textbf{Acción} \\
-		\midrule
-		Requisito huérfano (sin fuente) & 0 de 61 & No aplica; las 61 filas declaran al menos una fuente (participante o artículo de la LOPDP). \\
-		\addlinespace
-		Requisito con brecha de modelado (clase/atributo faltante) & 3 de 61 & RF-21, RF-24 y RF-25; cerrada mediante la corrección de modelado de esta sección (atributos nuevos en \texttt{Pet} y \texttt{PetVaccine}, y la clase nueva \texttt{LostPetAlert}). \\
-		\addlinespace
-		Cadena rota (caso de uso sin requisito) & 0 de 13 & No aplica; los 13 casos de uso de la Sección~\ref{sec:cu-detallado} están referenciados desde al menos una fila de la matriz. \\
-		\addlinespace
-		Cadena rota (clase sin requisito) & 0 de 18\footnotemark & No aplica; las 18 clases del diagrama de clases refinado (17 vigentes más \texttt{LostPetAlert}) están referenciadas desde al menos una fila de la matriz. \\
-		\bottomrule
-	\end{tabularx}
-\end{table}
-
-
-\subsection*{Sincronización con el tablero de gestión}
-
-El tablero Jira del proyecto exporta una tarjeta por cada historia de
-usuario (HU-01 a HU-27) y por cada caso de prueba (CP-01 a CP-61), enlazada
-mediante el mismo identificador utilizado en esta matriz. El porcentaje de
-sincronización se calcula como la proporción de tarjetas del tablero cuyo
-identificador de requisito de origen coincide con una fila de la
-Tabla~\ref{tab:matriz_trazabilidad_completa}, sobre el total de tarjetas
-exportadas, y se reporta junto con la exportación completa del tablero en
-\texttt{04\_Trazabilidad/sincronizacion\_tablero.csv} en el repositorio.
-
-
-
-	% --------------------------------------------------------
 	\newpage
 
 	\section*{Apéndice E --- Repositorio GitHub}
@@ -8613,4 +8667,129 @@ exportadas, y se reporta junto con la exportación completa del tablero en
 	\end{table}
 	
 	
+\section*{Apéndice I --- Retrospectiva del equipo y declaraciones individuales}
+\addcontentsline{toc}{section}{Apéndice I --- Retrospectiva y declaraciones individuales}
+\label{ap:retrospectiva}
+
+\subsection*{I.1 Retrospectiva del equipo}
+\label{sec:retrospectiva}
+
+El equipo realizó una retrospectiva en formato Start--Stop--Continue,
+referida al proceso de trabajo sostenido a lo largo de las cuatro entregas
+del proyecto. La Tabla~\ref{tab:retrospectiva} recoge los elementos
+identificados por categoría y la persona responsable de la acción de
+mejora correspondiente.
+
+\begin{longtable}{@{}p{2.2cm} p{8.0cm} p{3.6cm}@{}}
+	\caption{Retrospectiva Start--Stop--Continue del equipo.} \label{tab:retrospectiva} \\
+	\toprule
+	\textbf{Categoría} & \textbf{Elemento} & \textbf{Responsable / acción} \\
+	\midrule
+	\endfirsthead
+	\multicolumn{3}{@{}l}{\small\itshape (continuación de la Tabla \ref{tab:retrospectiva})}\\
+	\toprule
+	\textbf{Categoría} & \textbf{Elemento} & \textbf{Responsable / acción} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endlastfoot
+	
+	\multirow{3}{*}{Start} & Definir con antelación un cronograma interno de commits por hito, en lugar de concentrar la carga de trabajo en los días previos al cierre de cada entrega. & Todo el equipo \\
+	\cline{2-3}
+	& Fijar una versión etiquetada del repositorio al cierre de la entrega, para congelar una línea base verificable en el tiempo. & Mendoza Párraga Andy Johel \\
+	\cline{2-3}
+	& Revisar de forma cruzada entre integrantes las fichas de requisitos antes de darlas por cerradas, para detectar antes inconsistencias entre el texto narrativo y las figuras del modelo. & Gutiérrez Ortega Génesis Adriana \\
+	\midrule
+	
+	\multirow{3}{*}{Stop} & Dejar de declarar en el texto elementos (nombres de archivo, cifras de cobertura) sin verificarlos primero contra el repositorio real. & Todo el equipo \\
+	\cline{2-3}
+	& Dejar de dividir el trabajo de evidencias por persona sin una plantilla común de nomenclatura acordada desde el inicio, lo que generó inconsistencias de nombre de archivo detectadas en revisiones posteriores. & Fuertes Arraes Edson Daniel \\
+	\cline{2-3}
+	& Dejar de redactar secciones extensas del ERS sin una re-lectura conjunta antes de integrarlas al documento maestro. & Nieves Sánchez Jimmy Samuel \\
+	\midrule
+	
+	\multirow{3}{*}{Continue} & Mantener la distribución de commits repartida entre los cinco integrantes con correo institucional, sin autores externos al equipo. & Todo el equipo \\
+	\cline{2-3}
+	& Mantener la práctica de anonimizar sistemáticamente las evidencias de campo (transcripciones, consentimientos) antes de subirlas a la zona pública del repositorio. & Morales Sánchez Gary Alejandro \\
+	\cline{2-3}
+	& Mantener el inventario técnico de evidencias (\texttt{fichas\_tecnicas.csv}) con hash, duración y códec por archivo, que permite auditar la evidencia sin necesidad de abrir el volumen cifrado. & Mendoza Párraga Andy Johel \\
+	
+\end{longtable}
+
+\subsection*{I.2 Declaración individual de aporte al proyecto}
+\label{sec:aporte-individual}
+
+La Tabla~\ref{tab:aporte-individual} documenta, para cada integrante, sus
+aportes concretos al proyecto en términos de artefactos y secciones, con
+la evidencia correspondiente verificable en el historial de \emph{commits}
+del repositorio.
+
+\begin{longtable}{@{}p{2.6cm} p{7.4cm} p{4.0cm}@{}}
+	\caption{Declaración individual de aporte al proyecto.} \label{tab:aporte-individual} \\
+	\toprule
+	\textbf{Integrante} & \textbf{Aportes concretos (artefactos y secciones)} & \textbf{Evidencia en el repositorio} \\
+	\midrule
+	\endfirsthead
+	\multicolumn{3}{@{}l}{\small\itshape (continuación de la Tabla \ref{tab:aporte-individual})}\\
+	\toprule
+	\textbf{Integrante} & \textbf{Aportes concretos (artefactos y secciones)} & \textbf{Evidencia en el repositorio} \\
+	\midrule
+	\endhead
+	\bottomrule
+	\endlastfoot
+	
+	Fuertes Arraes Edson Daniel (Analista líder) & Coordinación de la elicitación de requisitos, consolidación de la especificación de requisitos funcionales y no funcionales, y verificación de consistencia entre la especificación textual y el modelado. & Commits sobre \texttt{01\_ERS/} y \texttt{04\_Trazabilidad/} \\
+	\midrule
+	
+	Gutiérrez Ortega Génesis Adriana (Verificadora) & Verificación de la matriz de trazabilidad, revisión cruzada de los casos de prueba y consistencia de la priorización MoSCoW, Kano y WSJF. & Commits sobre \texttt{01\_ERS/} (secciones de trazabilidad y priorización) \\
+	\midrule
+	
+	Mendoza Párraga Andy Johel (Modelador) & Modelado UML completo (casos de uso, clases, secuencia, actividad, estados, componentes, despliegue, contexto), especificación de los componentes de inteligencia artificial y su plan de monitoreo. & Commits sobre \texttt{03\_Modelado/} y las figuras asociadas en \texttt{01\_ERS/figuras/} \\
+	\midrule
+	
+	Morales Sánchez Gary Alejandro (Documentador) & Redacción y consolidación del documento ERS/SRS, gestión de la evidencia de campo (transcripciones, actas, anonimización) y estructura del repositorio. & Commits sobre \texttt{02\_Evidencias/} y \texttt{01\_ERS/ERS\_SRS\_2B\_v2\_0.tex} \\
+	\midrule
+	
+	Nieves Sánchez Jimmy Samuel (Verificador) & Verificación del componente empírico, ejecución del protocolo experimental registrado en el OSF y verificación del manuscrito derivado. & Commits sobre \texttt{06\_Experimento/} y \texttt{07\_Publicacion/} \\
+	
+\end{longtable}
+
+\subsection*{I.3 Declaración de uso de herramientas de inteligencia artificial generativa}
+\label{sec:declaracion-ia-generativa}
+
+En cumplimiento del principio de transparencia académica, el equipo
+declara el uso de herramientas de inteligencia artificial generativa
+(modelos de lenguaje de gran escala) durante la elaboración de este
+proyecto, conforme al detalle de la Tabla~\ref{tab:uso-ia-generativa}.
+Ninguna herramienta de este tipo participó en la recolección de evidencia
+de campo (entrevistas, cuestionario, observación), en la toma de
+decisiones de diseño del sistema, ni en la generación de los datos
+reportados en el componente empírico (Sección~\ref{sec:empirico}); su uso
+se limitó a las tareas de apoyo declaradas.
+
+\begin{table}[H]
+	\centering
+	\small
+	\caption{Uso declarado de herramientas de inteligencia artificial generativa.}
+	\label{tab:uso-ia-generativa}
+	\begin{tabularx}{\textwidth}{@{}p{3.0cm} X@{}}
+		\toprule
+		\textbf{Tarea de apoyo} & \textbf{Descripción del uso} \\
+		\midrule
+		Redacción y edición de texto & Apoyo en la redacción y revisión de estilo de secciones narrativas del ERS, siempre sobre contenido técnico ya definido por el equipo; toda afirmación de hecho (cifras, nombres de archivo, resultados) fue verificada por el equipo contra el repositorio antes de su incorporación al documento final. \\
+		\addlinespace
+		Generación de código de apoyo & Apoyo en la generación de fragmentos de código de scripts de análisis y utilidades de verificación, revisados y ejecutados por el equipo antes de su incorporación al repositorio. \\
+		\addlinespace
+		Revisión de consistencia documental & Apoyo en la detección de inconsistencias entre el texto narrativo del ERS y las figuras del modelo (nomenclatura, numeración de casos de uso, cifras de cobertura), corregidas y verificadas por el equipo contra el repositorio real antes de su incorporación. \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+Ninguna captura de pantalla, ninguna evidencia de campo (transcripción,
+consentimiento, fotografía) ni ningún resultado del componente empírico
+fue generado o alterado por una herramienta de inteligencia artificial
+generativa; su origen es exclusivamente el trabajo de campo y el análisis
+del equipo, documentado en los Apéndices B y F de este ERS.
+
+
 \end{document}
