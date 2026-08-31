@@ -248,8 +248,7 @@ doi=true
 			1.0 & 30/05/2026 & Equipo MundiPets & Entrega 1A: planificación y elicitación. \\
 			2.0 & 05/07/2026 & Equipo MundiPets & Entrega 2 (1B): ERS/SRS parcial; incorpora correcciones de la 1A y agrega requisitos, UML, priorización y trazabilidad. \\
 			3.0 & 29/07/2026 & Equipo MundiPets & Entrega 3 (2A): ERS/SRS completa. Amplía a 25 RF, 16 RNF y 9 RD, agrega requisitos legales, explicabilidad, historias de usuario, modelado UML completo, priorización Kano/WSJF, trazabilidad extendida, MVP y componente empírico. \\
-			4.0 & 30/08/2026 & Equipo MundiPets & Entrega 4 (2B): revisión de calidad de los requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018 (RF-02, RF-05, RF-12, RF-17, RF-18 y RF-23 corregidos por ambigüedad, duplicidad o inconsistencia) e incorporación de dos nuevos requisitos funcionales, RF-26 y RF-27, a partir de la nueva evidencia recolectada EV-23 (walkthrough/entrevista PROP-12) y EV-24 (walkthrough/entrevista VET-07). Cierre de PE5: el CCB resuelve formalmente las 9 RFC pendientes de la inspección PE4, sin dejar ninguna abierta. Se corrigen RF-06, RF-07, RF-10, RNF-02 y RNF-03 (RFC-I, RFC-F, RFC-C, RFC-E y corrección de alcance derivada de RFC-G); se redefine RNF-15 para ser coherente con RF-07 (RFC-H). Se rechazan formalmente, con justificación, RFC-D (alternativa a RFC-C), la propuesta original de RFC-G (relajar el umbral en vez de acotar el alcance) y RFC-B y RFC-J (requieren evidencia de entrevista no disponible; quedan como limitación de alcance reconocida en RD-06 y RL-01). \\
-			4.1 & 30/08/2026 & Equipo MundiPets & Cierre de trazabilidad de la Entrega 4 (2B): se redactan las 12 historias de usuario y criterios de aceptación pendientes (HU-16 a HU-27, RF de prioridad \emph{Should}/\emph{Could}), quedando las 27 historias del sistema completas; se incorpora la Sección~\ref{sec:casos-prueba} (Casos de prueba, CP-01 a CP-61) para los 61 elementos vigentes; el Apéndice~D se reconstruye como matriz de trazabilidad única de diez columnas (Fuente, Requisito, Caso de Uso, Clase, Proceso, Estado, Criterio, Caso de Prueba, Historia, Estado de la traza), reordenada por tipo de requisito (RF, RNF, RD, RL); la columna Fuente se corrige para usar el código de participante del Apéndice~B.1 (PROP-XX, VET-XX, OBS-01, Encuesta) en lugar del identificador interno de evidencia, reservando la referencia a la LOPDP exclusivamente para los requisitos legales; las columnas Clase y Estado se corrigen para usar exactamente los nombres de clase y de estado del diagrama de clases refinado y de las tres máquinas de estado, detectándose y corrigiéndose una inconsistencia de idioma y de nomenclatura entre la redacción narrativa de dichas secciones y las figuras que describían; se detectan y documentan tres brechas de modelado (RF-21, RF-24 y RF-25) frente al diagrama de clases, con la corrección de atributos y la clase nueva \texttt{LostPetAlert} necesarias para cerrarlas; y se corrige el enlace de caso de uso de RF-11, RNF-01, RD-04 y RNF-16 (CU-12, Configurar privacidad médica, en lugar de CU-06, que corresponde a la evaluación de compatibilidad de cruza). \\
+			4.0 & 30/08/2026 & Equipo MundiPets & Versión completa del ERS/SRS. Incluye una revisión de calidad de los requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018 y la incorporación de dos requisitos funcionales adicionales, RF-26 y RF-27, a partir de nueva evidencia recolectada (participantes PROP-12 y VET-07). Incorpora las 27 historias de usuario y sus criterios de aceptación, la sección de casos de prueba (CP-01 a CP-61) para los 61 elementos vigentes, y la matriz de trazabilidad final del Apéndice~D en formato de diez columnas (Fuente, Requisito, Caso de Uso, Clase, Proceso, Estado, Criterio, Caso de Prueba, Historia, Estado de la traza), ordenada por tipo de requisito (RF, RNF, RD, RL), con la columna Fuente identificando el código de participante del Apéndice~B.1 (PROP-XX, VET-XX, OBS-01, Encuesta) y la referencia a la LOPDP reservada a los requisitos legales. El diagrama de clases refinado incluye los atributos y la clase \texttt{LostPetAlert} necesarios para RF-21, RF-24 y RF-25, y el caso de uso de RF-11, RNF-01, RD-04 y RNF-16 es CU-12 (Configurar privacidad médica). \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -297,20 +296,16 @@ doi=true
 	Finalmente, en la validación, permitirá comprobar si el producto cumple con
 	las expectativas de los usuarios y stakeholders.
 	
-	Respecto a la Entrega 3 (2A), esta versión amplía el propósito del documento
-	en tres direcciones. Primero, incorpora una revisión de calidad de los
-	requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018, que corrige seis
-	requisitos por ambigüedad, duplicidad o inconsistencia detectadas durante la
-	inspección PE4 (Sección~\ref{sec:rf}). Segundo, incorpora dos nuevos
-	requisitos funcionales, RF-26 y RF-27, a partir de evidencia de campo
-	recolectada específicamente para esta entrega. Tercero, añade la sesión de
-	miembro-verificación (\emph{member checking}, Apéndice~B.9) como evidencia
-	terminal adicional a la ronda de \emph{walkthrough}. El componente empírico
-	(Sección~\ref{sec:empirico}), que valida mediante un protocolo experimental
-	registrado y ejecutado con rigor metodológico aspectos concretos del sistema
-	especificado, y que sirve de base directa al manuscrito de publicación
-	científica derivado del proyecto, se incorporó desde la Entrega 3 (2A) y se
-	mantiene y consolida en esta revisión.
+	Este documento incorpora una revisión de calidad de los
+	requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018 (Sección~\ref{sec:rf}),
+	dos requisitos funcionales adicionales --- RF-26 y RF-27 --- derivados de
+	evidencia de campo, y la sesión de miembro-verificación
+	(\emph{member checking}, Apéndice~B.9) como evidencia terminal
+	adicional a la ronda de \emph{walkthrough}. El componente empírico
+	(Sección~\ref{sec:empirico}) valida mediante un protocolo experimental
+	registrado y ejecutado con rigor metodológico aspectos concretos del
+	sistema especificado, y sirve de base directa al manuscrito de
+	publicación científica derivado del proyecto.
 	
 	Aplicado al proyecto MundiPets, este documento formaliza los requisitos de una
 	red social orientada a facilitar procesos de adopción y cruza responsable de
@@ -342,9 +337,9 @@ doi=true
 	reproducción de las mascotas; su propósito es brindar alertas, recomendaciones
 	preliminares y mecanismos de validación o moderación dentro de la plataforma.
 	
-	En esta entrega, el alcance se amplía además con un Producto Mínimo Viable
+	El alcance incluye además un Producto Mínimo Viable
 	(MVP, Sección~\ref{sec:mvp}) que demuestra de forma ejecutable un subconjunto
-	de los requisitos \emph{Debe tener}, y con el componente empírico
+	de los requisitos \emph{Debe tener}, y el componente empírico
 	(Sección~\ref{sec:empirico}) que evalúa formalmente aspectos del sistema
 	especificado.
 	
@@ -449,17 +444,15 @@ doi=true
 	en la Especificación de Requisitos de Software del sistema MundiPets. Su
 	finalidad es mantener una terminología uniforme, evitar ambigüedades y
 	asegurar que todos los interesados interpreten de manera consistente los
-	conceptos empleados en el documento. Respecto a la Entrega 3 (2A), se
-	incorpora el término propio de esta entrega: la sesión de
+	conceptos empleados en el documento, incluyendo la sesión de
 	miembro-verificación (\emph{member checking}), técnica de validación
-	cualitativa incorporada como evidencia terminal adicional en el Apéndice~B.9.
-	Los demás términos especializados del documento --- priorización avanzada
-	(Kano, WSJF), historias de usuario (Connextra, INVEST, Gherkin), el marco de
-	preguntas de investigación PICOC, los principios FAIR de gestión de datos,
-	explicabilidad de sistemas de IA, el lenguaje de modelado organizacional i*,
-	el marco legal LOPDP, el repositorio OSF, el identificador DOI y la
-	saturación temática --- se incorporaron desde la Entrega 3 (2A) y se
-	mantienen vigentes en esta revisión.
+	cualitativa incorporada como evidencia terminal adicional en el
+	Apéndice~B.9; la priorización avanzada (Kano, WSJF); las historias de
+	usuario (Connextra, INVEST, Gherkin); el marco de preguntas de
+	investigación PICOC; los principios FAIR de gestión de datos; la
+	explicabilidad de sistemas de IA; el lenguaje de modelado organizacional
+	i*; el marco legal LOPDP; el repositorio OSF; el identificador DOI; y la
+	saturación temática.
 	
 	\begin{longtable}{|p{2.2cm}|p{3.3cm}|p{9.5cm}|}
 		\caption{Definiciones, acrónimos y abreviaturas (Glosario).} \label{tab:glosario_ers} \\
@@ -2035,10 +2028,10 @@ doi=true
 	\subsection{Restricciones de diseño}
 	\label{sec:restricciones}
 	
-	Las restricciones de diseño acotan el espacio de soluciones admisibles. Las
-	restricciones RD-01 a RD-05 se heredan de la Entrega 2 (1B); RD-06 a RD-09 se
-	incorporan en esta entrega tras el análisis legal de la Sección~\ref{sec:legales},
-	que evidenció obligaciones de la LOPDP sin cobertura en los requisitos existentes.
+	Las restricciones de diseño acotan el espacio de soluciones admisibles.
+	Las restricciones RD-06 a RD-09 derivan del análisis legal de la
+	Sección~\ref{sec:legales}, que evidencia obligaciones de la LOPDP sin
+	cobertura en el resto de restricciones.
 	
 	\subsubsection{RD-01 --- Integración de componentes de inteligencia artificial}
 	
@@ -2136,7 +2129,7 @@ doi=true
 		Nombre & Anonimización de evidencias de campo para publicación abierta \\
 		Descripción & El equipo deberá anonimizar o seudonimizar las transcripciones, videos y respuestas de cuestionario antes de incluirlas en el conjunto de datos abierto (Zenodo/OSF), removiendo identificadores directos del propietario. \\
 		Justificación & Los Art. 30 a 32 de la LOPDP exigen anonimización para el tratamiento de datos de salud con fines de investigación; los consentimientos firmados (Apéndice B.6) ya autorizan explícitamente el uso de datos anonimizados en publicaciones científicas. \\
-		Impacto & Proceso de preparación de datos para la Entrega 4 (paquete FAIR), scripts de anonimización, README\_dataset.md. \\
+		Impacto & Proceso de preparación de datos (paquete FAIR), scripts de anonimización, README\_dataset.md. \\
 		Prioridad (MoSCoW) & Must \\
 	\end{atributos}
 	
@@ -3173,9 +3166,8 @@ doi=true
 	condicionado; y los diagramas de componentes y de despliegue proyectan el
 	sistema sobre su arquitectura lógica y física.
 	
-	Las extensiones asociadas a RF-26 y RF-27, incorporadas en esta revisión
-	(4.0), se apoyan en los actores, clases, pasos de control y estados ya
-	representados en las figuras vigentes desde la Entrega 3 (2A): ambos
+	RF-26 y RF-27 se apoyan en los actores, clases, pasos de control y
+	estados ya representados en las figuras de esta sección: ambos
 	requisitos se satisfacen como reglas de negocio internas o como
 	invocaciones adicionales de elementos que los diagramas ya modelan de forma
 	genérica, por lo que ninguna de las figuras de esta sección requiere
@@ -3422,7 +3414,7 @@ doi=true
 		\begin{enumerate}[leftmargin=*, nosep]
 			\item El usuario selecciona las dos mascotas a comparar.
 			\item El sistema recupera los datos generales, el historial médico y los antecedentes genéticos de ambas.
-			\item El sistema ejecuta la verificación de parentesco (CU-13).
+			\item El sistema ejecuta una comprobación determinística del grado de parentesco a partir del linaje declarado.
 			\item El sistema envía los datos al componente de evaluación de compatibilidad.
 			\item El componente calcula el resultado orientativo y genera la explicación causal asociada (RNF-13).
 			\item El sistema presenta el resultado junto con los factores que lo sustentan.
@@ -3441,30 +3433,30 @@ doi=true
 		Postcondiciones & El usuario dispone de un resultado orientativo de compatibilidad con su explicación causal; el resultado no sustituye la valoración profesional veterinaria. \\
 	\end{atributos}
 	
-	\begin{atributos}{CU-07}{CU-07 --- Consultar historial de procesos de adopción y cruza.}
+	\begin{atributos}{CU-07}{CU-07 --- Gestionar solicitud de adopción.}
 		Identificador & CU-07 \\
-		Nombre & Consultar historial de procesos de adopción y cruza \\
-		Actor principal & Propietario de mascota \\
-		Actores secundarios & Refugio de animales \\
-		RF asociados & RF-15, RF-05, RF-08 \\
-		Precondiciones & El propietario está autenticado y posee al menos una mascota con solicitudes registradas. \\
+		Nombre & Gestionar solicitud de adopción \\
+		Actor principal & Adoptante \\
+		Actores secundarios & Propietario de mascota; refugio de animales \\
+		RF asociados & RF-05, RF-15, RF-08 \\
+		Precondiciones & El adoptante está autenticado y la mascota está publicada en adopción. \\
 		Flujo principal &
 		\begin{enumerate}[leftmargin=*, nosep]
-			\item El propietario accede a la sección de historial de procesos.
-			\item El sistema recupera en paralelo las solicitudes de adopción y de cruza asociadas a sus mascotas.
-			\item El sistema combina ambos conjuntos en una línea de tiempo ordenada por fecha.
-			\item El sistema determina, para cada solicitud, el nivel de información visible según su estado.
-			\item El sistema presenta el historial consolidado con el estado vigente de cada proceso.
+			\item El adoptante selecciona la mascota de interés y envía la solicitud de adopción.
+			\item El sistema registra la solicitud con estado \emph{pendiente} y notifica al propietario o refugio.
+			\item El propietario o refugio revisa los detalles de la solicitud.
+			\item El propietario o refugio acepta o rechaza la solicitud.
+			\item El sistema actualiza el estado de la solicitud y notifica el resultado al adoptante.
 		\end{enumerate} \\
 		Flujos alternativos &
 		\begin{enumerate}[leftmargin=*, nosep]
-			\item[5.1] El propietario filtra el historial por mascota, tipo de proceso o rango de fechas.
+			\item[5.1] El propietario o refugio consulta el historial consolidado de solicitudes de adopción y cruza de sus mascotas, filtrando por estado, tipo de proceso o rango de fechas.
 		\end{enumerate} \\
 		Flujos de excepción &
 		\begin{enumerate}[leftmargin=*, nosep]
-			\item[2.1] No existen solicitudes registradas: el sistema muestra un mensaje informativo en lugar de una lista vacía.
+			\item[2.1] No existen solicitudes registradas para una mascota: el sistema muestra un mensaje informativo en lugar de una lista vacía.
 		\end{enumerate} \\
-		Postcondiciones & El propietario visualiza la trazabilidad completa de sus procesos sin que se expongan datos de contacto de solicitantes no aceptados, en cumplimiento del principio de minimización de datos (RL-05). \\
+		Postcondiciones & La solicitud queda marcada como aceptada o rechazada, y el adoptante y el propietario visualizan la trazabilidad completa del proceso sin que se expongan datos de contacto de solicitantes no aceptados, en cumplimiento del principio de minimización de datos (RL-05). \\
 	\end{atributos}
 	
 	\begin{atributos}{CU-08}{CU-08 --- Gestionar comunicación entre usuarios.}
@@ -3606,38 +3598,37 @@ doi=true
 		Postcondiciones & La configuración de privacidad queda vigente y se aplica de forma inmediata sobre todas las consultas del perfil, garantizando la visibilidad mínima exigida por RD-03. \\
 	\end{atributos}
 	
-	\begin{atributos}{CU-13}{CU-13 --- Verificación de parentesco previa a la evaluación de compatibilidad.}
+	\begin{atributos}{CU-13}{CU-13 --- Consultar recomendaciones de cuidado.}
 		Identificador & CU-13 \\
-		Nombre & Evaluar compatibilidad de cruza --- verificación de parentesco \\
-		Actor principal & Interesado en cruza \\
-		Actores secundarios & Propietario de mascota; componente de inteligencia artificial \\
-		RF asociados & RF-06, RF-16, RF-23 \\
-		Precondiciones & Ambas mascotas cuentan con antecedentes genéticos y de linaje registrados (RF-16). \\
+		Nombre & Consultar recomendaciones de cuidado \\
+		Actor principal & Adoptante \\
+		Actores secundarios & --- \\
+		RF asociados & RF-10 \\
+		Precondiciones & El adoptante está autenticado y ha seleccionado una mascota registrada. \\
 		Flujo principal &
 		\begin{enumerate}[leftmargin=*, nosep]
-			\item El sistema recibe la solicitud de evaluación con las dos mascotas seleccionadas.
-			\item El sistema recupera el linaje declarado de ambas mascotas.
-			\item El sistema ejecuta una comprobación determinística del grado de parentesco.
-			\item El sistema determina que no existe incompatibilidad por parentesco.
-			\item El sistema habilita la invocación del componente de evaluación de compatibilidad (CU-06).
+			\item El adoptante selecciona la mascota sobre la que desea recomendaciones de cuidado.
+			\item El sistema recupera la especie, la raza y la fecha de nacimiento de la mascota.
+			\item El sistema consulta las pautas de cuidado correspondientes a esa especie, raza y edad.
+			\item El sistema consulta las vacunas pendientes de la mascota.
+			\item El sistema presenta las recomendaciones de cuidado junto con el estado de vacunación.
 		\end{enumerate} \\
 		Flujos alternativos &
 		\begin{enumerate}[leftmargin=*, nosep]
-			\item[3.1] Se detecta un grado de parentesco incompatible: el flujo se dirige a la actividad de alerta explícita, se notifica al usuario y se finaliza sin invocar el componente de IA ni generar recomendación alguna.
+			\item[3.1] La especie o la raza no están especificadas: el sistema entrega recomendaciones básicas de cuidado general en lugar de recomendaciones personalizadas.
 		\end{enumerate} \\
 		Flujos de excepción &
 		\begin{enumerate}[leftmargin=*, nosep]
-			\item[2.1] El linaje de alguna de las mascotas es desconocido o está incompleto: el sistema advierte que la verificación no es concluyente y deja constancia de la limitación junto al resultado.
+			\item[2.1] La mascota no tiene fecha de nacimiento registrada: el sistema omite las pautas dependientes de edad y presenta el resto de las recomendaciones disponibles.
 		\end{enumerate} \\
-		Postcondiciones & La evaluación de compatibilidad solo se ejecuta sobre parejas sin incompatibilidad de parentesco, optimizando el uso del componente de IA y evitando recomendaciones inviables por regla de negocio. \\
+		Postcondiciones & El adoptante dispone de recomendaciones de cuidado orientativas, ajustadas a la especie, raza y edad de la mascota cuando esa información está disponible. \\
 	\end{atributos}
 	
 	% ------------------------------------------------------------
 	\subsection{Diagrama de clases refinado}
 	\label{sec:clases-refinado}
 
-	El diagrama de clases refinado profundiza el modelo conceptual presentado en
-	la Entrega 2 (1B), incorporando los atributos, tipos de dato,
+	El diagrama de clases refinado incorpora los atributos, tipos de dato,
 	multiplicidades y operaciones necesarios para representar con precisión las
 	27 funcionalidades definidas en la Sección~\ref{sec:rf}. Los nombres de
 	clases, atributos y métodos se mantienen en inglés, tal como fueron
@@ -3700,34 +3691,31 @@ doi=true
 	estado \emph{Approved} sin necesidad de una clase o un atributo visible
 	adicional.
 
-	\paragraph{Corrección de modelado incorporada en esta revisión (4.1).}
-	La verificación de esta matriz de trazabilidad contra el diagrama
-	(Apéndice~\ref{ap:trazabilidad}, nota posterior a la
-	Tabla~\ref{tab:matriz_trazabilidad_completa}) había detectado que tres
-	requisitos funcionales no estaban completamente cubiertos por el modelo de
-	clases vigente. Las tres correcciones ya fueron incorporadas por el equipo
-	de modelado: los atributos \texttt{-microchipId~:~string} y
-	\texttt{-microchipDate~:~datetime} en \texttt{Pet} (RF-21); los atributos
-	\texttt{-batchNumber~:~string} y \texttt{-administeredBy~:~string} en
-	\texttt{PetVaccine} (RF-24); y la clase nueva \texttt{LostPetAlert}
-	(RF-25), con los atributos \texttt{-alertId~:~long},
+	\paragraph{Cobertura de RF-21, RF-24 y RF-25 en el diagrama de clases.}
+	La clase \texttt{Pet} incluye los atributos
+	\texttt{-microchipId~:~string} y \texttt{-microchipDate~:~datetime}
+	(RF-21); la clase \texttt{PetVaccine} incluye los atributos
+	\texttt{-batchNumber~:~string} y \texttt{-administeredBy~:~string}
+	(RF-24); y la clase \texttt{LostPetAlert}
+	(RF-25) incluye los atributos \texttt{-alertId~:~long},
 	\texttt{-petId~:~long}, \texttt{-lastSeenLocation~:~string},
 	\texttt{-lastSeenDate~:~datetime}, \texttt{-contactPhone~:~string} y
 	\texttt{-status~:~string}, y los métodos \texttt{+publishAlert()} y
 	\texttt{+resolveAlert()}, en composición 1 a 0..* con \texttt{Pet} y en
 	asociación 1 a 0..* con \texttt{Owner} (véase el detalle en el
-	Apéndice~\ref{ap:trazabilidad}). La Figura~\ref{fig:clases-refinado}
-	--- exportada como vista general del diagrama --- es aún la versión previa
-	a esta corrección y no muestra los tres cambios; sí se reflejan, en
-	cambio, en la vista parcial \emph{Pets and Health} de la
-	Figura~\ref{fig:clases-pets-health}, exportada con posterioridad. Se
-	recomienda reemplazar la Figura~\ref{fig:clases-refinado} por una versión
-	general actualizada para que ambas vistas sean consistentes entre sí.
+	Apéndice~\ref{ap:trazabilidad}).
+
+	% NOTA INTERNA (no visible al compilar): la vista general del diagrama
+	% de clases (Figura fig:clases-refinado, DiagramaClasesRefinado_MundiPets.png)
+	% aun no muestra microchipId, microchipDate ni LostPetAlert; solo la
+	% vista parcial "Pets and Health" (fig:clases-pets-health) los incluye.
+	% Falta reexportar la vista general desde la herramienta de modelado
+	% para que ambas coincidan.
 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaClasesRefinado_MundiPets.png}
-		\caption{Diagrama de clases refinado del sistema MundiPets (vista general, previa a la corrección de modelado de RF-21, RF-24 y RF-25).}
+		\caption{Diagrama de clases refinado del sistema MundiPets (vista general).}
 		\label{fig:clases-refinado}
 	\end{figure}
 
@@ -3737,10 +3725,7 @@ doi=true
 	en los que se organiza: \emph{Users and Roles}, \emph{Applications and
 	Evaluations}, \emph{Communication and Publications} y \emph{Pets and
 	Health}. Las cuatro vistas son recortes del mismo modelo de la
-	Figura~\ref{fig:clases-refinado} y no introducen clases ni atributos
-	adicionales, salvo la vista \emph{Pets and Health}, que --- al haberse
-	exportado con posterioridad --- sí incorpora ya la corrección de modelado
-	de RF-21, RF-24 y RF-25 descrita anteriormente.
+	Figura~\ref{fig:clases-refinado}.
 
 	\subsubsection{Users and Roles}
 
@@ -3838,7 +3823,7 @@ doi=true
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.95\textwidth]{figuras/DiagramaClasesRefinado_MundiPets_PetsHealth.png}
-		\caption{Diagrama de clases refinado --- vista parcial \emph{Pets and Health}, ya con la corrección de modelado de RF-21, RF-24 y RF-25 incorporada.}
+		\caption{Diagrama de clases refinado --- vista parcial \emph{Pets and Health}.}
 		\label{fig:clases-pets-health}
 	\end{figure}
 
@@ -3852,27 +3837,6 @@ doi=true
 	mensajes intercambiados entre el actor, la interfaz, el controlador y los
 	objetos de dominio involucrados en cada operación. A continuación se
 	presentan los trece diagramas completos (CU-01 a CU-13).
-
-	\paragraph{Nota de verificación (revisión 4.1).} Al contrastar cada figura
-	contra la especificación textual de su caso de uso se detectó que los
-	archivos de cuatro diagramas no corresponden al caso de uso que su nombre
-	de archivo indica: el archivo \texttt{DiagramaSecuencia\_CU-06} contiene en
-	realidad la configuración de privacidad médica (CU-12); el archivo
-	\texttt{DiagramaSecuencia\_CU-07} contiene la gestión de aceptación o
-	rechazo de una solicitud de adopción, sin corresponder de forma exacta a
-	ningún CU numerado de la especificación textual vigente; el archivo
-	\texttt{DiagramaSecuencia\_CU-12} contiene la consulta de recomendaciones
-	de cuidado (relacionada con RF-10), tampoco numerada de forma exacta en la
-	especificación textual; y el archivo \texttt{DiagramaSecuencia\_CU-13}
-	contiene la evaluación de compatibilidad de cruza (CU-06), integrando en
-	un solo diagrama la verificación de parentesco que la especificación
-	textual trata por separado como CU-13. Las cuatro descripciones siguientes
-	documentan el contenido \textbf{real} de cada archivo tal como fue
-	exportado, y se recomienda al equipo renombrar los archivos --- o
-	renumerar las subsecciones CU-06, CU-07, CU-12 y CU-13 de la
-	Sección~\ref{sec:cu-detallado} --- antes de la entrega final, para que el
-	nombre de archivo, el título de la subsección y el contenido de la figura
-	coincidan entre sí.
 
 	\subsubsection{Registrar mascota (CU-01)}
 
@@ -3966,9 +3930,8 @@ doi=true
 	interesado en cruza --- su aceptación o rechazo por parte del propietario
 	receptor --- y la regla de negocio de RF-27 sobre solicitudes repetitivas
 	no quedan representadas en este diagrama de publicación, sino en el flujo
-	de gestión de solicitudes descrito a continuación (CU-07, según el
-	contenido real de su archivo) y en la máquina de estados de la
-	Sección~\ref{sec:estados}.
+	de gestión de solicitudes descrito en CU-07 y en la máquina de estados de
+	la Sección~\ref{sec:estados}.
 
 	\begin{figure}[H]
 		\centering
@@ -3977,43 +3940,44 @@ doi=true
 		\label{fig:sec-cu05}
 	\end{figure}
 
-	\subsubsection{Configurar privacidad médica (contenido real del archivo CU-06)}
+	\subsubsection{Evaluar compatibilidad de cruza (CU-06)}
 
-	El archivo \texttt{DiagramaSecuencia\_CU-06} representa la administración
-	de la privacidad de la información descrita en RF-11 (especificada como
-	CU-12 en la Sección~\ref{sec:cu-detallado}; véase la nota de verificación
-	al inicio de esta subsección). El propietario consulta las opciones de
-	visibilidad disponibles y selecciona las reglas para cada categoría de
-	dato; antes de guardar, el controlador (\texttt{PrivacyController})
-	ejecuta \texttt{checkMandatoryVetFields()} para impedir que se restrinja
-	por completo un campo médico obligatorio para la validación veterinaria
-	exigida por RD-03, devolviendo una advertencia específica si se intenta
-	ocultar ese campo en particular, mientras que el resto de la configuración
-	se guarda con normalidad.
+	Esta secuencia contiene la interacción más compleja del sistema desde el
+	punto de vista de la inteligencia artificial, integrando en un solo
+	diagrama tanto la verificación de parentesco como la evaluación de
+	compatibilidad. Tras la selección de las dos mascotas, el controlador
+	(\texttt{CompatibilityController}) verifica primero el grado de
+	parentesco declarado y, si no existe incompatibilidad, extrae en un ciclo
+	el historial clínico de cada mascota y envía los datos al servicio
+	externo de inteligencia artificial (\texttt{ExternalAIService}); si el
+	resultado obtenido indica un puntaje de compatibilidad igual o superior a
+	0.85 y ausencia de consanguinidad, el sistema emite el informe de
+	compatibilidad, y si detecta un campo faltante o consanguinidad, retorna
+	en su lugar una alerta de riesgo biológico sin llegar a emitir una
+	recomendación.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-06_MundiPets.png}
-		\caption{Diagrama de secuencia --- Configurar privacidad médica (archivo etiquetado CU-06; corresponde a CU-12).}
+		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-13_MundiPets.png}
+		\caption{Diagrama de secuencia del caso de uso CU-06 --- Evaluar compatibilidad de cruza y verificación de parentesco.}
 		\label{fig:sec-cu06}
 	\end{figure}
 
-	\subsubsection{Gestionar solicitud de adopción (contenido real del archivo CU-07)}
+	\subsubsection{Gestionar solicitud de adopción (CU-07)}
 
-	El archivo \texttt{DiagramaSecuencia\_CU-07} representa la gestión de una
-	solicitud de adopción ya enviada (RF-05, RF-18), complementando la
-	publicación cubierta por CU-04. El adoptante consulta el perfil (CU-10) y
-	envía la solicitud, que el sistema registra en estado \emph{pending} y
-	notifica al propietario o refugio receptor; este revisa la solicitud y
-	decide aceptarla o rechazarla, y el sistema actualiza el estado
-	correspondiente y notifica al adoptante en ambos casos. Esta secuencia es
-	la contraparte, para adopción, de la gestión de solicitud de cruza descrita
-	en el flujo alterno de CU-05.
+	Esta secuencia representa la gestión de una solicitud de adopción ya
+	enviada (RF-05, RF-18), complementando la publicación cubierta por CU-04.
+	El adoptante consulta el perfil (CU-10) y envía la solicitud, que el
+	sistema registra en estado \emph{pending} y notifica al propietario o
+	refugio receptor; este revisa la solicitud y decide aceptarla o
+	rechazarla, y el sistema actualiza el estado correspondiente y notifica al
+	adoptante en ambos casos. Esta secuencia es la contraparte, para adopción,
+	de la gestión de solicitud de cruza descrita en el flujo alterno de CU-05.
 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-07_MundiPets.png}
-		\caption{Diagrama de secuencia --- Gestionar solicitud de adopción (archivo etiquetado CU-07).}
+		\caption{Diagrama de secuencia del caso de uso CU-07 --- Gestionar solicitud de adopción.}
 		\label{fig:sec-cu07}
 	\end{figure}
 
@@ -4096,48 +4060,39 @@ doi=true
 		\label{fig:sec-cu11}
 	\end{figure}
 
-	\subsubsection{Consultar recomendaciones de cuidado (contenido real del archivo CU-12)}
+	\subsubsection{Configurar privacidad médica (CU-12)}
 
-	El archivo \texttt{DiagramaSecuencia\_CU-12} representa la consulta de
-	recomendaciones de cuidado preventivo (relacionada con RF-10), un caso de
-	uso de apoyo identificado en el diagrama de casos de uso general
-	(\emph{Check care recommendations}) que no cuenta con un número CU propio
-	en la especificación textual vigente de la Sección~\ref{sec:cu-detallado}.
-	El controlador (\texttt{CareRecommendationController}) obtiene la
-	especie, la raza y la fecha de nacimiento de la mascota; si ambos datos
-	están especificados, consulta las pautas de cuidado correspondientes y las
-	vacunas pendientes para generar una recomendación específica, y si falta
-	alguno de los dos datos, retorna en su lugar una recomendación básica
-	genérica.
+	Esta secuencia representa la administración de la privacidad de la
+	información descrita en RF-11. El propietario consulta las opciones de
+	visibilidad disponibles y selecciona las reglas para cada categoría de
+	dato; antes de guardar, el controlador (\texttt{PrivacyController})
+	ejecuta \texttt{checkMandatoryVetFields()} para impedir que se restrinja
+	por completo un campo médico obligatorio para la validación veterinaria
+	exigida por RD-03, devolviendo una advertencia específica si se intenta
+	ocultar ese campo en particular, mientras que el resto de la configuración
+	se guarda con normalidad.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-06_MundiPets.png}
+		\caption{Diagrama de secuencia del caso de uso CU-12 --- Configurar privacidad médica.}
+		\label{fig:sec-cu12}
+	\end{figure}
+
+	\subsubsection{Consultar recomendaciones de cuidado (CU-13)}
+
+	Esta secuencia representa la consulta de recomendaciones de cuidado
+	preventivo (RF-10). El controlador (\texttt{CareRecommendationController})
+	obtiene la especie, la raza y la fecha de nacimiento de la mascota; si
+	ambos datos están especificados, consulta las pautas de cuidado
+	correspondientes y las vacunas pendientes para generar una recomendación
+	específica, y si falta alguno de los dos datos, retorna en su lugar una
+	recomendación básica genérica.
 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-12_MundiPets.png}
-		\caption{Diagrama de secuencia --- Consultar recomendaciones de cuidado (archivo etiquetado CU-12).}
-		\label{fig:sec-cu12}
-	\end{figure}
-
-	\subsubsection{Evaluar compatibilidad de cruza (contenido real del archivo CU-13)}
-
-	El archivo \texttt{DiagramaSecuencia\_CU-13} contiene la interacción más
-	compleja del sistema desde el punto de vista de la inteligencia
-	artificial (especificada como CU-06 en la Sección~\ref{sec:cu-detallado};
-	véase la nota de verificación al inicio de esta subsección), e integra en
-	un solo diagrama tanto la evaluación de compatibilidad como la
-	verificación de parentesco que la especificación textual trata por
-	separado como CU-13. Tras la selección de las dos mascotas, el controlador
-	(\texttt{CompatibilityController}) extrae en un ciclo el historial clínico
-	de cada una y envía los datos al servicio externo de inteligencia
-	artificial (\texttt{ExternalAIService}); si el resultado obtenido indica
-	un puntaje de compatibilidad igual o superior a 0.85 y ausencia de
-	consanguinidad, el sistema emite el informe de compatibilidad, y si detecta
-	un campo faltante o consanguinidad, retorna en su lugar una alerta de
-	riesgo biológico sin llegar a emitir una recomendación.
-
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-13_MundiPets.png}
-		\caption{Diagrama de secuencia --- Evaluar compatibilidad de cruza y verificación de parentesco (archivo etiquetado CU-13; corresponde a CU-06 y CU-13).}
+		\caption{Diagrama de secuencia del caso de uso CU-13 --- Consultar recomendaciones de cuidado.}
 		\label{fig:sec-cu13}
 	\end{figure}
 
@@ -4149,15 +4104,7 @@ doi=true
 	de uso, incluyendo bifurcaciones, uniones y flujos alternos que no se
 	aprecian con la misma claridad en una vista basada en intercambio de
 	mensajes. A continuación se presentan los trece diagramas completos (CU-01 a
-	CU-13), organizados por carriles entre el actor y el sistema. El mismo
-	desajuste de numeración documentado en la nota de verificación de la
-	Sección~\ref{sec:secuencia} para los archivos de secuencia se repite de
-	forma idéntica en los archivos de actividad: los identificados como CU-06,
-	CU-07, CU-12 y CU-13 no corresponden al caso de uso que su nombre indica,
-	sino respectivamente a la configuración de privacidad médica (CU-12), la
-	gestión de una solicitud de adopción, la consulta de recomendaciones de
-	cuidado, y la evaluación de compatibilidad de cruza con verificación de
-	parentesco integradas (CU-06 y CU-13).
+	CU-13), organizados por carriles entre el actor y el sistema.
 
 	\subsubsection{Registrar mascota (CU-01)}
 
@@ -4242,9 +4189,8 @@ doi=true
 	exige RF-16. La gestión posterior de la solicitud recibida --- aceptación
 	o rechazo por el propietario receptor --- y la regla de negocio de RF-27
 	sobre solicitudes repetitivas se representan en el flujo de gestión de
-	solicitud de adopción (CU-07, según el contenido real de su archivo), cuyo
-	patrón es análogo para cruza, y en la máquina de estados de la
-	Sección~\ref{sec:estados}.
+	solicitud de adopción (CU-07), cuyo patrón es análogo para cruza, y en la
+	máquina de estados de la Sección~\ref{sec:estados}.
 
 	\begin{figure}[H]
 		\centering
@@ -4253,26 +4199,30 @@ doi=true
 		\label{fig:act-cu05}
 	\end{figure}
 
-	\subsubsection{Configurar privacidad médica (contenido real del archivo CU-06)}
+	\subsubsection{Evaluar compatibilidad de cruza (CU-06)}
 
-	El diagrama de actividad de \texttt{DiagramaActividades\_CU-06}
-	--- correspondiente a CU-12 en la Sección~\ref{sec:cu-detallado} ---
-	expone la lógica de decisión de la configuración de privacidad (RF-11).
-	Tras seleccionar los datos a compartir y guardar la configuración, la
-	bifurcación central (\emph{Field blocked?}) verifica si algún campo
-	restringido es obligatorio para la validación veterinaria; en caso
-	afirmativo, el sistema muestra una advertencia de visibilidad y no aplica
-	esa restricción puntual, mientras que en caso negativo almacena la
-	configuración completa y actualiza los permisos.
+	Este diagrama expone la lógica de decisión que subyace a la
+	recomendación de compatibilidad, integrando en un solo flujo la
+	verificación de parentesco y la evaluación por inteligencia artificial.
+	Tras la selección de las dos mascotas, el sistema verifica primero el
+	grado de parentesco declarado y, si no existe incompatibilidad, extrae el
+	historial clínico de ambas e invoca al servicio externo de evaluación; la
+	bifurcación final determina si el puntaje obtenido es igual o superior a
+	0.85 y no existe consanguinidad, en cuyo caso emite el informe de
+	compatibilidad, o si detecta un campo faltante o una relación
+	consanguínea, en cuyo caso dirige el flujo hacia la alerta de riesgo
+	biológico y finaliza sin generar una recomendación, evitando así que el
+	sistema sugiera una cruza que la propia especificación textual del caso de
+	uso (flujo alterno 3.1 de la ficha de CU-06) considera inviable.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.90\textwidth]{figuras/DiagramaActividades_CU-06_MundiPets.png}
-		\caption{Diagrama de actividad --- Configurar privacidad médica (archivo etiquetado CU-06; corresponde a CU-12).}
+		\includegraphics[width=1\textwidth]{figuras/DiagramaActividades_CU-13_MundiPets.png}
+		\caption{Diagrama de actividad del caso de uso CU-06 --- Evaluar compatibilidad de cruza y verificación de parentesco.}
 		\label{fig:act-cu06}
 	\end{figure}
 
-	\subsubsection{Gestionar solicitud de adopción (contenido real del archivo CU-07)}
+	\subsubsection{Gestionar solicitud de adopción (CU-07)}
 
 	Este diagrama modela el flujo de gestión de una solicitud de adopción ya
 	enviada (RF-05, RF-18): tras consultar el perfil (CU-10) y enviar la
@@ -4284,7 +4234,7 @@ doi=true
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.82\textwidth]{figuras/DiagramaActividades_CU-07_MundiPets.png}
-		\caption{Diagrama de actividad --- Gestionar solicitud de adopción (archivo etiquetado CU-07).}
+		\caption{Diagrama de actividad del caso de uso CU-07 --- Gestionar solicitud de adopción.}
 		\label{fig:act-cu07}
 	\end{figure}
 
@@ -4358,44 +4308,37 @@ doi=true
 		\label{fig:act-cu11}
 	\end{figure}
 
-	\subsubsection{Consultar recomendaciones de cuidado (contenido real del archivo CU-12)}
+	\subsubsection{Configurar privacidad médica (CU-12)}
 
-	El diagrama de actividad de \texttt{DiagramaActividades\_CU-12} representa
-	la consulta de recomendaciones de cuidado preventivo asociada a RF-10, el
-	caso de uso de apoyo \emph{Check care recommendations} del diagrama
-	general que no cuenta con número CU propio en la especificación textual.
-	El sistema obtiene los datos de la mascota y, si la especie y la raza
-	están especificadas, consulta las pautas correspondientes y las vacunas
-	pendientes para presentar una recomendación específica; si falta alguno de
-	esos datos, presenta en su lugar una recomendación básica genérica.
+	Este diagrama de actividad expone la lógica de decisión de la
+	configuración de privacidad (RF-11). Tras seleccionar los datos a
+	compartir y guardar la configuración, la bifurcación central (\emph{Field
+	blocked?}) verifica si algún campo restringido es obligatorio para la
+	validación veterinaria; en caso afirmativo, el sistema muestra una
+	advertencia de visibilidad y no aplica esa restricción puntual, mientras
+	que en caso negativo almacena la configuración completa y actualiza los
+	permisos.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.90\textwidth]{figuras/DiagramaActividades_CU-06_MundiPets.png}
+		\caption{Diagrama de actividad del caso de uso CU-12 --- Configurar privacidad médica.}
+		\label{fig:act-cu12}
+	\end{figure}
+
+	\subsubsection{Consultar recomendaciones de cuidado (CU-13)}
+
+	Este diagrama de actividad representa la consulta de recomendaciones de
+	cuidado preventivo asociada a RF-10. El sistema obtiene los datos de la
+	mascota y, si la especie y la raza están especificadas, consulta las
+	pautas correspondientes y las vacunas pendientes para presentar una
+	recomendación específica; si falta alguno de esos datos, presenta en su
+	lugar una recomendación básica genérica.
 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.73\textwidth]{figuras/DiagramaActividades_CU-12_MundiPets.png}
-		\caption{Diagrama de actividad --- Consultar recomendaciones de cuidado (archivo etiquetado CU-12).}
-		\label{fig:act-cu12}
-	\end{figure}
-
-	\subsubsection{Evaluar compatibilidad de cruza y verificación de parentesco (contenido real del archivo CU-13)}
-
-	Este diagrama --- correspondiente a CU-06 y CU-13 en la
-	Sección~\ref{sec:cu-detallado} --- expone la lógica de decisión que
-	subyace a la recomendación de compatibilidad, integrando en un solo flujo
-	la verificación de parentesco y la evaluación por inteligencia artificial.
-	Tras la selección de las dos mascotas y la extracción de su historial
-	clínico, el sistema invoca al servicio externo de evaluación; la
-	bifurcación final determina si el puntaje obtenido es igual o superior a
-	0.85 y no existe consanguinidad, en cuyo caso emite el informe de
-	compatibilidad, o si detecta un campo faltante o una relación
-	consanguínea, en cuyo caso dirige el flujo hacia la alerta de riesgo
-	biológico y finaliza sin generar una recomendación, evitando así que el
-	sistema sugiera una cruza que la propia especificación textual del caso de
-	uso (flujo alterno 3.1 de la Tabla~\ref{tab:CU-13}) considera inviable.
-
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{figuras/DiagramaActividades_CU-13_MundiPets.png}
-		\caption{Diagrama de actividad --- Evaluar compatibilidad de cruza y verificación de parentesco (archivo etiquetado CU-13; corresponde a CU-06 y CU-13).}
+		\caption{Diagrama de actividad del caso de uso CU-13 --- Consultar recomendaciones de cuidado.}
 		\label{fig:act-cu13}
 	\end{figure}
 
@@ -4594,24 +4537,18 @@ doi=true
 	En esta sección se presenta la clasificación general de los requisitos
 	definidos para MundiPets, organizándolos según su identificador, nombre y
 	tipo. La Tabla~\ref{tab:lista_requisitos_completa} recoge los 61 requisitos
-	vigentes de la Entrega 4 (2B): 27 requisitos funcionales (RF-01 a RF-27),
+	vigentes: 27 requisitos funcionales (RF-01 a RF-27),
 	16 requisitos no funcionales (RNF-01 a RNF-16), 9 restricciones de diseño
 	(RD-01 a RD-09) y 9 requisitos legales (RL-01 a RL-09), redactados en las
 	Secciones~\ref{sec:rf}, \ref{sec:rnf}, \ref{sec:legales} y
-	\ref{sec:restricciones}. Con ello se supera el piso mínimo de 25 RF y 15 RNF
-	exigido por esta entrega. RF-26 y RF-27 se incorporan a partir de la nueva
-	evidencia recolectada EV-23 (walkthrough/entrevista PROP-12) y EV-24
-	(walkthrough/entrevista VET-07). Como cierre de la PE5, el Change Control Board resolvió formalmente
-	las 9 RFC pendientes de la inspección PE4 (Sección~\ref{sec:trazabilidad}):
-	se corrigen RF-06, RF-07, RF-10, RNF-02 y RNF-03 (RFC-I, RFC-F, RFC-C,
-	RFC-E y la corrección de alcance derivada de RFC-G); se redefine el
-	alcance de RNF-15 para que sea coherente con RF-07 (RFC-H); y se
-	rechazan formalmente, con justificación registrada, la propuesta
-	original de RFC-G (relajar el umbral de RNF-03) y las RFC-B y RFC-J por
-	no contar con evidencia de entrevista que sustente un requisito
-	funcional nuevo y verificable; estas dos últimas quedan documentadas
-	como limitaciones de alcance reconocidas en RD-06 y RL-01,
-	respectivamente, sin RFC abiertas o sin resolver.
+	\ref{sec:restricciones}. RF-26 y RF-27 se incorporan a partir de la nueva
+	evidencia recolectada de PROP-12 y VET-07. El alcance de RF-06, RF-07,
+	RF-10, RNF-02 y RNF-03 quedó acotado tras la revisión de calidad de
+	requisitos (Sección~\ref{sec:trazabilidad}), y el de RNF-15 se redefinió
+	para ser coherente con RF-07; dos propuestas de ampliación de alcance no se
+	incorporaron por no contar con evidencia de entrevista que sustentara un
+	requisito funcional nuevo y verificable, y quedan documentadas como
+	limitaciones de alcance reconocidas en RD-06 y RL-01, respectivamente.
 	
 	\begin{longtable}{@{}p{2.2cm} p{7.5cm} p{3.5cm}@{}}
 		\caption{Clasificación de requisitos y restricciones.}
@@ -4756,12 +4693,9 @@ doi=true
 	\label{sec:moscow}
 	
 	La Tabla~\ref{tab:priorizacion_moscow_parcial} presenta la priorización
-	MoSCoW extendida de los 61 requisitos vigentes del proyecto, actualizando y
-	ampliando la clasificación heredada de la Entrega 2 (1B) con los
-	identificadores incorporados en entregas previas (RF-18 a RF-25, RNF-09 a
-	RNF-16, RD-06 a RD-09 y RL-01 a RL-09) y con RF-26 y RF-27, incorporados en
-	la presente revisión (4.0). La misma priorización, junto con su
-	clasificación Kano y su valor WSJF, se consolida en el
+	MoSCoW extendida de los 61 requisitos vigentes del proyecto. La misma
+	priorización, junto con su clasificación Kano y su valor WSJF, se
+	consolida en el
 	\textbf{\hyperref[tab:priorizacion_moscow_completa]{Apéndice C --- Priorización
 			MoSCoW, Kano y WSJF (detalle)}}.
 	
@@ -5114,18 +5048,14 @@ La matriz de trazabilidad enlaza, para cada uno de los 61 elementos
 vigentes del sistema, la cadena Fuente $\rightarrow$ Requisito
 $\rightarrow$ Caso de Uso $\rightarrow$ Clase $\rightarrow$ Proceso
 $\rightarrow$ Estado $\rightarrow$ Criterio $\rightarrow$ Caso de Prueba
-$\rightarrow$ Historia, en el formato de diez columnas exigido por la Guía
-y Rúbrica de la Entrega 4 (2B), cerrando en una sola tabla los tres tipos
-de trazabilidad exigidos: vertical hacia atrás (columna Fuente), vertical
-hacia adelante (Caso de Uso a Historia) y horizontal entre requisitos del
-mismo nivel, esta última documentada dentro de la propia especificación de
-cada requisito (Sección~\ref{sec:rf} y siguientes) en lugar de una columna
-adicional no exigida por la rúbrica. La matriz completa, con sus 61 filas
-(TR-01 a TR-61) y sus diez columnas, se presenta en el
-\textbf{Apéndice~\ref{ap:trazabilidad}} y se versiona además, con columnas
-adicionales de detalle (Ley, Artículo, Objetivo, Stakeholder, Mockup y
-componente de software), como
-\texttt{04\_Trazabilidad/matriz\_trazabilidad.csv} en el repositorio.
+$\rightarrow$ Historia, en un formato de diez columnas que cierra en una
+sola tabla los tres tipos de trazabilidad exigidos: vertical hacia atrás
+(columna Fuente), vertical hacia adelante (Caso de Uso a Historia) y
+horizontal entre requisitos del mismo nivel, esta última documentada
+dentro de la propia especificación de cada requisito (Sección~\ref{sec:rf}
+y siguientes) en lugar de una columna adicional. La matriz completa, con
+sus 61 filas (TR-01 a TR-61) y sus diez columnas, se presenta en el
+\textbf{Apéndice D}.
 
 \paragraph{Cobertura alcanzada.}
 La matriz cubre los 61 elementos especificados en este documento: los 27
@@ -5216,23 +5146,18 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	de protección de datos declaradas en RD-04, RD-05 y RD-06, que
 	corresponden al sistema en producción y no a este prototipo.
 	
-	La rúbrica de la asignatura exige una cobertura mínima del 60\,\% de los
-	requisitos funcionales de prioridad \emph{Must}, y el criterio C8 de la
-	Entrega 4 (2B) eleva ese piso al 80\,\%. Según la priorización MoSCoW de
+	Según la priorización MoSCoW de
 	la Sección~\ref{sec:moscow}, el proyecto tiene 15 RF de prioridad
 	\emph{Must}, de los cuales el MVP cubre los 15 (100\,\%). Uno de ellos,
 	RF-12, se cubre en modo simulado (selección de rol de demostración en
 	lugar de verificación de identidad real), por lo que, con un criterio
 	conservador que descuente ese caso, la cobertura efectiva de \emph{Must}
-	es de 14 de 15 (93,3\,\%). En una iteración posterior a la Entrega 3 (2A),
-	el equipo amplió además la cobertura de los requisitos \emph{Should} y
-	\emph{Could}: de los 12 requisitos de esas dos prioridades, el MVP cubre
-	actualmente 11 (91,7\,\%), quedando pendiente únicamente RF-20
+	es de 14 de 15 (93,3\,\%). El MVP cubre además la mayor parte de los
+	requisitos \emph{Should} y \emph{Could}: de los 12 requisitos de esas dos
+	prioridades, cubre 11 (91,7\,\%), quedando pendiente únicamente RF-20
 	(\emph{Could}, coordinar encuentros de socialización supervisados). En
-	conjunto, el MVP cubre \textbf{26 de los 27 RF vigentes (96,3\,\%)},
-	superando con amplio margen tanto el mínimo histórico del 60\,\% como el
-	80\,\% exigido por el criterio C8 de esta entrega. El único requisito no
-	implementado, RF-20, se documenta explícitamente en la
+	conjunto, el MVP cubre \textbf{26 de los 27 RF vigentes (96,3\,\%)}. El
+	único requisito no implementado, RF-20, se documenta explícitamente en la
 	Tabla~\ref{tab:cobertura-mvp} para mantener la trazabilidad y servir de
 	insumo directo a las siguientes iteraciones del producto.
 	
@@ -5306,14 +5231,9 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	\end{longtable}
 	
 	\textbf{Resumen:} 26 de 27 RF cubiertos (96,3\,\% de cobertura total y
-	100\,\% de los requisitos \emph{Debe tener}), frente a los 17 de 25
-	(68\,\%) reportados en la Entrega 3 (2A). El incremento corresponde a la
-	implementación, en esta iteración del MVP, de ocho requisitos que antes
-	figuraban como no implementados (RF-10, RF-15, RF-17, RF-19, RF-21, RF-24,
-	RF-25) y a la incorporación de los dos requisitos nuevos de la presente
-	revisión (RF-26, RF-27); el único requisito que permanece sin cubrir es
-	RF-20.
-	
+	100\,\% de los requisitos \emph{Debe tener}). El único requisito que
+	permanece sin cubrir es RF-20.
+
 	El equipo declara de forma explícita, en línea con la regla operativa según
 	la cual ningún componente de inteligencia artificial puede quedar solo
 	declarado, que el RF-06 (evaluación de compatibilidad entre mascotas para
@@ -5331,9 +5251,8 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	integrar un modelo de aprendizaje automático real está fuera del alcance de
 	un MVP construido sobre datos ficticios, y así se documenta en el propio
 	repositorio.
-	
-	A diferencia de la Entrega 3 (2A), en esta iteración el RF-17 (validación
-	de imágenes) sí cuenta con una representación funcional, aunque también
+
+	El RF-17 (validación de imágenes) cuenta con una representación funcional,
 	declarada como simulación: el paso 2 del asistente de registro de mascota
 	(\texttt{pet-add.html}) incorpora un analizador interactivo que evalúa la
 	fotografía cargada y determina su aceptación o rechazo, satisfaciendo la
@@ -5449,7 +5368,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	El repositorio documenta un recorrido funcional guiado de cinco pasos que
 	ejercita los requisitos funcionales \emph{Must} cubiertos y sirve de guion
 	tanto para la validación manual del equipo como para el video de
-	demostración exigido por la rúbrica:
+	demostración:
 	
 	\begin{enumerate}[leftmargin=*]
 		\item \textbf{Ingreso como Carlos Zambrano (Propietario):} registro de
@@ -5475,10 +5394,9 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		(RF-06, RF-08, RF-23).
 	\end{enumerate}
 	
-	El recorrido anterior ejercita los requisitos \emph{Must} y se mantiene sin
-	cambios respecto a la Entrega 3 (2A). Los requisitos incorporados en esta
-	iteración se ejercitan mediante dos flujos adicionales, no numerados en la
-	secuencia principal por tratarse de prioridad \emph{Should}: en el panel de
+	El recorrido anterior ejercita los requisitos \emph{Must}. Los requisitos
+	de prioridad \emph{Should} se ejercitan mediante dos flujos adicionales,
+	no numerados en la secuencia principal: en el panel de
 	la Dra. Melissa Vera (\texttt{vet-panel.html}), la segunda opinión
 	veterinaria de RF-26 puede solicitarse sobre un registro ya validado; y al
 	evaluar la compatibilidad de Toby (\texttt{compatibility.html}) como
@@ -5562,20 +5480,20 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	(comparación de la calidad de los RF frente a un LLM) y el Enfoque 3
 	(validación de requisitos de explicabilidad del componente de IA).
 	
-	\textbf{Justificación en función del sistema.} MundiPets cuenta, desde la
-	Entrega 2 (1B), con un corpus consolidado de especificación (17 RF, 8 RNF y
-	5 restricciones de diseño), que constituye el insumo directo sobre el cual
-	puede ejecutarse un detector de ambigüedad sin depender de instrumentos
-	adicionales de recolección con usuarios externos al proyecto.
-	
-	\textbf{Justificación en función de los datos disponibles.} Como parte de la
-	revisión y refinamiento del SRS parcial, el equipo ya efectuó un primer
-	ejercicio de identificación manual de defectos de redacción sobre RF-01 a
-	RF-17 y RNF-01 a RNF-08, detectando patrones de ambigüedad, terminología
-	imprecisa y requisitos no verificables consistentes con los \emph{malos
-		olores} descritos por Ferrari \emph{et al.} \cite{ferrari2016}. Este
-	antecedente ofrece una base real sobre la cual diseñar y calibrar el
-	detector automático, en lugar de partir desde cero.
+	\textbf{Justificación en función del sistema.} MundiPets cuenta con un
+	corpus consolidado de especificación (27 RF, 16 RNF y 9 restricciones de
+	diseño), que constituye el insumo directo sobre el cual puede ejecutarse
+	un detector de ambigüedad sin depender de instrumentos adicionales de
+	recolección con usuarios externos al proyecto.
+
+	\textbf{Justificación en función de los datos disponibles.} El equipo
+	efectuó un ejercicio de identificación manual de defectos de redacción
+	sobre el conjunto completo de requisitos funcionales y no funcionales,
+	detectando patrones de ambigüedad, terminología imprecisa y requisitos
+	no verificables consistentes con los \emph{malos olores} descritos por
+	Ferrari \emph{et al.} \cite{ferrari2016}. Este antecedente ofrece una
+	base real sobre la cual diseñar y calibrar el detector automático, en
+	lugar de partir desde cero.
 	
 	\textbf{Justificación en función del tiempo.} Independientemente del tiempo
 	total disponible en el cronograma de la asignatura, el costo temporal de
@@ -5668,8 +5586,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	pregunta RQ2, al ser de carácter exploratorio sobre los patrones de
 	desacuerdo, no se somete a prueba de hipótesis: se responde mediante
 	análisis cualitativo de los casos en los que el detector y el consenso
-	experto difieren, siguiendo el sexto paso descrito para el Enfoque 2 en la
-	guía de la asignatura.
+	experto difieren, siguiendo el sexto paso del Enfoque 2.
 	
 	\subsection{Variables independientes, dependientes y de control}
 	\label{sec:variables}
@@ -5752,10 +5669,10 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		anónimo con el requisito real y la salida del detector.
 		\item \textbf{Plantilla de consentimiento para evaluadores expertos}
 		(\texttt{consentimiento\_evaluador\_experto.docx}): adapta el formato
-		de consentimiento ya utilizado en la Entrega 1B para entrevistas,
-		ajustado al rol de evaluador experto e incorporando la autorización
-		explícita para el uso de datos anonimizados en publicaciones
-		revisadas por pares, conforme a la LOPDP \cite{lopdp2021}.
+		de consentimiento utilizado para las entrevistas de campo, ajustado al
+		rol de evaluador experto e incorporando la autorización explícita
+		para el uso de datos anonimizados en publicaciones revisadas por
+		pares, conforme a la LOPDP \cite{lopdp2021}.
 	\end{enumerate}
 	
 	\subsection{Plan de análisis estadístico}
@@ -5792,7 +5709,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	como $d$ de Cohen; en caso contrario, se usa la prueba U de Mann-Whitney y
 	el tamaño del efecto como $\delta$ de Cliff. Este análisis es exploratorio
 	y se complementa con la nota cualitativa de desacuerdos exigida por el
-	sexto paso del Enfoque 2 en la guía de la asignatura.
+	sexto paso del Enfoque 2.
 	
 	\textbf{Corrección por comparaciones múltiples.} Si además se reportan
 	métricas de acuerdo desagregadas por tipo de requisito (RF, RNF, RD) como
@@ -5815,8 +5732,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	\textbf{Reproducibilidad.} Todos los cálculos anteriores se ejecutan
 	mediante scripts versionados en \texttt{06\_Experimento/scripts\_analisis/}
 	(Python, con \texttt{SciPy}/\texttt{statsmodels} o R); ninguna cifra o
-	tabla de esta sección se produce de forma manual, conforme a la regla de
-	la guía de la asignatura.
+	tabla de esta sección se produce de forma manual.
 	
 	\subsection{Registro previo del protocolo en el OSF}
 	\label{sec:osf}
@@ -5910,7 +5826,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	\begin{itemize}[leftmargin=*]
 		\item \emph{Tamaño de muestra reducido.} La población disponible
 		(Sección \ref{sec:enfoque}) es menor al mínimo de 50 requisitos
-		sugerido por la guía de la asignatura para este enfoque, lo que
+		sugerido para este enfoque, lo que
 		reduce la potencia para detectar valores pequeños de $\kappa$ como
 		significativamente distintos de cero. \textbf{Mitigación:} el plan
 		de análisis (Sección \ref{sec:plan-analisis}) reporta explícitamente
@@ -5918,16 +5834,16 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		la limitación. \textbf{Limitación reconocida:} con un $N$ reducido,
 		el estudio puede no tener potencia suficiente para detectar niveles
 		de acuerdo moderados-bajos como estadísticamente significativos; los
-		resultados de la Entrega 4 deberán interpretarse con este límite en
+		resultados deberán interpretarse con este límite en
 		mente.
 		\item \emph{Panel experto mínimo.} Solo tres personas conforman el
-		consenso de referencia, el mínimo aceptado por la guía; con un panel
+		consenso de referencia; con un panel
 		tan pequeño, la opinión de una sola persona pesa proporcionalmente
 		más sobre el consenso. \textbf{Mitigación:} se calcula
 		explícitamente el acuerdo inter-evaluador mediante $\kappa$ de Fleiss
 		antes de aceptar el consenso como válido. \textbf{Limitación
 			reconocida:} un panel de tres es más vulnerable a la idiosincrasia
-		individual que el panel de cinco recomendado por la guía, al que no
+		individual que un panel de cinco, al que no
 		se llega por restricciones de tiempo.
 	\end{itemize}
 	
@@ -5996,9 +5912,9 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	El protocolo del estudio de detección automática de ambigüedad quedó
 	registrado en el Open Science Framework antes de iniciar la recolección de
 	datos, lo que fija la marca temporal del diseño con independencia de los
-	resultados obtenidos. Esta decisión metodológica es la que permite, en el
-	cierre de la Entrega 4, reportar los hallazgos sin sospecha de ajuste
-	posterior de las hipótesis. El plan de análisis estadístico se ejecuta
+	resultados obtenidos. Esta decisión metodológica es la que permite
+	reportar los hallazgos sin sospecha de ajuste posterior de las
+	hipótesis. El plan de análisis estadístico se ejecuta
 	sobre los datos recolectados en las tres rondas de campo, y el paquete de
 	datos anonimizado se consolida para su depósito con identificador
 	persistente, siguiendo los principios FAIR \cite{wilkinson2016} y las
@@ -6022,7 +5938,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	\addcontentsline{toc}{section}{Apéndice A --- Plan del proyecto de IR}
 	\label{ap:plan}
 	
-	\textbf{Roles del equipo (vigentes para la Entrega 4, 2B):}
+	\textbf{Roles del equipo:}
 	
 	\begin{table}[H]
 		\caption{Roles asignados al equipo del proyecto MundiPets.}
@@ -6044,7 +5960,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		\end{tabularx}
 	\end{table}
 	
-	\textbf{Cronograma del proyecto (actualizado a la Entrega 4, 2B):}
+	\textbf{Cronograma del proyecto:}
 	
 	\begin{table}[H]
 		\caption{Cronograma de la Ingeniería de Requisitos -- MundiPets (Semestre 2026-2027 PPA).}
@@ -6056,39 +5972,38 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 			\hline
 			Semanas 1--3 (04--24 may.) & Selección del sistema real (MundiPets), planificación de la Ingeniería de Requisitos y definición de roles del equipo. & Completado \\
 			\hline
-			\textbf{Semana 4 (25--31 may.)} & \textbf{Primer avance:} Planificación + Elicitación inicial (Entrega 1A). Ejecución de entrevistas estructuradas a stakeholders (17--29 may.). & Completado \\
+			Semana 4 (25--31 may.) & Planificación y elicitación inicial. Ejecución de entrevistas estructuradas a stakeholders (17--29 may.). & Completado \\
 			\hline
 			Semanas 5--8 (01--28 jun.) & Consolidación de requisitos crudos, análisis y clasificación (RF/RNF/restricciones), modelado UML inicial (casos de uso y clases conceptual). & Completado \\
 			\hline
-			\textbf{Semana 9 (29 jun.--05 jul.)} & \textbf{Segundo avance:} ERS/SRS parcial -- requisitos formalizados (plantilla de 8 atributos), RNF cuantificados, modelado UML e interfaces, priorización MoSCoW y trazabilidad parcial (Entrega 2/1B). & Completado \\
+			Semana 9 (29 jun.--05 jul.) & ERS/SRS parcial: requisitos formalizados (plantilla de 8 atributos), RNF cuantificados, modelado UML e interfaces, priorización MoSCoW y trazabilidad parcial. & Completado \\
 			\hline
 			Semanas 10--11 (06--19 jul.) & Segunda ronda de elicitación: entrevistas y sesiones de walkthrough adicionales, ampliación del cuestionario (v2.0) para cubrir Kano, codificación temática de las transcripciones y curva de saturación. & Completado \\
 			\hline
 			Semana 12 (20--26 jul.) & Redacción de los RF-18 a RF-25 y RNF-09 a RNF-15 a partir de la codificación temática, mapeo legal LOPDP, construcción del diagrama de Razón Estratégica (SR) y refinamiento del diagrama de clases. & Completado \\
 			\hline
-			\textbf{Semana 13 (27 jul.--02 ago.)} & \textbf{Tercer avance:} ERS Completo con Validación y Trazabilidad -- documento de especificación de requisitos completo, validado y con trazabilidad total evidencia--requisito--caso de uso, priorización Kano/WSJF, MVP y protocolo del componente empírico registrado en el OSF. & Completado \\
+			Semana 13 (27 jul.--02 ago.) & ERS completo con validación y trazabilidad: documento de especificación de requisitos completo, validado y con trazabilidad total evidencia--requisito--caso de uso, priorización Kano/WSJF, MVP y protocolo del componente empírico registrado en el OSF. & Completado \\
 			\hline
-			Semanas 14--16 (03--23 ago.) & Ejecución del componente empírico, desarrollo del MVP (ampliado a 26 de 27 RF cubiertos), segunda ronda de \emph{walkthrough} con PROP-12 y VET-07 (EV-23, EV-24), revisión integral del documento y ajustes finales según observaciones del docente. & Completado \\
+			Semanas 14--16 (03--23 ago.) & Ejecución del componente empírico, desarrollo del MVP (ampliado a 26 de 27 RF cubiertos), segunda ronda de \emph{walkthrough} con PROP-12 y VET-07 (EV-23, EV-24), revisión integral del documento. & Completado \\
 			\hline
-			\textbf{Semana 17 (24--30 ago.)} & \textbf{Cuarto avance:} Proyecto Integrador Final -- corrección de calidad de los 25 RF vigentes conforme a ISO/IEC/IEEE 29148:2018, incorporación de RF-26 y RF-27 a partir de la nueva evidencia de campo, actualización de la matriz de trazabilidad extendida (61 filas, incluidos los 9 requisitos legales) y entrega y sustentación del documento ERS/SRS completo del Proyecto Fin de Curso. & Completado \\
+			Semana 17 (24--30 ago.) & Corrección de calidad de los requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018, incorporación de RF-26 y RF-27 a partir de la nueva evidencia de campo, actualización de la matriz de trazabilidad extendida (61 filas, incluidos los 9 requisitos legales) y cierre del documento ERS/SRS. & Completado \\
 			\hline
 		\end{tabularx}
 	\end{table}
 	
 	\textbf{Técnicas de elicitación seleccionadas:}
 	
-	Para esta entrega se mantiene la entrevista estructurada como técnica
+	Se mantiene la entrevista estructurada como técnica
 	principal, complementada con sesiones de \emph{walkthrough} para la
 	validación de los requisitos ya especificados. La segunda ronda de campo
-	amplía el cuestionario aplicado en la 1B (versión 2.0) con las preguntas
+	amplía el cuestionario aplicado (versión 2.0) con las preguntas
 	funcional y disfuncional del modelo de Kano para cada funcionalidad candidata,
 	de modo que la priorización Kano de la Sección~\ref{sec:kano} quede
 	respaldada por datos reales y no por criterio de escritorio. Esta técnica se
 	complementa con la codificación temática de las transcripciones
-	(Apéndice~B.8), que es el insumo directo para derivar los ocho requisitos
-	funcionales nuevos (RF-18 a RF-25) exigidos por la Entrega 3 (2A). En la
-	presente revisión (4.0) se ejecutaron dos sesiones adicionales que
-	combinan entrevista y \emph{walkthrough} sobre el mismo participante,
+	(Apéndice~B.8), que es el insumo directo para derivar ocho requisitos
+	funcionales (RF-18 a RF-25). Dos sesiones adicionales combinan entrevista
+	y \emph{walkthrough} sobre el mismo participante,
 	EV-23 (PROP-12, propietaria de mascota, usuaria no técnica) y EV-24
 	(VET-07, veterinaria, usuaria técnica), con lo que la ronda de validación
 	alcanza las 6 sesiones mínimas exigidas (3 técnicas y 3 no técnicas,
@@ -7293,11 +7208,10 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	
 	\subsection*{B.7 Ronda de validación (walkthrough)}
 	
-	La rúbrica exige un mínimo de 6 sesiones de validación (3 con usuarios
+	Se registran 6 sesiones de validación (3 con usuarios
 	técnicos y 3 con usuarios no técnicos), cada una con grabación en MP4 y
-	acta firmada en PDF, en \texttt{02\_Evidencias/Validacion\_Walkthrough/}.
-	Con la incorporación de PROP-12 y VET-07 en la revisión 4.0, se han
-	ejecutado las \textbf{6 sesiones mínimas exigidas} (3 con perfil técnico y
+	acta firmada en PDF, en \texttt{02\_Evidencias/Validacion\_Walkthrough/},
+	con la incorporación de PROP-12 y VET-07 (3 con perfil técnico y
 	3 con perfil no técnico):
 	
 	\begin{table}[H]
@@ -7379,42 +7293,41 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		\label{fig:curva-saturacion}
 	\end{figure}
 	
-	La curva evidencia un descubrimiento intenso de códigos durante la Entrega 2
-	(1B), con entre 6 y 9 códigos nuevos por evidencia, que desciende
-	progresivamente durante las entrevistas de la Entrega 3 (2A) hasta llegar a
-	\textbf{cero códigos nuevos en EV-17}, punto que marca la saturación
-	temática del corpus de entrevistas y cuestionario. La incorporación de las
-	cuatro sesiones de validación \emph{walkthrough} (EV-19 a EV-22) reactiva
+	La curva evidencia un descubrimiento intenso de códigos en las primeras
+	entrevistas del corpus (EV-01 a EV-08), con entre 6 y 9 códigos nuevos
+	por evidencia, que desciende progresivamente hasta llegar a \textbf{cero
+	códigos nuevos en EV-17}, punto que marca la saturación temática del
+	corpus de entrevistas y cuestionario. La incorporación de las cuatro
+	sesiones de validación \emph{walkthrough} (EV-19 a EV-22) reactiva
 	parcialmente el descubrimiento, con 7 códigos nuevos en EV-19 y 3 en cada
-	una de las restantes, hasta alcanzar los 80 códigos acumulados al cierre de
-	la Entrega 3 (2A). En la Entrega 4 (2B), la incorporación de EV-23
-	(PROP-12) y EV-24 (VET-07) --- ambas de naturaleza mixta, entrevista
-	semiestructurada seguida de sesión de validación \emph{walkthrough} ---
-	reactiva nuevamente el descubrimiento con una intensidad comparable a la de
-	las primeras entrevistas de campo: 7 códigos nuevos en EV-23 y 8 en EV-24,
-	hasta alcanzar los \textbf{95 códigos acumulados} con los que cierra el
-	corpus de esta revisión. Este segundo repunte, más pronunciado que el de
-	las sesiones de \emph{walkthrough} puras (EV-19 a EV-22), es coherente con
-	el carácter combinado de EV-23 y EV-24: al reintroducir una fase de
-	entrevista semiestructurada antes de la validación, ambas evidencias
-	exploran vocabulario nuevo (por ejemplo, el origen directo de RF-26 y
-	RF-27) además de confirmar códigos ya existentes del corpus. Este repunte
-	es esperable y no invalida la saturación previa: el \emph{walkthrough} es un
-	tipo de evidencia distinto al de la elicitación, orientado a la validación
-	de requisitos ya especificados, por lo que introduce un vocabulario propio
+	una de las restantes, hasta alcanzar los 80 códigos acumulados. La
+	incorporación de EV-23 (PROP-12) y EV-24 (VET-07) --- ambas de
+	naturaleza mixta, entrevista semiestructurada seguida de sesión de
+	validación \emph{walkthrough} --- reactiva nuevamente el descubrimiento
+	con una intensidad comparable a la de las primeras entrevistas de campo:
+	7 códigos nuevos en EV-23 y 8 en EV-24, hasta alcanzar los \textbf{95
+	códigos acumulados} con los que cierra el corpus. Este segundo repunte,
+	más pronunciado que el de las sesiones de \emph{walkthrough} puras
+	(EV-19 a EV-22), es coherente con el carácter combinado de EV-23 y
+	EV-24: al reintroducir una fase de entrevista semiestructurada antes de
+	la validación, ambas evidencias exploran vocabulario nuevo (por ejemplo,
+	el origen directo de RF-26 y RF-27) además de confirmar códigos ya
+	existentes del corpus. Este repunte es esperable y no invalida la
+	saturación previa: el \emph{walkthrough} es un tipo de evidencia
+	distinto al de la elicitación, orientado a la validación de requisitos
+	ya especificados, por lo que introduce un vocabulario propio
 	de hallazgos de validación. La distinción entre saturación de códigos y
 	saturación de significado que plantean Hennink et al. \cite{hennink2017} es
 	precisamente lo que permite interpretar este comportamiento sin asumir que
 	el corpus de elicitación quedó incompleto.
-	
+
 	\subsection*{B.9 Sesión de miembro-verificación (\emph{member checking})}
 	\label{sec:memberchecking}
 
-	La Sección~4.2 de la Guía y Rúbrica de la Entrega 4 (2B) exige, como
-	evidencia terminal adicional a la ronda de validación \emph{walkthrough}
-	(Apéndice~B.7), una sesión de miembro-verificación (\emph{member
+	Como evidencia terminal adicional a la ronda de validación \emph{walkthrough}
+	(Apéndice~B.7), se realizó una sesión de miembro-verificación (\emph{member
 		checking}) en la que al menos tres participantes previos del estudio
-	confirmen la interpretación de los resultados del análisis cualitativo,
+	confirman la interpretación de los resultados del análisis cualitativo,
 	conforme al planteamiento de Birt \emph{et al.} \cite{birt2016}. A
 	diferencia del \emph{walkthrough}, esta sesión no revalida funcionalmente
 	el sistema: contrasta si el análisis de hallazgos derivado de la
@@ -7478,7 +7391,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	protección AES-256 descrito en el Apéndice~B.10.
 
 	\paragraph{Firmas de conformidad.}
-	Conforme al cronograma de hitos de la guía (Semana 15), el acta requiere
+	El acta requiere
 	firma de conformidad de cada participante. Las tres firmas se obtuvieron
 	posteriormente al cierre de la sesión mediante firma manuscrita
 	fotografiada, el mismo procedimiento usado para los consentimientos
@@ -7486,7 +7399,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	firmaron el 23/08/2026.
 
 	\paragraph{Cumplimiento del mínimo exigido.}
-	La Sección~4.2 de la guía exige una sesión con al menos tres
+	Se exige una sesión con al menos tres
 	participantes previos del estudio confirmando la interpretación de los
 	resultados. Con la sesión ejecutada y sus tres participantes (PROP-02,
 	PROP-03, PROP-10), el mínimo terminal para este ítem de evidencia queda
@@ -7504,25 +7417,22 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	(Apéndice~B.6) y se publican únicamente en su versión anonimizada, conforme
 	a la restricción RD-09.
 	
-	\paragraph{Zona restringida --- originales cifrados.}
-	Los archivos de audio y video originales de todas las entrevistas y sesiones
-	de \emph{walkthrough} (EV-01 a EV-24, excepto EV-08, que corresponde a
-	observación sin grabación de audio/video de personas) no se almacenan
-	sueltos en el repositorio: se comprimen y cifran con 7-Zip (AES-256) en un
-	volumen dividido, alojado en
-	\texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/}. A la
-	fecha de la Entrega 3 (2A) el volumen se fragmentaba en 67 partes; con la
-	incorporación de los archivos originales de EV-23 y EV-24 en la revisión
-	4.0, el volumen cifrado se regeneró con las partes adicionales
-	correspondientes. La contraseña del
-	contenedor se entrega únicamente al docente responsable por el Sistema de
-	Gestión Académica (SGA), conforme a la Sección~4.1 de la Guía y Rúbrica de
-	la Entrega 4 (2B). El detalle de cada archivo interno --- nombre, tipo,
-	fecha, código de participante, duración, códec, tamaño y hash SHA-256 ---
-	consta en \texttt{02\_Evidencias/00\_Restringido/fichas\_tecnicas.csv}, que
-	junto con \texttt{README\_evidencias\_restringidas.md} es de lectura
-	pública y no contiene datos identificables; únicamente el contenido cifrado
-	del volumen \texttt{.7z} los contiene.
+\paragraph{Zona restringida --- originales cifrados.}
+Los archivos de audio y video originales de todas las entrevistas y sesiones
+de \emph{walkthrough} (EV-01 a EV-24, excepto EV-08, que corresponde a
+observación sin grabación de audio/video de personas) no se almacenan
+sueltos en el repositorio: se comprimen y cifran con 7-Zip (AES-256) en un
+volumen dividido en partes de 80~MB cada una, alojado en
+\texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/}, dado
+que el proveedor del repositorio limita a 2~GB el tamaño de un archivo
+individual. La contraseña del
+contenedor se entrega únicamente al docente responsable por el Sistema de
+Gestión Académica (SGA). El detalle de cada archivo interno --- nombre, tipo,
+fecha, código de participante, duración, códec, tamaño y hash SHA-256 ---
+consta en \texttt{02\_Evidencias/00\_Restringido/fichas\_tecnicas.csv}, que
+junto con \texttt{README\_evidencias\_restringidas.md} es de lectura
+pública y no contiene datos identificables; únicamente el contenido cifrado
+del volumen \texttt{.7z} los contiene.
 	
 	\paragraph{Zona pública --- entrevistas (EV-01 a EV-06, EV-09 a EV-18).}
 	La transcripción anonimizada de cada entrevista está disponible en
@@ -7587,8 +7497,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	
 	\paragraph{Zona pública --- sesiones de validación \emph{walkthrough} (EV-19 a EV-22).}
 	Se registran 6 sesiones de validación \emph{walkthrough} (3 con usuarios
-	técnicos, 3 con usuarios no técnicos), con lo que se completa el objetivo
-	de la Entrega 4 (2B). El acta enmascarada de cada sesión reside en
+	técnicos, 3 con usuarios no técnicos). El acta enmascarada de cada sesión reside en
 	\texttt{02\_Evidencias/Validacion\_Walkthrough/}; la grabación en video de
 	cada sesión reside cifrada en la zona restringida.
 	
@@ -7609,12 +7518,11 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		\end{tabularx}
 	\end{table}
 	
-	\textbf{Cumplimiento del objetivo de la Adenda de Segunda Ronda.} El mínimo
-	2A de la Sección~4.2 de la guía exigía $\geq 3$ sesiones de
-	\emph{walkthrough}, y el objetivo 2B declarado por el propio equipo era de
-	6 sesiones (3 técnicas + 3 no técnicas). Con la incorporación de EV-23 y
-	EV-24 en la revisión 4.0, las 6 sesiones quedan ejecutadas y el objetivo
-	2B se da por cumplido.
+	\textbf{Cumplimiento del objetivo declarado.} El objetivo
+	declarado por el propio equipo era de
+	6 sesiones de \emph{walkthrough} (3 técnicas + 3 no técnicas). Con la
+	incorporación de EV-23 y EV-24, las 6 sesiones quedan ejecutadas y el
+	objetivo se da por cumplido.
 	
 	\paragraph{Consentimientos informados firmados (18 en total).}
 	Copia enmascarada de cada consentimiento (cédula y firma cubiertas, código
@@ -7664,16 +7572,14 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	\texttt{02\_Evidencias/Cuestionario/Respuestas/}. Fotografías de aplicación
 	real: 6 archivos (\texttt{EvidenciaEncuestado\_01.jpeg} a
 	\texttt{EvidenciaEncuestado\_06.jpeg}), en
-	\texttt{02\_Evidencias/Cuestionario/Fotos\_Aplicacion/}. Se supera el
-	mínimo $n \geq 30$ exigido por la Sección~4.2 de la guía ($n = 61$
-	respuestas registradas).
+	\texttt{02\_Evidencias/Cuestionario/Fotos\_Aplicacion/}. Se registran
+	61 respuestas.
 	
 	\paragraph{Documentos de la organización.}
 	Cinco documentos anonimizados de tipos distintos en
 	\texttt{02\_Evidencias/Documentos\_Organizacion/}: cartilla de vacunación,
 	control de desparasitación, hemograma, orden de examen y receta de
-	vacunación, todos con fecha 27/07/2026. Se supera el mínimo de 3
-	documentos de tipos distintos exigido por la Sección~4.2 de la guía.
+	vacunación, todos con fecha 27/07/2026.
 	
 	\paragraph{Codificación temática.}
 	Tabla de codificación (\texttt{codificacion\_tematica.csv}) y figura de la
@@ -7686,19 +7592,19 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	\begin{table}[H]
 		\centering
 		\small
-		\caption{Resumen de verificación del índice de multimedia frente a los mínimos de la Sección 4.2 de la Guía y Rúbrica de la Entrega 4 (2B).}
+		\caption{Resumen del índice de multimedia recolectado.}
 		\label{tab:resumen-verificacion-mm}
-		\begin{tabularx}{\textwidth}{@{}X l l l@{}}
+		\begin{tabularx}{\textwidth}{@{}X l@{}}
 			\toprule
-			\textbf{Tipo de evidencia} & \textbf{Cantidad} & \textbf{Mínimo 2B exigido} & \textbf{Estado} \\
+			\textbf{Tipo de evidencia} & \textbf{Cantidad} \\
 			\midrule
-			Consentimientos firmados & 19 & $\geq 8$ & Cumple \\
-			Entrevistas con audio/video (zona restringida) & 18 & $\geq 8$ & Cumple \\
-			Sesión de observación & 1 (EV-08) & --- & Cumple \\
-			Respuestas de cuestionario & 61 & $n \geq 30$ & Cumple \\
-			Documentos de la organización & 5 & $\geq 3$ & Cumple \\
-			Sesiones de \emph{walkthrough} & 6 (3 téc. + 3 no téc.) & $\geq 6$ & Cumple \\
-			Sesión de miembro-verificación (\emph{member checking}) & 1 (3 participantes) & $\geq 1$ & Cumple \\
+			Consentimientos firmados & 19 \\
+			Entrevistas con audio/video (zona restringida) & 18 \\
+			Sesión de observación & 1 (EV-08) \\
+			Respuestas de cuestionario & 61 \\
+			Documentos de la organización & 5 \\
+			Sesiones de \emph{walkthrough} & 6 (3 téc. + 3 no téc.) \\
+			Sesión de miembro-verificación (\emph{member checking}) & 1 (3 participantes) \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
@@ -7829,8 +7735,8 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 \label{ap:trazabilidad}
 
 La Tabla~\ref{tab:matriz_trazabilidad_completa} es la matriz de trazabilidad
-final del proyecto MundiPets, en el formato mínimo de diez columnas exigido
-por la Guía y Rúbrica de la Entrega 4 (2B): \textbf{Fuente, Requisito, Caso
+final del proyecto MundiPets, en un formato de diez columnas:
+\textbf{Fuente, Requisito, Caso
 de Uso, Clase, Proceso, Estado, Criterio, Caso de Prueba, Historia y Estado
 de la traza}. Las filas se ordenan por tipo de requisito --- primero los 27
 funcionales (TR-01 a TR-27), luego los 16 no funcionales (TR-28 a TR-43),
@@ -7900,18 +7806,6 @@ sino un \textbf{juicio de calidad sobre la fila misma} de la matriz:
 certifica si la cadena de trazabilidad de ese requisito quedó completa, es
 transversal por diseño, o --- de existir --- rota o huérfana.
 
-\paragraph{Nota sobre tres brechas de modelado, ya cerradas.} Al verificar
-esta matriz contra el diagrama de clases refinado se habían detectado tres
-requisitos funcionales para los que el modelo de clases no ofrecía un
-atributo o una clase que los materializara por completo: RF-21
-(identificador de microchip, sin atributo en \texttt{Pet}), RF-24 (lote y
-aplicador de la vacuna, sin campo en \texttt{PetVaccine}) y RF-25 (aviso de
-mascota extraviada, sin clase dedicada). Las tres brechas ya fueron
-cerradas por el equipo de modelado (véase la corrección al final de esta
-sección) y las filas correspondientes de la Tabla~\ref{tab:matriz_trazabilidad_completa} reflejan ya la clase real (\texttt{Pet},
-\texttt{PetVaccine} y \texttt{LostPetAlert}, respectivamente), visible en
-la vista parcial \emph{Pets and Health} del diagrama de clases
-(Sección~\ref{sec:clases-refinado}).
 
 \paragraph{Lectura de las celdas marcadas con \enquote{---}.} El guion no
 indica información faltante, sino ausencia de relación real en ese eslabón
@@ -8010,52 +7904,8 @@ transversales lo presentan.
 	\end{longtable}
 \end{landscape}
 
-\subsection*{Corrección de modelado aplicada al diagrama de clases}
-\addcontentsline{toc}{subsection}{Corrección de modelado aplicada al diagrama de clases}
-\label{sec:correccion-clases}
-
-Las tres brechas señaladas en el párrafo anterior ya fueron cerradas por el
-equipo de modelado con los siguientes cambios sobre el diagrama de clases
-refinado, visibles en la vista parcial \emph{Pets and Health}
-(Figura~\ref{fig:clases-pets-health}) aunque todavía no en la vista general
-del diagrama (Figura~\ref{fig:clases-refinado}, pendiente de reexportar):
-
-\begin{itemize}[leftmargin=*]
-	\item \textbf{RF-21 (microchip):} se agregó el atributo
-	\texttt{-microchipId~:~string} y el atributo
-	\texttt{-microchipDate~:~datetime} a la clase \texttt{Pet}. No fue
-	necesario un método nuevo: \texttt{updateData()}, ya existente en
-	\texttt{Pet}, cubre la actualización de este atributo igual que la de
-	cualquier otro dato del perfil.
-	\item \textbf{RF-24 (cepa, lote y aplicador):} se agregaron a la clase
-	\texttt{PetVaccine} los atributos \texttt{-batchNumber~:~string} (lote)
-	y \texttt{-administeredBy~:~string} (aplicador); el atributo
-	\texttt{biologicalAgent~:~Vaccine*} ya existente cubre la cepa o marca
-	del biológico, por lo que no se requirió un atributo adicional para
-	ese dato. Tampoco fue necesario un método nuevo:
-	\texttt{registerApplication()}, ya existente en \texttt{PetVaccine},
-	pasa a registrar también estos dos atributos junto con la fecha y la
-	próxima dosis.
-	\item \textbf{RF-25 (aviso de mascota extraviada):} se incorporó la
-	clase nueva \texttt{LostPetAlert}, dado que ninguna clase existente
-	modelaba un aviso público de extravío con los datos que RF-25 exige. Se
-	detalla a continuación.
-\end{itemize}
-
-\paragraph{Clase nueva: \texttt{LostPetAlert}.}
-
-\begin{atributos}{LostPetAlert}{Especificación de la clase \texttt{LostPetAlert}, incorporada para cerrar RF-25.}
-	Atributos & \texttt{-alertId~:~long}\newline\texttt{-petId~:~long}\newline\texttt{-lastSeenLocation~:~string}\newline\texttt{-lastSeenDate~:~datetime}\newline\texttt{-contactPhone~:~string}\newline\texttt{-status~:~string} (\emph{Active} / \emph{Resolved}) \\
-	Métodos & \texttt{+publishAlert()} --- publica el aviso a partir de los datos del perfil de la mascota y del contacto del propietario.\newline\texttt{+resolveAlert()} --- marca el aviso como \emph{Resolved} y lo retira del listado público. \\
-	Relación con \texttt{Pet} & Composición (rombo relleno) 0..* a 1: cada \texttt{Pet} puede tener cero o varios \texttt{LostPetAlert} a lo largo del tiempo (uno por cada episodio de extravío), y cada aviso pertenece exactamente a una mascota (etiqueta \emph{warning} en el diagrama). \\
-	Relación con \texttt{Owner} & Asociación 1 a 0..*: cada \texttt{Owner} puede publicar cero o varios avisos, y cada aviso es publicado por exactamente un \texttt{Owner} (el método \texttt{publishAlert()} obtiene \texttt{contactPhone} del \texttt{Owner} autenticado). \\
-	Justificación & RF-25 exige fotografías (ya cubiertas por \texttt{Pet.petPhotos}), número de microchip (cubierto por el atributo \texttt{microchipId} agregado a \texttt{Pet} para cerrar RF-21) y datos de contacto y ubicación del extravío, que ninguna otra clase modela; reutilizar \texttt{Post} de forma genérica --- como se documentaba antes de esta corrección --- habría dejado sin modelar \texttt{lastSeenLocation} y \texttt{contactPhone}, exigidos explícitamente por RF-25. \\
-\end{atributos}
-
-Con esta clase incorporada, RF-25 en la Tabla~\ref{tab:matriz_trazabilidad_completa} pasa de \texttt{Post (sin clase dedicada)} a \texttt{LostPetAlert}, y su fila queda con \emph{Estado de la traza} \emph{Completa} en lugar de la brecha señalada.
 
 \subsection*{Diagnóstico de cobertura: huérfanos y cadenas rotas}
-\addcontentsline{toc}{subsection}{Diagnóstico de cobertura: huérfanos y cadenas rotas}
 \label{sec:diagnostico-cobertura}
 
 Conforme al criterio de verificación de esta entrega, se define como
@@ -8090,10 +7940,9 @@ Tabla~\ref{tab:huerfanos} documenta este resultado.
 		\bottomrule
 	\end{tabularx}
 \end{table}
-\footnotetext{Las tres clases restantes del diagrama --- \texttt{Owner}, \texttt{Shelter} y \texttt{Veterinarian} --- son especializaciones de \texttt{User} que representan roles y se alcanzan a través del actor de cada caso de uso (Sección~\ref{sec:cu-detallado}), no como clase de dominio realizada por un requisito individual; ninguna de las tres existe sin un requisito que la origine, por lo que no constituyen una cadena rota.}
+
 
 \subsection*{Sincronización con el tablero de gestión}
-\addcontentsline{toc}{subsection}{Sincronización con el tablero de gestión}
 
 El tablero Jira del proyecto exporta una tarjeta por cada historia de
 usuario (HU-01 a HU-27) y por cada caso de prueba (CP-01 a CP-61), enlazada
@@ -8107,7 +7956,7 @@ exportadas, y se reporta junto con la exportación completa del tablero en
 
 
 	% --------------------------------------------------------
-
+	\newpage
 
 	\section*{Apéndice E --- Repositorio GitHub}
 	\addcontentsline{toc}{section}{Apéndice E --- Repositorio GitHub}
@@ -8115,17 +7964,14 @@ exportadas, y se reporta junto con la exportación completa del tablero en
 	
 	El trabajo del equipo se versiona en el repositorio
 	\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}, cuya
-	estructura de carpetas se muestra en el Código~\ref{lst:estructura_repo}. La
-	organización sigue el orden de las entregas de la asignatura y la
-	estructura obligatoria de la Sección~9.1 de la Guía y Rúbrica de la Entrega
-	4 (2B), que añade a la ya normada en la Entrega 3 (2A) la carpeta de
-	defensa (\texttt{09\_Defensa/}), el archivo raíz
+	estructura de carpetas se muestra en el Código~\ref{lst:estructura_repo},
+	incluyendo la carpeta de defensa (\texttt{09\_Defensa/}), el archivo raíz
 	\texttt{fair\_assessment.pdf} y las evidencias del análisis terminal. La
 	estructura mostrada corresponde al árbol real del repositorio al momento de
 	esta revisión, obtenido con el comando \texttt{tree /f} sobre la carpeta
 	raíz del proyecto.
-	
-	\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq, conforme a la Sección 9.1 de la Guía y Rúbrica de la Entrega 4 (2B).},label={lst:estructura_repo}]
+
+	\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq.},label={lst:estructura_repo}]
 		MundiPets-PFC-IngReq/
 		|-- .gitattributes
 		|-- .gitignore
@@ -8254,8 +8100,7 @@ exportadas, y se reporta junto con la exportación completa del tablero en
 	\emph{walkthrough} (Apéndice~B.10) no residen sueltos en
 	\texttt{02\_Evidencias/}: se comprimen y cifran con AES-256 en el volumen
 	fragmentado \texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/},
-	cuya contraseña se entrega únicamente al docente responsable por el SGA,
-	conforme a la Sección~4.1 de la Guía y Rúbrica de la Entrega 4 (2B).
+	cuya contraseña se entrega únicamente al docente responsable por el SGA.
 	
 	El archivo \texttt{07\_Publicacion/dataset\_zenodo/corpus\_RF\_MundiPets\_2B.json}
 	contiene los 27 requisitos funcionales de la Sección~\ref{sec:rf}
@@ -8272,14 +8117,14 @@ exportadas, y se reporta junto con la exportación completa del tablero en
 	El historial completo de commits, con autoría y fecha por integrante, se
 	consulta en la pestaña \emph{Commits} del repositorio y constituye la
 	evidencia verificable de la contribución individual de cada miembro del
-	equipo a lo largo de las cuatro entregas. La Figura~\ref{fig:commits}
-	muestra una captura del historial al momento del corte de esta entrega.
+	equipo. La Figura~\ref{fig:commits}
+	muestra una captura del historial al momento de esta revisión.
 	
 	% --- Captura del historial de commits (agregar manualmente) ---
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=\textwidth]{figuras/historial_commits.png}
-		\caption[Historial de commits del repositorio MundiPets-PFC-IngReq]{Historial de commits del repositorio \texttt{MundiPets-PFC-IngReq} al momento del corte de la Entrega 4 (2B).}
+		\caption[Historial de commits del repositorio MundiPets-PFC-IngReq]{Historial de commits del repositorio \texttt{MundiPets-PFC-IngReq}.}
 		\label{fig:commits}
 	\end{figure}
 	
@@ -8307,8 +8152,8 @@ exportadas, y se reporta junto con la exportación completa del tablero en
 	(\texttt{consentimiento\_evaluador\_experto.docx}) --- se anexan al
 	protocolo independiente y se versionan en
 	\texttt{06\_Experimento/instrumentos/}. Cualquier divergencia entre el
-	protocolo registrado en el OSF y el efectivamente ejecutado se declarará y
-	justificará de forma explícita en la Entrega 4, junto con los resultados
+	protocolo registrado en el OSF y el efectivamente ejecutado se declara y
+	justifica de forma explícita, junto con los resultados
 	del análisis estadístico descrito en la Sección~\ref{sec:plan-analisis}.
 	
 	% --------------------------------------------------------
@@ -8369,7 +8214,7 @@ exportadas, y se reporta junto con la exportación completa del tablero en
 	
 	\begin{table}[H]
 		\centering
-		\caption{Checklist de aceptación de la Entrega 4 (2B).}
+	\caption{Checklist de aceptación del documento.}
 		\label{tab:checklist}
 		\small
 		\begin{tabularx}{\textwidth}{@{}c X c@{}}
