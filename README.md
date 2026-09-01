@@ -388,3 +388,14 @@ El *pack file* que Software Heritage debe generar para clonar y preservar el rep
 El código del MVP se publica bajo licencia MIT o Apache-2.0. El documento ERS/SRS y el conjunto de datos anonimizado depositado en Zenodo se publican bajo licencia **Creative Commons Atribución 4.0 Internacional (CC BY 4.0)**. El material de la zona restringida (`02_Evidencias/00_Restringido/`) no se licencia ni se redistribuye. Consulte el archivo `LICENSE` para más información.
 
 Este proyecto se desarrolla exclusivamente con fines académicos dentro de la asignatura **Ingeniería de Requerimientos [20303]** de la Universidad Técnica Estatal de Quevedo (UTEQ), periodo 2026–2027 PPA.
+
+---
+
+## Nota sobre verificación de referencias bibliográficas
+
+Todas las referencias bibliográficas citadas en el manuscrito final
+(`07_Publicacion/manuscrito_final.tex` / `.pdf`, `referencias.bib`) y en el
+documento ERS/SRS (`01_ERS/ERS_SRS_2B_v2.0.tex`) se verificaron manualmente
+contra la fuente original citada, para confirmar su existencia real y la
+correspondencia entre lo afirmado en el texto y el contenido efectivo de
+cada trabajo referenciado.
