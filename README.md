@@ -237,7 +237,7 @@ Evidencia de campo de la primera y segunda ronda de elicitación: entrevistas (t
 Diagrama de contexto, casos de uso, modelado i* (SD/SR), diagramas UML completos (clases, secuencia, actividades, estados, componentes, despliegue) y mockups de alta fidelidad.
 
 ### 04_Trazabilidad
-Matriz de trazabilidad extendida (Ley → Objetivo → Interesado → Evidencia → RF/RNF/RD → CU → HU → CA → Componente → Mockup) y priorización MoSCoW + Kano + WSJF.
+Matriz de trazabilidad extendida (Ley → Objetivo → Interesado → Evidencia → RF/RNF/RD/RL → CU → HU → CA → Componente → Mockup) y priorización MoSCoW + Kano + WSJF.
 
 ### 05_MVP
 Producto Mínimo Viable, con cobertura de al menos el 60 % de los requisitos funcionales de prioridad *Debe tener*, instrucciones de despliegue y video de demostración.
@@ -257,13 +257,16 @@ Documentación ética completa del proyecto (Categoría B — Datos personales),
 
 Las evidencias se obtuvieron mediante:
 
-- Entrevistas semi-estructuradas (16 entrevistas grabadas, EV-01 a EV-18).
+- Entrevistas semi-estructuradas (18 entrevistas grabadas, con transcripción y ficha técnica).
 - Observación directa en un establecimiento veterinario (EV-08).
-- Cuestionario digital (38 respuestas, superando el mínimo n ≥ 30).
-- Validación mediante walkthrough (4 sesiones ejecutadas: 2 con usuarios técnicos, 2 con usuarios no técnicos).
-- 16 consentimientos informados firmados.
+- Cuestionario digital (61 respuestas, superando el mínimo n ≥ 30; 47 del perfil dominante "Propietario de mascota").
+- Validación mediante walkthrough (6 sesiones ejecutadas: 3 con usuarios técnicos, 3 con usuarios no técnicos).
+- 18 consentimientos informados firmados.
+- Sesión final de miembro-verificación (*member checking*) con 3 participantes previos del estudio.
 
-Todas las evidencias mantienen su trazabilidad dentro del documento ERS/SRS mediante identificadores EV-01 a EV-22.
+Todas las evidencias mantienen su trazabilidad dentro del documento ERS/SRS mediante identificadores EV-01 a EV-24.
+
+El corpus final de requisitos consta de **61 requisitos** (27 funcionales, 16 no funcionales, 9 restricciones de diseño y 9 requisitos legales), tras la revisión y corrección de numeración del ERS/SRS v2.0.
 
 ---
 
@@ -293,7 +296,7 @@ Ley / Normativa
       ↓
  Evidencia (EV-XX)
       ↓
- Requisito (RF / RNF / RD)
+ Requisito (RF / RNF / RD / RL)
       ↓
  Caso de Uso (CU-XX)
       ↓
