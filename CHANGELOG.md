@@ -23,7 +23,7 @@ Cierre del ciclo del PFC: ejecución completa del componente empírico, manuscri
 - Cuentas de prueba documentadas en `05_MVP/README.md`, una por cada rol del sistema (Adoptante, Propietario, Veterinaria, Interesado en Cruza).
 - Power calculation del cuestionario, perfil dominante ("Propietario de mascota", n=47): potencia estadística de 91,86 % (Cohen d=0,5, α=0,05, 1−β=0,80), calculada con `statsmodels` y versionada en `02_Evidencias/Cuestionario/power_calculation/`.
 - Fichas técnicas de evidencia actualizadas al corpus terminal: 20 participantes, 18 entrevistas (audio + video), 18 consentimientos, 6 sesiones de *walkthrough* (3 técnicas + 3 no técnicas), 1 sesión de *member checking*, 61 respuestas de cuestionario.
-- `checksums.sha256` regenerado (177 entradas) para toda la evidencia de la ronda terminal.
+- `checksums.sha256` regenerado (361 entradas) para toda la evidencia de la ronda terminal.
 - Carpeta `09_Defensa/` con presentación (PDF y PPTX), guion de la defensa, video de la defensa y folleto de una hoja para el tribunal.
 - Análisis de revistas objetivo (`07_Publicacion/analisis_revistas.md`) reescrito sobre la lista cerrada de la guía: *Requirements Engineering*, *Information and Software Technology*, *Empirical Software Engineering*, *Journal of Systems and Software*, REFSQ 2027 y RE 2027. Decisión final: *Requirements Engineering* (Springer), consistente con la plantilla `sn-jnl.cls` ya en uso en el manuscrito.
 
