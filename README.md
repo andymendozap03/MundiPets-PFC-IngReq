@@ -3,7 +3,7 @@
 Producto Mínimo Viable (MVP) del sistema **MundiPets**, una red social orientada a
 facilitar procesos de adopción y cruza responsable de mascotas en la provincia de
 Los Ríos, Ecuador. Este entregable corresponde a la Sección 6 del documento
-ERS/SRS completo (`01_ERS/ERS_SRS_2B_v1.0.pdf`) y al insumo `05_MVP/` exigido por
+ERS/SRS completo (`01_ERS/ERS_SRS_2B_v2.0.pdf`) y al insumo `05_MVP/` exigido por
 la rúbrica de la Entrega 4 (2B) de la asignatura Ingeniería de Requerimientos.
 
 ## Integrantes del equipo (roles según portada del ERS)
@@ -22,14 +22,12 @@ Este repositorio contiene **únicamente la aplicación MVP funcional y su
 documentación de despliegue**. No incluye evidencias de campo (entrevistas,
 consentimientos, cuestionarios), el protocolo experimental registrado en OSF, ni
 el dataset de Zenodo — esos insumos exigen datos primarios reales recolectados
-por el equipo y **no pueden generarse artificialmente** (regla operativa de la
-rúbrica: "nada declarado puede quedar solo declarado"). Esos artefactos deben
+por el equipo y **no pueden generarse artificialmente**. Esos artefactos deben
 producirse por separado con trabajo de campo real y ubicarse en `02_Evidencias/`,
-`06_Experimento/` y `07_Publicacion/` según el árbol de carpetas de la rúbrica.
-
+`06_Experimento/` y `07_Publicacion/`.
 ## Cobertura de Requisitos Funcionales (RF)
 
-Mínimo exigido por la rúbrica (criterio C8): MVP con cobertura **≥ 80 %** de los RF de prioridad *Debe tener* (Must). En esta versión actualizada, el MVP cubre **15 de 15 (100%)** de los requisitos *Must*, y un total de **26 de 27 (96.3%)** de todos los requisitos funcionales del proyecto, cumpliendo con la meta de cobertura superior al 80%.
+Mínimo exigido por la rúbrica (criterio C8): MVP con cobertura **≥ 80 %** de los RF de prioridad *Debe tener* (Must). En esta versión actualizada, el MVP cubre **15 de 15 (100%)** de los requisitos *Must*, y la **totalidad: 27 de 27 (100%)** de los requisitos funcionales del proyecto.
 
 | RF | Nombre | Prioridad | Cubierto | Pantalla(s) / Flujo |
 |---|---|---|---|---|
@@ -52,7 +50,7 @@ Mínimo exigido por la rúbrica (criterio C8): MVP con cobertura **≥ 80 %** de
 | RF-17 | Validar imágenes | Should | ✅ Sí (nuevo) | `pet-add.html` (simulación interactiva de escáner IA en el Paso 2) |
 | RF-18 | Gestionar el flujo de solicitud de adopción por etapas | Must | ✅ Sí | `request.html` |
 | RF-19 | Validar certificados veterinarios antes de habilitar la cruza | Should | ✅ Sí (nuevo) | `pet-profile.html` (bloqueo si no cuenta con certificado validado) |
-| RF-20 | Coordinar encuentros de socialización supervisados | Could | ❌ No implementado | — |
+| RF-20 | Coordinar encuentros de socialización supervisados | Could | ✅ Sí (nuevo) | `encounters.html` |
 | RF-21 | Registrar el identificador de microchip de la mascota | Should | ✅ Sí (nuevo) | `pet-add.html`, `pet-profile.html`, `pet-detail.html`, `explore.html` |
 | RF-22 | Dar seguimiento post-adopción | Must | ✅ Sí | `post-adoption.html` |
 | RF-23 | Emitir alertas de riesgo sanitario o físico en interacciones y cruces | Must | ✅ Sí | `compatibility.html` |
@@ -61,24 +59,43 @@ Mínimo exigido por la rúbrica (criterio C8): MVP con cobertura **≥ 80 %** de
 | RF-26 | Habilitar validación médica por segunda opinión veterinaria | Should | ✅ Sí (nuevo) | `vet-panel.html`, `pet-profile.html` (módulo de doble validación y constancia) |
 | RF-27 | Controlar y alertar sobre solicitudes repetitivas de cruza | Should | ✅ Sí (nuevo) | `compatibility.html` (alerta automatizada por superación de cruzas semestrales) |
 
-**Resumen:** 26/27 RF cubiertos (96.3% de cobertura total y 100% de los requisitos *Debe tener*).
+**Resumen:** 27/27 RF cubiertos (100% de cobertura total y 100% de los requisitos *Debe tener*).
 
 > **Nota sobre los componentes de IA e imágenes:** 
 > * **RF-06 (Compatibilidad):** Implementado mediante reglas heurísticas explícitas (parentesco, alertas sanitarias, edad y disparidad de tamaño).
 > * **RF-17 (Validación de imágenes):** Simulado en el Paso 2 de `pet-add.html` a través de un analizador interactivo que detecta y autoriza/rechaza las fotos (explicabilidad RNF-14).
 > * **RF-10 (Notificaciones de WhatsApp):** Simulado mediante un activador emergente que reproduce el envío del mensaje de control al teléfono del usuario.
 > * **RF-27 (Uso repetitivo):** Probado y disparado automáticamente en la evaluación de compatibilidad de Toby (`p3`), el cual cuenta con historial de cruzas completadas en su base de datos.
+> * **RF-20 (Encuentros de socialización):** Implementado en `encounters.html`; un propietario propone fecha, lugar y mascota/propietario invitado, el otro propietario confirma o rechaza, y el encuentro confirmado queda visible en el historial de interacciones de ambas mascotas (`pet-profile.html`).
+
+## Cuenta de usuario: contraseñas y perfil
+
+- **Registro (`register.html`) y recuperación (`forgot-password.html`)** exigen una contraseña que cumpla la política de seguridad: mínimo 8 caracteres, al menos una mayúscula, una minúscula, un número y un carácter especial. El cumplimiento se valida en vivo mediante un checklist visual (`js/utils.js` → `validatePassword` / `passwordChecklistHtml`), y se vuelve a validar en el servidor (`server.js`) antes de aceptar el registro o el cambio de contraseña.
+- **Recuperación de contraseña:** flujo de 3 pasos (correo → código de verificación → nueva contraseña). Como el MVP no tiene backend de correo real, el código de 6 dígitos se simula y se muestra en pantalla con fines de demostración (mismo criterio de simulación usado en RF-10 para WhatsApp).
+- **Mostrar/ocultar contraseña:** todos los campos de contraseña de la aplicación incluyen un botón de ojito para alternar su visibilidad (`enablePasswordToggles` en `js/utils.js`).
+- **Editar perfil (`profile.html`):** accesible haciendo clic en el nombre/avatar en la barra superior de cualquier pantalla. Permite actualizar nombre, correo y ciudad, y cambiar la contraseña verificando la contraseña actual (endpoint `/api/auth/change-password`).
 
 ## Stack técnico
 
-- HTML5 + CSS3 + JavaScript (vanilla, sin frameworks ni build step).
-- Persistencia 100 % en el navegador con `localStorage` (sin backend, sin
-  PostgreSQL, sin Docker), a través de la capa `js/db.js`.
+- **Frontend:** HTML5 + CSS3 + JavaScript (vanilla, sin frameworks ni build step).
+- **Backend:** [Express](https://expressjs.com/) sobre Node.js (`server.js`), que
+  sirve el frontend estático y expone una API REST (`/api/...`).
+- **Persistencia:** base de datos **en memoria** dentro del proceso Node (sin
+  motor de BD externo, sin Docker), inicializada con el mismo dataset ficticio
+  en cada arranque del servidor. Las contraseñas se almacenan con **hash bcrypt**
+  (`bcryptjs`), nunca en texto plano ni expuestas por la API.
 - Datos ficticios (seed) precargados: 4 usuarios de demostración (Propietario,
   Adoptante, Interesado en cruza, Veterinaria) y 4 mascotas (Firulais, Michi,
   Toby, Luna), inspirados en los mockups de referencia del proyecto.
 - Diseño responsivo (mobile / tablet / desktop) mediante CSS Grid/Flexbox y
   media queries en `css/styles.css`.
+
+> **Nota sobre la persistencia:** al ser datos en memoria, se reinician al
+> dataset semilla cada vez que el servidor se reinicia (equivalente al botón
+> "Restablecer datos de ejemplo" del MVP anterior). Mientras el proceso esté
+> activo, los datos se comparten entre todos los usuarios conectados — a
+> diferencia de la versión anterior basada en `localStorage`, donde cada
+> navegador tenía su propia copia aislada.
 
 ## Estructura del repositorio
 
@@ -95,39 +112,41 @@ MVP_MundiPets/
 ├── compatibility.html         Evaluación de compatibilidad de cruza (RF-06, RF-23)
 ├── vet-panel.html              Panel de validación veterinaria (RF-09)
 ├── post-adoption.html          Seguimiento post-adopción (RF-22)
+├── encounters.html             Encuentros de socialización supervisados (RF-20)
+├── forgot-password.html        Recuperación de contraseña con política de seguridad
+├── profile.html                 Editar perfil y cambiar contraseña
 ├── css/styles.css               Estilos y diseño responsivo
-├── js/db.js                     Capa de datos sobre localStorage + seed ficticio
-├── js/auth.js                   Sesión de rol simulada
-└── js/utils.js                  Helpers compartidos (badges, toasts, topbar)
+├── img/logo.svg                 Logo de la marca (pata con corazón)
+├── server.js                    Servidor Express: sirve el frontend y expone la API REST
+├── package.json                 Dependencias (express, bcryptjs) y script "start"
+├── js/db.js                     Cliente API (fetch) con la misma interfaz DB.all/get/insert/update/remove
+├── js/auth.js                   Autenticación contra la API (login, registro, recuperación y cambio de contraseña)
+└── js/utils.js                  Helpers compartidos (badges, toasts, topbar, política de contraseñas, ojito)
 ```
 
-## Instrucciones de despliegue local (sin Docker)
+## Instrucciones de despliegue local
 
-No se requiere instalación de dependencias ni servidor de aplicaciones. Basta un
-servidor estático (o incluso abrir el archivo directamente):
+Requiere [Node.js](https://nodejs.org/) instalado (v18 o superior recomendado).
+El sistema se levanta con un solo comando, sin necesidad de Docker ni de
+configurar una base de datos:
 
-**Opción 1 — Python (viene preinstalado en la mayoría de sistemas):**
 ```bash
 cd MVP_MundiPets
-python -m http.server 8000
-```
-Luego abrir `http://localhost:8000` en el navegador.
-
-**Opción 2 — Node.js:**
-```bash
-cd MVP_MundiPets
-npx serve .
+npm install
+npm start
 ```
 
-**Opción 3 — directo:**
-Abrir `index.html` con doble clic en el navegador (Chrome, Firefox o Edge
-actualizados). Algunas funciones de `localStorage` funcionan igual en modo
-`file://`, pero se recomienda la Opción 1 o 2 para una experiencia idéntica en
-todos los navegadores.
+Luego abrir `http://localhost:3000` en el navegador. El servidor Express sirve
+tanto el frontend como la API (`/api/...`), por lo que no hace falta levantar
+nada más por separado.
 
-Al primer arranque, la aplicación crea automáticamente los datos de ejemplo en
-`localStorage`. Para restablecerlos en cualquier momento, usar el enlace
-**"Restablecer datos de ejemplo"** en la pantalla de inicio de sesión.
+Al arrancar, el servidor inicializa automáticamente los datos de ejemplo en
+memoria. Para restablecerlos en cualquier momento (sin reiniciar el proceso),
+usar el enlace **"Restablecer datos de ejemplo"** en la pantalla de inicio de
+sesión, o reiniciar el servidor con `npm start`.
+
+> Variable de entorno opcional: `PORT` (por defecto `3000`), por ejemplo
+> `PORT=8080 npm start`.
 
 ## Recorrido funcional sugerido para la demo
 

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MundiPets — Mi mascota</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -32,7 +33,7 @@
           <option value="Adopción">Adopción</option>
           <option value="Cruza responsable">Cruza responsable</option>
         </select>
-        <button class="btn btn-secondary btn-sm mt-16" id="saveStatusBtn">Guardar publicación (RF-13)</button>
+        <button class="btn btn-secondary btn-sm mt-16" id="saveStatusBtn">Guardar publicación</button>
       </div>
 
       <div class="card">
@@ -47,17 +48,23 @@
         <h2>Antecedentes genéticos</h2>
         <div id="geneticsBox"></div>
       </div>
+
+      <div class="card">
+        <h2>Historial de interacciones</h2>
+        <p class="text-muted" style="margin-top:-6px;">Encuentros de socialización coordinados con otras mascotas.</p>
+        <div id="interactionsBox"></div>
+      </div>
     </div>
 
     <div>
       <div class="card">
-        <h2>Reportar extravío (RF-25)</h2>
+        <h2>Reportar extravío</h2>
         <p class="text-muted" style="margin-top:-6px;">Si tu mascota se ha extraviado, reportarla activará un aviso público destacado en la búsqueda.</p>
         <div id="lostStatusArea"></div>
       </div>
 
       <div class="card">
-        <h2>Privacidad de mi mascota (RF-11)</h2>
+        <h2>Privacidad de mi mascota</h2>
         <p class="text-muted" style="margin-top:-6px;">Define quién puede visualizar los datos sanitarios y de contacto vinculados a tu mascota.</p>
         <div id="privacyList"></div>
         <div class="info-banner">Estos ajustes no afectan la validación de MundiPets. Las veterinarias registradas siempre tendrán acceso al historial médico completo.</div>
@@ -70,15 +77,13 @@
 <script src="js/auth.js"></script>
 <script src="js/utils.js"></script>
 <script>
-  const user = Auth.requireLogin();
-  renderTopbar(user);
-
+  let user;
   const petId = qs("id");
-  let pet = DB.get("pets", petId);
-  if (!pet) { window.location.href = "dashboard.html"; }
+  let pet;
 
-  function render() {
-    pet = DB.get("pets", petId);
+  async function render() {
+    pet = await DB.get("pets", petId);
+    if (!pet) { window.location.href = "dashboard.html"; return; }
     document.getElementById("crumbName").textContent = pet.name;
     document.getElementById("petEmoji").textContent = pet.photo;
     document.getElementById("petName").textContent = pet.name;
@@ -87,20 +92,20 @@
     
     document.getElementById("petDesc").innerHTML = `
       ${escapeHtml(pet.description || "Sin descripción registrada.")}
-      ${pet.microchip ? `<br><br><strong>Identificador de Microchip (RF-21):</strong> <code>${escapeHtml(pet.microchip)}</code>` : '<br><br><em>Sin identificador de microchip registrado.</em>'}
+      ${pet.microchip ? `<br><br><strong>Identificador de Microchip:</strong> <code>${escapeHtml(pet.microchip)}</code>` : '<br><br><em>Sin identificador de microchip registrado.</em>'}
     `;
     
     document.getElementById("petStatusSelect").value = pet.status === "Extraviada" ? "Adopción" : pet.status;
 
-    // Reportar Extravío (RF-25)
+    // Reportar extravío
     const lostArea = document.getElementById("lostStatusArea");
     if (pet.status === "Extraviada") {
       lostArea.innerHTML = `
         <div class="warn-banner info-banner" style="margin-top:0;">🚨 Tu mascota está actualmente publicada como EXTRAVIADA. Sus datos de contacto son visibles públicamente.</div>
         <button class="btn btn-secondary btn-block mt-16 btn-sm" id="markFoundBtn">Marcar como encontrada</button>
       `;
-      document.getElementById("markFoundBtn").addEventListener("click", () => {
-        DB.update("pets", petId, { status: "Adopción" });
+      document.getElementById("markFoundBtn").addEventListener("click", async () => {
+        await DB.update("pets", petId, { status: "Adopción" });
         toast("Mascota marcada como encontrada. Estado restablecido a Adopción.");
         render();
       });
@@ -108,16 +113,16 @@
       lostArea.innerHTML = `
         <button class="btn btn-danger btn-block btn-sm" id="reportLostBtn">🚨 Reportar como extraviada</button>
       `;
-      document.getElementById("reportLostBtn").addEventListener("click", () => {
+      document.getElementById("reportLostBtn").addEventListener("click", async () => {
         if (confirm("¿Estás seguro de reportar a esta mascota como extraviada? Se publicará un aviso de alerta en la plataforma.")) {
-          DB.update("pets", petId, { status: "Extraviada" });
+          await DB.update("pets", petId, { status: "Extraviada" });
           toast("Mascota reportada como extraviada.");
           render();
         }
       });
     }
 
-    const records = DB.all("medicalRecords").filter((r) => r.petId === petId);
+    const records = (await DB.all("medicalRecords")).filter((r) => r.petId === petId);
     document.getElementById("recordList").innerHTML = records.length ? records.map((r) => `
       <div class="record-row" style="flex-direction: column; align-items: stretch; gap: 8px;">
         <div class="flex-between">
@@ -140,13 +145,35 @@
       </div>
     `).join("") : `<p class="text-muted">Sin registros médicos aún.</p>`;
 
-    const gen = DB.all("genetics").find((g) => g.petId === petId);
+    const gen = (await DB.all("genetics")).find((g) => g.petId === petId);
     document.getElementById("geneticsBox").innerHTML = gen ? `
       <p><strong>Linaje:</strong> ${escapeHtml(gen.lineage)}</p>
       <p><strong>Enfermedades hereditarias:</strong> ${escapeHtml(gen.hereditaryConditions)}</p>
       <p><strong>Parentesco:</strong> ${escapeHtml(gen.parentage)}</p>
       ${gen.notes ? `<p class="text-muted">${escapeHtml(gen.notes)}</p>` : ""}
     ` : `<p class="text-muted">Sin antecedentes genéticos registrados.</p>`;
+
+    const [interactions, allPetsForInteractions] = await Promise.all([
+      DB.all("encounters").then((list) => list.filter((e) => e.petAId === petId || e.petBId === petId)),
+      DB.all("pets")
+    ]);
+    const petLookup = Object.fromEntries(allPetsForInteractions.map((p) => [p.id, p]));
+    document.getElementById("interactionsBox").innerHTML = interactions.length ? interactions.map((e) => {
+      const otherPetId = e.petAId === petId ? e.petBId : e.petAId;
+      const otherPet = petLookup[otherPetId];
+      const statusLabel = e.status === "confirmado" ? '<span class="badge badge-green">Confirmado</span>'
+        : e.status === "rechazado" ? '<span class="badge badge-red">Rechazado</span>'
+        : '<span class="badge badge-amber">Propuesto</span>';
+      return `
+        <div class="record-row">
+          <div>
+            <div>Encuentro con ${otherPet ? otherPet.photo + " " + escapeHtml(otherPet.name) : "otra mascota"}</div>
+            <div class="text-muted" style="font-size:12px;">${escapeHtml(e.date)} · ${escapeHtml(e.place)}</div>
+          </div>
+          ${statusLabel}
+        </div>
+      `;
+    }).join("") : `<p class="text-muted">Sin encuentros de socialización registrados aún. <a href="encounters.html">Coordinar uno</a>.</p>`;
 
     const privacyLabels = {
       medicalHistory: "Historial médico completo",
@@ -169,47 +196,47 @@
     }).join("");
 
     document.querySelectorAll("#privacyList button").forEach((btn) => {
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", async () => {
         const patch = { ...pet.privacy, [btn.dataset.key]: btn.dataset.val };
-        DB.update("pets", petId, { privacy: patch });
+        await DB.update("pets", petId, { privacy: patch });
         toast("Preferencia de privacidad actualizada");
         render();
       });
     });
   }
 
-  document.getElementById("saveStatusBtn").addEventListener("click", () => {
+  document.getElementById("saveStatusBtn").addEventListener("click", async () => {
     const nextStatus = document.getElementById("petStatusSelect").value;
-    
-    // Validar certificados antes de cruzar (RF-19)
+
+    // Validar certificados antes de cruzar
     if (nextStatus === "Cruza responsable") {
-      const recs = DB.all("medicalRecords").filter((r) => r.petId === petId);
+      const recs = (await DB.all("medicalRecords")).filter((r) => r.petId === petId);
       const hasValidCert = recs.some((r) => r.type === "Certificado veterinario oficial" && r.validated);
       if (!hasValidCert) {
-        alert("Error de validación (RF-19):\nNo se puede habilitar la opción de cruza responsable sin contar con un 'Certificado veterinario oficial' que haya sido validado previamente por una veterinaria registrada. Por favor, agregue el certificado y espere su validación.");
+        alert("Error de validación:\nNo se puede habilitar la opción de cruza responsable sin contar con un 'Certificado veterinario oficial' que haya sido validado previamente por una veterinaria registrada. Por favor, agregue el certificado y espere su validación.");
         return;
       }
     }
-    
-    DB.update("pets", petId, { status: nextStatus });
+
+    await DB.update("pets", petId, { status: nextStatus });
     toast("Publicación actualizada");
     render();
   });
 
-  document.getElementById("addRecordBtn").addEventListener("click", () => {
+  document.getElementById("addRecordBtn").addEventListener("click", async () => {
     const type = prompt("Tipo de registro (ej. Vacuna antirrábica, Desparasitación interna, Certificado veterinario oficial, Cirugía, etc.):");
     if (!type) return;
     const date = prompt("Fecha (YYYY-MM-DD):", new Date().toISOString().slice(0, 10));
     if (date === null) return;
-    
+
     let strain = "", lote = "", applicator = "";
     if (type.toLowerCase().includes("vacuna")) {
-      strain = prompt("Cepa / Marca de la vacuna (RF-24):", "Rabisin");
-      lote = prompt("Lote de la vacuna (RF-24):", "R-90812");
-      applicator = prompt("Profesional veterinario aplicador (RF-24):", "Dra. Melissa Vera");
+      strain = prompt("Cepa / Marca de la vacuna:", "Rabisin");
+      lote = prompt("Lote de la vacuna:", "R-90812");
+      applicator = prompt("Profesional veterinario aplicador:", "Dra. Melissa Vera");
     }
-    
-    DB.insert("medicalRecords", {
+
+    await DB.insert("medicalRecords", {
       petId, type, date: date || "", status: "Vigente",
       strain: strain || "", Lote: lote || "", applicator: applicator || "",
       validated: false
@@ -218,7 +245,12 @@
     render();
   });
 
-  render();
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+    render();
+  })();
 </script>
 </body>
 </html>

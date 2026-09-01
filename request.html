@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MundiPets — Solicitud</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -24,25 +25,16 @@
 <script src="js/auth.js"></script>
 <script src="js/utils.js"></script>
 <script>
-  const user = Auth.requireLogin();
-  renderTopbar(user);
-
+  let user, request, pet;
   const requestId = qs("id");
   const petIdParam = qs("petId");
-  let request = requestId ? DB.get("requests", requestId) : null;
-  if (!request && petIdParam) {
-    request = DB.all("requests").find((r) => r.petId === petIdParam && r.requesterId === user.id) || null;
-  }
-  let pet = request ? DB.get("pets", request.petId) : DB.get("pets", petIdParam);
-
-  if (!pet) window.location.href = "explore.html";
 
   const STAGE_LABELS = ["Formulario", "Entrevista", "Visita al hogar", "Periodo de prueba", "Compromiso firmado"];
 
-  function renderLeft() {
-    const owner = DB.get("users", pet.ownerId);
+  async function renderLeft() {
+    const owner = await DB.get("users", pet.ownerId);
     if (!request) {
-      // Formulario nuevo (RF-05 / RF-08)
+      // Formulario nuevo
       document.getElementById("leftPane").innerHTML = `
         <div class="card">
           <div class="pet-row" style="border:none; padding:0; margin-bottom:16px;">
@@ -94,18 +86,18 @@
         });
       });
 
-      document.getElementById("sendReqBtn").addEventListener("click", () => {
+      document.getElementById("sendReqBtn").addEventListener("click", async () => {
         if (!document.getElementById("reqTerms").checked) { toast("Debes aceptar los términos de bienestar animal"); return; }
         const justification = document.getElementById("reqJustification").value.trim();
         if (!justification) { toast("Escribe una justificación para tu solicitud"); return; }
 
-        request = DB.insert("requests", {
+        request = await DB.insert("requests", {
           type, petId: pet.id, requesterId: user.id, ownerId: pet.ownerId,
           justification, conditions: document.getElementById("reqConditions").value,
           stage: 1, stages: STAGE_LABELS, status: "en_proceso",
           createdAt: new Date().toISOString().slice(0, 10)
         });
-        DB.insert("messages", {
+        await DB.insert("messages", {
           requestId: request.id, senderId: owner ? owner.id : pet.ownerId,
           text: `Hola, gracias por tu interés en ${pet.name}. Revisaré tu solicitud y te contactaré pronto.`,
           time: new Date().toTimeString().slice(0, 5)
@@ -114,10 +106,11 @@
         window.location.href = `request.html?id=${request.id}`;
       });
     } else {
-      // Solicitud existente: flujo por etapas (RF-18)
+      // Solicitud existente: flujo por etapas
       const isOwner = user.id === request.ownerId;
+      const requester = await DB.get("users", request.requesterId);
       document.getElementById("pageTitle").textContent = `Solicitud de ${request.type === "cruza" ? "cruza responsable" : "adopción"}`;
-      document.getElementById("pageSubtitle").textContent = `${pet.name} · Solicitante: ${DB.get("users", request.requesterId)?.name || "—"}`;
+      document.getElementById("pageSubtitle").textContent = `${pet.name} · Solicitante: ${requester ? requester.name : "—"}`;
 
       const stepsHtml = request.stages.map((label, i) => {
         const idx = i + 1;
@@ -152,21 +145,21 @@
 
       if (isOwner) {
         const adv = document.getElementById("advanceBtn");
-        if (adv) adv.addEventListener("click", () => {
+        if (adv) adv.addEventListener("click", async () => {
           const nextStage = request.stage + 1;
           if (nextStage > request.stages.length) return;
           const patch = { stage: nextStage };
           if (nextStage === request.stages.length) patch.status = "completada";
-          request = DB.update("requests", request.id, patch);
+          request = await DB.update("requests", request.id, patch);
           if (request.status === "completada" && request.type === "adopcion") {
-            DB.insert("followUps", { petId: pet.id, requestId: request.id, note: "Primer control post-adopción pendiente.", date: new Date().toISOString().slice(0, 10), status: "Pendiente" });
+            await DB.insert("followUps", { petId: pet.id, requestId: request.id, note: "Primer control post-adopción pendiente.", date: new Date().toISOString().slice(0, 10), status: "Pendiente" });
           }
           toast("Etapa actualizada");
           renderLeft();
         });
         const rej = document.getElementById("rejectBtn");
-        if (rej) rej.addEventListener("click", () => {
-          request = DB.update("requests", request.id, { status: "rechazada" });
+        if (rej) rej.addEventListener("click", async () => {
+          request = await DB.update("requests", request.id, { status: "rechazada" });
           toast("Solicitud rechazada");
           renderLeft();
         });
@@ -174,15 +167,16 @@
     }
   }
 
-  function renderChat() {
+  async function renderChat() {
     if (!request) {
       document.getElementById("chatPane").innerHTML = `<div class="card empty-state">El chat estará disponible una vez que envíes la solicitud.</div>`;
       return;
     }
-    const owner = DB.get("users", request.ownerId);
-    const requester = DB.get("users", request.requesterId);
+    const [owner, requester, allMessages] = await Promise.all([
+      DB.get("users", request.ownerId), DB.get("users", request.requesterId), DB.all("messages")
+    ]);
     const otherUser = user.id === request.ownerId ? requester : owner;
-    const messages = DB.all("messages").filter((m) => m.requestId === request.id);
+    const messages = allMessages.filter((m) => m.requestId === request.id);
 
     document.getElementById("chatPane").innerHTML = `
       <div class="chat-box">
@@ -213,18 +207,31 @@
     document.getElementById("sendChatBtn").addEventListener("click", sendMsg);
     document.getElementById("chatInput").addEventListener("keydown", (e) => { if (e.key === "Enter") sendMsg(); });
 
-    function sendMsg() {
+    async function sendMsg() {
       const input = document.getElementById("chatInput");
       const text = input.value.trim();
       if (!text) return;
-      DB.insert("messages", { requestId: request.id, senderId: user.id, text, time: new Date().toTimeString().slice(0, 5) });
+      await DB.insert("messages", { requestId: request.id, senderId: user.id, text, time: new Date().toTimeString().slice(0, 5) });
       input.value = "";
       renderChat();
     }
   }
 
-  renderLeft();
-  renderChat();
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+
+    request = requestId ? await DB.get("requests", requestId) : null;
+    if (!request && petIdParam) {
+      request = (await DB.all("requests")).find((r) => r.petId === petIdParam && r.requesterId === user.id) || null;
+    }
+    pet = await DB.get("pets", request ? request.petId : petIdParam);
+    if (!pet) { window.location.href = "explore.html"; return; }
+
+    renderLeft();
+    renderChat();
+  })();
 </script>
 </body>
 </html>

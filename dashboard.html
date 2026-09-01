@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MundiPets — Dashboard</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -11,12 +12,12 @@
 
 <div class="container">
   <div class="breadcrumb">Dashboard</div>
-  <div class="flex-between mt-16" style="flex-wrap:wrap; gap:10px;">
+  <div class="page-header mt-16">
     <div>
       <h1 id="pageTitle">Panel</h1>
       <p class="subtitle" id="pageSubtitle"></p>
     </div>
-    <div id="pageAction"></div>
+    <div id="pageAction" class="action-group"></div>
   </div>
 
   <div id="content"></div>
@@ -26,11 +27,15 @@
 <script src="js/auth.js"></script>
 <script src="js/utils.js"></script>
 <script>
-  const user = Auth.requireLogin();
-  if (user) {
-    renderTopbar(user);
-    render();
-  }
+  let user;
+
+  (async () => {
+    user = await Auth.requireLogin();
+    if (user) {
+      renderTopbar(user);
+      render();
+    }
+  })();
 
   function render() {
     if (user.role === "propietario") renderOwner();
@@ -38,18 +43,25 @@
     else renderAdopter();
   }
 
-  function renderOwner() {
+  async function renderOwner() {
     document.getElementById("pageTitle").textContent = "Mis mascotas";
     document.getElementById("pageSubtitle").textContent = "Administra los perfiles, historial médico y solicitudes de tus mascotas.";
     document.getElementById("pageAction").innerHTML = `
-      <button class="btn btn-secondary" onclick="addReminder()" style="margin-right:8px;">+ Programar Recordatorio</button>
+      <a href="encounters.html" class="btn btn-secondary">🐕‍🦺 Encuentros</a>
+      <button class="btn btn-secondary" onclick="addReminder()">+ Programar Recordatorio</button>
       <a href="pet-add.html" class="btn btn-primary">+ Registrar mascota</a>
     `;
 
-    const pets = DB.all("pets").filter((p) => p.ownerId === user.id);
-    const requests = DB.all("requests").filter((r) => r.ownerId === user.id);
-    const reminders = DB.all("reminders").filter((rem) => {
-      const pet = DB.get("pets", rem.petId);
+    const [allPets, allRequests, allReminders, allUsers, allEncounters] = await Promise.all([
+      DB.all("pets"), DB.all("requests"), DB.all("reminders"), DB.all("users"), DB.all("encounters")
+    ]);
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
+    const userById = Object.fromEntries(allUsers.map((u) => [u.id, u]));
+
+    const pets = allPets.filter((p) => p.ownerId === user.id);
+    const requests = allRequests.filter((r) => r.ownerId === user.id);
+    const reminders = allReminders.filter((rem) => {
+      const pet = petById[rem.petId];
       return pet && pet.ownerId === user.id;
     });
 
@@ -72,13 +84,19 @@
       `).join("");
     }
 
-    // Recordatorios (RF-10)
-    html += `<h2 class="mt-24">⏰ Recordatorios preventivos (RF-10)</h2>`;
+    // Encuentros de socialización pendientes de respuesta
+    const pendingEncounters = allEncounters.filter((e) => e.ownerBId === user.id && e.status === "pendiente");
+    if (pendingEncounters.length > 0) {
+      html += `<div class="info-banner">🐕‍🦺 Tienes ${pendingEncounters.length} propuesta(s) de encuentro de socialización pendiente(s) de respuesta. <a href="encounters.html" class="link-quiet">Ver encuentros</a>.</div>`;
+    }
+
+    // Recordatorios
+    html += `<h2 class="mt-24">⏰ Recordatorios preventivos</h2>`;
     if (reminders.length === 0) {
       html += `<div class="card empty-state">No tienes recordatorios de controles preventivos programados.</div>`;
     } else {
       html += `<div class="grid-2">` + reminders.map((rem) => {
-        const pet = DB.get("pets", rem.petId);
+        const pet = petById[rem.petId];
         const isNear = (new Date(rem.date) - new Date()) / (1000 * 60 * 60 * 24) <= 7;
         const colorClass = isNear ? "badge-red" : "badge-amber";
         return `
@@ -100,7 +118,7 @@
       }).join("") + `</div>`;
     }
 
-    // Solicitudes recibidas activas e historial (RF-15)
+    // Solicitudes recibidas activas e historial
     const activeRequests = requests.filter(r => r.status === "en_proceso");
     const archivedRequests = requests.filter(r => r.status !== "en_proceso");
 
@@ -109,8 +127,8 @@
       html += `<div class="card empty-state">No tienes solicitudes activas por ahora.</div>`;
     } else {
       html += activeRequests.map((r) => {
-        const pet = DB.get("pets", r.petId);
-        const requester = DB.get("users", r.requesterId);
+        const pet = petById[r.petId];
+        const requester = userById[r.requesterId];
         return `
           <div class="pet-row">
             <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
@@ -130,10 +148,10 @@
     if (archivedRequests.length > 0) {
       html += `
         <details class="mt-24" style="cursor:pointer; margin-bottom: 20px;">
-          <summary style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--navy);">📦 Historial de solicitudes finalizadas (RF-15)</summary>
+          <summary style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--navy);">📦 Historial de solicitudes finalizadas</summary>
           ${archivedRequests.map((r) => {
-            const pet = DB.get("pets", r.petId);
-            const requester = DB.get("users", r.requesterId);
+            const pet = petById[r.petId];
+            const requester = userById[r.requesterId];
             return `
               <div class="pet-row" style="opacity: 0.85; background: #fafafa;">
                 <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
@@ -155,17 +173,21 @@
     document.getElementById("content").innerHTML = html;
   }
 
-  function renderAdopter() {
+  async function renderAdopter() {
     const isCruza = user.role === "interesado_cruza";
     document.getElementById("pageTitle").textContent = isCruza ? "Mascotas para cruza" : "Explorar mascotas";
     document.getElementById("pageSubtitle").textContent = "Encuentra mascotas disponibles y da seguimiento a tus solicitudes.";
     document.getElementById("pageAction").innerHTML = `<a href="explore.html" class="btn btn-primary">Explorar mascotas</a>`;
 
-    const myRequests = DB.all("requests").filter((r) => r.requesterId === user.id);
+    const [allPets, allRequests, allFollowUps] = await Promise.all([DB.all("pets"), DB.all("requests"), DB.all("followUps")]);
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
+    const requestById = Object.fromEntries(allRequests.map((r) => [r.id, r]));
+
+    const myRequests = allRequests.filter((r) => r.requesterId === user.id);
     const activeRequests = myRequests.filter(r => r.status === "en_proceso");
     const archivedRequests = myRequests.filter(r => r.status !== "en_proceso");
-    const followUps = DB.all("followUps").filter((f) => {
-      const req = DB.get("requests", f.requestId);
+    const followUps = allFollowUps.filter((f) => {
+      const req = requestById[f.requestId];
       return req && req.requesterId === user.id;
     });
 
@@ -174,7 +196,7 @@
       html += `<div class="card empty-state">No tienes solicitudes en proceso. <a href="explore.html">Explora mascotas disponibles</a>.</div>`;
     } else {
       html += activeRequests.map((r) => {
-        const pet = DB.get("pets", r.petId);
+        const pet = petById[r.petId];
         return `
           <div class="pet-row">
             <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
@@ -194,7 +216,7 @@
     if (followUps.length) {
       html += `<h2 class="mt-24">Seguimiento post-adopción</h2>`;
       html += followUps.map((f) => {
-        const pet = DB.get("pets", f.petId);
+        const pet = petById[f.petId];
         return `
           <div class="pet-row">
             <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
@@ -214,9 +236,9 @@
     if (archivedRequests.length > 0) {
       html += `
         <details class="mt-24" style="cursor:pointer; margin-bottom: 20px;">
-          <summary style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--navy);">📦 Historial de solicitudes finalizadas (RF-15)</summary>
+          <summary style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--navy);">📦 Historial de solicitudes finalizadas</summary>
           ${archivedRequests.map((r) => {
-            const pet = DB.get("pets", r.petId);
+            const pet = petById[r.petId];
             return `
               <div class="pet-row" style="opacity: 0.85; background: #fafafa;">
                 <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
@@ -238,19 +260,19 @@
     document.getElementById("content").innerHTML = html;
   }
 
-  function addReminder() {
+  async function addReminder() {
     const type = prompt("Tipo de control preventivo (ej. Vacuna Triple Felina, Desparasitación, Vacuna antirrábica, Control veterinario):");
     if (!type) return;
     const date = prompt("Fecha programada (YYYY-MM-DD):", new Date().toISOString().slice(0, 10));
     if (!date) return;
     const desc = prompt("Notas / Descripción del recordatorio:", "Dosis preventiva recomendada.");
-    
-    const pets = DB.all("pets").filter((p) => p.ownerId === user.id);
+
+    const pets = (await DB.all("pets")).filter((p) => p.ownerId === user.id);
     if (pets.length === 0) {
       toast("Primero debes registrar una mascota");
       return;
     }
-    
+
     let petId = pets[0].id;
     if (pets.length > 1) {
       const listStr = pets.map((p, idx) => `${idx + 1}. ${p.name}`).join("\n");
@@ -260,39 +282,40 @@
         petId = pets[idx].id;
       }
     }
-    
-    DB.insert("reminders", {
+
+    await DB.insert("reminders", {
       petId: petId, type, date, status: "Pendiente", description: desc || ""
     });
-    toast("Recordatorio programado con éxito (RF-10)");
+    toast("Recordatorio programado con éxito");
     render();
   }
   window.addReminder = addReminder;
 
-  function removeReminder(id) {
+  async function removeReminder(id) {
     if (confirm("¿Estás seguro de eliminar este recordatorio?")) {
-      DB.remove("reminders", id);
+      await DB.remove("reminders", id);
       toast("Recordatorio de control preventivo eliminado");
       render();
     }
   }
   window.removeReminder = removeReminder;
 
-  function sendWhatsAppSim(id) {
-    const rem = DB.get("reminders", id);
-    const pet = rem ? DB.get("pets", rem.petId) : null;
+  async function sendWhatsAppSim(id) {
+    const rem = await DB.get("reminders", id);
+    const pet = rem ? await DB.get("pets", rem.petId) : null;
     if (!rem || !pet) return;
-    
-    alert(`📲 [SIMULACIÓN WHATSAPP - RF-10]\n\nEnviando mensaje de control preventivo a su número:\n\n"MundiPets Alerta: Hola ${user.name}, te recordamos que tu mascota ${pet.name} tiene programado su: '${rem.type}' para la fecha ${rem.date}. Nota: ${rem.description}"`);
+
+    alert(`📲 [SIMULACIÓN WHATSAPP]\n\nEnviando mensaje de control preventivo a su número:\n\n"MundiPets Alerta: Hola ${user.name}, te recordamos que tu mascota ${pet.name} tiene programado su: '${rem.type}' para la fecha ${rem.date}. Nota: ${rem.description}"`);
   }
   window.sendWhatsAppSim = sendWhatsAppSim;
 
-  function renderVet() {
+  async function renderVet() {
     document.getElementById("pageTitle").textContent = "Agenda de revisiones";
     document.getElementById("pageSubtitle").textContent = "Valida el historial médico y los certificados cargados por los propietarios.";
     document.getElementById("pageAction").innerHTML = `<a href="vet-panel.html" class="btn btn-primary">Ir al panel de validaciones</a>`;
 
-    const records = DB.all("medicalRecords");
+    const [records, allPets] = await Promise.all([DB.all("medicalRecords"), DB.all("pets")]);
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
     const pending = records.filter((r) => !r.validated);
     const validated = records.filter((r) => r.validated);
 
@@ -304,7 +327,7 @@
       </div>
       <h2 class="mt-24">Pendientes de hoy</h2>
       ${pending.length === 0 ? '<div class="card empty-state">No hay documentos pendientes de validación.</div>' : pending.map((r) => {
-        const pet = DB.get("pets", r.petId);
+        const pet = petById[r.petId];
         return `
           <div class="pet-row">
             <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MundiPets — Seguimiento post-adopción</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -12,7 +13,7 @@
 <div class="container-narrow">
   <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> &gt; Seguimiento post-adopción</div>
   <h1>Seguimiento post-adopción</h1>
-  <p class="subtitle">Mantén un contacto periódico entre adoptante y propietario original tras completarse la adopción (RF-22).</p>
+  <p class="subtitle">Mantén un contacto periódico entre adoptante y propietario original tras completarse la adopción.</p>
 
   <div id="content"></div>
 </div>
@@ -21,17 +22,19 @@
 <script src="js/auth.js"></script>
 <script src="js/utils.js"></script>
 <script>
-  const user = Auth.requireLogin();
-  renderTopbar(user);
-
+  let user;
   const petId = qs("petId");
 
-  function render() {
-    let followUps = DB.all("followUps");
+  async function render() {
+    const [allFollowUps, allRequests, allPets] = await Promise.all([DB.all("followUps"), DB.all("requests"), DB.all("pets")]);
+    const requestById = Object.fromEntries(allRequests.map((r) => [r.id, r]));
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
+
+    let followUps = allFollowUps;
     if (petId) followUps = followUps.filter((f) => f.petId === petId);
     else followUps = followUps.filter((f) => {
-      const req = DB.get("requests", f.requestId);
-      const pet = DB.get("pets", f.petId);
+      const req = requestById[f.requestId];
+      const pet = petById[f.petId];
       return req && (req.requesterId === user.id || (pet && pet.ownerId === user.id));
     });
 
@@ -41,8 +44,8 @@
     }
 
     document.getElementById("content").innerHTML = followUps.map((f) => {
-      const pet = DB.get("pets", f.petId);
-      const req = DB.get("requests", f.requestId);
+      const pet = petById[f.petId];
+      const req = requestById[f.requestId];
       return `
         <div class="card">
           <div class="flex-between">
@@ -58,16 +61,21 @@
     }).join("");
   }
 
-  function markDone(id) {
+  async function markDone(id) {
     const note = prompt("Reporte de seguimiento (estado actual de la mascota):", "La mascota se encuentra en buen estado, adaptándose correctamente.");
     if (note === null) return;
-    DB.update("followUps", id, { status: "Completado", note });
+    await DB.update("followUps", id, { status: "Completado", note });
     toast("Reporte de seguimiento registrado");
     render();
   }
   window.markDone = markDone;
 
-  render();
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+    render();
+  })();
 </script>
 </body>
 </html>

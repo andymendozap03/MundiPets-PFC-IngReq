@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MundiPets — Registrar mascota</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -27,8 +28,7 @@
 <script src="js/auth.js"></script>
 <script src="js/utils.js"></script>
 <script>
-  const user = Auth.requireLogin();
-  renderTopbar(user);
+  let user;
 
   const STEP_LABELS = ["Datos generales", "Fotos", "Historial médico", "Antecedentes genéticos"];
   let step = 0;
@@ -95,7 +95,7 @@
             </select>
           </div>
         </div>
-        <label>Identificador de Microchip (RF-21)</label>
+        <label>Identificador de Microchip</label>
         <input type="text" id="f_microchip" value="${escapeHtml(form.microchip)}" placeholder="Ej. 981022300456128 (opcional)">
         
         <label>Descripción</label>
@@ -103,7 +103,7 @@
       `;
     } else if (step === 1) {
       c.innerHTML = `
-        <h2>Fotos (Validación por IA - RF-17, RNF-14)</h2>
+        <h2>Fotos (validación por IA)</h2>
         <p class="text-muted">En cumplimiento con la LOPDP y RNF-14, la IA modera el tipo de imagen cargada para asegurar que corresponda a un animal real.</p>
         
         <label>Selecciona una imagen simulada para cargar:</label>
@@ -218,7 +218,7 @@
     } else if (step === 2) {
       c.innerHTML = `
         <h2>Historial médico referencial</h2>
-        <p class="text-muted">Registra y adjunta los documentos sanitarios de tu mascota e introduce los metadatos de trazabilidad (RF-02, RF-14, RF-24).</p>
+        <p class="text-muted">Registra y adjunta los documentos sanitarios de tu mascota e introduce los metadatos de trazabilidad.</p>
         
         <h3 style="margin-top:16px;">Detalle de Vacuna Antirrábica</h3>
         <div class="grid-2">
@@ -227,17 +227,17 @@
             <input type="date" id="f_vaccine" value="${form.vaccineDate}">
           </div>
           <div>
-            <label>Cepa / Marca (RF-24)</label>
+            <label>Cepa / Marca</label>
             <input type="text" id="f_strain" value="${escapeHtml(form.vaccineStrain)}" placeholder="Ej. Rabisin, Nobivac">
           </div>
         </div>
         <div class="grid-2" style="margin-top: 10px;">
           <div>
-            <label>Lote (RF-24)</label>
+            <label>Lote</label>
             <input type="text" id="f_lote" value="${escapeHtml(form.vaccineLote)}" placeholder="Ej. R-90812">
           </div>
           <div>
-            <label>Profesional Aplicador (RF-24)</label>
+            <label>Profesional Aplicador</label>
             <input type="text" id="f_applicator" value="${escapeHtml(form.vaccineApplicator)}" placeholder="Ej. Dra. Melissa Vera">
           </div>
         </div>
@@ -253,7 +253,7 @@
     } else {
       c.innerHTML = `
         <h2>Antecedentes genéticos</h2>
-        <p class="text-muted">Información de linaje y parentesco para apoyar procesos de cruza responsable (RF-16).</p>
+        <p class="text-muted">Información de linaje y parentesco para apoyar procesos de cruza responsable.</p>
         <label>Linaje / pedigrí</label>
         <input type="text" id="f_lineage" value="${escapeHtml(form.lineage)}" placeholder="Sin registro de pedigrí">
         <label>Enfermedades hereditarias conocidas</label>
@@ -313,19 +313,19 @@
     if (step > 0) { step--; renderSteps(); renderStepContent(); }
   });
 
-  document.getElementById("btnNext").addEventListener("click", () => {
+  document.getElementById("btnNext").addEventListener("click", async () => {
     if (!collectStep()) return;
     if (step < STEP_LABELS.length - 1) {
       step++;
       renderSteps();
       renderStepContent();
     } else {
-      finish();
+      await finish();
     }
   });
 
-  function finish() {
-    const pet = DB.insert("pets", {
+  async function finish() {
+    const pet = await DB.insert("pets", {
       ownerId: user.id, name: form.name, species: form.species, breed: form.breed,
       sex: form.sex, age: form.age, size: form.size, city: user.city || "Quevedo",
       reproductiveStatus: form.reproductiveStatus, status: "Adopción", photo: form.photo,
@@ -333,24 +333,31 @@
       privacy: { medicalHistory: "pending", location: "private", contact: "verified", photos: "public", genetics: "pending" }
     });
 
-    if (form.vaccineDate) DB.insert("medicalRecords", { petId: pet.id, type: "Vacuna antirrábica", date: form.vaccineDate, status: "Vigente", strain: form.vaccineStrain, Lote: form.vaccineLote, applicator: form.vaccineApplicator, validated: false });
-    if (form.dewormDate) DB.insert("medicalRecords", { petId: pet.id, type: "Desparasitación interna", date: form.dewormDate, status: "Vigente", validated: false });
-    if (form.certDate) DB.insert("medicalRecords", { petId: pet.id, type: "Certificado veterinario oficial", date: form.certDate, status: "Por renovar", validated: false });
+    const inserts = [];
+    if (form.vaccineDate) inserts.push(DB.insert("medicalRecords", { petId: pet.id, type: "Vacuna antirrábica", date: form.vaccineDate, status: "Vigente", strain: form.vaccineStrain, Lote: form.vaccineLote, applicator: form.vaccineApplicator, validated: false }));
+    if (form.dewormDate) inserts.push(DB.insert("medicalRecords", { petId: pet.id, type: "Desparasitación interna", date: form.dewormDate, status: "Vigente", validated: false }));
+    if (form.certDate) inserts.push(DB.insert("medicalRecords", { petId: pet.id, type: "Certificado veterinario oficial", date: form.certDate, status: "Por renovar", validated: false }));
 
     if (form.lineage || form.hereditaryConditions || form.parentage || form.genNotes) {
-      DB.insert("genetics", {
+      inserts.push(DB.insert("genetics", {
         petId: pet.id, lineage: form.lineage || "Sin registro de pedigrí",
         hereditaryConditions: form.hereditaryConditions || "Ninguna reportada",
         parentage: form.parentage || "Desconocido", notes: form.genNotes
-      });
+      }));
     }
+    await Promise.all(inserts);
 
     toast("Mascota registrada correctamente");
     setTimeout(() => { window.location.href = `pet-profile.html?id=${pet.id}`; }, 900);
   }
 
-  renderSteps();
-  renderStepContent();
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+    renderSteps();
+    renderStepContent();
+  })();
 </script>
 </body>
 </html>

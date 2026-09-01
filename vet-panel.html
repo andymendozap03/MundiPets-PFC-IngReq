@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MundiPets — Panel de validaciones</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -37,9 +38,7 @@
 <script src="js/auth.js"></script>
 <script src="js/utils.js"></script>
 <script>
-  const user = Auth.requireLogin();
-  renderTopbar(user);
-
+  let user;
   let tab = "pending";
   let selectedId = qs("recordId");
 
@@ -53,26 +52,26 @@
     });
   });
 
-  function recordsFor(t) {
-    const all = DB.all("medicalRecords");
+  function recordsFor(all, t) {
     if (t === "pending") return all.filter((r) => !r.validated && r.status !== "Rechazado" && r.status !== "En revisión");
     if (t === "under_review") return all.filter((r) => r.status === "En revisión");
     if (t === "validated") return all.filter((r) => r.validated);
     return all.filter((r) => r.status === "Rechazado");
   }
 
-  function render() {
-    const all = DB.all("medicalRecords");
-    document.getElementById("pendCount").textContent = `${recordsFor("pending").length} pendientes`;
-    document.getElementById("valCount").textContent = `${recordsFor("validated").length} validadas`;
+  async function render() {
+    const [all, allPets] = await Promise.all([DB.all("medicalRecords"), DB.all("pets")]);
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
+    document.getElementById("pendCount").textContent = `${recordsFor(all, "pending").length} pendientes`;
+    document.getElementById("valCount").textContent = `${recordsFor(all, "validated").length} validadas`;
 
-    const list = recordsFor(tab);
+    const list = recordsFor(all, tab);
     if (!selectedId && list.length) selectedId = list[0].id;
 
     document.getElementById("list").innerHTML = list.length ? list.map((r) => {
-      const pet = DB.get("pets", r.petId);
+      const pet = petById[r.petId];
       const active = r.id === selectedId ? "style='border-color:#1b4985; border-width: 2px;'" : "";
-      
+
       // Determine status dot color (orange for pending, blue for in review, red for rejected)
       let dotColor = "#f59e0b"; // yellow/orange
       if (r.status === "En revisión") dotColor = "#3b82f6"; // blue
@@ -98,15 +97,15 @@
   function selectRecord(id) { selectedId = id; render(); }
   window.selectRecord = selectRecord;
 
-  function renderDetail() {
-    const r = DB.get("medicalRecords", selectedId);
+  async function renderDetail() {
+    const r = await DB.get("medicalRecords", selectedId);
     if (!r) { document.getElementById("detail").innerHTML = ""; return; }
-    const pet = DB.get("pets", r.petId);
-    const owner = pet ? DB.get("users", pet.ownerId) : null;
+    const pet = await DB.get("pets", r.petId);
+    const owner = pet ? await DB.get("users", pet.ownerId) : null;
 
-    // Auto mark as "En revisión" if it was pending and clicked (improves flow & matches tab "En revisión" mockup)
+    // Auto mark as "En revisión" if it was pending y clicado (mejora el flujo)
     if (r.status === "Vigente" && !r.validated && tab === "pending") {
-      DB.update("medicalRecords", r.id, { status: "En revisión" });
+      await DB.update("medicalRecords", r.id, { status: "En revisión" });
       r.status = "En revisión";
     }
 
@@ -149,18 +148,18 @@
           <button class="btn btn-primary" id="validateDoc">Validar documento</button>
         </div>
       `;
-      document.getElementById("validateDoc").addEventListener("click", () => {
-        DB.update("medicalRecords", r.id, { validated: true, status: "Vigente", observation: document.getElementById("obsBox").value });
-        toast("Documento validado correctamente (RF-09)");
+      document.getElementById("validateDoc").addEventListener("click", async () => {
+        await DB.update("medicalRecords", r.id, { validated: true, status: "Vigente", observation: document.getElementById("obsBox").value });
+        toast("Documento validado correctamente");
         render();
       });
-      document.getElementById("rejectDoc").addEventListener("click", () => {
-        DB.update("medicalRecords", r.id, { validated: false, status: "Rechazado", observation: document.getElementById("obsBox").value });
+      document.getElementById("rejectDoc").addEventListener("click", async () => {
+        await DB.update("medicalRecords", r.id, { validated: false, status: "Rechazado", observation: document.getElementById("obsBox").value });
         toast("Documento rechazado");
         render();
       });
-      document.getElementById("holdDoc").addEventListener("click", () => {
-        DB.update("medicalRecords", r.id, { observation: document.getElementById("obsBox").value });
+      document.getElementById("holdDoc").addEventListener("click", async () => {
+        await DB.update("medicalRecords", r.id, { observation: document.getElementById("obsBox").value });
         toast("Observación guardada, documento sigue pendiente");
       });
     } else {
@@ -170,7 +169,7 @@
       actionArea.innerHTML = `
         <div class="card compact mt-16" style="background:#fafafa; border:1px solid var(--border); margin-bottom:0;">
           <div class="flex-between">
-            <strong>⚖️ Segunda opinión médica (RF-26)</strong>
+            <strong>⚖️ Segunda opinión médica</strong>
             <span class="badge ${secondOpinionBadgeClass}">${secondOpinionLabel}</span>
           </div>
           <p class="text-muted" style="font-size:12px; margin-top:5px; line-height:1.4;">Como segunda opinión veterinaria, puedes revisar y confirmar o cuestionar el diagnóstico/validación del colega.</p>
@@ -180,20 +179,25 @@
           </div>
         </div>
       `;
-      document.getElementById("confirmSecondBtn").addEventListener("click", () => {
-        DB.update("medicalRecords", r.id, { secondOpinion: "confirmada", observation: document.getElementById("obsBox").value + "\n[Segunda Opinión: Confirmada por segunda veterinaria]" });
+      document.getElementById("confirmSecondBtn").addEventListener("click", async () => {
+        await DB.update("medicalRecords", r.id, { secondOpinion: "confirmada", observation: document.getElementById("obsBox").value + "\n[Segunda Opinión: Confirmada por segunda veterinaria]" });
         toast("Segunda opinión médica registrada como CONFIRMADA");
         render();
       });
-      document.getElementById("disputeSecondBtn").addEventListener("click", () => {
-        DB.update("medicalRecords", r.id, { secondOpinion: "en_desacuerdo", observation: document.getElementById("obsBox").value + "\n[Segunda Opinión: Cuestionada en desacuerdo por segunda veterinaria]" });
+      document.getElementById("disputeSecondBtn").addEventListener("click", async () => {
+        await DB.update("medicalRecords", r.id, { secondOpinion: "en_desacuerdo", observation: document.getElementById("obsBox").value + "\n[Segunda Opinión: Cuestionada en desacuerdo por segunda veterinaria]" });
         toast("Segunda opinión médica registrada como CUESTIONADA");
         render();
       });
     }
   }
 
-  render();
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+    render();
+  })();
 </script>
 </body>
 </html>

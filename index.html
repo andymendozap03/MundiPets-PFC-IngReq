@@ -5,18 +5,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MundiPets — Iniciar sesión</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
   <div id="topbar" class="topbar"></div>
 
-  <div class="container-narrow" style="padding-top:20px;">
-    <h1 style="text-align:center;">MundiPets</h1>
-    <p class="subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">
-      Red social para adopción y cruza responsable de mascotas.
-      Selecciona una cuenta de demostración para continuar.
-    </p>
+  <div class="container-narrow">
+    <div class="auth-hero">
+      <div class="auth-icon"><img src="img/logo.svg" alt="MundiPets"></div>
+      <h1>MundiPets</h1>
+      <p class="subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">
+        Red social para adopción y cruza responsable de mascotas.
+        Selecciona una cuenta de demostración para continuar.
+      </p>
+    </div>
 
     <div class="card">
       <h2>Iniciar sesión</h2>
@@ -27,7 +31,10 @@
         <label for="emailInput">Correo electrónico</label>
         <input type="email" id="emailInput" placeholder="correo@ejemplo.com" required>
 
-        <label for="passwordInput" style="margin-top: 10px;">Contraseña</label>
+        <div class="flex-between" style="margin-top: 10px; align-items:baseline;">
+          <label for="passwordInput" style="margin:0;">Contraseña</label>
+          <a href="forgot-password.html" class="link-quiet">¿Olvidaste tu contraseña?</a>
+        </div>
         <input type="password" id="passwordInput" placeholder="••••••••" required>
 
         <div id="errorMsg" class="warn-banner info-banner" style="display: none; margin-top: 15px; padding: 8px 12px;">
@@ -47,28 +54,28 @@
           <strong>🐾 Adoptante (Ana):</strong><br>
           Email: <code
             style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">ana.adoptante@ejemplo.com</code><br>
-          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">ana123</code>
+          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">Ana#2026</code>
         </div>
         <div
           style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #fafafa; font-size: 14px;">
           <strong>🏠 Propietario (Carlos):</strong><br>
           Email: <code
             style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">carlos.zambrano@ejemplo.com</code><br>
-          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">carlos123</code>
+          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">Carlos#2026</code>
         </div>
         <div
           style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #fafafa; font-size: 14px;">
           <strong>🩺 Veterinaria (Dra. Melissa):</strong><br>
           Email: <code
             style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">melissa.vera@ejemplo.com</code><br>
-          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">melissa123</code>
+          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">Melissa#2026</code>
         </div>
         <div
           style="padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #fafafa; font-size: 14px;">
           <strong>🧬 Interesado en Cruza (Jorge):</strong><br>
           Email: <code
             style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">jorge.intriago@ejemplo.com</code><br>
-          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">jorge123</code>
+          Contraseña: <code style="background: #e2e8f0; padding: 2px 4px; border-radius: 4px;">Jorge#2026</code>
         </div>
       </div>
     </div>
@@ -93,7 +100,7 @@
     renderTopbar(null);
     attachResetButton();
 
-    document.getElementById("loginBtn").addEventListener("click", () => {
+    document.getElementById("loginBtn").addEventListener("click", async () => {
       const email = document.getElementById("emailInput").value.trim();
       const password = document.getElementById("passwordInput").value.trim();
       const errEl = document.getElementById("errorMsg");
@@ -104,7 +111,7 @@
         return;
       }
 
-      const res = Auth.loginWithCredentials(email, password);
+      const res = await Auth.loginWithCredentials(email, password);
       if (res.success) {
         errEl.style.display = "none";
         toast("¡Sesión iniciada con éxito! Redirigiendo...");
@@ -116,11 +123,6 @@
         errEl.style.display = "block";
       }
     });
-
-    // Si ya hay sesion activa, ir directo al dashboard
-    if (Auth.current()) {
-      // no auto-redirect para permitir cambiar de cuenta de demo facilmente
-    }
   </script>
 </body>
 

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Encuentros de socialización</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container">
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> &gt; Encuentros de socialización</div>
+  <div class="page-header mt-16">
+    <div>
+      <h1>Encuentros de socialización</h1>
+      <p class="subtitle">Coordina encuentros presenciales y supervisados entre tus mascotas y otros propietarios, en espacios públicos, previos a un proceso de adopción o cruza.</p>
+    </div>
+    <div class="action-group">
+      <button class="btn btn-primary" id="newEncounterBtn">+ Proponer encuentro</button>
+    </div>
+  </div>
+
+  <div class="card" id="formCard" style="display:none;">
+    <h2>Proponer un encuentro</h2>
+    <label>Mi mascota</label>
+    <select id="fMyPet"></select>
+
+    <label>Mascota / propietario invitado</label>
+    <select id="fOtherPet"></select>
+
+    <div class="grid-2">
+      <div>
+        <label>Fecha</label>
+        <input type="date" id="fDate">
+      </div>
+      <div>
+        <label>Lugar (espacio público)</label>
+        <input type="text" id="fPlace" placeholder="Ej. Parque Central de Quevedo">
+      </div>
+    </div>
+
+    <label>Notas para el encuentro</label>
+    <textarea id="fNotes" placeholder="Ej. Objetivo del encuentro, recomendaciones de supervisión, etc."></textarea>
+
+    <div class="flex gap-12 mt-24">
+      <button class="btn btn-secondary" id="cancelFormBtn">Cancelar</button>
+      <button class="btn btn-primary" id="submitEncounterBtn">Enviar propuesta</button>
+    </div>
+  </div>
+
+  <h2 class="mt-24">Mis encuentros</h2>
+  <div id="list"></div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  let user;
+
+  async function myPets() {
+    return (await DB.all("pets")).filter((p) => p.ownerId === user.id);
+  }
+
+  async function otherPets() {
+    return (await DB.all("pets")).filter((p) => p.ownerId !== user.id);
+  }
+
+  async function populateForm(preselectOtherId) {
+    const mine = await myPets();
+    document.getElementById("fMyPet").innerHTML = mine.length
+      ? mine.map((p) => `<option value="${p.id}">${p.photo} ${p.name}</option>`).join("")
+      : `<option value="">Primero registra una mascota</option>`;
+
+    const others = await otherPets();
+    const owners = await DB.all("users");
+    const ownerById = Object.fromEntries(owners.map((u) => [u.id, u]));
+    document.getElementById("fOtherPet").innerHTML = others.map((p) => {
+      const owner = ownerById[p.ownerId];
+      return `<option value="${p.id}" ${p.id === preselectOtherId ? "selected" : ""}>${p.photo} ${p.name} — dueño: ${owner ? owner.name : "—"}</option>`;
+    }).join("") || `<option value="">No hay otras mascotas registradas</option>`;
+  }
+
+  document.getElementById("newEncounterBtn").addEventListener("click", async () => {
+    if ((await myPets()).length === 0) {
+      toast("Primero debes registrar una mascota para proponer un encuentro");
+      return;
+    }
+    if (!user.verified) {
+      toast("Debes tener tu identidad verificada para coordinar encuentros");
+      return;
+    }
+    await populateForm();
+    document.getElementById("fDate").value = new Date().toISOString().slice(0, 10);
+    document.getElementById("formCard").style.display = "block";
+  });
+
+  document.getElementById("cancelFormBtn").addEventListener("click", () => {
+    document.getElementById("formCard").style.display = "none";
+  });
+
+  document.getElementById("submitEncounterBtn").addEventListener("click", async () => {
+    const myPetId = document.getElementById("fMyPet").value;
+    const otherPetId = document.getElementById("fOtherPet").value;
+    const date = document.getElementById("fDate").value;
+    const place = document.getElementById("fPlace").value.trim();
+    const notes = document.getElementById("fNotes").value.trim();
+
+    if (!myPetId || !otherPetId) { toast("Selecciona ambas mascotas participantes"); return; }
+    if (!date || !place) { toast("Completa la fecha y el lugar del encuentro"); return; }
+
+    const myPet = await DB.get("pets", myPetId);
+    const otherPet = await DB.get("pets", otherPetId);
+    const otherOwner = await DB.get("users", otherPet.ownerId);
+    if (!otherOwner || !otherOwner.verified) {
+      toast("El propietario invitado aún no tiene su identidad verificada");
+      return;
+    }
+
+    await DB.insert("encounters", {
+      petAId: myPet.id, ownerAId: user.id,
+      petBId: otherPet.id, ownerBId: otherPet.ownerId,
+      date, place, notes, status: "pendiente",
+      createdAt: new Date().toISOString().slice(0, 10)
+    });
+
+    toast(`Encuentro propuesto y notificado a ${otherOwner.name}`);
+    document.getElementById("formCard").style.display = "none";
+    render();
+  });
+
+  function statusBadge(status) {
+    if (status === "confirmado") return `<span class="badge badge-green">Confirmado</span>`;
+    if (status === "rechazado") return `<span class="badge badge-red">Rechazado</span>`;
+    return `<span class="badge badge-amber">Propuesto</span>`;
+  }
+
+  async function render() {
+    const [allEncounters, allPets, allUsers] = await Promise.all([DB.all("encounters"), DB.all("pets"), DB.all("users")]);
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
+    const userById = Object.fromEntries(allUsers.map((u) => [u.id, u]));
+
+    const encounters = allEncounters.filter((e) => e.ownerAId === user.id || e.ownerBId === user.id)
+      .sort((a, b) => (a.date < b.date ? -1 : 1));
+
+    if (encounters.length === 0) {
+      document.getElementById("list").innerHTML = `<div class="card empty-state">Aún no tienes encuentros de socialización coordinados.</div>`;
+      return;
+    }
+
+    document.getElementById("list").innerHTML = encounters.map((e) => {
+      const petA = petById[e.petAId];
+      const petB = petById[e.petBId];
+      const ownerA = userById[e.ownerAId];
+      const ownerB = userById[e.ownerBId];
+      const isInvited = e.ownerBId === user.id;
+
+      return `
+        <div class="card encounter-card ${e.status}">
+          <div class="flex-between" style="flex-wrap:wrap; gap:8px;">
+            <div>
+              <strong style="font-size:16px;">${petA ? petA.photo : "🐾"} ${petA ? escapeHtml(petA.name) : "—"} (${ownerA ? escapeHtml(ownerA.name) : "—"})
+                &harr; ${petB ? petB.photo : "🐾"} ${petB ? escapeHtml(petB.name) : "—"} (${ownerB ? escapeHtml(ownerB.name) : "—"})</strong>
+            </div>
+            ${statusBadge(e.status)}
+          </div>
+          <div class="text-muted mt-16" style="font-size:14px; line-height:1.7;">
+            📅 <strong>Fecha:</strong> ${escapeHtml(e.date)}<br>
+            📍 <strong>Lugar:</strong> ${escapeHtml(e.place)}<br>
+            ${e.notes ? `📝 <strong>Notas:</strong> ${escapeHtml(e.notes)}` : ""}
+          </div>
+          ${isInvited && e.status === "pendiente" ? `
+            <div class="flex gap-12 mt-16">
+              <button class="btn btn-danger btn-sm" onclick="respond('${e.id}', 'rechazado')">Rechazar</button>
+              <button class="btn btn-primary btn-sm" onclick="respond('${e.id}', 'confirmado')">Confirmar encuentro</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    }).join("");
+  }
+
+  async function respond(id, status) {
+    await DB.update("encounters", id, { status });
+    toast(status === "confirmado" ? "Encuentro confirmado. Se registró en el historial de interacciones de ambas mascotas." : "Encuentro rechazado.");
+    render();
+  }
+  window.respond = respond;
+
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+
+    if (user.role !== "propietario") {
+      document.getElementById("newEncounterBtn").style.display = "none";
+    }
+
+    await render();
+
+    const proposeId = qs("propose");
+    if (proposeId && user.role === "propietario") {
+      if ((await myPets()).length === 0) {
+        toast("Primero debes registrar una mascota para proponer un encuentro");
+      } else if (!user.verified) {
+        toast("Debes tener tu identidad verificada para coordinar encuentros");
+      } else {
+        await populateForm(proposeId);
+        document.getElementById("fDate").value = new Date().toISOString().slice(0, 10);
+        document.getElementById("formCard").style.display = "block";
+      }
+    }
+  })();
+</script>
+</body>
+</html>
