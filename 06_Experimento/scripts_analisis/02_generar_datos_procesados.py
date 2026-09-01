@@ -63,13 +63,19 @@ def leer_csv_coma(path):
 
 def construir_tabla_ancha(filas_evaluacion):
     """Convierte el formato largo (1 fila por requisito x evaluador) a
-    ancho (1 fila por requisito), calculando consenso y nivel de acuerdo."""
+    ancho (1 fila por requisito), calculando consenso y nivel de acuerdo.
+    Detecta automáticamente los nombres de los 3 evaluadores a partir de
+    los datos (no asume "Experto 1/2/3"; funciona con nombres reales)."""
     por_requisito = OrderedDict()
+    evaluadores_vistos = []
 
     for fila in filas_evaluacion:
         id_anon = fila["ID_Anonimo"]
-        evaluador = fila["Evaluador"]
+        evaluador = fila["Evaluador"].strip()
         clasificacion = fila["Clasificacion_Experto"].strip()
+
+        if evaluador not in evaluadores_vistos:
+            evaluadores_vistos.append(evaluador)
 
         if id_anon not in por_requisito:
             por_requisito[id_anon] = {
@@ -80,25 +86,28 @@ def construir_tabla_ancha(filas_evaluacion):
             }
         por_requisito[id_anon]["votos"][evaluador] = clasificacion
 
+    if len(evaluadores_vistos) != 3:
+        sys.exit(f"ERROR: se esperaban exactamente 3 evaluadores distintos, se encontraron {len(evaluadores_vistos)}: {evaluadores_vistos}")
+
     filas_anchas = []
     for id_anon, datos in por_requisito.items():
         votos = datos["votos"]
-        faltantes = [e for e in EVALUADORES_ESPERADOS if e not in votos]
+        faltantes = [e for e in evaluadores_vistos if e not in votos]
         if faltantes:
             sys.exit(f"ERROR: {id_anon} no tiene evaluación de: {', '.join(faltantes)}")
 
-        conteo = Counter(votos[e] for e in EVALUADORES_ESPERADOS)
+        conteo = Counter(votos[e] for e in evaluadores_vistos)
         consenso, n_mayoria = conteo.most_common(1)[0]
-        nivel_acuerdo = f"{n_mayoria}/{len(EVALUADORES_ESPERADOS)}"
+        nivel_acuerdo = f"{n_mayoria}/{len(evaluadores_vistos)}"
 
         filas_anchas.append({
             "ID_Anonimo": id_anon,
             "ID_Real": datos["ID_Real"],
             "Tipo": datos["Tipo"],
             "Texto_Requisito": datos["Texto_Requisito"],
-            "Experto 1": votos["Experto 1"],
-            "Experto 2": votos["Experto 2"],
-            "Experto 3": votos["Experto 3"],
+            "Experto 1": votos[evaluadores_vistos[0]],
+            "Experto 2": votos[evaluadores_vistos[1]],
+            "Experto 3": votos[evaluadores_vistos[2]],
             "Consenso_experto": consenso,
             "Nivel_acuerdo": nivel_acuerdo,
         })

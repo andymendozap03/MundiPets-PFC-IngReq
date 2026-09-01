@@ -17,7 +17,8 @@ agregando lo que exige la Sección 4.4 de la Guía-Rúbrica (Entrega 4 / 2B),
       consenso experto, o es indistinguible del azar?).
 
 No inventa datos: todo se calcula por remuestreo (bootstrap) sobre las
-50 filas reales de datos_procesados/consenso_experto_vs_detector.csv.
+filas reales de datos_procesados/consenso_experto_vs_detector.csv (el
+número de filas depende del tamaño del corpus vigente, no está fijo).
 
 Uso:
     python 04_calcular_significancia_estadistica.py

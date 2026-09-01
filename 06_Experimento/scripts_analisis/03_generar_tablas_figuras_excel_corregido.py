@@ -694,12 +694,30 @@ def main():
             f"({interpret_kappa(fleiss_value)}).\n\n"
         )
         file.write("NOTA METODOLÓGICA\n")
+        tipo_counts = Counter(
+            metadata_by_item.get(item_id, {}).get("Tipo", "Sin tipo")
+            for item_id in common_ids
+        )
+        orden_tipos = ["RF", "RNF", "RD", "RL"]
+        partes_tipo = [
+            f"{tipo_counts[t]} {t}" for t in orden_tipos if tipo_counts.get(t)
+        ]
+        otros_tipos = [t for t in tipo_counts if t not in orden_tipos]
+        for t in otros_tipos:
+            partes_tipo.append(f"{tipo_counts[t]} {t}")
+        desglose_tipos = ", ".join(partes_tipo) if partes_tipo else "sin desglose por tipo"
+        missing_note = ""
+        if missing_detector or missing_experts:
+            missing_note = (
+                " Los identificadores presentes en un archivo pero ausentes en "
+                "el otro se excluyeron del análisis y se listan en la sección "
+                "de advertencias de este mismo reporte."
+            )
         file.write(
-            "El análisis se efectuó sobre los 50 requisitos presentes tanto en "
-            "la salida del detector como en las evaluaciones: 25 RF, 16 RNF y "
-            "9 RD. Las cinco obligaciones legales RL-01 a RL-05 del Excel no "
-            "se compararon porque no forman parte del archivo original "
-            "salida_detector.csv. No se imputaron ni inventaron resultados.\n"
+            f"El análisis se efectuó sobre los {len(common_ids)} requisitos "
+            f"presentes tanto en la salida del detector como en las "
+            f"evaluaciones: {desglose_tipos}.{missing_note} No se imputaron "
+            f"ni inventaron resultados.\n"
         )
 
     print(f"Análisis completado sobre {len(common_ids)} requisitos.")
