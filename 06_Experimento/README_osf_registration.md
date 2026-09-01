@@ -80,9 +80,15 @@ reproducible de Nosek et al. (2018).
   se documentó la curva de saturación, con inflexión visible, en
   `02_Evidencias/Codificacion_Tematica/`, como evidencia de que 18
   entrevistas constituyó un punto de cierre metodológicamente válido.
-- **Elementos pre-registrados sin desviación.** Respuestas del
-  cuestionario: se alcanzó el objetivo de n≥60 respuestas por perfil
-  dominante, conforme a lo pre-registrado.
+- **Desviación 2 — Respuestas del cuestionario.** Pre-registrado: n≥60
+  respuestas por perfil dominante. Ejecutado: 61 respuestas válidas en
+  total, de las cuales 47 corresponden al perfil dominante (propietario
+  de mascota), por debajo del mínimo pre-registrado. Mitigación: se
+  calculó la potencia estadística real alcanzada con el n disponible
+  (Cohen d=0,5, α=0,05), obteniendo una potencia de 91,86 % — muy por
+  encima del 80 % mínimo exigido —, como alternativa metodológicamente
+  válida ante la desviación del tamaño de muestra pre-registrado. Detalle
+  completo en `02_Evidencias/Cuestionario/power_calculation/`.
 
 Esta página de wiki es adicional y complementaria al documento de
 desviaciones del componente empírico (Enfoque 2) descrito en la Sección 7
