@@ -6,6 +6,44 @@ El formato sigue las convenciones de [Keep a Changelog](https://keepachangelog.c
 
 ---
 
+## [4.0] — Entrega 4 (2B / Defensa) — 2026-09-01
+
+Cierre del ciclo del PFC: ejecución completa del componente empírico, manuscrito final para revista JCR, depósito FAIR en Zenodo, y preparación de la defensa oral.
+
+### Added
+- Corpus de requisitos corregido y ampliado a 61 ítems (27 RF + 16 RNF + 9 RD + 9 RL), tras la revisión de numeración del ERS/SRS v2.0.
+- Ejecución completa del experimento (Enfoque 2): detector automático de ambigüedad frente al consenso de un panel de tres expertos, sobre los 61 requisitos.
+- Resultados finales: exactitud = 0,8033; precisión = 0,600; sensibilidad = 0,750; F1 = 0,667; κ de Cohen (detector-consenso) = 0,530 (moderado, IC 95% [0,280, 0,737]); χ²(1) = 15,037, p = 0,0001 (significativo); κ de Fleiss (panel experto) = 0,857 (casi perfecto).
+- Manuscrito final completo (`07_Publicacion/manuscrito_final.tex` / `.pdf`): Introduction, Related work, Methodology, Results, Discussion, Threats to validity y Conclusions cerrados, con las cuatro tablas y figuras adicionales generadas por script.
+- Scripts de análisis ampliados: desglose de coincidencia por tipo de requisito y análisis secundario de confianza autorreportada (Mann-Whitney, δ de Cliff).
+- Matriz de trazabilidad ampliada a 61 filas, superando el mínimo de 60 exigido.
+- Depósito FAIR publicado en Zenodo con DOI persistente: [10.5281/zenodo.22218780](https://doi.org/10.5281/zenodo.22218780), con el paquete de replicación completo (corpus, transcripciones, respuestas de cuestionario, scripts de análisis, `README_dataset.md`, `ANONYMIZATION.md`, `ETHICS.md`).
+- Autoevaluación FAIR con F-UJI: 92 % de los indicadores, `fair_assessment.pdf` en la raíz del repositorio.
+- Submódulo real del MVP (`05_MVP/codigo` → `jnievess-lang/MVP_MundiPets.git`), con `.gitmodules` configurado.
+- Fichas técnicas de evidencia actualizadas al corpus terminal: 20 participantes, 18 entrevistas (audio + video), 18 consentimientos, 6 sesiones de *walkthrough* (3 técnicas + 3 no técnicas), 1 sesión de *member checking*, 61 respuestas de cuestionario.
+- `checksums.sha256` regenerado (174 entradas) para toda la evidencia de la ronda terminal.
+- Carpeta `09_Defensa/` con presentación (PDF y PPTX) y folleto de una hoja para el tribunal.
+- Análisis de revistas objetivo (`07_Publicacion/analisis_revistas.md`) reescrito sobre la lista cerrada de la guía: *Requirements Engineering*, *Information and Software Technology*, *Empirical Software Engineering*, *Journal of Systems and Software*, REFSQ 2027 y RE 2027. Decisión final: *Requirements Engineering* (Springer), consistente con la plantilla `sn-jnl.cls` ya en uso en el manuscrito.
+
+### Changed
+- Nombres de archivo del ERS corregidos a la notación exigida por la rúbrica (`ERS_SRS_2B_v2.0.pdf` / `.tex`).
+- `CITATION.cff` actualizado a versión 2.0, con el DOI de Zenodo y fecha de publicación real.
+- Datos de evaluadores expertos anonimizados en todo el pipeline (columna `Evaluador` → `Experto 1/2/3`) en datos crudos, procesados, tablas y figuras.
+- Consentimientos del panel de expertos renombrados a código de participante (`EXP-01`/`EXP-02`/`EXP-03`) con cédula y firma enmascaradas en la copia pública.
+- `LICENSE` corregido: se excluye expresamente `02_Evidencias/00_Restringido/` de la licencia CC BY 4.0 de documentación y datos.
+- README.md raíz actualizado con las cifras reales de evidencia (18 entrevistas, 61 respuestas, 6 *walkthroughs*, 18 consentimientos, corpus de 61 requisitos) y con enlaces al manuscrito final, al DOI de Zenodo y al registro OSF.
+- Estructura de `07_Publicacion/` reorganizada: `manuscrito_final.tex`, `.pdf`, `referencias.bib`, `figuras/` y `tablas/` ahora en la raíz de la carpeta, conforme al árbol obligatorio de la Sección 9.1 de la guía.
+
+### Fixed
+- Corregido el desfase entre la evidencia declarada y la evidencia real del repositorio en `fichas_tecnicas.csv` (faltaban VET-07, PROP-12 y dos sesiones de *walkthrough*).
+
+### Known issues
+- Documento `A12_Certificado_Etica.pdf` no disponible en `08_Etica/`: el equipo lo solicitó formalmente al docente responsable, Ing. Gleiston Guerrero Ulloa, PhD, y no fue proporcionado. Las opciones externas de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Detalle en `08_Etica/README_Etica.md`.
+- Cuestionario digital por debajo del mínimo n≥60 en el perfil dominante ("Propietario de mascota": 47 de 61 respuestas). Cálculo de potencia estadística (Cohen d=0,5, α=0,05, 1−β=0,80) pendiente de incorporar al pipeline de análisis.
+- Repositorio sin identificador SWHID de Software Heritage: el archivado falló por exceder el límite de 4 GiB del *loader* de la plataforma (detalle del error en `README.md`, sección "Nota sobre el archivado en Software Heritage"). El DOI de Zenodo cubre el requisito de depósito FAIR con identificador persistente.
+
+---
+
 ## [3.0] — Entrega 3 (2A) — 2026-07-29
 
 Documento ERS/SRS completo, validado con evidencia real de campo y con trazabilidad total evidencia–requisito–caso de uso.

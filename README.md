@@ -189,7 +189,7 @@ MundiPets-PFC-IngReq/
         └── CheckList_Categoria_B_MundiPets.pdf
 ```
 
-> **Nota:** el documento `A12_Certificado_Etica.pdf` no está disponible en `08_Etica/`. El equipo gestionó su obtención y constató que las opciones de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Esta situación fue comunicada al docente responsable sin que se haya recibido una alternativa gratuita. Detalle completo en `08_Etica/README_Etica.md`.
+> **Nota:** el documento `A12_Certificado_Etica.pdf` no está disponible en `08_Etica/`. El equipo lo solicitó formalmente al docente responsable, Ing. Gleiston Guerrero Ulloa, PhD, y no fue proporcionado. Adicionalmente, las opciones externas de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Detalle completo en `08_Etica/README_Etica.md`.
 
 ---
 
