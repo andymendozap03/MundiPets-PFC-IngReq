@@ -69,6 +69,22 @@ Luego abrir `http://localhost:3000` en el navegador. El servidor Express
 sirve tanto el frontend como la API, por lo que no hace falta levantar
 ningún servicio adicional por separado.
 
+## Cuentas de prueba
+
+Al primer arranque, el servidor inicializa automáticamente cuatro cuentas
+de demostración, una por cada rol del sistema:
+
+| Rol | Email | Contraseña |
+|---|---|---|
+| Adoptante (Ana) | `ana.adoptante@ejemplo.com` | `Ana#2026` |
+| Propietario (Carlos) | `carlos.zambrano@ejemplo.com` | `Carlos#2026` |
+| Veterinaria (Dra. Melissa) | `melissa.vera@ejemplo.com` | `Melissa#2026` |
+| Interesado en Cruza (Jorge) | `jorge.intriago@ejemplo.com` | `Jorge#2026` |
+
+Todas las cuentas anteriores son ficticias y se generaron exclusivamente con
+fines de demostración académica; no corresponden a personas reales ni deben
+usarse como referencia de una política de contraseñas de producción.
+
 ## Trazabilidad del commit evaluado
 
 Para clonar este repositorio junto con el submódulo del MVP:

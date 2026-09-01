@@ -7619,9 +7619,17 @@ transcrito manualmente para este documento.
 	cruza. El perfil dominante, propietario de mascota, no alcanza el mínimo
 	de $n \geq 60$ respuestas por perfil. Como alternativa admitida por la
 	guía de esta entrega cuando el mínimo por perfil no se alcanza, el equipo
-	documentará un cálculo de potencia estadística específico para el
-	cuestionario ($\alpha = 0{,}05$, $1 - \beta = 0{,}80$, $d$ de Cohen
-	$= 0{,}5$), independiente del cálculo de potencia ya reportado para el
+	calculó la potencia estadística real alcanzada con el $n$ disponible
+	($\alpha = 0{,}05$, $1 - \beta = 0{,}80$, $d$ de Cohen $= 0{,}5$),
+	mediante una prueba $t$ de una muestra ejecutada con el paquete
+	\texttt{statsmodels} de Python. Con $n = 47$, la potencia estadística
+	alcanzada es de \textbf{91,86\,\%}, muy por encima del mínimo del
+	80\,\% exigido; el tamaño de muestra mínimo teórico requerido para
+	alcanzar esa potencia con $d = 0{,}5$ es de 34 respuestas, ampliamente
+	superado por el $n$ disponible. El script de cálculo, completamente
+	reproducible, y la tabla de resultados se versionan en
+	\texttt{02\_Evidencias/Cuestionario/power\_calculation/}. Este cálculo
+	es independiente del cálculo de potencia ya reportado para el
 	componente empírico del Enfoque 2 (Sección~\ref{sec:plan-analisis}), que
 	corresponde a un análisis distinto sobre el corpus de requisitos y no
 	sobre las respuestas de campo.
@@ -8594,9 +8602,6 @@ transversales lo presentan.
 		|   |-- ERS_SRS_2B_v2.0.pdf        % compilado de la entrega
 		|   |-- ERS_SRS_2B_v2.0.tex        % documento maestro
 		|   |-- referencias.bib            % fuentes primarias
-		|   |-- (archivos auxiliares de la compilacion LaTeX:
-		|   |    .aux, .bbl, .bcf, .blg, .lof, .log, .lol, .lot,
-		|   |    .out, .run.xml, .synctex.gz, .toc)
 		|   `-- figuras/                   % diagramas i*, UML, mockups (MU-01
 		|                                   % a MU-08) y capturas de pantalla
 		|                                   % del MVP (MVP-01 a MVP-04)
@@ -8612,6 +8617,8 @@ transversales lo presentan.
 		|   |                              % (18 archivos, uno por participante)
 		|   |-- Cuestionario/
 		|   |   |-- Fotos_Aplicacion/      % evidencia de aplicacion (6 fotos)
+		|   |   |-- power_calculation/     % power calculation del perfil
+		|   |   |                          % dominante (n=47, potencia=91,86%)
 		|   |   `-- Respuestas/            % 61 respuestas en PDF + resumen .xlsx
 		|   |-- Documentos_Organizacion/   % 5 documentos clinicos de referencia
 		|   |-- Fotos_Entorno/             % B.5, observacion OBS-01 (20 archivos)
@@ -8705,7 +8712,10 @@ transversales lo presentan.
 		|
 		`-- 09_Defensa/
 		    |-- Presentacion.pdf
-		    `-- Presentacion.pptx
+		    |-- Presentacion.pptx
+		    |-- guion.pdf
+		    |-- video_defensa.mp4
+		    `-- folleto_una_hoja.pdf
 	\end{lstlisting}
 
 	\paragraph{Nota sobre el documento A.12.}
@@ -8891,14 +8901,14 @@ transversales lo presentan.
 			4 & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_CodigoParticipante\_Tecnica.ext} y usan el código de participante, no el nombre propio. & $\blacksquare$ \\
 			5 & Cada archivo de audio o video pasa \texttt{ffprobe} sin error y muestra duración mayor a cero. & $\blacksquare$ \\
 			6 & Cada consentimiento publicado en la zona pública presenta la información identificativa y la firma debidamente enmascaradas, mientras que el original íntegro se conserva en la zona restringida. & $\blacksquare$ \\
-			7 & El cuestionario tiene fotografías de aplicación real y respuestas exportadas con $n \geq 30$. & $\blacksquare$ \\
+			7 & El cuestionario tiene fotografías de aplicación real y respuestas exportadas con $n \geq 60$ por perfil dominante, o justificación mediante cálculo de potencia estadística. & $\blacksquare$ \\
 			8 & El protocolo experimental está registrado en el OSF con fecha anterior a la ejecución. & $\blacksquare$ \\
 			9 & Los prompts de los LLM, si aplican, incluyen modelo, temperatura, top-p y semilla. & $\blacksquare$ \\
 			10 & Los scripts de análisis reproducen las tablas y figuras a partir de los datos crudos. & $\blacksquare$ \\
 			11 & El hash SHA-256 de cada archivo multimedia consta en \texttt{checksums.sha256} y coincide. & $\blacksquare$\\
 			12 & La matriz de trazabilidad en CSV tiene 61 filas cerradas y todas las columnas obligatorias. &$\blacksquare$ \\
 			13 & Las evidencias declaradas como obligatorias para la entrega se encuentran disponibles en el repositorio, con los materiales sensibles protegidos en la zona restringida y la documentación correspondiente en \texttt{08\_Etica/README\_Etica.md}. & $\blacksquare$ \\
-			14 & Se alcanzaron los mínimos comprometidos: 27 RF, 16 RNF, 13 CU detallados y 61 filas de trazabilidad. El cuestionario reúne 61 respuestas: 47 de propietarios de mascotas, 7 de interesados en adopción y 7 de interesados en cruza. La suficiencia de la muestra se sustenta mediante el cálculo de potencia estadística correspondiente.; se documenta mediante cálculo de potencia estadística como alternativa admitida por la guía. & $\blacksquare$ \\
+			14 & Se alcanzaron los mínimos comprometidos: 27 RF, 16 RNF, 13 CU detallados y 61 filas de trazabilidad. El cuestionario reúne 61 respuestas: 47 de propietarios de mascotas, 7 de interesados en adopción y 7 de interesados en cruza. La suficiencia de la muestra del perfil dominante se sustenta mediante el cálculo de potencia estadística (91,86\,\% con $n=47$), como alternativa admitida por la guía. & $\blacksquare$ \\
 			15 & Todo componente de IA/ML tiene tratamiento de explicabilidad como RNF. & $\blacksquare$ \\
 			\bottomrule
 		\end{tabularx}
