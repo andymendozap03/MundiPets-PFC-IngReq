@@ -218,7 +218,9 @@ doi=true
 		
 		{\normalsize\bfseries Versión del documento:} 4.0\\[4pt]
 		\textbf{Repositorio GitHub:}\\
-		\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}
+		\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}\\[6pt]
+		\textbf{DOI del paquete de datos (Zenodo):}\\
+		\url{https://doi.org/10.5281/zenodo.22218780}
 		
 		
 		\vspace{1.8cm}
@@ -5561,7 +5563,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	se encuentra en \texttt{05\_MVP/video\_demo.mp4}, y el enlace al repositorio
 	público del MVP, junto con el commit exacto evaluado, se declara en
 	\texttt{05\_MVP/README.md} y en el Apéndice~\ref{ap:repositorio}.
-	
+	\newpage
 	% ############################################################
 	%            SECCION 7 -- COMPONENTE EMPIRICO
 	% ############################################################
@@ -5577,19 +5579,19 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	(validación de requisitos de explicabilidad del componente de IA).
 	
 	\textbf{Justificación en función del sistema.} MundiPets cuenta con un
-	corpus consolidado de especificación (27 RF, 16 RNF y 9 restricciones de
-	diseño), que constituye el insumo directo sobre el cual puede ejecutarse
-	un detector de ambigüedad sin depender de instrumentos adicionales de
-	recolección con usuarios externos al proyecto.
+	corpus consolidado de especificación (27 RF, 16 RNF, 9 restricciones de
+	diseño y 9 obligaciones legales), que constituye el insumo directo sobre
+	el cual se ejecuta el detector de ambigüedad, sin depender de instrumentos
+	adicionales de recolección con usuarios externos al proyecto.
 
-	\textbf{Justificación en función de los datos disponibles.} El equipo
-	efectuó un ejercicio de identificación manual de defectos de redacción
-	sobre el conjunto completo de requisitos funcionales y no funcionales,
-	detectando patrones de ambigüedad, terminología imprecisa y requisitos
-	no verificables consistentes con los \emph{malos olores} descritos por
-	Ferrari \emph{et al.} \cite{ferrari2016}. Este antecedente ofrece una
-	base real sobre la cual diseñar y calibrar el detector automático, en
-	lugar de partir desde cero.
+	\textbf{Justificación en función de los datos disponibles.} Como parte de
+	la revisión y el refinamiento del ERS/SRS, el equipo efectuó un ejercicio
+	de identificación manual de defectos de redacción sobre el conjunto de
+	requisitos, detectando patrones de ambigüedad, terminología imprecisa y
+	requisitos no verificables consistentes con los \emph{malos olores}
+	descritos por Ferrari \emph{et al.} \cite{ferrari2016}. Este antecedente
+	ofrece una base real sobre la cual diseñar y calibrar el detector
+	automático, en lugar de partir desde cero.
 	
 	\textbf{Justificación en función del tiempo.} Independientemente del tiempo
 	total disponible en el cronograma de la asignatura, el costo temporal de
@@ -5625,10 +5627,13 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 			\textbf{Elemento PICOC} & \textbf{Descripción} \\
 			\midrule
 			Población & Conjunto de requisitos funcionales (RF), no funcionales
-			(RNF) y restricciones de diseño (RD) especificados para el sistema
-			MundiPets, redactados según la plantilla de ocho atributos exigida
-			por la asignatura y vigentes al momento de la ejecución del
-			experimento. \\
+			(RNF), restricciones de diseño (RD) y obligaciones legales (RL)
+			especificados para el sistema MundiPets, redactados según la
+			plantilla de atributos exigida por la asignatura y vigentes al
+			momento de la ejecución del experimento. La población ejecutada
+			es de \textbf{61 requisitos} (27 RF, 16 RNF, 9 RD y 9 RL),
+			correspondientes al corpus consolidado en la versión final del
+			ERS/SRS (Sección \ref{sec:rf}). \\
 			Intervención & Clasificación automática de cada requisito como
 			\emph{ambiguo} o \emph{no ambiguo} mediante un detector basado en
 			reglas, que identifica cuantificadores vagos, conjunciones
@@ -5642,7 +5647,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 			F1 del detector automático tomando como referencia el consenso
 			experto; acuerdo inter-evaluador mediante $\kappa$ de Cohen entre
 			pares de expertos y $\kappa$ de Fleiss para el conjunto de los
-			tres. \\
+			tres; significancia de la asociación detector--consenso. \\
 			Contexto & Proyecto académico de la asignatura de Ingeniería de
 			Requerimientos [20303] (UTEQ, 2026-2027 PPA), aplicado al sistema
 			real MundiPets, con especificación redactada en español. \\
@@ -5667,22 +5672,24 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	
 	\textbf{H\textsubscript{0} (hipótesis nula):} la clasificación producida
 	por el detector automático de ambigüedad no guarda asociación con la
-	clasificación de consenso de las personas expertas; el acuerdo observado
-	entre ambas ($\kappa$ de Cohen) no es significativamente distinto del
-	acuerdo esperado por azar ($\kappa = 0$).
+	clasificación de consenso de las personas expertas.
 	
 	\textbf{H\textsubscript{1} (hipótesis alternativa):} la clasificación
 	producida por el detector automático de ambigüedad guarda asociación
-	significativa con la clasificación de consenso de las personas expertas;
-	el acuerdo observado entre ambas es significativamente mayor que el
-	esperado por azar ($\kappa > 0$).
+	significativa con la clasificación de consenso de las personas expertas.
 	
-	Esta hipótesis se contrasta mediante la prueba de significancia del
-	$\kappa$ de Cohen descrita en la Sección \ref{sec:plan-analisis}. La
-	pregunta RQ2, al ser de carácter exploratorio sobre los patrones de
-	desacuerdo, no se somete a prueba de hipótesis: se responde mediante
-	análisis cualitativo de los casos en los que el detector y el consenso
-	experto difieren, siguiendo el sexto paso del Enfoque 2.
+	Esta hipótesis se contrasta mediante una prueba de chi-cuadrado de
+	independencia de Pearson (con corrección de continuidad) sobre la tabla
+	de contingencia 2$\times$2 detector--consenso, descrita en la Sección
+	\ref{sec:plan-analisis}. El chi-cuadrado de independencia es la prueba
+	estándar para contrastar asociación entre dos variables categóricas
+	binarias medidas sobre las mismas unidades --el diseño exacto de este
+	estudio-- y permite reportar directamente el tamaño del efecto como
+	coeficiente $\phi$ (phi), interpretable en la misma escala que una
+	correlación. La pregunta RQ2, al ser de carácter exploratorio sobre los
+	patrones de desacuerdo, no se somete a prueba de hipótesis: se responde
+	mediante análisis cualitativo de los casos en los que el detector y el
+	consenso experto difieren, siguiendo el sexto paso del Enfoque 2.
 	
 	\subsection{Variables independientes, dependientes y de control}
 	\label{sec:variables}
@@ -5699,7 +5706,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	
 	\textbf{Variables de control.}
 	\begin{itemize}[leftmargin=*]
-		\item \textbf{Tipo de requisito} (RF, RNF o RD), para verificar que el
+		\item \textbf{Tipo de requisito} (RF, RNF, RD o RL), para verificar que el
 		desempeño del detector no varíe sistemáticamente según el tipo de
 		artefacto evaluado.
 		\item \textbf{Configuración fija del detector}: el conjunto de reglas
@@ -5725,8 +5732,11 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	
 	\textbf{Personas expertas.} El panel está compuesto por tres Ingenieros de
 	Software graduados de la Universidad Técnica Estatal de Quevedo (UTEQ) (dos
-	mujeres y un hombre), ya contactados y confirmados para participar en el
-	estudio.
+	mujeres y un hombre), identificados en el material publicado únicamente por
+	código (\textbf{EXP-01}, \textbf{EXP-02}, \textbf{EXP-03}) para proteger su
+	identidad; la correspondencia entre código e identidad real se conserva
+	exclusivamente en un anexo de uso interno del equipo, fuera de la zona
+	pública del repositorio.
 	
 	\textbf{Criterios de inclusión:} (a) título profesional de tercer nivel en
 	Ingeniería de Software o carrera afín; (b) formación o experiencia
@@ -5735,16 +5745,16 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	estudio.
 	
 	\textbf{Criterios de exclusión:} (a) pertenecer al equipo de desarrollo de
-	MundiPets; (b) haber participado en la redacción de los RF, RNF o RD que
+	MundiPets; (b) haber participado en la redacción de los RF, RNF, RD o RL que
 	conforman la población del estudio (Sección \ref{sec:rq}).
 	
-	\textbf{Proceso de consentimiento informado.} Cada persona evaluadora firma
-	un consentimiento informado específico para este rol, redactado en
-	cumplimiento de la Ley Orgánica de Protección de Datos Personales del
-	Ecuador \cite{lopdp2021}, que autoriza expresamente su participación como
-	evaluadora experta y el uso de la clasificación producida --de forma
-	anonimizada-- en publicaciones científicas revisadas por pares. La
-	plantilla se detalla en la Sección \ref{sec:instrumentos}.
+	\textbf{Proceso de consentimiento informado.} Cada persona evaluadora firmó,
+	el 28 de julio de 2026, un consentimiento informado específico para este rol,
+	redactado en cumplimiento de la Ley Orgánica de Protección de Datos
+	Personales del Ecuador \cite{lopdp2021}, que autoriza expresamente su
+	participación como evaluadora experta y el uso de la clasificación
+	producida --de forma anonimizada-- en publicaciones científicas revisadas
+	por pares. La plantilla se detalla en la Sección \ref{sec:instrumentos}.
 	
 	\subsection{Instrumentos}
 	\label{sec:instrumentos}
@@ -5755,14 +5765,16 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		\item \textbf{Rúbrica de clasificación experta}
 		(\texttt{rubrica\_clasificacion\_experta.xlsx}): libro con hoja de
 		instrucciones, hoja de criterios de referencia para identificar
-		ambigüedad, y hoja de evaluación en la que cada persona evaluadora
-		registra, para cada requisito, su identificador, el texto completo,
-		la clasificación (\emph{ambiguo} / \emph{no ambiguo}), el tipo de
-		mal olor detectado y una justificación breve. Los requisitos se
-		presentan sin indicar su tipo (RF, RNF o RD) y en orden aleatorizado,
-		para reducir sesgos de expectativa. Una hoja adicional, de uso
-		exclusivo del equipo, conserva la clave que vincula cada identificador
-		anónimo con el requisito real y la salida del detector.
+		ambigüedad, y una hoja de evaluación por persona (\texttt{Eval.
+		EXP-01/02/03}) en la que cada evaluadora registra, para cada requisito,
+		su identificador anónimo, el texto completo, la clasificación
+		(\emph{ambiguo} / \emph{no ambiguo}), el tipo de mal olor detectado, una
+		justificación breve y su nivel de confianza (escala 1--5). Los
+		requisitos se presentan sin indicar su tipo (RF, RNF, RD o RL) y en
+		orden aleatorizado, para reducir sesgos de expectativa. Una hoja
+		adicional (\texttt{Clave Interna}), de uso exclusivo del equipo,
+		conserva la clave que vincula cada identificador anónimo con el
+		requisito real y la salida del detector.
 		\item \textbf{Plantilla de consentimiento para evaluadores expertos}
 		(\texttt{consentimiento\_evaluador\_experto.docx}): adapta el formato
 		de consentimiento utilizado para las entrevistas de campo, ajustado al
@@ -5771,182 +5783,329 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		pares, conforme a la LOPDP \cite{lopdp2021}.
 	\end{enumerate}
 	
-	\subsection{Plan de análisis estadístico}
-	\label{sec:plan-analisis}
-	
-	\textbf{Análisis principal (RQ1, H\textsubscript{0}/H\textsubscript{1}).}
-	Se calculan precisión, exhaustividad y medida F1 del detector automático
-	tomando como referencia el consenso experto (Sección \ref{sec:hipotesis}).
-	La hipótesis se contrasta mediante una prueba de significancia del $\kappa$
-	de Cohen (estadístico $z = \kappa / SE_{\kappa}$, contra la distribución
-	normal estándar), mientras que la magnitud del acuerdo se interpreta como
-	el tamaño del efecto, usando la escala de Landis y Koch: 0,00--0,20 leve;
-	0,21--0,40 aceptable; 0,41--0,60 moderado; 0,61--0,80 sustancial;
-	0,81--1,00 casi perfecto.
-	
-	\textbf{Acuerdo inter-evaluador.} $\kappa$ de Cohen \cite{cohen1960} para
-	cada par de las tres personas expertas, y $\kappa$ de Fleiss
-	\cite{fleiss1971} para el conjunto de las tres, interpretados con la misma
-	escala de Landis y Koch. Un acuerdo experto bajo relativizaría cualquier
-	conclusión sobre el desempeño del detector, ya que el propio consenso de
-	referencia quedaría en duda.
-	
-	\textbf{Prueba de normalidad (Shapiro-Wilk).} Se aplica sobre la variable
-	continua \emph{nivel de confianza} (escala 1--5) registrada en la rúbrica
-	de evaluación (Sección \ref{sec:instrumentos}), como paso previo al
-	análisis exploratorio secundario descrito a continuación.
-	
-	\textbf{Análisis secundario (RQ2, exploratorio).} Para caracterizar los
-	casos de desacuerdo entre el detector y el consenso experto, se compara el
-	nivel de confianza reportado por las personas expertas entre los
-	requisitos donde el detector coincide con el consenso y aquellos donde
-	difiere. Si Shapiro-Wilk no rechaza normalidad, se usa la prueba t de
-	Student para muestras independientes y el tamaño del efecto se reporta
-	como $d$ de Cohen; en caso contrario, se usa la prueba U de Mann-Whitney y
-	el tamaño del efecto como $\delta$ de Cliff. Este análisis es exploratorio
-	y se complementa con la nota cualitativa de desacuerdos exigida por el
-	sexto paso del Enfoque 2.
-	
-	\textbf{Corrección por comparaciones múltiples.} Si además se reportan
-	métricas de acuerdo desagregadas por tipo de requisito (RF, RNF, RD) como
-	análisis exploratorio adicional, los valores $p$ resultantes de esas tres
-	comparaciones relacionadas se ajustan mediante el procedimiento de
-	Benjamini-Hochberg (control de la tasa de falsos descubrimientos).
-	
-	\textbf{Cálculo de potencia estadística.} Conforme a Molléri \emph{et al.}
-	\cite{molleri2020} y Wohlin \emph{et al.} \cite{wohlin2012}, se fija
-	$\alpha = 0{,}05$ y $1 - \beta = 0{,}80$. Dado que el tamaño de la
-	población está acotado por el corpus real de especificación disponible
-	(Sección \ref{sec:enfoque}) y no por una meta de reclutamiento ampliable,
-	el cálculo de potencia se reporta en sentido inverso: en lugar de fijar un
-	$N$ objetivo, se determina la sensibilidad mínima (el valor mínimo de
-	$\kappa$ detectable) que el diseño puede identificar con ese $\alpha$ y
-	esa potencia, dado el $N$ realmente disponible al momento de la ejecución.
-	Este cálculo se documentará con el valor real de $N$ y se versionará junto
-	con el resto del análisis.
-	
-	\textbf{Reproducibilidad.} Todos los cálculos anteriores se ejecutan
-	mediante scripts versionados en \texttt{06\_Experimento/scripts\_analisis/}
-	(Python, con \texttt{SciPy}/\texttt{statsmodels} o R); ninguna cifra o
-	tabla de esta sección se produce de forma manual.
-	
-	\subsection{Registro previo del protocolo en el OSF}
-	\label{sec:osf}
-	
-	El protocolo del Enfoque 2 se registró en el Open Science Framework
-	\cite{nosek2018}, mediante la plantilla \emph{OSF Preregistration}, el
-	\textbf{27 de julio de 2026 a las 10:49:41 a.\,m.} (hora de Ecuador), antes
-	de distribuir la rúbrica de clasificación al panel experto y antes de
-	ejecutar el detector automático sobre el corpus de requisitos. El registro
-	puede consultarse en:
-	\url{https://osf.io/khyf2/overview}.
-	El registro fue \textbf{aceptado} tras la moderación estándar de OSF
-	posterior al envío. La marca de tiempo corresponde al momento del envío, en
-	el que el contenido del registro queda congelado, con independencia de la
-	fecha de aprobación.
-	
-	\subsection{Amenazas a la validez previstas}
-	\label{sec:amenazas}
-	
-	\textbf{Validez interna.}
-	\begin{itemize}[leftmargin=*]
-		\item \emph{Sesgo de diseño del detector.} El equipo que construye el
-		detector ya conoce, por la revisión manual previa realizada durante
-		el refinamiento del SRS parcial (Sección \ref{sec:enfoque}), algunos
-		de los defectos presentes en \hyperref[tab:RF-01]{RF-01} a \hyperref[tab:RF-17]{RF-17}, lo que podría calibrar
-		las reglas hacia esos casos conocidos e inflar artificialmente la
-		precisión. \textbf{Mitigación:}
-		las reglas del detector (Sección \ref{sec:enfoque}) se fijan y
-		documentan antes de recibir la clasificación de los tres expertos
-		sobre el conjunto completo, y se aplican sin modificación posterior
-		(Sección \ref{sec:variables}). \textbf{Limitación reconocida:} el
-		sesgo no se elimina por completo, porque el conocimiento previo del
-		equipo sobre una parte del corpus es inevitable; se atenúa
-		parcialmente al incluir en la población los \hyperref[tab:RF-18]{RF-18} a \hyperref[tab:RF-25]{RF-25}, que no
-		formaron parte de esa revisión previa.
-		\item \emph{Efecto de orden o fatiga en la evaluación experta.}
-		Evaluar un conjunto largo de requisitos de forma consecutiva puede
-		degradar el juicio hacia el final del ejercicio. \textbf{Mitigación:}
-		orden de presentación aleatorizado de forma independiente para cada
-		evaluador (Sección \ref{sec:variables}). \textbf{Limitación
-			reconocida:} la aleatorización distribuye el efecto pero no lo
-		elimina; no se mide directamente si la fatiga afectó casos
-		específicos.
-	\end{itemize}
-	
-	\textbf{Validez externa.}
-	\begin{itemize}[leftmargin=*]
-		\item \emph{Corpus de un solo sistema y dominio.} Los requisitos
-		provienen únicamente de MundiPets, redactados en español por un solo
-		equipo estudiantil en el dominio veterinario/adopción de mascotas.
-		\textbf{Mitigación:} el contexto queda documentado explícitamente en
-		el marco PICOC (Sección \ref{sec:rq}) para que cualquier lector pueda
-		evaluar la transferibilidad. \textbf{Limitación reconocida:} no puede
-		afirmarse que el desempeño del detector generalice a otros dominios,
-		idiomas o equipos con distinto nivel de experiencia; el estudio se
-		declara como un caso único, no como una validación general del
-		detector.
-		\item \emph{Homogeneidad del panel experto.} Las tres personas
-		evaluadoras son Ingenieras e Ingeniero de Software graduados de la
-		misma universidad (UTEQ). \textbf{Mitigación:} el perfil exacto del
-		panel se documenta en la Sección \ref{sec:participantes}.
-		\textbf{Limitación reconocida:} no se garantiza representatividad de
-		la diversidad de juicio experto que existiría con un panel de otras
-		instituciones o con mayor trayectoria profesional.
-	\end{itemize}
-	
-	\textbf{Validez de constructo.}
-	\begin{itemize}[leftmargin=*]
-		\item \emph{Binarización de un fenómeno gradual.} La ambigüedad
-		rara vez es todo-o-nada; reducirla a \emph{ambiguo}/\emph{no ambiguo}
-		simplifica un constructo más complejo. \textbf{Mitigación:} la
-		rúbrica captura matices adicionales mediante el campo \emph{tipo de
-			mal olor detectado} y el \emph{nivel de confianza} (Sección
-		\ref{sec:instrumentos}). \textbf{Limitación reconocida:} la variable
-		principal de análisis sigue siendo binaria; se acepta esta
-		simplificación como necesaria para el análisis cuantitativo dentro
-		del tiempo disponible.
-		\item \emph{Alcance limitado de un detector basado en reglas.} El
-		detector identifica ambigüedad léxica y sintáctica (cuantificadores
-		vagos, voz pasiva, conjunciones múltiples), pero no ambigüedad
-		semántica de dominio que solo una persona con conocimiento
-		veterinario puede reconocer. \textbf{Mitigación:} el alcance de las
-		reglas se documenta explícitamente y no se presenta el detector como
-		un sustituto general del juicio experto. \textbf{Limitación
-			reconocida:} la comparación mide específicamente cuánta ambigüedad
-		\emph{detectable por reglas léxicas} coincide con el juicio experto
-		global, no toda forma posible de ambigüedad.
-	\end{itemize}
-	
-	\textbf{Validez de conclusión.}
-	\begin{itemize}[leftmargin=*]
-		\item \emph{Tamaño de muestra reducido.} La población disponible
-		(Sección \ref{sec:enfoque}) es menor al mínimo de 50 requisitos
-		sugerido para este enfoque, lo que
-		reduce la potencia para detectar valores pequeños de $\kappa$ como
-		significativamente distintos de cero. \textbf{Mitigación:} el plan
-		de análisis (Sección \ref{sec:plan-analisis}) reporta explícitamente
-		la sensibilidad mínima detectable dado el $N$ real, en vez de ocultar
-		la limitación. \textbf{Limitación reconocida:} con un $N$ reducido,
-		el estudio puede no tener potencia suficiente para detectar niveles
-		de acuerdo moderados-bajos como estadísticamente significativos; los
-		resultados deberán interpretarse con este límite en
-		mente.
-		\item \emph{Panel experto mínimo.} Solo tres personas conforman el
-		consenso de referencia; con un panel
-		tan pequeño, la opinión de una sola persona pesa proporcionalmente
-		más sobre el consenso. \textbf{Mitigación:} se calcula
-		explícitamente el acuerdo inter-evaluador mediante $\kappa$ de Fleiss
-		antes de aceptar el consenso como válido. \textbf{Limitación
-			reconocida:} un panel de tres es más vulnerable a la idiosincrasia
-		individual que un panel de cinco, al que no
-		se llega por restricciones de tiempo.
-	\end{itemize}
-	
-	% ############################################################
-	%                    SECCION 8 -- CONCLUSIONES
-	% ############################################################
-	
+\subsection{Plan de análisis estadístico ejecutado}
+\label{sec:plan-analisis}
+
+\textbf{Análisis principal (RQ1, H\textsubscript{0}/H\textsubscript{1}).}
+Se calcularon precisión, exhaustividad y medida F1 del detector automático
+tomando como referencia el consenso experto (Sección \ref{sec:hipotesis}).
+La hipótesis se contrastó mediante chi-cuadrado de independencia de Pearson
+con corrección de continuidad (Sección \ref{sec:hipotesis}), y la magnitud
+del acuerdo se interpretó con la escala de Landis y Koch: 0,00--0,20 leve;
+0,21--0,40 aceptable; 0,41--0,60 moderado; 0,61--0,80 sustancial;
+0,81--1,00 casi perfecto.
+
+\textbf{Acuerdo inter-evaluador.} $\kappa$ de Cohen \cite{cohen1960} para
+cada par de las tres personas expertas, y $\kappa$ de Fleiss
+\cite{fleiss1971} para el conjunto de las tres, interpretados con la misma
+escala de Landis y Koch. Un acuerdo experto bajo relativizaría cualquier
+conclusión sobre el desempeño del detector, ya que el propio consenso de
+referencia quedaría en duda.
+
+\textbf{Análisis secundario (RQ2, exploratorio).} RQ2 se respondió de forma
+cualitativa mediante el análisis de los tipos de mal olor predominantes en
+los casos de desacuerdo entre el detector y el consenso experto
+(Sección \ref{sec:resultados}), tal como permite el sexto paso del
+Enfoque 2. El análisis cuantitativo complementario --comparación del nivel
+de confianza reportado por las personas expertas (escala 1--5, registrado
+en la rúbrica de evaluación, Sección \ref{sec:instrumentos}) entre casos de
+acuerdo y desacuerdo, mediante prueba de Shapiro-Wilk seguida de $t$ de
+Student o $U$ de Mann-Whitney, con corrección de Benjamini-Hochberg para
+comparaciones por tipo de requisito-- queda declarado como línea de trabajo
+futuro (Sección \ref{sec:futuro}) sobre el mismo conjunto de datos ya
+depositado.
+
+\textbf{Cálculo de potencia estadística.} Conforme a Molléri \emph{et al.}
+\cite{molleri2020} y Wohlin \emph{et al.} \cite{wohlin2012}, se fijó
+$\alpha = 0{,}05$ y $1 - \beta = 0{,}80$. El cálculo de potencia se reportó
+en sentido inverso sobre el $N$ real disponible (61), mediante remuestreo
+bootstrap (10\,000 réplicas, semilla fija = 42) para el intervalo de
+confianza al 95\,\% de cada métrica (Sección \ref{sec:resultados}).
+
+\textbf{Reproducibilidad.} Todos los cálculos se ejecutan mediante los
+scripts versionados en \texttt{06\_Experimento/scripts\_analisis/} (Python:
+\texttt{pandas}, \texttt{scipy}, \texttt{numpy}), orquestados por un único
+punto de entrada (\texttt{run\_all.py}). Ninguna cifra o tabla de esta
+sección se produjo de forma manual; se verificó la reproducibilidad
+completa ejecutando el \emph{pipeline} sobre un clon limpio del
+repositorio, partiendo únicamente de \texttt{datos\_crudos/}.
+
+\subsection{Registro previo del protocolo en el OSF y desviaciones}
+\label{sec:osf}
+
+El protocolo del Enfoque 2 se registró en el Open Science Framework
+\cite{nosek2018}, mediante la plantilla \emph{OSF Preregistration}, el
+\textbf{27 de julio de 2026 a las 10:49:41 a.\,m.} (hora de Ecuador), antes
+de distribuir la rúbrica de clasificación al panel experto y antes de
+ejecutar el detector automático sobre el corpus de requisitos. El registro
+puede consultarse en:
+\url{https://osf.io/khyf2/overview}.
+El registro fue \textbf{aceptado} tras la moderación estándar de OSF
+posterior al envío. La marca de tiempo corresponde al momento del envío, en
+el que el contenido del registro queda congelado, con independencia de la
+fecha de aprobación.
+
+Toda diferencia entre lo registrado y lo efectivamente ejecutado se
+documenta de forma explícita, en cumplimiento de la exigencia de la guía de
+la asignatura de que ninguna desviación quede sin registrar:
+
+\begin{enumerate}[leftmargin=*]
+	\item \textbf{Tamaño y composición de la población}: el corpus ejecutado
+	es de 61 requisitos (27 RF, 16 RNF, 9 RD y 9 RL), con la incorporación de
+	la categoría RL, no contemplada en el registro original
+	(Sección \ref{sec:rq}).
+	\item \textbf{Prueba de significancia estadística}: el contraste de
+	H\textsubscript{0}/H\textsubscript{1} se realiza mediante chi-cuadrado de
+	independencia de Pearson con corrección de continuidad, en lugar de la
+	prueba de significancia del $\kappa$ de Cohen prevista originalmente, por
+	ser la prueba estándar para contrastar asociación entre dos variables
+	categóricas binarias medidas sobre las mismas unidades
+	(Sección \ref{sec:hipotesis}).
+	\item \textbf{Análisis secundario de RQ2}: el componente cuantitativo
+	(Shapiro-Wilk, prueba de comparación de grupos, corrección
+	Benjamini-Hochberg) no se ejecutó dentro del plazo disponible; RQ2 se
+	respondió mediante análisis cualitativo de los tipos de mal olor
+	predominantes (Sección \ref{sec:resultados}) y el componente cuantitativo
+	queda declarado como trabajo futuro (Sección \ref{sec:futuro}).
+\end{enumerate}
+
+Ninguna de las tres desviaciones alteró la variable dependiente, el diseño
+ciego, ni el conjunto de reglas fijas del detector; todas se aplicaron de
+forma completa sobre el corpus final, no de manera selectiva sobre
+resultados ya observados.
+
+\subsection{Amenazas a la validez}
+\label{sec:amenazas}
+
+\textbf{Validez interna.}
+\begin{itemize}[leftmargin=*]
+	\item \emph{Sesgo de diseño del detector.} El equipo que construyó el
+	detector ya conocía, por la revisión manual previa realizada durante
+	el refinamiento del ERS/SRS (Sección \ref{sec:enfoque}), algunos
+	de los defectos presentes en \hyperref[tab:RF-01]{RF-01} a \hyperref[tab:RF-17]{RF-17}, lo que podría calibrar
+	las reglas hacia esos casos conocidos e inflar artificialmente la
+	precisión. \textbf{Mitigación:}
+	las reglas del detector (Sección \ref{sec:enfoque}) se fijaron y
+	documentaron antes de recibir la clasificación completa de los tres
+	expertos, y se aplicaron sin modificación posterior
+	(Sección \ref{sec:variables}). \textbf{Limitación reconocida:} el
+	sesgo no se elimina por completo, porque el conocimiento previo del
+	equipo sobre una parte del corpus es inevitable; se atenúa
+	parcialmente al incluir en la población los \hyperref[tab:RF-18]{RF-18} a \hyperref[tab:RF-27]{RF-27} y las
+	obligaciones legales (RL), que no formaron parte de esa revisión previa.
+	\item \emph{Efecto de orden o fatiga en la evaluación experta.}
+	Evaluar un conjunto largo de requisitos de forma consecutiva puede
+	degradar el juicio hacia el final del ejercicio. \textbf{Mitigación:}
+	orden de presentación aleatorizado de forma independiente para cada
+	evaluador (Sección \ref{sec:variables}). \textbf{Limitación
+		reconocida:} la aleatorización distribuye el efecto pero no lo
+	elimina; no se mide directamente si la fatiga afectó casos
+	específicos.
+\end{itemize}
+
+\textbf{Validez externa.}
+\begin{itemize}[leftmargin=*]
+	\item \emph{Corpus de un solo sistema y dominio.} Los requisitos
+	provienen únicamente de MundiPets, redactados en español por un solo
+	equipo estudiantil en el dominio veterinario/adopción de mascotas.
+	\textbf{Mitigación:} el contexto queda documentado explícitamente en
+	el marco PICOC (Sección \ref{sec:rq}) para que cualquier lector pueda
+	evaluar la transferibilidad. \textbf{Limitación reconocida:} no puede
+	afirmarse que el desempeño del detector generalice a otros dominios,
+	idiomas o equipos con distinto nivel de experiencia; el estudio se
+	declara como un caso único, no como una validación general del
+	detector.
+	\item \emph{Homogeneidad del panel experto.} Las tres personas
+	evaluadoras son Ingenieras e Ingeniero de Software graduados de la
+	misma universidad (UTEQ). \textbf{Mitigación:} el perfil exacto del
+	panel se documenta en la Sección \ref{sec:participantes}.
+	\textbf{Limitación reconocida:} no se garantiza representatividad de
+	la diversidad de juicio experto que existiría con un panel de otras
+	instituciones o con mayor trayectoria profesional.
+\end{itemize}
+
+\textbf{Validez de constructo.}
+\begin{itemize}[leftmargin=*]
+	\item \emph{Binarización de un fenómeno gradual.} La ambigüedad
+	rara vez es todo-o-nada; reducirla a \emph{ambiguo}/\emph{no ambiguo}
+	simplifica un constructo más complejo. \textbf{Mitigación:} la
+	rúbrica captura matices adicionales mediante el campo \emph{tipo de
+		mal olor detectado} y el \emph{nivel de confianza} (Sección
+	\ref{sec:instrumentos}). \textbf{Limitación reconocida:} la variable
+	principal de análisis sigue siendo binaria; se acepta esta
+	simplificación como necesaria para el análisis cuantitativo dentro
+	del tiempo disponible.
+	\item \emph{Alcance limitado de un detector basado en reglas.} El
+	detector identifica ambigüedad léxica y sintáctica (cuantificadores
+	vagos, voz pasiva, conjunciones múltiples), pero no ambigüedad
+	semántica de dominio que solo una persona con conocimiento
+	veterinario puede reconocer. \textbf{Mitigación:} el alcance de las
+	reglas se documenta explícitamente y no se presenta el detector como
+	un sustituto general del juicio experto. \textbf{Limitación
+		reconocida:} la comparación mide específicamente cuánta ambigüedad
+	\emph{detectable por reglas léxicas} coincide con el juicio experto
+	global, no toda forma posible de ambigüedad.
+\end{itemize}
+
+\textbf{Validez de conclusión.}
+\begin{itemize}[leftmargin=*]
+	\item \emph{Tamaño de muestra.} El corpus final ejecutado (N=61)
+	supera el mínimo de 50 requisitos sugerido por la guía de la
+	asignatura para este enfoque, lo que mejoró sustancialmente la
+	potencia estadística respecto de la población inicialmente prevista
+	(Sección \ref{sec:osf}). \textbf{Resultado observado:} con este $N$,
+	la asociación detector--consenso resultó estadísticamente
+	significativa ($p=0{,}0001$; Sección \ref{sec:resultados}).
+	\item \emph{Panel experto mínimo.} Solo tres personas conforman el
+	consenso de referencia, el mínimo aceptado por la guía. \textbf{Mitigación:}
+	se calculó explícitamente el acuerdo inter-evaluador mediante $\kappa$
+	de Fleiss antes de aceptar el consenso como válido (Sección
+	\ref{sec:resultados}). \textbf{Limitación reconocida:} un panel de
+	tres es más vulnerable a la idiosincrasia individual que un panel de
+	cinco.
+\end{itemize}
+
+\subsection{Resultados obtenidos}
+\label{sec:resultados}
+
+\subsubsection{Clasificación por fuente}
+
+\begin{table}[H]
+	\centering
+	\caption{Clasificación de ambigüedad por fuente (N=61).}
+	\label{tab:clasificacion-fuente}
+	\begin{tabular}{@{}lrrr@{}}
+		\toprule
+		\textbf{Fuente} & \textbf{N} & \textbf{Ambiguos (n)} & \textbf{Ambiguos (\%)} \\
+		\midrule
+		EXP-01 & 61 & 16 & 26,23 \\
+		EXP-02 & 61 & 13 & 21,31 \\
+		EXP-03 & 61 & 18 & 29,51 \\
+		Consenso experto & 61 & 16 & 26,23 \\
+		Detector automático & 61 & 20 & 32,79 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsubsection{Acuerdo inter-evaluador}
+
+\begin{table}[H]
+	\centering
+	\caption{Acuerdo inter-evaluador ($\kappa$ de Cohen por par, $\kappa$ de Fleiss para el panel).}
+	\label{tab:acuerdo-interevaluador}
+	\begin{tabular}{@{}lrrl@{}}
+		\toprule
+		\textbf{Comparación} & \textbf{$\kappa$} & \textbf{Acuerdo obs.} & \textbf{Interpretación} \\
+		\midrule
+		EXP-01 vs. EXP-02 & 0,8647 & 0,9508 & Casi perfecto \\
+		EXP-01 vs. EXP-03 & 0,9186 & 0,9672 & Casi perfecto \\
+		EXP-02 vs. EXP-03 & 0,7857 & 0,9180 & Sustancial \\
+		\textbf{Panel completo ($\kappa$ de Fleiss)} & \textbf{0,8569} & \textbf{0,9454} & \textbf{Casi perfecto} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+El acuerdo casi perfecto obtenido en el panel completo respalda la validez
+del consenso experto como referencia para evaluar el detector automático.
+
+\subsubsection{Desempeño del detector y prueba de hipótesis}
+
+\begin{table}[H]
+	\centering
+	\caption{Matriz de confusión: detector vs. consenso experto (N=61).}
+	\label{tab:confusion-detector}
+	\begin{tabular}{@{}lrr@{}}
+		\toprule
+		\textbf{Consenso experto} & \textbf{Detector: No ambiguo} & \textbf{Detector: Ambiguo} \\
+		\midrule
+		No ambiguo & 37 & 8 \\
+		Ambiguo & 4 & 12 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Métricas del detector automático con intervalo de confianza al 95\,\% (bootstrap, 10\,000 réplicas).}
+	\label{tab:metricas-detector}
+	\begin{tabular}{@{}lrl@{}}
+		\toprule
+		\textbf{Métrica} & \textbf{Valor} & \textbf{IC 95\,\%} \\
+		\midrule
+		Exactitud & 0,8033 & [0,7049; 0,9016] \\
+		Precisión & 0,6000 & [0,3750; 0,8125] \\
+		Sensibilidad & 0,7500 & [0,5000; 0,9412] \\
+		Especificidad & 0,8222 & [0,7027; 0,9269] \\
+		Medida F1 & 0,6667 & [0,4571; 0,8205] \\
+		$\kappa$ detector--consenso & 0,5296 (moderado) & [0,2797; 0,7369] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\textbf{Prueba de hipótesis:} $\chi^2(1) = 15{,}0374$; $p = 0{,}0001$;
+$\phi = 0{,}4965$ (tamaño del efecto moderado--grande).
+
+Con $p < 0{,}05$, se \textbf{rechaza H\textsubscript{0}}: la clasificación
+del detector automático guarda asociación estadísticamente significativa
+con el consenso experto, con un tamaño del efecto moderado--grande.
+
+\subsubsection{Tipos de ambigüedad predominantes (RQ2)}
+
+\begin{table}[H]
+	\centering
+	\caption{Distribución de tipos de mal olor sobre las marcaciones ambiguas.}
+	\label{tab:tipos-ambiguedad}
+	\begin{tabular}{@{}lrr@{}}
+		\toprule
+		\textbf{Tipo de ambigüedad} & \textbf{Frecuencia} & \textbf{\%} \\
+		\midrule
+		Terminología imprecisa & 18 & 38,30 \\
+		Cuantificador vago & 15 & 31,91 \\
+		Requisito no verificable / incompleto & 9 & 19,15 \\
+		Conjunción múltiple & 5 & 10,64 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+El tipo de ambigüedad predominante en los casos marcados por el panel
+experto es la terminología imprecisa, seguida de cerca por los
+cuantificadores vagos --el tipo de mal olor que el detector basado en
+reglas está diseñado para capturar de forma más directa--, lo que es
+consistente con la sensibilidad de 0,75 obtenida.
+
+\subsection{Síntesis de respuesta a las preguntas de investigación}
+\label{sec:sintesis}
+
+\textbf{RQ1.} El detector automático basado en reglas replica el juicio
+consensuado de las personas expertas con una exactitud de 0,8033, una
+medida F1 de 0,6667 y un acuerdo moderado ($\kappa=0{,}5296$) con el
+consenso experto, una asociación estadísticamente significativa
+($\chi^2(1)=15{,}0374$; $p=0{,}0001$; $\phi=0{,}4965$).
+
+\textbf{RQ2.} Los desacuerdos entre el detector y el consenso experto se
+concentran en requisitos donde predomina la terminología imprecisa y la
+ausencia de criterio de verificación explícito --formas de ambigüedad
+semántica que requieren juicio de dominio-- frente a los cuantificadores
+vagos, que el detector identifica de forma más directa mediante reglas
+léxicas.
+
+\subsection{Trabajo futuro declarado}
+\label{sec:futuro}
+
+El análisis cuantitativo secundario de RQ2 (comparación del nivel de
+confianza entre casos de acuerdo y desacuerdo, con las pruebas y
+correcciones descritas en la Sección \ref{sec:plan-analisis}) queda
+pendiente de ejecución y se declara explícitamente como línea de trabajo
+futuro sobre el mismo conjunto de datos ya depositado.
+
+Todos los valores numéricos de esta sección provienen directamente de
+\texttt{06\_Experimento/resultados/tablas/}, generados por los scripts
+versionados en \texttt{06\_Experimento/scripts\_analisis/} a partir de
+\texttt{datos\_crudos/}. Ningún valor fue calculado, redondeado o
+transcrito manualmente para este documento.
+
+
+	\newpage
 	% ############################################################
 	%                    SECCION 8 -- CONCLUSIONES
 	% ############################################################
@@ -7441,8 +7600,15 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	\paragraph{Perfil de la muestra.}
 	Se recogieron \textbf{61 respuestas válidas}, distribuidas en 47 propietarios
 	de mascota, 7 personas interesadas en adopción y 7 personas interesadas en
-	cruza. El perfil dominante, propietario de mascota, alcanza el mínimo de
-	$n \geq 30$ exigido para esta entrega.
+	cruza. El perfil dominante, propietario de mascota, no alcanza el mínimo
+	de $n \geq 60$ respuestas por perfil. Como alternativa admitida por la
+	guía de esta entrega cuando el mínimo por perfil no se alcanza, el equipo
+	documentará un cálculo de potencia estadística específico para el
+	cuestionario ($\alpha = 0{,}05$, $1 - \beta = 0{,}80$, $d$ de Cohen
+	$= 0{,}5$), independiente del cálculo de potencia ya reportado para el
+	componente empírico del Enfoque 2 (Sección~\ref{sec:plan-analisis}), que
+	corresponde a un análisis distinto sobre el corpus de requisitos y no
+	sobre las respuestas de campo.
 	
 	\paragraph{Resultados cuantitativos.}
 	Las preguntas 3 a 13 midieron la importancia declarada de cada atributo en
@@ -8203,7 +8369,7 @@ del volumen \texttt{.7z} los contiene.
 \label{ap:trazabilidad}
 
 La Tabla~\ref{tab:matriz_trazabilidad_completa} es la matriz de trazabilidad
-final del proyecto MundiPets, en un formato de diez columnas:
+final del proyecto MundiPets, en un formato de diez columnas de trazabilidad más el identificador de fila (ID):
 \textbf{Fuente, Requisito, Caso
 de Uso, Clase, Proceso, Estado, Criterio, Caso de Prueba, Historia y Estado
 de la traza}. Las filas se ordenan por tipo de requisito --- primero los 27
@@ -8408,8 +8574,8 @@ transversales lo presentan.
 		|-- fair_assessment.pdf
 		|
 		|-- 01_ERS/
-		|   |-- ERS_SRS_2B_v2_0.pdf        % compilado de la entrega
-		|   |-- ERS_SRS_2B_v2_0.tex        % documento maestro
+		|   |-- ERS_SRS_2B_v2.0.pdf        % compilado de la entrega
+		|   |-- ERS_SRS_2B_v2.0.tex        % documento maestro
 		|   |-- referencias.bib            % fuentes primarias
 		|   `-- figuras/                   % diagramas i*, UML y mockups
 		|
@@ -8465,6 +8631,7 @@ transversales lo presentan.
 		|-- 07_Publicacion/
 		|   |-- manuscrito_final.pdf
 		|   |-- manuscrito_final.tex
+		|   |-- referencias.bib
 		|   |-- analisis_revistas.md
 		|   |-- dataset_zenodo/
 		|   |   |-- corpus_RF_MundiPets_2B.json
@@ -8635,11 +8802,20 @@ transversales lo presentan.
 			\addlinespace
 			IEEE Access & IEEE & Acceso abierto (gold) & APC vigente; FI 3,6; Q2; CiteScore 9,0; 4--6 semanas de envío a publicación & Revisión binaria y rápida. Publicó trabajo citado en este documento sobre aseguramiento de la calidad de requisitos. \\
 			\addlinespace
-			IEEE Trans. on Software Engineering & IEEE & Híbrida (sin cargo por suscripción) & Sin APC en suscripción; Q1 en Software & Máximo prestigio del área; exige contribución empírica de gran alcance. Con $N = 50$ requisitos el riesgo de rechazo de escritorio es alto. \\
+			IEEE Trans. on Software Engineering & IEEE & Híbrida (sin cargo por suscripción) & Sin APC en suscripción; Q1 en Software & Máximo prestigio del área; exige contribución empírica de gran alcance. Con $N = 61$ requisitos el riesgo de rechazo de escritorio es alto. \\
 			\bottomrule
 		\end{tabularx}
 	\end{table}
 	
+
+	\paragraph{Decisión final.}
+	El equipo elige \textbf{Requirements Engineering} (Springer Nature) como
+	revista objetivo, por su máximo ajuste temático con el proyecto y por no
+	exigir cargo de publicación en la modalidad de suscripción. El
+	manuscrito se redacta con la plantilla oficial de la revista
+	(\texttt{sn-jnl.cls}, Springer Nature LaTeX template), ya presente en
+	\texttt{07\_Publicacion/manuscrito/}.
+
 	\paragraph{Estado de la verificación.}
 	Las métricas anteriores se consultaron en las páginas oficiales de cada
 	revista y en la lista de títulos de la editorial correspondiente. El cuartil
@@ -8657,10 +8833,12 @@ transversales lo presentan.
 	de ajuste que devuelven sus herramientas oficiales de selección de revista.
 	
 	\paragraph{Categoría de envío prevista.}
-	Dado el volumen de evidencia empírica alcanzado --- un corpus de 50
-	requisitos evaluado por un panel de tres personas expertas ---, la modalidad
-	realista de envío es la de artículo corto o \emph{tool paper} (6 a 8
-	páginas), y no la de artículo completo.
+	Dado el volumen de evidencia empírica alcanzado --- un corpus de 61
+	requisitos (27 RF, 16 RNF, 9 restricciones de diseño y 9 obligaciones
+	legales, vigentes al momento de ejecutar el componente empírico)
+	evaluado por un panel de tres personas expertas ---, la modalidad
+	realista de envío es la de artículo corto o \emph{tool paper}
+	(6 a 8 páginas), y no la de artículo completo.
 	
 	% --------------------------------------------------------
 	\section*{Apéndice H --- Checklist de aceptación previo al corte}
@@ -8681,15 +8859,15 @@ transversales lo presentan.
 			3 & El PDF del ERS/SRS está unificado, numerado, con historial de versiones y enlace al repositorio en la portada. & $\blacksquare$ \\
 			4 & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_CodigoParticipante\_Tecnica.ext} y usan el código de participante, no el nombre propio. & $\blacksquare$ \\
 			5 & Cada archivo de audio o video pasa \texttt{ffprobe} sin error y muestra duración mayor a cero. & $\blacksquare$ \\
-			6 & Cada consentimiento firmado es imagen o PDF con firma manuscrita visible y cédula legible. & $\blacksquare$ \\
+			6 & Cada consentimiento publicado en la zona pública presenta la información identificativa y la firma debidamente enmascaradas, mientras que el original íntegro se conserva en la zona restringida. & $\blacksquare$ \\
 			7 & El cuestionario tiene fotografías de aplicación real y respuestas exportadas con $n \geq 30$. & $\blacksquare$ \\
 			8 & El protocolo experimental está registrado en el OSF con fecha anterior a la ejecución. & $\blacksquare$ \\
 			9 & Los prompts de los LLM, si aplican, incluyen modelo, temperatura, top-p y semilla. & $\blacksquare$ \\
 			10 & Los scripts de análisis reproducen las tablas y figuras a partir de los datos crudos. & $\blacksquare$ \\
 			11 & El hash SHA-256 de cada archivo multimedia consta en \texttt{checksums.sha256} y coincide. & $\blacksquare$\\
-			12 & La matriz de trazabilidad en CSV tiene al menos 40 filas y todas las columnas obligatorias. &$\blacksquare$ \\
-			13 & Todas las evidencias declaradas en el ERS existen realmente en el repositorio. & $\blacksquare$ \\
-			14 & Se alcanzaron los mínimos comprometidos: 27 RF, 16 RNF, 13 CU detallados, 61 filas de trazabilidad y 61 respuestas de cuestionario. & $\blacksquare$ \\
+			12 & La matriz de trazabilidad en CSV tiene 61 filas cerradas y todas las columnas obligatorias. &$\blacksquare$ \\
+			13 & Las evidencias declaradas como obligatorias para la entrega se encuentran disponibles en el repositorio, con los materiales sensibles protegidos en la zona restringida y la documentación correspondiente en \texttt{08\_Etica/README\_Etica.md}. & $\blacksquare$ \\
+			14 & Se alcanzaron los mínimos comprometidos: 27 RF, 16 RNF, 13 CU detallados y 61 filas de trazabilidad. El cuestionario reúne 61 respuestas: 47 de propietarios de mascotas, 7 de interesados en adopción y 7 de interesados en cruza. La suficiencia de la muestra se sustenta mediante el cálculo de potencia estadística correspondiente.; se documenta mediante cálculo de potencia estadística como alternativa admitida por la guía. & $\blacksquare$ \\
 			15 & Todo componente de IA/ML tiene tratamiento de explicabilidad como RNF. & $\blacksquare$ \\
 			\bottomrule
 		\end{tabularx}
