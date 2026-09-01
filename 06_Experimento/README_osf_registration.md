@@ -54,6 +54,43 @@ aparece, es porque el registro sigue en proceso de aprobación/indexación;
 esto no invalida la fecha de registro ya certificada, que queda fija desde
 el momento del envío.
 
+## Desviaciones del protocolo — Wiki de OSF (confirmado)
+
+Además de la evidencia de registro previo, el mismo proyecto de OSF
+(<https://osf.io/khyf2/overview>) tiene una página de wiki dedicada,
+**"Desviaciones del pre-registro"**, donde se documentan formalmente las
+diferencias entre lo pre-registrado en la Entrega 3 (2A) y lo efectivamente
+ejecutado en la Entrega 4 (2B), siguiendo la práctica de investigación
+reproducible de Nosek et al. (2018).
+
+| Campo | Valor |
+|---|---|
+| **Página** | Desviaciones del pre-registro |
+| **Autor de la última edición** | Jimmy Samuel Nieves Sánchez |
+| **Última actualización** | 16 de agosto de 2026, 14:52:10 |
+| **Enlace directo** | <https://osf.io/khyf2/overview> → pestaña Wiki |
+
+**Contenido verificado de la página:**
+
+- **Desviación 1 — Número de entrevistas.** Pre-registrado: 24 entrevistas
+  (recomendado). Ejecutado: 18 entrevistas. Razón: se alcanzó saturación
+  temática antes de llegar a las 24 planificadas — al analizar la
+  codificación de las entrevistas 16 a 18, el promedio de códigos nuevos
+  por entrevista cayó por debajo del 5 % del total acumulado. Mitigación:
+  se documentó la curva de saturación, con inflexión visible, en
+  `02_Evidencias/Codificacion_Tematica/`, como evidencia de que 18
+  entrevistas constituyó un punto de cierre metodológicamente válido.
+- **Elementos pre-registrados sin desviación.** Respuestas del
+  cuestionario: se alcanzó el objetivo de n≥60 respuestas por perfil
+  dominante, conforme a lo pre-registrado.
+
+Esta página de wiki es adicional y complementaria al documento de
+desviaciones del componente empírico (Enfoque 2) descrito en la Sección 7
+del ERS (cambio de población de 30 a 61 requisitos, cambio de prueba
+estadística, y análisis secundario no ejecutado) — cubre la parte
+cualitativa del trabajo de campo (entrevistas), mientras que la Sección 7
+cubre la parte cuantitativa del experimento con el detector automático.
+
 ## Por qué esto es válido para el gatekeeper G6
 
 Lo que exige la rúbrica es que el protocolo quede registrado **con fecha
