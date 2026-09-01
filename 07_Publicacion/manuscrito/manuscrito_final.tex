@@ -16,9 +16,9 @@
 % Reference style: sn-mathphys-num (numbered).
 %
 % ### ESTADO DE ESTA VERSION ###
-% Version 3 de 5 - aportes de: Fuertes Arraes + Mendoza Parraga + Gutierrez Ortega.
-% Secciones incluidas: Abstract + Introduction, Related work, Methodology,
-% Threats to validity.
+% Version 4 de 5 - aportes de: Fuertes Arraes + Mendoza Parraga + Gutierrez Ortega
+% + Morales Sanchez. Secciones: Abstract + Introduction, Related work,
+% Methodology, Results, Discussion, Threats to validity.
 %=====================================================================
 \documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
 
@@ -479,6 +479,389 @@
 	\bmhead{Reproducibility}
 	All computations are executed through versioned analysis scripts; no figure or
 	table is produced manually.
+	
+	
+	%=====================================================================
+	% --- Sección a cargo de: Morales Sánchez, G. A. (Documentador) ---
+	\section{Results}\label{sec:results}
+	
+	All figures and tables in this section are produced by the versioned scripts in
+	\texttt{06\_Experimento/scripts\_analisis/}, executed end to end through
+	\texttt{run\_all.py} over the raw detector output and expert classifications; no
+	value below was entered by hand. The evaluator identity fields in the released
+	dataset use role labels (Experto 1/2/3) rather than names, consistent with the
+	consent scope described in \texttt{ETHICS.md} of the replication package.
+	
+	\subsection{RQ1: agreement between the detector and expert consensus}\label{subsec:res-rq1}
+	
+	Figure~\ref{fig:clasificaciones} shows the number of requirements classified as
+	ambiguous and non-ambiguous by each of the three experts, by their consensus,
+	and by the detector. The three experts individually flagged between 21.31\% and
+	29.51\% of the 61 requirements as ambiguous; their majority-vote consensus
+	settled at 26.23\% (16/61). The detector flagged 32.79\% (20/61) --- somewhat
+	higher than the consensus rate, but within the range spanned by the three
+	individual experts (Table~\ref{tab:resumen-clasificaciones}).
+	
+	\begin{table}[h]
+		\caption{Classifications by source (N = 61 requirements per source)}\label{tab:resumen-clasificaciones}
+		\begin{tabular}{@{}lrrrr@{}}
+			\toprule
+			Source & Ambiguous $n$ & Ambiguous \% & Non-ambiguous $n$ & Non-ambiguous \% \\
+			\midrule
+			Expert 1 & 16 & 26.23 & 45 & 73.77 \\
+			Expert 2 & 13 & 21.31 & 48 & 78.69 \\
+			Expert 3 & 18 & 29.51 & 43 & 70.49 \\
+			Expert consensus & 16 & 26.23 & 45 & 73.77 \\
+			Automatic detector & 20 & 32.79 & 41 & 67.21 \\
+			\botrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.85\textwidth]{figuras/figura_1_clasificaciones_por_fuente.png}
+		\caption{Classification of requirements by evaluator, consensus and detector.}\label{fig:clasificaciones}
+	\end{figure}
+	
+	Table~\ref{tab:metricas-detector} reports the detector's performance metrics
+	against expert consensus, treating ``ambiguous'' as the positive class, together
+	with the 95\% bootstrap confidence intervals (10,000 replicates, seed 42)
+	required by the course guide. Figure~\ref{fig:confusion} shows the underlying
+	confusion matrix: of the 45 requirements the consensus judged non-ambiguous, the
+	detector correctly labelled 37 and over-flagged 8; of the 16 the consensus
+	judged ambiguous, the detector correctly identified 12 and missed 4. Overall
+	accuracy is 0.8033 (95\% CI [0.7049, 0.9016]), with 49 of 61 requirements
+	classified in agreement with the expert consensus.
+	
+	\begin{table}[h]
+		\caption{Detector performance against expert consensus, with 95\% bootstrap confidence intervals}\label{tab:metricas-detector}
+		\begin{tabular}{@{}lrr@{}}
+			\toprule
+			Metric & Value & 95\% CI \\
+			\midrule
+			Accuracy & 0.8033 & [0.7049, 0.9016] \\
+			Precision (ambiguous) & 0.6000 & [0.3750, 0.8125] \\
+			Recall / sensitivity (ambiguous) & 0.7500 & [0.5000, 0.9412] \\
+			Specificity (non-ambiguous) & 0.8222 & [0.7027, 0.9269] \\
+			Negative predictive value & 0.9024 & --- \\
+			Balanced accuracy & 0.7861 & --- \\
+			$F_1$ (ambiguous) & 0.6667 & [0.4571, 0.8205] \\
+			Cohen's $\kappa$ (detector vs.\ consensus) & 0.5296 (moderate) & [0.2797, 0.7369] \\
+			\botrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{figuras/figura_2_matriz_confusion.png}
+		\caption{Confusion matrix: automatic detector versus expert consensus.}\label{fig:confusion}
+	\end{figure}
+	
+	The pair of hypotheses stated in Section~\ref{subsec:hypotheses} was tested with
+	a chi-squared test of independence (Pearson, with continuity correction) on the
+	2$\times$2 contingency table of Figure~\ref{fig:confusion}: $\chi^2(1,
+	N=61)=15.037$, $p=0.0001$, $\phi=0.497$ (Table~\ref{tab:significancia}). The
+	test rejects $H_0$: the association between detector output and expert
+	consensus is statistically significant and the effect size ($\phi=0.497$) is
+	of medium-to-large magnitude by conventional benchmarks. The 95\% confidence
+	interval for $\kappa$ ([0.280, 0.737]) excludes zero, consistent with the
+	significant chi-squared result, and spans from fair to substantial agreement,
+	which reflects genuine uncertainty about the precise population value at this
+	sample size rather than any doubt about whether an association exists.
+	
+	\begin{table}[h]
+		\caption{Hypothesis test and effect size for RQ1 ($H_0$/$H_1$)}\label{tab:significancia}
+		\begin{tabular}{@{}ll@{}}
+			\toprule
+			Element & Value \\
+			\midrule
+			Test & Chi-squared test of independence (Pearson, continuity correction) \\
+			Statistic ($\chi^2$) & 15.0374 (d.f.\ = 1) \\
+			$p$ value & 0.0001 \\
+			Effect size ($\phi$) & 0.4965 \\
+			\botrule
+		\end{tabular}
+	\end{table}
+	
+	This significant result is strengthened, not undermined, by the reliability of
+	the reference standard it is compared with. Table~\ref{tab:acuerdo-interevaluador}
+	reports pairwise Cohen's $\kappa$ between experts and Fleiss' $\kappa$ across the
+	full panel: the three experts agreed with each other substantially to almost
+	perfectly (pairwise $\kappa$ between 0.786 and 0.919; Fleiss' $\kappa = 0.857$,
+	94.54\% observed agreement). Because the panel that produced the reference
+	consensus agreed with itself almost perfectly, the moderate detector-consensus
+	agreement ($\kappa=0.530$) represents a genuine, well-grounded signal rather
+	than an artefact of an unreliable or arbitrary reference standard.
+	
+	\begin{table}[h]
+		\caption{Inter-rater agreement among the three experts}\label{tab:acuerdo-interevaluador}
+		\begin{tabular}{@{}lrrl@{}}
+			\toprule
+			Comparison & Cohen's/Fleiss' $\kappa$ & Observed agreement & Interpretation \\
+			\midrule
+			Expert 1 vs.\ Expert 2 & 0.8647 & 0.9508 & Almost perfect \\
+			Expert 1 vs.\ Expert 3 & 0.9186 & 0.9672 & Almost perfect \\
+			Expert 2 vs.\ Expert 3 & 0.7857 & 0.9180 & Substantial \\
+			Full panel (Fleiss' $\kappa$) & 0.8569 & 0.9454 & Almost perfect \\
+			\botrule
+		\end{tabular}
+	\end{table}
+	
+	Figure~\ref{fig:kappa} plots the four agreement coefficients of
+	Table~\ref{tab:acuerdo-interevaluador} against the single detector-consensus
+	coefficient of Table~\ref{tab:metricas-detector}, visualising the gap between
+	human--human agreement and detector--human agreement: both are high, but
+	human--human agreement remains higher.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figuras/figura_3_coeficientes_kappa.png}
+		\caption{Kappa coefficients: inter-expert agreement versus detector-consensus agreement.}\label{fig:kappa}
+	\end{figure}
+	
+	Disaggregating coincidence between detector and consensus by requirement type
+	(computed directly from the requirement-level table released in the replication
+	package) shows a clear gradient: the detector agreed with the panel on all 9
+	legal requirements (100\%), on 14 of 16 non-functional requirements (87.5\%),
+	on 21 of 27 functional requirements (77.8\%), and on only 5 of 9 design
+	constraints (55.6\%) (Table~\ref{tab:coincidencia-tipo}). Design constraints are
+	where the detector's four lexical-syntactic rules diverge most from expert
+	judgement; the sample size per stratum is too small for a separate significance
+	test, but the gradient is consistent with the disagreement analysis in
+	Section~\ref{subsec:res-rq2}.
+	
+	\begin{table}[h]
+		\caption{Detector-consensus coincidence by requirement type}\label{tab:coincidencia-tipo}
+		\begin{tabular}{@{}lrrr@{}}
+			\toprule
+			Type & $N$ & Coincides ($n$) & Coincides (\%) \\
+			\midrule
+			Legal requirements (RL) & 9 & 9 & 100.0 \\
+			Non-functional requirements (NFR) & 16 & 14 & 87.5 \\
+			Functional requirements (FR) & 27 & 21 & 77.8 \\
+			Design constraints (DC) & 9 & 5 & 55.6 \\
+			\botrule
+		\end{tabular}
+	\end{table}
+	
+	The full requirement-by-requirement classification table (61 rows, anonymous
+	identifiers, both classifications, the rule fired, and the confidence reported
+	by each expert) is released in the replication package and is not reproduced in
+	full here for space; illustrative disagreement cases are discussed in
+	Section~\ref{subsec:res-rq2}.
+	
+	\subsection{RQ2: disagreement patterns}\label{subsec:res-rq2}
+	
+	Table~\ref{tab:tipos-ambiguedad} reports the type of smell the three experts
+	attributed to their own ambiguity markings, using the rubric's smell-type field
+	recorded alongside each classification, aggregated across the 47 individual
+	ambiguous markings made by the three raters (16 + 13 + 18, from
+	Table~\ref{tab:resumen-clasificaciones}). Imprecise terminology is the smell
+	experts cite most often (38.30\%, 18/47), followed by vague quantifier
+	(31.91\%), non-verifiable or incomplete requirement (19.15\%) and, least
+	frequently, multiple conjunctions concealing more than one requirement in a
+	single statement (10.64\%).
+	
+	\begin{table}[h]
+		\caption{Types of ambiguity experts attributed to their own markings}\label{tab:tipos-ambiguedad}
+		\begin{tabular}{@{}lrr@{}}
+			\toprule
+			Type of ambiguity & Frequency & \% of ambiguous markings \\
+			\midrule
+			Imprecise terminology & 18 & 38.30 \\
+			Vague quantifier & 15 & 31.91 \\
+			Non-verifiable / incomplete requirement & 9 & 19.15 \\
+			Multiple conjunction & 5 & 10.64 \\
+			\botrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figuras/figura_4_tipos_ambiguedad.png}
+		\caption{Types of ambiguity attributed by experts to their flagged requirements.}\label{fig:tipos}
+	\end{figure}
+	
+	The detector's own rule log, read against the 20 requirements it flagged as
+	ambiguous, shows a comparatively even spread across four labels tailored to
+	requirement type: imprecise terminology / lack of verifiability (8 firings,
+	mostly on functional requirements), imprecise regulatory terminology (5
+	firings, exclusively on legal requirements), incomplete design constraint (4
+	firings, exclusively on design constraints) and vague quantifier / insufficient
+	threshold (3 firings). No requirement in this corpus triggered more than one
+	rule.
+	
+	Two disagreement patterns account for the 12 requirements where detector and
+	consensus diverge (Figure~\ref{fig:confusion}, off-diagonal cells). The larger
+	pattern (8 cases, false positives) is the detector over-flagging requirements
+	the panel judged non-ambiguous, concentrated in the ``imprecise terminology /
+	verifiability'' rule: for example REQ-53 (RNF-04, a usability requirement)
+	states that ``at least 90\% of users complete the main tasks $\ldots$ without
+	prior training, and reach a mean System Usability Scale score $\geq 80/100$''
+	--- a requirement with two explicit numeric thresholds --- yet triggered the
+	detector's vague-quantifier rule, which the panel unanimously judged
+	non-ambiguous (3/3). REQ-08 (RF-12, identity verification via an official
+	document) and REQ-24 (RF-11, owner-controlled visibility of sensitive pet and
+	profile data) show the same pattern: both triggered the imprecise-terminology
+	rule, and both were unanimously judged non-ambiguous by the panel, because the
+	verification procedure the rule looks for (an explicit numeric or testable
+	threshold in the sentence itself) is not what the three experts required to
+	consider a requirement verifiable in practice --- checking that an uploaded
+	document is valid, or that a visibility toggle exists, does not need a stated
+	number to be testable. The smaller pattern (4 cases, false negatives) is the
+	detector missing requirements the panel judged ambiguous, three of them
+	unanimously: REQ-18 (RD-04, protecting personal and clinical data ``by design
+	and by default'' per Art.\ 39 LOPDP, triggering no rule at all) and REQ-42
+	(RF-08, a cross-breeding request accepted or rejected ``based on the available
+	information'', also triggering no rule) both contain no vague quantifier,
+	multiple conjunction, or the specific verification-criterion pattern the rules
+	look for, yet the panel considered both under-specified --- neither states
+	\emph{which} mechanism or \emph{which} information, a pragmatic gap the current
+	rule set has no mechanism to represent. REQ-56 (RF-26, a second veterinarian
+	confirming or questioning a prior medical validation) was the sole false
+	negative with a split panel vote (2/3), the only disagreement case in this
+	corpus where the experts themselves were not unanimous.
+	
+	The secondary analysis planned in Section~\ref{subsec:analysis} asked whether
+	the requirements where detector and consensus disagree are also the ones where
+	experts reported lower confidence in their own judgement --- which would suggest
+	the detector fails specifically on genuinely hard cases. The mean confidence
+	reported per requirement (average across the three experts, 1--5 scale) did not
+	follow a normal distribution (Shapiro--Wilk $W=0.699$, $p<0.001$), so the
+	Mann--Whitney $U$ test was used. Mean confidence was similar between the 49
+	requirements where detector and consensus coincide ($M=4.54$, $SD=0.51$) and
+	the 12 where they disagree ($M=4.39$, $SD=0.65$); the difference is not
+	significant ($U=350.0$, $p=0.257$, Cliff's $\delta=0.191$, negligible-to-small,
+	Table~\ref{tab:confianza}). Experts were not meaningfully less confident on the
+	requirements where the detector disagreed with them, which indicates the
+	detector's errors are not concentrated on the panel's own hardest,
+	lowest-confidence borderline cases, but reflect a specific mismatch between the
+	rule set and the design-constraint/verification-procedure judgements the panel
+	makes confidently.
+	
+	\begin{table}[h]
+		\caption{Secondary analysis: expert confidence vs.\ detector-consensus coincidence}\label{tab:confianza}
+		\begin{tabular}{@{}lrl@{}}
+			\toprule
+			Element & Value & Detail \\
+			\midrule
+			Shapiro--Wilk (mean confidence, $N=61$) & $W=0.6994$ & $p<0.0001$ (rejects normality) \\
+			Coincides ($n=49$) & $M=4.5442$ & $SD=0.5123$ \\
+			Disagrees ($n=12$) & $M=4.3889$ & $SD=0.6487$ \\
+			Mann--Whitney $U$ & 350.00 & $N=61$ \\
+			$p$ value & 0.2566 & --- \\
+			Cliff's $\delta$ & 0.1905 & negligible-to-small \\
+			\botrule
+		\end{tabular}
+	\end{table}
+	
+	%=====================================================================
+	% --- Sección a cargo de: Morales Sánchez, G. A. (Documentador) ---
+	\section{Discussion}\label{sec:discussion}
+	
+	\subsection{Implications for research}\label{subsec:disc-research}
+	
+	The central finding --- moderate, statistically significant agreement between a
+	four-rule lexical-syntactic detector and an almost-perfectly agreeing expert
+	panel ($\kappa=0.530$ vs.\ $\kappa=0.857$, Tables~\ref{tab:metricas-detector}
+	and~\ref{tab:acuerdo-interevaluador}) --- qualifies rather than contradicts the
+	concern raised by Ferrari et al.~\cite{ferrari2016} that ambiguity in
+	requirements is entangled with tacit knowledge a purely lexical approach cannot
+	access. That concern holds, but unevenly: the type-level breakdown
+	(Table~\ref{tab:coincidencia-tipo}) shows the detector reaches perfect
+	agreement on legal requirements and near-ceiling agreement on non-functional
+	requirements, and only degrades sharply on design constraints (55.6\%). The
+	research implication is therefore not that lexical detection has a uniform
+	ceiling, but that the ceiling is type-dependent: requirement types whose
+	ambiguity tends to hinge on an explicit, checkable element (a numeric
+	threshold, a named legal article, a stated actor) are more tractable for a
+	rule-based approach than requirement types --- design constraints in this
+	corpus --- whose ambiguity more often lies in an unstated mechanism or
+	procedure.
+	
+	The false-positive analysis in Section~\ref{subsec:res-rq2} narrows this
+	further. REQ-53 is the clearest case: it contains \emph{two} explicit numeric
+	thresholds (90\% of users, SUS $\geq 80/100$) and was still flagged by the
+	vague-quantifier rule, which the panel unanimously rejected. This is not
+	evidence that vague-quantifier detection is unreliable in general; it is
+	evidence that the specific rule implementation reacts to a lexical trigger
+	(phrases such as ``at least'') without checking whether a concrete number
+	already follows it. This is a narrower, more actionable finding than ``lexical
+	rules miss context'': it identifies a fixable pattern-matching gap in one rule,
+	rather than a general limitation of the rule-based paradigm.
+	
+	The false negatives point in a different, complementary direction. REQ-18 and
+	REQ-42 --- both unanimously judged ambiguous by the panel, both triggering no
+	rule at all --- share an absence of a stated \emph{mechanism} or
+	\emph{referent} (``mediante mecanismos de autenticación y autorización''
+	without specifying which; ``con base en la información disponible'' without
+	specifying which information). None of the four current rules targets
+	underspecified mechanism references, which is a plausible explanation for why
+	design constraints --- a requirement type that by definition describes
+	constraints on \emph{how} something is implemented --- are where the detector's
+	recall is weakest.
+	
+	The null result of the secondary analysis (Table~\ref{tab:confianza}, $p=0.257$)
+	is itself a research-relevant finding: it rules out the more comfortable
+	explanation that the detector simply struggles on the panel's own
+	low-confidence, genuinely hard cases. Experts were confidently unanimous on
+	several of the cases the detector got wrong (REQ-18, REQ-42, REQ-53 all 3/3).
+	The detector's errors are therefore a mismatch of what counts as evidence of
+	ambiguity, not a difficulty concentrated where human judgement is itself
+	uncertain --- which is the more tractable finding for future rule design to act
+	on.
+	
+	\subsection{Implications for practice}\label{subsec:disc-practice}
+	
+	For a practitioner deciding whether to adopt this detector as a review gate for
+	a real specification like MundiPets, these results support a qualified
+	recommendation the earlier, smaller pilot could not: at accuracy = 0.803 and a
+	statistically significant, moderate agreement with an almost-perfectly
+	agreeing expert panel, the detector is a credible first-pass triage tool for
+	functional, non-functional and, especially, legal requirements, where it
+	reached perfect agreement on this corpus. It would meaningfully reduce reviewer
+	workload without discarding real ambiguity: of the 45 requirements the panel
+	judged non-ambiguous, it correctly cleared 37 (82.2\% specificity), and of the
+	16 the panel judged ambiguous, it correctly caught 12 (75.0\% recall).
+	
+	The practical caveat is equally clear from the data: design constraints are the
+	one requirement type where this detector should not be trusted unsupervised.
+	Its coincidence with the panel drops to 55.6\% there, barely above chance for a
+	binary label, and the two clearest false negatives in the entire corpus (REQ-18
+	and REQ-42) both fall in that category, one of them directly tied to a legal
+	data-protection obligation (Art.\ 39 LOPDP). For a system like MundiPets that
+	processes personal and animal health data under Ecuador's
+	LOPDP~\cite{lopdp2021}, a design constraint silently missed by an automatic
+	gate is precisely the kind of ambiguity whose downstream cost is highest. The
+	practical recommendation is therefore type-conditional: automate the triage of
+	functional, non-functional and legal requirements, and route design
+	constraints to mandatory human review regardless of what the detector reports.
+	
+	\subsection{Surprising or counter-intuitive findings}\label{subsec:disc-surprising}
+	
+	Two results ran against the team's expectation going into the analysis. First,
+	the overall strength of the result: with a small, hand-written four-rule
+	detector and a corpus written by novice analysts, the team expected agreement
+	closer to what the smaller 50-item pilot of this study had shown (slight,
+	non-significant) than the moderate, significant agreement the completed
+	61-item corpus produced. The revision and expansion of the corpus --- driven by
+	correcting the requirement numbering rather than by any change to the detector
+	or the evaluation protocol --- changed the empirical picture substantially,
+	which is itself a useful methodological lesson: a quasi-experiment's
+	conclusions can be sensitive to corpus completeness in ways a single pilot run
+	does not reveal, and a preregistered protocol with a versioned corpus and
+	reproducible scripts (Section~\ref{sec:results}) is what makes that sensitivity
+	visible rather than hidden.
+	
+	Second, the specific content of the false positives (Table~\ref{tab:confianza}
+	notwithstanding) was counter-intuitive: the team expected the vague-quantifier
+	rule to be the detector's most reliable rule, precisely because it targets an
+	apparently unambiguous lexical pattern. Instead, REQ-53 shows that rule firing
+	even on a requirement with two explicit numeric thresholds, which suggests the
+	rule is keying on a trigger phrase (``al menos'') rather than verifying the
+	absence of a following number --- an implementation detail invisible from the
+	rule's name alone, and only surfaced by manually inspecting the disagreement
+	cases rather than by trusting the aggregate metrics.
 	
 	
 	%=====================================================================
