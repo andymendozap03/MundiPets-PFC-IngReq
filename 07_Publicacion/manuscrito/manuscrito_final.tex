@@ -1,0 +1,203 @@
+%=====================================================================
+% MundiPets — Parallel manuscript, version 2.0 (Deliverable 4 / 2B, week 17)
+% Springer Nature journal template (sn-jnl.cls, v3.1 December 2024)
+%
+% Empirical component: APPROACH 2 of the course guide —
+% automatic detection of ambiguity and smells in requirements.
+%
+% TEMPLATE: confirmed by the team as sn-jnl.cls (Springer Nature),
+% Requirements Engineering journal. Not changing to REFSQ/llncs.cls.
+%
+% CORPUS: the requirements corpus was revised and expanded after the ERS
+% renumbering (Nieves), from N=50 to N=61 (27 RF + 16 RNF + 9 RD + 9 RL).
+% Every number in this version reflects the corpus of 61 requirements and
+% the corrected, de-identified evaluator labels (Experto 1/2/3).
+%
+% Reference style: sn-mathphys-num (numbered).
+%
+% ### ESTADO DE ESTA VERSION ###
+% Version 1 de 5 - aporte de: Fuertes Arraes.
+% Secciones incluidas: Abstract + Introduction.
+%=====================================================================
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+
+% Visible marker for values the team must still fill in by hand.
+\newcommand{\TODO}[1]{\textcolor{red}{\textbf{[TO COMPLETE: #1]}}}
+% Marker for content deliberately deferred to Deliverable 4 (2B).
+\newcommand{\DEFERRED}[1]{\textcolor{blue}{\textit{[Deferred to Deliverable 4 (2B): #1]}}}
+
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%
+\newtheorem{proposition}[theorem]{Proposition}%
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+
+\begin{document}
+	
+	\title[Accuracy of a requirements ambiguity detector]{Accuracy of a
+		requirements ambiguity detector: case of a pet social network}
+	
+	\author*[1]{\fnm{Edson Daniel} \sur{Fuertes Arraes}}\email{efuertesa2@uteq.edu.ec}
+	
+	\author[1]{\fnm{Génesis Adriana} \sur{Gutiérrez Ortega}}\email{ggutierrezo@uteq.edu.ec}
+	
+	\author[1]{\fnm{Andy Johel} \sur{Mendoza Párraga}}\email{amedozap9@uteq.edu.ec}
+	
+	\author[1]{\fnm{Gary Alejandro} \sur{Morales Sánchez}}\email{gmoraless2@uteq.edu.ec}
+	
+	\author[1]{\fnm{Jimmy Samuel} \sur{Nieves Sánchez}}\email{jnievess@uteq.edu.ec}
+	
+	\author[1]{\fnm{Gleiston Cicerón} \sur{Guerrero Ulloa}}\email{gguerrero@uteq.edu.ec}
+	
+	\affil*[1]{\orgdiv{Facultad de Ciencias de la Computación},
+		\orgname{Universidad Técnica Estatal de Quevedo},
+		\orgaddress{\street{Av. Quito km 1.5 vía a Santo Domingo},
+			\city{Quevedo}, \state{Los Ríos}, \country{Ecuador}}}
+	
+	%=====================================================================
+	% --- Sección a cargo de: Fuertes Arraes, E. D. (Analista líder) ---
+	\abstract{\textbf{Context:} Ambiguity is one of the most persistent defects in
+		natural-language requirements specifications, and rule-based detectors are
+		frequently proposed as a low-cost mechanism to flag it before requirements reach
+		design. Evidence on how closely such detectors reproduce human expert judgement
+		remains scarce for Spanish-language specifications produced in Latin American
+		settings.
+		
+		\textbf{Objective:} This study measures the extent to which a rule-based
+		ambiguity detector replicates the consensus judgement of independent human
+		experts over the complete requirements corpus of MundiPets, a real social
+		network for responsible pet adoption and breeding, and characterises the
+		patterns of disagreement between the two.
+		
+		\textbf{Methods:} We conducted a paired quasi-experiment over 61 requirements
+		(27 functional, 16 non-functional, 9 design constraints and 9 legal
+		requirements) specified according to an eight-attribute template. A purpose-built rule-based detector, implemented
+		in Python and frozen before data collection, classified each requirement as
+		ambiguous or non-ambiguous using four lexical and syntactic rules. In parallel,
+		three independent software engineers, blind to the detector output and to one
+		another, classified the same requirements in randomised order using a shared
+		rubric. The protocol was preregistered on the Open Science Framework before any
+		data were collected. Agreement was quantified with precision, recall, $F_1$,
+		Cohen's $\kappa$ and Fleiss' $\kappa$.
+		
+		\textbf{Results:} The detector flagged 32.79\% of requirements as ambiguous
+		(20/61) against 26.23\% (16/61) for the expert consensus, yielding accuracy =
+		0.8033 (95\% CI [0.7049, 0.9016]), precision = 0.600, recall = 0.750 and
+		$F_1 = 0.667$ for the ambiguous class. Agreement between detector and consensus
+		was moderate (Cohen's $\kappa = 0.530$, 95\% CI [0.280, 0.737]) and a
+		chi-squared test of independence found the detector significantly associated
+		with expert consensus beyond chance ($\chi^2 = 15.037$, $\mathrm{d.f.} = 1$,
+		$p = 0.0001$, $\phi = 0.497$). The expert panel itself agreed almost perfectly
+		(Fleiss' $\kappa = 0.857$), which strengthens confidence in the reference
+		standard the detector is compared against. Coincidence with expert consensus
+		was strongest for legal requirements (9/9, 100\%) and non-functional
+		requirements (14/16, 87.5\%), and weakest for design constraints (5/9, 55.6\%).
+		
+		\textbf{Conclusion:} A four-rule lexical-syntactic detector achieves moderate,
+		statistically significant agreement with an almost-perfectly agreeing expert
+		panel on a real, Spanish-language requirements corpus, performing best on
+		non-functional and legal requirements and worst on design constraints, where
+		ambiguity is more often a matter of missing procedural detail than of
+		detectable lexical patterns. The result supports using such a detector as a
+		first-pass triage tool in a review workflow, while showing that design
+		constraints in particular still require human judgement.}
+	
+	\keywords{Requirements Engineering, Empirical Software Engineering, Natural
+		Language Processing, Interrater Agreement, Requirements Quality}
+	
+	\maketitle
+	
+	%=====================================================================
+	% --- Sección a cargo de: Fuertes Arraes, E. D. (Analista líder) ---
+	\section{Introduction}\label{sec:intro}
+	
+	MundiPets is a social network for responsible pet adoption and breeding,
+	currently under specification for veterinary practices and pet owners in the
+	province of Los Ríos, Ecuador. The system lets owners publish verified pet
+	profiles, lets registered veterinary practices validate the associated medical
+	records, and supports adoption and breeding requests through a staged workflow
+	that includes compatibility assessment by an artificial-intelligence component.
+	Requirements engineering matters acutely in this domain because a defect in a
+	requirement about medical-record validation or about the visibility of an
+	owner's location does not merely degrade usability: it propagates into a system
+	that handles animal health data and personal data protected under Ecuador's
+	Organic Law on Personal Data Protection~\cite{lopdp2021}. Specifying such a
+	system with verifiable, unambiguous requirements is therefore a precondition for
+	lawful operation rather than a stylistic preference.
+	
+	Ambiguity remains one of the defects most consistently reported in
+	natural-language requirements. The systematic mapping study of Montgomery et
+	al.~\cite{montgomery2022} shows that, although requirements quality has been
+	studied extensively, empirical work concentrates on a small number of quality
+	attributes and rarely validates automated detection against human judgement on
+	complete, real specifications. Atoum et al.~\cite{atoum2021} reach a convergent
+	conclusion in their systematic review of requirements quality assurance,
+	identifying the scarcity of validated automated support as an open challenge.
+	Ferrari et al.~\cite{ferrari2016} demonstrated that ambiguity in elicitation is
+	entangled with tacit knowledge, which suggests that purely lexical detection has
+	an intrinsic ceiling; yet the size of that ceiling has not been quantified for
+	specifications written in Spanish, nor for corpora produced by novice analysts,
+	the setting in which a large share of requirements documents are in fact
+	written. This is the gap the present study addresses.
+	
+	This paper makes three contributions, each grounded in evidence collected by the
+	authors and released as an open dataset:
+	\begin{enumerate}
+		\item a quantified comparison between a rule-based ambiguity detector and the
+		blind consensus of three independent human experts over a complete
+		requirements corpus of 61 items --- functional requirements,
+		non-functional requirements, design constraints and legal
+		requirements --- written in Spanish;
+		\item a characterisation of the disagreement patterns between automated and
+		human classification, reported per requirement and per rule, which
+		exposes the specific linguistic phenomena that a rule-based approach
+		systematically over- or under-flags;
+		\item a replication package --- corpus, detector output, expert
+		classifications, analysis scripts and preregistered protocol ---
+		released under CC~BY~4.0 so that the study can be repeated on other
+		corpora and other languages.
+	\end{enumerate}
+	
+	The study answers two research questions:
+	
+	\begin{itemize}
+		\item[\textbf{RQ1}] With what precision, recall and $F_1$ does a rule-based
+		automatic detector replicate the consensus judgement of human experts
+		when classifying the requirements of MundiPets as ambiguous?
+		\item[\textbf{RQ2}] Which disagreement patterns predominate between the
+		automatic detector and expert judgement, and what do they reveal about
+		the limits of a rule-based approach relative to human judgement in
+		identifying ambiguity?
+	\end{itemize}
+	
+	The remainder of the paper is organised as follows. Section~\ref{sec:related}
+	positions the study within the closest related work. Section~\ref{sec:method}
+	describes the experimental design, participants, instruments and analysis plan.
+	Section~\ref{sec:results} reports the results, Section~\ref{sec:discussion}
+	interprets them, Section~\ref{sec:threats} discusses threats to validity, and
+	Section~\ref{sec:conclusions} concludes.
+	
+	%=====================================================================
+	\bibliography{referencias}
+	
+\end{document}
