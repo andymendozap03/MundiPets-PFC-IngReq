@@ -167,12 +167,27 @@ input[type="date"], input[type="file"], select, textarea {
   border: 1px solid var(--border-input);
   border-radius: 10px;
   font-size: 14px;
+  line-height: 1.4;
   font-family: inherit;
   background: #fff;
   color: var(--text);
   transition: all 0.2s ease;
 }
 textarea { resize: vertical; min-height: 90px; }
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+select::-ms-expand { display: none; }
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--blue);
@@ -245,7 +260,8 @@ input:focus, select:focus, textarea:focus {
 }
 .segmented button {
   flex: 1;
-  padding: 8px 16px;
+  min-width: 0;
+  padding: 8px 10px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -255,6 +271,10 @@ input:focus, select:focus, textarea:focus {
   color: var(--text-muted);
   border-radius: 999px;
   transition: all 0.2s ease;
+  text-align: center;
+  line-height: 1.25;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 .segmented button.active {
   background: #fff;
