@@ -1759,11 +1759,11 @@ doi=true
 		Identificador & \hyperref[tab:RNF-02]{RNF-02} \\
 		Nombre & Disponibilidad del sistema \\
 		Característica ISO 25010 & Fiabilidad \\
-		Descripción & El sistema deberá mantenerse disponible para los usuarios con una disponibilidad mínima del 99\,\% mensual, permitiendo el acceso continuo a sus funcionalidades durante la operación normal de la plataforma. Este criterio aplica exclusivamente al entorno de producción con backend desplegado; no es exigible ni medible sobre el MVP local descrito en la Sección~\ref{sec:mvp-alcance}, al no operar este último en un ambiente de uso continuo que permita demostrar disponibilidad mensual. \\
-		Métrica & Porcentaje de disponibilidad mensual, medido únicamente en producción. \\
-		Valor objetivo & $\geq$ 99\,\% de disponibilidad mensual en producción. \\
+		Descripción & El sistema deberá mantenerse disponible para los usuarios con una disponibilidad mínima del 99\,\% mensual, permitiendo el acceso continuo a sus funcionalidades durante la operación normal de la plataforma. \\
+		Métrica & Porcentaje de disponibilidad mensual. \\
+		Valor objetivo & $\geq$ 99\,\% de disponibilidad mensual. \\
 		Prioridad (MoSCoW) & Must \\
-		Criterio de verificación & Monitorear la disponibilidad del sistema en producción durante un mes de operación y comprobar que cumple el porcentaje establecido; no aplica como criterio de aceptación del MVP. \\
+		Criterio de verificación & Monitorear la disponibilidad del sistema durante un mes de operación y comprobar que cumple el porcentaje establecido. \\
 	\end{atributos}
 	
 	
@@ -1773,11 +1773,11 @@ doi=true
 		Identificador & \hyperref[tab:RNF-03]{RNF-03} \\
 		Nombre & Tiempo de respuesta del sistema \\
 		Característica ISO 25010 & Eficiencia de desempeño \\
-		Descripción & El sistema deberá responder a las consultas de perfiles de mascotas, historial médico y resultados de búsqueda en un tiempo máximo de 2 segundos en el percentil 95, bajo una carga nominal de 100 usuarios concurrentes. Este criterio aplica exclusivamente al entorno de producción con backend desplegado; no es exigible ni medible sobre el MVP local descrito en la Sección~\ref{sec:mvp-alcance}, que persiste su información en \texttt{localStorage} sin un servidor sobre el cual ejecutar una prueba de carga concurrente. \\
-		Métrica & Tiempo de respuesta en el percentil 95 (P95) bajo carga nominal, medido únicamente en producción. \\
-		Valor objetivo & $\leq$ 2 segundos (P95) con 100 usuarios concurrentes en producción. \\
+		Descripción & El sistema deberá responder a las consultas de perfiles de mascotas, historial médico y resultados de búsqueda en un tiempo máximo de 2 segundos en el percentil 95, bajo una carga nominal de 100 usuarios concurrentes. \\
+		Métrica & Tiempo de respuesta en el percentil 95 (P95) bajo carga nominal. \\
+		Valor objetivo & $\leq$ 2 segundos (P95) con 100 usuarios concurrentes. \\
 		Prioridad (MoSCoW) & Should \\
-		Criterio de verificación & Ejecutar una prueba de carga con 100 usuarios concurrentes en el entorno de producción y comprobar que el percentil 95 del tiempo de respuesta no supera el valor objetivo; no aplica como criterio de aceptación del MVP. \\
+		Criterio de verificación & Ejecutar una prueba de carga con 100 usuarios concurrentes y comprobar que el percentil 95 del tiempo de respuesta no supera el valor objetivo. \\
 	\end{atributos}
 	
 	
@@ -3239,13 +3239,6 @@ temporal.
 
 		\end{longtable}
 	\end{landscape}
-
-	La totalidad de los 61 casos de prueba se versiona además en
-	\texttt{05\_MVP/casos\_prueba.csv}, con una fila por caso siguiendo las
-	mismas columnas de la Tabla~\ref{tab:casos_prueba}, de modo que el
-	tablero de gestión pueda enlazar cada tarjeta de desarrollo con su caso
-	de prueba correspondiente.
-
 
 	
 	% ############################################################
@@ -4884,7 +4877,7 @@ temporal.
 		\hline
 		\hyperref[tab:RNF-09]{RNF-09} & Interoperabilidad de notificaciones & Should & Aporta valor (recordatorios por WhatsApp), pero el sistema opera sin ella mediante notificación interna. \\
 		\hline
-		\hyperref[tab:RNF-10]{RNF-10} & Facilidad de mantenimiento del código & Should & Importante para sostenibilidad técnica, pero no bloquea la operación funcional del MVP. \\
+		\hyperref[tab:RNF-10]{RNF-10} & Facilidad de mantenimiento del código & Should & Importante para sostenibilidad técnica, pero no bloquea la operación funcional del sistema. \\
 		\hline
 		\hyperref[tab:RNF-11]{RNF-11} & Portabilidad entre navegadores & Should & Necesaria para alcance de usuarios, pero el sistema puede operar inicialmente en un navegador principal. \\
 		\hline
@@ -5230,31 +5223,41 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	\label{sec:mvp-alcance}
 	
 	El Producto Mínimo Viable (MVP) de MundiPets es una aplicación web
-	ejecutable, denominada \texttt{MVP\_MundiPets}, que materializa el
-	subconjunto de requisitos funcionales de mayor prioridad definido en la
+	ejecutable, denominada \texttt{MVP\_MundiPets}, que materializa la
+	totalidad de los requisitos funcionales definidos en la
 	Sección~\ref{sec:rf}, con el propósito de demostrar de forma tangible el
 	comportamiento del sistema descrito en esta especificación. El MVP se
-	implementó íntegramente con tecnologías del lado del cliente (HTML5, CSS3 y
-	JavaScript sin frameworks ni proceso de compilación) y persiste su
-	información en el almacenamiento local del navegador
-	(\texttt{localStorage}) en lugar de un servidor de base de datos real. Se
+	implementó con un frontend en HTML5, CSS3 y JavaScript (sin frameworks ni
+	proceso de compilación) servido por un backend en
+	\href{https://expressjs.com/}{Express} sobre Node.js (\texttt{server.js}),
+	que expone una API REST (\texttt{/api/...}) y persiste la información en
+	una base de datos en memoria dentro del propio proceso de Node --sin motor
+	de base de datos externo ni contenedores--, inicializada con un conjunto de
+	datos ficticios en cada arranque del servidor. Las contraseñas de las
+	cuentas de usuario se almacenan con hash \texttt{bcrypt} (biblioteca
+	\texttt{bcryptjs}) y nunca se exponen en texto plano a través de la API. Se
 	trata de una decisión de diseño coherente con el alcance de un prototipo
 	funcional de demostración académica y no de un sistema en producción; por
-	lo mismo, el MVP no satisface todavía las restricciones de arquitectura y
-	de protección de datos declaradas en \hyperref[tab:RD-04]{RD-04}, \hyperref[tab:RD-05]{RD-05} y \hyperref[tab:RD-06]{RD-06}, que
-	corresponden al sistema en producción y no a este prototipo.
+	lo mismo, el MVP todavía no satisface por completo las restricciones de
+	arquitectura y de protección de datos declaradas en \hyperref[tab:RD-04]{RD-04}, \hyperref[tab:RD-05]{RD-05} y \hyperref[tab:RD-06]{RD-06}
+	--en particular, la persistencia en memoria no sobrevive a un reinicio del
+	servidor y el sistema no ofrece todavía un mecanismo de eliminación de
+	cuenta--, restricciones que corresponden plenamente al sistema en
+	producción y no a este prototipo.
 	
 	Según la priorización MoSCoW de
 	la Sección~\ref{sec:moscow}, el proyecto tiene 15 RF de prioridad
 	\emph{Must}, de los cuales el MVP cubre los 15 (100\,\%). Uno de ellos,
-	\hyperref[tab:RF-12]{RF-12}, se cubre en modo simulado (selección de rol de demostración en
-	lugar de verificación de identidad real), por lo que, con un criterio
-	conservador que descuente ese caso, la cobertura efectiva de \emph{Must}
-	es de 14 de 15 (93,3\,\%). El MVP cubre además la mayor parte de los
-	requisitos \emph{Should} y \emph{Could}: de los 12 requisitos de esas dos
-	prioridades, cubre 11 (91,7\,\%), quedando pendiente únicamente \hyperref[tab:RF-20]{RF-20}
-	(\emph{Could}, coordinar encuentros de socialización supervisados). En
-	conjunto, el MVP cubre \textbf{27 de los 27 RF vigentes (100\,\%)}.
+	\hyperref[tab:RF-12]{RF-12}, se cubre en modo simulado: el registro y el inicio de sesión se
+	realizan con credenciales reales validadas contra el backend (contraseña
+	con hash \texttt{bcrypt} y política de seguridad exigida), pero el sistema
+	no verifica la identidad del usuario contra un documento oficial, por lo
+	que la verificación de identidad como tal permanece simulada. El MVP cubre
+	además la totalidad de los requisitos \emph{Should} y \emph{Could}: de los
+	12 requisitos de esas dos prioridades, cubre los 12 (100\,\%), incluyendo
+	\hyperref[tab:RF-20]{RF-20} (\emph{Could}, coordinar encuentros de socialización supervisados,
+	implementado en \texttt{encounters.html}). En conjunto, el MVP cubre
+	\textbf{27 de los 27 RF vigentes (100\,\%)}.
 	
 	\begin{longtable}{@{}p{1.5cm} p{5.2cm} p{1.7cm} p{3.0cm} p{3.4cm}@{}}
 		\caption{Cobertura de los requisitos funcionales en el MVP MundiPets.}
@@ -5288,7 +5291,7 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		\hline
 		\hyperref[tab:RF-09]{RF-09} & Validar la información médica de una mascota & Must & Cubierto & \texttt{vet-panel.html} \\
 		\hline
-		\hyperref[tab:RF-10]{RF-10} & Gestionar recordatorios de controles preventivos & Should & Cubierto (nuevo) & \texttt{dashboard.html} (módulo de alertas y simulación de WhatsApp) \\
+		\hyperref[tab:RF-10]{RF-10} & Gestionar recordatorios de controles preventivos & Should & Cubierto & \texttt{dashboard.html} (módulo de alertas y simulación de WhatsApp) \\
 		\hline
 		\hyperref[tab:RF-11]{RF-11} & Administrar la privacidad de la información & Must & Cubierto & \texttt{pet-profile.html} \\
 		\hline
@@ -5298,36 +5301,35 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		\hline
 		\hyperref[tab:RF-14]{RF-14} & Gestionar carnet de vacunación & Must & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html} \\
 		\hline
-		\hyperref[tab:RF-15]{RF-15} & Consultar el historial de procesos de adopción y cruza & Could & Cubierto (nuevo) & \texttt{dashboard.html} (sección expandible de solicitudes finalizadas) \\
+		\hyperref[tab:RF-15]{RF-15} & Consultar el historial de procesos de adopción y cruza & Could & Cubierto & \texttt{dashboard.html} (sección expandible de solicitudes finalizadas) \\
 		\hline
 		\hyperref[tab:RF-16]{RF-16} & Gestionar antecedentes genéticos y parentesco de la mascota & Must & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html}, \texttt{pet-detail.html} \\
 		\hline
-		\hyperref[tab:RF-17]{RF-17} & Validar imágenes & Should & Cubierto (nuevo, simulado) & \texttt{pet-add.html} (analizador interactivo de IA en el paso 2 del asistente) \\
+		\hyperref[tab:RF-17]{RF-17} & Validar imágenes & Should & Cubierto (simulado) & \texttt{pet-add.html} (analizador interactivo de IA en el paso 2 del asistente) \\
 		\hline
 		\hyperref[tab:RF-18]{RF-18} & Gestionar el flujo de solicitud de adopción por etapas & Must & Cubierto & \texttt{request.html} \\
 		\hline
-		\hyperref[tab:RF-19]{RF-19} & Validar certificados veterinarios antes de habilitar la cruza & Should & Cubierto (nuevo) & \texttt{pet-profile.html} (bloqueo de la opción de cruza sin certificado validado) \\
+		\hyperref[tab:RF-19]{RF-19} & Validar certificados veterinarios antes de habilitar la cruza & Should & Cubierto & \texttt{pet-profile.html} (bloqueo de la opción de cruza sin certificado validado) \\
 		\hline
-		\hyperref[tab:RF-20]{RF-20} & Coordinar encuentros de socialización supervisados & Could & No implementado & --- \\
+		\hyperref[tab:RF-20]{RF-20} & Coordinar encuentros de socialización supervisados & Could & Cubierto & \texttt{encounters.html} \\
 		\hline
-		\hyperref[tab:RF-21]{RF-21} & Registrar el identificador de microchip de la mascota & Should & Cubierto (nuevo) & \texttt{pet-add.html}, \texttt{pet-profile.html}, \texttt{pet-detail.html}, \texttt{explore.html} \\
+		\hyperref[tab:RF-21]{RF-21} & Registrar el identificador de microchip de la mascota & Should & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html}, \texttt{pet-detail.html}, \texttt{explore.html} \\
 		\hline
 		\hyperref[tab:RF-22]{RF-22} & Dar seguimiento post-adopción & Must & Cubierto & \texttt{post-adoption.html} \\
 		\hline
 		\hyperref[tab:RF-23]{RF-23} & Emitir alertas de riesgo sanitario o físico en interacciones y cruces & Must & Cubierto & \texttt{compatibility.html} \\
 		\hline
-		\hyperref[tab:RF-24]{RF-24} & Registrar trazabilidad de cepa, lote y aplicador de cada vacuna & Should & Cubierto (nuevo) & \texttt{pet-add.html}, \texttt{pet-profile.html} (campos del carnet referencial) \\
+		\hyperref[tab:RF-24]{RF-24} & Registrar trazabilidad de cepa, lote y aplicador de cada vacuna & Should & Cubierto & \texttt{pet-add.html}, \texttt{pet-profile.html} (campos del carnet referencial) \\
 		\hline
-		\hyperref[tab:RF-25]{RF-25} & Publicar aviso de mascota extraviada & Could & Cubierto (nuevo) & \texttt{pet-profile.html}, \texttt{explore.html} (alerta destacada y contacto directo) \\
+		\hyperref[tab:RF-25]{RF-25} & Publicar aviso de mascota extraviada & Could & Cubierto & \texttt{pet-profile.html}, \texttt{explore.html} (alerta destacada y contacto directo) \\
 		\hline
-		\hyperref[tab:RF-26]{RF-26} & Habilitar validación médica por segunda opinión veterinaria & Should & Cubierto (nuevo) & \texttt{vet-panel.html}, \texttt{pet-profile.html} (módulo de doble validación y constancia) \\
+		\hyperref[tab:RF-26]{RF-26} & Habilitar validación médica por segunda opinión veterinaria & Should & Cubierto & \texttt{vet-panel.html}, \texttt{pet-profile.html} (módulo de doble validación y constancia) \\
 		\hline
-		\hyperref[tab:RF-27]{RF-27} & Controlar y alertar sobre solicitudes repetitivas de cruza de una misma mascota & Should & Cubierto (nuevo) & \texttt{compatibility.html} (alerta automática al superar el umbral semestral de cruzas) \\
+		\hyperref[tab:RF-27]{RF-27} & Controlar y alertar sobre solicitudes repetitivas de cruza de una misma mascota & Should & Cubierto & \texttt{compatibility.html} (alerta automática al superar el umbral semestral de cruzas) \\
 	\end{longtable}
 	
-	\textbf{Resumen:} 26 de 27 RF cubiertos (96,3\,\% de cobertura total y
-	100\,\% de los requisitos \emph{Debe tener}). El único requisito que
-	permanece sin cubrir es \hyperref[tab:RF-20]{RF-20}.
+	\textbf{Resumen:} 27 de 27 RF cubiertos (100\,\% de cobertura total y
+	100\,\% de los requisitos \emph{Debe tener}).
 
 	El equipo declara de forma explícita, en línea con la regla operativa según
 	la cual ningún componente de inteligencia artificial puede quedar solo
@@ -5365,28 +5367,32 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 	\subsection{Arquitectura e instrucciones de despliegue}
 	\label{sec:mvp-arquitectura}
 	
-	La arquitectura del MVP se organiza en tres capas dentro de una aplicación
-	estática, con una página por vista: once páginas HTML independientes que
-	comparten una hoja de estilos y tres módulos de JavaScript. La capa de
-	presentación está compuesta por los archivos HTML y por
-	\texttt{css/styles.css}, que define un diseño responsivo mediante CSS Grid
-	y Flexbox con puntos de quiebre para dispositivos móviles, tabletas y
-	escritorio, en coherencia con el requisito de portabilidad \hyperref[tab:RNF-11]{RNF-11}. La capa
-	de lógica de sesión, implementada en \texttt{js/auth.js}, simula la
-	verificación de identidad exigida por \hyperref[tab:RF-12]{RF-12} mediante la selección de un rol
-	de demostración (Propietario, Adoptante, Interesado en cruza o
-	Veterinaria), sin un mecanismo de autenticación por contraseña real,
-	decisión declarada explícitamente tanto en el código como en la
-	documentación del repositorio. La capa de datos, implementada en
-	\texttt{js/db.js}, expone una interfaz de operaciones CRUD genéricas
-	(\texttt{all}, \texttt{get}, \texttt{insert}, \texttt{update},
-	\texttt{remove}, \texttt{reset}) sobre ocho colecciones del dominio
-	--usuarios, mascotas, historiales médicos, antecedentes genéticos,
-	solicitudes, mensajes, evaluaciones de compatibilidad y seguimientos
-	post-adopción--, persistidas en su totalidad en el \texttt{localStorage}
-	del navegador bajo una única clave versionada
-	(\texttt{mundipets\_db\_v1}). Esta separación en capas responde a la
-	restricción de arquitectura modular \hyperref[tab:RD-05]{RD-05} en su expresión mínima viable.
+	La arquitectura del MVP se organiza en tres capas: presentación, backend de
+	API y datos, distribuidas en catorce páginas HTML independientes --una por
+	vista-- que comparten una hoja de estilos, un servidor Express y tres
+	módulos de JavaScript en el cliente. La capa de presentación está
+	compuesta por los archivos HTML y por \texttt{css/styles.css}, que define
+	un diseño responsivo mediante CSS Grid y Flexbox con puntos de quiebre
+	para dispositivos móviles, tabletas y escritorio, en coherencia con el
+	requisito de portabilidad \hyperref[tab:RNF-11]{RNF-11}. La capa de backend, implementada en
+	\texttt{server.js} sobre Express y Node.js, expone la API REST
+	(\texttt{/api/...}) que atiende la autenticación y el resto de las
+	operaciones del dominio; sobre ella, \texttt{js/auth.js} gestiona en el
+	cliente el registro, el inicio de sesión, la recuperación de contraseña y
+	el cambio de contraseña contra dicha API, cubriendo de forma real la
+	verificación de credenciales exigida por \hyperref[tab:RF-12]{RF-12} --con contraseñas
+	almacenadas mediante hash \texttt{bcrypt} y validadas en vivo contra una
+	política de seguridad (mínimo 8 caracteres, mayúscula, minúscula, número y
+	carácter especial)--, si bien no valida la identidad del usuario contra un
+	documento oficial. La capa de datos, expuesta al cliente a través de
+	\texttt{js/db.js} como un cliente de la API (basado en \texttt{fetch}) con
+	la misma interfaz de operaciones \texttt{all}, \texttt{get},
+	\texttt{insert}, \texttt{update} y \texttt{remove}, reside en el servidor
+	como una base de datos en memoria del proceso Node, inicializada con el
+	conjunto de datos ficticios en cada arranque y compartida entre todas las
+	sesiones conectadas mientras el proceso permanece activo. Esta separación
+	en capas responde a la restricción de arquitectura modular \hyperref[tab:RD-05]{RD-05} en su
+	expresión mínima viable.
 	
 	\begin{longtable}{@{}p{4.2cm} p{10.6cm}@{}}
 		\caption{Estructura del repositorio \texttt{MVP\_MundiPets} y trazabilidad a requisitos funcionales.}
@@ -5402,9 +5408,13 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		\endhead
 		\hline
 		\endfoot
-		\texttt{index.html} & Inicio de sesión mediante selección de cuenta de demostración; enlace para restablecer los datos de ejemplo. \\
+		\texttt{index.html} & Inicio de sesión mediante cuentas de demostración o credenciales propias; enlace para restablecer los datos de ejemplo. \\
 		\hline
-		\texttt{register.html} & Formulario de creación de cuenta y verificación de identidad simulada (\hyperref[tab:RF-12]{RF-12}). \\
+		\texttt{register.html} & Formulario de creación de cuenta con validación en vivo de la política de contraseñas y verificación de identidad simulada (\hyperref[tab:RF-12]{RF-12}). \\
+		\hline
+		\texttt{forgot-password.html} & Recuperación de contraseña en tres pasos (correo, código de verificación simulado y nueva contraseña), como apoyo a \hyperref[tab:RF-12]{RF-12}. \\
+		\hline
+		\texttt{profile.html} & Edición del perfil propio (nombre, correo, ciudad) y cambio de contraseña verificando la contraseña actual, como apoyo a \hyperref[tab:RF-12]{RF-12}. \\
 		\hline
 		\texttt{dashboard.html} & Panel de inicio diferenciado según el rol activo (Propietario, Adoptante, Interesado en cruza o Veterinaria); implementa el acceso basado en roles de \hyperref[tab:RD-02]{RD-02}, el módulo de alertas y simulación de recordatorios por WhatsApp (\hyperref[tab:RF-10]{RF-10}) y la sección expandible de historial de procesos finalizados (\hyperref[tab:RF-15]{RF-15}). \\
 		\hline
@@ -5424,38 +5434,44 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		\hline
 		\texttt{post-adoption.html} & Registro y consulta del seguimiento posterior a una adopción completada (\hyperref[tab:RF-22]{RF-22}). \\
 		\hline
+		\texttt{encounters.html} & Propuesta, confirmación o rechazo de encuentros de socialización supervisados entre mascotas, visibles en el historial de interacciones de ambas (\hyperref[tab:RF-20]{RF-20}). \\
+		\hline
 		\texttt{css/styles.css} & Hoja de estilos única con diseño responsivo mediante CSS Grid y Flexbox, y puntos de quiebre para dispositivos móviles, tabletas y escritorio (\hyperref[tab:RNF-11]{RNF-11}). \\
 		\hline
-		\texttt{js/db.js} & Capa de acceso a datos sobre \texttt{localStorage}: define las colecciones del dominio (usuarios, mascotas, historiales médicos, antecedentes genéticos, solicitudes, mensajes, evaluaciones de compatibilidad y seguimientos), el conjunto de datos ficticios de arranque y las operaciones CRUD genéricas. Estas mismas ocho colecciones se ampliaron con los campos necesarios para soportar \hyperref[tab:RF-10]{RF-10}, \hyperref[tab:RF-15]{RF-15}, \hyperref[tab:RF-17]{RF-17}, \hyperref[tab:RF-19]{RF-19}, \hyperref[tab:RF-21]{RF-21}, \hyperref[tab:RF-24]{RF-24}, \hyperref[tab:RF-25]{RF-25}, \hyperref[tab:RF-26]{RF-26} y \hyperref[tab:RF-27]{RF-27}, sin requerir colecciones adicionales. \\
+		\texttt{server.js} & Servidor Express sobre Node.js: sirve el frontend estático, expone la API REST (\texttt{/api/...}) y mantiene la base de datos en memoria del proceso --usuarios, mascotas, historiales médicos, antecedentes genéticos, solicitudes, mensajes, evaluaciones de compatibilidad, seguimientos post-adopción y encuentros de socialización--, inicializada con el conjunto de datos ficticios de arranque y con las contraseñas de usuario almacenadas mediante hash \texttt{bcrypt}. \\
 		\hline
-		\texttt{js/auth.js} & Gestión de la sesión activa mediante selección de rol, sin autenticación por contraseña, simulando de forma declarada el resultado de \hyperref[tab:RF-12]{RF-12}. \\
+		\texttt{package.json} & Declaración de dependencias (\texttt{express}, \texttt{bcryptjs}) y del script \texttt{start} para el despliegue local. \\
 		\hline
-		\texttt{js/utils.js} & Funciones auxiliares compartidas entre pantallas: construcción de la barra superior según el rol, insignias de estado y notificaciones emergentes. \\
+		\texttt{js/db.js} & Cliente de la API REST (basado en \texttt{fetch}) que expone al resto del frontend la misma interfaz de operaciones \texttt{all}, \texttt{get}, \texttt{insert}, \texttt{update} y \texttt{remove} sobre las colecciones del dominio, delegando la persistencia real en \texttt{server.js}. \\
+		\hline
+		\texttt{js/auth.js} & Autenticación contra la API: inicio de sesión, registro, recuperación y cambio de contraseña, cubriendo de forma real la verificación de credenciales de \hyperref[tab:RF-12]{RF-12}. \\
+		\hline
+		\texttt{js/utils.js} & Funciones auxiliares compartidas entre pantallas: construcción de la barra superior según el rol, insignias de estado, notificaciones emergentes, validación en vivo de la política de contraseñas y alternancia de visibilidad de los campos de contraseña. \\
 	\end{longtable}
 	
-	Al primer arranque de la aplicación, la capa de datos detecta la ausencia de
-	información en el \texttt{localStorage} y crea automáticamente un conjunto
-	de datos ficticios de demostración: cuatro usuarios (un propietario, un
-	adoptante, un interesado en cruza y una veterinaria) y cuatro mascotas
-	(Firulais, Michi, Toby y Luna) con historiales médicos, antecedentes
-	genéticos y una solicitud de adopción en curso, todos inspirados en los
-	mockups de referencia presentados en la
+	Al arrancar el servidor, la base de datos en memoria se inicializa
+	automáticamente con un conjunto de datos ficticios de demostración: cuatro
+	usuarios (un propietario, un adoptante, un interesado en cruza y una
+	veterinaria) y cuatro mascotas (Firulais, Michi, Toby y Luna) con
+	historiales médicos, antecedentes genéticos y una solicitud de adopción en
+	curso, todos inspirados en los mockups de referencia presentados en la
 	Sección~\ref{sec:mockups}. La pantalla de inicio de sesión incluye
 	además un enlace de \enquote{Restablecer datos de ejemplo}, que permite
-	reiniciar el estado de la demostración en cualquier momento sin intervención
-	manual sobre el almacenamiento del navegador.
+	reiniciar el estado de la demostración en cualquier momento sin necesidad
+	de reiniciar el servidor. Al ser una base de datos en memoria, los datos
+	también se reinician al conjunto semilla cada vez que el proceso de Node
+	se reinicia, y se comparten entre todas las sesiones conectadas mientras
+	el servidor permanece activo.
 	
-	El despliegue local del MVP no requiere instalación de dependencias, gestor
-	de paquetes ni contenedores, dado que se trata de una aplicación estática
-	sin backend. El repositorio documenta tres formas equivalentes de
-	ejecutarlo: levantar un servidor HTTP simple con Python
-	(\texttt{python -m http.server 8000}) o con Node.js (\texttt{npx serve .})
-	y abrir la dirección local resultante en el navegador, o bien abrir
-	directamente el archivo \texttt{index.html} mediante doble clic. Esta
-	última opción es funcional en la mayoría de navegadores modernos, pero el
-	modo \texttt{file://} impone restricciones sobre el \texttt{localStorage} en
-	algunos de ellos, por lo que se recomienda cualquiera de las dos primeras
-	para obtener un comportamiento idéntico en todos los navegadores.
+	El despliegue local del MVP requiere \href{https://nodejs.org/}{Node.js}
+	(v18 o superior recomendado) y se levanta con un solo comando, sin
+	necesidad de Docker ni de configurar una base de datos externa:
+	\texttt{npm install} seguido de \texttt{npm start}. Luego se abre
+	\texttt{http://localhost:3000} en el navegador; el servidor Express sirve
+	tanto el frontend como la API, por lo que no hace falta levantar ningún
+	servicio adicional por separado. El puerto puede modificarse de forma
+	opcional mediante la variable de entorno \texttt{PORT} (por defecto
+	\texttt{3000}).
 	
 	\subsection{Evidencia de funcionamiento}
 	\label{sec:mvp-evidencia}
@@ -5518,10 +5534,11 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		\caption{Pantalla de inicio de sesión del MVP (\texttt{index.html}). Se
 			presentan las cuatro cuentas de demostración correspondientes a los roles
 			del sistema --- Ana Adoptante, Carlos Zambrano (propietario), Dra. Melissa
-			Vera (veterinaria) y Jorge Intriago (interesado en cruza) --- junto con la
-			declaración explícita de que no se emplean contraseñas reales, que
-			materializa la forma simulada de RF-12, y el enlace de restablecimiento
-			de los datos de ejemplo.}
+			Vera (veterinaria) y Jorge Intriago (interesado en cruza) ---, cuyo acceso
+			se valida contra la API con contraseñas reales almacenadas mediante hash
+			\texttt{bcrypt}, junto con el enlace de restablecimiento de los datos de
+			ejemplo. La verificación de identidad de \hyperref[tab:RF-12]{RF-12} permanece simulada en
+			cuanto no valida un documento oficial del usuario.}
 		\label{fig:mvp-login}
 	\end{figure}
 	
@@ -5772,8 +5789,10 @@ durante el desarrollo del Producto Mínimo Viable (Sección~\ref{sec:mvp}).
 		adicional (\texttt{Clave Interna}), de uso exclusivo del equipo,
 		conserva la clave que vincula cada identificador anónimo con el
 		requisito real y la salida del detector.
-		\item \textbf{Plantilla de consentimiento para evaluadores expertos}
-		(\texttt{consentimiento\_evaluador\_experto.docx}): adapta el formato
+		\item \textbf{Consentimientos firmados por las personas evaluadoras
+		expertas} (\texttt{Consentimiento\_EXP-01\_Experto.png},
+		\texttt{Consentimiento\_EXP-02\_Experto.png} y
+		\texttt{Consentimiento\_EXP-03\_Experto.png}): adaptan el formato
 		de consentimiento utilizado para las entrevistas de campo, ajustado al
 		rol de evaluador experto e incorporando la autorización explícita
 		para el uso de datos anonimizados en publicaciones revisadas por
@@ -6236,7 +6255,7 @@ transcrito manualmente para este documento.
 			\hline
 			Semana 13 (27 jul.--02 ago.) & ERS completo con validación y trazabilidad: documento de especificación de requisitos completo, validado y con trazabilidad total evidencia--requisito--caso de uso, priorización Kano/WSJF, MVP y protocolo del componente empírico registrado en el OSF. & Completado \\
 			\hline
-			Semanas 14--16 (03--23 ago.) & Ejecución del componente empírico, desarrollo del MVP (ampliado a 26 de 27 RF cubiertos), segunda ronda de \emph{walkthrough} con PROP-12 y VET-07 (EV-23, EV-24), revisión integral del documento. & Completado \\
+			Semanas 14--16 (03--23 ago.) & Ejecución del componente empírico, desarrollo del MVP (27 de 27 RF cubiertos), segunda ronda de \emph{walkthrough} con PROP-12 y VET-07 (EV-23, EV-24), revisión integral del documento. & Completado \\
 			\hline
 			Semana 17 (24--30 ago.) & Corrección de calidad de los requisitos funcionales conforme a ISO/IEC/IEEE 29148:2018, incorporación de \hyperref[tab:RF-26]{RF-26} y \hyperref[tab:RF-27]{RF-27} a partir de la nueva evidencia de campo, actualización de la matriz de trazabilidad extendida (61 filas, incluidos los 9 requisitos legales) y cierre del documento ERS/SRS. & Completado \\
 			\hline
@@ -8084,24 +8103,24 @@ del volumen \texttt{.7z} los contiene.
 			\endhead
 			\bottomrule
 			\endlastfoot
-			EV-01 & PROP-01 & Propietario de mascota & 17/05/2026 & \texttt{2026-05-17\_PropietarioMascota\_PROP-01\_TranscripcionEntrevista.txt} \\
-			EV-02 & PROP-02 & Propietaria de mascota & 17/05/2026 & \texttt{2026-05-17\_PropietarioMascota\_PROP-02\_TranscripcionEntrevista.txt} \\
-			EV-03 & VET-01 & Médica veterinaria & 17/05/2026 & \texttt{2026-05-17\_Veterinaria\_VET-01\_TranscripcionEntrevista.txt} \\
-			EV-04 & VET-02 & Veterinario & 17/05/2026 & \texttt{2026-05-17\_Veterinario\_VET-02\_TranscripcionEntrevista.txt} \\
-			EV-05 & VET-03 & Médico veterinario & 29/05/2026 & \texttt{2026-05-29\_Veterinario\_VET-03\_TranscripcionEntrevista.txt} \\
-			EV-06 & PROP-03 & Propietaria de mascota & 14/06/2026 & \texttt{2026-06-14\_PropietarioMascota\_PROP-03\_TranscripcionEntrevista.txt} \\
-			EV-09 & PROP-04 & Propietario de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-04\_TranscripcionEntrevista.txt} \\
-			EV-10 & PROP-05 & Propietario de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-05\_TranscripcionEntrevista.txt} \\
-			EV-11 & PROP-06 & Propietaria de mascota & 24/07/2026 & \texttt{2026-07-24\_PropietarioMascota\_PROP-06\_TranscripcionEntrevista.txt} \\
-			EV-12 & PROP-07 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-07\_TranscripcionEntrevista.txt} \\
-			EV-13 & PROP-08 & Propietario de mascota & 23/07/2026 & \texttt{2026-07-23\_PropietarioMascota\_PROP-08\_TranscripcionEntrevista.txt} \\
-			EV-14 & PROP-09 & Propietario de mascota & 25/07/2026 & \texttt{2026-07-25\_PropietarioMascota\_PROP-09\_TranscripcionEntrevista.txt} \\
-			EV-15 & VET-04 & Veterinaria & 27/07/2026 & \texttt{2026-07-27\_Veterinaria\_VET-04\_TranscripcionEntrevista.txt} \\
-			EV-16 & VET-05 & Veterinario & 25/07/2026 & \texttt{2026-07-25\_Veterinario\_VET-05\_TranscripcionEntrevista.txt} \\
-			EV-17 & PROP-10 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-10\_TranscripcionEntrevista.txt} \\
-			EV-18 & PROP-11 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-11\_TranscripcionEntrevista.txt} \\
-		EV-23 & PROP-12 & Propietaria de mascota (usuaria no técnica) & 14/08/2026 & \texttt{2026-08-14\_PropietarioMascota\_PROP-12\_TranscripcionEntrevista.docx} \\
-		EV-24 & VET-07 & Veterinaria (usuaria técnica) & 13/08/2026 & \texttt{2026-08-13\_Veterinario\_VET-07\_TranscripcionEntrevista.txt} \\
+			EV-01 & PROP-01 & Propietario de mascota & 17/05/2026 & \texttt{2026-05-17\_PropietarioMascota\_PROP-01\_TranscripcionEntrevista.md} \\
+			EV-02 & PROP-02 & Propietaria de mascota & 17/05/2026 & \texttt{2026-05-17\_PropietarioMascota\_PROP-02\_TranscripcionEntrevista.md} \\
+			EV-03 & VET-01 & Médica veterinaria & 17/05/2026 & \texttt{2026-05-17\_Veterinaria\_VET-01\_TranscripcionEntrevista.md} \\
+			EV-04 & VET-02 & Veterinario & 17/05/2026 & \texttt{2026-05-17\_Veterinario\_VET-02\_TranscripcionEntrevista.md} \\
+			EV-05 & VET-03 & Médico veterinario & 29/05/2026 & \texttt{2026-05-29\_Veterinario\_VET-03\_TranscripcionEntrevista.md} \\
+			EV-06 & PROP-03 & Propietaria de mascota & 14/06/2026 & \texttt{2026-06-14\_PropietarioMascota\_PROP-03\_TranscripcionEntrevista.md} \\
+			EV-09 & PROP-04 & Propietario de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-04\_TranscripcionEntrevista.md} \\
+			EV-10 & PROP-05 & Propietario de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-05\_TranscripcionEntrevista.md} \\
+			EV-11 & PROP-06 & Propietaria de mascota & 24/07/2026 & \texttt{2026-07-24\_PropietarioMascota\_PROP-06\_TranscripcionEntrevista.md} \\
+			EV-12 & PROP-07 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-07\_TranscripcionEntrevista.md} \\
+			EV-13 & PROP-08 & Propietario de mascota & 23/07/2026 & \texttt{2026-07-23\_PropietarioMascota\_PROP-08\_TranscripcionEntrevista.md} \\
+			EV-14 & PROP-09 & Propietario de mascota & 25/07/2026 & \texttt{2026-07-25\_PropietarioMascota\_PROP-09\_TranscripcionEntrevista.md} \\
+			EV-15 & VET-04 & Veterinaria & 27/07/2026 & \texttt{2026-07-27\_Veterinaria\_VET-04\_TranscripcionEntrevista.md} \\
+			EV-16 & VET-05 & Veterinario & 25/07/2026 & \texttt{2026-07-25\_Veterinario\_VET-05\_TranscripcionEntrevista.md} \\
+			EV-17 & PROP-10 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-10\_TranscripcionEntrevista.md} \\
+			EV-18 & PROP-11 & Propietaria de mascota & 26/07/2026 & \texttt{2026-07-26\_PropietarioMascota\_PROP-11\_TranscripcionEntrevista.md} \\
+		EV-23 & PROP-12 & Propietaria de mascota (usuaria no técnica) & 14/08/2026 & \texttt{2026-08-14\_PropietarioMascota\_PROP-12\_TranscripcionEntrevista.md} \\
+		EV-24 & VET-07 & Veterinaria (usuaria técnica) & 13/08/2026 & \texttt{2026-08-13\_Veterinario\_VET-07\_TranscripcionEntrevista.md} \\
 		\end{longtable}
 	}
 	
@@ -8333,7 +8352,7 @@ del volumen \texttt{.7z} los contiene.
 			\hyperref[tab:RNF-07]{RNF-07} & Precisión en validación de imágenes & RNF & Should & --- & --- & Mejora la calidad del contenido, pero \hyperref[tab:RF-17]{RF-17} puede operar con una tasa de error inicial mayor. \\ \midrule
 			\hyperref[tab:RNF-08]{RNF-08} & Actualización de la información registrada & RNF & Should & --- & --- & Mejora la confianza del usuario, no bloquea el flujo principal. \\ \midrule
 			\hyperref[tab:RNF-09]{RNF-09} & Interoperabilidad de notificaciones & RNF & Should & --- & --- & Aporta valor (recordatorios por WhatsApp), pero el sistema opera sin ella mediante notificación interna. \\ \midrule
-			\hyperref[tab:RNF-10]{RNF-10} & Facilidad de mantenimiento del código & RNF & Should & --- & --- & Importante para sostenibilidad técnica, pero no bloquea la operación funcional del MVP. \\ \midrule
+			\hyperref[tab:RNF-10]{RNF-10} & Facilidad de mantenimiento del código & RNF & Should & --- & --- & Importante para sostenibilidad técnica, pero no bloquea la operación funcional del sistema. \\ \midrule
 			\hyperref[tab:RNF-11]{RNF-11} & Portabilidad entre navegadores & RNF & Should & --- & --- & Necesaria para alcance de usuarios, pero el sistema puede operar inicialmente en un navegador principal. \\ \midrule
 			\hyperref[tab:RNF-12]{RNF-12} & Escalabilidad ante crecimiento de usuarios & RNF & Could & --- & --- & Deseable a mediano plazo; no crítica mientras la base de usuarios sea reducida. \\ \midrule
 			\hyperref[tab:RNF-13]{RNF-13} & Explicabilidad de compatibilidad para cruza & RNF & Must & --- & --- & Exigido por el derecho legal a explicación (\hyperref[rl:06]{RL-06}) sobre decisiones automatizadas del \hyperref[tab:RF-06]{RF-06}. \\ \midrule
@@ -8563,6 +8582,7 @@ transversales lo presentan.
 		MundiPets-PFC-IngReq/
 		|-- .gitattributes
 		|-- .gitignore
+		|-- .gitmodules                    % declara el submodulo 05_MVP/codigo
 		|-- CHANGELOG.md
 		|-- checksums.sha256
 		|-- CITATION.cff
@@ -8574,40 +8594,53 @@ transversales lo presentan.
 		|   |-- ERS_SRS_2B_v2.0.pdf        % compilado de la entrega
 		|   |-- ERS_SRS_2B_v2.0.tex        % documento maestro
 		|   |-- referencias.bib            % fuentes primarias
-		|   `-- figuras/                   % diagramas i*, UML y mockups
+		|   |-- (archivos auxiliares de la compilacion LaTeX:
+		|   |    .aux, .bbl, .bcf, .blg, .lof, .log, .lol, .lot,
+		|   |    .out, .run.xml, .synctex.gz, .toc)
+		|   `-- figuras/                   % diagramas i*, UML, mockups (MU-01
+		|                                   % a MU-08) y capturas de pantalla
+		|                                   % del MVP (MVP-01 a MVP-04)
 		|
 		|-- 02_Evidencias/
 		|   |-- 00_Restringido/            % [R] cifrado, zona restringida
 		|   |   |-- fichas_tecnicas.csv
 		|   |   |-- README_evidencias_restringidas.md
 		|   |   `-- evidencias_restringidas/
-		|   |       `-- evidencias_restringidas.7z.001 ... .0NN
+		|   |       `-- evidencias_restringidas.7z.001 ... .275
 		|   |-- Codificacion_Tematica/     % B.8
 		|   |-- Consentimientos/           % B.6, copias enmascaradas [P]
+		|   |                              % (18 archivos, uno por participante)
 		|   |-- Cuestionario/
-		|   |   |-- Fotos_Aplicacion/
-		|   |   `-- Respuestas/
-		|   |-- Documentos_Organizacion/
-		|   |-- Fotos_Entorno/             % B.5, observacion OBS-01
+		|   |   |-- Fotos_Aplicacion/      % evidencia de aplicacion (6 fotos)
+		|   |   `-- Respuestas/            % 61 respuestas en PDF + resumen .xlsx
+		|   |-- Documentos_Organizacion/   % 5 documentos clinicos de referencia
+		|   |-- Fotos_Entorno/             % B.5, observacion OBS-01 (20 archivos)
 		|   |-- Member_Checking/           % B.9, acta de miembro-verificacion
 		|   |-- Transcripciones/           % transcripciones anonimizadas
-		|   `-- Validacion_Walkthrough/    % B.7, actas EV-19 a EV-24
+		|   |                              % (17 archivos, uno por entrevista)
+		|   `-- Validacion_Walkthrough/    % B.7, actas EV-19 a EV-24 (6 archivos)
 		|
 		|-- 03_Modelado/
-		|   |-- Diagramas_UML/             % Casos de Uso, Componentes,
-		|   |                              % Contexto, Dependencia y Razon
-		|   |                              % Estrategica, Despliegue,
-		|   |                              % Actividades, Clases, Estados,
-		|   |                              % Secuencia (.png/.svg/.vpp)
+		|   |-- Diagramas_UML/             % una subcarpeta por tipo de diagrama
+		|   |                              % (Casos de Uso, Componentes, Contexto,
+		|   |                              % Dependencia y Razon Estrategica,
+		|   |                              % Despliegue, Actividades CU-01 a
+		|   |                              % CU-13, Clases, Maquinas de Estado,
+		|   |                              % Secuencia CU-01 a CU-13), cada una
+		|   |                              % con sus archivos .png/.svg/.vpp y,
+		|   |                              % para los diagramas i*, tambien
+		|   |                              % .pdf/.drawio
 		|   `-- Mockups/                   % \hyperref[fig:mu01]{MU-01} a \hyperref[fig:mu08]{MU-08}
 		|
 		|-- 04_Trazabilidad/
 		|   |-- matriz_trazabilidad.csv
-		|   `-- priorizacion_moscow_kano.csv
+		|   |-- priorizacion_moscow_kano.csv
+		|   `-- sincronizacion_tablero.csv % exportacion del tablero de gestion
 		|
 		|-- 05_MVP/
 		|   |-- README.md                  % instrucciones de despliegue
-		|   `-- video_demo.mp4             % evidencia de funcionamiento
+		|   |-- video_demo.mp4             % evidencia de funcionamiento
+		|   `-- codigo/                    % submodulo Git del MVP_MundiPets
 		|
 		|-- 06_Experimento/
 		|   |-- osf_registration.pdf       % registro previo aceptado en OSF
@@ -8621,22 +8654,28 @@ transversales lo presentan.
 		|   |-- datos_procesados/
 		|   |-- resultados/
 		|   |   |-- figuras/               % figura_1 a figura_4
-		|   |   `-- tablas/                % tabla_1 a tabla_7 (CSV)
+		|   |   `-- tablas/                % tabla_1 a tabla_9 (CSV)
 		|   `-- scripts_analisis/
 		|       `-- datos_entrada/
 		|
 		|-- 07_Publicacion/
-		|   |-- manuscrito_final.pdf
-		|   |-- manuscrito_final.tex
-		|   |-- referencias.bib
 		|   |-- analisis_revistas.md
+		|   |-- manuscrito_final.pdf
 		|   |-- dataset_zenodo/
-		|   |   |-- corpus_RF_MundiPets_2B.json
+		|   |   |-- README_dataset.md
 		|   |   |-- ANONYMIZATION.md
 		|   |   |-- ETHICS.md
-		|   |   `-- README_dataset.md
+		|   |   |-- corpus/                % corpus_RF_MundiPets_2B.json
+		|   |   |-- prompts_llm/
+		|   |   |-- respuestas_cuestionarios/
+		|   |   |-- scripts_analisis/      % misma estructura que 06_Experimento
+		|   |   |-- transcripciones/       % copia anonimizada para el deposito
+		|   |   `-- trazabilidad/          % matriz_trazabilidad.csv
 		|   `-- manuscrito/                % fuente LaTeX del manuscrito
-		|       `-- bst/                   % estilos bibliograficos Springer
+		|       |-- manuscrito_final.tex
+		|       |-- referencias.bib
+		|       |-- bst/                   % estilos bibliograficos Springer
+		|       `-- figuras/               % figura_1 a figura_4
 		|
 		|-- 08_Etica/
 		|   |-- A01_Protocolo_Investigacion.pdf
@@ -8665,11 +8704,8 @@ transversales lo presentan.
 		|       `-- CheckList_Categoria_B_MundiPets.pdf
 		|
 		`-- 09_Defensa/
-		    |-- presentacion.pdf
-		    |-- presentacion.pptx
-		    |-- guion.pdf
-		    |-- video_defensa.mp4
-		    `-- folleto_una_hoja.pdf
+		    |-- Presentacion.pdf
+		    `-- Presentacion.pptx
 	\end{lstlisting}
 
 	\paragraph{Nota sobre el documento A.12.}
@@ -8691,7 +8727,7 @@ transversales lo presentan.
 	fragmentado \texttt{02\_Evidencias/00\_Restringido/evidencias\_restringidas/},
 	cuya contraseña se entrega únicamente al docente responsable por el SGA.
 	
-	El archivo \texttt{07\_Publicacion/dataset\_zenodo/corpus\_RF\_MundiPets\_2B.json}
+	El archivo \texttt{07\_Publicacion/dataset\_zenodo/corpus/corpus\_RF\_MundiPets\_2B.json}
 	contiene los 27 requisitos funcionales de la Sección~\ref{sec:rf}
 	serializados con los once atributos del esquema de la plantilla
 	(identificador, nombre, descripción, actor, origen de evidencia, entradas,
@@ -8754,21 +8790,19 @@ transversales lo presentan.
 	
 	El protocolo experimental del componente empírico se distribuye además como
 	documento independiente y autocontenido en
-	\texttt{06\_Experimento/protocolo.pdf}, compilado a partir de
-	\texttt{protocolo\_experimental.tex}, cuyo contenido corresponde
-	literalmente al de la Sección~\ref{sec:empirico} de este documento. Su
-	bibliografía se gestiona en \texttt{seccion7\_referencias.bib}, subconjunto
-	de \texttt{referencias.bib} que contiene únicamente las siete entradas
-	efectivamente citadas en esa sección.
+	\texttt{06\_Experimento/protocolo.pdf}, cuyo contenido corresponde
+	literalmente al de la Sección~\ref{sec:empirico} de este documento.
 	
 	El protocolo quedó registrado de forma previa en el Open Science Framework
 	\cite{nosek2018} antes de distribuir la rúbrica de clasificación al panel
 	experto y antes de ejecutar el detector automático sobre el corpus de
 	requisitos, conforme se detalla en la Sección~\ref{sec:osf}. Los
 	instrumentos completos --- la rúbrica de clasificación experta
-	(\texttt{rubrica\_clasificacion\_experta.xlsx}) y la plantilla de
-	consentimiento para personas evaluadoras
-	(\texttt{consentimiento\_evaluador\_experto.docx}) --- se anexan al
+	(\texttt{rubrica\_clasificacion\_experta.xlsx}) y los consentimientos
+	firmados por las tres personas evaluadoras
+	(\texttt{Consentimiento\_EXP-01\_Experto.png},
+	\texttt{Consentimiento\_EXP-02\_Experto.png} y
+	\texttt{Consentimiento\_EXP-03\_Experto.png}) --- se anexan al
 	protocolo independiente y se versionan en
 	\texttt{06\_Experimento/instrumentos/}. Cualquier divergencia entre el
 	protocolo registrado en el OSF y el efectivamente ejecutado se declara y
