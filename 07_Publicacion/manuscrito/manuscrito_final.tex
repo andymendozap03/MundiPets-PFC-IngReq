@@ -16,8 +16,8 @@
 % Reference style: sn-mathphys-num (numbered).
 %
 % ### ESTADO DE ESTA VERSION ###
-% Version 1 de 5 - aporte de: Fuertes Arraes.
-% Secciones incluidas: Abstract + Introduction.
+% Version 2 de 5 - aportes de: Fuertes Arraes + Mendoza Parraga.
+% Secciones incluidas: Abstract + Introduction, Related work.
 %=====================================================================
 \documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
 
@@ -196,6 +196,115 @@
 	Section~\ref{sec:results} reports the results, Section~\ref{sec:discussion}
 	interprets them, Section~\ref{sec:threats} discusses threats to validity, and
 	Section~\ref{sec:conclusions} concludes.
+	
+	
+	%=====================================================================
+	% --- Sección a cargo de: Mendoza Párraga, A. J. (Modelador) ---
+	\section{Related work}\label{sec:related}
+	
+	This section is not a full systematic literature review; it follows the
+	abbreviated protocol of Kitchenham and Charters~\cite{kitchenham2007},
+	reporting a documented search string, explicit inclusion and exclusion criteria,
+	the number of studies retrieved and screened, and a comparative table of the
+	closest works.
+	
+	\subsection{Search strategy}\label{subsec:search}
+	
+	The search string combined three concept blocks:
+	
+	\begin{quote}\small\ttfamily
+		("requirements engineering" OR "software requirements") AND
+		("ambiguity" OR "requirements smell" OR "requirements quality") AND
+		("automatic detection" OR "rule-based" OR "natural language processing")
+	\end{quote}
+	
+	The string was executed on Scopus and Google Scholar on 2 August 2026,
+	restricted to the 2023--2026 period. Inclusion criteria: peer-reviewed
+	studies reporting empirical data on the quality, ambiguity or automated analysis
+	of natural-language requirements, published in requirements-engineering or
+	software-engineering venues. Exclusion criteria: editorials, short contributions
+	under four pages, and studies without empirical data. The search retrieved
+	689 records in Scopus and 3,670 in Google Scholar. After title and abstract
+	screening, 30 records were read in full text and 6 were retained. These were
+	combined with eight studies already identified in the project bibliography,
+	yielding the 14 entries compared in Table~\ref{tab:related}.
+	
+	\subsection{Comparison with the closest studies}\label{subsec:comparison}
+	
+	Table~\ref{tab:related} contrasts the retained studies with the present work.
+	The first eight rows correspond to studies already identified in the project
+	bibliography; the last six were retained from the search described above.
+	
+	\begin{table}[h]
+		\caption{Comparison with the closest related studies}\label{tab:related}
+		\begin{tabular}{@{}p{2.1cm}p{0.7cm}p{2.2cm}p{2.4cm}p{4.0cm}@{}}
+			\toprule
+			Reference & Year & Study type & Population & Difference with our work \\
+			\midrule
+			Montgomery et al.~\cite{montgomery2022} & 2022 & Systematic mapping &
+			Primary studies on requirements quality & Maps the field but reports no primary
+			comparison between an automated detector and expert consensus on a single
+			complete corpus. \\
+			Atoum et al.~\cite{atoum2021} & 2021 & Systematic review & Literature on
+			requirements quality assurance and validation & Identifies the lack of validated
+			automation as an open challenge; does not measure detector--expert agreement
+			empirically. \\
+			Ferrari et al.~\cite{ferrari2016} & 2016 & Empirical study & Elicitation
+			interviews & Studies ambiguity as it arises in elicitation and its link to tacit
+			knowledge; our unit of analysis is the written requirement in a closed
+			specification. \\
+			Fischbach et al.~\cite{fischbach2023} & 2023 & Tool evaluation & Conditional
+			statements in natural-language requirements & Derives acceptance tests
+			automatically; shares the rule/NLP approach but targets test generation, not
+			ambiguity classification. \\
+			Gobov~\cite{gobov2023} & 2023 & Practitioner survey & Specification and
+			modelling techniques in practice & Characterises which techniques practitioners
+			use; provides no automated quality measurement. \\
+			Said et al.~\cite{said2026} & 2026 & Model evaluation & SRS documents &
+			Classifies requirements as functional or non-functional with a learned model;
+			our detector targets ambiguity and is rule-based and fully auditable. \\
+			Cheng et al.~\cite{cheng2026} & 2026 & Systematic review & Generative AI applied
+			to requirements engineering & Surveys generative approaches; we deliberately
+			avoid large language models to keep every classification traceable to a named
+			rule. \\
+			Vogelsang and Fischbach~\cite{vogelsang2024} & 2024 & Methodological guideline &
+			LLM use for NLP tasks in RE & Proposes usage guidelines rather than reporting an
+			agreement study. \\
+			Abdeahad et al.~\cite{abdeahad2026} & 2026 & Model evaluation &
+			7,061 requirements from the Fault-Prone SRS benchmark & Achieves high accuracy
+			with a deep model, but evaluates against dataset labels rather than against a
+			blind expert panel, and the model is not auditable rule by rule. \\
+			Fantechi et al.~\cite{fantechi2023} & 2023 & Tool comparison & Three example
+			requirements documents & Closest to our design: compares a rule-based tool with
+			an LLM on ambiguity. Uses the authors themselves as the reference judgement,
+			whereas our reference is a blind panel independent of the specification team. \\
+			Talha et al.~\cite{talha2025} & 2025 & Tool evaluation & 1,553 requirements
+			across 17 domains & Targets anaphoric and coordination ambiguity with a
+			transformer; our detector targets lexical and syntactic smells and is compared
+			against human consensus rather than a labelled benchmark. \\
+			Alemneh and Berhanu~\cite{alemneh2024} & 2024 & Systematic review & Literature
+			on requirements smells and detection techniques & Catalogues detection
+			techniques; reports no primary agreement measurement on a real corpus. \\
+			Intana et al.~\cite{intana2024} & 2024 & Tool evaluation & Thai-language SRS
+			documents & The closest non-English precedent; confirms that language-specific
+			evaluation is needed but does not cover Spanish nor report inter-rater
+			agreement. \\
+			Bashir et al.~\cite{bashir2025} & 2025 & Industrial study & Three railway
+			requirements datasets & Reports the over-flagging pattern (high recall, low
+			precision) also observed in rule-based tools; uses LLMs, which we deliberately
+			avoid for auditability. \\
+			\botrule
+		\end{tabular}
+	\end{table}
+	
+	The niche of the present study is narrow and, to our knowledge, unoccupied: a
+	paired comparison between a frozen, fully documented rule-based detector and the
+	blind consensus of independent experts, over the \emph{complete} requirements
+	corpus of one real system, specified in Spanish, with the corpus, the detector
+	output and the individual expert classifications released as open data. Existing
+	work either maps the field without primary agreement data, or evaluates
+	detectors on English-language benchmark corpora that were not produced by the
+	team reporting the evaluation.
 	
 	%=====================================================================
 	\bibliography{referencias}
