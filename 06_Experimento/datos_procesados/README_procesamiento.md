@@ -7,14 +7,14 @@ procedimiento documentado y reproducible.
 
 ## Archivo: `consenso_experto_vs_detector.csv`
 
-**Origen:** `06_Experimento/datos_crudos/evaluacion_expertos.csv` (150 filas: 50 requisitos
-× 3 evaluadores) y `06_Experimento/datos_crudos/salida_detector.csv` (50 filas: una
+**Origen:** `06_Experimento/datos_crudos/evaluacion_expertos.csv` (183 filas: 61 requisitos
+× 3 evaluadores) y `06_Experimento/datos_crudos/salida_detector.csv` (61 filas: una
 clasificación directa del detector automático por requisito).
 
 **Transformación aplicada:**
-1. Para cada uno de los 50 requisitos (`ID_Anonimo`), se calculó el **consenso experto**
-   por mayoría simple entre las clasificaciones individuales de Experto 1, Experto 2 y
-   Experto 3 (`Ambiguo` / `No ambiguo`).
+1. Para cada uno de los 61 requisitos (`ID_Anonimo`), se calculó el **consenso experto**
+   por mayoría simple entre las clasificaciones individuales de los tres evaluadores
+   (`Ambiguo` / `No ambiguo`).
 2. Se registró el **nivel de acuerdo** obtenido en cada requisito (`3/3` = unanimidad,
    `2/3` = mayoría simple).
 3. Se cruzó el consenso experto contra la clasificación producida por el detector
@@ -24,7 +24,8 @@ clasificación directa del detector automático por requisito).
 
 **No se alteró, corrigió ni completó ningún valor individual** de los datos crudos
 originales — la única operación aplicada es la agregación por mayoría y el cruce
-descrito arriba.
+descrito arriba. Este archivo se genera exclusivamente por script
+(`06_Experimento/scripts_analisis/02_generar_datos_procesados.py`), no se edita a mano.
 
 ## Relación con `06_Experimento/resultados/`
 
@@ -44,5 +45,5 @@ datos_crudos/evaluacion_expertos.csv   ┐
 datos_crudos/salida_detector.csv       ┴─→  datos_procesados/consenso_experto_vs_detector.csv  ─→  resultados/tablas/tabla_1..4, 6, 7 + resultados/figuras/figura_1..4
 ```
 
-Todo el proceso es reproducible ejecutando los scripts de
-`06_Experimento/scripts_analisis/` sobre los archivos de `datos_crudos/`.
+Todo el proceso es reproducible ejecutando `06_Experimento/scripts_analisis/run_all.py`
+sobre los archivos de `datos_crudos/` (corpus vigente: 61 requisitos).
