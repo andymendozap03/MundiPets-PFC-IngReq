@@ -1,4 +1,4 @@
-﻿MundiPets
+MundiPets
 Proyecto Fin de Curso - Ingeniería de Requerimientos
 Universidad Técnica Estatal de Quevedo (UTEQ)
 
@@ -39,7 +39,7 @@ SOFTWARE.
 LICENCIA DE LA DOCUMENTACIÓN Y LOS DATOS
 ======================================================================
 
-Todo el contenido restante del repositorio, incluyendo:
+Todo el contenido documental y de datos del repositorio, incluyendo:
 
 - 01_ERS
 - 02_Evidencias
@@ -55,3 +55,19 @@ se distribuye bajo la licencia:
 Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 https://creativecommons.org/licenses/by/4.0/
+
+EXCLUSIÓN DE CONTENIDO RESTRINGIDO
+----------------------------------------------------------------------
+
+La licencia CC BY 4.0 NO se aplica a la carpeta:
+
+    00_Restringido/
+
+ni a ningún archivo o subdirectorio contenido en ella.
+
+El contenido de 00_Restringido/ queda expresamente excluido de cualquier
+concesión de derechos de esta licencia y mantiene su carácter restringido.
+
+En particular, si 00_Restringido/ se encuentra dentro de 02_Evidencias/,
+dicha carpeta y todo su contenido quedan igualmente excluidos de la licencia
+CC BY 4.0. El resto de 02_Evidencias/ sí queda cubierto por CC BY 4.0.
