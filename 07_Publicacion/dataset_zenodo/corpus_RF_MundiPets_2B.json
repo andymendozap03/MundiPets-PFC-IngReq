@@ -1,0 +1,694 @@
+{
+  "dataset": "MundiPets — Corpus etiquetado de Requisitos Funcionales (RF)",
+  "version": "2B_v2.0",
+  "fecha_actualizacion": "2026-08-31",
+  "fuente": "Sección 3.2 del ERS/SRS, Entrega 4 (2B), versión 4.0",
+  "licencia": "CC BY 4.0",
+  "total_rf": 27,
+  "esquema_atributos": [
+    "id",
+    "nombre",
+    "descripcion",
+    "actor",
+    "origen_evidencia",
+    "entradas",
+    "salidas",
+    "precondiciones",
+    "postcondiciones",
+    "prioridad_moscow",
+    "criterio_verificacion"
+  ],
+  "requisitos_funcionales": [
+    {
+      "id": "RF-01",
+      "nombre": "Registrar mascota",
+      "descripcion": "El sistema deberá permitir al propietario registrar una mascota ingresando su información general, incluyendo nombre, especie, raza, sexo, edad, estado reproductivo y fotografías para su identificación dentro de la plataforma.",
+      "actor": [
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-02",
+        "EV-03",
+        "EV-05",
+        "EV-06",
+        "EV-07",
+        "EV-08"
+      ],
+      "entradas": [
+        "Nombre",
+        "especie",
+        "raza",
+        "sexo",
+        "edad",
+        "estado reproductivo",
+        "fotografías",
+        "descripción."
+      ],
+      "salidas": "Perfil de mascota registrado correctamente.",
+      "precondiciones": "El propietario debe estar autenticado en el sistema.",
+      "postcondiciones": "La mascota queda almacenada y disponible para futuras consultas, adopciones o procesos de cruza.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Registrar una mascota con datos válidos y comprobar que el perfil queda almacenado y puede consultarse posteriormente."
+    },
+    {
+      "id": "RF-02",
+      "nombre": "Gestionar historial médico de la mascota",
+      "descripcion": "El sistema deberá permitir registrar el historial médico de una mascota, incluyendo desparasitaciones, enfermedades, alergias, cirugías, tratamientos y controles veterinarios.",
+      "actor": [
+        "Propietario de mascota",
+        "Veterinaria"
+      ],
+      "origen_evidencia": [
+        "EV-01",
+        "EV-02",
+        "EV-03",
+        "EV-04",
+        "EV-05",
+        "EV-06",
+        "EV-07",
+        "EV-15",
+        "EV-16"
+      ],
+      "entradas": [
+        "Desparasitaciones",
+        "enfermedades",
+        "alergias",
+        "cirugías",
+        "tratamientos",
+        "controles médicos",
+        "observaciones."
+      ],
+      "salidas": "Historial médico actualizado.",
+      "precondiciones": "La mascota debe estar registrada en el sistema.",
+      "postcondiciones": "El historial médico queda actualizado y disponible para usuarios autorizados.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Registrar nuevos antecedentes médicos y verificar que aparecen correctamente dentro del historial clínico de la mascota."
+    },
+    {
+      "id": "RF-03",
+      "nombre": "Consultar perfil completo de una mascota",
+      "descripcion": "El sistema deberá permitir visualizar el perfil completo de una mascota mostrando su información general, historial médico autorizado, fotografías, comportamiento, vacunas, edad, raza para procesos de adopción o cruza.",
+      "actor": [
+        "Propietario de mascota",
+        "Adoptante",
+        "Interesado en cruza"
+      ],
+      "origen_evidencia": [
+        "EV-02",
+        "EV-04",
+        "EV-05",
+        "EV-06",
+        "EV-07",
+        "EV-14"
+      ],
+      "entradas": [
+        "Identificador de la mascota."
+      ],
+      "salidas": "Perfil completo de la mascota.",
+      "precondiciones": "La mascota debe existir y el usuario debe tener permisos para visualizar la información correspondiente.",
+      "postcondiciones": "El usuario obtiene la información necesaria para tomar decisiones sobre adopción o cruza.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Consultar una mascota registrada y comprobar que se muestra toda la información autorizada."
+    },
+    {
+      "id": "RF-04",
+      "nombre": "Buscar y filtrar mascotas",
+      "descripcion": "El sistema deberá permitir buscar mascotas aplicando filtros como especie, raza, edad, ubicación, estado de salud, tamaño, temperamento y disponibilidad para adopción o cruza.",
+      "actor": [
+        "Adoptante",
+        "Interesado en cruza"
+      ],
+      "origen_evidencia": [
+        "EV-07",
+        "EV-08"
+      ],
+      "entradas": [
+        "Criterios de búsqueda y filtros seleccionados."
+      ],
+      "salidas": "Lista de mascotas que cumplen los criterios establecidos.",
+      "precondiciones": "Deben existir mascotas registradas en la plataforma.",
+      "postcondiciones": "Se muestran únicamente las mascotas que cumplen los filtros aplicados.",
+      "prioridad_moscow": "Should",
+      "criterio_verificacion": "Aplicar diferentes filtros, incluidos tamaño y temperamento, y comprobar que los resultados corresponden con los criterios seleccionados."
+    },
+    {
+      "id": "RF-05",
+      "nombre": "Gestionar solicitudes de adopción",
+      "descripcion": "El sistema deberá permitir que un usuario interesado envíe una solicitud de adopción, incluyendo su fotografía de perfil, y que el propietario la acepte o rechace en una primera revisión, con base en la información del solicitante.",
+      "actor": [
+        "Adoptante",
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-01",
+        "EV-02",
+        "EV-03",
+        "EV-05",
+        "EV-06",
+        "EV-08"
+      ],
+      "entradas": [
+        "Solicitud de adopción",
+        "información y fotografía del solicitante."
+      ],
+      "salidas": "Solicitud registrada y estado de aceptación o rechazo de la revisión inicial.",
+      "precondiciones": "La mascota debe estar disponible para adopción.",
+      "postcondiciones": "La solicitud queda registrada como aceptada o rechazada en su revisión inicial; si es aceptada, continúa su ciclo de vida conforme al flujo por etapas de RF-18.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Registrar una solicitud y comprobar que el propietario puede visualizar el perfil del solicitante y gestionarla correctamente."
+    },
+    {
+      "id": "RF-06",
+      "nombre": "Evaluar compatibilidad entre mascotas para cruza",
+      "descripcion": "El sistema deberá evaluar la compatibilidad entre dos mascotas registradas para procesos de cruza, considerando su raza, edad, estado de salud, antecedentes genéticos, parentesco, comportamiento e historial médico.",
+      "actor": [
+        "Propietario de mascota",
+        "Interesado en cruza"
+      ],
+      "origen_evidencia": [
+        "EV-01",
+        "EV-02",
+        "EV-03",
+        "EV-04",
+        "EV-05",
+        "EV-06",
+        "EV-07",
+        "EV-08",
+        "EV-11",
+        "EV-13",
+        "EV-14",
+        "EV-15",
+        "EV-16"
+      ],
+      "entradas": [
+        "Selección de dos mascotas registradas."
+      ],
+      "salidas": "Veredicto de compatibilidad en tres niveles discretos --- compatible, compatible con reservas o no recomendado---, acompañado de la explicación exigida por RNF-13 y de una advertencia de que el resultado es orientativo y no sustituye la evaluación de un veterinario.",
+      "precondiciones": "Ambas mascotas deben encontrarse registradas.",
+      "postcondiciones": "El usuario dispone de un veredicto clasificado y de su explicación para decidir si continúa con el proceso de cruza.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Seleccionar dos mascotas y comprobar que el sistema presenta uno de los tres niveles de veredicto junto con la explicación y la advertencia orientativa."
+    },
+    {
+      "id": "RF-07",
+      "nombre": "Sistema de mensajería entre usuarios",
+      "descripcion": "El sistema deberá permitir la comunicación entre propietarios e interesados mediante mensajes para coordinar procesos de adopción y cruza, incluyendo la posibilidad de que el usuario reporte un mensaje o interacción como spam, lenguaje ofensivo o intento de acuerdo externo indebido, registrando el motivo del reporte asociado a la conversación.",
+      "actor": [
+        "Propietario de mascota",
+        "Adoptante",
+        "Interesado en cruza"
+      ],
+      "origen_evidencia": [
+        "EV-02",
+        "EV-07",
+        "EV-08"
+      ],
+      "entradas": [
+        "Mensaje enviado por un usuario; motivo de reporte manual seleccionado por el receptor."
+      ],
+      "salidas": "Conversación registrada entre los usuarios; reporte manual registrado y asociado a la conversación cuando corresponde.",
+      "precondiciones": "Ambos usuarios deben encontrarse registrados.",
+      "postcondiciones": "El mensaje queda almacenado y disponible para ambos participantes; si se reporta, el motivo queda vinculado a la conversación para su revisión.",
+      "prioridad_moscow": "Could",
+      "criterio_verificacion": "Enviar un mensaje entre dos usuarios y verificar que ambos puedan visualizarlo; reportar un mensaje y comprobar que el motivo quede asociado a la conversación."
+    },
+    {
+      "id": "RF-08",
+      "nombre": "Gestionar solicitudes de cruza",
+      "descripcion": "El sistema deberá permitir que los propietarios soliciten procesos de cruza entre mascotas y que el propietario de la otra mascota pueda aceptar o rechazar la solicitud con base en la información disponible.",
+      "actor": [
+        "Propietario de mascota",
+        "Interesado en cruza"
+      ],
+      "origen_evidencia": [
+        "EV-01",
+        "EV-02",
+        "EV-03",
+        "EV-05",
+        "EV-06",
+        "EV-07"
+      ],
+      "entradas": [
+        "Solicitud de cruza",
+        "identificación de ambas mascotas."
+      ],
+      "salidas": "Solicitud registrada con estado pendiente, aceptada o rechazada.",
+      "precondiciones": "Ambas mascotas deben estar registradas y disponibles para cruza.",
+      "postcondiciones": "La solicitud queda almacenada y actualizada con el estado correspondiente.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Registrar una solicitud de cruza y verificar que el propietario receptor pueda aceptarla o rechazarla correctamente."
+    },
+    {
+      "id": "RF-09",
+      "nombre": "Validar la información médica de una mascota",
+      "descripcion": "El sistema deberá permitir que una veterinaria autorizada valide la información médica registrada de una mascota, indicando que los datos han sido verificados por un profesional.",
+      "actor": [
+        "Veterinaria"
+      ],
+      "origen_evidencia": [
+        "EV-03",
+        "EV-05",
+        "EV-07",
+        "EV-15",
+        "EV-16"
+      ],
+      "entradas": [
+        "Historial médico",
+        "carnet de vacunación",
+        "controles veterinarios y documentos clínicos."
+      ],
+      "salidas": "Información médica validada con su respectiva identificación de verificación.",
+      "precondiciones": "La mascota debe encontrarse registrada y disponer de información médica cargada en el sistema.",
+      "postcondiciones": "La información médica queda marcada como validada por una veterinaria autorizada.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Validar el historial médico de una mascota y comprobar que el sistema muestre el estado de información validada."
+    },
+    {
+      "id": "RF-10",
+      "nombre": "Gestionar recordatorios de controles preventivos",
+      "descripcion": "El sistema deberá entregar al propietario, con una semana y un día de anticipación, un recordatorio sobre próximas vacunas, desparasitaciones y controles veterinarios de la mascota, utilizando WhatsApp como canal principal y el canal de notificación in-app como respaldo automático cuando el proveedor externo no esté disponible",
+      "actor": [
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-02",
+        "EV-04",
+        "EV-06",
+        "EV-11"
+      ],
+      "entradas": [
+        "Fechas de vacunas",
+        "controles veterinarios y desparasitaciones; estado de disponibilidad del proveedor externo de mensajería."
+      ],
+      "salidas": "Notificaciones o recordatorios generados por el sistema en los dos momentos definidos, por WhatsApp o, en su ausencia, por el canal in-app de respaldo.",
+      "precondiciones": "Deben existir fechas registradas para los controles preventivos de la mascota.",
+      "postcondiciones": "El propietario recibe el recordatorio correspondiente antes de la fecha programada, por al menos uno de los dos canales disponibles.",
+      "prioridad_moscow": "Should",
+      "criterio_verificacion": "Registrar una fecha de vacunación próxima y verificar que el sistema genere el recordatorio una semana y un día antes; simular la indisponibilidad de WhatsApp y comprobar que el recordatorio se entregue igualmente por el canal in-app."
+    },
+    {
+      "id": "RF-11",
+      "nombre": "Administrar la privacidad de la información",
+      "descripcion": "El sistema deberá permitir que el propietario determine qué información de su mascota y de su perfil podrá ser visualizada por otros usuarios, protegiendo los datos considerados sensibles (ubicación, datos de contacto y afecciones específicas).",
+      "actor": [
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-02",
+        "EV-05",
+        "EV-06",
+        "EV-07",
+        "EV-08",
+        "EV-09",
+        "EV-10",
+        "EV-14",
+        "EV-18"
+      ],
+      "entradas": [
+        "Configuración de privacidad seleccionada por el propietario."
+      ],
+      "salidas": "Permisos de visualización actualizados.",
+      "precondiciones": "El propietario debe encontrarse autenticado en el sistema.",
+      "postcondiciones": "La información se muestra únicamente a los usuarios autorizados según la configuración establecida.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Modificar la configuración de privacidad y comprobar que la información restringida no sea visible para usuarios no autorizados."
+    },
+    {
+      "id": "RF-12",
+      "nombre": "Verificar la identidad de los usuarios",
+      "descripcion": "El sistema deberá verificar la identidad de los usuarios mediante la carga y validación de un documento de identidad oficial y vigente, antes de habilitar su participación en procesos de adopción o cruza.",
+      "actor": [
+        "Propietario de mascota",
+        "Adoptante",
+        "Interesado en cruza"
+      ],
+      "origen_evidencia": [
+        "EV-01",
+        "EV-03",
+        "EV-07",
+        "EV-08",
+        "EV-09"
+      ],
+      "entradas": [
+        "Documento de identidad oficial (imagen o escaneo)",
+        "datos personales asociados."
+      ],
+      "salidas": "Usuario verificado dentro de la plataforma.",
+      "precondiciones": "El usuario debe haber iniciado el proceso de registro.",
+      "postcondiciones": "El usuario obtiene el estado de identidad verificada.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Registrar un usuario cargando un documento de identidad válido y comprobar que el sistema lo marca como verificado; cargar un documento inválido o ilegible y comprobar que el sistema lo rechaza."
+    },
+    {
+      "id": "RF-13",
+      "nombre": "Registrar publicaciones de mascotas",
+      "descripcion": "El sistema deberá permitir al propietario publicar una mascota indicando si estará disponible para adopción, cruza o ambas opciones, incluyendo toda la información autorizada del perfil de la mascota.",
+      "actor": [
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-01",
+        "EV-02",
+        "EV-04",
+        "EV-06",
+        "EV-07",
+        "EV-08"
+      ],
+      "entradas": [
+        "Tipo de publicación",
+        "fotografías",
+        "descripción y disponibilidad."
+      ],
+      "salidas": "Publicación visible para otros usuarios.",
+      "precondiciones": "La mascota debe estar registrada en el sistema.",
+      "postcondiciones": "La mascota queda publicada según el tipo de proceso seleccionado.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Publicar una mascota y comprobar que aparezca correctamente en el listado de adopciones o cruzas."
+    },
+    {
+      "id": "RF-14",
+      "nombre": "Gestionar carnet de vacunación",
+      "descripcion": "El sistema deberá permitir registrar, actualizar y consultar el carnet de vacunación de cada mascota, mostrando el historial de vacunas aplicadas, fechas, próximas dosis y su estado de vigencia.",
+      "actor": [
+        "Propietario de mascota",
+        "Veterinaria"
+      ],
+      "origen_evidencia": [
+        "EV-02",
+        "EV-03",
+        "EV-05",
+        "EV-06",
+        "EV-07",
+        "EV-10",
+        "EV-16",
+        "EV-18"
+      ],
+      "entradas": [
+        "Vacuna aplicada",
+        "fecha de aplicación",
+        "fecha de próxima dosis",
+        "observaciones."
+      ],
+      "salidas": "Carnet de vacunación actualizado.",
+      "precondiciones": "La mascota debe estar registrada.",
+      "postcondiciones": "El carnet queda actualizado y disponible para consulta por usuarios autorizados.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Registrar una vacuna y comprobar que aparezca correctamente en el carnet de vacunación."
+    },
+    {
+      "id": "RF-15",
+      "nombre": "Consultar el historial de procesos de adopción y cruza",
+      "descripcion": "El sistema deberá permitir al propietario consultar el historial de solicitudes y procesos de adopción y cruza asociados a sus mascotas, incluyendo su estado y fecha de realización.",
+      "actor": [
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-01",
+        "EV-02",
+        "EV-04",
+        "EV-06"
+      ],
+      "entradas": [
+        "Identificador del propietario o de la mascota."
+      ],
+      "salidas": "Historial de solicitudes y procesos realizados.",
+      "precondiciones": "Deben existir procesos registrados asociados al propietario.",
+      "postcondiciones": "El propietario visualiza el historial actualizado de sus procesos.",
+      "prioridad_moscow": "Could",
+      "criterio_verificacion": "Consultar el historial de un propietario con procesos registrados y comprobar que la información mostrada corresponda a los registros almacenados."
+    },
+    {
+      "id": "RF-16",
+      "nombre": "Gestionar antecedentes genéticos y parentesco de la mascota",
+      "descripcion": "El sistema deberá permitir registrar y consultar los antecedentes genéticos y el grado de parentesco de una mascota, incluyendo información sobre enfermedades hereditarias y linaje para apoyar los procesos de cruza responsable y la evaluación de compatibilidad.",
+      "actor": [
+        "Propietario de mascota",
+        "Veterinaria"
+      ],
+      "origen_evidencia": [
+        "EV-01",
+        "EV-03",
+        "EV-05",
+        "EV-07",
+        "EV-14",
+        "EV-15"
+      ],
+      "entradas": [
+        "Información de linaje",
+        "antecedentes genéticos",
+        "enfermedades hereditarias",
+        "grado de parentesco y observaciones."
+      ],
+      "salidas": "Antecedentes genéticos y parentesco registrados y disponibles para consulta.",
+      "precondiciones": "La mascota debe estar registrada en el sistema.",
+      "postcondiciones": "Los antecedentes genéticos quedan asociados al perfil de la mascota y podrán ser utilizados en la evaluación de compatibilidad para cruza.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Registrar antecedentes genéticos y parentesco para una mascota y comprobar que la información quede almacenada y pueda consultarse posteriormente."
+    },
+    {
+      "id": "RF-17",
+      "nombre": "Validar imágenes",
+      "descripcion": "El sistema deberá validar que la imagen cargada corresponda visualmente a una mascota y no contenga contenido explícito, violento u ofensivo, conforme a la política de contenido de la plataforma.",
+      "actor": [
+        "Propietario de mascota",
+        "Veterinaria"
+      ],
+      "origen_evidencia": [
+        "EV-01",
+        "EV-03",
+        "EV-05",
+        "EV-07",
+        "EV-08"
+      ],
+      "entradas": [
+        "Imagen cargada por el usuario."
+      ],
+      "salidas": "Resultado de la validación (aceptada / rechazada) con el motivo específico del rechazo cuando aplique.",
+      "precondiciones": "El usuario debe encontrarse autenticado y seleccionar una imagen para cargar.",
+      "postcondiciones": "La imagen queda almacenada si supera la validación; de lo contrario, se rechaza mostrando el motivo correspondiente.",
+      "prioridad_moscow": "Should",
+      "criterio_verificacion": "Cargar imágenes válidas e inválidas y comprobar que el sistema las acepta o rechaza según corresponda."
+    },
+    {
+      "id": "RF-18",
+      "nombre": "Gestionar el flujo de solicitud de adopción por etapas",
+      "descripcion": "El sistema deberá guiar la solicitud de adopción a través de etapas secuenciales (formulario, entrevista, visita al hogar, periodo de prueba y compromiso firmado), mostrando al solicitante y al propietario el estado de cumplimiento de cada etapa.",
+      "actor": [
+        "Adoptante",
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-11",
+        "EV-16"
+      ],
+      "entradas": [
+        "Formulario de solicitud",
+        "resultado de entrevista",
+        "resultado de visita",
+        "resultado de periodo de prueba",
+        "compromiso firmado."
+      ],
+      "salidas": "Estado de la solicitud actualizado por etapa.",
+      "precondiciones": "La solicitud de adopción debe haber sido aceptada en su revisión inicial por el propietario (RF-05), y el usuario debe estar verificado (RF-12).",
+      "postcondiciones": "La solicitud queda marcada como completada, rechazada o pendiente en la etapa correspondiente.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Avanzar una solicitud a través de las cinco etapas y comprobar que el estado se actualiza correctamente en cada una."
+    },
+    {
+      "id": "RF-19",
+      "nombre": "Validar certificados veterinarios antes de habilitar la cruza",
+      "descripcion": "El sistema deberá permitir adjuntar certificados veterinarios de ambas mascotas y que una veterinaria registrada los valide antes de habilitar la opción de cruza.",
+      "actor": [
+        "Propietario de mascota",
+        "Veterinaria"
+      ],
+      "origen_evidencia": [
+        "EV-11"
+      ],
+      "entradas": [
+        "Certificado veterinario digitalizado",
+        "identificador de la mascota."
+      ],
+      "salidas": "Estado de validación del certificado y habilitación o bloqueo de la opción de cruza.",
+      "precondiciones": "Ambas mascotas deben estar registradas y contar con antecedentes genéticos (RF-16).",
+      "postcondiciones": "La opción de cruza queda habilitada solo si ambos certificados fueron validados.",
+      "prioridad_moscow": "Should",
+      "criterio_verificacion": "Adjuntar un certificado, hacerlo validar por una veterinaria y comprobar que la opción de cruza se habilita únicamente tras la validación."
+    },
+    {
+      "id": "RF-20",
+      "nombre": "Coordinar encuentros de socialización supervisados",
+      "descripcion": "El sistema deberá permitir a los propietarios coordinar encuentros presenciales entre mascotas y sus dueños en espacios públicos, con fines de socialización previa a procesos de adopción o cruza.",
+      "actor": [
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-13"
+      ],
+      "entradas": [
+        "Fecha",
+        "lugar y mascotas/propietarios invitados al encuentro."
+      ],
+      "salidas": "Encuentro programado y notificado a los participantes.",
+      "precondiciones": "Ambos propietarios deben estar registrados y verificados.",
+      "postcondiciones": "El encuentro queda registrado en el historial de interacciones de ambas mascotas.",
+      "prioridad_moscow": "Could",
+      "criterio_verificacion": "Programar un encuentro entre dos usuarios y comprobar que ambos reciben la notificación correspondiente."
+    },
+    {
+      "id": "RF-21",
+      "nombre": "Registrar el identificador de microchip de la mascota",
+      "descripcion": "El sistema deberá permitir registrar y consultar el número de microchip de identificación de una mascota como parte de su perfil.",
+      "actor": [
+        "Propietario de mascota",
+        "Veterinaria"
+      ],
+      "origen_evidencia": [
+        "EV-16"
+      ],
+      "entradas": [
+        "Número de microchip",
+        "fecha de implantación."
+      ],
+      "salidas": "Microchip asociado al perfil de la mascota.",
+      "precondiciones": "La mascota debe estar registrada.",
+      "postcondiciones": "El identificador de microchip queda disponible para consulta por usuarios autorizados.",
+      "prioridad_moscow": "Should",
+      "criterio_verificacion": "Registrar un número de microchip y comprobar que se muestra correctamente en el perfil de la mascota."
+    },
+    {
+      "id": "RF-22",
+      "nombre": "Dar seguimiento post-adopción",
+      "descripcion": "El sistema deberá permitir mantener un contacto periódico entre adoptante y propietario original tras completarse una adopción, registrando un compromiso firmado y el estado del seguimiento.",
+      "actor": [
+        "Adoptante",
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-16",
+        "EV-10"
+      ],
+      "entradas": [
+        "Compromiso de adopción firmado",
+        "mensajes o reportes periódicos de seguimiento."
+      ],
+      "salidas": "Historial de seguimiento post-adopción de la mascota.",
+      "precondiciones": "La adopción debe haberse completado (RF-18).",
+      "postcondiciones": "El seguimiento queda registrado y disponible para consulta por el propietario original.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Completar una adopción y comprobar que el sistema habilita el registro de al menos un reporte de seguimiento posterior."
+    },
+    {
+      "id": "RF-23",
+      "nombre": "Emitir alertas de riesgo sanitario o físico en interacciones y cruces",
+      "descripcion": "El sistema deberá emitir una alerta cuando se intente registrar una interacción o solicitud de cruza entre mascotas que presenten una diferencia de peso corporal registrado superior al 40 % entre ambas, o cuando alguna tenga una enfermedad contagiosa activa registrada en su historial médico.",
+      "actor": [
+        "Propietario de mascota",
+        "Interesado en cruza"
+      ],
+      "origen_evidencia": [
+        "EV-09",
+        "EV-12",
+        "EV-15",
+        "EV-18"
+      ],
+      "entradas": [
+        "Datos de peso",
+        "edad y estado de salud de ambas mascotas."
+      ],
+      "salidas": "Alerta de riesgo con el motivo detectado.",
+      "precondiciones": "Ambas mascotas deben tener su historial médico y antecedentes genéticos registrados.",
+      "postcondiciones": "La alerta queda visible antes de confirmar la interacción o solicitud.",
+      "prioridad_moscow": "Must",
+      "criterio_verificacion": "Registrar dos mascotas con diferencia de peso superior al 40 % (o con una enfermedad contagiosa activa) y comprobar que el sistema muestra la alerta correspondiente al intentar la interacción o cruza."
+    },
+    {
+      "id": "RF-24",
+      "nombre": "Registrar trazabilidad de cepa, lote y aplicador de cada vacuna",
+      "descripcion": "El sistema deberá permitir registrar, además de la fecha, la cepa o marca del biológico y el profesional que aplicó cada vacuna dentro del carnet de vacunación.",
+      "actor": [
+        "Veterinaria",
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-15",
+        "EV-16"
+      ],
+      "entradas": [
+        "Cepa/marca del biológico",
+        "nombre del aplicador",
+        "fecha de aplicación."
+      ],
+      "salidas": "Registro de vacuna con trazabilidad completa.",
+      "precondiciones": "La mascota debe estar registrada y contar con carnet de vacunación (RF-14).",
+      "postcondiciones": "El registro de trazabilidad queda disponible para consulta por usuarios autorizados.",
+      "prioridad_moscow": "Should",
+      "criterio_verificacion": "Registrar una vacuna con cepa y aplicador, y comprobar que ambos datos aparecen en el carnet."
+    },
+    {
+      "id": "RF-25",
+      "nombre": "Publicar aviso de mascota extraviada",
+      "descripcion": "El sistema deberá permitir al propietario publicar un aviso público de mascota extraviada, incluyendo fotografías, identificador de microchip y datos de contacto para facilitar su localización.",
+      "actor": [
+        "Propietario de mascota"
+      ],
+      "origen_evidencia": [
+        "EV-12",
+        "EV-16"
+      ],
+      "entradas": [
+        "Fotografías",
+        "última ubicación conocida",
+        "número de microchip",
+        "datos de contacto."
+      ],
+      "salidas": "Aviso de mascota extraviada visible públicamente.",
+      "precondiciones": "La mascota debe estar registrada en el sistema.",
+      "postcondiciones": "El aviso queda visible hasta que el propietario lo marque como resuelto.",
+      "prioridad_moscow": "Could",
+      "criterio_verificacion": "Publicar un aviso de mascota extraviada y comprobar que aparece visible para otros usuarios con los datos de contacto."
+    },
+    {
+      "id": "RF-26",
+      "nombre": "Habilitar validación médica por segunda opinión veterinaria",
+      "descripcion": "El sistema deberá permitir que una segunda veterinaria autorizada revise y confirme o cuestione la validación de la información médica de una mascota realizada previamente por otra veterinaria, dejando constancia de ambas validaciones dentro del historial médico.",
+      "actor": [
+        "Veterinaria"
+      ],
+      "origen_evidencia": [
+        "EV-24"
+      ],
+      "entradas": [
+        "Solicitud de segunda validación",
+        "identificador de la mascota",
+        "observaciones de la veterinaria revisora."
+      ],
+      "salidas": "Estado de la segunda validación (pendiente / confirmada / en desacuerdo) y registro de ambas veterinarias participantes.",
+      "precondiciones": "La información médica de la mascota debe contar con una validación previa realizada por una veterinaria (RF-09).",
+      "postcondiciones": "El historial médico queda con doble validación registrada, indicando concordancia o discrepancia entre ambas veterinarias.",
+      "prioridad_moscow": "Should",
+      "criterio_verificacion": "Solicitar la revisión de una segunda veterinaria sobre un historial ya validado y comprobar que el sistema registra el resultado de ambas validaciones."
+    },
+    {
+      "id": "RF-27",
+      "nombre": "Controlar y alertar sobre solicitudes repetitivas de cruza de una misma mascota",
+      "descripcion": "El sistema deberá registrar la cantidad de procesos de cruza completados por cada mascota y emitir una alerta al propietario y al interesado cuando una misma mascota supere dos procesos de cruza completados dentro de un periodo de seis meses.",
+      "actor": [
+        "Propietario de mascota",
+        "Interesado en cruza"
+      ],
+      "origen_evidencia": [
+        "EV-23"
+      ],
+      "entradas": [
+        "Historial de procesos de cruza de la mascota",
+        "fecha de cada proceso."
+      ],
+      "salidas": "Alerta de uso repetitivo de cruza.",
+      "precondiciones": "La mascota debe contar con al menos un proceso de cruza previo registrado (RF-08, RF-15).",
+      "postcondiciones": "El propietario y el interesado visualizan la alerta antes de confirmar una nueva solicitud de cruza sobre la misma mascota.",
+      "prioridad_moscow": "Should",
+      "criterio_verificacion": "Registrar más de dos procesos de cruza completados para la misma mascota dentro de seis meses y comprobar que el sistema emite la alerta correspondiente."
+    }
+  ]
+}
