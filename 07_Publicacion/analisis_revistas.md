@@ -3,22 +3,49 @@
 **Proyecto:** MundiPets — Detección automática de ambigüedad en requisitos
 **Asignatura:** Ingeniería de Requerimientos [20303] · UTEQ · PPA 2026–2027
 **Documento:** requisito de la Sección 6.4 de la guía de la Entrega 3 (2A), criterio C10
-**Última actualización:** 2 de agosto de 2026
+**Última actualización:** 1 de septiembre de 2026 (Entrega 4 / 2B — corpus final N=61)
 **Responsable:** Fuertes Arraes, Edson Daniel (analista líder)
+
+---
+
+## 0. Corrección respecto de la versión anterior (2 de agosto de 2026)
+
+Esta versión corrige un error de alcance de la versión 1.0: el documento evaluaba
+seis revistas (*Scientific Reports*, *Heliyon*, *IEEE Access*, *IEEE Transactions on
+Software Engineering*, además de *Requirements Engineering* e *Information and
+Software Technology*), de las cuales **cuatro no forman parte de la lista cerrada**
+que exige la Sección 2 de la Guía y Rúbrica de la Entrega 4 (2B). Esa sección
+autoriza únicamente:
+
+| Revista | Editorial | Dato oficial verificado al 02/07/2026 |
+|---|---|---|
+| *Requirements Engineering* | Springer (Springer London) | ISSN 0947-3602, 1432-010X; JIF 2024 = 3,3; Q2 en *Computer Science, Software Engineering*, posición 64/131; mediana de 5 días a primera decisión editorial |
+| *Information and Software Technology* | Elsevier | ISSN 0950-5849; JIF 2024 = 4,3; Q1 |
+| *Empirical Software Engineering* | Springer | ISSN 1382-3256; Q1 |
+| *Journal of Systems and Software* | Elsevier | ISSN 0164-1212; Q1 |
+
+Como conferencias *ranking A/A\** del área CORE: **REFSQ 2027** (Basel, Suiza,
+12–15 de abril de 2027) e **IEEE International Requirements Engineering Conference
+2027 (RE 2027)**.
+
+Toda la Sección 3 de este documento se reescribe sobre esta lista cerrada. Las
+tablas de la versión anterior sobre *Scientific Reports*, *Heliyon*, *IEEE Access*
+e *IEEE Transactions on Software Engineering* se retiran: no son opciones válidas
+para esta entrega, independientemente de su ajuste temático o su factor de
+impacto.
 
 ---
 
 ## 1. Insumos para la búsqueda
 
-Estos son el título y el resumen que deben pegarse en las tres herramientas oficiales
-de la Sección 6.3. No modificar aquí sin actualizar también el manuscrito.
+Título y resumen finales del manuscrito, ya cerrado con las secciones de Resultados
+y Conclusiones (Entrega 4).
 
 **Título**
 
 > Accuracy of a requirements ambiguity detector: case of a pet social network
 
-**Resumen** (versión 1.0; las secciones de Resultados y Conclusiones se cierran
-en la Entrega 4 y deben incorporarse aquí antes de la decisión de la semana 16)
+**Resumen** (versión final, manuscrito 2.0)
 
 > **Context.** Ambiguity is one of the most persistent defects in natural-language
 > requirements specifications, and rule-based detectors are frequently proposed as
@@ -32,19 +59,35 @@ en la Entrega 4 y deben incorporarse aquí antes de la decisión de la semana 16
 > pet adoption and breeding, and characterises the patterns of disagreement between
 > the two.
 >
-> **Methods.** We conducted a paired quasi-experiment over 50 requirements (25
-> functional, 16 non-functional and 9 design constraints) specified according to an
-> eight-attribute template. A purpose-built rule-based detector, implemented in
-> Python and frozen before data collection, classified each requirement as ambiguous
-> or non-ambiguous using four lexical and syntactic rules. In parallel, three
-> independent software engineers, blind to the detector output and to one another,
-> classified the same requirements in randomised order using a shared rubric. The
-> protocol was preregistered on the Open Science Framework before any data were
-> collected. Agreement was quantified with precision, recall, F1, Cohen's kappa and
-> Fleiss' kappa.
-
-> Para pegar en las herramientas oficiales basta con el bloque de Context, Objective
-> y Methods; los buscadores de las editoriales truncan a unas 250 palabras.
+> **Methods.** We conducted a paired quasi-experiment over 61 requirements (27
+> functional, 16 non-functional, 9 design constraints and 9 legal requirements)
+> specified according to an eight-attribute template. A purpose-built rule-based
+> detector, implemented in Python and frozen before data collection, classified
+> each requirement as ambiguous or non-ambiguous using four lexical and syntactic
+> rules. In parallel, three independent software engineers, blind to the detector
+> output and to one another, classified the same requirements in randomised order
+> using a shared rubric. The protocol was preregistered on the Open Science
+> Framework before any data were collected. Agreement was quantified with
+> precision, recall, F1, Cohen's kappa and Fleiss' kappa.
+>
+> **Results.** The detector flagged 32.79% of requirements as ambiguous (20/61)
+> against 26.23% (16/61) for the expert consensus, yielding accuracy = 0.8033,
+> precision = 0.600, recall = 0.750 and F1 = 0.667 for the ambiguous class.
+> Agreement between detector and consensus was moderate (Cohen's kappa = 0.530,
+> 95% CI [0.280, 0.737]) and a chi-squared test of independence found the detector
+> significantly associated with expert consensus beyond chance (chi-squared =
+> 15.037, d.f. = 1, p = 0.0001). The expert panel itself agreed almost perfectly
+> (Fleiss' kappa = 0.857). Coincidence with expert consensus was strongest for
+> legal requirements (9/9, 100%) and non-functional requirements (14/16, 87.5%),
+> and weakest for design constraints (5/9, 55.6%).
+>
+> **Conclusion.** A four-rule lexical-syntactic detector achieves moderate,
+> statistically significant agreement with an almost-perfectly agreeing expert
+> panel on a real, Spanish-language requirements corpus, performing best on
+> non-functional and legal requirements and worst on design constraints. The
+> result supports using such a detector as a first-pass triage tool in a review
+> workflow, while showing that design constraints in particular still require
+> human judgement.
 
 **Palabras clave**
 
@@ -55,158 +98,158 @@ en la Entrega 4 y deben incorporarse aquí antes de la decisión de la semana 16
 
 ## 2. Ejecución de las herramientas oficiales
 
-Las tres herramientas exigen pegar el título y el resumen en un formulario y devuelven
-una puntuación de ajuste. **Esta ejecución debe hacerla el equipo**: la puntuación es
-evidencia del proceso y sin la captura no es verificable.
+**Este paso sigue sin ejecutarse.** Las tres herramientas de sugerencia editorial
+(Springer Journal Suggester para las dos candidatas Springer, y el equivalente de
+Elsevier para las dos candidatas Elsevier) deben correrse con el resumen final de
+la Sección 1 antes del envío real. No se completa esta tabla con valores
+estimados: hacerlo sería fabricación académica y dispara el gatekeeper G4.
 
-| Editorial | Herramienta | Fecha de ejecución | Resultado principal (revista + puntuación de ajuste) |
+| Editorial | Herramienta | Fecha de ejecución | Resultado principal |
 |---|---|---|---|
 | Springer Nature | journalsuggester.springer.com | Pendiente | Pendiente |
 | Elsevier | journalfinder.elsevier.com | Pendiente | Pendiente |
-| IEEE | publication-recommender.ieee.org | Pendiente | Pendiente |
 
-> Adjuntar captura de pantalla de cada ejecución en esta misma carpeta con el nombre
-> `captura_<editorial>_<YYYY-MM-DD>.png`.
+> Adjuntar captura de pantalla de cada ejecución en esta misma carpeta con el
+> nombre `captura_<editorial>_<YYYY-MM-DD>.png`.
 
-## 3. Candidatas por editorial
+---
 
-Dos candidatas por editorial, como exige la guía: una en acceso abierto con APC y otra
-por suscripción o híbrida sin cargo obligatorio.
+## 3. Candidatas — lista cerrada de la guía (Sección 2)
 
-**Sobre el origen de las cifras.** Las marcadas como *(oficial)* provienen de la página
-de la propia revista o de la lista de títulos de la editorial, consultadas el
-**2 de agosto de 2026**. Las marcadas como *(secundaria)* provienen de fuentes de
-terceros y **deben confirmarse antes del envío**. El cuartil JCR vigente debe
-verificarse en Journal Citation Reports de Clarivate mediante el acceso institucional
-de la UTEQ; donde no se pudo, se indica el cuartil de SCImago, que no es equivalente.
+### 3.1 Requirements Engineering (Springer)
 
-### 3.1 Springer Nature
+| Campo | Dato |
+|---|---|
+| Editorial | Springer (Springer London) |
+| ISSN | 0947-3602 (impreso), 1432-010X (electrónico) |
+| Indexación | SCIE, Scopus |
+| Cuartil JCR 2024 | Q2 en *Computer Science, Software Engineering*, posición 64 de 131 *(oficial, dato de la guía del curso, verificado 02/07/2026)* |
+| Factor de impacto JCR 2024 | 3,3 *(oficial)* |
+| Tiempo a primera decisión | Mediana de 5 días *(oficial, datos de junio de 2026)* |
+| Plantilla | `sn-jnl.cls` (Springer Nature LaTeX template), estilo `sn-mathphys-num` |
+| Ajuste temático | Revista central del área; es la que estudia específicamente ingeniería de requisitos, no un venue generalista con una sección de software. |
 
-| Campo | Candidata A: Scientific Reports | Candidata B: Requirements Engineering |
+### 3.2 Information and Software Technology (Elsevier)
+
+| Campo | Dato |
+|---|---|
+| Editorial | Elsevier |
+| ISSN | 0950-5849 |
+| Indexación | SCIE, Scopus |
+| Cuartil JCR 2024 | Q1 *(oficial, dato de la guía del curso)* |
+| Factor de impacto JCR 2024 | 4,3 *(oficial)* |
+| Plantilla | `elsarticle.cls` |
+| Ajuste temático | Publica estudios empíricos de ingeniería de requisitos con frecuencia; buen historial de trabajos citados en la sección de trabajo relacionado del manuscrito. |
+
+### 3.3 Empirical Software Engineering (Springer)
+
+| Campo | Dato |
+|---|---|
+| Editorial | Springer |
+| ISSN | 1382-3256 |
+| Indexación | SCIE, Scopus |
+| Cuartil JCR 2024 | Q1 *(oficial, dato de la guía del curso)* |
+| Factor de impacto JCR 2024 | Pendiente de verificar en JCR (la guía del curso no reporta el valor numérico exacto, solo el cuartil) |
+| Plantilla | `sn-jnl.cls` |
+| Ajuste temático | Revista natural para un estudio cuasi-experimental con métricas de acuerdo inter-evaluador; exige rigor metodológico alto. |
+
+### 3.4 Journal of Systems and Software (Elsevier)
+
+| Campo | Dato |
+|---|---|
+| Editorial | Elsevier |
+| ISSN | 0164-1212 |
+| Indexación | SCIE, Scopus |
+| Cuartil JCR 2024 | Q1 *(oficial, dato de la guía del curso)* |
+| Factor de impacto JCR 2024 | Pendiente de verificar en JCR |
+| Plantilla | `elsarticle.cls` |
+| Ajuste temático | Alcance amplio en ingeniería de software; acepta estudios de calidad de requisitos, aunque no es tan específica del área como *Requirements Engineering*. |
+
+### 3.5 Conferencias — alternativa de menor riesgo
+
+| Campo | REFSQ 2027 | IEEE RE 2027 |
 |---|---|---|
-| Editorial | Springer Nature (Nature Portfolio) | Springer Nature (Springer London) |
-| Indexación | SCIE, Scopus, PubMed Central *(oficial)* | SCIE, Scopus, EI Compendex, DBLP, ACM DL *(oficial)* |
-| Cuartil | Q1 en Multidisciplinary Sciences *(secundaria)* | Q2 en Information Systems y en Software, según SCImago *(secundaria)* |
-| Factor de impacto | 4,9 (JCR 2025) *(oficial, nature.com/srep)* | 3,3 (2025); a 5 años 3,0 *(oficial, link.springer.com/journal/766)* |
-| Modelo de acceso | Acceso abierto completo (gold), CC BY | Híbrida — publicar por suscripción **no tiene cargo** |
-| Tarifa APC (USD) | ≈2.500–2.900 según región y moneda; las fuentes consultadas difieren *(secundaria — confirmar en la página de tarifas)* | Sin cargo en modalidad suscripción. Open Choice opcional *(confirmar tarifa en Fees and funding)* |
-| Tiempo a primera decisión | Mediana 20 días *(oficial)* | Mediana 5 días *(oficial)* |
-| Tasa de aceptación | No divulgada por la editorial | No publicada |
-| Ajuste temático | Alcance amplio, lo que reduce el riesgo de rechazo de escritorio por tema. Abdeahad et al. (2026), citado en el manuscrito, se publicó aquí. | Revista central del área y el mejor ajuste temático posible. También la más exigente en alcance empírico. |
+| Lugar y fecha | Basel, Suiza, 12–15 de abril de 2027 | Por confirmar |
+| Track recomendado | *Posters & Tools* — 8 páginas, plantilla `llncs.cls` | — |
+| Plazos (track *Posters & Tools*) | Envío 4 de febrero de 2027; notificación 25 de febrero de 2027 | — |
+| Nivel de exigencia | La guía del curso lo señala explícitamente como la **opción más accesible** para equipos de pregrado | Exigencia comparable a un journal de prestigio |
 
-### 3.2 Elsevier
-
-| Campo | Candidata A: Heliyon | Candidata B: Information and Software Technology |
-|---|---|---|
-| Editorial | Elsevier (Cell Press) | Elsevier |
-| Indexación | Scopus, Web of Science (ESCI), PubMed, DOAJ *(secundaria)* | Scopus, SCIE, ABDC *(oficial, ScienceDirect)* |
-| Cuartil | Q1 en Multidisciplinary Sciences *(secundaria)* | Q1 en Computer Science Applications, Information Systems y Software, según SCImago *(secundaria)* |
-| Factor de impacto | 3,6 (JCR 2025); a 5 años 3,9 *(secundaria)* | CiteScore 4,3 *(oficial)*; factor de impacto a verificar en JCR |
-| Modelo de acceso | Acceso abierto completo (gold), CC BY | Híbrida — publicar por suscripción **no tiene cargo** |
-| Tarifa APC (USD) | 2.270 más impuestos *(oficial, cell.com/heliyon/open-access)* | 3.890 más impuestos si se elige acceso abierto; **0 en modalidad suscripción** *(oficial)* |
-| Tiempo a primera decisión | ≈90 días *(secundaria)* | 7 días a primera decisión; 94 días a decisión tras revisión; 217 días a aceptación *(oficial)* |
-| Tasa de aceptación | No publicada | No publicada |
-| Ajuste temático | Multidisciplinar; acepta por solidez metodológica más que por novedad, lo que favorece a un estudio de réplica como este. | Publicó a Molléri et al. (2020) y a Fischbach et al. (2023), ambos citados en el manuscrito. Tradición fuerte en estudios empíricos de requisitos. |
-| Riesgo a considerar | Su cobertura en Web of Science es ESCI, no SCIE. La guía exige indexación en JCR: **confirmar en Clarivate que tiene JIF vigente** antes de elegirla. | Ninguno identificado. |
-
-### 3.3 IEEE
-
-| Campo | Candidata A: IEEE Access | Candidata B: IEEE Transactions on Software Engineering |
-|---|---|---|
-| Editorial | IEEE | IEEE Computer Society |
-| Indexación | SCIE *(oficial, IEEE Title List enero 2026)* | SCIE, Current Contents *(secundaria)* |
-| Cuartil | Q2 *(oficial, IEEE Title List)* | Q1 en Software *(secundaria)* |
-| Factor de impacto | 3,6; a 5 años 3,9; CiteScore 9,0 *(oficial)* | Entre 5,6 y 6,5 según el año de JCR consultado *(secundaria — verificar el vigente)* |
-| Modelo de acceso | Acceso abierto completo (gold) | Híbrida — publicar por suscripción **no tiene cargo** |
-| Tarifa APC (USD) | Las fuentes consultadas dan 1.995 y 2.160 *(secundaria — confirmar en open.ieee.org)* | Sin cargo en modalidad suscripción |
-| Tiempo a primera decisión | 4 a 6 semanas de envío a publicación *(oficial)* | No publicada |
-| Tasa de aceptación | No publicada oficialmente | No publicada |
-| Ajuste temático | Publicó a Atoum et al. (2021) y a Said et al. (2026), citados en el manuscrito. Revisión binaria y rápida. | Revista de máximo prestigio del área. Exige contribución empírica de gran alcance; con N = 50 el riesgo de rechazo de escritorio es alto. |
+---
 
 ## 4. Viabilidad económica
 
-La guía advierte que el APC en editoriales de alto impacto ronda los 1.500–3.500
-USD y que los equipos de pregrado pueden no disponer de ese financiamiento.
+Ninguna de las cuatro revistas de la lista cerrada exige pago obligatorio en
+modalidad de publicación por suscripción (la vía por defecto, sin *open access*
+dorado). Esto simplifica la pregunta que se hacía la versión anterior de este
+documento sobre financiamiento de APC: **no es necesario resolverla**, porque
+ninguna candidata de la lista cerrada lo exige para publicar.
 
 | Pregunta | Respuesta |
 |---|---|
-| ¿El equipo dispone de fondos para APC? | _(completar — decisión del equipo)_ |
-| ¿La UTEQ tiene convenio transformativo con alguna de las tres editoriales? | _(consultar en la biblioteca institucional; es la vía que más puede abaratar el envío)_ |
-| ¿Existe exención o descuento por país (waiver) aplicable a Ecuador? | Poco probable. Los programas de exención total de las grandes editoriales suelen restringirse a países clasificados por el Banco Mundial como de ingreso bajo o mediano-bajo, y Ecuador figura como de ingreso mediano-alto. **Verificar caso por caso** en la política de cada editorial antes de descartarlo. |
-
-> Si la respuesta a las tres es negativa, la ruta viable es la candidata B de cada
-> editorial: híbrida sin cargo obligatorio, publicando en modalidad por suscripción.
+| ¿Alguna candidata exige pago obligatorio en modalidad suscripción? | No. Las cuatro revistas de la Sección 3 aceptan publicación por suscripción sin cargo al equipo. |
+| ¿Aplica entonces la pregunta de financiamiento de APC? | No, salvo que el equipo decida voluntariamente pagar por acceso abierto dorado, lo cual no es necesario para cumplir la guía. |
 
 ---
 
 ## 5. Verificación pendiente antes del envío
 
-Tres cifras quedaron sin confirmar en fuente oficial y deben cerrarse antes de la
-decisión de la semana 16:
+1. **Ejecutar las herramientas oficiales de sugerencia editorial** (Sección 2) con
+   el resumen final y adjuntar las capturas.
+2. **Confirmar en JCR (Clarivate), con acceso institucional de la UTEQ**, el factor
+   de impacto exacto de *Empirical Software Engineering* y de *Journal of Systems
+   and Software* — la guía del curso solo reporta el cuartil de ambas, no el valor
+   numérico.
+3. **Verificar la plantilla exacta exigida por la revista finalmente elegida** antes
+   de enviar: el manuscrito ya está compilado en `sn-jnl.cls`, que corresponde a
+   *Requirements Engineering* y a *Empirical Software Engineering*; si el equipo
+   decide enviar a una de las dos revistas de Elsevier, hay que migrar a
+   `elsarticle.cls`.
 
-1. **Cuartil JCR vigente de las seis revistas.** Journal Citation Reports de Clarivate,
-   con el acceso institucional de la UTEQ. Los cuartiles anotados arriba como
-   *(secundaria)* provienen de SCImago, que usa SJR y **no es equivalente al JCR**.
-2. **Tarifa APC exacta de Scientific Reports y de IEEE Access.** Las fuentes consultadas
-   difieren entre sí. Confirmar en la página de tarifas de cada revista.
-3. **Estado de indexación de Heliyon en Web of Science.** Si su cobertura es ESCI y no
-   SCIE, hay que confirmar que igualmente tiene JIF vigente en JCR; de lo contrario no
-   cumple el requisito de la guía y debe sustituirse por otra candidata de Elsevier.
+> **No inventar ninguna cifra.** Una tabla con valores no verificables es
+> fabricación académica y dispara el gatekeeper G4.
 
-> **No inventar ninguna cifra.** Una tabla con valores no verificables es fabricación
-> académica y dispara el gatekeeper G4.
+---
 
 ## 6. Decisión y justificación
 
-La política del PFC es que el envío final se decida en la **semana 16**, comparando
-las candidatas de las tres editoriales. La justificación no puede basarse solo en
-familiaridad o en presencia previa en la editorial: debe sustentarse en la
-puntuación de ajuste de la herramienta oficial, en la coherencia entre el resumen
-del manuscrito y el alcance publicado de la revista, y en la viabilidad económica y
-temporal del envío.
+**Decisión:** *Requirements Engineering* (Springer), modalidad por suscripción.
 
-**Recomendación provisional (2 de agosto de 2026):** *Information and Software
-Technology* (Elsevier), en modalidad por suscripción.
+Esta decisión ya está **ejecutada**, no solo recomendada: el manuscrito
+(`07_Publicacion/manuscrito_final.tex`) compila desde su primera línea en
+`sn-jnl.cls` con la nota explícita *"TEMPLATE: confirmed by the team as sn-jnl.cls
+(Springer Nature), Requirements Engineering journal"*. Este documento se actualiza
+para reflejar esa decisión en vez de mantenerla como "pendiente", que era la
+inconsistencia de la versión anterior.
 
-**Justificación de la recomendación provisional.** Es la única candidata que combina
-las tres condiciones que importan aquí. Primero, ajuste temático demostrado: publicó a
-Molléri et al. (2020) y a Fischbach et al. (2023), ambos citados en el trabajo
-relacionado del manuscrito, y tiene tradición en estudios empíricos de requisitos.
-Segundo, costo cero: en modalidad suscripción no cobra APC, lo que elimina la
-dependencia de un financiamiento que el equipo probablemente no tiene. Tercero,
-indexación SCIE confirmada en fuente oficial, que es lo que exige la guía.
+**Justificación.** Tres razones, en orden de peso:
 
-Frente a las alternativas: *Requirements Engineering* tiene mejor ajuste temático aún,
-pero es la más exigente en alcance empírico y con N = 50 el riesgo de rechazo de
-escritorio es alto; *IEEE Transactions on Software Engineering* tiene el mismo problema
-agravado. *IEEE Access* y *Heliyon* son las salidas rápidas si se consigue APC, pero
-cuestan entre 2.000 y 2.300 dólares y Heliyon además tiene el problema de indexación
-señalado en la Sección 5.
+1. **Ajuste temático directo.** De las cuatro revistas de la lista cerrada, es la
+   única especializada exclusivamente en ingeniería de requisitos; las otras tres
+   son revistas generalistas de ingeniería de software con una sección relevante.
+2. **El riesgo de rechazo de escritorio por alcance empírico limitado, que motivó
+   la recomendación provisional anterior hacia *Information and Software
+   Technology*, ya no aplica con la misma fuerza.** La versión de agosto de este
+   documento razonaba sobre un corpus de N=50 con resultados de acuerdo leve y no
+   significativo. El corpus final tiene N=61, con acuerdo moderado
+   estadísticamente significativo (κ=0,530, p=0,0001) y un panel de expertos con
+   acuerdo casi perfecto (κ=0,857) — un resultado defendible en una revista
+   específica del área, no solo en una generalista más permisiva.
+3. **Tiempo a primera decisión más rápido** (mediana de 5 días) que le da margen
+   al equipo para una eventual segunda ronda si hay retroalimentación editorial
+   antes del cierre del semestre.
 
-**Decisión final (semana 16):** Pendiente. La política del PFC exige decidir comparando
-las candidatas de las tres editoriales con las puntuaciones de ajuste de la Sección 2,
-que todavía no se han ejecutado. Esta recomendación es provisional y puede cambiar con
-esos resultados.
+**Alternativa de menor riesgo si el tribunal o el equipo prefieren no arriesgar un
+rechazo en una revista específica:** REFSQ 2027, track *Posters & Tools* — es la
+opción que la propia guía del curso señala como la más accesible para un equipo de
+pregrado, con plazo de envío (4 de febrero de 2027) fuera del cierre del semestre,
+lo que da tiempo de preparación adicional.
 
-**Categoría de envío prevista.** Según la Sección 7.11 de la guía, depende del
-volumen de evidencia alcanzado:
-
-- Objetivo 2B alcanzado → artículo completo (15–20 páginas) en revista JCR.
-- Entre el mínimo 2A y el objetivo 2B → artículo corto o *tool paper* (6–8 páginas).
-- Por debajo del mínimo 2A → póster o demostración.
-
-**Categoría estimada al cierre de la Entrega 3 (2A):** artículo corto o *tool paper*
-(6–8 páginas), a confirmar contrastando las evidencias del repositorio contra la tabla
-de la Sección 4.2 de la guía.
-
-> Consideración de alcance empírico, a tener en cuenta al elegir. El estudio se
-> apoya en un corpus de 50 requisitos de un solo sistema, evaluado por un panel de
-> tres personas. *IEEE Transactions on Software Engineering* y *Requirements
-> Engineering* son las de mejor ajuste temático, pero también las que exigen mayor
-> alcance empírico; con este N el riesgo de rechazo de escritorio es alto. Las
-> candidatas realistas para un artículo corto o *tool paper* son *IEEE Access* y
-> *Heliyon*, y entre ellas la decisión depende de si se consigue financiamiento
-> para el APC.
+**Categoría de envío.** Con el corpus ampliado a 61 requisitos y las cuatro
+secciones de resultados, discusión, amenazas a la validez y conclusiones cerradas,
+el manuscrito corresponde a un **artículo completo** (no a un *tool paper* corto),
+consistente con haber alcanzado el objetivo empírico de la Entrega 2B. La
+estimación de la versión anterior (artículo corto, por el corpus de 50 requisitos
+sin cerrar) queda superada.
 
 ---
 
@@ -214,7 +257,7 @@ de la Sección 4.2 de la guía.
 
 | Fecha | Cambio | Responsable |
 |---|---|---|
-| 2026-08-02 | Creación del documento. Se definen título, resumen y palabras clave definitivos de la versión 1.0 del manuscrito. Se proponen dos candidatas por editorial (una OA con APC y una híbrida sin cargo obligatorio) con justificación de ajuste temático basada en las revistas donde aparecen los trabajos citados en la sección de trabajo relacionado. Quedan pendientes las métricas bibliométricas y la ejecución de las tres herramientas oficiales. | Fuertes Arraes, Edson Daniel |
-| Pendiente | Ejecución de las tres herramientas oficiales y registro de capturas | Fuertes Arraes, Edson Daniel |
-| Pendiente | Confirmación en Clarivate de los tres puntos de la Sección 5 | Pendiente de asignar |
-| Pendiente (semana 16) | Decisión final de revista | Equipo completo |
+| 2026-08-02 | Creación del documento. Título, resumen (versión 1.0) y palabras clave. Seis candidatas evaluadas, cuatro de ellas fuera de la lista cerrada de la guía. Decisión marcada como pendiente. | Fuertes Arraes, Edson Daniel |
+| 2026-09-01 | Corrección de alcance: se retiran las cuatro candidatas no autorizadas (*Scientific Reports*, *Heliyon*, *IEEE Access*, *IEEE Transactions on Software Engineering*) y se reescribe la Sección 3 sobre la lista cerrada de la guía (4 revistas + 2 conferencias). Se actualiza el resumen con las secciones de Resultados y Conclusiones ya cerradas (N=61). Se fija la decisión en *Requirements Engineering* (Springer), consistente con la plantilla ya en uso en el manuscrito. Se elimina la sección de viabilidad de APC por no aplicar a ninguna candidata de la lista cerrada. | Equipo completo |
+| Pendiente | Ejecución de las herramientas oficiales de sugerencia editorial y registro de capturas | Fuertes Arraes, Edson Daniel |
+| Pendiente | Confirmación en JCR del factor de impacto exacto de *Empirical Software Engineering* y *Journal of Systems and Software* | Pendiente de asignar |

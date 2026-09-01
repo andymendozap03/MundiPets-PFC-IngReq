@@ -1,0 +1,7 @@
+﻿ID_Afirmacion;Afirmacion;Resultado_o_Referencia;Archivo_Fuente
+AFI-01;El detector automático sobre-marca ambigüedad respecto al consenso experto: 32,79% (20/61) frente a 26,23% (16/61).;Tabla de resumen de clasificaciones por fuente;tabla_1_resumen_clasificaciones.csv
+AFI-02;El detector alcanza una exactitud de 0,8033, con precisión de 0,6000 y sensibilidad de 0,7500 respecto al consenso experto.;Tabla de métricas del detector;tabla_2_metricas_detector.csv
+AFI-03;De los 61 requisitos evaluados, el detector clasificó correctamente 49 (37 no ambiguos + 12 ambiguos), equivalente a la exactitud reportada.;Matriz de confusión detector vs. consenso experto;tabla_3_matriz_confusion.csv
+AFI-04;Los expertos humanos muestran un acuerdo casi perfecto entre sí, con Kappa de Fleiss = 0,8569 (94,54% de acuerdo observado) para el panel completo.;Tabla de acuerdo interevaluador;tabla_4_acuerdo_interevaluador.csv
+AFI-05;Prueba de hipótesis (chi-cuadrado=15.0374, p=0.0001): El detector está asociado con el consenso experto más allá del azar (p=0.0001<0.05).;Tabla de significancia estadística;tabla_8_significancia_estadistica.csv
+AFI-06;El tipo de ambigüedad predominante es terminología imprecisa, presente en el 38,30% de las marcaciones ambiguas (18 casos), seguido de cuantificador vago (31,91%) y requisito no verificable / incompleto (19,15%).;Tabla de tipos de ambigüedad;tabla_6_tipos_ambiguedad.csv
