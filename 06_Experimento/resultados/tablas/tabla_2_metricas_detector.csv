@@ -1,9 +1,9 @@
 ﻿Metrica;Valor;Interpretacion_o_nota
-Exactitud;0.5200;Proporción total de aciertos
-Precisión;0.4000;Clase positiva: Ambiguo
-Exhaustividad / Sensibilidad;0.6667;Clase positiva: Ambiguo
-Especificidad;0.4375;Clase negativa: No ambiguo
-Valor predictivo negativo;0.7000;
-Exactitud balanceada;0.5521;
-F1;0.5000;Clase positiva: Ambiguo
-Kappa de Cohen: detector vs consenso;0.0909;Leve
+Exactitud;0.8033;Proporción total de aciertos
+Precisión;0.6000;Clase positiva: Ambiguo
+Exhaustividad / Sensibilidad;0.7500;Clase positiva: Ambiguo
+Especificidad;0.8222;Clase negativa: No ambiguo
+Valor predictivo negativo;0.9024;
+Exactitud balanceada;0.7861;
+F1;0.6667;Clase positiva: Ambiguo
+Kappa de Cohen: detector vs consenso;0.5296;Moderado
