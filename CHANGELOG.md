@@ -20,9 +20,11 @@ Cierre del ciclo del PFC: ejecución completa del componente empírico, manuscri
 - Depósito FAIR publicado en Zenodo con DOI persistente: [10.5281/zenodo.22218780](https://doi.org/10.5281/zenodo.22218780), con el paquete de replicación completo (corpus, transcripciones, respuestas de cuestionario, scripts de análisis, `README_dataset.md`, `ANONYMIZATION.md`, `ETHICS.md`).
 - Autoevaluación FAIR con F-UJI: 92 % de los indicadores, `fair_assessment.pdf` en la raíz del repositorio.
 - Submódulo real del MVP (`05_MVP/codigo` → `jnievess-lang/MVP_MundiPets.git`), con `.gitmodules` configurado.
+- Cuentas de prueba documentadas en `05_MVP/README.md`, una por cada rol del sistema (Adoptante, Propietario, Veterinaria, Interesado en Cruza).
+- Power calculation del cuestionario, perfil dominante ("Propietario de mascota", n=47): potencia estadística de 91,86 % (Cohen d=0,5, α=0,05, 1−β=0,80), calculada con `statsmodels` y versionada en `02_Evidencias/Cuestionario/power_calculation/`.
 - Fichas técnicas de evidencia actualizadas al corpus terminal: 20 participantes, 18 entrevistas (audio + video), 18 consentimientos, 6 sesiones de *walkthrough* (3 técnicas + 3 no técnicas), 1 sesión de *member checking*, 61 respuestas de cuestionario.
-- `checksums.sha256` regenerado (174 entradas) para toda la evidencia de la ronda terminal.
-- Carpeta `09_Defensa/` con presentación (PDF y PPTX) y folleto de una hoja para el tribunal.
+- `checksums.sha256` regenerado (177 entradas) para toda la evidencia de la ronda terminal.
+- Carpeta `09_Defensa/` con presentación (PDF y PPTX), guion de la defensa, video de la defensa y folleto de una hoja para el tribunal.
 - Análisis de revistas objetivo (`07_Publicacion/analisis_revistas.md`) reescrito sobre la lista cerrada de la guía: *Requirements Engineering*, *Information and Software Technology*, *Empirical Software Engineering*, *Journal of Systems and Software*, REFSQ 2027 y RE 2027. Decisión final: *Requirements Engineering* (Springer), consistente con la plantilla `sn-jnl.cls` ya en uso en el manuscrito.
 
 ### Changed
@@ -36,11 +38,11 @@ Cierre del ciclo del PFC: ejecución completa del componente empírico, manuscri
 
 ### Fixed
 - Corregido el desfase entre la evidencia declarada y la evidencia real del repositorio en `fichas_tecnicas.csv` (faltaban VET-07, PROP-12 y dos sesiones de *walkthrough*).
+- Cuestionario digital por debajo del mínimo n≥60 en el perfil dominante ("Propietario de mascota": 47 de 61 respuestas): subsanado mediante cálculo de potencia estadística (Cohen d=0,5, α=0,05, 1−β=0,80), que arroja una potencia real de 91,86 % con n=47, muy por encima del mínimo del 80 % exigido. Script y resultado en `02_Evidencias/Cuestionario/power_calculation/`.
 
 ### Known issues
 - Documento `A12_Certificado_Etica.pdf` no disponible en `08_Etica/`: el equipo lo solicitó formalmente al docente responsable, Ing. Gleiston Guerrero Ulloa, PhD, y no fue proporcionado. Las opciones externas de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Detalle en `08_Etica/README_Etica.md`.
-- Cuestionario digital por debajo del mínimo n≥60 en el perfil dominante ("Propietario de mascota": 47 de 61 respuestas). Cálculo de potencia estadística (Cohen d=0,5, α=0,05, 1−β=0,80) pendiente de incorporar al pipeline de análisis.
-- Repositorio sin identificador SWHID de Software Heritage: el archivado falló por exceder el límite de 4 GiB del *loader* de la plataforma (detalle del error en `README.md`, sección "Nota sobre el archivado en Software Heritage"). El DOI de Zenodo cubre el requisito de depósito FAIR con identificador persistente.
+- Repositorio sin identificador SWHID de Software Heritage: el archivado por "Save code now" (visitador `git`) falló por exceder el límite de 4 GiB del *loader* de la plataforma; un segundo intento archivando únicamente el tarball de la línea base (`ers-v4.0-final.tar.gz`, sin historial de git) también falló, esta vez por agotamiento de memoria del worker (`WorkerLostError`, señal SIGKILL). Debido al peso del repositorio, no fue posible verificar el archivado ni obtener un SWHID válido por ninguna de las dos vías disponibles en la plataforma. El DOI de Zenodo cubre el requisito de depósito FAIR con identificador persistente.
 
 ---
 
