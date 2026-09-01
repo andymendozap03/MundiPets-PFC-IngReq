@@ -315,33 +315,35 @@ El proyecto incorpora:
 
 ## Trazabilidad
 
-El proyecto mantiene la siguiente cadena de trazabilidad extendida, verificada
-directamente contra las columnas de `04_Trazabilidad/matriz_trazabilidad.csv`:
+El proyecto mantiene la siguiente cadena de trazabilidad extendida, en el
+orden real de columnas de `04_Trazabilidad/matriz_trazabilidad.csv`:
 
 ```
-Ley / Normativa (cuando aplica — requisitos legales RL)
-      ↓
- Objetivo
-      ↓
- Interesado (Stakeholder)
-      ↓
- Evidencia (ID-EV)
-      ↓
- Requisito (RF / RNF / RD / RL)
-      ↓
- Clase (modelo de dominio)
+Requisito (RF / RNF / RD / RL)
       ↓
  Caso de Uso (CU-XX)
       ↓
- Historia de Usuario (HU-XX)
+ Clase (modelo de dominio)
       ↓
  Criterio de Aceptación (CA-XX)
       ↓
  Caso de Prueba (CP-XX)
       ↓
- Componente
+ Historia de Usuario (HU-XX)
+      ↓
+ Estado de la traza
+      ↓
+ Ley / Normativa (cuando aplica — requisitos legales RL)
+      ↓
+ Evidencia (ID-EV)
+      ↓
+ Objetivo
+      ↓
+ Interesado (Stakeholder)
       ↓
  Mockup (MU-XX)
+      ↓
+ Componente
 ```
 
 ---
