@@ -16,9 +16,9 @@
 % Reference style: sn-mathphys-num (numbered).
 %
 % ### ESTADO DE ESTA VERSION ###
-% Version 4 de 5 - aportes de: Fuertes Arraes + Mendoza Parraga + Gutierrez Ortega
-% + Morales Sanchez. Secciones: Abstract + Introduction, Related work,
-% Methodology, Results, Discussion, Threats to validity.
+% Version 5 de 5 (COMPLETA) - aportes de: Fuertes Arraes + Mendoza Parraga
+% + Gutierrez Ortega + Morales Sanchez + Nieves Sanchez. Todas las secciones
+% cerradas para la entrega 2B.
 %=====================================================================
 \documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
 
@@ -993,6 +993,144 @@
 	checked against the standard definitions in Cohen~\cite{cohen1960} and
 	Fleiss~\cite{fleiss1971} but not against an independent second implementation,
 	which a stricter reproducibility standard would require.
+	
+	
+	%=====================================================================
+	% --- Sección a cargo de: Nieves Sánchez, J. S. (Verificador) ---
+	\section{Conclusions and future work}\label{sec:conclusions}
+	
+	\textbf{RQ1.} With what precision, recall and $F_1$ does a rule-based automatic
+	detector replicate the consensus judgement of human experts when classifying
+	the requirements of MundiPets as ambiguous? The detector reached accuracy =
+	0.803, precision = 0.600, recall = 0.750 and $F_1 = 0.667$ against expert
+	consensus, with agreement that was moderate (Cohen's $\kappa=0.530$) and
+	statistically significant at $N=61$ ($\chi^2=15.037$, $p=0.0001$). This
+	result is strengthened by the reliability of the reference standard: the same
+	three experts agreed with each other almost perfectly (Fleiss' $\kappa=0.857$).
+	The answer to RQ1 is that, on this corpus, a four-rule lexical-syntactic
+	detector achieves a real, statistically defensible level of agreement with
+	expert consensus, but that agreement is strongly type-dependent: perfect on
+	legal requirements (100\%), high on non-functional requirements (87.5\%), good
+	on functional requirements (77.8\%), and considerably weaker on design
+	constraints (55.6\%).
+	
+	\textbf{RQ2.} Which disagreement patterns predominate between the automatic
+	detector and expert judgement, and what do they reveal about the limits of a
+	rule-based approach relative to human judgement in identifying ambiguity? Two
+	patterns predominate among the 12 disagreements. The false-positive pattern (8
+	cases) is driven by rules that fire on a lexical trigger without checking
+	whether the sentence already contains the precise information the trigger is
+	meant to flag as missing --- most clearly illustrated by a usability
+	requirement with two explicit numeric thresholds that still triggered the
+	vague-quantifier rule. The false-negative pattern (4 cases) is driven by
+	requirements whose ambiguity lies in an unstated mechanism or referent (``by
+	means of authentication and authorisation mechanisms'', unspecified;
+	``based on the available information'', unspecified), a pragmatic gap none of
+	the four rules targets, and which concentrates disproportionately in design
+	constraints. Expert confidence did not differ between the two groups
+	(Mann--Whitney $U=350.0$, $p=0.257$), indicating these disagreements are not
+	concentrated on the panel's own hardest, lowest-confidence cases, but reflect a
+	specific, identifiable mismatch between what the rule set operationalises and
+	what experts require for a requirement to count as unambiguous.
+	
+	Consolidating the three contributions promised in Section~\ref{sec:intro}: this
+	study delivers (i) a quantified, statistically tested comparison between a
+	frozen rule-based detector and a blind three-expert consensus over a complete,
+	real, Spanish-language requirements corpus spanning four requirement types,
+	with agreement metrics, confidence intervals and a formal hypothesis test that
+	establishes a statistically significant, moderate level of agreement; (ii) a
+	per-rule, per-type characterisation of where and why detector and human
+	judgement diverge, identifying a fixable pattern-matching gap in the
+	vague-quantifier rule and a systematic recall gap on design constraints driven
+	by unstated mechanisms rather than by ambiguity in general; and (iii) a
+	complete replication package --- corpus, detector code, individual and
+	consensus expert classifications, analysis scripts and the preregistered
+	protocol --- released under CC~BY~4.0, so that every number in
+	Section~\ref{sec:results} can be regenerated and the design repeated on other
+	corpora.
+	
+	Three concrete lines of future work follow directly from the data reported
+	here. First, fix the vague-quantifier rule to check for an already-present
+	numeric threshold before flagging a requirement, using REQ-53 as a concrete
+	regression test case, and re-run the same protocol on the same corpus to
+	measure whether precision improves without a proportional loss in recall.
+	Second, add a rule targeting underspecified mechanism or method references
+	(the pattern behind the false negatives identified in
+	Section~\ref{subsec:res-rq2}), specifically tuned to design constraints, where
+	recall is weakest (55.6\% coincidence), and evaluate whether it closes that
+	gap without degrading the near-perfect performance already achieved on legal
+	and non-functional requirements. Third, repeat this exact design --- frozen
+	detector, blind three-expert panel, preregistered protocol, open replication
+	package --- on a specification of comparable size and comparable type
+	distribution from a different domain and, ideally, a different institution, to
+	test whether the type-dependent gradient reported here (strong on legal and
+	non-functional requirements, weak on design constraints) is a property of this
+	detector and this corpus or a more general pattern in rule-based ambiguity
+	detection for Spanish-language requirements.
+	
+	%=====================================================================
+	\backmatter
+	
+	\bmhead{Acknowledgements}
+	
+	The authors thank the three software engineers who served as expert raters and
+	the veterinary practice in Quevedo, Ecuador, that granted access to its
+	operational context and which remains pseudonymised under the anonymisation
+	protocol of this study.
+	
+	% --- Sección a cargo de: Nieves Sánchez, J. S. (Verificador) ---
+	\section*{Declarations}
+	
+	\begin{itemize}
+		\item \textbf{Funding.} This research received no specific grant from any
+		funding agency in the public, commercial or not-for-profit sectors.
+		\item \textbf{Competing interests.} The authors declare no competing interests.
+		\item \textbf{Ethics approval and consent to participate.} The study was
+		conducted under the ethics framework of the Requirements Engineering course at
+		the Universidad Técnica Estatal de Quevedo. All participants signed an informed
+		consent form drafted in compliance with Ecuador's Organic Law on Personal Data
+		Protection~\cite{lopdp2021}.
+		\item \textbf{Consent for publication.} All participants explicitly authorised
+		the use of their anonymised data in peer-reviewed publications and its deposit
+		in an open dataset.
+		\item \textbf{Data availability.} The preregistered protocol is available on the
+		Open Science Framework at https://osf.io/khyf2/overview, registered on 27 July
+		2026 at 10:49:41 (Ecuador time), before data collection began. The anonymised
+		dataset --- labelled requirements corpus, detector output, individual and
+		consensus expert classifications, traceability matrix and analysis scripts ---
+		is deposited on Zenodo under a CC~BY~4.0 licence, DOI
+		10.5281/zenodo.22218780 (https://doi.org/10.5281/zenodo.22218780), following
+		the FAIR principles~\cite{wilkinson2016} and the software citation principles
+		of Smith et al.~\cite{smith2016}.
+		\item \textbf{Materials availability.} Not applicable.
+		\item \textbf{Code availability.} The detector and the analysis scripts are
+		available in the project repository at
+		https://github.com/andymendozap03/MundiPets-PFC-IngReq, and in the Zenodo
+		deposit above.
+		\item \textbf{Use of AI-assisted technologies.} The authors used Claude Opus 5
+		and Claude Sonnet 5 (Anthropic) exclusively to review previously drafted text:
+		checking grammar, clarity and register of paragraphs the authors had already
+		written from their own empirical data and analysis. No content was drafted,
+		generated or substantively rewritten by these tools; every claim, number,
+		interpretation and conclusion originates from the authors' own analysis of the
+		data described in Section~\ref{sec:method} and reported in
+		Section~\ref{sec:results}. This is consistent with Springer Nature's editorial
+		policy on artificial intelligence~\cite{springer2023}, under which AI tools may
+		assist with language editing of author-written content but may not be listed as
+		authors and may not generate original research content. Under no circumstance
+		was an LLM used to produce results, figures, tables or conclusions: every
+		quantitative claim in Section~\ref{sec:results} is generated by the versioned
+		scripts in 06\_Experimento/scripts\_analisis/ from the raw detector output and
+		expert classifications, as required by the course's integrity policy.
+		\item \textbf{Author contribution.} E.D.F.A.: conceptualization,
+		investigation, writing --- original draft. G.A.G.O.: software (design and
+		implementation of the rule-based detector). A.J.M.P.: methodology,
+		visualization (system modelling and diagrams). G.A.M.S.: investigation, data
+		curation (interviews and transcriptions). J.S.N.S.: formal analysis, data
+		curation, project administration (protocol preregistration and statistical
+		analysis). G.C.G.U.: supervision, validation. All authors reviewed and approved
+		the final manuscript.
+	\end{itemize}
 	
 	%=====================================================================
 	\bibliography{referencias}
