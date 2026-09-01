@@ -3,24 +3,22 @@
 ## Por qué el contenedor está dividido en varias partes
 
 El material de la zona restringida (videos y audios originales de entrevistas,
-consentimientos con firma y cédula visibles, actas de walkthrough firmadas y
-documentos originales de la organización cliente) pesa en conjunto
-aproximadamente **5.19 GB** antes de dividir.
+consentimientos con firma y cédula visibles, actas de walkthrough firmadas,
+grabación de member checking y documentos originales de la organización
+cliente) pesa en conjunto aproximadamente **6.42 GB** una vez comprimido y
+cifrado.
 
 GitHub, incluso usando Git LFS, tiene un límite de **2 GB por archivo
 individual** en el plan gratuito (y de 100 MB sin LFS). Para poder mantener
-toda la evidencia **dentro del repositorio**, tal como exige la guía de la
-Entrega 3 (2A) — Sección 4.1, "Toda la evidencia reside *dentro* del
-repositorio" — el contenedor cifrado se dividió en volúmenes de 80 MB
+toda la evidencia **dentro del repositorio**, el contenedor cifrado se dividió en volúmenes de 24 MB
 cada uno usando la función nativa de 7-Zip ("Dividir en volúmenes"),
-en lugar de subir el material a un servicio externo (lo cual la guía
-penaliza explícitamente en la Sección 2.1).
+en lugar de subir el material a un servicio externo.
 
 ## Archivos que componen el contenedor
 
 ```
 evidencias_restringidas/
-   **67 partes del archivo comprimido evidencias_restringidas.7z
+   **275 partes del archivo comprimido evidencias_restringidas.7z
 ```
 
 Estos archivos **no se pueden abrir por separado**. Son fragmentos de un
@@ -36,9 +34,7 @@ cifrados.
    de la secuencia). 7-Zip reconoce automáticamente los volúmenes
    siguientes y reconstruye el contenido original.
 3. Se solicitará la contraseña, entregada únicamente al docente por el
-   espacio de la actividad en el Sistema de Gestión Académica (SGA), tal
-   como establece la Sección 4.1 de la guía. La contraseña **no** se
-   encuentra en este repositorio ni en ningún archivo de texto adjunto.
+   espacio de la actividad en el Sistema de Gestión Académica (SGA).
 4. Una vez descifrado, el contenido se puede verificar contra
    `fichas_tecnicas.csv` (en esta misma carpeta) usando `sha256sum -c`
    sobre el hash de cada archivo, calculado **antes** de cifrar.
