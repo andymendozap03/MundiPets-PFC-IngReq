@@ -1,51 +1,62 @@
-﻿ID,Ley,Articulo,Objetivo,Stakeholder,ID-EV,ID-RF,Tipo,ID-CU,ID-HU,ID-CA,ID-Componente,ID-Mockup
-TR-01,LOPDP,Art. 7 y 8,Registro de mascota,Propietario,"EV-02, EV-03, EV-05, EV-08",RF-01,RF,CU-01,HU-01,CA-01,COMP-01 Gestion de Mascotas,"MU-02, MU-06"
-TR-02,LOPDP,Art. 14,Registro clínico,Veterinaria,"EV-01, EV-04",RF-02,RF,CU-02,HU-02,CA-02,COMP-01 Gestion de Mascotas,MU-06
-TR-03,LOPDP,Art. 12 y 13,Consulta de perfil médico,Adoptante,"EV-04, EV-06, EV-08",RF-03,RF,CU-10,HU-03,CA-03,COMP-01 Gestion de Mascotas,"MU-04, MU-06"
-TR-04,,,Búsqueda de mascotas,Adoptante,"EV-07, EV-08",RF-04,RF,CU-11,,,COMP-01 Gestion de Mascotas,MU-04
-TR-05,,,Publicación en adopción,Propietario,"EV-01, EV-02, EV-03, EV-08",RF-05,RF,CU-04,HU-04,CA-04,COMP-02 Adopcion y Cruza,MU-05
-TR-06,LOPDP,Art. 20,Evaluación de compatibilidad,Interesado en cruza,"EV-04, EV-05, EV-06, EV-08",RF-06,RF,CU-13,HU-05,CA-05,COMP-05 Inteligencia Artificial,MU-07
-TR-07,LOPDP,Art. 10 lit. e),Mensajería entre usuarios,Propietario,"EV-02, EV-07, EV-08",RF-07,RF,CU-08,,,COMP-03 Mensajeria,MU-05
-TR-08,,,Solicitudes de cruza,Interesado en cruza,"EV-01, EV-03, EV-05",RF-08,RF,CU-05,HU-06,CA-06,COMP-02 Adopcion y Cruza,MU-05
-TR-09,LOPDP,Art. 25 y 26,Validación de información médica,Veterinaria,"EV-03, EV-05, EV-07",RF-09,RF,CU-09,HU-07,CA-07,COMP-04 Validacion Medica,MU-03
-TR-10,,,Controles preventivos,Propietario,"EV-02, EV-04, EV-06",RF-10,RF,CU-12,,,COMP-03 Mensajeria,
-TR-11,LOPDP,"Art. 12, 13 y 10 lit. e)",Administrar privacidad,Propietario,"EV-02, EV-05, EV-06, EV-07, EV-08",RF-11,RF,CU-06,HU-08,CA-08,COMP-01 Gestion de Mascotas,MU-08
-TR-12,LOPDP,Art. 7 y 8,Verificar identidad,Todos los usuarios,"EV-01, EV-03, EV-07, EV-08",RF-12,RF,(Transversal a Onboarding),HU-09,CA-09,COMP-01 Gestion de Mascotas,MU-01
-TR-13,,,Registrar publicaciones,Propietario / Refugio,"EV-01, EV-02, EV-07, EV-08",RF-13,RF,CU-04,HU-10,CA-10,COMP-01 Gestion de Mascotas,MU-06
-TR-14,LOPDP,Art. 14,Carnet de vacunación,Veterinaria,"EV-03, EV-05, EV-07",RF-14,RF,CU-03,HU-11,CA-11,COMP-04 Validacion Medica,MU-03
-TR-15,,,Historial de procesos,Propietario,"EV-01, EV-02, EV-04, EV-06",RF-15,RF,CU-07,,,COMP-01 Gestion de Mascotas,
-TR-16,,,Antecedentes genéticos,Interesado en cruza,"EV-01, EV-03, EV-05, EV-07",RF-16,RF,CU-02,HU-12,CA-12,COMP-01 Gestion de Mascotas,MU-06
-TR-17,LOPDP,Art. 20,Validación de imágenes por IA,Propietario,"EV-01, EV-03, EV-07, EV-08",RF-17,RF,(Transversal a Publicaciones),,,COMP-05 Inteligencia Artificial,
-TR-18,LOPDP,Art. 10 lit. j) y 25,Protección de la información,Propietario / Veterinaria,"EV-05, EV-06, EV-07, EV-08",RNF-01,RNF,CU-06,,,COMP-06 Transversal (calidad),
-TR-19,,,Disponibilidad del sistema,Todos los usuarios,EV-01 a EV-07,RNF-02,RNF,(Transversal),,,COMP-06 Transversal (calidad),
-TR-20,,,Tiempo de respuesta,Todos los usuarios,EV-01 a EV-07,RNF-03,RNF,CU-11,,,COMP-06 Transversal (calidad),
-TR-21,,,Facilidad de uso,Todos los usuarios,EV-01 a EV-08,RNF-04,RNF,(Transversal / UI),,,COMP-06 Transversal (calidad),
-TR-22,LOPDP,Art. 25 y 26,Integridad info. médica,Veterinaria,"EV-03, EV-05, EV-07",RNF-05,RNF,CU-02,,,COMP-06 Transversal (calidad),
-TR-23,LOPDP,Art. 20,Exactitud componente IA,Interesado en cruza,"EV-01, EV-03, EV-05, EV-07",RNF-06,RNF,CU-13,,,COMP-05 Inteligencia Artificial,
-TR-24,LOPDP,Art. 20,Precisión validación imágenes,Propietario,"EV-01, EV-03, EV-05, EV-07",RNF-07,RNF,(Transversal a Media),,,COMP-05 Inteligencia Artificial,
-TR-25,,,Actualización de información,Todos los usuarios,EV-01 a EV-07,RNF-08,RNF,CU-01,,,COMP-06 Transversal (calidad),
-TR-26,LOPDP,Art. 20,Integración de IA,Interesado en cruza,"EV-01, EV-03, EV-05, EV-07",RD-01,RD,CU-13,,,COMP-05 Inteligencia Artificial,
-TR-27,LOPDP,Art. 39,Acceso basado en roles,Todos los usuarios,EV-01 a EV-07,RD-02,RD,(Transversal a Seguridad),,,COMP-07 Transversal (diseno),
-TR-28,LOPDP,Art. 25 y 26,Validación profesional,Veterinaria,"EV-03, EV-05, EV-07",RD-03,RD,CU-09,,,COMP-07 Transversal (diseno),
-TR-29,LOPDP,"Art. 25, 26 y 30",Protección de datos,Propietario,"EV-02, EV-05, EV-06, EV-07",RD-04,RD,CU-06,,,COMP-07 Transversal (diseno),
-TR-30,,,Arquitectura modular,Equipo desarrollador,Derivado del equipo de desarrollo,RD-05,RD,(Transversal a Diseño),,,COMP-07 Transversal (diseno),
-TR-31,,,Flujo de adopción por etapas,Adoptante / Propietario,"EV-11, EV-16",RF-18,RF,CU-04,HU-13,CA-13,COMP-02 Adopcion y Cruza,
-TR-32,LOPDP,Art. 12,Validación de certificados veterinarios,Veterinaria,EV-11,RF-19,RF,CU-09,,,COMP-02 Adopcion y Cruza,MU-03
-TR-33,,,Encuentros de socialización supervisados,Propietario,EV-13,RF-20,RF,CU-08,,,COMP-02 Adopcion y Cruza,
-TR-34,,,Identificador de microchip,Propietario / Veterinaria,EV-16,RF-21,RF,CU-01,,,COMP-01 Gestion de Mascotas,
-TR-35,,,Seguimiento post-adopción,Adoptante / Propietario,"EV-10, EV-16",RF-22,RF,CU-07,HU-14,CA-14,COMP-02 Adopcion y Cruza,
-TR-36,,,Alertas de riesgo sanitario o físico,Propietario / Interesado en cruza,"EV-09, EV-12, EV-15, EV-18",RF-23,RF,CU-06,HU-15,CA-15,COMP-02 Adopcion y Cruza,
-TR-37,LOPDP,Art. 4,"Trazabilidad de cepa, lote y aplicador",Veterinaria / Propietario,"EV-15, EV-16",RF-24,RF,CU-03,,,COMP-04 Validacion Medica,
-TR-38,,,Aviso de mascota extraviada,Propietario,"EV-12, EV-16",RF-25,RF,CU-04,,,COMP-01 Gestion de Mascotas,
-TR-39,LOPDP,Art. 9,Confidencialidad de ubicación y contacto,Propietario,"EV-12, EV-16",RNF-16,RNF,CU-06,HU-08,CA-08,COMP-06 Transversal (calidad),
-TR-40,LOPDP,Art. 30--32,Anonimización de evidencias de campo,Equipo investigador,EV-01 a EV-22,RD-09,RD,(Transversal a Datos),,,COMP-07 Transversal (diseno),
-TR-41,,,Interoperabilidad de notificaciones,Propietario,"EV-09, EV-18",RNF-09,RNF,CU-12,,,COMP-06 Transversal (calidad),
-TR-42,,,Mantenibilidad del código,Equipo desarrollador,Derivado del equipo de desarrollo,RNF-10,RNF,(Transversal a Diseño),,,COMP-06 Transversal (calidad),
-TR-43,,,Portabilidad entre navegadores,Todos los usuarios,"EV-07, EV-08",RNF-11,RNF,(Transversal a UI),,,COMP-06 Transversal (calidad),
-TR-44,,,Escalabilidad ante crecimiento,Todos los usuarios,"EV-07, EV-08",RNF-12,RNF,(Transversal),,,COMP-06 Transversal (calidad),
-TR-45,LOPDP,Art. 20,Explicabilidad de la compatibilidad para cruza,Interesado en cruza,"EV-11, EV-13, EV-15, EV-16",RNF-13,RNF,CU-13,HU-05,CA-05,COMP-05 Inteligencia Artificial,MU-07
-TR-46,LOPDP,Art. 20,Explicabilidad de la validación de imágenes,Propietario,"EV-11, EV-13",RNF-14,RNF,(Transversal a Media),,,COMP-05 Inteligencia Artificial,
-TR-47,LOPDP,Art. 20,Explicabilidad de la moderación de mensajes,Propietario,"EV-13, EV-18",RNF-15,RNF,CU-08,,,COMP-05 Inteligencia Artificial,MU-05
-TR-48,LOPDP,Art. 15,Eliminación de cuenta y datos personales,Propietario,EV-18,RD-06,RD,(Transversal a Datos),,,COMP-07 Transversal (diseno),MU-08
-TR-49,LOPDP,Art. 43 y 46,Notificación de vulneraciones de seguridad,Propietario / Autoridad,"EV-12, EV-18",RD-07,RD,(Transversal a Seguridad),,,COMP-07 Transversal (diseno),
-TR-50,,,Dependencia de mensajería externa,Propietario,"EV-09, EV-18",RD-08,RD,CU-12,,,COMP-07 Transversal (diseno),
+﻿ID,Fuente,Requisito,Caso de Uso,Clase,Proceso,Estado,Criterio,Caso de Prueba,Historia,Estado de la traza,Ley,Articulo,ID-EV,Objetivo,Stakeholder,ID-Mockup,ID-Componente
+TR-01,"PROP-02, VET-01, VET-03, OBS-01; también RF-12, RF-13",RF-01,CU-01,Pet,P1,Drafted,CA-01,CP-01,HU-01,Completa,---,---,"PROP-02, VET-01, VET-03, OBS-01",Registrar mascota,Propietario de mascota,MU-02,Pet
+TR-02,"PROP-01, VET-02; también RF-14, RF-24",RF-02,CU-02,MedicalHistory,P1,---,CA-02,CP-02,HU-02,Completa,---,---,"PROP-01, VET-02",Gestionar historial médico de la mascota,Propietario de mascota / Veterinaria,"MU-03, MU-06",MedicalHistory
+TR-03,"VET-02, PROP-03, OBS-01; también RF-04, RF-11",RF-03,CU-10,Pet,P2,---,CA-03,CP-03,HU-03,Completa,---,---,"VET-02, PROP-03, OBS-01",Consultar perfil completo de una mascota,Propietario de mascota / Adoptante / Interesado en cruza,MU-06,Pet
+TR-04,"Encuesta, OBS-01; también RF-03",RF-04,CU-11,Post,P2,---,CA-16,CP-04,HU-16,Completa,---,---,"Encuesta, OBS-01",Buscar y filtrar mascotas,Adoptante / Interesado en cruza,MU-04,Post
+TR-05,"PROP-01, PROP-02, VET-01, OBS-01; también RF-12, RF-13, RF-18",RF-05,CU-04,AdoptionRequest,P3,Created,CA-04,CP-05,HU-04,Completa,---,---,"PROP-01, PROP-02, VET-01, OBS-01",Gestionar solicitudes de adopción,Adoptante / Propietario de mascota,MU-05,AdoptionRequest
+TR-06,"VET-02, VET-03, PROP-03, OBS-01; también RF-16, RF-19, RF-23",RF-06,CU-13,CompatibilityEvaluation,P8,---,CA-05,CP-06,HU-05,Completa,---,---,"VET-02, VET-03, PROP-03, OBS-01",Evaluar compatibilidad entre mascotas para cruza,Propietario de mascota / Interesado en cruza,MU-07,CompatibilityEvaluation
+TR-07,"PROP-02, Encuesta, OBS-01; también RF-05, RF-08, RNF-15",RF-07,CU-08,Message,P5,---,CA-17,CP-07,HU-17,Completa,---,---,"PROP-02, Encuesta, OBS-01",Sistema de mensajería entre usuarios,Propietario de mascota / Adoptante / Interesado en cruza,MU-05,Message
+TR-08,"PROP-01, VET-01, VET-03; también RF-13, RF-19, RF-27",RF-08,CU-05,BreedingRequest,P3,Created,CA-06,CP-08,HU-06,Completa,---,---,"PROP-01, VET-01, VET-03",Gestionar solicitudes de cruza,Propietario de mascota / Interesado en cruza,MU-05,BreedingRequest
+TR-09,"VET-01, VET-03, Encuesta; también RF-02, RF-26",RF-09,CU-09,"MedicalHistory, Veterinarian",P4,Verified,CA-07,CP-09,HU-07,Completa,---,---,"VET-01, VET-03, Encuesta",Validar la información médica de una mascota,Veterinaria,MU-03,"MedicalHistory, Veterinarian"
+TR-10,"PROP-02, VET-02, PROP-03; también RF-14, RD-08",RF-10,CU-12,PetVaccine,P1,---,CA-18,CP-10,HU-18,Completa,---,---,"PROP-02, VET-02, PROP-03",Gestionar recordatorios de controles preventivos,Propietario de mascota,---,PetVaccine
+TR-11,"PROP-02, VET-03, PROP-03, Encuesta, OBS-01; también RF-03, RD-02",RF-11,CU-12,PrivacySettings,P1,---,CA-08,CP-11,HU-08,Completa,---,---,"PROP-02, VET-03, PROP-03, Encuesta, OBS-01",Administrar la privacidad de la información,Propietario de mascota,MU-08,PrivacySettings
+TR-12,"PROP-01, VET-01, Encuesta, OBS-01; también RF-01, RL-01",RF-12,(Transversal a Onboarding),User,P1,---,CA-09,CP-12,HU-09,Completa,---,---,"PROP-01, VET-01, Encuesta, OBS-01",Verificar la identidad de los usuarios,Propietario de mascota / Adoptante / Interesado en cruza,MU-01,User
+TR-13,"PROP-01, PROP-02, Encuesta, OBS-01; también RF-01, RF-05, RF-08",RF-13,CU-04,Post,P3,Published,CA-10,CP-13,HU-10,Completa,---,---,"PROP-01, PROP-02, Encuesta, OBS-01",Registrar publicaciones de mascotas,Propietario de mascota,MU-06,Post
+TR-14,"VET-01, VET-03, Encuesta; también RF-02, RF-24",RF-14,CU-03,"PetVaccine, Vaccine",P1,---,CA-11,CP-14,HU-11,Completa,---,---,"VET-01, VET-03, Encuesta",Gestionar carnet de vacunación,Propietario de mascota / Veterinaria,MU-03,"PetVaccine, Vaccine"
+TR-15,"PROP-01, PROP-02, VET-02, PROP-03; también RF-05, RF-08, RF-27",RF-15,CU-07,"AdoptionRequest, BreedingRequest",P2,---,CA-19,CP-15,HU-19,Completa,---,---,"PROP-01, PROP-02, VET-02, PROP-03",Consultar el historial de procesos de adopción y cruza,Propietario de mascota,---,"AdoptionRequest, BreedingRequest"
+TR-16,"PROP-01, VET-01, VET-03, Encuesta; también RF-06, RF-19",RF-16,CU-02,MedicalHistory,P1,---,CA-12,CP-16,HU-12,Completa,---,---,"PROP-01, VET-01, VET-03, Encuesta",Gestionar antecedentes genéticos y parentesco de la mascota,Propietario de mascota / Veterinaria,MU-06,MedicalHistory
+TR-17,"PROP-01, VET-01, Encuesta, OBS-01; también RNF-07, RNF-14",RF-17,(Transversal a Publicaciones),"Pet, Post",P8,PhotosAndSpeciesChecked,CA-20,CP-17,HU-20,Completa,---,---,"PROP-01, VET-01, Encuesta, OBS-01",Validar imágenes,Propietario de mascota / Veterinaria,---,"Pet, Post"
+TR-18,"PROP-06, VET-05; también RF-05, RF-22",RF-18,CU-04,AdoptionRequest,P3,Under review,CA-13,CP-18,HU-13,Completa,---,---,"PROP-06, VET-05",Gestionar el flujo de solicitud de adopción por etapas,Adoptante / Propietario de mascota,MU-05,AdoptionRequest
+TR-19,"PROP-06; también RF-06, RF-16",RF-19,CU-09,VetDocument,P4,Verified,CA-21,CP-19,HU-21,Completa,---,---,PROP-06,Validar certificados veterinarios antes de habilitar la cruza,Propietario de mascota / Veterinaria,MU-03,VetDocument
+TR-20,PROP-08; también RF-07,RF-20,CU-08,Interaction,P5,---,CA-27,CP-20,HU-27,Completa,---,---,PROP-08,Coordinar encuentros de socialización supervisados,Propietario de mascota,---,Interaction
+TR-21,"VET-05; también RF-14, RF-25",RF-21,CU-01,Pet,P1,---,CA-22,CP-21,HU-22,Completa,---,---,VET-05,Registrar el identificador de microchip de la mascota,Propietario de mascota / Veterinaria,MU-06,Pet
+TR-22,"PROP-05, VET-05; también RF-18",RF-22,CU-07,AdoptionRequest,P3,adopted or matched,CA-14,CP-22,HU-14,Completa,---,---,"PROP-05, VET-05",Dar seguimiento post-adopción,Adoptante / Propietario de mascota,MU-05,AdoptionRequest
+TR-23,"PROP-04, PROP-07, VET-04, PROP-11; también RF-06, RF-16",RF-23,CU-06,"Interaction, BreedingRequest",P7,---,CA-15,CP-23,HU-15,Completa,---,---,"PROP-04, PROP-07, VET-04, PROP-11",Emitir alertas de riesgo sanitario o físico en interacciones y cruces,Propietario de mascota / Interesado en cruza,MU-07,"Interaction, BreedingRequest"
+TR-24,"VET-04, VET-05; también RF-02, RF-14",RF-24,CU-03,PetVaccine,P1,---,CA-23,CP-24,HU-23,Completa,---,---,"VET-04, VET-05","Registrar trazabilidad de cepa, lote y aplicador de cada vacuna",Veterinaria / Propietario de mascota,MU-03,PetVaccine
+TR-25,"PROP-07, VET-05; también RF-21",RF-25,CU-04,LostPetAlert,P3,---,CA-24,CP-25,HU-24,Completa,---,---,"PROP-07, VET-05",Publicar aviso de mascota extraviada,Propietario de mascota,MU-04,LostPetAlert
+TR-26,VET-07; también RF-09,RF-26,CU-09,"MedicalHistory, VeterinaryEvaluation",P4,Verified,CA-25,CP-26,HU-25,Completa,---,---,VET-07,Habilitar validación médica por segunda opinión veterinaria,Veterinaria,MU-03,"MedicalHistory, VeterinaryEvaluation"
+TR-27,"PROP-12; también RF-08, RF-15",RF-27,CU-05,BreedingRequest,P3,Approved,CA-26,CP-27,HU-26,Completa,---,---,PROP-12,Controlar y alertar sobre solicitudes repetitivas de cruza de una misma mascota,Propietario de mascota / Interesado en cruza,MU-05,BreedingRequest
+TR-28,"VET-03, PROP-03, Encuesta, OBS-01; también RD-04, RL-05, RL-07",RNF-01,CU-12,---,P1,---,---,CP-28,---,Completa (transversal),---,---,"VET-03, PROP-03, Encuesta, OBS-01",Protección de la información,Propietario / Veterinaria,MU-08,COMP-06 Transversal (calidad)
+TR-29,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta; también RNF-03",RNF-02,(Transversal),---,Transversal,---,---,CP-29,---,Completa (transversal),---,---,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta",Disponibilidad del sistema,Todos los usuarios,---,COMP-06 Transversal (calidad)
+TR-30,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta; también RNF-02, RNF-12",RNF-03,CU-11,---,Transversal,---,---,CP-30,---,Completa (transversal),---,---,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta",Tiempo de respuesta,Todos los usuarios,---,COMP-06 Transversal (calidad)
+TR-31,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta, OBS-01",RNF-04,(Transversal / UI),---,Transversal,---,---,CP-31,---,Completa (transversal),---,---,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta, OBS-01",Facilidad de uso,Todos los usuarios,MU-04,COMP-06 Transversal (calidad)
+TR-32,"VET-01, VET-03, Encuesta; también RD-04",RNF-05,CU-02,---,P1,---,---,CP-32,---,Completa (transversal),---,---,"VET-01, VET-03, Encuesta",Integridad info. médica,Veterinaria,MU-03,COMP-06 Transversal (calidad)
+TR-33,"PROP-01, VET-01, VET-03, Encuesta; también RF-06, RNF-13",RNF-06,CU-13,CompatibilityEvaluation,P8,---,CA-05 (heredado de RF-06),CP-33,HU-05 (heredada de RF-06),Completa,---,---,"PROP-01, VET-01, VET-03, Encuesta",Exactitud componente IA,Interesado en cruza,MU-07,COMP-05 Inteligencia Artificial
+TR-34,"PROP-01, VET-01, VET-03, Encuesta; también RF-17, RNF-14",RNF-07,(Transversal a Media),Post,P8,---,CA-20 (heredado de RF-17),CP-34,HU-20 (heredada de RF-17),Completa,---,---,"PROP-01, VET-01, VET-03, Encuesta",Precisión validación imágenes,Propietario,---,COMP-05 Inteligencia Artificial
+TR-35,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta",RNF-08,CU-01,---,P1,---,---,CP-35,---,Completa (transversal),---,---,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta",Actualización de información,Todos los usuarios,---,COMP-06 Transversal (calidad)
+TR-36,"PROP-04, PROP-11; también RF-10, RD-08",RNF-09,CU-12,---,P1,---,CA-18 (heredado de RF-10),CP-36,HU-18 (heredada de RF-10),Completa,---,---,"PROP-04, PROP-11",Interoperabilidad de notificaciones,Propietario,---,COMP-06 Transversal (calidad)
+TR-37,Equipo desarrollador; también RD-05,RNF-10,(Transversal a Diseño),---,Transversal,---,---,CP-37,---,Completa (transversal),---,---,Equipo desarrollador,Mantenibilidad del código,Equipo desarrollador,---,COMP-06 Transversal (calidad)
+TR-38,"Encuesta, OBS-01",RNF-11,(Transversal a UI),---,Transversal,---,---,CP-38,---,Completa (transversal),---,---,"Encuesta, OBS-01",Portabilidad entre navegadores,Todos los usuarios,---,COMP-06 Transversal (calidad)
+TR-39,"Encuesta, OBS-01; también RNF-03",RNF-12,(Transversal),---,Transversal,---,---,CP-39,---,Completa (transversal),---,---,"Encuesta, OBS-01",Escalabilidad ante crecimiento,Todos los usuarios,---,COMP-06 Transversal (calidad)
+TR-40,"PROP-06, PROP-08, VET-04, VET-05; también RF-06, RNF-06, RL-06",RNF-13,CU-13,CompatibilityEvaluation,P8,---,CA-05,CP-40,HU-05 (heredada de RF-06),Completa,---,---,"PROP-06, PROP-08, VET-04, VET-05",Explicabilidad de la compatibilidad para cruza,Interesado en cruza,MU-07,COMP-05 Inteligencia Artificial
+TR-41,"PROP-06, PROP-08; también RF-17, RNF-07, RL-06",RNF-14,(Transversal a Media),Post,P8,---,CA-20 (heredado de RF-17),CP-41,HU-20 (heredada de RF-17),Completa,---,---,"PROP-06, PROP-08",Explicabilidad de la validación de imágenes,Propietario,---,COMP-05 Inteligencia Artificial
+TR-42,"PROP-08, PROP-11; también RF-07, RL-06",RNF-15,CU-08,Message,P5,---,CA-17 (heredado de RF-07),CP-42,HU-17 (heredada de RF-07),Completa,---,---,"PROP-08, PROP-11",Explicabilidad de la moderación de mensajes,Propietario,MU-05,COMP-05 Inteligencia Artificial
+TR-43,"PROP-07, VET-05; también RF-11, RL-05, RL-08",RNF-16,CU-12,---,P1,---,CA-08,CP-43,HU-08 (heredada de RF-11),Completa,---,---,"PROP-07, VET-05",Confidencialidad de ubicación y contacto,Propietario,MU-08,COMP-06 Transversal (calidad)
+TR-44,"PROP-01, VET-01, VET-03, Encuesta; también RF-06, RF-17, RF-07",RD-01,CU-13,---,P8,---,---,CP-44,---,Completa (transversal),---,---,"PROP-01, VET-01, VET-03, Encuesta",Integración de IA,Equipo desarrollador,MU-07,COMP-05 Inteligencia Artificial
+TR-45,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta; también RF-11, RL-05, RL-08",RD-02,(Transversal a Seguridad),"User, Owner, Shelter, Veterinarian",Transversal,---,---,CP-45,---,Completa (transversal),---,---,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta",Acceso basado en roles,Todos los usuarios,"MU-01, MU-08",COMP-07 Transversal (diseno)
+TR-46,"VET-01, VET-03, Encuesta; también RF-09, RF-19",RD-03,CU-09,"VeterinaryEvaluation, Veterinarian",P4,---,---,CP-46,---,Completa (transversal),---,---,"VET-01, VET-03, Encuesta",Validación profesional,Veterinaria,MU-03,COMP-07 Transversal (diseno)
+TR-47,"PROP-02, VET-03, PROP-03, Encuesta; también RNF-01, RL-05, RL-07",RD-04,CU-12,PrivacySettings,P1,---,---,CP-47,---,Completa (transversal),---,---,"PROP-02, VET-03, PROP-03, Encuesta",Protección de datos,Propietario / Veterinaria,MU-08,COMP-07 Transversal (diseno)
+TR-48,Equipo desarrollador; también RNF-10,RD-05,(Transversal a Diseño),---,Transversal,---,---,CP-48,---,Completa (transversal),---,---,Equipo desarrollador,Arquitectura modular,Equipo desarrollador,---,COMP-07 Transversal (diseno)
+TR-49,PROP-11; también RL-04,RD-06,(Transversal a Datos),---,Transversal,---,---,CP-49,---,Completa (transversal),---,---,PROP-11,Eliminación de cuenta y datos personales,Propietario,MU-08,COMP-07 Transversal (diseno)
+TR-50,"PROP-07, PROP-11; también RL-09",RD-07,(Transversal a Seguridad),---,Transversal,---,---,CP-50,---,Completa (transversal),---,---,"PROP-07, PROP-11",Notificación de vulneraciones de seguridad,Equipo desarrollador,---,COMP-07 Transversal (diseno)
+TR-51,"PROP-04, PROP-11; también RF-10, RNF-09",RD-08,CU-12,---,P1,---,---,CP-51,---,Completa (transversal),---,---,"PROP-04, PROP-11",Dependencia de mensajería externa,Propietario,---,COMP-07 Transversal (diseno)
+TR-52,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta, OBS-01, PROP-04, PROP-05, PROP-06, PROP-07, PROP-08, PROP-09, VET-04, VET-05, PROP-10, PROP-11, VET-06, PROP-12, VET-07",RD-09,(Transversal a Datos),---,Transversal,---,---,CP-52,---,Completa (transversal),---,---,"PROP-01, PROP-02, VET-01, VET-02, VET-03, PROP-03, Encuesta, OBS-01, PROP-04, PROP-05, PROP-06, PROP-07, PROP-08, PROP-09, VET-04, VET-05, PROP-10, PROP-11, VET-06, PROP-12, VET-07",Anonimización de evidencias de campo,Equipo investigador,---,COMP-07 Transversal (diseno)
+TR-53,"LOPDP, Art. 7 y 8; también RL-02, RD-06",RL-01,(Onboarding),---,P1,---,---,CP-53,---,Completa (transversal),LOPDP,Art. 7 y 8,---,RL-01,---,MU-01,---
+TR-54,"LOPDP, Art. 12 y 13; también RL-01, RL-03",RL-02,CU-10,---,P2,---,---,CP-54,---,Completa (transversal),LOPDP,Art. 12 y 13,---,RL-02,---,"MU-06, MU-08",---
+TR-55,"LOPDP, Art. 14; también RL-02, RL-04",RL-03,CU-02,---,P1,---,---,CP-55,---,Completa (transversal),LOPDP,Art. 14,---,RL-03,---,"MU-03, MU-06",---
+TR-56,"LOPDP, Art. 15; también RL-03, RL-05",RL-04,(Transversal a Datos),---,Transversal,---,---,CP-56,---,Completa (transversal),LOPDP,Art. 15,---,RL-04,---,MU-08,---
+TR-57,"LOPDP, Art. 10 lit. e) y j); también RL-04, RL-07, RL-08",RL-05,CU-12,---,P1,---,---,CP-57,---,Completa (transversal),LOPDP,Art. 10 lit. e) y j),---,RL-05,---,MU-08,---
+TR-58,"LOPDP, Art. 20; también RNF-13, RNF-14, RNF-15",RL-06,CU-13,---,P8,---,---,CP-58,---,Completa (transversal),LOPDP,Art. 20,---,RL-06,---,MU-07,---
+TR-59,"LOPDP, Art. 25, 26 y 30; también RL-05, RD-04",RL-07,CU-12,---,P1,---,---,CP-59,---,Completa (transversal),LOPDP,"Art. 25, 26 y 30",---,RL-07,---,"MU-03, MU-08",---
+TR-60,"LOPDP, Art. 39; también RD-02, RL-05",RL-08,(Transversal a Seguridad),---,Transversal,---,---,CP-60,---,Completa (transversal),LOPDP,Art. 39,---,RL-08,---,"MU-01, MU-08",---
+TR-61,"LOPDP, Art. 43 y 46; también RD-07",RL-09,(Transversal a Seguridad),---,Transversal,---,---,CP-61,---,Completa (transversal),LOPDP,Art. 43 y 46,---,RL-09,---,---,---
