@@ -16,8 +16,9 @@
 % Reference style: sn-mathphys-num (numbered).
 %
 % ### ESTADO DE ESTA VERSION ###
-% Version 2 de 5 - aportes de: Fuertes Arraes + Mendoza Parraga.
-% Secciones incluidas: Abstract + Introduction, Related work.
+% Version 3 de 5 - aportes de: Fuertes Arraes + Mendoza Parraga + Gutierrez Ortega.
+% Secciones incluidas: Abstract + Introduction, Related work, Methodology,
+% Threats to validity.
 %=====================================================================
 \documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
 
@@ -305,6 +306,310 @@
 	work either maps the field without primary agreement data, or evaluates
 	detectors on English-language benchmark corpora that were not produced by the
 	team reporting the evaluation.
+	
+	
+	%=====================================================================
+	% --- Sección a cargo de: Gutiérrez Ortega, G. A. (Verificadora) ---
+	\section{Methodology}\label{sec:method}
+	
+	The empirical component follows Approach~2 of the course framework ---
+	automatic detection of ambiguity and smells in requirements --- and is designed
+	as a paired quasi-experiment, reported following the guidelines of Jedlitschka
+	et al.~\cite{jedlitschka2008} and the experimental design principles of Wohlin
+	et al.~\cite{wohlin2012}. The protocol was preregistered on the Open Science
+	Framework~\cite{nosek2018} on 27 July 2026 at 10:49:41 (Ecuador time), before
+	the classification rubric was distributed to the expert panel and before the
+	detector was executed over the corpus.
+	
+	\subsection{Research questions in PICOC format}\label{subsec:picoc}
+	
+	\begin{table}[h]
+		\caption{Research questions structured with the PICOC framework}\label{tab:picoc}
+		\begin{tabular}{@{}p{2.0cm}p{9.5cm}@{}}
+			\toprule
+			Element & Description \\
+			\midrule
+			Population & The set of functional requirements (FR), non-functional
+			requirements (NFR) and design constraints (DC) specified for the MundiPets
+			system, written according to the eight-attribute template of the course and
+			current at the time the experiment was executed. \\
+			Intervention & Automatic classification of each requirement as ambiguous or
+			non-ambiguous by a rule-based detector that identifies vague quantifiers,
+			multiple conjunctions concealing more than one requirement, passive voice, and
+			absence of an explicit verification criterion. \\
+			Comparison & Manual and independent classification of the same requirement set
+			by three experts in requirements engineering, with no prior access to the
+			detector output (blind evaluation). \\
+			Outcome & Precision, recall and $F_1$ of the automatic detector against expert
+			consensus; inter-rater agreement via Cohen's $\kappa$ between pairs and Fleiss'
+			$\kappa$ across the three raters. \\
+			Context & Academic project of the Requirements Engineering course (Universidad
+			Técnica Estatal de Quevedo, 2026--2027 academic period) applied to the real
+			MundiPets system, with the specification written in Spanish. \\
+			\botrule
+		\end{tabular}
+	\end{table}
+	
+	\subsection{Hypotheses}\label{subsec:hypotheses}
+	
+	RQ1 is tested through the following pair of hypotheses:
+	
+	\begin{description}
+		\item[$H_0$] The classification produced by the automatic ambiguity detector
+		is not associated with the consensus classification of the experts; the
+		observed agreement between the two (Cohen's $\kappa$) is not significantly
+		different from chance agreement ($\kappa = 0$).
+		\item[$H_1$] The classification produced by the automatic detector is
+		significantly associated with the expert consensus classification; the
+		observed agreement is significantly greater than chance ($\kappa > 0$).
+	\end{description}
+	
+	RQ2 is exploratory and is not subjected to hypothesis testing; it is answered
+	through qualitative analysis of the cases where detector and consensus diverge.
+	
+	\subsection{Variables}\label{subsec:variables}
+	
+	The \emph{independent variable} is the classification method applied to each
+	requirement, with two levels: (a) rule-based automatic detector and (b) consensus
+	of the three human experts. The \emph{dependent variable} is the resulting
+	binary classification of each requirement as ambiguous or non-ambiguous, from
+	which the agreement metrics are computed.
+	
+	Four \emph{control variables} were fixed. First, requirement type (FR, NFR, DC)
+	was recorded to verify that detector performance does not vary systematically
+	with the artefact evaluated. Second, the detector configuration --- the four
+	rules listed in Section~\ref{subsec:design} --- remained invariant throughout
+	execution; no rule was adjusted after observing partial results. Third, the
+	presentation order of the requirements was randomised independently for each
+	rater to control fatigue and order effects. Fourth, raters were blind both to
+	the detector output and to one another's classifications until their own was
+	complete.
+	
+	\subsection{Design and materials}\label{subsec:design}
+	
+	The corpus comprises the complete set of 61 requirements of the MundiPets
+	specification: 27 functional requirements, 16 non-functional requirements, 9
+	design constraints and 9 legal requirements. Each requirement was assigned an
+	anonymous identifier (REQ-01 to REQ-61), stripped of its type label, and
+	presented to the raters in randomised order. A key linking anonymous
+	identifiers to the real requirement identifiers and to the detector output was
+	retained by the research team and not shared with the raters.
+	
+	The detector is a purpose-built Python program based on regular expressions. It
+	flags a requirement as ambiguous when at least one of four rules fires:
+	(i) presence of a vague quantifier; (ii) multiple conjunctions concealing more
+	than one requirement in a single statement; (iii) passive voice or absent
+	subject; and (iv) absence of an explicit verification criterion. No large
+	language model was used at any point of the classification pipeline, which keeps
+	every classification decision traceable to a named rule.
+	
+	\subsection{Participants and recruitment}\label{subsec:participants}
+	
+	The expert panel comprised three software engineers holding a professional
+	degree from the Universidad Técnica Estatal de Quevedo (two women and one man),
+	none of whom belonged to the MundiPets team or participated in writing the
+	requirements under evaluation. Inclusion criteria were: (a) a professional
+	degree in software engineering or a closely related field; (b) demonstrable
+	training or experience in requirements specification and analysis; and (c)
+	availability to complete the classification within the study schedule.
+	
+	Each rater signed, on 28 July 2026, an informed consent form specific to this
+	role, drafted in compliance with Ecuador's Organic Law on Personal Data
+	Protection~\cite{lopdp2021}, explicitly authorising the anonymised use of their
+	classifications in peer-reviewed publications and their deposit in an open
+	dataset.
+	
+	\subsection{Instruments}\label{subsec:instruments}
+	
+	Two instruments were used. The \emph{expert classification rubric} is a workbook
+	containing an instruction sheet, a reference-criteria sheet for identifying
+	ambiguity, and an evaluation sheet where each rater records, per requirement,
+	the identifier, the full text, the classification, the type of smell detected, a
+	brief justification and a self-reported confidence level on a 1--5 scale. The
+	\emph{expert consent template} adapts the consent form used in the previous
+	elicitation round to the rater role, adding the clause on anonymised use in
+	peer-reviewed publications.
+	
+	\subsection{Statistical analysis plan}\label{subsec:analysis}
+	
+	Because the central variable is categorical, the primary analysis is based on
+	agreement metrics rather than mean comparison.
+	
+	\bmhead{Primary analysis (RQ1, $H_0$/$H_1$)}
+	Precision, recall and $F_1$ of the detector are computed against expert
+	consensus, defined by majority vote across the three raters. The hypothesis is
+	tested through a significance test of Cohen's $\kappa$ (statistic
+	$z = \kappa / SE_\kappa$, against the standard normal distribution). The
+	magnitude of agreement is interpreted as the effect size using the Landis and
+	Koch scale: 0.00--0.20 slight; 0.21--0.40 fair; 0.41--0.60 moderate; 0.61--0.80
+	substantial; 0.81--1.00 almost perfect.
+	
+	\bmhead{Inter-rater agreement}
+	Cohen's $\kappa$~\cite{cohen1960} is computed for each pair of raters and
+	Fleiss' $\kappa$~\cite{fleiss1971} across the three, interpreted on the same
+	scale. Low expert agreement would relativise any conclusion about detector
+	performance, since the reference consensus itself would be in doubt.
+	
+	\bmhead{Normality test}
+	The Shapiro--Wilk test is applied to the continuous confidence variable
+	(1--5 scale) recorded in the rubric, as a precondition for the secondary
+	analysis.
+	
+	\bmhead{Secondary analysis (RQ2, exploratory)}
+	To characterise disagreement, the confidence level reported by the raters is
+	compared between requirements where the detector agrees with consensus and those
+	where it diverges. If Shapiro--Wilk does not reject normality, an
+	independent-samples $t$ test is used with Cohen's $d$ as effect size; otherwise,
+	the Mann--Whitney $U$ test with Cliff's $\delta$. This is complemented by a
+	qualitative note on each disagreeing requirement.
+	
+	\bmhead{Correction for multiple comparisons}
+	If agreement metrics are additionally reported disaggregated by requirement type
+	(FR, NFR, DC, RL), the resulting $p$ values from those four related comparisons are
+	adjusted with the Benjamini--Hochberg procedure.
+	
+	\bmhead{Power}
+	Following Molléri et al.~\cite{molleri2020} and Wohlin et al.~\cite{wohlin2012},
+	$\alpha = 0.05$ and $1-\beta = 0.80$ are fixed. Because the population size is
+	bounded by the real specification corpus rather than by an expandable
+	recruitment target, power is reported in reverse: instead of fixing a target
+	$N$, we determine the minimum detectable $\kappa$ that the design can identify
+	at that $\alpha$ and power, given the available $N = 61$.
+	
+	\bmhead{Reproducibility}
+	All computations are executed through versioned analysis scripts; no figure or
+	table is produced manually.
+	
+	
+	%=====================================================================
+	% --- Sección a cargo de: Gutiérrez Ortega, G. A. (Verificadora) ---
+	\section{Threats to validity}\label{sec:threats}
+	
+	Threats are organised in the four categories of Wohlin et
+	al.~\cite{wohlin2012}. For each, the anticipated threat documented in the
+	preregistered OSF protocol is carried over, together with the mitigation
+	applied and the limitation that remains after that mitigation.
+	
+	\subsection{Internal validity}\label{subsec:threats-internal}
+	
+	\emph{Detector-team overlap.} The same team that specified the MundiPets
+	requirements also designed and froze the detector's four rules.
+	\emph{Mitigation:} the detector was frozen in code before any classification
+	was run, and its rules were derived from the general requirements-quality
+	literature rather than tuned by inspecting the corpus; the preregistration
+	timestamp on the Open Science Framework predates both the distribution of the
+	rubric to the expert panel and the detector's execution over the corpus,
+	precluding post-hoc adjustment. \emph{Residual limitation:} the rules were
+	still authored by people familiar with the corpus's domain and writing style,
+	which cannot be fully separated from having built the specification.
+	
+	\emph{Rater independence.} A dependent, non-blind evaluation would inflate
+	agreement between raters and between raters and the detector.
+	\emph{Mitigation:} the three experts were external to the MundiPets team, blind
+	to the detector's output and to each other's classifications, and evaluated
+	requirements presented in independently randomised order with type labels
+	stripped (Section~\ref{subsec:design}). The almost-perfect inter-rater
+	agreement obtained (Fleiss' $\kappa=0.857$) is evidence the blinding held.
+	\emph{Residual limitation:} all three raters share the same institutional
+	background (professional degree from the same university), which may correlate
+	their notion of what counts as ``verifiable'' more than a panel drawn from
+	different institutions would.
+	
+	\subsection{External validity}\label{subsec:threats-external}
+	
+	\emph{Single system, single domain, single language.} The corpus is the
+	complete but singular specification of one social network for pet adoption and
+	breeding, written in Spanish by novice analysts in an academic setting in
+	Ecuador. \emph{Mitigation:} none directly available within this study; the
+	replication package (detector code, corpus, expert classifications, analysis
+	scripts) is released precisely so the design can be repeated on other domains,
+	languages and author populations. \emph{Residual limitation:} the reported
+	metrics --- particularly the strong type-dependent gradient (100\% on legal
+	requirements, 55.6\% on design constraints) --- should not be extrapolated
+	beyond Spanish-language specifications written by requirements-engineering
+	students; whether the same gradient holds for professional analysts, other
+	languages, or specifications with a different balance of requirement types is
+	an open question this single study cannot answer.
+	
+	\emph{Requirement population size bounded by the real system, and revised
+		mid-study.} $N=61$ is not a sample drawn from a larger population of MundiPets
+	requirements; it is the complete population at the time of the experiment,
+	after a numbering correction that expanded the corpus from an earlier
+	50-requirement version. \emph{Mitigation:} because $N$ is the full population
+	rather than a sample, there is no sampling bias within this system, and the
+	corpus revision was a correction of requirement identifiers and completeness
+	--- not a selection of favourable cases after seeing the detector's results, a
+	distinction documented in the OSF deviations log
+	(Section~\ref{subsec:analysis}). \emph{Residual limitation:} a corpus of 61
+	items is nonetheless small relative to industrial specifications, and results
+	may not generalise to specifications an order of magnitude larger, where
+	different type distributions and smell patterns could dominate; the fact that
+	the conclusion changed materially between the 50-item and 61-item versions of
+	this corpus (Section~\ref{subsec:disc-surprising}) is itself evidence that
+	conclusions at this scale remain sensitive to corpus completeness.
+	
+	\subsection{Construct validity}\label{subsec:threats-construct}
+	
+	\emph{Ambiguity operationalised as a binary label.} Both the detector and the
+	expert rubric reduce ambiguity to a binary ambiguous/non-ambiguous judgement per
+	requirement, discarding degree, multiplicity of smells within one requirement,
+	and the specific linguistic construct involved. \emph{Mitigation:} the
+	smell-type field recorded alongside every expert marking
+	(Table~\ref{tab:tipos-ambiguedad}) and the detector's per-rule log partially
+	recover this lost granularity and were used throughout
+	Section~\ref{subsec:res-rq2} to characterise \emph{how}, not just \emph{whether},
+	detector and experts disagree. \emph{Residual limitation:} the primary
+	hypothesis test (Table~\ref{tab:significancia}) is still computed on the binary
+	collapse, which may understate agreement on requirements where detector and
+	experts identify the same underlying smell but the detector's binary output
+	happens to fall on the wrong side of the threshold.
+	
+	\emph{Consensus by majority vote as ground truth.} Expert consensus was defined
+	as majority vote across three raters (Section~\ref{subsec:analysis}), which
+	treats disagreement among experts as resolved rather than as informative.
+	\emph{Mitigation:} pairwise and full-panel agreement are reported separately
+	(Table~\ref{tab:acuerdo-interevaluador}) precisely so a reader can assess how
+	much the majority-vote collapse could be masking; with Fleiss' $\kappa=0.857$
+	for the full panel, the collapse discards comparatively little information.
+	\emph{Residual limitation:} the single case decided 2/3 rather than 3/3 in this
+	corpus (REQ-56, Section~\ref{subsec:res-rq2}) still enters the primary analysis
+	with the same weight as unanimous cases, which a more conservative design might
+	have excluded or weighted differently.
+	
+	\subsection{Conclusion validity}\label{subsec:threats-conclusion}
+	
+	\emph{Statistical power.} The chi-squared test in
+	Section~\ref{subsec:res-rq1} is significant ($p=0.0001$) at $N=61$, and the
+	95\% confidence interval for $\kappa$ ([0.280, 0.737], Table~\ref{tab:metricas-detector})
+	excludes zero, which gives reasonable confidence that a real association
+	exists. \emph{Mitigation:} because $N$ is fixed by the size of the real,
+	completed specification rather than by an expandable recruitment target
+	(Section~\ref{subsec:analysis}), the study reports the full confidence
+	interval rather than the point estimate alone; the interval is still wide
+	enough (0.280 to 0.737) to span fair through substantial agreement, and the
+	per-type breakdown (Table~\ref{tab:coincidencia-tipo}) is explicitly reported
+	as descriptive rather than separately tested, given the small stratum sizes
+	(as few as 9 items per type). \emph{Residual limitation:} the study cannot, at
+	this sample size, distinguish precisely how much of the observed $\kappa=0.530$
+	is driven by the near-ceiling performance on legal and non-functional
+	requirements versus the weaker performance on design constraints; a
+	type-stratified analysis with a larger corpus would be needed to test the
+	type gradient formally rather than describe it.
+	
+	\emph{Reliability of the automated computations.} Manual computation of
+	agreement coefficients, bootstrap intervals and hypothesis tests is error-prone
+	and difficult to audit. \emph{Mitigation:} every value in
+	Section~\ref{sec:results} is produced by versioned Python scripts
+	(\texttt{06\_Experimento/scripts\_analisis/}) executed end to end through a
+	single entry point (\texttt{run\_all.py}) over the raw detector output and
+	expert classifications released in the replication package; no figure or table
+	was produced or edited by hand, and the full pipeline was re-executed after the
+	corpus revision to regenerate every number in this manuscript from the
+	corrected raw data. \emph{Residual limitation:} correctness of the underlying
+	formulas (e.g.\ the closed-form expression used for Cohen's $\kappa$) was
+	checked against the standard definitions in Cohen~\cite{cohen1960} and
+	Fleiss~\cite{fleiss1971} but not against an independent second implementation,
+	which a stricter reproducibility standard would require.
 	
 	%=====================================================================
 	\bibliography{referencias}
