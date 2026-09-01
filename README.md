@@ -326,6 +326,21 @@ El historial de cambios del proyecto se encuentra documentado en `CHANGELOG.md`.
 
 Si utiliza este repositorio con fines académicos, cite el proyecto utilizando el archivo `CITATION.cff`.
 
+El paquete de replicación completo (datos, corpus y scripts del componente empírico) está depositado en Zenodo con DOI persistente: [10.5281/zenodo.22218780](https://doi.org/10.5281/zenodo.22218780).
+
+### Nota sobre el archivado en Software Heritage
+
+Este repositorio **no cuenta con identificador SWHID de Software Heritage**. Se intentó el archivado mediante la función *Save code now* (archive.softwareheritage.org), pero el proceso fue rechazado por el *loader* de la plataforma con el siguiente error:
+
+```json
+{
+  "error": "Pack file too big for repository https://github.com/andymendozap03/MundiPets-PFC-IngReq, limit is 4294967296 bytes, current size is 4294967295, would write 16384",
+  "worker": "loader@loader-save-code-now-545954c9c4-28thj"
+}
+```
+
+El *pack file* que Software Heritage debe generar para clonar y preservar el repositorio ya está, en la práctica, en el límite exacto que su *loader* permite (4 294 967 296 bytes = 4 GiB); el siguiente objeto que necesitaría escribir (16 384 bytes) ya no cabe. Esto se debe al peso de la evidencia multimedia cifrada en `02_Evidencias/00_Restringido/`. No es un límite de GitHub ni del equipo, sino una restricción propia del servicio de archivado de Software Heritage para repositorios de este tamaño, y no se resolvió por no comprometer la integridad del historial de commits del repositorio a días de la entrega. El código, los datos anonimizados y los scripts de análisis permanecen accesibles y verificables a través de GitHub y del depósito de Zenodo indicado arriba, que sí cuenta con DOI persistente y cumple, por sí solo, el requisito de depósito FAIR con identificador persistente.
+
 ---
 
 ## Licencia
