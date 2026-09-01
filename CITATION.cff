@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 doi: "10.5281/zenodo.22218780"
 message: "Si utiliza este software o este conjunto de datos, por favor cítelo usando los siguientes metadatos."
-title: "Replication package for "Accuracy of a requirements ambiguity detector: case of a pet social network""
+title: 'Replication package for "Accuracy of a requirements ambiguity detector: case of a pet social network"'
 type: dataset
 authors:
   - family-names: "Fuertes Arraes"
@@ -29,7 +29,7 @@ authors:
     email: "gguerrero@uteq.edu.ec"
 version: "1.0.0"
 date-released: "2026-07-29"
-repository-code: "https://github.com/AndyMendoza/MundiPets-PFC-IngReq"
+repository-code: "https://github.com/andymendozap03/MundiPets-PFC-IngReq"
 license: "CC-BY-4.0"
 keywords:
   - "Requirements Engineering"
