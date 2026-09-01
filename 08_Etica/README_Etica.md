@@ -39,11 +39,12 @@ Esta carpeta contiene la documentación ética exigida por el *Paquete Integral 
 
 El documento **A.12 — Certificado de formación ética en investigación** no se
 encuentra en esta carpeta porque **el equipo lo solicitó formalmente al docente
-responsable, Ing. Gleiston Guerrero Ulloa, PhD, y no fue proporcionado**. Conforme
-al Anexo A.12 del Paquete Integral de Anexos y Guías, este requisito se acredita
-mediante cualquiera de las siguientes opciones: CITI Program, curso de Buenas
-Prácticas Clínicas GCP-ICH, curso de Ética en Investigación de CEDIA, o el módulo
-interno de la UTEQ si se dictó durante el semestre.
+responsable, Ing. Gleiston Guerrero Ulloa, PhD, y hasta el día de hoy (cierre de
+la Entrega 4 / 2B) no fue entregado**. Conforme al Anexo A.12 del Paquete
+Integral de Anexos y Guías, este requisito se acredita mediante cualquiera de
+las siguientes opciones: CITI Program, curso de Buenas Prácticas Clínicas
+GCP-ICH, curso de Ética en Investigación de CEDIA, o el módulo interno de la
+UTEQ si se dictó durante el semestre.
 
 El equipo verificó estas opciones y constató, además, que los cursos externos
 disponibles requerían un pago para la emisión del certificado, por lo que tampoco
@@ -51,7 +52,8 @@ fue posible completarlos con los recursos propios del equipo. Ambas gestiones
 —la solicitud al docente y la exploración de alternativas externas— fueron
 realizadas y quedan documentadas aquí como evidencia de que el equipo no dejó
 este requisito sin atender, sino que su cumplimiento dependía de un insumo
-institucional que no llegó a entregarse.
+institucional que, pese a haberse solicitado con antelación, no llegó a
+entregarse antes del corte de esta entrega.
 
 El equipo deja constancia de esta gestión y de la comunicación realizada, y queda a la espera de que el docente responsable indique una vía alterna de cumplimiento (por ejemplo, el módulo interno de la UTEQ si llegara a dictarse, u otra constancia institucional sin costo) antes del cierre del semestre.
 

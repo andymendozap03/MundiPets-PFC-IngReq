@@ -84,7 +84,7 @@ Este repositorio contiene toda la documentación desarrollada durante el Proyect
 | Entrega 1 (1A) | Semana 4 — Planificación y elicitación inicial | Completada |
 | Entrega 2 (1B) | Semana 10 — ERS/SRS parcial | Completada |
 | Entrega 3 (2A) | Semana 13 — ERS/SRS completa, validación, trazabilidad, MVP y componente empírico | Completada |
-| Entrega 4 (2B) / Defensa | Semana 17 — Manuscrito final y defensa | En desarrollo |
+| Entrega 4 (2B) / Defensa | Semana 17 — Manuscrito final y defensa | Completada |
 
 ---
 
@@ -94,15 +94,17 @@ Este repositorio contiene toda la documentación desarrollada durante el Proyect
 MundiPets-PFC-IngReq/
 ├── .gitattributes
 ├── .gitignore
+├── .gitmodules
 ├── CHANGELOG.md
 ├── checksums.sha256
 ├── CITATION.cff
+├── fair_assessment.pdf              # Autoevaluación FAIR (F-UJI, 92 %)
 ├── LICENSE
 ├── README.md
 │
 ├── 01_ERS/
-│   ├── ERS_SRS_2A_v1.0.pdf
-│   ├── ERS_SRS_2A_v1.0.tex
+│   ├── ERS_SRS_2B_v2.0.pdf
+│   ├── ERS_SRS_2B_v2.0.tex
 │   ├── referencias.bib
 │   └── figuras/
 │
@@ -115,9 +117,11 @@ MundiPets-PFC-IngReq/
 │   ├── Consentimientos/             # [P] copias enmascaradas
 │   ├── Cuestionario/
 │   │   ├── Fotos_Aplicacion/
-│   │   └── Respuestas/
+│   │   ├── Respuestas/
+│   │   └── power_calculation/       # Cálculo de potencia estadística (perfil dominante)
 │   ├── Documentos_Organizacion/
 │   ├── Fotos_Entorno/
+│   ├── Member_Checking/
 │   ├── Transcripciones/
 │   └── Validacion_Walkthrough/
 │
@@ -136,60 +140,86 @@ MundiPets-PFC-IngReq/
 │   └── Mockups/
 │
 ├── 04_Trazabilidad/
-│   ├── matriz_trazabilidad.csv
-│   └── priorizacion_moscow_kano.csv
+│   ├── matriz_trazabilidad.csv      # 61 filas
+│   ├── priorizacion_moscow_kano.csv
+│   └── sincronizacion_tablero.csv
 │
 ├── 05_MVP/
 │   ├── README.md
-│   └── video_demo.mp4
+│   ├── codigo/                      # Submódulo Git → jnievess-lang/MVP_MundiPets.git
+│   └── video_demo.mp4               # Git LFS
 │
 ├── 06_Experimento/
 │   ├── osf_registration.pdf
+│   ├── osf_deviations.pdf
 │   ├── protocolo.pdf
 │   ├── README_osf_registration.md
 │   ├── instrumentos/
 │   ├── prompts_llm/
+│   ├── datos_crudos/
+│   ├── datos_procesados/
 │   ├── resultados/
 │   │   ├── figuras/
 │   │   └── tablas/
 │   └── scripts_analisis/
+│       ├── run_all.py
 │       └── datos_entrada/
 │
 ├── 07_Publicacion/
 │   ├── analisis_revistas.md
-│   ├── manuscrito_borrador.pdf
-│   ├── dataset_zenodo/
-│   └── manuscrito/
-│       └── bst/
+│   ├── manuscrito_final.pdf
+│   ├── manuscrito_final.tex
+│   ├── referencias.bib
+│   ├── sn-jnl.cls
+│   ├── sn-mathphys-num.bst
+│   ├── bst/
+│   ├── figuras/
+│   ├── tablas/
+│   └── dataset_zenodo/              # Paquete de replicación depositado en Zenodo
+│       ├── README_dataset.md
+│       ├── ANONYMIZATION.md
+│       ├── ETHICS.md
+│       ├── corpus/
+│       ├── transcripciones/
+│       ├── respuestas_cuestionarios/
+│       ├── trazabilidad/
+│       ├── prompts_llm/
+│       └── scripts_analisis/
 │
-└── 08_Etica/
-    ├── A01_Protocolo_Investigacion.pdf
-    ├── A02_Instrumentos_Recoleccion.pdf
-    ├── A02.1_Guia_entrevista_semi-estructurada.pdf
-    ├── A02.2_Cuestionario_Encuesta.pdf
-    ├── A02.3_Protocolo_Observacion.pdf
-    ├── A02.4_Guion_Sesion_Design_Thinking.pdf
-    ├── A03_Consentimiento_Informado.pdf
-    ├── A04_Plan_Gestion_Datos.pdf
-    ├── A05_Aval_Institucional.pdf
-    ├── A06_Declaracion_Conflicto_Intereses.pdf
-    ├── A07_Compromiso_Confidencialidad.pdf
-    ├── A08_CV_Docente.pdf
-    ├── A09_Nomina_Equipo.pdf
-    ├── A10_Cronograma_Gantt.pdf
-    ├── A11_Analisis_Riesgos.pdf
-    ├── A13_Participantes_Externos.pdf
-    ├── Adenda_Segunda_Ronda.pdf
-    ├── README_Etica.md
-    └── Categoria_B/
-        ├── CB01_Aval_Organizacion.pdf
-        ├── CB02_Protocolo_Proteccion_Datos_Personales.pdf
-        ├── CB03_Compromiso_De_No_Uso_De_Datos_Reales.pdf
-        ├── CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
-        └── CheckList_Categoria_B_MundiPets.pdf
+├── 08_Etica/
+│   ├── A01_Protocolo_Investigacion.pdf
+│   ├── A02_Instrumentos_Recoleccion.pdf
+│   ├── A02.1_Guia_entrevista_semi-estructurada.pdf
+│   ├── A02.2_Cuestionario_Encuesta.pdf
+│   ├── A02.3_Protocolo_Observacion.pdf
+│   ├── A02.4_Guion_Sesion_Design_Thinking.pdf
+│   ├── A03_Consentimiento_Informado.pdf
+│   ├── A04_Plan_Gestion_Datos.pdf
+│   ├── A05_Aval_Institucional.pdf
+│   ├── A06_Declaracion_Conflicto_Intereses.pdf
+│   ├── A07_Compromiso_Confidencialidad.pdf
+│   ├── A08_CV_Docente.pdf
+│   ├── A09_Nomina_Equipo.pdf
+│   ├── A10_Cronograma_Gantt.pdf
+│   ├── A11_Analisis_Riesgos.pdf
+│   ├── A13_Participantes_Externos.pdf
+│   ├── Adenda_Segunda_Ronda.pdf
+│   ├── README_Etica.md
+│   └── Categoria_B/
+│       ├── CB01_Aval_Organizacion.pdf
+│       ├── CB02_Protocolo_Proteccion_Datos_Personales.pdf
+│       ├── CB03_Compromiso_De_No_Uso_De_Datos_Reales.pdf
+│       ├── CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
+│       └── CheckList_Categoria_B_MundiPets.pdf
+│
+└── 09_Defensa/
+    ├── Presentacion.pdf
+    ├── Presentacion.pptx
+    ├── guion.pdf
+    └── folleto_una_hoja.pdf
 ```
 
-> **Nota:** el documento `A12_Certificado_Etica.pdf` no está disponible en `08_Etica/`. El equipo lo solicitó formalmente al docente responsable, Ing. Gleiston Guerrero Ulloa, PhD, y no fue proporcionado. Adicionalmente, las opciones externas de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Detalle completo en `08_Etica/README_Etica.md`.
+> **Nota:** el documento `A12_Certificado_Etica.pdf` no está disponible en `08_Etica/`. El equipo lo solicitó formalmente al docente responsable, Ing. Gleiston Guerrero Ulloa, PhD, y **hasta el día de hoy no fue entregado**. Adicionalmente, las opciones externas de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Detalle completo en `08_Etica/README_Etica.md`.
 
 ---
 
@@ -215,10 +245,10 @@ Ningún archivo de la zona restringida se duplica sin cifrar en la zona pública
 ### Compilar mediante consola
 
 ```bash
-pdflatex ERS_SRS_2A_v1.0.tex
-biber ERS_SRS_2A_v1.0
-pdflatex ERS_SRS_2A_v1.0.tex
-pdflatex ERS_SRS_2A_v1.0.tex
+pdflatex ERS_SRS_2B_v2.0.tex
+biber ERS_SRS_2B_v2.0
+pdflatex ERS_SRS_2B_v2.0.tex
+pdflatex ERS_SRS_2B_v2.0.tex
 ```
 
 También puede compilarse directamente en **Overleaf** o **TeXstudio**. El documento usa `biblatex` con backend `biber` (no `bibtex`) y estilo `ieee`.
@@ -237,16 +267,16 @@ Evidencia de campo de la primera y segunda ronda de elicitación: entrevistas (t
 Diagrama de contexto, casos de uso, modelado i* (SD/SR), diagramas UML completos (clases, secuencia, actividades, estados, componentes, despliegue) y mockups de alta fidelidad.
 
 ### 04_Trazabilidad
-Matriz de trazabilidad extendida (Ley → Objetivo → Interesado → Evidencia → RF/RNF/RD/RL → CU → HU → CA → Componente → Mockup) y priorización MoSCoW + Kano + WSJF.
+Matriz de trazabilidad extendida de 61 filas (Ley → Objetivo → Interesado → Evidencia → Requisito [RF/RNF/RD/RL] → Clase → Caso de Uso → Historia de Usuario → Criterio de Aceptación → Caso de Prueba → Componente → Mockup) y priorización MoSCoW + Kano + WSJF.
 
 ### 05_MVP
-Producto Mínimo Viable, con cobertura de al menos el 60 % de los requisitos funcionales de prioridad *Debe tener*, instrucciones de despliegue y video de demostración.
+Producto Mínimo Viable, con cobertura del 100 % de los requisitos funcionales del proyecto (27/27), código fuente como submódulo Git (`05_MVP/codigo`), instrucciones de despliegue local y video de demostración.
 
 ### 06_Experimento
 Protocolo experimental del componente empírico (Enfoque 2 — detección automática de ambigüedad y malos olores en requisitos), registro previo aceptado en el OSF, instrumentos, resultados y scripts de análisis estadístico.
 
 ### 07_Publicacion
-Análisis de revistas objetivo (Springer Nature, Elsevier, IEEE), borrador del manuscrito y conjunto de datos preparado para depósito en Zenodo con licencia CC BY 4.0.
+Manuscrito final para revista JCR (*Requirements Engineering*, Springer), análisis de las cuatro revistas objetivo permitidas por la guía, y paquete de replicación depositado en Zenodo con licencia CC BY 4.0 y DOI persistente.
 
 ### 08_Etica
 Documentación ética completa del proyecto (Categoría B — Datos personales), conforme al Paquete Integral de Anexos y Guías de Elaboración de la asignatura.
@@ -285,24 +315,29 @@ El proyecto incorpora:
 
 ## Trazabilidad
 
-El proyecto mantiene la siguiente cadena de trazabilidad extendida:
+El proyecto mantiene la siguiente cadena de trazabilidad extendida, verificada
+directamente contra las columnas de `04_Trazabilidad/matriz_trazabilidad.csv`:
 
 ```
-Ley / Normativa
+Ley / Normativa (cuando aplica — requisitos legales RL)
       ↓
  Objetivo
       ↓
  Interesado (Stakeholder)
       ↓
- Evidencia (EV-XX)
+ Evidencia (ID-EV)
       ↓
  Requisito (RF / RNF / RD / RL)
+      ↓
+ Clase (modelo de dominio)
       ↓
  Caso de Uso (CU-XX)
       ↓
  Historia de Usuario (HU-XX)
       ↓
  Criterio de Aceptación (CA-XX)
+      ↓
+ Caso de Prueba (CP-XX)
       ↓
  Componente
       ↓
