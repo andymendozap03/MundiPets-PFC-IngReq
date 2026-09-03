@@ -1,0 +1,5 @@
+﻿Comparacion;Kappa;Acuerdo_observado;Interpretacion
+EXP-01 vs EXP-02;0.8647;0.9508;Casi perfecto
+EXP-01 vs EXP-03;0.9186;0.9672;Casi perfecto
+EXP-02 vs EXP-03;0.7857;0.9180;Sustancial
+Panel completo: kappa de Fleiss;0.8569;0.9454;Casi perfecto

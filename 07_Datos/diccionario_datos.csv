@@ -1,0 +1,16 @@
+archivo,columna,tipo,unidad,rango_admisible,codificacion_valores_perdidos,procedencia
+evaluacion_expertos.csv,ID_Anonimo,texto,--,REQ-01 a REQ-61,no aplica (sin perdidos),generado por el equipo al aleatorizar el orden de presentacion a cada evaluador
+evaluacion_expertos.csv,ID_Real,texto,--,RF-01..RF-27 / RNF-01..RNF-16 / RD-01..RD-09 / RL-01..RL-09,no aplica (sin perdidos),clave interna que vincula el ID anonimo con el identificador real del ERS
+evaluacion_expertos.csv,Tipo,categorico,--,RF / RNF / RD / RL,no aplica (sin perdidos),derivado del ID_Real
+evaluacion_expertos.csv,Texto_Requisito,texto,--,texto libre,no aplica (sin perdidos),copiado literal de la ficha de atributos del ERS/SRS
+evaluacion_expertos.csv,Clasificacion_Experto,categorico,--,Ambiguo / No ambiguo,no aplica (sin perdidos),juicio del evaluador
+evaluacion_expertos.csv,Tipo_Mal_Olor,categorico,--,"Ninguno / Cuantificador vago / Terminologia imprecisa / Conjuncion multiple / Requisito no verificable",no aplica (sin perdidos),juicio del evaluador
+evaluacion_expertos.csv,Justificacion,texto,--,texto libre,no aplica (sin perdidos),juicio del evaluador
+evaluacion_expertos.csv,Confianza,ordinal,escala 1-5,1 a 5,no aplica (sin perdidos),autorreportado por el evaluador
+evaluacion_expertos.csv,Evaluador,categorico,--,EXP-01 / EXP-02 / EXP-03,no aplica (sin perdidos),codigo anonimo asignado por el equipo
+evaluacion_expertos.csv,Fecha,fecha,--,fechas de evaluacion registradas,no aplica (sin perdidos),"registrada por el evaluador; el formato no es uniforme entre filas (AAAA-MM-DD en unas, DD/MM/AAAA en otras); pendiente de normalizar"
+salida_detector.csv,ID_Anonimo,texto,--,REQ-01 a REQ-61,no aplica (sin perdidos),mismo identificador que en evaluacion_expertos.csv
+salida_detector.csv,Clasificacion_Detector,categorico,--,Ambiguo / No ambiguo,no aplica (sin perdidos),salida directa del detector basado en reglas
+salida_detector.csv,Reglas_Activadas,texto,--,texto libre o vacio,vacio si ninguna regla se activo,salida directa del detector basado en reglas
+salida_detector.csv,Texto_Requisito,texto,--,texto libre,no aplica (sin perdidos),copiado literal de la ficha de atributos del ERS/SRS
+consenso_experto_vs_detector.csv,(ver README_procesamiento.md),--,--,--,--,generado exclusivamente por 02_generar_datos_procesados.py a partir de los dos archivos anteriores

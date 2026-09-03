@@ -1,0 +1,20 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Los datos contenidos en esta carpeta (07_Datos/) se distribuyen bajo la
+licencia Creative Commons Attribution 4.0 International.
+
+Usted es libre de:
+  - Compartir: copiar y redistribuir el material en cualquier medio o formato.
+  - Adaptar: remezclar, transformar y construir a partir del material,
+    para cualquier propósito, incluso comercialmente.
+
+Bajo los siguientes términos:
+  - Atribución: debe otorgar el crédito correspondiente, proporcionar un
+    enlace a la licencia e indicar si se realizaron cambios.
+
+Texto completo de la licencia:
+https://creativecommons.org/licenses/by/4.0/deed.es
+
+Esta licencia se aplica exclusivamente a los datos de 07_Datos/. La
+licencia del código fuente del proyecto (scripts, MVP) se declara por
+separado en LICENSE, en la raíz del repositorio.
