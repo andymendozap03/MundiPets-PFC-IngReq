@@ -1,20 +1,12 @@
 # 05_MVP — Producto Mínimo Viable de MundiPets
 
-El código fuente del Producto Mínimo Viable (MVP) de MundiPets **no reside en
-este repositorio**. Debido a su volumen, se aloja en un repositorio Git
-independiente y se referencia aquí como **submódulo Git**, fijado en un
-commit específico para garantizar que la versión evaluada en esta entrega
-no se vea afectada por cambios posteriores en el repositorio del MVP.
+El código fuente del Producto Mínimo Viable (MVP) de MundiPets **forma
+parte de este repositorio**, en la carpeta `05_MVP/codigo/`. Se incorporó
+junto con su historial de commits original (desarrollado inicialmente en
+un repositorio independiente y fusionado aquí mediante `git subtree`), de
+modo que la autoría y la fecha real de cada cambio quedan preservadas.
 
-## Repositorio del MVP
-
-**Enlace:** https://github.com/jnievess-lang/MVP_MundiPets.git
-
-**Ruta del submódulo en este repositorio:** `05_MVP/codigo/`
-
-## Contenido del repositorio del MVP
-
-El repositorio `MVP_MundiPets` contiene:
+## Contenido de `05_MVP/codigo/`
 
 - Frontend en HTML5, CSS3 y JavaScript (sin frameworks ni proceso de
   compilación).
@@ -24,11 +16,11 @@ El repositorio `MVP_MundiPets` contiene:
   (sin motor de base de datos externo, sin contenedores), inicializada con
   un dataset ficticio en cada arranque del servidor. Las contraseñas se
   almacenan con hash bcrypt.
-- Instrucciones de despliegue local documentadas en el `README.md` de dicho
-  repositorio.
+- Instrucciones de despliegue local documentadas en el `README.md` de esa
+  carpeta.
 - Cobertura de los requisitos funcionales de prioridad *Debe tener* (Must),
-  marcada explícitamente en el `README.md` de dicho repositorio.
-- Video de demostración funcional (`video_demo.mp4`), alojado vía Git LFS.
+  marcada explícitamente en el `README.md` de esa carpeta.
+- Video de demostración funcional (`video_demo.mp4`).
 
 ## Resumen de la solución implementada
 
@@ -43,21 +35,20 @@ incluidos los 15 requisitos de prioridad *Must*, superando ampliamente el
 mínimo del 80 % de cobertura de RF *Must* exigido por el criterio C3 de la
 rúbrica.
 
-El repositorio del MVP documenta de forma honesta las simulaciones
-presentes en esta iteración: el RF-06 (evaluación de compatibilidad para
-cruza) se implementa mediante una heurística de reglas explícitas y
-explicables —no mediante un modelo de aprendizaje automático entrenado—;
-el RF-17 (validación de imágenes) y el RF-10 (notificaciones por
-WhatsApp) se simulan mediante analizadores y disparadores interactivos en
-lugar de invocar servicios externos reales. El detalle completo de cada
-simulación y su justificación consta en el `README.md` del repositorio del
-MVP.
+El repositorio documenta de forma honesta las simulaciones presentes en
+esta iteración: el RF-06 (evaluación de compatibilidad para cruza) se
+implementa mediante una heurística de reglas explícitas y explicables —no
+mediante un modelo de aprendizaje automático entrenado—; el RF-17
+(validación de imágenes) y el RF-10 (notificaciones por WhatsApp) se
+simulan mediante analizadores y disparadores interactivos en lugar de
+invocar servicios externos reales. El detalle completo de cada simulación
+y su justificación consta en el `README.md` de `05_MVP/codigo/`.
 
 ## Despliegue local
 
-El repositorio del MVP requiere [Node.js](https://nodejs.org/) (v18 o
-superior recomendado) y se levanta con un solo comando, sin necesidad de
-Docker ni de configurar una base de datos externa:
+Requiere [Node.js](https://nodejs.org/) (v18 o superior recomendado) y se
+levanta con un solo comando, sin necesidad de Docker ni de configurar una
+base de datos externa:
 
 ```bash
 cd 05_MVP/codigo
@@ -84,26 +75,6 @@ de demostración, una por cada rol del sistema:
 Todas las cuentas anteriores son ficticias y se generaron exclusivamente con
 fines de demostración académica; no corresponden a personas reales ni deben
 usarse como referencia de una política de contraseñas de producción.
-
-## Trazabilidad del commit evaluado
-
-Para clonar este repositorio junto con el submódulo del MVP:
-
-```bash
-git clone --recurse-submodules <URL-de-este-repositorio>
-```
-
-Si el repositorio ya fue clonado sin el submódulo:
-
-```bash
-git submodule update --init --recursive
-```
-
-Para consultar el commit exacto del MVP fijado en esta entrega:
-
-```bash
-git submodule status
-```
 
 ## Advertencia sobre los datos de demostración
 
