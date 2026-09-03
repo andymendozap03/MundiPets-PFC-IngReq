@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Dashboard</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container">
+  <div class="breadcrumb">Dashboard</div>
+  <div class="page-header mt-16">
+    <div>
+      <h1 id="pageTitle">Panel</h1>
+      <p class="subtitle" id="pageSubtitle"></p>
+    </div>
+    <div id="pageAction" class="action-group"></div>
+  </div>
+
+  <div id="content"></div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  let user;
+
+  (async () => {
+    user = await Auth.requireLogin();
+    if (user) {
+      renderTopbar(user);
+      render();
+    }
+  })();
+
+  function render() {
+    if (user.role === "propietario") renderOwner();
+    else if (user.role === "veterinaria") renderVet();
+    else renderAdopter();
+  }
+
+  async function renderOwner() {
+    document.getElementById("pageTitle").textContent = "Mis mascotas";
+    document.getElementById("pageSubtitle").textContent = "Administra los perfiles, historial médico y solicitudes de tus mascotas.";
+    document.getElementById("pageAction").innerHTML = `
+      <a href="explore.html" class="btn btn-secondary">🔎 Explorar mascotas</a>
+      <a href="encounters.html" class="btn btn-secondary">🐕‍🦺 Encuentros</a>
+      <button class="btn btn-secondary" onclick="addReminder()">+ Programar Recordatorio</button>
+      <a href="pet-add.html" class="btn btn-primary">+ Registrar mascota</a>
+    `;
+
+    const [allPets, allRequests, allReminders, allUsers, allEncounters] = await Promise.all([
+      DB.all("pets"), DB.all("requests"), DB.all("reminders"), DB.all("users"), DB.all("encounters")
+    ]);
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
+    const userById = Object.fromEntries(allUsers.map((u) => [u.id, u]));
+
+    const pets = allPets.filter((p) => p.ownerId === user.id);
+    const requests = allRequests.filter((r) => r.ownerId === user.id);
+    const reminders = allReminders.filter((rem) => {
+      const pet = petById[rem.petId];
+      return pet && pet.ownerId === user.id;
+    });
+
+    let html = "";
+    if (pets.length === 0) {
+      html += `<div class="card empty-state">Aún no has registrado mascotas. <a href="pet-add.html">Registrar la primera</a>.</div>`;
+    } else {
+      html += pets.map((p) => `
+        <div class="pet-row">
+          <div style="font-size:36px;">${p.photo}</div>
+          <div class="info">
+            <div class="name">${escapeHtml(p.name)} ${p.status === "Extraviada" ? "🚨" : ""}</div>
+            <div class="meta">${escapeHtml(p.breed)} · ${escapeHtml(p.age)} · ${escapeHtml(p.sex)} · 📍 ${escapeHtml(p.city)}</div>
+          </div>
+          <div class="right">
+            ${badgeForPetStatus(p.status)}
+            <a href="pet-profile.html?id=${p.id}" class="btn btn-secondary btn-sm">Gestionar</a>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // Encuentros de socialización pendientes de respuesta
+    const pendingEncounters = allEncounters.filter((e) => e.ownerBId === user.id && e.status === "pendiente");
+    if (pendingEncounters.length > 0) {
+      html += `<div class="info-banner">🐕‍🦺 Tienes ${pendingEncounters.length} propuesta(s) de encuentro de socialización pendiente(s) de respuesta. <a href="encounters.html" class="link-quiet">Ver encuentros</a>.</div>`;
+    }
+
+    // Recordatorios
+    html += `<h2 class="mt-24">⏰ Recordatorios preventivos</h2>`;
+    if (reminders.length === 0) {
+      html += `<div class="card empty-state">No tienes recordatorios de controles preventivos programados.</div>`;
+    } else {
+      html += `<div class="grid-2">` + reminders.map((rem) => {
+        const pet = petById[rem.petId];
+        const isNear = (new Date(rem.date) - new Date()) / (1000 * 60 * 60 * 24) <= 7;
+        const colorClass = isNear ? "badge-red" : "badge-amber";
+        return `
+          <div class="card compact" style="border-left: 4px solid ${isNear ? 'var(--red-text)' : 'var(--amber-text)'}; margin-bottom: 0;">
+            <div class="flex-between">
+              <strong style="font-size:15px;">${escapeHtml(rem.type)}</strong>
+              <span class="badge ${colorClass}">${escapeHtml(rem.date)}</span>
+            </div>
+            <div style="font-size:13px; margin-top:5px;" class="text-muted">
+              Mascota: <strong>${pet ? escapeHtml(pet.name) : '—'}</strong><br>
+              ${escapeHtml(rem.description)}
+            </div>
+            <div style="margin-top:10px; display:flex; gap:8px;">
+              <button class="btn btn-secondary btn-sm" onclick="sendWhatsAppSim('${rem.id}')" style="font-size:11px; padding: 3px 8px;">📲 Simular WhatsApp</button>
+              <button class="btn btn-danger btn-sm" onclick="removeReminder('${rem.id}')" style="font-size:11px; padding: 3px 8px; border:none; background:none; color:var(--red-text);">Eliminar</button>
+            </div>
+          </div>
+        `;
+      }).join("") + `</div>`;
+    }
+
+    // Solicitudes recibidas activas e historial
+    const activeRequests = requests.filter(r => r.status === "en_proceso");
+    const archivedRequests = requests.filter(r => r.status !== "en_proceso");
+
+    html += `<h2 class="mt-24">Solicitudes recibidas</h2>`;
+    if (activeRequests.length === 0) {
+      html += `<div class="card empty-state">No tienes solicitudes activas por ahora.</div>`;
+    } else {
+      html += activeRequests.map((r) => {
+        const pet = petById[r.petId];
+        const requester = userById[r.requesterId];
+        return `
+          <div class="pet-row">
+            <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+            <div class="info">
+              <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"} — ${r.type === "cruza" ? "Cruza responsable" : "Adopción"}</div>
+              <div class="meta">Solicitante: ${requester ? escapeHtml(requester.name) : "—"} · Etapa ${r.stage}/5</div>
+            </div>
+            <div class="right">
+              ${badgeForRequestStatus(r.status)}
+              <a href="request.html?id=${r.id}" class="btn btn-secondary btn-sm">Ver</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    if (archivedRequests.length > 0) {
+      html += `
+        <details class="mt-24" style="cursor:pointer; margin-bottom: 20px;">
+          <summary style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--navy);">📦 Historial de solicitudes finalizadas</summary>
+          ${archivedRequests.map((r) => {
+            const pet = petById[r.petId];
+            const requester = userById[r.requesterId];
+            return `
+              <div class="pet-row" style="opacity: 0.85; background: #fafafa;">
+                <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+                <div class="info">
+                  <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"} — ${r.type === "cruza" ? "Cruza responsable" : "Adopción"}</div>
+                  <div class="meta">Solicitante: ${requester ? escapeHtml(requester.name) : "—"} · Finalizada en etapa ${r.stage}/5</div>
+                </div>
+                <div class="right">
+                  ${badgeForRequestStatus(r.status)}
+                  <a href="request.html?id=${r.id}" class="btn btn-secondary btn-sm">Detalles</a>
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </details>
+      `;
+    }
+
+    document.getElementById("content").innerHTML = html;
+  }
+
+  async function renderAdopter() {
+    const isCruza = user.role === "interesado_cruza";
+    document.getElementById("pageTitle").textContent = isCruza ? "Mascotas para cruza" : "Explorar mascotas";
+    document.getElementById("pageSubtitle").textContent = "Encuentra mascotas disponibles y da seguimiento a tus solicitudes.";
+    document.getElementById("pageAction").innerHTML = `<a href="explore.html" class="btn btn-primary">Explorar mascotas</a>`;
+
+    const [allPets, allRequests, allFollowUps] = await Promise.all([DB.all("pets"), DB.all("requests"), DB.all("followUps")]);
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
+    const requestById = Object.fromEntries(allRequests.map((r) => [r.id, r]));
+
+    const myRequests = allRequests.filter((r) => r.requesterId === user.id);
+    const activeRequests = myRequests.filter(r => r.status === "en_proceso");
+    const archivedRequests = myRequests.filter(r => r.status !== "en_proceso");
+    const followUps = allFollowUps.filter((f) => {
+      const req = requestById[f.requestId];
+      return req && req.requesterId === user.id;
+    });
+
+    let html = `<h2>Mis solicitudes activas</h2>`;
+    if (activeRequests.length === 0) {
+      html += `<div class="card empty-state">No tienes solicitudes en proceso. <a href="explore.html">Explora mascotas disponibles</a>.</div>`;
+    } else {
+      html += activeRequests.map((r) => {
+        const pet = petById[r.petId];
+        return `
+          <div class="pet-row">
+            <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+            <div class="info">
+              <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"} — ${r.type === "cruza" ? "Cruza responsable" : "Adopción"}</div>
+              <div class="meta">Etapa ${r.stage}/5 · ${r.stages[r.stage - 1] || ""}</div>
+            </div>
+            <div class="right">
+              ${badgeForRequestStatus(r.status)}
+              <a href="request.html?id=${r.id}" class="btn btn-secondary btn-sm">Ver</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    if (followUps.length) {
+      html += `<h2 class="mt-24">Seguimiento post-adopción</h2>`;
+      html += followUps.map((f) => {
+        const pet = petById[f.petId];
+        return `
+          <div class="pet-row">
+            <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+            <div class="info">
+              <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"}</div>
+              <div class="meta">${escapeHtml(f.note)}</div>
+            </div>
+            <div class="right">
+              <span class="badge badge-amber">${escapeHtml(f.status)}</span>
+              <a href="post-adoption.html?petId=${f.petId}" class="btn btn-secondary btn-sm">Ver</a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    if (archivedRequests.length > 0) {
+      html += `
+        <details class="mt-24" style="cursor:pointer; margin-bottom: 20px;">
+          <summary style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--navy);">📦 Historial de solicitudes finalizadas</summary>
+          ${archivedRequests.map((r) => {
+            const pet = petById[r.petId];
+            return `
+              <div class="pet-row" style="opacity: 0.85; background: #fafafa;">
+                <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+                <div class="info">
+                  <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"} — ${r.type === "cruza" ? "Cruza responsable" : "Adopción"}</div>
+                  <div class="meta">Finalizada en etapa ${r.stage}/5</div>
+                </div>
+                <div class="right">
+                  ${badgeForRequestStatus(r.status)}
+                  <a href="request.html?id=${r.id}" class="btn btn-secondary btn-sm">Detalles</a>
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </details>
+      `;
+    }
+
+    document.getElementById("content").innerHTML = html;
+  }
+
+  async function addReminder() {
+    const type = prompt("Tipo de control preventivo (ej. Vacuna Triple Felina, Desparasitación, Vacuna antirrábica, Control veterinario):");
+    if (!type) return;
+    const date = prompt("Fecha programada (YYYY-MM-DD):", new Date().toISOString().slice(0, 10));
+    if (!date) return;
+    const desc = prompt("Notas / Descripción del recordatorio:", "Dosis preventiva recomendada.");
+
+    const pets = (await DB.all("pets")).filter((p) => p.ownerId === user.id);
+    if (pets.length === 0) {
+      toast("Primero debes registrar una mascota");
+      return;
+    }
+
+    let petId = pets[0].id;
+    if (pets.length > 1) {
+      const listStr = pets.map((p, idx) => `${idx + 1}. ${p.name}`).join("\n");
+      const selectIdx = prompt(`Selecciona la mascota (ingresa el número):\n${listStr}`, "1");
+      const idx = parseInt(selectIdx) - 1;
+      if (idx >= 0 && idx < pets.length) {
+        petId = pets[idx].id;
+      }
+    }
+
+    await DB.insert("reminders", {
+      petId: petId, type, date, status: "Pendiente", description: desc || ""
+    });
+    toast("Recordatorio programado con éxito");
+    render();
+  }
+  window.addReminder = addReminder;
+
+  async function removeReminder(id) {
+    if (confirm("¿Estás seguro de eliminar este recordatorio?")) {
+      await DB.remove("reminders", id);
+      toast("Recordatorio de control preventivo eliminado");
+      render();
+    }
+  }
+  window.removeReminder = removeReminder;
+
+  async function sendWhatsAppSim(id) {
+    const rem = await DB.get("reminders", id);
+    const pet = rem ? await DB.get("pets", rem.petId) : null;
+    if (!rem || !pet) return;
+
+    alert(`📲 [SIMULACIÓN WHATSAPP]\n\nEnviando mensaje de control preventivo a su número:\n\n"MundiPets Alerta: Hola ${user.name}, te recordamos que tu mascota ${pet.name} tiene programado su: '${rem.type}' para la fecha ${rem.date}. Nota: ${rem.description}"`);
+  }
+  window.sendWhatsAppSim = sendWhatsAppSim;
+
+  async function renderVet() {
+    document.getElementById("pageTitle").textContent = "Agenda de revisiones";
+    document.getElementById("pageSubtitle").textContent = "Valida el historial médico y los certificados cargados por los propietarios.";
+    document.getElementById("pageAction").innerHTML = `<a href="vet-panel.html" class="btn btn-primary">Ir al panel de validaciones</a>`;
+
+    const [records, allPets] = await Promise.all([DB.all("medicalRecords"), DB.all("pets")]);
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
+    const pending = records.filter((r) => !r.validated);
+    const validated = records.filter((r) => r.validated);
+
+    document.getElementById("content").innerHTML = `
+      <div class="grid-3">
+        <div class="card compact text-center"><div style="font-size:26px; font-weight:800;">${pending.length}</div><div class="text-muted">Pendientes</div></div>
+        <div class="card compact text-center"><div style="font-size:26px; font-weight:800;">0</div><div class="text-muted">En revisión</div></div>
+        <div class="card compact text-center"><div style="font-size:26px; font-weight:800;">${validated.length}</div><div class="text-muted">Validadas</div></div>
+      </div>
+      <h2 class="mt-24">Pendientes de hoy</h2>
+      ${pending.length === 0 ? '<div class="card empty-state">No hay documentos pendientes de validación.</div>' : pending.map((r) => {
+        const pet = petById[r.petId];
+        return `
+          <div class="pet-row">
+            <div style="font-size:30px;">${pet ? pet.photo : "🐾"}</div>
+            <div class="info">
+              <div class="name">${pet ? escapeHtml(pet.name) : "Mascota"} — ${escapeHtml(r.type)}</div>
+              <div class="meta">Fecha: ${escapeHtml(r.date)}</div>
+            </div>
+            <div class="right">
+              ${badgeForMedicalStatus(r.status)}
+              <a href="vet-panel.html?recordId=${r.id}" class="btn btn-secondary btn-sm">Revisar</a>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    `;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Mi perfil</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container-narrow">
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> &gt; Mi perfil</div>
+  <h1>Mi perfil</h1>
+  <p class="subtitle">Actualiza tus datos personales y tu contraseña.</p>
+
+  <div class="card">
+    <div class="flex gap-12" style="align-items:center; margin-bottom:8px;">
+      <span class="avatar" id="profileAvatar" style="width:56px; height:56px; font-size:18px;"></span>
+      <div>
+        <div style="font-weight:800; font-size:18px;" id="profileRoleLabel"></div>
+        <div class="text-muted" id="profileVerifiedLabel" style="font-size:13px;"></div>
+      </div>
+    </div>
+
+    <form id="profileForm">
+      <label for="pName">Nombre completo</label>
+      <input type="text" id="pName" required>
+
+      <label for="pEmail">Correo electrónico</label>
+      <input type="email" id="pEmail" required>
+
+      <label for="pCity">Ciudad</label>
+      <input type="text" id="pCity" placeholder="Quevedo">
+
+      <div id="profileErr" class="warn-banner info-banner" style="display:none; margin-top:15px; padding:8px 12px;"></div>
+
+      <button type="submit" class="btn btn-primary btn-block mt-24">Guardar cambios</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Cambiar contraseña</h2>
+    <form id="passwordForm">
+      <label for="pCurrent">Contraseña actual</label>
+      <input type="password" id="pCurrent" placeholder="••••••••" required>
+
+      <label for="pNew1">Nueva contraseña</label>
+      <input type="password" id="pNew1" placeholder="••••••••" required>
+      <div id="policyBox"></div>
+
+      <label for="pNew2">Confirmar nueva contraseña</label>
+      <input type="password" id="pNew2" placeholder="••••••••" required>
+
+      <div id="passwordErr" class="warn-banner info-banner" style="display:none; margin-top:15px; padding:8px 12px;"></div>
+
+      <button type="submit" class="btn btn-secondary btn-block mt-24">Actualizar contraseña</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  let user;
+
+  document.getElementById("profileForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("pName").value.trim();
+    const email = document.getElementById("pEmail").value.trim();
+    const city = document.getElementById("pCity").value.trim();
+    const err = document.getElementById("profileErr");
+
+    if (!name || !email) {
+      err.textContent = "Nombre y correo son obligatorios.";
+      err.style.display = "block";
+      return;
+    }
+
+    try {
+      user = await DB.update("users", user.id, { name, email, city });
+      err.style.display = "none";
+      renderTopbar(user);
+      toast("Perfil actualizado correctamente");
+    } catch (e2) {
+      err.textContent = e2.message;
+      err.style.display = "block";
+    }
+  });
+
+  document.getElementById("passwordForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const current = document.getElementById("pCurrent").value;
+    const pass1 = document.getElementById("pNew1").value;
+    const pass2 = document.getElementById("pNew2").value;
+    const err = document.getElementById("passwordErr");
+
+    const policy = validatePassword(pass1);
+    if (!policy.valid) {
+      err.textContent = "La nueva contraseña no cumple con la política de seguridad requerida.";
+      err.style.display = "block";
+      return;
+    }
+    if (pass1 !== pass2) {
+      err.textContent = "Las contraseñas nuevas no coinciden.";
+      err.style.display = "block";
+      return;
+    }
+
+    const res = await Auth.changePassword(user.id, current, pass1);
+    if (!res.success) {
+      err.textContent = res.message;
+      err.style.display = "block";
+      return;
+    }
+    err.style.display = "none";
+    document.getElementById("passwordForm").reset();
+    document.getElementById("policyBox").innerHTML = passwordChecklistHtml("");
+    toast("Contraseña actualizada correctamente");
+  });
+
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+
+    document.getElementById("profileAvatar").textContent = initials(user.name);
+    document.getElementById("profileRoleLabel").textContent = user.name;
+    document.getElementById("profileVerifiedLabel").textContent =
+      `${Auth.roleLabel(user.role)} · ${user.verified ? "Identidad verificada" : "Identidad pendiente de verificación"}`;
+
+    document.getElementById("pName").value = user.name;
+    document.getElementById("pEmail").value = user.email;
+    document.getElementById("pCity").value = user.city || "";
+
+    attachPasswordChecklist("pNew1", "policyBox");
+  })();
+</script>
+</body>
+</html>

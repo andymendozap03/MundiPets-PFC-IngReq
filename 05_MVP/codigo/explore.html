@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Explorar mascotas</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container">
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> &gt; Explorar mascotas</div>
+  <h1>Explorar mascotas</h1>
+  <p class="subtitle">Filtra por tipo, estado de interés y ubicación.</p>
+
+  <div class="layout-sidebar">
+    <div class="sidebar">
+      <h3>Tipo de mascota</h3>
+      <select id="fSpecies">
+        <option value="">Perros y gatos</option>
+        <option value="Perro">Perro</option>
+        <option value="Gato">Gato</option>
+      </select>
+
+      <h3>Estado de interés</h3>
+      <div class="segmented" id="statusFilterSegment">
+        <button type="button" data-status="Adopción" class="active">Adopción</button>
+        <button type="button" data-status="Cruza responsable">Cruza</button>
+        <button type="button" data-status="Extraviada">Extraviadas</button>
+      </div>
+
+      <h3>Ubicación aproximada</h3>
+      <input type="text" id="fCity" placeholder="Quevedo, Los Ríos">
+
+      <h3>Tamaño</h3>
+      <select id="fSize">
+        <option value="">Cualquiera</option>
+        <option>Pequeño</option>
+        <option>Mediano</option>
+        <option>Grande</option>
+      </select>
+
+      <h3>Buscar por Microchip</h3>
+      <input type="text" id="fMicrochip" placeholder="Ej. 981022300...">
+
+      <button class="btn btn-primary btn-block mt-24" id="applyBtn">Aplicar filtros</button>
+    </div>
+
+    <div id="results"></div>
+  </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  let user;
+
+  let statusFilter = "Adopción";
+  document.querySelectorAll("#statusFilterSegment button[data-status]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#statusFilterSegment button[data-status]").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      statusFilter = btn.dataset.status;
+      applyFilters();
+    });
+  });
+
+  async function applyFilters() {
+    const species = document.getElementById("fSpecies").value;
+    const city = document.getElementById("fCity").value.trim().toLowerCase();
+    const size = document.getElementById("fSize").value;
+    const microchip = document.getElementById("fMicrochip").value.trim();
+
+    let pets = (await DB.all("pets")).filter((p) => p.ownerId !== user.id);
+    pets = pets.filter((p) => p.status === statusFilter);
+    if (species) pets = pets.filter((p) => p.species === species);
+    if (city) pets = pets.filter((p) => p.city.toLowerCase().includes(city));
+    if (size) pets = pets.filter((p) => p.size === size);
+    if (microchip) pets = pets.filter((p) => p.microchip && p.microchip.includes(microchip));
+
+    const el = document.getElementById("results");
+    if (pets.length === 0) {
+      el.innerHTML = `<div class="card empty-state">No se encontraron mascotas con esos criterios.</div>`;
+      return;
+    }
+    el.innerHTML = pets.map((p) => `
+      <div class="pet-row" style="${p.status === 'Extraviada' ? 'border-color: var(--red-text); background: #fff8f8;' : ''}">
+        <div style="font-size:36px;">${p.photo}</div>
+        <div class="info">
+          <div class="name">
+            ${escapeHtml(p.name)}
+            ${p.status === 'Extraviada' ? '<span class="badge badge-red" style="font-size:10px; margin-left:5px;">🚨 EXTRAVIADA</span>' : ''}
+          </div>
+          <div class="meta">
+            ${escapeHtml(p.breed)} · ${escapeHtml(p.sex)} · ${escapeHtml(p.age)} · 📍 ${escapeHtml(p.city)}
+            ${p.microchip ? `<br><span style="font-size:11px;">🆔 Microchip: <code>${escapeHtml(p.microchip)}</code></span>` : ''}
+          </div>
+        </div>
+        <div class="right">
+          ${badgeForPetStatus(p.status)}
+          <a href="pet-detail.html?id=${p.id}" class="btn btn-secondary btn-sm">Ver perfil</a>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  document.getElementById("applyBtn").addEventListener("click", applyFilters);
+
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+    applyFilters();
+  })();
+</script>
+</body>
+</html>

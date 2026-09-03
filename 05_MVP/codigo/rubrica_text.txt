@@ -1,0 +1,1287 @@
+--- PAGE 1 ---
+FACULTAD DE CIENCIAS DE LA COMPUTACIÓN
+GUÍA Y RÚBRICA DE EVALUACIÓN — PROYECTO FIN DE CURSO
+ENTREGA 4 (2B / DEFENSA FINAL):
+MANUSCRITO PARA REVISTA JCR
+Un manuscrito por equipo · Depósito FAIR con DOI · Defensa oral
+Asignatura:
+Ingeniería de Requerimientos [20303] · 4to Nivel
+Carrera:
+Software (Rediseño) — Universidad Técnica Estatal de Quevedo
+(UTEQ)
+Estándar base:
+Norma internacional ISO/IEC/IEEE 29148:2018 — Ingeniería de
+sistemas y de software: procesos del ciclo de vida y ingeniería de
+requisitosa [1] y norma ISO/IEC 25010:2023 — Modelo de calidad del
+productob [2].
+Marco teórico:
+Pohl (2010) [3] · Guía al Cuerpo de Conocimiento de la Ingeniería de
+Softwarec versión 4.0 [4] · Fundamento para investigación empírica
+en ingeniería de software [5, 6, 7].
+Modalidad:
+Grupal (3–4 integrantes) · sistema de software real con cliente
+identificable
+Repositorio:
+GitHub obligatorio · Registro OSF del protocolo · Depósito Zenodo
+con Identificador de Objeto Digitald (DOI)
+Entregable:
+Manuscrito final en formato de la revista objetivo (PDF + fuente
+LaTeX) + paquete de replicación FAIR + defensa oral
+Marco ético:
+Paquete Integral de Anexos y Guías de Elaboración — Solicitud de
+Aprobación Ética de los Proyectos Fin de Curso (ISR-401, 2026–2027
+PPA). La documentación ética aprobada reposa en 08_Etica/ y su
+vigencia es condición de admisión (gatekeeper G8).
+Semana:
+17 del Período Académico Ordinario (PPA) 2026–2027 — segunda
+entrega del segundo parcial y defensa final (agosto de 2026)
+Cronograma:
+Semana 15 en curso · Semana 16: se evalúa la entrega de manera
+individual, por cada integrante del equipo · Semana 17 (agosto de
+2026): entrega final con las correcciones incorporadas
+Corte:
+Semana 17 (agosto de 2026) — fecha del último commit válido con
+las correcciones incorporadas
+Defensa:
+Semana 17 (calendario acordado con la docencia; presentación oral
+de 25 minutos + 10 minutos de preguntas)
+Página 1 / 24
+--- PAGE 2 ---
+Objetivo de esta entrega en una sola frase
+Cada equipo debe entregar un manuscrito distinto listo para envío a una revista JCR de
+ingeniería de requisitos o a una conferencia ranking A del área, acompañado del paquete de
+replicación FAIR con DOI de Zenodo y del protocolo registrado en el Marco de Ciencia Abiertaa
+(OSF), y defender oralmente el trabajo ante el tribunal docente.
+aEn inglés: Open Science Framework, OSF , plataforma pública de la Center for Open Science para el registro
+previo de protocolos y el depósito de materiales de investigación (https://osf.io ).
+Advertencia global sobre la integridad del manuscrito
+En esta entrega terminal, todo dato, tabla, figura, cita y afirmación del manuscrito debe estar
+respaldado por evidencia primaria dentro del repositorio, por una entrada bibliográfica revisada
+por pares verificada en referencias.bib o por una salida reproducible de los scripts de análisis
+versionados en 06_Experimento/scripts_analisis/ . Toda cifra o resultado que no pueda
+regenerarse ejecutando los scripts sobre los datos crudos publicados en Zenodo se considera
+fabricación y anula el envío del manuscrito. El uso de un Modelo Grande de Lenguajea (LLM) para
+pulir la redacción de párrafos cuyo contenido ustedes ya escribieron con base en datos empíricos
+es aceptable y debe declararse en la sección de agradecimientos siguiendo las directrices de
+[8, 9]; el uso de un LLM para producir resultados, cifras, tablas o conclusiones no lo es.
+aEn inglés: Large Language Model, LLM.
+Cláusula de armonización con el Paquete de Anexos y Guías de Aprobación Ética
+Esta guía y el Paquete Integral de Anexos y Guías de Elaboración forman un solo cuerpo
+normativo y deben cumplirse simultáneamente. Primero, nomenclatura única de entregas:
+Entrega 1 (1A, semana 4), Entrega 2 (1B, semana 10), Entrega 3 (2A, semana 13) y Entrega 4
+(2B/Defensa, semana 17); ambos documentos usan esta equivalencia. Segundo, carpeta ética:
+toda la documentación ética reside en 08_Etica/ , carpeta que forma parte del árbol obligatorio
+de la Sección 9.1; la carpeta 06_Experimento/ se reserva para el componente empírico. Tercero,
+zonas de evidencia: la evidencia se organiza en zona pública [P] y zona restringida [R] según la
+Sección 3; ninguna exigencia de esta guía se cumple publicando datos identificables.
+1 Propósito de la Entrega 4 (2B / Defensa) y cierre del ciclo
+La Entrega 4 (2B) es la última entrega del Proyecto Fin de Curso (PFC) y constituye la Segunda
+Entrega del Segundo Parcial y el momento de la Defensa Final oral. En esta entrega cada equipo
+cierra el ciclo abierto en la Entrega 1A: la Especificación de Requisitos de Software 1 (ERS/SRS)
+queda en versión definitiva; el estudio empírico registrado en el OSF en la Entrega 3 (2A) queda
+ejecutado, analizado y reportado; el paquete de datos abierto queda depositado en Zenodo con DOI
+persistente; y el manuscrito paralelo queda listo, con envío efectivo o con el envío programado para
+las semanas inmediatamente siguientes al cierre del semestre.
+1En inglés: Software Requirements Specification, SRS. En español se usa la sigla ERS por Especificación de Requisitos
+de Software. En esta guía se usa la notación combinada ERS/SRS para conservar ambas convenciones.
+Página 2 / 24
+--- PAGE 3 ---
+Continuidad narrativa con las tres entregas anteriores
+Entrega 1A (Semana 4) — planificación y elicitación inicial con identificación del sistema real.
+Entrega 2 (1B) (Semana 10) — ERS/SRS parcial con primera ronda de trabajo de campo.
+Entrega 3 (2A) (Semana 13) — ERS/SRS completo, segunda ronda de campo y protocolo
+experimental registrado en OSF; borrador del manuscrito con introducción, trabajo relacionado y
+metodología.
+Entrega 4 (2B / Defensa) (Semana 17) — ejecución completa del experimento; análisis final;
+manuscrito completo listo para envío a revista Journal Citation Reports a (JCR) o conferencia
+ranking A del área; paquete FAIR depositado; defensa oral.
+aEn inglés: Journal Citation Reports, JCR, informe anual publicado por Clarivate Analytics que asigna el Factor de
+Impacto (JIF , del inglésJournal Impact Factor) a las revistas indexadas en el Science Citation Index Expanded (SCIE)
+y en el Social Sciences Citation Index (SSCI).
+Revistas JCR y conferencias objetivo verificadas al momento del corte
+Cada equipo elige una y sólo una revista objetivo primaria y hasta dos alternativas. Las opciones
+válidas para esta cohorte, con datos verificados con fecha del 2 de julio de 2026, son las
+siguientes. Requirements Engineering (Springer London, ISSN 0947-3602, 1432-010X; Factor
+de Impacto Journal Citation Reports 2024 igual a 3,3; cuartil Q2 en la categoría Computer
+Science, Software Engineering, posición 64 de 131; tiempo mediano hasta la primera decisión
+editorial de 5 días según los datos oficiales de junio de 2026) [10]. Information and Software
+Technology (Elsevier, ISSN 0950-5849; JIF 2024 igual a 4,3; cuartil Q1) [ 11]. Empirical
+Software Engineering (Springer, ISSN 1382-3256; Q1) [12]. Journal of Systems and Software
+(Elsevier, ISSN 0164-1212; Q1) [13]. Como conferencias ranking A/A* del área CORE (Computing
+Research and Education) se aceptan REFSQ 2027 (Requirements Engineering: Foundation for
+Software Quality, Basel, Suiza, 12–15 de abril de 2027; deadline del track Research: envío de
+resumen jueves 5 de noviembre de 2026, envío del artículo jueves 12 de noviembre de 2026,
+notificación jueves 14 de enero de 2027, versión final jueves 4 de febrero de 2027;deadline del
+track Posters & Tools: envío jueves 4 de febrero de 2027, notificación jueves 25 de febrero de
+2027) [14] y la IEEE International Requirements Engineering Conference 2027 (RE 2027).
+Regla decisiva sobre la revista objetivo
+La revista o conferencia objetivo debe elegirse antes del inicio de la semana 14 y quedar
+registrada por correo institucional al docente responsable. A partir de la elección, el manuscrito
+se prepara exclusivamente en la plantilla oficial de esa revista o conferencia; los envíos con
+plantilla incorrecta o con formato genérico (sin plantilla oficial) son rechazados de escritorio en
+las revistas del área y aquí serán penalizados en el criterio de rúbrica correspondiente.
+2 Prerequisitos — estado esperado al inicio de la Entrega 4 (2B)
+2.1 Documentales heredados de la Entrega 3 (2A)
+El equipo debe partir del ERS/SRS completo con todas las observaciones docentes de la Entrega
+3 (2A) resueltas, del protocolo experimental registrado en el OSF con time stamp anterior al inicio de
+la recolección de datos [15], y del borrador del manuscrito con las secciones de introducción, trabajo
+relacionado y metodología cerradas.
+2.2 Empíricos
+Debe existir al menos el 50 % de los datos primarios necesarios ya recogidos y en proceso de
+Página 3 / 24
+--- PAGE 4 ---
+análisis: al menos 12 de las 16 entrevistas objetivo transcritas, al menos 30 de las 60 respuestas
+de cuestionario capturadas por perfil dominante, y la codificación temática abierta iniciada según
+Hennink, Kaiser y Marconi [16].
+2.3 Ético-legal
+El paquete ético base del proyecto (documentos A.1 a A.13 del Anexo A más los específicos de
+su categoría de riesgo) debe estar completo y vigente en 08_Etica/ , junto con la Adenda_Segunda_-
+Ronda.pdf cargada en la Entrega 3 (2A) con fecha anterior al primer consentimiento nuevo, conforme
+al Paquete Integral de Anexos y Guías de Aprobación Ética. Cada participante que se incorpore en
+esta ronda terminal debe firmar un nuevo consentimiento informado, redactado en cumplimiento de la
+Ley Orgánica de Protección de Datos Personales del Ecuador [17], con autorización explícita para el
+uso de sus datos anonimizados en publicaciones científicas revisadas por pares y para el depósito
+del conjunto de datos anonimizado en Zenodo con licencia CC BY 4.0. Ningún consentimiento
+autoriza la publicación de datos identificables: la firma, la cédula, el rostro y la voz permanecen
+en la zona restringida [R] definida en la Sección 3; los datos publicados en Zenodo deben estar
+anonimizados según los principios de minimización y seudonimización de la propia Ley y de las guías
+de investigación reproducible [18, 19].
+2.4 Instrumentales
+Debe existir el paquete de análisis versionado en 06_Experimento/scripts_analisis/ con al
+menos las funciones de importación de datos, limpieza básica y estadísticos descriptivos operativas y
+con README de instrucciones de ejecución reproducible.
+3 Trabajo de campo terminal — cierre de la recolección de datos primarios NUEVO EN 2B
+En esta entrega los equipos completan la recolección de datos hasta alcanzar los mínimos
+empíricos comprometidos con la revista objetivo. La segunda ronda extendida iniciada en la Entrega 3
+(2A) se cierra con la tercera ronda de campo, orientada específicamente a llenar los vacíos detectados
+en la codificación temática abierta y a alcanzar el punto de saturación de significado documentado
+por [16].
+Zonas de evidencia — se conservan de la Entrega 3 (2A)
+Toda la evidencia reside dentro del repositorio, organizada en dos zonas. Zona pública [P]:
+transcripciones anonimizadas, copias enmascaradas de consentimientos (con cédula y firma
+cubiertas y el código de participante visible), fotografías sin rostros ni coordenadas GPS,
+respuestas de cuestionario sin columnas identificativas, documentos anonimizados, actas
+enmascaradas, codificación temática y fichas técnicas de cada archivo multimedia (duración,
+códec, tamaño y hash SHA-256). Zona restringida [R]: material identificable (consentimientos
+originales, videos y audios sin anonimizar, actas con firma visible y documentos originales),
+almacenado en 02_Evidencias/00_Restringido/ como contenedor cifrado con AES-256 (7-Zip
+o VeraCrypt), con la contraseña entregada únicamente al docente por el SGA, nunca dentro del
+repositorio. Verificación: el hash SHA-256 de cada archivo se calcula antes de cifrar y consta
+en checksums.sha256 y en fichas_tecnicas.csv ; un archivo de la ficha que no aparezca en el
+contenedor, o cuyo hash no coincida, se trata como evidencia ausente o sustituida y dispara el
+gatekeeper G4.
+Página 4 / 24
+--- PAGE 5 ---
+Tipo de evidencia Cantidad mínima terminal (objetivo
+2B de cierre)
+Zona, formato y ubicación
+Consentimientos firmados ≥ 16 participantes distintos
+acumulados (24 recomendado),
+con al menos 3 perfiles bien
+representados
+[R] original cifrado en
+00_Restringido/ + [P] copia
+enmascarada en
+Consentimientos/
+Videos reales de entrevistas ≥ 16 archivos, con duración total
+≥ 240 minutos
+[R] contenedor cifrado + ficha
+técnica pública en
+fichas_tecnicas.csv
+Audios reales de entrevistas ≥ 16 archivos, redundantes con
+los videos
+[R] contenedor cifrado + ficha
+técnica pública
+Transcripciones
+anonimizadas
+Una por entrevista, en Markdown
+o JSON estructurado, con
+seudónimos y código de
+participante que sustituyan
+nombres propios
+[P] 02_-
+Evidencias/Transcripciones/
+Codificación temática
+cerrada y curva de
+saturación
+Tabla completa + figura de la
+curva de saturación con inflexión
+visible (códigos nuevos por
+entrevista tendiendo a cero)
+[P] CSV + PNG/PDF en
+Codificacion_Tematica/
+Respuestas del cuestionario n≥ 60 respuestas por perfil
+dominante, o justificación con
+cálculo de potencia estadística
+(Cohend = 0,5,α = 0,05,
+1−β = 0,80) siguiendo [18]
+[P] CSV/XLSX sin columnas
+identificativas en
+Cuestionario/Respuestas/
+Documentos originales de la
+organización cliente
+≥ 5 documentos de tipos distintos [P] anonimizados en
+Documentos_Organizacion/ ;
+originales en [R]
+Sesiones de validación
+cerradas (walkthrough)
+≥ 6 sesiones con acta firmada, 3
+con usuarios técnicos + 3 con
+usuarios no técnicos
+[P] acta enmascarada + [R]
+grabación en el contenedor
+cifrado
+Sesión final de
+miembro-verificación
+(member checking)
+1 sesión con al menos 3
+participantes previos del estudio
+confirmando la interpretación de
+los resultados [20]
+[P] acta enmascarada + [R]
+grabación en el contenedor
+cifrado
+Sobre el punto de saturación y su reporte editorial
+La curva de saturación es un requisito editorial habitual en las revistas del área [ 16, 21]: se
+reporta como una gráfica con la entrevista en el eje horizontal y el número acumulado de códigos
+nuevos en el vertical. Se considera saturado un estudio cuando, en las últimas tres entrevistas,
+el promedio de códigos nuevos por entrevista es menor o igual al 5 % del total acumulado.
+Se acepta como alternativa la información power calculation asociada al enfoque cuantitativo
+(encuestas o experimentos), calculando el tamaño muestral con Cohen d = 0,5, α = 0,05 y
+potencia 1−β = 0,80 por medio del paquete pwr de R [22, 23].
+Página 5 / 24
+--- PAGE 6 ---
+Regla estricta de evidencias — terminal
+En esta entrega terminal, cualquier evidencia declarada en el ERS o en el manuscrito y ausente
+del repositorio o no verificable anula el sub-criterio correspondiente y activa el gatekeeper
+G4 si el patrón se repite en más de dos casos. Todo archivo cuyo contenido no corresponda
+al tipo declarado ( .mp3 de 54 bytes ASCII, .jpg en blanco, .mp4 con imagen anime en lugar
+de una entrevista real) se considera evidencia falsificada, dispara el gatekeeper G4 con nota
+máxima 2,50/10 y descalifica automáticamente el manuscrito para el envío. El docente descifra el
+contenedor 02_Evidencias/00_Restringido/ , ejecuta ffprobe y sha256sum y contrasta contra
+fichas_tecnicas.csv ; publicar datos identificables (firma, cédula, rostro, voz o coordenadas
+GPS) en la zona pública activa el gatekeeper G8, con retiro inmediato del material.
+4 Análisis final de datos — del dato crudo al hallazgo publicable NUEVO EN 2B
+Esta sección detalla el análisis empírico terminal, según el enfoque elegido y registrado en el OSF
+en la Entrega 3 (2A). Todo análisis se ejecuta con scripts versionados en R o Python que reproducen
+exactamente cada tabla y cada figura del manuscrito. No se aceptan tablas producidas manualmente
+en hojas de cálculo ni figuras pegadas sin script que las genere [24, 25].
+4.1 Análisis del Enfoque 1 — Calidad de RF elicitados por humanos y por LLM
+El análisis apareado compara la calidad, medida en cinco dimensiones (completitud, ausencia de
+ambigüedad, verificabilidad, corrección respecto de la fuente y consistencia interna), de dos conjuntos
+de Requisitos Funcionales (RF): el elicitado por el equipo humano y el generado por el LLM a partir de
+las mismas transcripciones de entrevistas anonimizadas. El acuerdo entre las personas evaluadoras
+se cuantifica con el coeficienteκ de Cohen [26] para cada par y con el coeficienteκ de Fleiss [27]
+para el conjunto de tres o más. La comparación de medias por dimensión utiliza la prueba de la t
+para muestras apareadas si Shapiro-Wilk no rechaza normalidad y la prueba de Wilcoxon de rangos
+con signo en caso contrario, con corrección de Holm-Bonferroni por comparaciones múltiples según
+[28]. El tamaño del efecto se reporta con la d de Cohen o laδ de Cliff según sea paramétrico o no
+paramétrico, con intervalos de confianza al 95 % construidos por bootstrap de 10.000 réplicas [29].
+4.2 Análisis del Enfoque 2 — Detección automática de ambigüedad y malos olores
+Se comparan las etiquetas producidas por el detector automático contra el consenso de tres o
+más personas expertas usando precisión, exhaustividad (recall) y medidaF1, con matriz de confusión
+reportada íntegramente. El acuerdo inter-evaluador se cuantifica con κ de Cohen entre pares y κ
+de Fleiss para el consenso completo. Para cada desacuerdo entre detector y consenso experto se
+redacta una breve nota interpretativa que se agrega como material suplementario en el paquete
+Zenodo [30, 31]. Las curvas ROC ( Receiver Operating Characteristic, característica operativa del
+receptor) se generan variando el umbral de decisión del detector cuando este produzca puntuaciones
+continuas.
+4.3 Análisis del Enfoque 3 — Explicabilidad como Requisito No Funcional
+Se reporta la cobertura del marco de [ 32] como la proporción de dimensiones cubiertas por
+al menos un Requisito No Funcional2 (RNF) verificable, la satisfacción percibida como puntuación
+media Likert por dimensión con intervalos de confianza al 95 %, y el acuerdo entre las dos rondas de
+validación con el coeficienteκ de Fleiss. Las diferencias de percepción entre usuarios técnicos y no
+técnicos se examinan con la prueba U de Mann-Whitney y se reportan con la magnitud del efector
+derivada del estadístico, según la operacionalización de [33].
+4.4 Elementos comunes obligatorios a los tres enfoques
+Todo análisis, sea cual sea el enfoque, incluye: pruebas de supuestos (Shapiro-Wilk para
+2En inglés: Non-Functional Requirement, NFR. En español se usa el equivalente RNF .
+Página 6 / 24
+--- PAGE 7 ---
+normalidad, Levene para homogeneidad de varianzas), estadísticos descriptivos completos por
+grupo (mediana, media, desviación estándar, mínimo, máximo, intervalo intercuartílico), pruebas de
+hipótesis con nombre exacto y estadístico calculado, valorp con al menos tres decimales, tamaño
+del efecto e intervalo de confianza al 95 %. El plan de análisis registrado previamente en el OSF se
+contrasta con el análisis efectivamente ejecutado; toda desviación se reporta explícitamente en la
+sección de metodología del manuscrito, siguiendo la práctica de reporte transparente de [34, 15].
+Advertencia específica sobre p-hacking y HARKing
+La formulación de hipótesis después de conocer los resultados ( HARKing, del inglés Hypoth-
+esizing After the Results are Known ) [ 35] y el ejecutar múltiples análisis hasta encontrar
+uno significativo ( p-hacking) [ 34] son consideradas prácticas indebidas y son detectadas
+automáticamente por muchos editores del área. El registro previo en OSF , exigido desde
+la Entrega 3 (2A), es la protección contra estas prácticas; en esta entrega terminal, el análisis
+reportado en el manuscrito debe coincidir con el registrado o justificar explícitamente cada
+desviación.
+5 Manuscrito final para revista JCR — estructura y contenido NUEVO EN 2B
+El manuscrito paralelo iniciado en la Entrega 3 (2A) se cierra en esta entrega. Las secciones
+de introducción, trabajo relacionado y metodología, ya escritas, se refinan con las observaciones
+docentes; las secciones de resultados, discusión, amenazas a la validez y conclusiones se producen
+con los datos ya analizados. Se ofrece a continuación la estructura obligatoria del manuscrito,
+adaptada a los criterios editoriales de las revistas JCR del área [10, 11, 12, 13].
+5.1 Título, autoría, filiación, resumen estructurado y palabras clave
+El título final debe ser específico, contener el enfoque, el dominio del sistema y el diseño del
+estudio, y tener una extensión de 10 a 15 palabras. Ejemplo válido: An empirical comparison of
+human-elicited versus LLM-generated functional requirements in a real-world veterinary management
+system: a paired-analyst study in Ecuador . La autoría se declara en el orden acordado y con las
+filiaciones y correos institucionales correctos; se incluye el identificador ORCID (Open Researcher
+and Contributor Identifier, identificador digital abierto para personas investigadoras [ 36]) de cada
+integrante y del docente supervisor. El resumen estructurado sigue el patrón Contexto – Objetivo
+– Método – Resultados – Conclusiones y tiene entre 200 y 250 palabras. Se declaran de tres a
+cinco palabras clave alineadas con el vocabulario controlado de la revista objetivo (por ejemplo, para
+Requirements Engineering journal: Requirements elicitation, Large Language Models, Empirical study,
+Requirements quality, Latin America).
+5.2 Introducción
+La introducción cerrada tiene cuatro párrafos con propósito bien delimitado. El primer párrafo
+sitúa el problema en un caso concreto y real (el sistema del equipo) y explica en dos frases por qué
+es importante estudiar la Ingeniería de Requerimientos en ese contexto, utilizando la evidencia del
+dominio recogida en las Entregas 1A a 2A. El segundo párrafo describe la brecha de conocimiento
+(gap) con referencias primarias de los últimos tres años, con la revisión sistemática de [37] para el
+Enfoque 1 y 2, o la revisión mapa sistemático de [33] para el Enfoque 3. El tercer párrafo enuncia
+dos a cuatro contribuciones específicas del trabajo, cada una atada a una evidencia concreta que
+aparecerá en la sección de resultados. El cuarto párrafo presenta las preguntas de investigación
+(RQ1, RQ2) y anticipa brevemente los principales hallazgos, sin darles todavía la interpretación
+completa.
+5.3 Trabajo relacionado con búsqueda sistemática cerrada
+La revisión abreviada iniciada en la Entrega 3 (2A) se cierra ampliando el cuadro comparativo
+Página 7 / 24
+--- PAGE 8 ---
+a los 10 a 15 trabajos más cercanos. Se sigue el esquema abreviado de Kitchenham y Charters
+[38]: cadena de búsqueda documentada, criterios de inclusión y exclusión, número de estudios
+encontrados, número de estudios revisados y un cuadro comparativo con columnas Referencia, Año,
+Tipo de estudio, Población, Intervención, Resultados principales y Diferencia con nuestro trabajo. El
+párrafo de cierre debe identificar con claridad el nicho concreto que ocupa el estudio: qué agrega
+este trabajo que los estudios existentes no han hecho.
+5.4 Metodología
+La metodología se refina con el nivel de detalle suficiente para replicar el estudio a partir del texto
+y del paquete Zenodo, siguiendo la plantilla de reporte de experimentos de [7] para los Enfoques 1 y
+2, y las directrices de estudio de caso de [6] para el Enfoque 3. La sección tiene subapartados fijos:
+preguntas de investigación en formato PICOC (Población, Intervención, Comparación, Resultado,
+Contexto), hipótesis o proposiciones, variables independientes-dependientes-de control, diseño
+experimental (cuasi-experimento apareado, estudio de caso simple o múltiple), participantes y
+reclutamiento con criterios de inclusión y exclusión y proceso de consentimiento con base en la
+Ley Orgánica de Protección de Datos Personales del Ecuador [ 17], instrumentos con guiones y
+cuestionarios completos en el material suplementario, plan de análisis estadístico con las pruebas y
+umbrales exactos, y desviaciones respecto del protocolo pre-registrado en OSF .
+5.5 Resultados
+Los resultados se organizan por pregunta de investigación: primero RQ1 con las tablas y figuras
+que le corresponden, luego RQ2 con las suyas. Cada tabla y cada figura se produce con los scripts
+de 06_Experimento/scripts_analisis/ y se referencia en el texto por número. Cada afirmación
+numérica lleva entre paréntesis la información estadística mínima obligatoria: el nombre del estadístico
+(t,U,χ2), su valor numérico, los grados de libertad, el valorp y el tamaño del efecto con su intervalo
+de confianza al 95 %. No se aceptan cifras sueltas sin script que las genere ni tablas con cifras
+redondeadas a criterio; toda cifra se reporta con al menos tres decimales cuando corresponda.
+5.6 Discusión
+La discusión se ordena en tres subapartados: implicaciones para la investigación, implicaciones
+para la práctica y hallazgos sorprendentes o contraintuitivos. Cada afirmación de esta sección debe
+poder rastrearse a un dato concreto de la sección de resultados o a una referencia bibliográfica. Se
+debe evitar toda sobregeneralización: si el estudio se hizo con 25 requisitos de un sistema veterinario
+ecuatoriano, la conclusión no puede ser los LLM superan a los humanos en general; la conclusión
+debe restringirse al alcance del estudio y proponer explícitamente las extensiones que otras personas
+podrán ejecutar a partir del dataset publicado. Se recomienda incluir un pequeño subapartado de
+lecciones aprendidas de una parrafo, dirigido a otros equipos de investigación empírica en pregrado,
+siguiendo el ejemplo pedagógico de [39].
+5.7 Amenazas a la validez
+Se organizan en las cuatro categorías establecidas por [5]: validez interna, validez externa, validez
+de constructo y validez de conclusión. Para cada amenaza identificada se describe la mitigación
+aplicada y se reconoce la limitación remanente. Se recomienda incluir al menos dos amenazas por
+categoría, para evitar el reporte incompleto que motiva rechazo de escritorio en las revistas del área
+[40].
+5.8 Conclusiones y trabajo futuro
+Un párrafo por RQ que sintetice la respuesta obtenida con los datos. Un párrafo con las
+contribuciones consolidadas, reafirmando lo prometido en la introducción con la evidencia detrás. Un
+párrafo con al menos tres líneas concretas de trabajo futuro que otras personas puedan retomar a
+partir de los datos publicados en Zenodo.
+5.9 Disponibilidad de datos y materiales, uso de IA y agradecimientos
+Se incluye una sección corta con el título Data and materials availability con el DOI persistente del
+Página 8 / 24
+--- PAGE 9 ---
+paquete depositado en Zenodo, el enlace al registro OSF del protocolo y la licenciaCreative Commons
+Attribution 4.0 International 3 (CC BY 4.0) del dataset, siguiendo los principios de citación de software
+de Force11 [41] y los principios FAIR ( Findable, Accessible, Interoperable, Reusable: localizable,
+accesible, interoperable y reutilizable) [19]. Se agrega la sección Use of AI-assisted technologies
+declarando modelo, versión, temperatura y uso concreto del LLM en la redacción, según las políticas
+editoriales vigentes de Elsevier [8] y de Springer Nature [9]. La sección de agradecimientos incluye
+a las personas entrevistadas por nombre solo si su consentimiento lo permite; en caso contrario se
+agradece genéricamente indicando el rol (por ejemplo, seis profesionales veterinarios del cantón
+Quevedo, Provincia de Los Ríos).
+5.10 Referencias
+La lista de referencias se gestiona íntegramente en referencias.bib con al menos 40 entradas y
+con verificación cruzada de cada entrada (autor, título, revista o conferencia, año y DOI cuando exista).
+El estilo bibliográfico se ajusta al de la revista objetivo (Springer LNCS para REFSQ, Springer para el
+journal RE, Elsevier para IST y ESE); no se aceptan mezclas de estilos ni entradas incompletas. Se
+verifica que ninguna referencia esté inventada (hallucinated references), fenómeno frecuente cuando
+se utiliza un LLM para redactar; para ello se verifica cada DOI antes del envío.
+5.11 Plantillas y objetivos de envío verificados
+El manuscrito se redacta en LaTeX usando la plantilla oficial de la revista o conferencia objetivo.
+Para el journal Requirements Engineering de Springer se utiliza la plantilla sn-jnl.cls (Springer
+Nature LaTeX template); para Information and Software Technology se utiliza elsarticle.cls de
+Elsevier; para REFSQ 2027 se utiliza la plantilla Springer LNCS (llncs.cls ) con una extensión de
+15 páginas incluidas las referencias para el track Research y de 8 páginas para el track Research
+Previews. Las tres opciones de envío recomendadas para esta cohorte son, por orden de accesibilidad
+para estudiantes de pregrado: Posters & Toolsde REFSQ 2027 con envío el jueves 4 de febrero de
+2027 (opción más accesible, primer envío recomendado); Research Previews de REFSQ 2027 con
+envío el jueves 12 de noviembre de 2026 (opción de mayor exigencia pero factible); y envío al journal
+Requirements Engineering de Springer, continuo (opción con más recorrido pero con retorno editorial
+más lento).
+Advertencia específica sobre integridad del manuscrito
+La sección de resultados y la sección de discusión NO pueden escribirse antes de que existan
+los datos analizados. Redactar resultados hipotéticos para completar la estructura o hacer que
+un LLM invente cifras para llenar las tablas es fabricación de evidencia y descalifica el manuscrito.
+Toda referencia debe existir realmente en la base de datos que se cita (Scopus, Web of Science,
+IEEE Xplore, ACM Digital Library, Google Scholar) y su DOI debe resolver a la publicación citada;
+las referencias inventadas por un LLM son detectadas por los editores de las revistas del área
+con verificaciones automatizadas y su presencia motiva rechazo de escritorio.
+6 Adaptación temática — un manuscrito por proyecto NUEVO EN 2B
+Esta sección orienta la elección del ángulo específico del manuscrito para cada proyecto activo de
+esta cohorte, de modo que cada tema del PFC produzca un manuscrito distinto y no se produzcan
+solapamientos innecesarios entre equipos. Para cada proyecto se ofrece: el dominio del sistema
+(con la abreviatura interna que ya se ha usado en el semestre); la pregunta de investigación principal
+sugerida; el enfoque metodológico recomendado; los perfiles de participantes que definen los estratos
+muestrales; y las palabras clave alineadas con el vocabulario editorial de la revista objetivo. Cada
+3Licencia Creative Commons versión 4.0 que permite la reutilización con atribución y con vínculo a la licencia; abreviada
+CC BY 4.0.
+Página 9 / 24
+--- PAGE 10 ---
+equipo puede modificar la pregunta principal, pero debe declarar la modificación por escrito y justificar
+por qué mantiene el compromiso con el mínimo empírico.
+Equipo Dominio del sis-
+tema
+Pregunta de investigación sug-
+erida
+Enfoque Palabras clave para
+revista
+MundiPets Adopción y cruza
+responsable
+de mascotas
+(marketplace
+social
+ecuatoriano)
+¿En qué dimensiones de cal-
+idad de RF los analistas hu-
+manos y un LLM difieren
+cuando trabajan sobre en-
+trevistas anonimizadas del
+mismo dominio veterinario so-
+cial?
+Enfoque 1
+(LLM vs hu-
+mano)
+Requirements elici-
+tation, Large Lan-
+guage Models, Em-
+pirical study, Ani-
+mal welfare, Market-
+place platform
+AHMRV
+(SIMPA)
+Gestión
+agroindustrial
+de la palma
+africana en la
+Provincia de Los
+Ríos
+¿Qué proporción de RF elici-
+tados en dominios agroindus-
+triales tropicales latinoameri-
+canos son detectados como
+ambiguos por un detector au-
+tomático versus por analistas
+expertos?
+Enfoque 2
+(detección
+am-
+bigüedad)
+Requirements am-
+biguity, Agroindus-
+trial systems, Palm
+oil, Empirical study,
+Latin America
+ACERS
+(SGA)
+Trazabilidad de
+producción de
+verde y cacao
+¿Qué requisitos legales de la
+Ley Orgánica de Protección de
+Datos y de trazabilidad agroin-
+dustrial no quedan cubiertos
+por los RF elicitados con méto-
+dos convencionales, y cómo
+el enfoque legal-first de [ 42]
+extiende esa cobertura?
+Enfoque 2
+(legal-first)
+Legal requirements,
+Traceability, Cacao
+industry, Data pro-
+tection law, Require-
+ments coverage
+SGCV-IA Gestión clínica vet-
+erinaria con mó-
+dulo de IA para di-
+agnóstico asistido
+¿Qué requisitos de expli-
+cabilidad, operacionalizados
+como RNF verificables, resul-
+tan necesarios y suficientes
+para los distintos perfiles de
+usuarios de un sistema clínico
+veterinario con IA?
+Enfoque 3
+(explicabili-
+dad)
+Explainability,
+Non-functional
+requirements, AI-
+assisted diagnosis,
+Veterinary
+informatics, User
+studies
+AQUAGUESTGestión de
+camaronera
+industrial en la
+costa ecuatoriana
+¿Cómo se comparan los con-
+juntos de RF elicitados con en-
+trevistas semi-estructuradas y
+con Design Thinking en un do-
+minio industrial acuícola trop-
+ical, en cuanto a cobertura
+de escenarios operativos críti-
+cos?
+Enfoque 1
+(variante
+técnica de
+elicitación)
+Requirements
+elicitation
+techniques,
+Design Thinking,
+Aquaculture,
+Empirical study,
+Case study
+FabroGym Gestión de un gim-
+nasio local con re-
+comendación de
+rutinas
+¿Qué requisitos de explicabil-
+idad emergen para los distin-
+tos perfiles de usuarios de un
+sistema de recomendación de
+rutinas basado en aprendizaje
+automático, y cómo se validan
+con miembros del propio gim-
+nasio?
+Enfoque 3
+(explicabili-
+dad)
+Explainability,
+Fitness
+recommendation,
+Personalization,
+Non-functional
+requirements, Field
+study
+Página 10 / 24
+--- PAGE 11 ---
+Equipo Dominio del sis-
+tema
+Pregunta de investigación sug-
+erida
+Enfoque Palabras clave para
+revista
+PFC_IR
+(SIGCM)
+Sistema Integral
+de Gestión de
+Centro Médico
+Ambulatorio
+¿Qué requisitos derivados de
+la Ley Orgánica de Protección
+de Datos y de los estándares
+HL7 no quedan cubiertos por
+los RF elicitados con métodos
+convencionales en un sistema
+clínico ecuatoriano ambulato-
+rio?
+Enfoque 2
+(legal-first)
+Legal requirements,
+Health information
+systems, Data pro-
+tection, HL7, Empiri-
+cal study
+Terapia
+Física
+(SICST)
+Control y
+Seguimiento
+de Sesiones de
+Terapia Física
+¿Cómo se comparan la cali-
+dad y la trazabilidad de los RF
+elicitados a partir de entrevis-
+tas con fisioterapeutas versus
+los generados por un LLM a
+partir de las mismas transcrip-
+ciones anonimizadas?
+Enfoque 1
+(LLM vs hu-
+mano)
+Requirements
+elicitation,
+Physiotherapy
+informatics, Large
+Language Models,
+Empirical study,
+Patient tracking
+Marketplace
+UTEQ
+(NVVZ)
+Marketplace estu-
+diantil universitario
+¿Qué requisitos no
+funcionales sobre confianza
+y seguridad quedan omitidos
+por los analistas humanos
+y son o no capturados por
+un LLM al trabajar sobre
+entrevistas de estudiantes
+universitarios en un contexto
+latinoamericano?
+Enfoque 1
+(LLM vs hu-
+mano)
+Trust requirements,
+Student
+marketplace,
+Large Language
+Models, University
+informatics,
+Empirical study
+Aulas IoT
+(AOPSS)
+Gestión inteligente
+de aulas univer-
+sitarias con IoT
+y aprendizaje au-
+tomático
+¿Qué tipos de explicaciones
+requiere el personal docente
+y administrativo del sistema
+inteligente de aulas para in-
+tervenir en las decisiones au-
+tomatizadas del sistema con
+confianza?
+Enfoque 3
+(explicabili-
+dad)
+Explainability, Smart
+classrooms, Internet
+of Things, Higher
+education, User
+studies
+Biblioteca
+Inteligente
+(ACCG)
+Sistema
+Inteligente
+de Gestión
+de Biblioteca
+Universitaria con
+recomendación
+¿En qué medida un LLM
+puede replicar la elicitación
+de RF de un sistema bibliote-
+cario a partir de documentos y
+transcripciones anonimizadas,
+comparado con analistas hu-
+manos expertos?
+Enfoque 1
+(LLM vs hu-
+mano)
+Requirements elici-
+tation, Library infor-
+matics, Large Lan-
+guage Models, Rec-
+ommender systems,
+Empirical study
+Movilidad
+Colab-
+orativa
+(CHNV)
+Sistema de movil-
+idad colaborativa
+universitaria
+¿Cómo se comparan los con-
+juntos de RF elicitados con en-
+trevistas semi-estructuradas y
+con Design Thinking para un
+servicio de movilidad estudi-
+antil, en términos de cobertura
+de escenarios operativos?
+Enfoque 1
+(variante
+técnica de
+elicitación)
+Requirements
+elicitation
+techniques, Ride-
+sharing, Design
+Thinking, University
+informatics, Case
+study
+Página 11 / 24
+--- PAGE 12 ---
+Regla de no solapamiento y de adaptación
+Cada equipo debe producir un manuscrito con título, contribuciones y dataset distintos, aunque
+compartan enfoque metodológico. Dos equipos que hayan elegido el Enfoque 1 (LLM vs humano)
+trabajan sobre dominios distintos y sobre materiales fuente distintos, por lo que sus contribuciones
+son diferenciables. Dos equipos que hayan elegido el Enfoque 3 (explicabilidad) trabajan sobre
+tipos de componente IAdistintos (diagnóstico veterinario vs recomendación de rutinas de gimnasio
+vs aulas inteligentes), y por eso también producen contribuciones diferenciables.
+Compromiso adicional para los equipos con mejor calificación acumulada
+Los tres equipos con mejor calificación acumulada al cierre de la Entrega 3 (2A) tendrán la opción
+— no la obligación — de escalar el objetivo de envío desde Posters & Tools de REFSQ 2027
+hacia el track Research Previews (envío el jueves 12 de noviembre de 2026, 8 páginas incluidas
+las referencias) o hacia el journal Requirements Engineering de Springer (envío continuo, 25 a
+30 páginas), con acompañamiento docente durante la preparación del envío. Esta oportunidad
+no es evaluada en esta entrega, pero constituye un valor añadido para la trayectoria profesional
+del equipo y suele traducirse en cartas de recomendación fuertes para posgrado y para becas.
+7 Depósito FAIR final — Zenodo, OSF y GitHub archivado NUEVO EN 2B
+Los datos y materiales del proyecto se depositan en tres plataformas complementarias, siguiendo
+las guías FAIR [19] y la política de ciencia abierta habitual en las revistas del área.
+7.1 Depósito en Zenodo con DOI persistente
+El paquete Zenodo se produce a partir de la carpeta 07_Publicacion/dataset_zenodo/ del
+repositorio y se sube al servicio Zenodo (https://zenodo.org ) con las siguientes especificaciones
+fijas: título con la fórmula Replication package for {título del manuscrito}, autoría con ORCID de cada
+integrante, licencia CC BY 4.0 para los datos, licencia MIT o Apache-2.0 para el código, palabras
+clave iguales a las de las revistas objetivo, comunidad Requirements Engineering cuando exista,
+y descripción con enlace al manuscrito y al registro OSF . El DOI asignado se copia al archivo
+CITATION.cff y al README del repositorio.
+7.2 Contenido mínimo del paquete Zenodo
+El paquete tiene, como mínimo, los siguientes elementos: transcripciones anonimizadas de
+entrevistas en formato Markdown o JSON estructurado; respuestas del cuestionario en CSV con
+marca temporal y con seudónimos que sustituyan cualquier identificador directo; corpus etiquetado de
+RF/RNF en JSON con el esquema documentado; matriz de trazabilidad en CSV;prompts y respuestas
+de los LLM (Enfoques 1 y 2) con modelo exacto, temperatura, top-p, semilla y fecha y hora de la
+consulta; scripts de análisis en R o Python que reproducen exactamente las tablas y figuras del
+manuscrito; README_dataset.md con el diccionario de datos y las instrucciones de citación siguiendo
+los principios de [41]; archivo ANONYMIZATION.md que documenta el procedimiento de seudonimización
+y anonimización aplicado; archivo ETHICS.md que resume el proceso de consentimiento informado y
+los principios de la Ley Orgánica de Protección de Datos Personales del Ecuador [17].
+7.3 Registro OSF actualizado
+El registro OSF creado en la Entrega 3 (2A) se actualiza con las desviaciones del protocolo
+respecto de lo pre-registrado. Cada desviación se documenta en la sección Deviations from pre-
+registration del OSF , con la razón, el momento en el que se detectó y la mitigación aplicada. Esta
+actualización no invalida el registro previo; al contrario, es la práctica que las revistas del área esperan
+del uso maduro del pre-registro [15].
+7.4 Archivado del repositorio GitHub en Software Heritage
+Página 12 / 24
+--- PAGE 13 ---
+El repositorio GitHub se archiva en el servicio Software Heritage ( https : / / archive .
+softwareheritage.org ) por medio del botón Save code now, generando el identificador SWHID
+(Software Heritage Identifier, identificador persistente para código fuente [43]). El SWHID se copia
+al archivo CITATION.cff y al README del repositorio. Se recomienda leer las guías rápidas de
+archivado de [44] y de citación de software de [41].
+7.5 Autoevaluación FAIR con la lista F-UJI o FAIR Data Maturity
+Antes del corte final, el equipo ejecuta una autoevaluación FAIR con la herramienta F-UJI (https:
+//www.f-uji.net/ ) o con el modelo de madurez FAIR Data Maturity de la Research Data Alliance
+[45], y sube el reporte a la raíz del repositorio comofair_assessment.pdf . Se acepta como aprobado
+un puntaje agregado igual o superior al 60 % de los indicadores.
+8 Defensa oral — presentación técnica final NUEVO EN 2B
+La defensa oral es el acto de cierre del PFC y se lleva a cabo en la semana 17, con calendario
+acordado por la docencia. Cada equipo dispone de 25 minutos para la presentación y 10 minutos
+para las preguntas del tribunal. La presentación se hace con diapositivas propias, en español, y se
+apoya en una demostración en vivo del prototipo funcional cuando sea posible.
+8.1 Estructura obligatoria de la presentación
+La presentación tiene la siguiente estructura temporal, orientadora y flexible: 3 minutos para
+el problema y las contribuciones, 3 minutos para el sistema y sus stakeholders, 4 minutos para la
+metodología del componente empírico, 6 minutos para los resultados con las tablas y figuras del
+manuscrito, 4 minutos para la discusión y las amenazas a la validez, 3 minutos para las conclusiones
+y el trabajo futuro, y 2 minutos para la demostración corta del prototipo. La distribución de tiempo se
+cumple con un cronómetro visible en las diapositivas; excederse en más de dos minutos penaliza en
+el criterio C10 de la rúbrica.
+8.2 Roles y participación equitativa
+Los tres a cuatro integrantes deben participar en la presentación con al menos cuatro minutos de
+tiempo hablado cada uno; la ausencia de participación de algún integrante penaliza en el criterio C10.
+El tribunal formula preguntas a integrantes específicos y evalúa la capacidad individual de responder
+por las decisiones metodológicas y por los datos.
+8.3 Materiales de presentación
+Se depositan en 09_Defensa/ del repositorio los siguientes materiales: presentación en PDF
+(obligatorio) y en formato editable (recomendado); guion de la presentación con los tiempos por
+diapositiva; video de la defensa grabada localmente; folleto de una hoja (formato Letter, A4 opcional)
+con el resumen estructurado y los resultados principales, listo para entregar al tribunal impreso.
+8.4 Preparación de la demostración
+La demostración corta del prototipo debe cubrir dos escenarios de la matriz de trazabilidad,
+previamente identificados por el equipo, y debe ejecutarse en un entorno estable (idealmente en un
+despliegue Docker con docker compose up ). Si la demostración depende de credenciales, se usan
+credenciales de demostración documentadas en 05_MVP/README.md ; nunca se usan credenciales
+reales de personas del cliente durante la defensa.
+Advertencia sobre la defensa
+La defensa se puede reprobar si el tribunal detecta que integrantes del equipo no pueden explicar
+decisiones básicas del proyecto, si la demostración del prototipo falla completamente, o si se
+detectan resultados en las diapositivas que no aparecen ni en el manuscrito ni en los scripts de
+análisis, en cuyo caso se aplica la regla de fabricación de evidencia del gatekeeper G4.
+Página 13 / 24
+--- PAGE 14 ---
+9 Insumos obligatorios en el repositorio para la evaluación
+Todo lo que el docente y el tribunal deben evaluar tiene que estar dentro del repositorio GitHub
+del equipo, correctamente nombrado, versionado y accesible al momento del corte. La estructura
+extiende la ya normada en la Entrega 3 (2A) para incorporar la carpeta de defensa y las evidencias
+del análisis terminal.
+9.1 Estructura de carpetas obligatoria en la Entrega 4 (2B)
+Árbol de carpetas obligatorio de la Entrega 4 (2B / Defensa)
+Nombre_Proyecto_ISR401/
+README.md
+LICENSE
+CITATION.cff
+CHANGELOG.md
+.gitignore
+checksums.sha256
+fair_assessment.pdf
+01_ERS/
+ERS_SRS_2B_v2.0.pdf
+ERS_SRS_2B_v2.0.tex
+referencias.bib
+02_Evidencias/
+00_Restringido/ [R] cifrado AES-256
+evidencias_restringidas.7z
+fichas_tecnicas.csv
+Consentimientos/ [P] enmascarados
+Transcripciones/
+Fotos_Entorno/
+Cuestionario/
+Fotos_Aplicacion/
+Respuestas/
+Documentos_Organizacion/
+Validacion_Walkthrough/
+Member_Checking/
+Codificacion_Tematica/
+03_Modelado/
+04_Trazabilidad/
+05_MVP/
+06_Experimento/
+protocolo.pdf
+osf_registration.pdf
+osf_deviations.pdf
+instrumentos/
+prompts_llm/
+datos_crudos/
+datos_procesados/
+resultados/
+scripts_analisis/
+07_Publicacion/
+manuscrito_final.pdf
+manuscrito_final.tex
+referencias.bib
+figuras/
+tablas/
+dataset_zenodo/
+ANONYMIZATION.md
+ETHICS.md
+README_dataset.md
+Página 14 / 24
+--- PAGE 15 ---
+08_Etica/
+A01_Protocolo_Investigacion.pdf ... A13 (Anexo A)
+Categoria_A/ | _B/ | _C/
+Aval_Institucional.pdf
+Adenda_Segunda_Ronda.pdf
+README_Etica.md
+09_Defensa/
+presentacion.pdf
+presentacion.pptx
+guion.pdf
+video_defensa.mp4
+folleto_una_hoja.pdf
+9.2 Archivos raíz obligatorios — ampliados para Entrega 4 (2B)
+Archivo Contenido mínimo obligatorio
+README.md Nombre del sistema, integrantes con roles y ORCID, resumen del
+dominio, enlace al ERS PDF v2.0, enlace al manuscrito final, enlace al
+DOI del paquete Zenodo, enlace al registro OSF (con las
+desviaciones), enlace al SWHID de Software Heritage, cita
+recomendada, instrucciones para reproducir el análisis experimental.
+LICENSE Licencia MIT o Apache-2.0 para el código del MVP; CC BY 4.0 para el
+documento y el conjunto de datos anonimizado; scope explícito de
+cada licencia, declarando de forma expresa que el contenido de
+02_Evidencias/00_Restringido/ no se licencia, no se redistribuye y
+no forma parte del depósito abierto.
+CITATION.cff Archivo YAML v1.2.0 [46] con authors (con ORCID), title , version
+2.0 , date-released , doi de Zenodo, identifiers con el SWHID. Su
+presencia habilita el botón Cite this repository de GitHub.
+CHANGELOG.md Historial de versiones desde la Entrega 1A hasta la Entrega 4 (2B), con
+las adiciones, cambios y correcciones por versión, siguiendo Keep a
+Changelog.
+checksums.sha256 Hash SHA-256 de todos los archivos multimedia y del paquete Zenodo;
+generado con sha256sum y verificable con sha256sum -c .
+fair_assessment.pdf Reporte de autoevaluación FAIR con F-UJI o con el modelo Research
+Data Alliance [45]. Puntaje agregado esperado≥ 60%.
+9.3 Checklist de aceptación de la Entrega 4 (2B)
+Ítem verificable
+□ La estructura de carpetas coincide exactamente con la del árbol de la Sección 9.1,
+incluidas 02_Evidencias/00_Restringido/ , 08_Etica/ y 09_Defensa/ .
+□ La documentación ética está completa y vigente en 08_Etica/ : paquete base A.1–
+A.13, aval institucional y Adenda_Segunda_Ronda.pdf con fecha anterior al primer
+consentimiento nuevo.
+□ El contenedor 02_Evidencias/00_Restringido/ abre con la contraseña entregada por
+el SGA y su contenido corresponde a fichas_tecnicas.csv (ffprobe y sha256sum
+coinciden).
+□ Existen los seis archivos raíz obligatorios, incluido fair_assessment.pdf .
+□ El PDF del ERS/SRS v2.0 está unificado, numerado, con historial de versiones y con
+enlace al DOI de Zenodo en la portada.
+Página 15 / 24
+--- PAGE 16 ---
+Ítem verificable
+□ Todos los archivos multimedia siguen la nomenclaturaYYYY-MM-DD_Tipo_Codigo_Tec-
+nica.ext y usan el código de participante, no el nombre propio.
+□ Cada archivo declarado como audio o video pasa ffprobe sin error y muestra duración
+mayor a cero.
+□ Cada consentimiento de la zona pública tiene cédula y firma enmascaradas, y su original
+íntegro está en el contenedor cifrado 00_Restringido/ .
+□ Ninguna evidencia publicada conserva datos identificables: fotografías sin rostros ni
+coordenadas GPS y respuestas sin columnas de nombre, correo, teléfono o IP .
+□ El paquete Zenodo tiene DOI persistente y aparece en el CITATION.cff y en el
+README.md .
+□ El repositorio GitHub tiene SWHID asignado por Software Heritage y aparece en
+CITATION.cff .
+□ El registro OSF está actualizado con la sección de desviaciones respecto del protocolo.
+□ Los scripts de análisis reproducen exactamente las tablas y figuras del manuscrito a
+partir de los datos crudos ejecutando make all o Rscript run_all.R .
+□ La curva de saturación de la codificación temática está en la carpeta correspondiente y
+presenta inflexión visible (Enfoques 1 y 3) o se justifica con power calculation explícito
+(Enfoques 1 y 2).
+□ Todas las evidencias declaradas en el ERS y en el manuscrito existen realmente dentro
+del repositorio o del paquete Zenodo y son verificables.
+□ El manuscrito está en la plantilla oficial de la revista o conferencia objetivo, con la
+extensión requerida, y sin referencias inventadas.
+□ La autoevaluación FAIR alcanza al menos 60 % de los indicadores.
+10 Rúbrica de evaluación de la Entrega 4 (2B / Defensa) — 10 puntos
+La rúbrica utiliza cinco niveles: Excelente (N4 = 100 %), Satisfactorio (N3 = 75 %), En desarrollo
+(N2 = 50 %), Insuficiente (N1 = 25 %), Ausente (N0 = 0 %). La calificación por criterio se obtiene
+como Puntos = P (Nivel× Peso/4)× Escala. Los pesos suman 10,00 y se reparten en tres bloques:
+cierre del ERS/SRS y del sistema, componente empírico y publicación, y defensa oral.
+Página 16 / 24
+--- PAGE 17 ---
+ID Criterio Qué se evalúa Peso Notas de la evidencia
+Bloque A — Cierre del ERS/SRS y del sistema (3,00 puntos)
+C1 ERS/SRS v2.0 completo y
+coherente
+PDF unificado con las observaciones docentes
+de 2A resueltas; sin secciones pendientes; sin
+fragmentos por integrante
+1,00 Sin unificación = 0
+C2 Modelado UML y trazabilidad
+terminales
+Diagramas UML consistentes con el código del
+MVP; matriz de trazabilidad con al menos 60 filas
+cerradas
+0,75 Trazabilidad Ley→Mockup com-
+pleta
+C3 Prototipo funcional (MVP) Cobertura≥ 80% de RF Must have, despliegue
+con docker compose up o equivalente, video de
+demostración corto
+0,75 Sin ejecutable = 0
+C4 Trabajo de campo terminal,
+zonas y consentimientos
+≥ 16 consentimientos (24 recomendado), ≥ 16
+videos (≥ 240 min),≥ 16 audios, cuestionario
+n≥ 60 por perfil o power calc, sesión de member
+checking, zonas [P]/[R] respetadas
+0,50 Evidencia falsificada o datos
+identificables publicados ⇒
+G4/G8
+Bloque B — Componente empírico y publicación (5,00 puntos)
+C5 Análisis empírico ejecutado
+y reproducible
+Scripts en R o Python que reproducen tablas y
+figuras del manuscrito; pruebas de supuestos y
+de hipótesis con tamaño de efecto e intervalos de
+confianza
+1,00 Sin reproducibilidad = 0
+C6 Curva de saturación o cál-
+culo de potencia estadística
+Curva con inflexión visible (Enfoques 1 y 3) opower
+calculation explícito (Enfoques 1 y 2)
+0,50 Ausencia motivaría rechazo edi-
+torial
+C7 Manuscrito completo con
+plantilla oficial
+Manuscrito en la plantilla de la revista o conferencia
+objetivo, extensión y estilo correctos, resumen
+estructurado, RQ en PICOC
+1,50 Plantilla incorrecta ⇒ mitad
+C8 Referencias verificadas y sin
+fabricación
+Al menos 40 entradas verificadas con DOI re-
+solviendo a la publicación real; sin referencias
+inventadas
+0,50 Referencias inventadas = 0
+C9 Depósito FAIR (Zenodo +
+OSF + SWH)
+DOI de Zenodo presente en el CITATION.cff; reg-
+istro OSF con desviaciones; SWHID de Software
+Heritage; puntaje F-UJI≥ 60%
+1,00 Falta ⇒ 0 por ítem
+C10 Amenazas a la validez y
+transparencia
+Amenazas por las cuatro categorías de [ 5], con
+mitigación; declaración del uso de IA-LLM en
+agradecimientos
+0,50 Reporte incompleto = mitad
+Página 17 / 24
+--- PAGE 18 ---
+ID Criterio Qué se evalúa Peso Notas de la evidencia
+Bloque C — Defensa oral (2,00 puntos)
+C11 Estructura y tiempo de la
+defensa
+Cumplimiento de la estructura temporal,
+cronómetro visible, transiciones limpias
+0,50 Excederse 2 min = mitad
+C12 Dominio técnico y respues-
+tas al tribunal
+Capacidad de responder decisiones metodológicas
+y de datos; participación equitativa de todos los
+integrantes
+1,00 Silencio individual = mitad
+C13 Demostración del prototipo Ejecución en vivo de dos escenarios; entorno
+estable; sin credenciales reales
+0,50 Falla total = 0
+Página 18 / 24
+--- PAGE 19 ---
+10.1 Gatekeepers de la Entrega 4 (2B / Defensa)
+• G1: Entrega dentro del plazo con enlace verificable al repositorio GitHub. Fuera de plazo⇒ nota
+máxima 2,50/10.
+• G2: Manuscrito completo, en la plantilla oficial de la revista o conferencia objetivo, en un único
+PDF con fuente LaTeX en el repositorio. Ausencia o plantilla genérica⇒ nota máxima 4,00/10.
+• G3: Depósito Zenodo con DOI persistente y CITATION.cff actualizado con el DOI. Ausencia⇒ el
+criterio C9 vale cero.
+• G4: Evidencia audiovisual real en la zona restringida cifrada, con hash coincidente en fichas_-
+tecnicas.csv , scripts de análisis reproducibles y referencias verificables. Cualquier evidencia
+falsificada, ausente del contenedor, con hash no coincidente, cifra no reproducible o referencia
+inventada⇒ nota máxima 2,50/10 y descalificación del envío del manuscrito.
+• G5: Cumplimiento de los mínimos empíricos terminales: 16 entrevistas acumuladas (24
+recomendado), 60 respuestas por perfil o power calculation, curva de saturación con inflexión o
+power calc. Falta⇒ nota máxima 4,00/10.
+• G6: Actualización del registro OSF con desviaciones respecto del protocolo. Falta⇒ el criterio C9
+vale la mitad.
+• G7: Defensa oral efectivamente realizada por todos los integrantes; ausencia injustificada de un
+integrante en la defensa⇒ nota individual máxima 4,00/10 para el ausente.
+• G8: Documentación ética vigente en 08_Etica/ — paquete base A.1–A.13, aval institucional y
+Adenda_Segunda_Ronda.pdf con fecha anterior al primer consentimiento nuevo — y respeto de
+las zonas [P]/[R] de la Sección 3. Su ausencia⇒ nota máxima 2,50/10; la publicación de datos
+identificables en la zona pública⇒ 2,50/10 y retiro inmediato del material.
+Regla operativa de la rúbrica — síntesis
+Los gatekeepers actúan de manera independiente y su activación no se acumula. El principio es
+que la Entrega 4 (2B) es la puerta que abre la publicación efectiva del trabajo; un manuscrito
+con fabricación de evidencia, o con referencias inventadas, o con datos no reproducibles, no
+puede pasar esa puerta. Cuando el docente detecte cualquiera de esos tres patrones, aplicará el
+gatekeeper G4 y el equipo no será autorizado a enviar el manuscrito bajo la filiación institucional
+de la UTEQ.
+11 Cronograma de las semanas 14 a 17 y entregables intermedios
+Semana Hito Entregable esperado
+14 Elección de la revista y refi-
+namiento metodológico
+Declaración escrita de la revista o conferencia objetivo
+enviada al docente; incorporación de las observaciones
+docentes de la Entrega 3 (2A) al ERS y al manuscrito.
+14 Cierre de la recolección de
+datos
+Al menos el 80 % de las entrevistas objetivo transcritas
+(mínimo 16, 24 recomendado); codificación temática
+avanzada; cuestionario aplicado a n ≥ 45 por perfil
+dominante.
+15 Análisis empírico completo y
+borrador de resultados
+Scripts de análisis versionados producen todas las
+tablas y figuras; borrador de la sección de resultados
+incorporado al manuscrito.
+Página 19 / 24
+--- PAGE 20 ---
+Semana Hito Entregable esperado
+15 Miembro-verificación (mem-
+ber checking)
+Sesión con al menos 3 participantes previos confir-
+mando la interpretación de los resultados; acta firmada
+en el repositorio.
+16 Cierre del manuscrito y de-
+pósito Zenodo
+Manuscrito con secciones de discusión, amenazas a
+la validez y conclusiones cerradas; DOI de Zenodo
+obtenido; SWHID de Software Heritage obtenido; CITA-
+TION.cff actualizado.
+16 Autoevaluación FAIR ysimu-
+lacro de defensa
+Reporte F-UJI en el repositorio con puntaje ≥ 60%;
+simulacro de defensa con retroalimentación docente por
+pares; folleto de una hoja listo.
+17 Entrega 4 (2B) y defensa
+final
+Corte al domingo 15 de noviembre de 2026, 23:59; de-
+fensas orales en calendario acordado; retroalimentación
+individual y consolidación del portafolio del equipo.
+11.1 Puentes con REFSQ 2027 y con el journal Requirements Engineering
+Los equipos que opten por Research Previews de REFSQ 2027 disponen de la ventana de envío
+jueves 12 de noviembre de 2026, exactamente antes del cierre docente del semestre; se recomienda
+coordinar el envío con el docente para que la retroalimentación previa se aproveche íntegramente.
+Los equipos que opten por Posters & Tools de REFSQ 2027 disponen de la ventana de envío jueves
+4 de febrero de 2027, ya fuera del semestre, por lo que se recomienda establecer un calendario de
+acompañamiento docente de tres a cinco reuniones distribuidas entre diciembre de 2026 y enero
+de 2027. Los equipos que opten por envío directo al journal Requirements Engineering de Springer
+disponen de la ventana continua, con tiempo mediano hasta la primera decisión editorial de 5 días
+según los datos oficiales de junio de 2026 [10], por lo que el envío puede hacerse en las semanas 17
+o 18 sin urgencia y esperar respuesta antes del inicio del ciclo siguiente.
+12 Lecturas obligatorias para la Entrega 4 (2B / Defensa)
+Cada integrante del equipo debe haber leído y aportar al análisis de al menos las siguientes
+lecturas obligatorias antes de escribir la sección de discusión y de conclusiones del manuscrito:
+• Wohlin et al. (2012), capítulos 8 a 12 — diseño de experimentos, análisis estadístico y amenazas
+a la validez en ingeniería de software [5].
+• Runeson y Höst (2009) — guía para conducir y reportar estudios de caso en ingeniería de software
+[6].
+• Jedlitschka, Ciolkowski y Pfahl (2008) — plantilla de reporte de experimentos en ingeniería de
+software empírica [7].
+• Hennink, Kaiser y Marconi (2017) — saturación de significado en investigación cualitativa por
+entrevista [16].
+• Molléri, Petersen y Mendes (2020) — lista de verificación para estudios de encuesta en ingeniería
+de software [18].
+• Nosek et al. (2018) — pre-registro como práctica de investigación reproducible [15].
+• Wilkinson et al. (2016) — principios FAIR para gestión de datos científicos [19].
+• Cheng et al. (2026) — revisión sistemática sobre IA generativa para ingeniería de requerimientos
+[37], para los equipos que trabajan Enfoques 1 y 2.
+• Chazette y Schneider (2020) y Chazette et al. (2022) — la explicabilidad como requisito no
+funcional [47, 33], para los equipos que trabajan el Enfoque 3.
+Página 20 / 24
+--- PAGE 21 ---
+• Amaral, Torre y Sabetzadeh (2020) — requisitos legales en RE [42], para los equipos que abordan
+cumplimiento normativo (SGA / SIGCM).
+13 Referencias bibliográficas de esta guía
+References
+[1] ISO/IEC/IEEE, “Iso/iec/ieee 29148:2018 — systems and software engineering — life cycle
+processes — requirements engineering,” Tech. Rep. 29148:2018, International Organization for
+Standardization; International Electrotechnical Commission; Institute of Electrical and Electronics
+Engineers, Geneva, Switzerland, 2018.
+[2] ISO/IEC, “Iso/iec 25010:2023 — systems and software engineering — systems and software
+quality requirements and evaluation (square) — product quality model,” Tech. Rep. 25010:2023,
+International Organization for Standardization; International Electrotechnical Commission,
+Geneva, Switzerland, 2023.
+[3] K. Pohl, Requirements Engineering: Fundamentals, Principles, and Techniques . Berlin,
+Heidelberg: Springer, 2010.
+[4] H. Washizaki, “Guide to the software engineering body of knowledge (swebok), version 4.0,” tech.
+rep., IEEE Computer Society, Los Alamitos, CA, USA, 2024.
+[5] C. Wohlin, P . Runeson, M. Höst, M. C. Ohlsson, B. Regnell, and A. Wesslén,Experimentation in
+Software Engineering. Berlin, Heidelberg: Springer, 2012.
+[6] P . Runeson and M. Höst, “Guidelines for conducting and reporting case study research in software
+engineering,” Empirical Software Engineering, vol. 14, no. 2, pp. 131–164, 2009.
+[7] A. Jedlitschka, M. Ciolkowski, and D. Pfahl, “Reporting experiments in software engineering,”
+in Guide to Advanced Empirical Software Engineering (F . Shull, J. Singer, and D. I. K. Sjøberg,
+eds.), pp. 201–228, London: Springer, 2008.
+[8] Elsevier, “Publishing ethics: The use of generative ai and ai-assisted technologies in writing for
+elsevier,” 2023. Consultado: julio 2026.
+[9] Springer Nature, “Editorial policies: Artificial intelligence (ai),” 2023. Consultado: julio 2026.
+[10] Springer Nature, “Requirements engineering journal — journal impact factor 3.3 (2024), q2 in
+computer science, software engineering, ranking 64/131.” Springer London, ISSN 0947-3602,
+1432-010X, 2025. Datos oficiales JCR 2024, consultados el 02/07/2026.
+[11] Elsevier, “Information and software technology — journal impact factor 4.3 (2024), q1.” Elsevier
+B.V., ISSN 0950-5849, 2025. Datos oficiales JCR 2024, consultados el 02/07/2026.
+[12] Springer Nature, “Empirical software engineering — journal impact factor 3.6 (2024), q1 en
+computer science, software engineering, ranking 32/131.” Springer, ISSN 1382-3256, e-ISSN
+1573-7616, 2025. Datos oficiales JCR 2024, consultados el 02/07/2026.
+[13] Elsevier, “Journal of systems and software — q1 en software engineering.” Elsevier, ISSN
+0164-1212, 2025. Consultado 02/07/2026.
+Página 21 / 24
+--- PAGE 22 ---
+[14] REFSQ 2027 Organizing Committee, “33rd international working conference on requirements
+engineering: Foundation for software quality — important dates.” REFSQ 2027, Basel,
+Switzerland, April 12–15, 2027. Research track: abstracts due 5 Nov 2026, papers due 12
+Nov 2026, notification 14 Jan 2027, camera-ready 4 Feb 2027; Posters & Tools: submission 4
+Feb 2027, notification 25 Feb 2027, camera-ready 11 Mar 2027; Journal First submission 5 Mar
+2027, 2026. Consultado 02/07/2026.
+[15] B. A. Nosek, C. R. Ebersole, A. C. DeHaven, and D. T. Mellor, “The preregistration revolution,”
+Proceedings of the National Academy of Sciences, vol. 115, no. 11, pp. 2600–2606, 2018.
+[16] M. M. Hennink, B. N. Kaiser, and V. C. Marconi, “Code saturation versus meaning saturation:
+How many interviews are enough?,” Qualitative Health Research, vol. 27, no. 4, pp. 591–608,
+2017.
+[17] Asamblea Nacional del Ecuador, “Ley orgánica de protección de datos personales.” Registro
+Oficial Suplemento 459, 26 de mayo de 2021, 2021.
+[18] J. S. Molléri, K. Petersen, and E. Mendes, “An empirically evaluated checklist for surveys in
+software engineering,” Information and Software Technology, vol. 119, p. 106240, 2020.
+[19] M. D. Wilkinson, M. Dumontier, I. J. Aalbersberg, G. Appleton, M. Axton, A. Baak, N. Blomberg,
+J.-W. Boiten, L. B. da Silva Santos, P . E. Bourne,et al., “The fair guiding principles for scientific
+data management and stewardship,”Scientific Data, vol. 3, p. 160018, 2016.
+[20] L. Birt, S. Scott, D. Cavers, C. Campbell, and F . Walter, “Member checking: A tool to enhance
+trustworthiness or merely a nod to validation?,” Qualitative Health Research, vol. 26, no. 13,
+pp. 1802–1811, 2016.
+[21] D. Méndez Fernández, S. Wagner, M. Kalinowski, M. Felderer, P . Mafra, A. Vetrò, T. Conte, M.-T.
+Christiansson, D. Greer, C. Lassenius, M. Mäntylä, M. Nayebi, M. Oivo, B. Penzenstadler, D. Pfahl,
+R. Prikladnicki, G. Ruhe, A. Schekelmann, S. Sen, R. Spinola, A. Tuzcu, J. L. de la Vara, and
+R. Wieringa, “Naming the pain in requirements engineering: Contemporary problems, causes,
+and effects in practice,”Empirical Software Engineering, vol. 22, no. 5, pp. 2298–2338, 2017.
+[22] J. Cohen, Statistical Power Analysis for the Behavioral Sciences. Hillsdale, NJ, USA: Lawrence
+Erlbaum Associates, 2nd ed., 1988.
+[23] S. Champely, “pwr: Basic functions for power analysis. r package version 1.3-0,” 2020.
+[24] G. K. Sandve, A. Nekrutenko, J. Taylor, and E. Hovig, “Ten simple rules for reproducible
+computational research,” PLoS Computational Biology, vol. 9, no. 10, p. e1003285, 2013.
+[25] R. D. Peng, “Reproducible research in computational science,” Science, vol. 334, no. 6060,
+pp. 1226–1227, 2011.
+[26] J. Cohen, “A coefficient of agreement for nominal scales,” Educational and Psychological
+Measurement, vol. 20, no. 1, pp. 37–46, 1960.
+[27] J. L. Fleiss, “Measuring nominal scale agreement among many raters,”Psychological Bulletin,
+vol. 76, no. 5, pp. 378–382, 1971.
+[28] S. Holm, “A simple sequentially rejective multiple test procedure,” Scandinavian Journal of
+Statistics, vol. 6, no. 2, pp. 65–70, 1979.
+[29] B. Efron and R. J. Tibshirani, An Introduction to the Bootstrap. New Y ork, NY , USA: Chapman &
+Hall/CRC, 1994.
+Página 22 / 24
+--- PAGE 23 ---
+[30] A. Ferrari, A. Esuli, and S. Gnesi, “Identification of cross-domain ambiguity with language models,”
+in Proceedings of the 5th International Workshop on Artificial Intelligence for Requirements
+Engineering (AIRE 2018), pp. 31–38, 2018.
+[31] J. Fischbach, J. Frattini, A. Vogelsang, D. Mendez, M. Unterkalmsteiner, A. Wehrle, P . R. Henao,
+P . Y ousefi, T. Juricic, J. Radduenz, and C. Wiecher, “Automatic creation of acceptance tests by
+extracting conditionals from requirements: Nlp approach and case study,” Journal of Systems
+and Software, vol. 197, p. 111549, 2023.
+[32] L. Chazette, W. Brunotte, and T. Speith, “Exploring explainability: A definition, a model, and a
+knowledge catalogue,” in Proceedings of the 29th IEEE International Requirements Engineering
+Conference (RE 2021), pp. 197–208, 2021.
+[33] L. Chazette, W. Brunotte, and T. Speith, “Explainable software systems: from requirements
+analysis to system evaluation,”Requirements Engineering, vol. 27, no. 4, pp. 457–487, 2022.
+[34] J. P . Simmons, L. D. Nelson, and U. Simonsohn, “False-positive psychology: Undisclosed flexibility
+in data collection and analysis allows presenting anything as significant,” Psychological Science,
+vol. 22, no. 11, pp. 1359–1366, 2011.
+[35] N. L. Kerr, “Harking: Hypothesizing after the results are known,”Personality and Social Psychology
+Review, vol. 2, no. 3, pp. 196–217, 1998.
+[36] ORCID Inc., “Orcid: Open researcher and contributor ID.” https : / / orcid . org/ , 2026.
+Identificador digital abierto para investigadores. Consultado 02/07/2026.
+[37] H. Cheng, J. H. Husen, Y . Lu, T. Racharak, N. Y oshioka, N. Ubayashi, and H. Washizaki,
+“Generative AI for requirements engineering: A systematic literature review,”Software: Practice
+and Experience, 2026. Publicado en linea en noviembre de 2025, con asignacion de volumen
+2026.
+[38] B. Kitchenham and S. Charters, “Guidelines for performing systematic literature reviews in
+software engineering,” Tech. Rep. EBSE-2007-01, Keele University and Durham University Joint
+Report, United Kingdom, 2007.
+[39] D. M. Fernández, “Supporting requirements-engineering research that industry needs: The
+NaPiRE initiative,”IEEE Software, vol. 35, no. 1, pp. 112–116, 2018.
+[40] J. Siegmund, N. Siegmund, and S. Apel, “Views on internal and external validity in empirical
+software engineering,” in Proceedings of the 37th International Conference on Software
+Engineering (ICSE 2015), pp. 9–19, 2015.
+[41] A. M. Smith, D. S. Katz, and K. E. Niemeyer, “Software citation principles,” PeerJ Computer
+Science, vol. 2, p. e86, 2016.
+[42] O. Amaral, S. Abualhaija, M. Sabetzadeh, and L. Briand, “A model-based conceptualization of
+requirements for compliance checking of data processing against GDPR,” in 2021 IEEE 29th
+International Requirements Engineering Conference Workshops (REW), pp. 16–20, 2021.
+[43] R. Di Cosmo, M. Gruenpeter, and S. Zacchiroli, “Referencing source code artifacts: A separate
+concern in software citation,” Computing in Science & Engineering , vol. 22, no. 2, pp. 33–43,
+2020.
+[44] R. Di Cosmo and S. Zacchiroli, “Software heritage: Why and how to preserve software source
+code,” in Proceedings of the 14th International Conference on Digital Preservation (iPRES 2017),
+2017.
+Página 23 / 24
+--- PAGE 24 ---
+[45] FAIR Data Maturity Model Working Group, “Fair data maturity model: specification and guidelines,”
+tech. rep., Research Data Alliance, 2020.
+[46] S. Druskat, J. H. Spaaks, N. Chue Hong, R. Haines, J. Baker, S. Bliven, E. Willighagen, D. Pérez-
+Suárez, and A. Konovalov, “Citation file format (version 1.2.0).” Software specification archived on
+Zenodo, 2021.
+[47] L. Chazette and K. Schneider, “Explainability as a non-functional requirement: challenges and
+recommendations,” Requirements Engineering, vol. 25, pp. 493–514, 2020.
+Página 24 / 24

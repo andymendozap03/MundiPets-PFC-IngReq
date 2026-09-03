@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Solicitud</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container">
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> &gt; Solicitud</div>
+  <h1 id="pageTitle">Enviar solicitud</h1>
+  <p class="subtitle" id="pageSubtitle">Completa el formulario para iniciar el proceso de adopción o cruza responsable.</p>
+
+  <div class="split">
+    <div id="leftPane"></div>
+    <div id="chatPane"></div>
+  </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  let user, request, pet;
+  const requestId = qs("id");
+  const petIdParam = qs("petId");
+
+  const STAGE_LABELS = ["Formulario", "Entrevista", "Visita al hogar", "Periodo de prueba", "Compromiso firmado"];
+
+  async function renderLeft() {
+    const owner = await DB.get("users", pet.ownerId);
+    if (!request) {
+      // Formulario nuevo
+      document.getElementById("leftPane").innerHTML = `
+        <div class="card">
+          <div class="pet-row" style="border:none; padding:0; margin-bottom:16px;">
+            <div style="font-size:36px;">${pet.photo}</div>
+            <div class="info">
+              <div class="name">${escapeHtml(pet.name)}</div>
+              <div class="meta">${escapeHtml(pet.breed)} · ${escapeHtml(pet.age)} · ${escapeHtml(pet.sex)} · 📍 ${escapeHtml(pet.city)}</div>
+            </div>
+            <span class="badge badge-green">Disponible</span>
+          </div>
+
+          <label>Tipo de solicitud</label>
+          <div class="segmented" id="typeSeg">
+            <button type="button" data-type="adopcion" class="active">Adopción</button>
+            <button type="button" data-type="cruza">Cruza responsable</button>
+          </div>
+
+          <label>Nombre completo</label>
+          <input type="text" id="reqName" value="${escapeHtml(user.name)}">
+
+          <label>Justificación de la solicitud</label>
+          <textarea id="reqJustification" placeholder="Cuéntanos por qué deseas adoptar a ${escapeHtml(pet.name)} y cómo podrás cuidarlo..."></textarea>
+
+          <label>Condiciones para el cuidado del animal</label>
+          <select id="reqConditions">
+            <option value="">Selecciona una opción</option>
+            <option>Casa con patio</option>
+            <option>Departamento</option>
+            <option>Finca / espacio rural</option>
+          </select>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="reqTerms">
+            <label for="reqTerms" style="display:inline; margin:0; font-weight:400;">
+              Declaro conocer y aceptar los <strong>términos de bienestar animal</strong> y me comprometo a garantizar el cuidado responsable de la mascota.
+            </label>
+          </div>
+
+          <button class="btn btn-primary btn-block mt-24" id="sendReqBtn">Enviar solicitud</button>
+        </div>
+      `;
+
+      let type = "adopcion";
+      document.querySelectorAll("#typeSeg button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("#typeSeg button").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          type = btn.dataset.type;
+        });
+      });
+
+      document.getElementById("sendReqBtn").addEventListener("click", async () => {
+        if (!document.getElementById("reqTerms").checked) { toast("Debes aceptar los términos de bienestar animal"); return; }
+        const justification = document.getElementById("reqJustification").value.trim();
+        if (!justification) { toast("Escribe una justificación para tu solicitud"); return; }
+
+        request = await DB.insert("requests", {
+          type, petId: pet.id, requesterId: user.id, ownerId: pet.ownerId,
+          justification, conditions: document.getElementById("reqConditions").value,
+          stage: 1, stages: STAGE_LABELS, status: "en_proceso",
+          createdAt: new Date().toISOString().slice(0, 10)
+        });
+        await DB.insert("messages", {
+          requestId: request.id, senderId: owner ? owner.id : pet.ownerId,
+          text: `Hola, gracias por tu interés en ${pet.name}. Revisaré tu solicitud y te contactaré pronto.`,
+          time: new Date().toTimeString().slice(0, 5)
+        });
+        toast("Solicitud enviada correctamente");
+        window.location.href = `request.html?id=${request.id}`;
+      });
+    } else {
+      // Solicitud existente: flujo por etapas
+      const isOwner = user.id === request.ownerId;
+      const requester = await DB.get("users", request.requesterId);
+      document.getElementById("pageTitle").textContent = `Solicitud de ${request.type === "cruza" ? "cruza responsable" : "adopción"}`;
+      document.getElementById("pageSubtitle").textContent = `${pet.name} · Solicitante: ${requester ? requester.name : "—"}`;
+
+      const stepsHtml = request.stages.map((label, i) => {
+        const idx = i + 1;
+        const cls = idx < request.stage ? "done" : idx === request.stage ? "active" : "";
+        const icon = idx < request.stage ? "✓" : idx;
+        const line = i < request.stages.length - 1 ? '<div class="step-line"></div>' : "";
+        return `<div class="step ${cls}"><span class="step-circle">${icon}</span><span>${label}</span></div>${line}`;
+      }).join("");
+
+      document.getElementById("leftPane").innerHTML = `
+        <div class="card">
+          <div class="pet-row" style="border:none; padding:0; margin-bottom:12px;">
+            <div style="font-size:36px;">${pet.photo}</div>
+            <div class="info">
+              <div class="name">${escapeHtml(pet.name)}</div>
+              <div class="meta">Creada el ${escapeHtml(request.createdAt)}</div>
+            </div>
+            ${badgeForRequestStatus(request.status)}
+          </div>
+          <div class="steps" style="margin-top:16px;">${stepsHtml}</div>
+          <p><strong>Justificación:</strong> ${escapeHtml(request.justification)}</p>
+          ${request.conditions ? `<p><strong>Condiciones:</strong> ${escapeHtml(request.conditions)}</p>` : ""}
+          ${isOwner && request.status === "en_proceso" ? `
+            <div class="flex gap-12 mt-16">
+              <button class="btn btn-primary" id="advanceBtn">Avanzar a la siguiente etapa</button>
+              <button class="btn btn-danger" id="rejectBtn">Rechazar solicitud</button>
+            </div>
+          ` : ""}
+          ${request.status === "completada" ? `<div class="info-banner">Proceso completado. Puedes dar seguimiento post-adopción desde el dashboard.</div>` : ""}
+        </div>
+      `;
+
+      if (isOwner) {
+        const adv = document.getElementById("advanceBtn");
+        if (adv) adv.addEventListener("click", async () => {
+          const nextStage = request.stage + 1;
+          if (nextStage > request.stages.length) return;
+          const patch = { stage: nextStage };
+          if (nextStage === request.stages.length) patch.status = "completada";
+          request = await DB.update("requests", request.id, patch);
+          if (request.status === "completada" && request.type === "adopcion") {
+            await DB.insert("followUps", { petId: pet.id, requestId: request.id, note: "Primer control post-adopción pendiente.", date: new Date().toISOString().slice(0, 10), status: "Pendiente" });
+          }
+          toast("Etapa actualizada");
+          renderLeft();
+        });
+        const rej = document.getElementById("rejectBtn");
+        if (rej) rej.addEventListener("click", async () => {
+          request = await DB.update("requests", request.id, { status: "rechazada" });
+          toast("Solicitud rechazada");
+          renderLeft();
+        });
+      }
+    }
+  }
+
+  async function renderChat() {
+    if (!request) {
+      document.getElementById("chatPane").innerHTML = `<div class="card empty-state">El chat estará disponible una vez que envíes la solicitud.</div>`;
+      return;
+    }
+    const [owner, requester, allMessages] = await Promise.all([
+      DB.get("users", request.ownerId), DB.get("users", request.requesterId), DB.all("messages")
+    ]);
+    const otherUser = user.id === request.ownerId ? requester : owner;
+    const messages = allMessages.filter((m) => m.requestId === request.id);
+
+    document.getElementById("chatPane").innerHTML = `
+      <div class="chat-box">
+        <div class="chat-header">
+          <span class="avatar small">${initials(otherUser ? otherUser.name : "?")}</span>
+          <div>
+            <div style="font-weight:700; font-size:14px;">${otherUser ? escapeHtml(otherUser.name) : "Usuario"}</div>
+            <div class="text-muted" style="font-size:12px;">${user.id === request.ownerId ? "Solicitante" : "Propietario de " + pet.name}</div>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          ${messages.map((m) => `
+            <div class="msg ${m.senderId === user.id ? "from-me" : "from-other"}">
+              ${escapeHtml(m.text)}
+              <div class="time">${escapeHtml(m.time)}</div>
+            </div>
+          `).join("")}
+        </div>
+        <div class="chat-input">
+          <input type="text" id="chatInput" placeholder="Escribe un mensaje...">
+          <button id="sendChatBtn">➤</button>
+        </div>
+      </div>
+    `;
+    const box = document.getElementById("chatMessages");
+    box.scrollTop = box.scrollHeight;
+
+    document.getElementById("sendChatBtn").addEventListener("click", sendMsg);
+    document.getElementById("chatInput").addEventListener("keydown", (e) => { if (e.key === "Enter") sendMsg(); });
+
+    async function sendMsg() {
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
+      if (!text) return;
+      await DB.insert("messages", { requestId: request.id, senderId: user.id, text, time: new Date().toTimeString().slice(0, 5) });
+      input.value = "";
+      renderChat();
+    }
+  }
+
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+
+    request = requestId ? await DB.get("requests", requestId) : null;
+    if (!request && petIdParam) {
+      request = (await DB.all("requests")).find((r) => r.petId === petIdParam && r.requesterId === user.id) || null;
+    }
+    pet = await DB.get("pets", request ? request.petId : petIdParam);
+    if (!pet) { window.location.href = "explore.html"; return; }
+
+    renderLeft();
+    renderChat();
+  })();
+</script>
+</body>
+</html>

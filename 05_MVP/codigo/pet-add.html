@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Registrar mascota</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container">
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> &gt; <a href="dashboard.html">Mis mascotas</a> &gt; Agregar mascota</div>
+  <h1>Registrar nueva mascota</h1>
+
+  <div class="steps" id="steps"></div>
+
+  <div class="card" id="stepContent"></div>
+
+  <div class="flex-between">
+    <button class="btn btn-secondary" id="btnPrev">Anterior</button>
+    <button class="btn btn-primary" id="btnNext">Siguiente</button>
+  </div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  let user;
+
+  const STEP_LABELS = ["Datos generales", "Fotos", "Historial médico", "Antecedentes genéticos"];
+  let step = 0;
+  const form = {
+    name: "", species: "Perro", breed: "", sex: "Macho", age: "", size: "Mediano",
+    reproductiveStatus: "Entero", description: "", photo: "🐾", microchip: "",
+    photoValid: null, photoName: "",
+    vaccineDate: "", dewormDate: "", certDate: "",
+    vaccineStrain: "", vaccineLote: "", vaccineApplicator: "",
+    lineage: "", hereditaryConditions: "", parentage: "", genNotes: ""
+  };
+
+  function renderSteps() {
+    document.getElementById("steps").innerHTML = STEP_LABELS.map((label, i) => {
+      const cls = i < step ? "done" : i === step ? "active" : "";
+      const icon = i < step ? "✓" : (i + 1);
+      const line = i < STEP_LABELS.length - 1 ? '<div class="step-line"></div>' : "";
+      return `<div class="step ${cls}"><span class="step-circle">${icon}</span><span>${i + 1}. ${label}</span></div>${line}`;
+    }).join("");
+  }
+
+  const speciesOptions = ["Perro", "Gato", "Otro"];
+  const sexOptions = ["Macho", "Hembra"];
+  const sizeOptions = ["Pequeño", "Mediano", "Grande"];
+  const petEmoji = { Perro: "🐕", Gato: "🐈", Otro: "🐾" };
+
+  function renderStepContent() {
+    const c = document.getElementById("stepContent");
+    if (step === 0) {
+      c.innerHTML = `
+        <h2>Datos generales</h2>
+        <label>Nombre</label>
+        <input type="text" id="f_name" value="${escapeHtml(form.name)}" placeholder="Firulais">
+        <div class="grid-2">
+          <div>
+            <label>Especie</label>
+            <select id="f_species">${speciesOptions.map((s) => `<option ${s === form.species ? "selected" : ""}>${s}</option>`).join("")}</select>
+          </div>
+          <div>
+            <label>Sexo</label>
+            <select id="f_sex">${sexOptions.map((s) => `<option ${s === form.sex ? "selected" : ""}>${s}</option>`).join("")}</select>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <label>Raza</label>
+            <input type="text" id="f_breed" value="${escapeHtml(form.breed)}" placeholder="Mestizo">
+          </div>
+          <div>
+            <label>Edad</label>
+            <input type="text" id="f_age" value="${escapeHtml(form.age)}" placeholder="2 años">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <label>Tamaño</label>
+            <select id="f_size">${sizeOptions.map((s) => `<option ${s === form.size ? "selected" : ""}>${s}</option>`).join("")}</select>
+          </div>
+          <div>
+            <label>Estado reproductivo</label>
+            <select id="f_repro">
+              <option ${form.reproductiveStatus === "Entero" ? "selected" : ""}>Entero</option>
+              <option ${form.reproductiveStatus === "Esterilizado" ? "selected" : ""}>Esterilizado</option>
+            </select>
+          </div>
+        </div>
+        <label>Identificador de Microchip</label>
+        <input type="text" id="f_microchip" value="${escapeHtml(form.microchip)}" placeholder="Ej. 981022300456128 (opcional)">
+        
+        <label>Descripción</label>
+        <textarea id="f_desc" placeholder="Cuéntanos sobre el temperamento y comportamiento de la mascota...">${escapeHtml(form.description)}</textarea>
+      `;
+    } else if (step === 1) {
+      c.innerHTML = `
+        <h2>Fotos (validación por IA)</h2>
+        <p class="text-muted">En cumplimiento con la LOPDP y RNF-14, la IA modera el tipo de imagen cargada para asegurar que corresponda a un animal real.</p>
+        
+        <label>Selecciona una imagen simulada para cargar:</label>
+        <div class="grid-2" id="photoSelector">
+          <div class="card compact text-center" data-type="valid_dog" style="cursor:pointer; padding: 15px; border: 1px solid var(--border); ${form.photoName === 'valid_dog' ? 'border-color: #2563eb; background: #eff6ff; border-width: 2px;' : ''}">
+            <div style="font-size:36px;">🐶</div>
+            <div style="font-weight:600; margin-top:5px;">Foto de Perro (Válido)</div>
+          </div>
+          <div class="card compact text-center" data-type="valid_cat" style="cursor:pointer; padding: 15px; border: 1px solid var(--border); ${form.photoName === 'valid_cat' ? 'border-color: #2563eb; background: #eff6ff; border-width: 2px;' : ''}">
+            <div style="font-size:36px;">🐱</div>
+            <div style="font-weight:600; margin-top:5px;">Foto de Gato (Válido)</div>
+          </div>
+          <div class="card compact text-center" data-type="invalid_food" style="cursor:pointer; padding: 15px; border: 1px solid var(--border); ${form.photoName === 'invalid_food' ? 'border-color: #b91c1c; background: #fee2e2; border-width: 2px;' : ''}">
+            <div style="font-size:36px;">🍕</div>
+            <div style="font-weight:600; margin-top:5px;">Foto de Pizza (Inválido)</div>
+          </div>
+          <div class="card compact text-center" data-type="invalid_car" style="cursor:pointer; padding: 15px; border: 1px solid var(--border); ${form.photoName === 'invalid_car' ? 'border-color: #b91c1c; background: #fee2e2; border-width: 2px;' : ''}">
+            <div style="font-size:36px;">🚗</div>
+            <div style="font-weight:600; margin-top:5px;">Foto de Auto (Inválido)</div>
+          </div>
+        </div>
+        
+        <div id="aiScanArea" style="margin-top:20px; display:${form.photoName ? 'block' : 'none'};">
+          <div class="card compact text-center" style="background:#f8fafc; border:1px dashed #cbd5e1; padding: 20px;">
+            <div id="aiScanning" style="display:none;">
+              <span class="badge badge-amber" style="animation: pulse 1s infinite;">Escaneando imagen...</span>
+              <p style="margin: 8px 0 0; font-weight:600;">Analizando imagen con IA de MundiPets...</p>
+              <div style="width:100%; height:6px; background:#e2e8f0; border-radius:3px; margin-top:10px; overflow:hidden;">
+                <div id="aiBar" style="width:0%; height:100%; background:#2563eb; transition: width 0.9s ease;"></div>
+              </div>
+            </div>
+            <div id="aiResult" style="display:${form.photoValid !== null ? 'block' : 'none'}; text-align:left;">
+              <div class="flex-between">
+                <h3 style="margin:0; font-size:16px;" id="aiResultTitle"></h3>
+                <span class="badge" id="aiResultBadge"></span>
+              </div>
+              <p id="aiResultMsg" style="margin: 8px 0 0; font-size:14px; color:var(--text-muted);"></p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.querySelectorAll("#photoSelector [data-type]").forEach((el) => {
+        el.addEventListener("click", () => {
+          const type = el.dataset.type;
+          form.photoName = type;
+          
+          document.querySelectorAll("#photoSelector [data-type]").forEach((item) => {
+            item.style.borderColor = "var(--border)";
+            item.style.backgroundColor = "";
+            item.style.borderWidth = "1px";
+          });
+          el.style.borderWidth = "2px";
+          if (type.startsWith("valid")) {
+            el.style.borderColor = "#2563eb";
+            el.style.backgroundColor = "#eff6ff";
+          } else {
+            el.style.borderColor = "#b91c1c";
+            el.style.backgroundColor = "#fee2e2";
+          }
+
+          const scanArea = document.getElementById("aiScanArea");
+          const scanning = document.getElementById("aiScanning");
+          const result = document.getElementById("aiResult");
+          const bar = document.getElementById("aiBar");
+          
+          scanArea.style.display = "block";
+          scanning.style.display = "block";
+          result.style.display = "none";
+          bar.style.width = "0%";
+          
+          setTimeout(() => { bar.style.width = "100%"; }, 50);
+          
+          setTimeout(() => {
+            scanning.style.display = "none";
+            result.style.display = "block";
+            
+            const titleEl = document.getElementById("aiResultTitle");
+            const badgeEl = document.getElementById("aiResultBadge");
+            const msgEl = document.getElementById("aiResultMsg");
+            
+            if (type === "valid_dog") {
+              form.photo = "🐕";
+              form.photoValid = true;
+              titleEl.textContent = "✓ Imagen autorizada";
+              badgeEl.className = "badge badge-green";
+              badgeEl.textContent = "Perro (98.7% Confianza)";
+              msgEl.innerHTML = "<strong>Análisis IA:</strong> La imagen corresponde a una mascota válida (perro). Se autoriza su publicación en el perfil.";
+            } else if (type === "valid_cat") {
+              form.photo = "🐈";
+              form.photoValid = true;
+              titleEl.textContent = "✓ Imagen autorizada";
+              badgeEl.className = "badge badge-green";
+              badgeEl.textContent = "Gato (99.2% Confianza)";
+              msgEl.innerHTML = "<strong>Análisis IA:</strong> La imagen corresponde a una mascota válida (gato). Se autoriza su publicación en el perfil.";
+            } else if (type === "invalid_food") {
+              form.photoValid = false;
+              titleEl.textContent = "❌ Imagen rechazada";
+              badgeEl.className = "badge badge-red";
+              badgeEl.textContent = "Comida / Pizza (99.0% Confianza)";
+              msgEl.innerHTML = "<strong>Explicabilidad IA (RNF-14):</strong> La imagen fue rechazada automáticamente por el detector. Se identificó comida (pizza). Solo se permiten imágenes de animales reales para proteger la veracidad de los perfiles.";
+            } else if (type === "invalid_car") {
+              form.photoValid = false;
+              titleEl.textContent = "❌ Imagen rechazada";
+              badgeEl.className = "badge badge-red";
+              badgeEl.textContent = "Objeto / Auto (97.5% Confianza)";
+              msgEl.innerHTML = "<strong>Explicabilidad IA (RNF-14):</strong> La imagen fue rechazada automáticamente por el detector. Se identificó un vehículo (auto). Solo se permiten fotos reales de mascotas en la plataforma.";
+            }
+          }, 1000);
+        });
+      });
+    } else if (step === 2) {
+      c.innerHTML = `
+        <h2>Historial médico referencial</h2>
+        <p class="text-muted">Registra y adjunta los documentos sanitarios de tu mascota e introduce los metadatos de trazabilidad.</p>
+        
+        <h3 style="margin-top:16px;">Detalle de Vacuna Antirrábica</h3>
+        <div class="grid-2">
+          <div>
+            <label>Fecha de aplicación</label>
+            <input type="date" id="f_vaccine" value="${form.vaccineDate}">
+          </div>
+          <div>
+            <label>Cepa / Marca</label>
+            <input type="text" id="f_strain" value="${escapeHtml(form.vaccineStrain)}" placeholder="Ej. Rabisin, Nobivac">
+          </div>
+        </div>
+        <div class="grid-2" style="margin-top: 10px;">
+          <div>
+            <label>Lote</label>
+            <input type="text" id="f_lote" value="${escapeHtml(form.vaccineLote)}" placeholder="Ej. R-90812">
+          </div>
+          <div>
+            <label>Profesional Aplicador</label>
+            <input type="text" id="f_applicator" value="${escapeHtml(form.vaccineApplicator)}" placeholder="Ej. Dra. Melissa Vera">
+          </div>
+        </div>
+        
+        <h3 style="margin-top:24px;">Otros controles</h3>
+        <label>Fecha de desparasitación interna</label>
+        <input type="date" id="f_deworm" value="${form.dewormDate}">
+        
+        <label>Fecha de certificado veterinario oficial</label>
+        <input type="date" id="f_cert" value="${form.certDate}">
+        <div class="info-banner">Los documentos médicos serán validados por una veterinaria registrada antes de habilitar la mascota para adopción o cruza responsable.</div>
+      `;
+    } else {
+      c.innerHTML = `
+        <h2>Antecedentes genéticos</h2>
+        <p class="text-muted">Información de linaje y parentesco para apoyar procesos de cruza responsable.</p>
+        <label>Linaje / pedigrí</label>
+        <input type="text" id="f_lineage" value="${escapeHtml(form.lineage)}" placeholder="Sin registro de pedigrí">
+        <label>Enfermedades hereditarias conocidas</label>
+        <input type="text" id="f_conditions" value="${escapeHtml(form.hereditaryConditions)}" placeholder="Ninguna reportada">
+        <label>Grado de parentesco conocido</label>
+        <input type="text" id="f_parentage" value="${escapeHtml(form.parentage)}" placeholder="Desconocido">
+        <label>Observaciones</label>
+        <textarea id="f_gennotes">${escapeHtml(form.genNotes)}</textarea>
+      `;
+    }
+    document.getElementById("btnPrev").style.visibility = step === 0 ? "hidden" : "visible";
+    document.getElementById("btnNext").textContent = step === STEP_LABELS.length - 1 ? "Registrar mascota" : "Siguiente";
+  }
+
+  function collectStep() {
+    if (step === 0) {
+      form.name = document.getElementById("f_name").value.trim();
+      form.species = document.getElementById("f_species").value;
+      form.sex = document.getElementById("f_sex").value;
+      form.breed = document.getElementById("f_breed").value.trim();
+      form.age = document.getElementById("f_age").value.trim();
+      form.size = document.getElementById("f_size").value;
+      form.reproductiveStatus = document.getElementById("f_repro").value;
+      form.description = document.getElementById("f_desc").value.trim();
+      form.microchip = document.getElementById("f_microchip").value.trim();
+      if (!form.name || !form.breed || !form.age) {
+        toast("Completa nombre, raza y edad antes de continuar (campo obligatorio)");
+        return false;
+      }
+      if (form.photo === "🐾" && petEmoji[form.species]) form.photo = petEmoji[form.species];
+    } else if (step === 1) {
+      if (form.photoValid === null) {
+        toast("Por favor selecciona una foto de tu mascota para analizar por IA.");
+        return false;
+      }
+      if (form.photoValid === false) {
+        toast("La imagen seleccionada ha sido rechazada por la IA. Elige una imagen válida.");
+        return false;
+      }
+    } else if (step === 2) {
+      form.vaccineDate = document.getElementById("f_vaccine").value;
+      form.vaccineStrain = document.getElementById("f_strain").value.trim();
+      form.vaccineLote = document.getElementById("f_lote").value.trim();
+      form.vaccineApplicator = document.getElementById("f_applicator").value.trim();
+      form.dewormDate = document.getElementById("f_deworm").value;
+      form.certDate = document.getElementById("f_cert").value;
+    } else if (step === 3) {
+      form.lineage = document.getElementById("f_lineage").value.trim();
+      form.hereditaryConditions = document.getElementById("f_conditions").value.trim();
+      form.parentage = document.getElementById("f_parentage").value.trim();
+      form.genNotes = document.getElementById("f_gennotes").value.trim();
+    }
+    return true;
+  }
+
+  document.getElementById("btnPrev").addEventListener("click", () => {
+    if (step > 0) { step--; renderSteps(); renderStepContent(); }
+  });
+
+  document.getElementById("btnNext").addEventListener("click", async () => {
+    if (!collectStep()) return;
+    if (step < STEP_LABELS.length - 1) {
+      step++;
+      renderSteps();
+      renderStepContent();
+    } else {
+      await finish();
+    }
+  });
+
+  async function finish() {
+    const pet = await DB.insert("pets", {
+      ownerId: user.id, name: form.name, species: form.species, breed: form.breed,
+      sex: form.sex, age: form.age, size: form.size, city: user.city || "Quevedo",
+      reproductiveStatus: form.reproductiveStatus, status: "Adopción", photo: form.photo,
+      description: form.description, microchip: form.microchip,
+      privacy: { medicalHistory: "pending", location: "private", contact: "verified", photos: "public", genetics: "pending" }
+    });
+
+    const inserts = [];
+    if (form.vaccineDate) inserts.push(DB.insert("medicalRecords", { petId: pet.id, type: "Vacuna antirrábica", date: form.vaccineDate, status: "Vigente", strain: form.vaccineStrain, Lote: form.vaccineLote, applicator: form.vaccineApplicator, validated: false }));
+    if (form.dewormDate) inserts.push(DB.insert("medicalRecords", { petId: pet.id, type: "Desparasitación interna", date: form.dewormDate, status: "Vigente", validated: false }));
+    if (form.certDate) inserts.push(DB.insert("medicalRecords", { petId: pet.id, type: "Certificado veterinario oficial", date: form.certDate, status: "Por renovar", validated: false }));
+
+    if (form.lineage || form.hereditaryConditions || form.parentage || form.genNotes) {
+      inserts.push(DB.insert("genetics", {
+        petId: pet.id, lineage: form.lineage || "Sin registro de pedigrí",
+        hereditaryConditions: form.hereditaryConditions || "Ninguna reportada",
+        parentage: form.parentage || "Desconocido", notes: form.genNotes
+      }));
+    }
+    await Promise.all(inserts);
+
+    toast("Mascota registrada correctamente");
+    setTimeout(() => { window.location.href = `pet-profile.html?id=${pet.id}`; }, 900);
+  }
+
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+    renderSteps();
+    renderStepContent();
+  })();
+</script>
+</body>
+</html>

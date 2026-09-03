@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MundiPets — Seguimiento post-adopción</title>
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="topbar" class="topbar"></div>
+
+<div class="container-narrow">
+  <div class="breadcrumb"><a href="dashboard.html">Dashboard</a> &gt; Seguimiento post-adopción</div>
+  <h1>Seguimiento post-adopción</h1>
+  <p class="subtitle">Mantén un contacto periódico entre adoptante y propietario original tras completarse la adopción.</p>
+
+  <div id="content"></div>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/utils.js"></script>
+<script>
+  let user;
+  const petId = qs("petId");
+
+  async function render() {
+    const [allFollowUps, allRequests, allPets] = await Promise.all([DB.all("followUps"), DB.all("requests"), DB.all("pets")]);
+    const requestById = Object.fromEntries(allRequests.map((r) => [r.id, r]));
+    const petById = Object.fromEntries(allPets.map((p) => [p.id, p]));
+
+    let followUps = allFollowUps;
+    if (petId) followUps = followUps.filter((f) => f.petId === petId);
+    else followUps = followUps.filter((f) => {
+      const req = requestById[f.requestId];
+      const pet = petById[f.petId];
+      return req && (req.requesterId === user.id || (pet && pet.ownerId === user.id));
+    });
+
+    if (followUps.length === 0) {
+      document.getElementById("content").innerHTML = `<div class="card empty-state">No hay procesos de seguimiento post-adopción registrados aún. Se generan automáticamente al completar una solicitud de adopción.</div>`;
+      return;
+    }
+
+    document.getElementById("content").innerHTML = followUps.map((f) => {
+      const pet = petById[f.petId];
+      const req = requestById[f.requestId];
+      return `
+        <div class="card">
+          <div class="flex-between">
+            <h2>${pet ? pet.photo + " " + escapeHtml(pet.name) : "Mascota"}</h2>
+            <span class="badge ${f.status === "Pendiente" ? "badge-amber" : "badge-green"}">${escapeHtml(f.status)}</span>
+          </div>
+          <p><strong>Compromiso de adopción firmado:</strong> ${req ? "Sí, etapa 5/5 completada" : "—"}</p>
+          <p><strong>Próximo reporte de seguimiento:</strong> ${escapeHtml(f.date)}</p>
+          <p class="text-muted">${escapeHtml(f.note)}</p>
+          ${f.status === "Pendiente" ? `<button class="btn btn-primary" onclick="markDone('${f.id}')">Registrar reporte de seguimiento</button>` : `<div class="info-banner">Reporte registrado. Gracias por mantener el compromiso de bienestar animal.</div>`}
+        </div>
+      `;
+    }).join("");
+  }
+
+  async function markDone(id) {
+    const note = prompt("Reporte de seguimiento (estado actual de la mascota):", "La mascota se encuentra en buen estado, adaptándose correctamente.");
+    if (note === null) return;
+    await DB.update("followUps", id, { status: "Completado", note });
+    toast("Reporte de seguimiento registrado");
+    render();
+  }
+  window.markDone = markDone;
+
+  (async () => {
+    user = await Auth.requireLogin();
+    if (!user) return;
+    renderTopbar(user);
+    render();
+  })();
+</script>
+</body>
+</html>
