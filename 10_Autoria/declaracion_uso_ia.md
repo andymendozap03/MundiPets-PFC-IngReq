@@ -135,4 +135,4 @@ ejecución de scripts sobre datos reales, no de una herramienta de IA.
 | Edson Daniel Fuertes Arraes | Confirmo que la descripción de mi aporte es exacta — Edson Fuertes | 2026-09-04 |
 | Genesis Gutierrez | Confirmo que esta declaración es exacta - Genesis Gutierrez | 2026-09-04 | 
 | Gary Morales | Confirmo que esta declaración es exacta — Gary Morales | 2026-09-04 |
-| Jimmy Nieves |  | 2026-09-04 |
+| Jimmy Nieves | Confirmo que esta declaración es exacta - Jimmy Nieves  | 2026-09-04 |
