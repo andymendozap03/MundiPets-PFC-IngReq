@@ -709,18 +709,29 @@
 	consider a requirement verifiable in practice --- checking that an uploaded
 	document is valid, or that a visibility toggle exists, does not need a stated
 	number to be testable. The smaller pattern (4 cases, false negatives) is the
-	detector missing requirements the panel judged ambiguous, three of them
-	unanimously: REQ-18 (RD-04, protecting personal and clinical data ``by design
-	and by default'' per Art.\ 39 LOPDP, triggering no rule at all) and REQ-42
-	(RF-08, a cross-breeding request accepted or rejected ``based on the available
-	information'', also triggering no rule) both contain no vague quantifier,
-	multiple conjunction, or the specific verification-criterion pattern the rules
-	look for, yet the panel considered both under-specified --- neither states
-	\emph{which} mechanism or \emph{which} information, a pragmatic gap the current
-	rule set has no mechanism to represent. REQ-56 (RF-26, a second veterinarian
-	confirming or questioning a prior medical validation) was the sole false
-	negative with a split panel vote (2/3), the only disagreement case in this
-	corpus where the experts themselves were not unanimous.
+	detector missing requirements the panel judged ambiguous. REQ-18 (RD-04,
+	protecting personal and clinical data ``by design and by default'' per
+	Art.\ 39 LOPDP, triggering no rule at all) and REQ-42 (RF-08, a
+	cross-breeding request accepted or rejected ``based on the available
+	information'', also triggering no rule) were judged ambiguous unanimously
+	(3/3); both contain no vague quantifier, multiple conjunction, or the
+	specific verification-criterion pattern the rules look for, yet the panel
+	considered both under-specified --- neither states \emph{which} mechanism or
+	\emph{which} information, a pragmatic gap the current rule set has no
+	mechanism to represent. The remaining two false negatives had split panel
+	votes (2/3): REQ-48 (RD-02, a role-based access-control mechanism required
+	to ``differentiate'' the permissions of three user roles without
+	enumerating which permission belongs to which role --- the panel majority
+	treated this as under-specified, while the dissenting rater read the
+	enumeration as belonging to a companion design artifact) and REQ-56 (RF-26,
+	a second veterinarian confirming or questioning a prior medical validation,
+	where the requirement specifies the triggering event but not the
+	resolution workflow that follows a challenged validation). Together with
+	two split votes among the false positives (REQ-02, RNF-09, and REQ-37,
+	RF-16), four of the twelve disagreement cases in this corpus reflect a
+	divided expert panel rather than a clear-cut detector error, a distinction
+	the aggregate $\kappa$ statistics in Section~\ref{subsec:res-rq1} do not by
+	themselves reveal.
 	
 	The secondary analysis planned in Section~\ref{subsec:analysis} asked whether
 	the requirements where detector and consensus disagree are also the ones where
