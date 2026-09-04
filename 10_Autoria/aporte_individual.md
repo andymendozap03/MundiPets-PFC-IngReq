@@ -216,8 +216,7 @@ Morales" en `10_Autoria/bitacora_sesiones.csv`. Ejemplos: `424721e5` ...
 > manuscrito final: redacté las conclusiones y declaraciones, y completé el
 > análisis de discrepancias de RQ2. Corregí nombres de archivo con espacios
 > y acentos en 01_ERS y 03_Modelado, y verificabilidad de requisitos no
-> funcionales y tamaño de diagramas en el ERS. Fui responsable principal de
-> construir la carpeta 10_Autoria: agregué notas de campo escaneadas de
+> funcionales y tamaño de diagramas en el ERS. Agregué notas de campo escaneadas de
 > entrevistas, capturas de evidencia de realización de artefactos y
 > fuentes editables de diagramas.
 
@@ -238,4 +237,4 @@ equipo, quienes confirman que la descripción de su propio aporte es exacta.
 | Edson Daniel Fuertes Arraes | | 2026-09-04 |
 | Genesis Gutierrez | |  2026-09-04 |
 | Gary Morales | |  2026-09-04 |
-| Jimmy Nieves | |  2026-09-04 |
+| Jimmy Nieves | Confirmo que la descripción de mi aporte es exacta - Jimmy Nieves|  2026-09-04 | 
