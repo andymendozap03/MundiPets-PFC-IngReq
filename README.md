@@ -94,7 +94,6 @@ Este repositorio contiene toda la documentación desarrollada durante el Proyect
 MundiPets-PFC-IngReq/
 ├── .gitattributes
 ├── .gitignore
-├── .gitmodules
 ├── CHANGELOG.md
 ├── checksums.sha256
 ├── CITATION.cff
@@ -146,8 +145,11 @@ MundiPets-PFC-IngReq/
 │
 ├── 05_MVP/
 │   ├── README.md
-│   ├── codigo/                      # Submódulo Git → jnievess-lang/MVP_MundiPets.git
-│   └── video_demo.mp4               # Git LFS
+│   ├── codigo/                      # Código fuente completo del MVP (HTML/CSS/JS + Express/Node.js)
+│   │                                 #   Forma parte de este repositorio: NO es un submódulo.
+│   │                                 #   Incorporado con `git subtree`, conservando el historial
+│   │                                 #   real de commits del desarrollo del MVP.
+│   └── video_demo.mp4              
 │
 ├── 06_Experimento/
 │   ├── osf_registration.pdf
@@ -164,6 +166,21 @@ MundiPets-PFC-IngReq/
 │   └── scripts_analisis/
 │       ├── run_all.py
 │       └── datos_entrada/
+│
+├── 07_Datos/                        # Paquete de datos independiente y autocontenido
+│   ├── README_datos.md              #   (estructura exigida por la guía de desarrollo)
+│   ├── LICENSE-DATA.txt
+│   ├── diccionario_datos.csv
+│   ├── desviaciones.md
+│   ├── registro_deposito.md
+│   ├── checksums_datos.sha256
+│   ├── datos_crudos/
+│   ├── datos_procesados/
+│   ├── resultados/
+│   │   ├── figuras/
+│   │   └── tablas/
+│   └── scripts/
+│       └── run_all.py               # Reproducible de punta a punta desde clon limpio
 │
 ├── 07_Publicacion/
 │   ├── analisis_revistas.md
@@ -216,10 +233,13 @@ MundiPets-PFC-IngReq/
     ├── Presentacion.pdf
     ├── Presentacion.pptx
     ├── guion.pdf
-    └── folleto_una_hoja.pdf
+    ├── folleto_una_hoja.pdf
+    └── video_defensa.mp4           
 ```
 
 > **Nota:** el documento `A12_Certificado_Etica.pdf` no está disponible en `08_Etica/`. El equipo lo solicitó formalmente al docente responsable, Ing. Gleiston Guerrero Ulloa, PhD, y **hasta el día de hoy no fue entregado**. Adicionalmente, las opciones externas de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Detalle completo en `08_Etica/README_Etica.md`.
+
+> **Nota sobre `05_MVP/codigo/`:** este código **reside en este mismo repositorio**, no en uno externo ni como submódulo Git. Se incorporó mediante `git subtree`, lo que trajo consigo el historial de commits original del desarrollo del MVP (autores y fechas reales preservados), visible con `git log -- 05_MVP/codigo`.
 
 ---
 
@@ -270,10 +290,13 @@ Diagrama de contexto, casos de uso, modelado i* (SD/SR), diagramas UML completos
 Matriz de trazabilidad extendida de 61 filas (Ley → Objetivo → Interesado → Evidencia → Requisito [RF/RNF/RD/RL] → Clase → Caso de Uso → Historia de Usuario → Criterio de Aceptación → Caso de Prueba → Componente → Mockup) y priorización MoSCoW + Kano + WSJF.
 
 ### 05_MVP
-Producto Mínimo Viable, con cobertura del 100 % de los requisitos funcionales del proyecto (27/27), código fuente como submódulo Git (`05_MVP/codigo`), instrucciones de despliegue local y video de demostración.
+Producto Mínimo Viable, con cobertura del 100 % de los requisitos funcionales del proyecto (27/27), código fuente completo dentro de este repositorio (`05_MVP/codigo`, incorporado con `git subtree`), instrucciones de despliegue local y video de demostración.
 
 ### 06_Experimento
 Protocolo experimental del componente empírico (Enfoque 2 — detección automática de ambigüedad y malos olores en requisitos), registro previo aceptado en el OSF, instrumentos, resultados y scripts de análisis estadístico.
+
+### 07_Datos
+Paquete de datos independiente y autocontenido (datos crudos, procesados, scripts y resultados del componente empírico), con diccionario de datos, licencia propia, checksums y registro de depósito. Reproducible de punta a punta desde un clon limpio con `python run_all.py`.
 
 ### 07_Publicacion
 Manuscrito final para revista JCR (*Requirements Engineering*, Springer), análisis de las cuatro revistas objetivo permitidas por la guía, y paquete de replicación depositado en Zenodo con licencia CC BY 4.0 y DOI persistente.
@@ -370,16 +393,13 @@ El paquete de replicación completo (datos, corpus y scripts del componente emp�
 
 ### Nota sobre el archivado en Software Heritage
 
-Este repositorio **no cuenta con identificador SWHID de Software Heritage**. Se intentó el archivado mediante la función *Save code now* (archive.softwareheritage.org), pero el proceso fue rechazado por el *loader* de la plataforma con el siguiente error:
+El repositorio principal no pudo archivarse directamente en Software Heritage: la función *Save code now* (archive.softwareheritage.org) rechazó el proceso porque el *pack file* que su *loader* debe generar superaba el límite de 4 GiB de la plataforma, debido al peso de la evidencia multimedia cifrada en `02_Evidencias/00_Restringido/` y de los archivos de audio/video gestionados por Git LFS.
 
-```json
-{
-  "error": "Pack file too big for repository https://github.com/andymendozap03/MundiPets-PFC-IngReq, limit is 4294967296 bytes, current size is 4294967295, would write 16384",
-  "worker": "loader@loader-save-code-now-545954c9c4-28thj"
-}
-```
+Para resolverlo sin comprometer la integridad del historial de commits del repositorio principal, se generó un **espejo** —[`MundiPets-PFC-IngReq-espejo-SWH`](https://github.com/andymendozap03/MundiPets-PFC-IngReq-espejo-SWH)— que conserva íntegro el historial de los 289 commits, pero excluye `02_Evidencias/00_Restringido/` y todos los archivos `.mp4`/`.mp3` en cualquier ruta (mediante `git filter-repo` sobre la historia completa, no solo el estado actual). Ese espejo, de 1,55 GB, sí se archivó correctamente en Software Heritage:
 
-El *pack file* que Software Heritage debe generar para clonar y preservar el repositorio ya está, en la práctica, en el límite exacto que su *loader* permite (4 294 967 296 bytes = 4 GiB); el siguiente objeto que necesitaría escribir (16 384 bytes) ya no cabe. Esto se debe al peso de la evidencia multimedia cifrada en `02_Evidencias/00_Restringido/`. No es un límite de GitHub ni del equipo, sino una restricción propia del servicio de archivado de Software Heritage para repositorios de este tamaño, y no se resolvió por no comprometer la integridad del historial de commits del repositorio a días de la entrega. El código, los datos anonimizados y los scripts de análisis permanecen accesibles y verificables a través de GitHub y del depósito de Zenodo indicado arriba, que sí cuenta con DOI persistente y cumple, por sí solo, el requisito de depósito FAIR con identificador persistente.
+**SWHID:** `swh:1:dir:619eca448d493fbf6c59411d74178fbfc51b9d1a;origin=https://github.com/andymendozap03/MundiPets-PFC-IngReq-espejo-SWH;visit=swh:1:snp:be880d84d728b8ffc6d739d26daedc3e037cd64c;anchor=swh:1:rev:6c14f8b09abbc94ef4afc84b576a70d6bd13af99`
+
+La evidencia excluida del espejo (contenedor cifrado y archivos multimedia) permanece íntegra y verificable en el repositorio principal de GitHub y, para el componente empírico, en el depósito de Zenodo indicado arriba, que cuenta con DOI persistente propio.
 
 ---
 

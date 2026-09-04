@@ -1,6 +1,9 @@
 cff-version: 1.2.0
 doi: "10.5281/zenodo.22218780"
-message: "Si utiliza este software o este conjunto de datos, por favor cítelo usando los siguientes metadatos."
+identifiers:
+  - type: swh
+    value: "swh:1:dir:619eca448d493fbf6c59411d74178fbfc51b9d1a;origin=https://github.com/andymendozap03/MundiPets-PFC-IngReq-espejo-SWH;visit=swh:1:snp:be880d84d728b8ffc6d739d26daedc3e037cd64c;anchor=swh:1:rev:6c14f8b09abbc94ef4afc84b576a70d6bd13af99"
+    message: "Si utiliza este software o este conjunto de datos, por favor cítelo usando los siguientes metadatos."
 title: 'Replication package for "Accuracy of a requirements ambiguity detector: case of a pet social network"'
 type: dataset
 authors:
