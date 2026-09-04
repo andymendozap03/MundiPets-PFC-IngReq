@@ -1,0 +1,16 @@
+﻿Metrica;Valor
+N_requisitos_comparados;18
+Evaluador_A;Andy Mendoza
+Evaluador_B;Edson Fuertes
+Acuerdo_observado;0.7778
+Kappa_Cohen;0.5500
+IC_95_inferior;0.1111
+IC_95_superior;0.8889
+Interpretacion;Moderado
+N_discrepancias;4
+
+ID_Anonimo;Clasificacion_Andy Mendoza;Clasificacion_Edson Fuertes
+REQ-03;No ambiguo;Ambiguo
+REQ-06;Ambiguo;No ambiguo
+REQ-38;No ambiguo;Ambiguo
+REQ-44;Ambiguo;No ambiguo
