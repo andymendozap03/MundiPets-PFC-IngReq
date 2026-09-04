@@ -1746,7 +1746,7 @@ doi=true
 		Identificador & \hyperref[tab:RNF-01]{RNF-01} \\
 		Nombre & Protección de la información de propietarios y mascotas \\
 		Característica ISO 25010 & Seguridad \\
-		Descripción & El sistema deberá impedir el acceso no autorizado a la información personal de los propietarios y al historial médico de las mascotas, garantizando que durante las pruebas de seguridad no se produzcan accesos exitosos por parte de usuarios sin los permisos correspondientes. \\
+		Descripción & El sistema deberá impedir el acceso no autorizado a la información personal de los propietarios y al historial médico de las mascotas, garantizando que durante las pruebas de seguridad el porcentaje de accesos no autorizados sea del 0\,\%. \\
 		Métrica & Porcentaje de accesos no autorizados exitosos. \\
 		Valor objetivo & 0\,\% de accesos no autorizados durante las pruebas del sistema. \\
 		Prioridad (MoSCoW) & Must \\
@@ -1759,7 +1759,7 @@ doi=true
 		Identificador & \hyperref[tab:RNF-02]{RNF-02} \\
 		Nombre & Disponibilidad del sistema \\
 		Característica ISO 25010 & Fiabilidad \\
-		Descripción & El sistema deberá mantenerse disponible para los usuarios con una disponibilidad mínima del 99\,\% mensual, permitiendo el acceso continuo a sus funcionalidades durante la operación normal de la plataforma. \\
+		Descripción & El sistema deberá mantener una disponibilidad mínima del 99\,\% mensual, permitiendo el acceso continuo a sus funcionalidades durante la operación normal de la plataforma. \\
 		Métrica & Porcentaje de disponibilidad mensual. \\
 		Valor objetivo & $\geq$ 99\,\% de disponibilidad mensual. \\
 		Prioridad (MoSCoW) & Must \\
@@ -1800,7 +1800,7 @@ doi=true
 		Identificador & \hyperref[tab:RNF-05]{RNF-05} \\
 		Nombre & Integridad de la información médica \\
 		Característica ISO 25010 & Seguridad \\
-		Descripción & El sistema deberá garantizar que únicamente los usuarios autorizados puedan modificar el historial médico de una mascota, evitando que durante las pruebas se produzcan modificaciones no autorizadas. \\
+		Descripción & El sistema deberá garantizar que únicamente los propietarios puedan modificar el historial médico de su mascota, evitando que durante las pruebas se produzcan modificaciones no autorizadas. \\
 		Métrica & Porcentaje de modificaciones no autorizadas permitidas. \\
 		Valor objetivo & 0\,\% de modificaciones no autorizadas durante las pruebas. \\
 		Prioridad (MoSCoW) & Must \\
@@ -1891,7 +1891,7 @@ doi=true
 		Identificador & \hyperref[tab:RNF-12]{RNF-12} \\
 		Nombre & Escalabilidad ante crecimiento de usuarios \\
 		Característica ISO 25010 & Flexibilidad \\
-		Descripción & El sistema deberá soportar el incremento de usuarios concurrentes sin degradar significativamente el tiempo de respuesta definido en \hyperref[tab:RNF-03]{RNF-03}, permitiendo escalar horizontalmente los servidores de aplicación. \\
+		Descripción & El sistema deberá mantener un tiempo de respuesta igual o menor a 3 segundos en el percentil 95 (P95) al triplicar la carga nominal de usuarios concurrentes (hasta 300 usuarios concurrentes), permitiendo escalar sin necesidad de cambios en el código. \\
 		Métrica & Tiempo de respuesta (P95) al triplicar la carga nominal de usuarios concurrentes. \\
 		Valor objetivo & $\leq$ 3 segundos (P95) con 300 usuarios concurrentes (el triple de la carga nominal). \\
 		Prioridad (MoSCoW) & Could \\
@@ -1904,7 +1904,7 @@ doi=true
 		Identificador & \hyperref[tab:RNF-13]{RNF-13} \\
 		Nombre & Explicabilidad de la recomendación de compatibilidad para cruza \\
 		Característica ISO 25010 & Interacción de usuario (Explicabilidad) \\
-		Descripción & El sistema deberá presentar, junto con el resultado de compatibilidad para cruza, una explicación causal de los factores que influyeron en el resultado (raza, edad, estado de salud, antecedentes genéticos), en un máximo de 60 palabras y con un tiempo de generación no mayor a 2 segundos. \\
+		Descripción & El sistema deberá presentar la explicación causal del resultado de compatibilidad con una extensión máxima de 60 palabras, un tiempo de generación no mayor a 2 segundos, y una calificación media de comprensión igual o superior a 4/5 en la escala Likert (1–5) al evaluarse con usuarios técnicos y no técnicos. \\
 		Métrica & Tiempo de generación de la explicación y calificación media de comprensión (escala Likert 1--5). \\
 		Valor objetivo & $\leq$ 2 segundos, $\leq$ 60 palabras, calificación media de comprensión $\geq$ 4/5. \\
 		Prioridad (MoSCoW) & Must \\
@@ -1917,7 +1917,7 @@ doi=true
 		Identificador & \hyperref[tab:RNF-14]{RNF-14} \\
 		Nombre & Explicabilidad del rechazo o aceptación de imágenes \\
 		Característica ISO 25010 & Interacción de usuario (Explicabilidad) \\
-		Descripción & Cuando una imagen sea rechazada por el componente de inteligencia artificial, el sistema deberá informar el motivo específico (contenido inapropiado, imagen borrosa, tipo de fotografía incorrecto) mediante una explicación por contraste, en un máximo de 30 palabras. \\
+		Descripción & El sistema deberá presentar la explicación por contraste del rechazo de una imagen con una extensión máxima de 30 palabras, garantizando que el 100 \% de los rechazos incluyan dicha explicación, y alcanzando una calificación media de comprensión igual o superior a 4/5 en la escala Likert (1–5) al evaluarse con usuarios representativos. \\
 		Métrica & Porcentaje de rechazos con motivo específico mostrado y calificación media de comprensión (Likert 1--5). \\
 		Valor objetivo & 100\,\% de los rechazos con motivo específico; calificación media de comprensión $\geq$ 4/5. \\
 		Prioridad (MoSCoW) & Should \\
@@ -1930,7 +1930,7 @@ doi=true
 		Identificador & \hyperref[tab:RNF-15]{RNF-15} \\
 		Nombre & Explicabilidad de la moderación de mensajes \\
 		Característica ISO 25010 & Interacción de usuario (Explicabilidad) \\
-		Descripción & Cuando un mensaje sea reportado por un usuario conforme al mecanismo de reporte manual de \hyperref[tab:RF-07]{RF-07}, el sistema deberá notificar al remitente la categoría del motivo señalado (lenguaje ofensivo, spam o acuerdo externo indebido) mediante una explicación por ejemplos. \\
+		Descripción & El sistema deberá presentar la categoría del motivo de un mensaje reportado con un nivel de comprensión suficiente para el remitente, alcanzando una calificación media igual o superior a 4/5 en la escala Likert (1–5) al evaluarse con usuarios representativos, sin exceder las 20 palabras por notificación. \\
 		Métrica & Porcentaje de reportes procesados con categoría mostrada al remitente y calificación media de comprensión (Likert 1--5). \\
 		Valor objetivo & 100\,\% de reportes procesados con categoría mostrada; calificación media de comprensión $\geq$ 4/5. \\
 		Prioridad (MoSCoW) & Should \\
@@ -1944,7 +1944,7 @@ doi=true
 		Identificador & \hyperref[tab:RNF-16]{RNF-16} \\
 		Nombre & Confidencialidad de datos de ubicación y contacto \\
 		Característica ISO 25010 & Seguridad \\
-		Descripción & El sistema deberá ocultar por defecto la ubicación exacta y los datos de contacto directo del propietario, mostrando únicamente una zona aproximada (radio $\geq$ 1 km) a usuarios no autorizados, en cumplimiento del principio de minimización de la LOPDP. \\
+		Descripción & El sistema deberá mostrar únicamente la zona aproximada (radio $\geq$ 1 km), y no la ubicación exacta ni el contacto directo, al consultar el perfil de una mascota desde una cuenta distinta a la del propietario y sin permiso explícito otorgado sobre esa mascota. \\
 		Métrica & Porcentaje de perfiles donde la ubicación exacta y el contacto directo permanecen ocultos por defecto. \\
 		Valor objetivo & 100\,\% de los perfiles con ubicación y contacto ocultos por defecto. \\
 		Prioridad (MoSCoW) & Must \\
@@ -3840,7 +3840,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.95\textwidth]{figuras/DiagramaClasesRefinado_MundiPets_UsersRoles.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaClasesRefinado_MundiPets_UsersRoles.png}
 		\caption{Diagrama de clases refinado --- vista parcial \emph{Users and Roles}.}
 		\label{fig:clases-users-roles}
 	\end{figure}
@@ -3914,7 +3914,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.95\textwidth]{figuras/DiagramaClasesRefinado_MundiPets_PetsHealth.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaClasesRefinado_MundiPets_PetsHealth.png}
 		\caption{Diagrama de clases refinado --- vista parcial \emph{Pets and Health}.}
 		\label{fig:clases-pets-health}
 	\end{figure}
@@ -3943,7 +3943,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-01_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-01_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-01 --- Registrar mascota.}
 		\label{fig:sec-cu01}
 	\end{figure}
@@ -3965,7 +3965,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-02_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-02_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-02 --- Registrar historial médico y antecedentes genéticos.}
 		\label{fig:sec-cu02}
 	\end{figure}
@@ -3986,7 +3986,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-03_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-03_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-03 --- Cargar documento veterinario y carnet de vacunación.}
 		\label{fig:sec-cu03}
 	\end{figure}
@@ -4004,7 +4004,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-04_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-04_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-04 --- Publicar mascota en adopción.}
 		\label{fig:sec-cu04}
 	\end{figure}
@@ -4027,7 +4027,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-05_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-05_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-05 --- Publicar mascota para cruza.}
 		\label{fig:sec-cu05}
 	\end{figure}
@@ -4050,7 +4050,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-13_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-13_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-06 --- Evaluar compatibilidad de cruza y verificación de parentesco.}
 		\label{fig:sec-cu06}
 	\end{figure}
@@ -4068,7 +4068,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-07_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-07_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-07 --- Gestionar solicitud de adopción.}
 		\label{fig:sec-cu07}
 	\end{figure}
@@ -4089,7 +4089,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-08_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-08_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-08 --- Gestionar comunicación entre usuarios.}
 		\label{fig:sec-cu08}
 	\end{figure}
@@ -4111,7 +4111,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-09_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-09_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-09 --- Validar información médica.}
 		\label{fig:sec-cu09}
 	\end{figure}
@@ -4130,7 +4130,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-10_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-10_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-10 --- Consultar perfil médico.}
 		\label{fig:sec-cu10}
 	\end{figure}
@@ -4147,7 +4147,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-11_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-11_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-11 --- Buscar mascota disponible.}
 		\label{fig:sec-cu11}
 	\end{figure}
@@ -4166,7 +4166,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-06_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-06_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-12 --- Configurar privacidad médica.}
 		\label{fig:sec-cu12}
 	\end{figure}
@@ -4183,7 +4183,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.72\textwidth]{figuras/DiagramaSecuencia_CU-12_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaSecuencia_CU-12_MundiPets.png}
 		\caption{Diagrama de secuencia del caso de uso CU-13 --- Consultar recomendaciones de cuidado.}
 		\label{fig:sec-cu13}
 	\end{figure}
@@ -4231,7 +4231,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.56\textwidth]{figuras/DiagramaActividades_CU-02_MundiPets.png}
+		\includegraphics[width=0.8\textwidth]{figuras/DiagramaActividades_CU-02_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-02 --- Registrar historial médico y antecedentes genéticos.}
 		\label{fig:act-cu02}
 	\end{figure}
@@ -4265,7 +4265,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.60\textwidth]{figuras/DiagramaActividades_CU-04_MundiPets.png}
+		\includegraphics[width=0.8\textwidth]{figuras/DiagramaActividades_CU-04_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-04 --- Publicar mascota en adopción.}
 		\label{fig:act-cu04}
 	\end{figure}
@@ -4325,7 +4325,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.82\textwidth]{figuras/DiagramaActividades_CU-07_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaActividades_CU-07_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-07 --- Gestionar solicitud de adopción.}
 		\label{fig:act-cu07}
 	\end{figure}
@@ -4343,7 +4343,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.81\textwidth]{figuras/DiagramaActividades_CU-08_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaActividades_CU-08_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-08 --- Gestionar comunicación entre usuarios.}
 		\label{fig:act-cu08}
 	\end{figure}
@@ -4363,7 +4363,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.52\textwidth]{figuras/DiagramaActividades_CU-09_MundiPets.png}
+		\includegraphics[width=0.8\textwidth]{figuras/DiagramaActividades_CU-09_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-09 --- Validar información médica.}
 		\label{fig:act-cu09}
 	\end{figure}
@@ -4379,7 +4379,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.80\textwidth]{figuras/DiagramaActividades_CU-10_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaActividades_CU-10_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-10 --- Consultar perfil médico.}
 		\label{fig:act-cu10}
 	\end{figure}
@@ -4429,7 +4429,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.73\textwidth]{figuras/DiagramaActividades_CU-12_MundiPets.png}
+		\includegraphics[width=0.9\textwidth]{figuras/DiagramaActividades_CU-12_MundiPets.png}
 		\caption{Diagrama de actividad del caso de uso CU-13 --- Consultar recomendaciones de cuidado.}
 		\label{fig:act-cu13}
 	\end{figure}
@@ -4612,7 +4612,7 @@ temporal.
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.65\textwidth]{figuras/DiagramaDespliegue_MundiPets.png}
+		\includegraphics[width=\textwidth]{figuras/DiagramaDespliegue_MundiPets.png}
 		\caption{Diagrama de despliegue del sistema MundiPets.}
 		\label{fig:despliegue}
 	\end{figure}
