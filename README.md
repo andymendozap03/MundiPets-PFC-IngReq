@@ -94,8 +94,9 @@ Este repositorio contiene toda la documentación desarrollada durante el Proyect
 MundiPets-PFC-IngReq/
 ├── .gitattributes
 ├── .gitignore
+├── .mailmap                         # Unifica las diez identidades de Git en las cinco personas reales
 ├── CHANGELOG.md
-├── checksums.sha256
+├── checksums.sha256                 # Manifiesto de sumas de todo el repositorio (incluye 07_Datos y 10_Autoria)
 ├── CITATION.cff
 ├── fair_assessment.pdf              # Autoevaluación FAIR (F-UJI, 92 %)
 ├── LICENSE
@@ -229,12 +230,43 @@ MundiPets-PFC-IngReq/
 │       ├── CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
 │       └── CheckList_Categoria_B_MundiPets.pdf
 │
-└── 09_Defensa/
-    ├── Presentacion.pdf
-    ├── Presentacion.pptx
-    ├── guion.pdf
-    ├── folleto_una_hoja.pdf
-    └── video_defensa.mp4           
+├── 09_Defensa/
+│   ├── Presentacion.pdf
+│   ├── Presentacion.pptx
+│   ├── guion.pdf
+│   ├── folleto_una_hoja.pdf
+│   └── video_defensa.mp4
+│
+└── 10_Autoria/                      # Evidencia de autoría y trabajo propio del equipo
+    ├── bitacora_sesiones.csv        # A1 — una fila por sesión, derivada de git log
+    ├── aporte_individual.md         # A10 — aporte de cada integrante, firmado por los cinco
+    ├── declaracion_uso_ia.md        # A9 — declaración de uso de IA por sección del ERS
+    ├── exif_inventario.csv          # A11 — metadatos EXIF de las fotografías del equipo
+    ├── capturas/                    # A2 — capturas de pantalla de sesiones de trabajo
+    ├── grabaciones/                 # A4 — grabaciones de sesión de trabajo del equipo
+    ├── notas_campo/                 # A5 — notas manuscritas escaneadas de cada sesión
+    ├── fotos_equipo/                # A6 — fotografías del equipo en la organización
+    ├── correspondencia/             # A8 — comunicaciones fechadas con la organización
+    │   └── README.md                #   nota: excepción para VET-03, VET-04, PROP-03
+    ├── doble_codificacion/          # A7 — doble codificación independiente del corpus
+    │   ├── README.md
+    │   ├── muestra_seleccionada.csv
+    │   ├── hoja_codificacion_AndyMendoza.csv
+    │   ├── hoja_codificacion_EdsonFuertes.csv
+    │   ├── calcular_acuerdo.py
+    │   ├── resultado_acuerdo_doble_codificacion.csv
+    │   └── requirements.txt
+    └── fuente_editables/            # A3 — fuente editable de cada diagrama del proyecto
+        ├── Casos de Uso/
+        ├── Diagrama de Componentes/
+        ├── Diagrama de Contexto/
+        ├── Diagrama de Dependencia Estrategica/
+        ├── Diagrama de Despliegue/
+        ├── Diagrama de Razon Estrategica/
+        ├── Diagramas de Actividades/
+        ├── Diagramas de Clases/
+        ├── Diagramas de Maquinas de Estado/
+        └── Diagramas de Secuencia/
 ```
 
 > **Nota:** el documento `A12_Certificado_Etica.pdf` no está disponible en `08_Etica/`. El equipo lo solicitó formalmente al docente responsable, Ing. Gleiston Guerrero Ulloa, PhD, y **hasta el día de hoy no fue entregado**. Adicionalmente, las opciones externas de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Detalle completo en `08_Etica/README_Etica.md`.
@@ -287,7 +319,7 @@ Evidencia de campo de la primera y segunda ronda de elicitación: entrevistas (t
 Diagrama de contexto, casos de uso, modelado i* (SD/SR), diagramas UML completos (clases, secuencia, actividades, estados, componentes, despliegue) y mockups de alta fidelidad.
 
 ### 04_Trazabilidad
-Matriz de trazabilidad extendida de 61 filas (Ley → Objetivo → Interesado → Evidencia → Requisito [RF/RNF/RD/RL] → Clase → Caso de Uso → Historia de Usuario → Criterio de Aceptación → Caso de Prueba → Componente → Mockup) y priorización MoSCoW + Kano + WSJF.
+Matriz de trazabilidad extendida de 61 filas y priorización MoSCoW + Kano + WSJF.
 
 ### 05_MVP
 Producto Mínimo Viable, con cobertura del 100 % de los requisitos funcionales del proyecto (27/27), código fuente completo dentro de este repositorio (`05_MVP/codigo`, incorporado con `git subtree`), instrucciones de despliegue local y video de demostración.
@@ -303,6 +335,9 @@ Manuscrito final para revista JCR (*Requirements Engineering*, Springer), análi
 
 ### 08_Etica
 Documentación ética completa del proyecto (Categoría B — Datos personales), conforme al Paquete Integral de Anexos y Guías de Elaboración de la asignatura.
+
+### 10_Autoria
+Evidencia de autoría y de trabajo propio del equipo, exigida por la Guía de Desarrollo del PFC (elementos A1 a A12): bitácora de sesiones derivada del historial real de `git log`, capturas de pantalla y grabaciones de las sesiones de trabajo, notas de campo escaneadas, fotografías del equipo con metadatos EXIF verificados, fuentes editables de todos los diagramas, doble codificación independiente del corpus de requisitos (con cálculo del coeficiente Kappa de Cohen), correspondencia con la organización, declaración de uso de IA por sección del ERS, y aporte individual de cada integrante con sus commits acreditativos.
 
 ---
 
