@@ -236,5 +236,5 @@ equipo, quienes confirman que la descripción de su propio aporte es exacta.
 | Andy Mendoza | Confirmo que la descripción de mi aporte es exacta — Andy Mendoza | 2026-09-04|
 | Edson Daniel Fuertes Arraes | | 2026-09-04 |
 | Genesis Gutierrez | |  2026-09-04 |
-| Gary Morales | |  2026-09-04 |
+| Gary Morales | Confirmo que la descripción de mi aporte es exacta — Gary Morales |  2026-09-04 |
 | Jimmy Nieves | Confirmo que la descripción de mi aporte es exacta - Jimmy Nieves|  2026-09-04 | 

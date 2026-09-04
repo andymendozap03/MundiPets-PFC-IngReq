@@ -134,5 +134,5 @@ ejecución de scripts sobre datos reales, no de una herramienta de IA.
 | Andy Mendoza | Confirmo que esta declaración es exacta — Andy Mendoza | 2026-09-04 |
 | Edson Daniel Fuertes Arraes |  | 2026-09-04 |
 | Genesis Gutierrez |  | 2026-09-04 |
-| Gary Morales | | 2026-09-04 |
-| Jimmy Nieves |  | 2026-09-04 | |
+| Gary Morales | Confirmo que esta declaración es exacta — Gary Morales | 2026-09-04 |
+| Jimmy Nieves |  | 2026-09-04 |
