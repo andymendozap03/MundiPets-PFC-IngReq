@@ -1909,6 +1909,8 @@ doi=true
 		Valor objetivo & $\leq$ 2 segundos, $\leq$ 60 palabras, calificación media de comprensión $\geq$ 4/5. \\
 		Prioridad (MoSCoW) & Must \\
 		Criterio de verificación & Solicitar una evaluación de compatibilidad, comprobar tiempo/extensión de la explicación y aplicar una encuesta de comprensión a usuarios técnicos y no técnicos ($\geq$ 4/5 de calificación media). \\
+		Responsable & Morales Sánchez Gary Alejandro. \\
+		Frecuencia de medición & Verificación funcional en cada versión desplegada; encuesta de comprensión trimestral sobre una muestra de usuarios activos. \\
 	\end{atributos}
 	
 	\subsubsection{RNF-14 --- Explicabilidad del rechazo o aceptación de imágenes (RF-17)}
@@ -1922,6 +1924,8 @@ doi=true
 		Valor objetivo & 100\,\% de los rechazos con motivo específico; calificación media de comprensión $\geq$ 4/5. \\
 		Prioridad (MoSCoW) & Should \\
 		Criterio de verificación & Cargar imágenes inválidas, comprobar que cada rechazo muestra un motivo específico, y encuestar la comprensión del motivo mostrado. \\
+		Responsable & Mendoza Párraga Andy Johel. \\
+		Frecuencia de medición & Verificación funcional en cada versión desplegada; encuesta de comprensión trimestral sobre una muestra de rechazos registrados. \\
 	\end{atributos}
 	
 	\subsubsection{RNF-15 --- Explicabilidad de la moderación de mensajes}
@@ -1935,6 +1939,8 @@ doi=true
 		Valor objetivo & 100\,\% de reportes procesados con categoría mostrada; calificación media de comprensión $\geq$ 4/5. \\
 		Prioridad (MoSCoW) & Should \\
 		Criterio de verificación & Reportar un mensaje de prueba mediante el mecanismo de \hyperref[tab:RF-07]{RF-07} y comprobar que el remitente reportado recibe la categoría del motivo señalado. \\
+		Responsable & Fuertes Arraes Edson Daniel. \\
+		Frecuencia de medición & Verificación funcional en cada versión desplegada; encuesta de comprensión trimestral sobre una muestra de reportes procesados. \\
 	\end{atributos}
 	
 	
@@ -2005,15 +2011,15 @@ detalla el requisito de equidad de cada componente.
 	\caption{Requisitos de equidad de los componentes de inteligencia artificial.}
 	\label{tab:equidad-ia}
 	\small
-	\begin{tabularx}{\textwidth}{@{}p{2.3cm} X p{2.6cm}@{}}
+	\begin{tabularx}{\textwidth}{@{}p{1.9cm} X p{1.7cm} p{1.6cm} p{1.7cm}@{}}
 		\toprule
-		\textbf{Componente} & \textbf{Métrica y subgrupos comparados} & \textbf{Brecha máxima tolerada} \\
+		\textbf{Componente} & \textbf{Métrica y subgrupos comparados} & \textbf{Brecha máxima tolerada} & \textbf{Responsable} & \textbf{Frecuencia} \\
 		\midrule
-		\emph{AI compatibility} (\hyperref[tab:RF-06]{RF-06}) & Diferencia de tasa de coincidencia con la evaluación veterinaria de referencia entre razas con más de 30 casos en el conjunto de evaluación y razas con menos de 30 casos. & 10 puntos porcentuales \\
+		\emph{AI compatibility} (\hyperref[tab:RF-06]{RF-06}) & Diferencia de tasa de coincidencia con la evaluación veterinaria de referencia entre razas con más de 30 casos en el conjunto de evaluación y razas con menos de 30 casos. & 10 puntos porcentuales & Morales Sánchez Gary Alejandro & Trimestral, sobre el acumulado de recomendaciones emitidas \\
 		\addlinespace
-		\emph{AI image validation} (\hyperref[tab:RF-17]{RF-17}) & Diferencia de tasa de clasificación correcta entre fotografías tomadas en interiores y en exteriores, condición que afecta la iluminación y la nitidez de la imagen. & 10 puntos porcentuales \\
+		\emph{AI image validation} (\hyperref[tab:RF-17]{RF-17}) & Diferencia de tasa de clasificación correcta entre fotografías tomadas en interiores y en exteriores, condición que afecta la iluminación y la nitidez de la imagen. & 10 puntos porcentuales & Mendoza Párraga Andy Johel & Trimestral, sobre el acumulado de imágenes procesadas \\
 		\addlinespace
-		Moderación de mensajes (\hyperref[tab:RF-07]{RF-07}) & Diferencia de tasa de falsos bloqueos entre mensajes de longitud breve (menos de 15 palabras) y mensajes de longitud extensa, dado que los mensajes breves ofrecen menos contexto para la clasificación. & 10 puntos porcentuales \\
+		Moderación de mensajes (\hyperref[tab:RF-07]{RF-07}) & Diferencia de tasa de falsos bloqueos entre mensajes de longitud breve (menos de 15 palabras) y mensajes de longitud extensa, dado que los mensajes breves ofrecen menos contexto para la clasificación. & 10 puntos porcentuales & Fuertes Arraes Edson Daniel & Trimestral, sobre el acumulado de mensajes bloqueados \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -8580,7 +8586,9 @@ transversales lo presentan.
 	El trabajo del equipo se versiona en el repositorio
 	\url{https://github.com/andymendozap03/MundiPets-PFC-IngReq.git}, cuya
 	estructura de carpetas se muestra en el Código~\ref{lst:estructura_repo},
-	incluyendo la carpeta de defensa (\texttt{09\_Defensa/}), el archivo raíz
+	incluyendo la carpeta de defensa (\texttt{09\_Defensa/}), el paquete de
+	datos independiente (\texttt{07\_Datos/}), la carpeta de evidencia de
+	autoría del equipo (\texttt{10\_Autoria/}), el archivo raíz
 	\texttt{fair\_assessment.pdf} y las evidencias del análisis terminal. La
 	estructura mostrada corresponde al árbol real del repositorio al momento de
 	esta revisión, obtenido con el comando \texttt{tree /f} sobre la carpeta
@@ -8590,9 +8598,9 @@ transversales lo presentan.
 		MundiPets-PFC-IngReq/
 		|-- .gitattributes
 		|-- .gitignore
-		|-- .gitmodules                    % declara el submodulo 05_MVP/codigo
+		|-- .mailmap                       % unifica las identidades de Git
 		|-- CHANGELOG.md
-		|-- checksums.sha256
+		|-- checksums.sha256               % manifiesto de todo el repositorio
 		|-- CITATION.cff
 		|-- LICENSE
 		|-- README.md
@@ -8647,7 +8655,10 @@ transversales lo presentan.
 		|-- 05_MVP/
 		|   |-- README.md                  % instrucciones de despliegue
 		|   |-- video_demo.mp4             % evidencia de funcionamiento
-		|   `-- codigo/                    % submodulo Git del MVP_MundiPets
+		|   `-- codigo/                    % codigo fuente del MVP, incorporado
+		|                                   % con git subtree (no es submodulo;
+		|                                   % conserva el historial real de
+		|                                   % commits del desarrollo del MVP)
 		|
 		|-- 06_Experimento/
 		|   |-- osf_registration.pdf       % registro previo aceptado en OSF
@@ -8665,24 +8676,43 @@ transversales lo presentan.
 		|   `-- scripts_analisis/
 		|       `-- datos_entrada/
 		|
+		|-- 07_Datos/                      % paquete de datos independiente y
+		|   |                              % autocontenido, reproducible de
+		|   |                              % punta a punta desde clon limpio
+		|   |-- README_datos.md
+		|   |-- LICENSE-DATA.txt           % licencia de los datos, distinta
+		|   |                              % de la del codigo
+		|   |-- diccionario_datos.csv
+		|   |-- desviaciones.md
+		|   |-- registro_deposito.md
+		|   |-- checksums_datos.sha256
+		|   |-- datos_crudos/
+		|   |-- datos_procesados/
+		|   |-- resultados/
+		|   |   |-- figuras/
+		|   |   `-- tablas/                % tabla_1 a tabla_9 (CSV)
+		|   `-- scripts/
+		|       `-- run_all.py             % orquestador unico, un solo comando
+		|
 		|-- 07_Publicacion/
 		|   |-- analisis_revistas.md
 		|   |-- manuscrito_final.pdf
-		|   |-- dataset_zenodo/
-		|   |   |-- README_dataset.md
-		|   |   |-- ANONYMIZATION.md
-		|   |   |-- ETHICS.md
-		|   |   |-- corpus/                % corpus_RF_MundiPets_2B.json
-		|   |   |-- prompts_llm/
-		|   |   |-- respuestas_cuestionarios/
-		|   |   |-- scripts_analisis/      % misma estructura que 06_Experimento
-		|   |   |-- transcripciones/       % copia anonimizada para el deposito
-		|   |   `-- trazabilidad/          % matriz_trazabilidad.csv
-		|   `-- manuscrito/                % fuente LaTeX del manuscrito
-		|       |-- manuscrito_final.tex
-		|       |-- referencias.bib
-		|       |-- bst/                   % estilos bibliograficos Springer
-		|       `-- figuras/               % figura_1 a figura_4
+		|   |-- manuscrito_final.tex
+		|   |-- referencias.bib
+		|   |-- sn-jnl.cls
+		|   |-- sn-mathphys-num.bst
+		|   |-- bst/
+		|   |-- figuras/                   % figura_1 a figura_4
+		|   |-- tablas/
+		|   `-- dataset_zenodo/
+		|       |-- README_dataset.md
+		|       |-- ANONYMIZATION.md
+		|       |-- ETHICS.md
+		|       |-- corpus/                % corpus_RF_MundiPets_2B.json
+		|       |-- prompts_llm/
+		|       |-- respuestas_cuestionarios/
+		|       |-- scripts_analisis/      % misma estructura que 06_Experimento
+		|       `-- trazabilidad/          % matriz_trazabilidad.csv
 		|
 		|-- 08_Etica/
 		|   |-- A01_Protocolo_Investigacion.pdf
@@ -8710,12 +8740,26 @@ transversales lo presentan.
 		|       |-- CB05_Politica_Manejo_Datos_Menores_De_Edad.pdf
 		|       `-- CheckList_Categoria_B_MundiPets.pdf
 		|
-		`-- 09_Defensa/
-		    |-- Presentacion.pdf
-		    |-- Presentacion.pptx
-		    |-- guion.pdf
-		    |-- video_defensa.mp4
-		    `-- folleto_una_hoja.pdf
+		|-- 09_Defensa/
+		|   |-- Presentacion.pdf
+		|   |-- Presentacion.pptx
+		|   |-- guion.pdf
+		|   |-- video_defensa.mp4
+		|   `-- folleto_una_hoja.pdf
+		|
+		`-- 10_Autoria/                    % evidencia de autoria y trabajo
+		    |                              % propio del equipo (A1 a A12)
+		    |-- bitacora_sesiones.csv      % A1, una fila por sesion
+		    |-- aporte_individual.md       % A10
+		    |-- declaracion_uso_ia.md      % A9
+		    |-- exif_inventario.csv        % A11
+		    |-- capturas/                  % A2
+		    |-- grabaciones/               % A4
+		    |-- notas_campo/               % A5
+		    |-- fotos_equipo/              % A6
+		    |-- correspondencia/           % A8
+		    |-- doble_codificacion/        % A7
+		    `-- fuente_editables/          % A3, una subcarpeta por diagrama
 	\end{lstlisting}
 
 	\paragraph{Nota sobre el documento A.12.}

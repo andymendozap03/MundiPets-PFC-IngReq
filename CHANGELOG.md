@@ -6,7 +6,7 @@ El formato sigue las convenciones de [Keep a Changelog](https://keepachangelog.c
 
 ---
 
-## [4.0] — Entrega 4 (2B / Defensa) — 2026-09-01
+## [4.0] — Entrega 4 (2B / Defensa) — 2026-09-04
 
 Cierre del ciclo del PFC: ejecución completa del componente empírico, manuscrito final para revista JCR, depósito FAIR en Zenodo, y preparación de la defensa oral.
 
@@ -19,13 +19,17 @@ Cierre del ciclo del PFC: ejecución completa del componente empírico, manuscri
 - Matriz de trazabilidad ampliada a 61 filas, superando el mínimo de 60 exigido.
 - Depósito FAIR publicado en Zenodo con DOI persistente: [10.5281/zenodo.22218780](https://doi.org/10.5281/zenodo.22218780), con el paquete de replicación completo (corpus, transcripciones, respuestas de cuestionario, scripts de análisis, `README_dataset.md`, `ANONYMIZATION.md`, `ETHICS.md`).
 - Autoevaluación FAIR con F-UJI: 92 % de los indicadores, `fair_assessment.pdf` en la raíz del repositorio.
-- Submódulo real del MVP (`05_MVP/codigo` → `jnievess-lang/MVP_MundiPets.git`), con `.gitmodules` configurado.
+- Código fuente completo del MVP incorporado directamente al repositorio principal (`05_MVP/codigo/`) mediante `git subtree`, conservando el historial real de commits del desarrollo del MVP (autores y fechas originales preservados, visible con `git log -- 05_MVP/codigo`). No se usa submódulo Git.
 - Cuentas de prueba documentadas en `05_MVP/README.md`, una por cada rol del sistema (Adoptante, Propietario, Veterinaria, Interesado en Cruza).
 - Power calculation del cuestionario, perfil dominante ("Propietario de mascota", n=47): potencia estadística de 91,86 % (Cohen d=0,5, α=0,05, 1−β=0,80), calculada con `statsmodels` y versionada en `02_Evidencias/Cuestionario/power_calculation/`.
 - Fichas técnicas de evidencia actualizadas al corpus terminal: 20 participantes, 18 entrevistas (audio + video), 18 consentimientos, 6 sesiones de *walkthrough* (3 técnicas + 3 no técnicas), 1 sesión de *member checking*, 61 respuestas de cuestionario.
-- `checksums.sha256` regenerado (361 entradas) para toda la evidencia de la ronda terminal.
+- `checksums.sha256` regenerado sobre un clon limpio, cubriendo la totalidad del repositorio, incluidas las carpetas `07_Datos/` y `10_Autoria/` agregadas en esta misma versión.
 - Carpeta `09_Defensa/` con presentación (PDF y PPTX), guion de la defensa, video de la defensa y folleto de una hoja para el tribunal.
 - Análisis de revistas objetivo (`07_Publicacion/analisis_revistas.md`) reescrito sobre la lista cerrada de la guía: *Requirements Engineering*, *Information and Software Technology*, *Empirical Software Engineering*, *Journal of Systems and Software*, REFSQ 2027 y RE 2027. Decisión final: *Requirements Engineering* (Springer), consistente con la plantilla `sn-jnl.cls` ya en uso en el manuscrito.
+- Paquete de datos independiente y autocontenido en `07_Datos/`, reproducible de punta a punta desde un clon limpio con `python run_all.py`: datos crudos, datos procesados, scripts de análisis, resultados (figuras y tablas), diccionario de datos, licencia propia (`LICENSE-DATA.txt`), registro de depósito y manifiesto de sumas (`checksums_datos.sha256`).
+- Carpeta `10_Autoria/` con la evidencia de autoría y trabajo propio del equipo exigida por la Guía de Desarrollo del PFC (elementos A1 a A12): bitácora de sesiones derivada del historial real de `git log`, capturas de pantalla y grabaciones de sesiones de trabajo, notas de campo escaneadas, fotografías del equipo con metadatos EXIF verificados, fuentes editables de todos los diagramas, doble codificación independiente del corpus de requisitos entre dos integrantes (κ de Cohen = 0,550, moderado), correspondencia con la organización, declaración de uso de IA por sección del ERS, y aporte individual de cada integrante con sus commits acreditativos.
+- Archivo `.mailmap` en la raíz del repositorio, unificando las diez identidades de Git detectadas en las cinco personas reales del equipo.
+- Espejo del repositorio `MundiPets-PFC-IngReq-espejo-SWH`, generado con `git filter-repo` para excluir `02_Evidencias/00_Restringido/` y los archivos `.mp4`/`.mp3` de todo el historial, y archivado correctamente en Software Heritage con SWHID persistente (ver Apéndice E del ERS/SRS y README.md raíz).
 
 ### Changed
 - Nombres de archivo del ERS corregidos a la notación exigida por la rúbrica (`ERS_SRS_2B_v2.0.pdf` / `.tex`).
@@ -39,10 +43,10 @@ Cierre del ciclo del PFC: ejecución completa del componente empírico, manuscri
 ### Fixed
 - Corregido el desfase entre la evidencia declarada y la evidencia real del repositorio en `fichas_tecnicas.csv` (faltaban VET-07, PROP-12 y dos sesiones de *walkthrough*).
 - Cuestionario digital por debajo del mínimo n≥60 en el perfil dominante ("Propietario de mascota": 47 de 61 respuestas): subsanado mediante cálculo de potencia estadística (Cohen d=0,5, α=0,05, 1−β=0,80), que arroja una potencia real de 91,86 % con n=47, muy por encima del mínimo del 80 % exigido. Script y resultado en `02_Evidencias/Cuestionario/power_calculation/`.
+- Archivado en Software Heritage: el intento inicial con "Save code now" sobre el repositorio principal falló por exceder el límite de 4 GiB del *loader* de la plataforma, debido al peso de la evidencia multimedia cifrada y los archivos gestionados por Git LFS. Se resolvió generando el espejo `MundiPets-PFC-IngReq-espejo-SWH` (historial completo de commits preservado, excluyendo `02_Evidencias/00_Restringido/` y los archivos `.mp4`/`.mp3` mediante `git filter-repo` sobre la historia completa), que sí se archivó correctamente y cuenta con SWHID persistente, referenciado en `README.md` y `CITATION.cff`.
 
 ### Known issues
 - Documento `A12_Certificado_Etica.pdf` no disponible en `08_Etica/`: el equipo lo solicitó formalmente al docente responsable, Ing. Gleiston Guerrero Ulloa, PhD, y no fue proporcionado. Las opciones externas de certificación (CITI Program, GCP-ICH, CEDIA) requerían pago, inaccesible con recursos propios del equipo. Detalle en `08_Etica/README_Etica.md`.
-- Repositorio sin identificador SWHID de Software Heritage: el archivado por "Save code now" (visitador `git`) falló por exceder el límite de 4 GiB del *loader* de la plataforma; un segundo intento archivando únicamente el tarball de la línea base (`ers-v4.0-final.tar.gz`, sin historial de git) también falló, esta vez por agotamiento de memoria del worker (`WorkerLostError`, señal SIGKILL). Debido al peso del repositorio, no fue posible verificar el archivado ni obtener un SWHID válido por ninguna de las dos vías disponibles en la plataforma. El DOI de Zenodo cubre el requisito de depósito FAIR con identificador persistente.
 
 ---
 
