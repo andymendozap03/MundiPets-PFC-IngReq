@@ -3,9 +3,9 @@
 ## Por qué el contenedor está dividido en varias partes
 
 El material de la zona restringida (videos y audios originales de entrevistas,
-consentimientos con firma y cédula visibles, actas de walkthrough firmadas,
-grabación de member checking y documentos originales de la organización
-cliente) pesa en conjunto aproximadamente **6.42 GB** una vez comprimido y
+consentimientos con firma y cédula visibles, videos, audios y actas de walkthrough firmadas,
+grabación de member checking, documentos originales de la organización
+cliente y video y audio del experimento) pesa en conjunto aproximadamente **6.68 GB** una vez comprimido y
 cifrado.
 
 GitHub, incluso usando Git LFS, tiene un límite de **2 GB por archivo
@@ -18,7 +18,7 @@ en lugar de subir el material a un servicio externo.
 
 ```
 evidencias_restringidas/
-   **275 partes del archivo comprimido evidencias_restringidas.7z
+   **286 partes del archivo comprimido evidencias_restringidas.7z
 ```
 
 Estos archivos **no se pueden abrir por separado**. Son fragmentos de un
