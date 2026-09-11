@@ -2043,9 +2043,9 @@ clasificación de cada componente.
 		\midrule
 		\emph{AI compatibility} (\hyperref[tab:RF-06]{RF-06}) & Riesgo limitado & Influye en una decisión con efecto sobre el bienestar animal (proceso de cruza) y está sujeto al derecho a explicación del Art.~20 LOPDP (\hyperref[rl:06]{RL-06}), lo que exige las obligaciones de transparencia ya cubiertas por \hyperref[tab:RNF-13]{RNF-13}. \\
 		\addlinespace
-		\emph{AI image validation} (\hyperref[tab:RF-17]{RF-17}) & Riesgo mínimo/limitado & Su salida (aceptar o rechazar una fotografía) no afecta la salud ni la seguridad de personas o animales; la obligación de transparencia ya está cubierta por \hyperref[tab:RNF-14]{RNF-14}. \\
+		\emph{AI image validation} (\hyperref[tab:RF-17]{RF-17}) & Riesgo mínimo/limitado & Su salida (aceptar o rechazar una fotografía) no afecta la salud ni la seguridad de personas o animales; al tratarse igualmente de una valoración automatizada, está sujeto al mismo derecho a explicación del Art.~20 LOPDP (\hyperref[rl:06]{RL-06}), cuya obligación de transparencia ya está cubierta por \hyperref[tab:RNF-14]{RNF-14}. \\
 		\addlinespace
-		Moderación de mensajes (\hyperref[tab:RF-07]{RF-07}) & Riesgo mínimo/limitado & Su salida (bloquear o permitir un mensaje) es revisable por los propios usuarios mediante el canal de comunicación directa; la obligación de transparencia ya está cubierta por \hyperref[tab:RNF-15]{RNF-15}. \\
+		Moderación de mensajes (\hyperref[tab:RF-07]{RF-07}) & Riesgo mínimo/limitado & Su salida (bloquear o permitir un mensaje) es revisable por los propios usuarios mediante el canal de comunicación directa; al tratarse igualmente de una valoración automatizada, está sujeto al mismo derecho a explicación del Art.~20 LOPDP (\hyperref[rl:06]{RL-06}), cuya obligación de transparencia ya está cubierta por \hyperref[tab:RNF-15]{RNF-15}. \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -8596,44 +8596,54 @@ transversales lo presentan.
 
 	\begin{lstlisting}[style=csharp,caption={Estructura de carpetas del repositorio MundiPets-PFC-IngReq.},label={lst:estructura_repo}]
 		MundiPets-PFC-IngReq/
-		|-- .gitattributes
 		|-- .gitignore
 		|-- .mailmap                       % unifica las identidades de Git
 		|-- CHANGELOG.md
 		|-- checksums.sha256               % manifiesto de todo el repositorio
 		|-- CITATION.cff
+		|-- fair_assessment.pdf
 		|-- LICENSE
 		|-- README.md
-		|-- fair_assessment.pdf
 		|
 		|-- 01_ERS/
+		|   |-- .gitignore
 		|   |-- ERS_SRS_2B_v2.0.pdf        % compilado de la entrega
 		|   |-- ERS_SRS_2B_v2.0.tex        % documento maestro
 		|   |-- referencias.bib            % fuentes primarias
-		|   `-- figuras/                   % diagramas i*, UML, mockups (MU-01
-		|                                   % a MU-08) y capturas de pantalla
-		|                                   % del MVP (MVP-01 a MVP-04)
+		|   `-- figuras/                   % diagramas i*, UML (actividades
+		|                                   % CU-01 a CU-13, secuencia CU-01 a
+		|                                   % CU-13, clases, componentes,
+		|                                   % contexto, despliegue, maquinas
+		|                                   % de estado), curva de saturacion,
+		|                                   % mockups MU-01 a MU-08 y capturas
+		|                                   % del MVP MVP-01 a MVP-04
+		|                                   % (temporales de compilacion LaTeX
+		|                                   % omitidos: .aux/.log/.toc/etc.)
 		|
 		|-- 02_Evidencias/
 		|   |-- 00_Restringido/            % [R] cifrado, zona restringida
 		|   |   |-- fichas_tecnicas.csv
 		|   |   |-- README_evidencias_restringidas.md
 		|   |   `-- evidencias_restringidas/
-		|   |       `-- evidencias_restringidas.7z.001 ... .275
-		|   |-- Codificacion_Tematica/     % B.8
-		|   |-- Consentimientos/           % B.6, copias enmascaradas [P]
+		|   |       `-- evidencias_restringidas.7z.001 ... .286
+		|   |-- Codificacion_Tematica/
+		|   |   |-- codificacion_tematica.csv
+		|   |   `-- curva_saturacion.png
+		|   |-- Consentimientos/           % copias enmascaradas [P]
 		|   |                              % (18 archivos, uno por participante)
 		|   |-- Cuestionario/
 		|   |   |-- Fotos_Aplicacion/      % evidencia de aplicacion (6 fotos)
-		|   |   |-- power_calculation/     % power calculation del perfil
-		|   |   |                          % dominante (n=47, potencia=91,86%)
-		|   |   `-- Respuestas/            % 61 respuestas en PDF + resumen .xlsx
+		|   |   |-- power_calculation/     % script, README y tabla de power
+		|   |   |                          % calculation del perfil dominante
+		|   |   |                          % (n=47, potencia=91,86 %)
+		|   |   `-- Respuestas/            % 61 respuestas en PDF
+		|   |                              % + Respuestas_Cuestionario_MundiPets.xlsx
 		|   |-- Documentos_Organizacion/   % 5 documentos clinicos de referencia
-		|   |-- Fotos_Entorno/             % B.5, observacion OBS-01 (20 archivos)
-		|   |-- Member_Checking/           % B.9, acta de miembro-verificacion
+		|   |-- Fotos_Entorno/             % observacion OBS-01 (20 archivos)
+		|   |-- Member_Checking/           % acta de miembro-verificacion
 		|   |-- Transcripciones/           % transcripciones anonimizadas
 		|   |                              % (17 archivos, uno por entrevista)
-		|   `-- Validacion_Walkthrough/    % B.7, actas EV-19 a EV-24 (6 archivos)
+		|   `-- Validacion_Walkthrough/    % 6 actas (3 tecnicas + 3 no tecnicas)
 		|
 		|-- 03_Modelado/
 		|   |-- Diagramas_UML/             % una subcarpeta por tipo de diagrama
@@ -8645,7 +8655,7 @@ transversales lo presentan.
 		|   |                              % con sus archivos .png/.svg/.vpp y,
 		|   |                              % para los diagramas i*, tambien
 		|   |                              % .pdf/.drawio
-		|   `-- Mockups/                   % \hyperref[fig:mu01]{MU-01} a \hyperref[fig:mu08]{MU-08}
+		|   `-- Mockups/                   % MU-01 a MU-08
 		|
 		|-- 04_Trazabilidad/
 		|   |-- matriz_trazabilidad.csv
@@ -8655,25 +8665,37 @@ transversales lo presentan.
 		|-- 05_MVP/
 		|   |-- README.md                  % instrucciones de despliegue
 		|   |-- video_demo.mp4             % evidencia de funcionamiento
-		|   `-- codigo/                    % codigo fuente del MVP, incorporado
-		|                                   % con git subtree (no es submodulo;
-		|                                   % conserva el historial real de
-		|                                   % commits del desarrollo del MVP)
+		|   `-- codigo/                    % codigo fuente del MVP (Node.js +
+		|       |                          % Express), incorporado con git
+		|       |                          % subtree, no es submodulo; conserva
+		|       |                          % el historial real de commits del
+		|       |                          % desarrollo del MVP
+		|       |-- *.html                 % pantallas del MVP (index, dashboard,
+		|       |                          % explore, pet-profile, register, etc.)
+		|       |-- server.js, package.json
+		|       |-- css/, js/, img/
+		|       `-- node_modules/          % dependencias de Node.js instaladas
+		|                                  % (Express y sus dependencias transitivas;
+		|                                  % contenido estandar de npm, omitido en
+		|                                  % detalle por no ser artefacto propio)
 		|
 		|-- 06_Experimento/
 		|   |-- osf_registration.pdf       % registro previo aceptado en OSF
 		|   |-- osf_deviations.pdf         % desviaciones del protocolo (2B)
 		|   |-- protocolo.pdf              % protocolo experimental (Enfoque 2)
 		|   |-- README_osf_registration.md
-		|   |-- instrumentos/              % rubrica y consentimientos de
-		|   |                              % evaluadores expertos
+		|   |-- instrumentos/              % consentimientos y transcripcion de
+		|   |                              % la reunion del panel de expertos
+		|   |                              % (EXP-01, EXP-02, EXP-03) y rubrica
+		|   |                              % de clasificacion experta
 		|   |-- prompts_llm/
-		|   |-- datos_crudos/
-		|   |-- datos_procesados/
+		|   |-- datos_crudos/              % evaluacion_expertos.csv,
+		|   |                              % salida_detector.csv y su version .xlsx
+		|   |-- datos_procesados/          % consenso_experto_vs_detector.csv
 		|   |-- resultados/
 		|   |   |-- figuras/               % figura_1 a figura_4
 		|   |   `-- tablas/                % tabla_1 a tabla_9 (CSV)
-		|   `-- scripts_analisis/
+		|   `-- scripts_analisis/          % 02, 03, 04, 05 y run_all.py
 		|       `-- datos_entrada/
 		|
 		|-- 07_Datos/                      % paquete de datos independiente y
@@ -8701,9 +8723,12 @@ transversales lo presentan.
 		|   |-- referencias.bib
 		|   |-- sn-jnl.cls
 		|   |-- sn-mathphys-num.bst
-		|   |-- bst/
+		|   |-- bst/                       % estilos bibliograficos Springer
+		|   |                              % adicionales
 		|   |-- figuras/                   % figura_1 a figura_4
-		|   |-- tablas/
+		|   |-- tablas/                    % tabla_1 a tabla_9 (CSV)
+		|   |-- manuscrito/                % temporales de compilacion LaTeX
+		|   |                              % del manuscrito, omitidos en detalle
 		|   `-- dataset_zenodo/
 		|       |-- README_dataset.md
 		|       |-- ANONYMIZATION.md
@@ -8749,16 +8774,21 @@ transversales lo presentan.
 		|
 		`-- 10_Autoria/                    % evidencia de autoria y trabajo
 		    |                              % propio del equipo (A1 a A12)
+		    |-- .mailmap
 		    |-- bitacora_sesiones.csv      % A1, una fila por sesion
 		    |-- aporte_individual.md       % A10
 		    |-- declaracion_uso_ia.md      % A9
 		    |-- exif_inventario.csv        % A11
-		    |-- capturas/                  % A2
-		    |-- grabaciones/               % A4
-		    |-- notas_campo/               % A5
-		    |-- fotos_equipo/              % A6
-		    |-- correspondencia/           % A8
-		    |-- doble_codificacion/        % A7
+		    |-- retrospectiva_equipo.md
+		    |-- verificacion_previa.pdf    % lista de verificacion firmada
+		    |-- capturas/                  % A2 (15 archivos)
+		    |-- correspondencia/           % A8 (22 archivos)
+		    |-- doble_codificacion/        % A7: muestra, hojas de Andy Mendoza
+		    |                              % y Edson Fuertes, script de calculo
+		    |                              % del coeficiente Kappa y resultado
+		    |-- fotos_equipo/              % A6 (3 fotos con EXIF verificado)
+		    |-- grabaciones/               % A4 (2 videos de sesion de trabajo)
+		    |-- notas_campo/               % A5 (25 archivos)
 		    `-- fuente_editables/          % A3, una subcarpeta por diagrama
 	\end{lstlisting}
 
