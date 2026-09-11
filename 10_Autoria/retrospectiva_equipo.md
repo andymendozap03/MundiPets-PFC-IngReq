@@ -49,5 +49,5 @@ de evidencia y corrección de hallazgos antes del cierre.
 | Andy Mendoza | Confirmo que esta retrospectiva refleja lo acordado por el equipo — Andy Mendoza | 2026-09-11 |
 | Edson Daniel Fuertes Arraes |  | 2026-09-11 |
 | Genesis Gutierrez | Confirmo que esta retrospectiva refleja lo acordado por el equipo — Genesis Gutierrez | 2026-09-11 |
-| Gary Morales |  | 2026-09-11 |
+| Gary Morales | Confirmo que esta retrospectiva refleja lo acordado por el equipo — Gary Morales | 2026-09-11 |
 | Jimmy Nieves |  | 2026-09-11 |
