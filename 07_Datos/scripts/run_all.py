@@ -29,6 +29,8 @@ SCRIPT_DATOS_PROCESADOS = BASE_DIR / "02_generar_datos_procesados.py"
 SCRIPT_TABLAS = BASE_DIR / "03_generar_tablas_figuras_excel_corregido.py"
 SCRIPT_SIGNIFICANCIA = BASE_DIR / "04_calcular_significancia_estadistica.py"
 SCRIPT_CORRESPONDENCIA = BASE_DIR / "05_generar_tabla_correspondencia.py"
+SCRIPT_POR_CATEGORIA = BASE_DIR / "06_calcular_significancia_por_categoria.py"
+SCRIPT_JUSTIFICACION_MUESTRA = BASE_DIR / "07_justificar_tamano_muestra_detector.py"
 
 DETECTOR_CSV = EXPERIMENTO_DIR / "datos_crudos" / "salida_detector.csv"
 EXPERTOS_CSV = EXPERIMENTO_DIR / "datos_crudos" / "evaluacion_expertos.csv"
@@ -37,11 +39,12 @@ OUTPUT_DIR = EXPERIMENTO_DIR / "resultados"
 
 def main():
     for path in (SCRIPT_DATOS_PROCESADOS, SCRIPT_TABLAS, SCRIPT_SIGNIFICANCIA,
-                 SCRIPT_CORRESPONDENCIA, DETECTOR_CSV, EXPERTOS_CSV):
+                 SCRIPT_CORRESPONDENCIA, SCRIPT_POR_CATEGORIA,
+                 SCRIPT_JUSTIFICACION_MUESTRA, DETECTOR_CSV, EXPERTOS_CSV):
         if not path.exists():
             sys.exit(f"ERROR: no se encontró el archivo esperado: {path}")
 
-    print("[1/4] Generando datos_procesados/consenso_experto_vs_detector.csv...")
+    print("[1/6] Generando datos_procesados/consenso_experto_vs_detector.csv...")
     resultado0 = subprocess.run([sys.executable, str(SCRIPT_DATOS_PROCESADOS)])
     if resultado0.returncode != 0:
         sys.exit("ERROR: 02_generar_datos_procesados.py terminó con errores.")
@@ -54,21 +57,31 @@ def main():
         "--output", str(OUTPUT_DIR),
     ]
 
-    print("\n[2/4] Generando tablas y figuras principales...")
+    print("\n[2/6] Generando tablas y figuras principales...")
     print(" ".join(comando_tablas))
     resultado = subprocess.run(comando_tablas)
     if resultado.returncode != 0:
         sys.exit("ERROR: 03_generar_tablas_figuras_excel_corregido.py terminó con errores.")
 
-    print("\n[3/4] Calculando IC 95% (bootstrap) y prueba de hipótesis (chi-cuadrado)...")
+    print("\n[3/6] Calculando IC 95% (bootstrap) y prueba de hipótesis (chi-cuadrado)...")
     resultado2 = subprocess.run([sys.executable, str(SCRIPT_SIGNIFICANCIA)])
     if resultado2.returncode != 0:
         sys.exit("ERROR: 04_calcular_significancia_estadistica.py terminó con errores.")
 
-    print("\n[4/4] Generando tabla de correspondencia afirmación-resultado...")
+    print("\n[4/6] Generando tabla de correspondencia afirmación-resultado...")
     resultado3 = subprocess.run([sys.executable, str(SCRIPT_CORRESPONDENCIA)])
     if resultado3.returncode != 0:
         sys.exit("ERROR: 05_generar_tabla_correspondencia.py terminó con errores.")
+
+    print("\n[5/6] Calculando IC 95% desglosado por categoría (RF/RNF/RD/RL)...")
+    resultado4 = subprocess.run([sys.executable, str(SCRIPT_POR_CATEGORIA)])
+    if resultado4.returncode != 0:
+        sys.exit("ERROR: 06_calcular_significancia_por_categoria.py terminó con errores.")
+
+    print("\n[6/6] Calculando justificación del tamaño de muestra del detector...")
+    resultado5 = subprocess.run([sys.executable, str(SCRIPT_JUSTIFICACION_MUESTRA)])
+    if resultado5.returncode != 0:
+        sys.exit("ERROR: 07_justificar_tamano_muestra_detector.py terminó con errores.")
 
     print(f"\nListo. Datos procesados, tablas y figuras generados en: {EXPERIMENTO_DIR}")
 

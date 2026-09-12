@@ -1,0 +1,27 @@
+﻿Categoría | Métrica;Valor;IC 95% (bootstrap, 10 000 réplicas)
+"--- RF (N=27; TP=4, TN=17, FP=4, FN=2) ---";;
+RF | Exactitud;0.7778;[0.5926, 0.9259]
+RF | Precision;0.5000;[0.1429, 0.8571] calculado sobre 9999/10000 réplicas válidas
+RF | Sensibilidad;0.6667;[0.2500, 1.0000] calculado sobre 9988/10000 réplicas válidas
+RF | Especificidad;0.8095;[0.6190, 0.9545]
+RF | F1;0.5714;[0.2222, 0.8421] calculado sobre 9869/10000 réplicas válidas
+"--- RNF (N=16; TP=1, TN=13, FP=2, FN=0) ---";;
+RNF | Exactitud;0.8750;[0.6875, 1.0000]
+RNF | Precision;0.3333;[0.0000, 1.0000] calculado sobre 9617/10000 réplicas válidas
+RNF | Sensibilidad;1.0000;[1.0000, 1.0000] calculado sobre 6485/10000 réplicas válidas
+RNF | Especificidad;0.8667;[0.6667, 1.0000]
+RNF | F1;0.5000;[0.3333, 1.0000] calculado sobre 6485/10000 réplicas válidas
+"--- RD (N=9; TP=2, TN=3, FP=2, FN=2) ---";;
+RD | Exactitud;0.5556;[0.2222, 0.8889]
+RD | Precision;0.5000;[0.0000, 1.0000] calculado sobre 9951/10000 réplicas válidas
+RD | Sensibilidad;0.5000;[0.0000, 1.0000] calculado sobre 9954/10000 réplicas válidas
+RD | Especificidad;0.6000;[0.0000, 1.0000] calculado sobre 9994/10000 réplicas válidas
+RD | F1;0.5000;[0.2500, 0.8571] calculado sobre 8949/10000 réplicas válidas
+"--- RL (N=9; TP=5, TN=4, FP=0, FN=0) ---";;
+RL | Exactitud;1.0000;[1.0000, 1.0000]
+RL | Precision;1.0000;[1.0000, 1.0000] calculado sobre 9995/10000 réplicas válidas
+RL | Sensibilidad;1.0000;[1.0000, 1.0000] calculado sobre 9995/10000 réplicas válidas
+RL | Especificidad;1.0000;[1.0000, 1.0000] calculado sobre 9947/10000 réplicas válidas
+RL | F1;1.0000;[1.0000, 1.0000] calculado sobre 9995/10000 réplicas válidas
+;;
+Nota metodológica;Los IC por categoría son mas anchos que el IC agregado (N=61) por el menor tamaño de muestra en cada grupo (RD=9, RL=9, RNF=16, RF=27). No se reporta chi-cuadrado por categoria porque el tamaño esperado minimo de celda (>=5) no se cumple en RD ni en RL.;

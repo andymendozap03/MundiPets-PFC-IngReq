@@ -1,0 +1,18 @@
+﻿Parámetro fijado;Valor;Justificación
+Alfa (α);0.05;"Convención estándar en ingeniería de software (Molléri et al., 2020; Wohlin et al., 2012)"
+Potencia convencional (1-β);0.8;Convención estándar
+N real disponible;61;"Tamaño del corpus de especificación vigente de MundiPets al momento de la ejecución; no es una meta de reclutamiento ampliable"
+;;
+Resultado (a): potencia alcanzada para el efecto observado;;
+Chi-cuadrado observado;15.0374;Tomado de tabla_8_significancia_estadistica.csv
+Phi observado (tamaño del efecto real);0.4965;Tomado de tabla_8_significancia_estadistica.csv
+Potencia alcanzada con N=61 para este efecto;0.9724;Probabilidad de haber detectado el efecto que realmente existe, dado el N disponible (distribución chi-cuadrado no central, gl=1)
+;;
+Resultado (b): sensibilidad del diseño (cálculo en sentido inverso);;
+Efecto mínimo detectable con N=61, potencia=0.80;0.3587;Cualquier asociación real de esta magnitud o mayor tenía 80% de probabilidad de detectarse con este N
+;;
+Contexto: N que habría hecho falta para otros tamaños de efecto;;
+N necesario para phi=0.30 (pequeño-moderado, Cohen) a potencia=0.80;87.2;"Referencia de comparación; no alcanzable con el corpus real de 61 requisitos"
+N necesario para phi=0.10 (pequeño, Cohen) a potencia=0.80;784.9;"Referencia de comparación; muy por encima de cualquier corpus de especificación real de un solo sistema"
+;;
+Conclusión;"Con N=61 (impuesto por el tamaño real del corpus, no elegido libremente), el diseño tenía 80% de potencia para detectar cualquier asociación de magnitud phi>=0.36 o mayor. El efecto que realmente se observó (phi=0.4965) supera ampliamente ese umbral, lo que explica la potencia alcanzada del 97.2% y la significancia estadística obtenida (p=0.0001). El diseño no tenía potencia suficiente para detectar efectos pequeños (phi<0.36) de forma confiable; esto se declara como limitación de validez de conclusión, ya documentada en protocolo.pdf, Sección 7.9.";
