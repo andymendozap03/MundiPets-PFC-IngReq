@@ -1987,8 +1987,9 @@ doi=true
 		\end{tabularx}
 	\end{table}
 	Los mismos tres componentes cuentan además con un requisito de equidad,
-	una clasificación de riesgo y un plan de monitoreo en producción,
-	detallados en la Sección~\ref{sec:equidad-riesgo-ia}.
+	un mecanismo de supervisión humana, una clasificación de riesgo y un
+	plan de monitoreo en producción, detallados en la
+	Sección~\ref{sec:equidad-riesgo-ia}.
 	
 \subsubsection{Equidad, clasificación de riesgo y plan de monitoreo de los componentes de inteligencia artificial}
 \label{sec:equidad-riesgo-ia}
@@ -1996,9 +1997,10 @@ doi=true
 Complementando la exactitud (\hyperref[tab:RNF-06]{RNF-06}, \hyperref[tab:RNF-07]{RNF-07}) y la explicabilidad (\hyperref[tab:RNF-13]{RNF-13},
 \hyperref[tab:RNF-14]{RNF-14}, \hyperref[tab:RNF-15]{RNF-15}) ya especificadas, esta sección define, para cada uno de los
 tres componentes de inteligencia artificial de MundiPets, su requisito de
-equidad, su clasificación de riesgo y su plan de monitoreo en producción,
-de modo que ningún componente de IA quede solo declarado sin una
-especificación medible de estos tres aspectos.
+equidad, su mecanismo de supervisión humana, su clasificación de riesgo y
+su plan de monitoreo en producción, de modo que ningún componente de IA
+quede solo declarado sin una especificación medible de estos cuatro
+aspectos.
 
 \paragraph{Requisitos de equidad.}
 Cada componente mide la diferencia de desempeño entre subgrupos con
@@ -2020,6 +2022,30 @@ detalla el requisito de equidad de cada componente.
 		\emph{AI image validation} (\hyperref[tab:RF-17]{RF-17}) & Diferencia de tasa de clasificación correcta entre fotografías tomadas en interiores y en exteriores, condición que afecta la iluminación y la nitidez de la imagen. & 10 puntos porcentuales & Mendoza Párraga Andy Johel & Trimestral, sobre el acumulado de imágenes procesadas \\
 		\addlinespace
 		Moderación de mensajes (\hyperref[tab:RF-07]{RF-07}) & Diferencia de tasa de falsos bloqueos entre mensajes de longitud breve (menos de 15 palabras) y mensajes de longitud extensa, dado que los mensajes breves ofrecen menos contexto para la clasificación. & 10 puntos porcentuales & Fuertes Arraes Edson Daniel & Trimestral, sobre el acumulado de mensajes bloqueados \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+\paragraph{Requisitos de supervisión humana.}
+Cada componente define quién puede revisar, modificar o descartar su
+salida antes de que produzca un efecto sobre el usuario, y cómo queda
+registrada esa intervención. La Tabla~\ref{tab:supervision-ia} detalla el
+mecanismo de supervisión de cada componente.
+
+\begin{table}[H]
+	\centering
+	\caption{Requisitos de supervisión humana de los componentes de inteligencia artificial.}
+	\label{tab:supervision-ia}
+	\small
+	\begin{tabularx}{\textwidth}{@{}p{1.9cm} X p{1.7cm} p{1.7cm}@{}}
+		\toprule
+		\textbf{Componente} & \textbf{Mecanismo de supervisión y registro} & \textbf{Responsable} & \textbf{Frecuencia} \\
+		\midrule
+		\emph{AI compatibility} (\hyperref[tab:RF-06]{RF-06}) & El interesado en cruza recibe la recomendación como apoyo y decide si solicita el contacto con el propietario de la otra mascota; ninguna recomendación autoriza un proceso de cruza por sí sola. Cada decisión del usuario sobre la recomendación queda registrada en el historial de la solicitud. & Morales Sánchez Gary Alejandro & Continua, sobre cada recomendación emitida \\
+		\addlinespace
+		\emph{AI image validation} (\hyperref[tab:RF-17]{RF-17}) & El propietario puede volver a cargar otra fotografía tras un rechazo, y puede solicitar revisión manual si considera que el rechazo fue incorrecto; esa solicitud queda registrada junto con la imagen original. & Mendoza Párraga Andy Johel & Continua, sobre cada solicitud de revisión manual recibida \\
+		\addlinespace
+		Moderación de mensajes (\hyperref[tab:RF-07]{RF-07}) & El remitente de un mensaje bloqueado puede apelar el bloqueo por el canal de soporte; el mensaje original permanece disponible para que una persona revise la decisión y la confirme o la revierta, quedando registrado el resultado de esa revisión. & Fuertes Arraes Edson Daniel & Continua, sobre cada apelación recibida \\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -5977,7 +6003,18 @@ resultados ya observados.
 	potencia estadística respecto de la población inicialmente prevista
 	(Sección \ref{sec:osf}). \textbf{Resultado observado:} con este $N$,
 	la asociación detector--consenso resultó estadísticamente
-	significativa ($p=0{,}0001$; Sección \ref{sec:resultados}).
+	significativa ($p=0{,}0001$; Sección \ref{sec:resultados}). El
+	cálculo de potencia en sentido inverso sobre el $N=61$ real
+	disponible ($\alpha=0{,}05$, $1-\beta=0{,}80$) muestra que este
+	diseño alcanzó una potencia de 0,9724 para el tamaño del efecto
+	efectivamente observado ($\phi=0{,}4965$), y que el efecto mínimo
+	detectable con este $N$ a una potencia de 0,80 es $\phi \geq 0{,}3587$;
+	de haberse buscado detectar un efecto pequeño--moderado ($\phi=0{,}30$,
+	Cohen) con la misma potencia, habría hecho falta $N=87$.
+	\textbf{Limitación reconocida:} el diseño no tenía potencia
+	suficiente para detectar de forma confiable efectos menores a
+	$\phi=0{,}3587$; el $N=61$ no fue elegido libremente, sino impuesto
+	por el tamaño real del corpus de especificación del sistema.
 	\item \emph{Panel experto mínimo.} Solo tres personas conforman el
 	consenso de referencia, el mínimo aceptado por la guía. \textbf{Mitigación:}
 	se calculó explícitamente el acuerdo inter-evaluador mediante $\kappa$
@@ -6070,6 +6107,29 @@ $\phi = 0{,}4965$ (tamaño del efecto moderado--grande).
 Con $p < 0{,}05$, se \textbf{rechaza H\textsubscript{0}}: la clasificación
 del detector automático guarda asociación estadísticamente significativa
 con el consenso experto, con un tamaño del efecto moderado--grande.
+
+\begin{table}[H]
+	\centering
+	\caption{Métricas del detector desglosadas por tipo de requisito, con intervalo de confianza al 95\,\% (bootstrap, 10\,000 réplicas).}
+	\label{tab:metricas-por-categoria}
+	\small
+	\begin{tabular}{@{}lrlrlrl@{}}
+		\toprule
+		\textbf{Tipo} & \textbf{Exactitud} & \textbf{IC 95\,\%} & \textbf{Precisión} & \textbf{IC 95\,\%} & \textbf{F1} & \textbf{IC 95\,\%} \\
+		\midrule
+		RF (N=27) & 0,7778 & [0,5926; 0,9259] & 0,5000 & [0,1429; 0,8571] & 0,5714 & [0,2222; 0,8421] \\
+		RNF (N=16) & 0,8750 & [0,6875; 1,0000] & 0,3333 & [0,0000; 1,0000] & 0,5000 & [0,3333; 1,0000] \\
+		RD (N=9) & 0,5556 & [0,2222; 0,8889] & 0,5000 & [0,0000; 1,0000] & 0,5000 & [0,2500; 0,8571] \\
+		RL (N=9) & 1,0000 & [1,0000; 1,0000] & 1,0000 & [1,0000; 1,0000] & 1,0000 & [1,0000; 1,0000] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Los intervalos por categoría son más anchos que el intervalo agregado
+(Tabla~\ref{tab:metricas-detector}, N=61) por el menor tamaño de muestra
+en cada grupo (RD=9, RL=9, RNF=16, RF=27). No se reporta la prueba de
+chi-cuadrado por categoría porque el tamaño esperado mínimo de celda
+($\geq$5) no se cumple en RD ni en RL con este N.
 
 \subsubsection{Tipos de ambigüedad predominantes (RQ2)}
 
