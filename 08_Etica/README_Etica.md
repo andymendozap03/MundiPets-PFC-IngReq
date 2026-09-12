@@ -3,7 +3,7 @@
 Proyecto Fin de Curso · ISR-401 Ingeniería de Requisitos · 2026–2027 PPA
 Universidad Técnica Estatal de Quevedo · Facultad de Ciencias de la Computación
 
-Esta carpeta contiene la documentación ética exigida por el *Paquete Integral de Anexos y Guías de Elaboración* (ISR-401, 2026–2027 PPA) y constituye la condición de admisión del **gatekeeper G8** de la Guía y Rúbrica de la Entrega 3 (2A).
+Esta carpeta contiene la documentación ética exigida por el *Paquete Integral de Anexos y Guías de Elaboración* (ISR-401, 2026–2027 PPA).
 
 ## Contenido de la carpeta
 
@@ -57,6 +57,40 @@ entregarse antes del corte de esta entrega.
 
 El equipo deja constancia de esta gestión y de la comunicación realizada, y queda a la espera de que el docente responsable indique una vía alterna de cumplimiento (por ejemplo, el módulo interno de la UTEQ si llegara a dictarse, u otra constancia institucional sin costo) antes del cierre del semestre.
 
+## Declaración de tratamiento de datos personales (LOPDP)
+
+En cumplimiento del Art. 7 y siguientes de la Ley Orgánica de Protección de Datos
+Personales del Ecuador (LOPDP), el equipo declara explícitamente los siguientes
+elementos respecto del tratamiento de datos personales recolectados durante el
+proyecto (consentimientos, entrevistas, cuestionarios, evaluación del panel de
+expertos):
+
+- **Base de licitud:** consentimiento informado, expreso e inequívoco del
+  titular de los datos (Art. 7, literal a de la LOPDP), documentado
+  individualmente en cada formulario de `02_Evidencias/Consentimientos/` y en
+  `A03_Consentimiento_Informado.pdf`, firmado antes de la recolección de
+  cualquier dato.
+- **Finalidad:** uso exclusivamente académico, en el marco del Proyecto Fin de
+  Curso de la asignatura Ingeniería de Requerimientos [ISR-401] (UTEQ,
+  2026–2027 PPA) — construcción y validación del sistema MundiPets y de su
+  componente empírico de detección de ambigüedad. Los datos no se utilizan con
+  fines comerciales, publicitarios ni se ceden a terceros ajenos al equipo y al
+  docente responsable.
+- **Plazo de conservación:** máximo 24 meses desde la finalización del
+  proyecto, conforme a lo ya establecido en `A04_Plan_Gestion_Datos.pdf`
+  (sección de tiempo de retención). Transcurrido ese plazo, el contenedor
+  cifrado de la zona restringida (`02_Evidencias/00_Restringido/`) se destruye.
+- **Responsable del tratamiento:** Morales Sánchez Gary Alejandro, integrante
+  del equipo designado como responsable del tratamiento de los datos conforme
+  a `A04_Plan_Gestion_Datos.pdf` (sección "Responsable"), bajo la supervisión
+  del docente responsable de la asignatura, Ing. Gleiston Guerrero Ulloa, PhD,
+  quien es además el único destinatario de la contraseña del contenedor
+  cifrado (Sección "Zonas de evidencia" de este documento).
+
+Esta declaración no introduce ninguna base de licitud, finalidad o plazo nuevo:
+consolida, en un solo lugar y de forma explícita, lo que ya constaba de forma
+distribuida en `A03_Consentimiento_Informado.pdf` y `A04_Plan_Gestion_Datos.pdf`.
+
 ## Zonas de evidencia
 
 Toda la evidencia de campo del proyecto (consentimientos originales, videos, audios, actas con firma visible, documentos originales de la organización) se organiza conforme a la Sección 4.1 de la Guía y Rúbrica de la Entrega 3 (2A) en dos zonas:
@@ -73,4 +107,3 @@ Ningún documento de esta carpeta `08_Etica/` contiene datos personales identifi
 - Protocolo experimental y registro OSF: `06_Experimento/protocolo.pdf` y https://osf.io/khyf2/overview
 
 ---
-*Última actualización: [completar con la fecha real de la última modificación de esta carpeta antes del corte de la Entrega 3 (2A)]*
