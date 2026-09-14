@@ -13,4 +13,15 @@ salida_detector.csv,ID_Anonimo,texto,--,REQ-01 a REQ-61,no aplica (sin perdidos)
 salida_detector.csv,Clasificacion_Detector,categorico,--,Ambiguo / No ambiguo,no aplica (sin perdidos),salida directa del detector basado en reglas
 salida_detector.csv,Reglas_Activadas,texto,--,texto libre o vacio,vacio si ninguna regla se activo,salida directa del detector basado en reglas
 salida_detector.csv,Texto_Requisito,texto,--,texto libre,no aplica (sin perdidos),copiado literal de la ficha de atributos del ERS/SRS
-consenso_experto_vs_detector.csv,(ver README_procesamiento.md),--,--,--,--,generado exclusivamente por 02_generar_datos_procesados.py a partir de los dos archivos anteriores
+consenso_experto_vs_detector.csv,ID_Anonimo,texto,--,REQ-01 a REQ-61,no aplica (sin perdidos),mismo identificador que en evaluacion_expertos.csv y salida_detector.csv
+consenso_experto_vs_detector.csv,ID_Real,texto,--,RF-01..RF-27 / RNF-01..RNF-16 / RD-01..RD-09 / RL-01..RL-09,no aplica (sin perdidos),copiado de evaluacion_expertos.csv
+consenso_experto_vs_detector.csv,Tipo,categorico,--,RF / RNF / RD / RL,no aplica (sin perdidos),copiado de evaluacion_expertos.csv
+consenso_experto_vs_detector.csv,Texto_Requisito,texto,--,texto libre,no aplica (sin perdidos),copiado de evaluacion_expertos.csv
+consenso_experto_vs_detector.csv,Experto 1,categorico,--,Ambiguo / No ambiguo,no aplica (sin perdidos),clasificacion de EXP-01 sobre ese requisito
+consenso_experto_vs_detector.csv,Experto 2,categorico,--,Ambiguo / No ambiguo,no aplica (sin perdidos),clasificacion de EXP-02 sobre ese requisito
+consenso_experto_vs_detector.csv,Experto 3,categorico,--,Ambiguo / No ambiguo,no aplica (sin perdidos),clasificacion de EXP-03 sobre ese requisito
+consenso_experto_vs_detector.csv,Consenso_experto,categorico,--,Ambiguo / No ambiguo,no aplica (sin perdidos),mayoria (2 de 3) entre Experto 1/2/3
+consenso_experto_vs_detector.csv,Nivel_acuerdo,categorico,--,3/3 / 2/3,no aplica (sin perdidos),cuantos de los 3 expertos coincidieron con el consenso
+consenso_experto_vs_detector.csv,Clasificacion_detector,categorico,--,Ambiguo / No ambiguo,no aplica (sin perdidos),copiado de salida_detector.csv
+consenso_experto_vs_detector.csv,Reglas_detector,texto,--,texto libre o vacio,vacio si ninguna regla se activo,copiado de salida_detector.csv (Reglas_Activadas)
+consenso_experto_vs_detector.csv,Coincide,categorico,--,Si / No,no aplica (sin perdidos),Si cuando Consenso_experto = Clasificacion_detector; generado por 02_generar_datos_procesados.py
