@@ -114,14 +114,16 @@ visualmente idénticas a las anteriores. Esto confirma que el paquete de
 datos es reproducible de punta a punta sin intervención manual.
 
 Como último paso del cierre —una vez confirmado que ningún archivo de
-contenido va a volver a tocarse— se regeneró `checksums.sha256`
+contenido va a volver a tocarse— quedan por regenerar `checksums.sha256`
 (raíz) y `07_Datos/checksums_datos.sha256` sobre un clon limpio, y verificar
-ambos con `sha256sum -c --quiet` sin salida de error.
+ambos con `sha256sum -c --quiet` sin salida de error. Este es el último paso
+de contenido antes de la etiqueta de cierre, precisamente para no tener que
+regenerar el manifiesto una segunda vez: se ejecuta una sola vez, sobre el
+repositorio ya completo, incluyendo esta misma retrospectiva.
 
 ### Etiqueta de cierre (§3)
 
-La etiqueta `ers-v4.0-final` se actualiza al último commit realizado y se declara
-en el readme.
+La etiqueta `ers-v4.0-final` se actualiza apuntando al último commit.
 
 ### Retrospectiva breve del examen suspenso
 
@@ -144,4 +146,18 @@ conviene regenerar los manifiestos de checksums como parte del flujo
 habitual de cierre —no solo al final del proyecto— para que una guía de
 revisión posterior no encuentre desincronizados el contenido y su propio
 manifiesto de integridad.
+
+### Firma de la adenda
+
+Las correcciones puntuales de esta fase de cierre (16:05–17:35 del 14/09)
+fueron ejecutadas por Gary Morales y Genesis Gutierrez, según consta en
+`10_Autoria/bitacora_sesiones.csv` (filas `SESION-2026-09-14`).
+
+| Integrante | Confirmación | Fecha |
+|---|---|---|
+| Andy Mendoza | Confirmo que esta adenda refleja correctamente el cierre del proyecto — Andy Mendoza | 2026-09-14 |
+| Edson Daniel Fuertes Arraes | Confirmo que esta adenda refleja correctamente el cierre del proyecto — Edson Fuertes | 2026-09-14 |
+| Genesis Gutierrez | Confirmo que esta adenda refleja correctamente el cierre del proyecto, y que ejecuté las tareas de esta fase junto con Gary Morales — Genesis Gutierrez | 2026-09-14 |
+| Gary Morales | Confirmo que esta adenda refleja correctamente el cierre del proyecto, y que ejecuté las tareas de esta fase junto con Genesis Gutierrez — Gary Morales | 2026-09-14 |
+| Jimmy Nieves | Confirmo que esta adenda refleja correctamente el cierre del proyecto — Jimmy Nieves | 2026-09-14 |
 

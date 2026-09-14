@@ -50,6 +50,21 @@ hashes por sesión. Ejemplos de commits representativos:
 `f8dd0cac` (primer commit registrado) ... `6e53ca89` (último commit
 registrado hasta la fecha de este documento).
 
+**Aporte adicional — fase de cierre (10 al 12 de septiembre):**
+
+> Agregué archivos faltantes a `10_Autoria` (4 de septiembre, cierre de
+> sesión). Actualicé el contenedor cifrado de evidencias restringidas en
+> seis partes sucesivas (10 y 11 de septiembre). Firmé la retrospectiva del
+> equipo. Corregí el ERS y la bitácora de sesiones (11 de septiembre).
+> Regeneré el checksum de la raíz dos veces: una tras la corrección del
+> ERS y otra desde un clon limpio, para verificar que la comprobación de
+> sumas fuera válida sobre un checkout nuevo y no solo sobre el working
+> directory local.
+
+**Commits que acreditan este aporte adicional:** `151656e`, `4abc455`,
+`9bbc38d`, `a371fe1`, `f7421e7`, `83abb36`, `676e4b2`, `adc5ad7`, `daed32f`,
+`13f4445`, `c5838bd`.
+
 ---
 
 ## Edson Daniel Fuertes Arraes
@@ -87,6 +102,13 @@ registrado hasta la fecha de este documento).
 **Commits que acreditan este aporte:** ver columna `usuario_git` = "Edson
 Daniel Fuertes Arraes" en `10_Autoria/bitacora_sesiones.csv`. Ejemplos:
 `a7ed200e` ... `a6c1d4a3`.
+
+**Aporte adicional — fase de cierre (12 de septiembre):**
+
+> Firmé la retrospectiva del equipo. Actualicé la bitácora de sesiones para
+> incorporar el trabajo posterior al 4 de septiembre.
+
+**Commits que acreditan este aporte adicional:** `3525417`, `6695089`.
 
 ---
 
@@ -130,6 +152,26 @@ Daniel Fuertes Arraes" en `10_Autoria/bitacora_sesiones.csv`. Ejemplos:
 **Commits que acreditan este aporte:** ver columna `usuario_git` =
 "Genesis Gutierrez" en `10_Autoria/bitacora_sesiones.csv`. Ejemplos:
 `a1175bbe` ... `ce200045`.
+
+**Aporte adicional — fase de cierre (11 y 14 de septiembre):**
+
+> Agregué la retrospectiva del equipo (11 de septiembre). En la sesión de
+> cierre del 14 de septiembre, en respuesta a la Guía de cierre del
+> 18/09/2026: volví a escanear y sustituí los documentos de `08_Etica`
+> cuyo escaneado no era legible (Adenda Segunda Ronda, A13, A07, A06, A05),
+> y reemplacé `A03_Consentimiento_Informado.pdf`, que resultó ser la
+> plantilla del formulario y no un ejemplar firmado. Subí la versión
+> corregida de `CITATION.cff` con la nueva URL del repositorio. Corregí y
+> volví a subir el inventario EXIF (`10_Autoria/exif_inventario.csv`),
+> extendiéndolo a las fotografías de entorno de la observación OBS-01.
+> Regeneré las tablas y figuras de `07_Datos/resultados/` ejecutando
+> `run_all.py` sobre un clon limpio, para confirmar la reproducibilidad del
+> paquete de datos. Actualicé la bitácora de sesiones con el trabajo de
+> esta fase y la retrospectiva del equipo con la adenda de cierre.
+
+**Commits que acreditan este aporte adicional:** `97f133b`, `de226d9`,
+`3b59077`, `ba5cb70`, `eed0a3d`, `ba77d08`, `59f2771`, `174beb3`, `3a00568`,
+`acfc8c8`, `0f16cab`, `9eae5b4`, `894e88c`, `4fd8a77`, `5f11fc7`.
 
 ---
 
@@ -175,6 +217,25 @@ Daniel Fuertes Arraes" en `10_Autoria/bitacora_sesiones.csv`. Ejemplos:
 **Commits que acreditan este aporte:** ver columna `usuario_git` = "Gary
 Morales" en `10_Autoria/bitacora_sesiones.csv`. Ejemplos: `424721e5` ...
 `b2c75533`.
+
+**Aporte adicional — fase de cierre (11, 12 y 14 de septiembre):**
+
+> Firmé la retrospectiva del equipo (11 de septiembre). Actualicé el ERS
+> agregando un requisito del componente inteligente que faltaba
+> especificar, y regeneré el checksum de la raíz en consecuencia (12 de
+> septiembre). Actualicé el inventario técnico de evidencia y volví a
+> corregir el checksum de la raíz (12 de septiembre, noche). En la sesión
+> de cierre del 14 de septiembre: modifiqué la URL del repositorio en
+> `README.md` y en el ERS tras el cambio de propietario. Eliminé y volví a
+> subir la versión corregida de `README_Etica.md` y del README del
+> inventario EXIF, y del propio `exif_inventario.csv` y del README
+> principal, tras detectar inconsistencias en versiones previas. Actualicé
+> `diccionario_datos.csv` con las columnas de los tres archivos de
+> `datos_crudos/` y `datos_procesados/`.
+
+**Commits que acreditan este aporte adicional:** `5947595`, `05834ce`,
+`bd3ccd2`, `7dec14f`, `fb721d3`, `bf35330`, `83db89f`, `2094536`, `1eba010`,
+`cb2a3f3`, `229b7e7`, `4bf0a95`, `1cae99a`, `2fa498b`.
 
 ---
 
@@ -224,6 +285,25 @@ Morales" en `10_Autoria/bitacora_sesiones.csv`. Ejemplos: `424721e5` ...
 Nieves" en `10_Autoria/bitacora_sesiones.csv`. Ejemplos: `8345439e` ...
 `7b460803`.
 
+**Aporte adicional — fase de cierre (9 al 12 de septiembre):**
+
+> Consolidé la entrega final: `07_Datos`, `10_Autoria`, checksums y
+> `CHANGELOG.md`, junto con correcciones del ERS (4 de septiembre, cierre
+> de sesión). Agregué la transcripción de la reunión con el panel de
+> expertos al componente empírico (9 de septiembre). Completé el cálculo
+> de intervalos de confianza por categoría y la justificación del tamaño
+> de muestra del detector (B4), agregando las tablas 10 y 11 (11 de
+> septiembre, cierre de sesión). Agregué los scripts y tablas de datos
+> faltantes en `07_Datos` y actualicé el protocolo del componente empírico
+> documentando la discrepancia real en el momento de entrega de la
+> evaluación de EXP-02, regenerando el checksum de datos correspondiente
+> (12 de septiembre). Agregué la declaración explícita de base de licitud,
+> finalidad, plazo de conservación y responsable del tratamiento de datos
+> personales conforme a la LOPDP en `08_Etica` (12 de septiembre).
+
+**Commits que acreditan este aporte adicional:** `7ca1ca8`, `166c0d3`,
+`f59696d`, `e89b186`, `69f6c23`, `c944300`, `9f79a2f`.
+
 ---
 
 ## Firma
@@ -237,4 +317,20 @@ equipo, quienes confirman que la descripción de su propio aporte es exacta.
 | Edson Daniel Fuertes Arraes | Confirmo que la descripción de mi aporte es exacta — Edson Fuertes | 2026-09-04 |
 | Genesis Gutierrez | Confirmo que la descripción de mi aporte es exacta - Genesis Gutierrez |  2026-09-04 |
 | Gary Morales | Confirmo que la descripción de mi aporte es exacta — Gary Morales |  2026-09-04 |
-| Jimmy Nieves | Confirmo que la descripción de mi aporte es exacta - Jimmy Nieves|  2026-09-04 | 
+| Jimmy Nieves | Confirmo que la descripción de mi aporte es exacta - Jimmy Nieves|  2026-09-04 |
+
+---
+
+## Firma — aporte adicional de la fase de cierre (9 al 14 de septiembre)
+
+Cada integrante confirma que la descripción de su "Aporte adicional — fase
+de cierre" agregada en este documento es exacta y está acreditada por los
+commits listados.
+
+| Integrante | Firma / conformidad | Fecha |
+|---|---|---|
+| Andy Mendoza | Confirmo que la descripción de mi aporte adicional es exacta — Andy Mendoza | 2026-09-14 |
+| Edson Daniel Fuertes Arraes | Confirmo que la descripción de mi aporte adicional es exacta — Edson Fuertes | 2026-09-14 |
+| Genesis Gutierrez | Confirmo que la descripción de mi aporte adicional es exacta — Genesis Gutierrez | 2026-09-14 |
+| Gary Morales | Confirmo que la descripción de mi aporte adicional es exacta — Gary Morales | 2026-09-14 |
+| Jimmy Nieves | Confirmo que la descripción de mi aporte adicional es exacta — Jimmy Nieves | 2026-09-14 | 
