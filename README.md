@@ -2,6 +2,18 @@
 
 **Repositorio:** https://github.com/gleiston-guerrero/MundiPets-PFC-IngReq
 
+**Línea base de cierre (vigente):** `cierre-v1.0-final`
+**Línea base anterior (12/09/2026, etiquetada 13/09/2026):** `ers-v4.0-final`
+
+> La etiqueta `ers-v4.0-final` identifica el commit `7dec14f` (12 de
+> septiembre de 2026, 23:48), el estado del repositorio evaluado por la
+> Guía de cierre del Proyecto Fin de Curso. Se
+> conserva como referencia histórica, sin modificarse. La etiqueta
+> `cierre-v1.0-final` es la línea base vigente: identifica el commit final
+> entregado tras resolver las observaciones de esa guía, con los
+> manifiestos de checksums (`checksums.sha256` y
+> `07_Datos/checksums_datos.sha256`) ya regenerados sobre ese mismo commit.
+
 ## Descripción
 
 **MundiPets** es una aplicación web orientada a facilitar la adopción responsable, la evaluación de compatibilidad para cruzas y la gestión del historial médico de mascotas, conectando a propietarios, médicos veterinarios y criadores bajo criterios de bienestar animal y tenencia responsable.
