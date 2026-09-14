@@ -1,0 +1,26 @@
+RESULTADOS DEL COMPONENTE EMPÍRICO MUNDIPETS
+=================================================
+
+Requisitos analizados: 61
+Evaluadores por requisito: 3
+Consenso experto: 16 ambiguos y 45 no ambiguos.
+Detector automático: 20 ambiguos y 41 no ambiguos.
+Acuerdo unánime entre expertos: 56/61 (91.80 %).
+Acuerdo por mayoría 2/3: 5/61 (8.20 %).
+
+DESEMPEÑO DEL DETECTOR
+Exactitud: 0.8033
+Precisión: 0.6000
+Sensibilidad: 0.7500
+Especificidad: 0.8222
+F1: 0.6667
+Kappa detector-consenso: 0.5296 (Moderado).
+
+ACUERDO ENTRE EXPERTOS
+EXP-01 vs EXP-02: kappa=0.8647, acuerdo observado=0.9508, Casi perfecto.
+EXP-01 vs EXP-03: kappa=0.9186, acuerdo observado=0.9672, Casi perfecto.
+EXP-02 vs EXP-03: kappa=0.7857, acuerdo observado=0.9180, Sustancial.
+Panel completo: kappa de Fleiss=0.8569 (Casi perfecto).
+
+NOTA METODOLÓGICA
+El análisis se efectuó sobre los 61 requisitos presentes tanto en la salida del detector como en las evaluaciones: 27 RF, 16 RNF, 9 RD, 9 RL. No se imputaron ni inventaron resultados.
