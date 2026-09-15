@@ -114,16 +114,20 @@ visualmente idénticas a las anteriores. Esto confirma que el paquete de
 datos es reproducible de punta a punta sin intervención manual.
 
 Como último paso del cierre —una vez confirmado que ningún archivo de
-contenido va a volver a tocarse— quedan por regenerar `checksums.sha256`
-(raíz) y `07_Datos/checksums_datos.sha256` sobre un clon limpio, y verificar
-ambos con `sha256sum -c --quiet` sin salida de error. Este es el último paso
-de contenido antes de la etiqueta de cierre, precisamente para no tener que
-regenerar el manifiesto una segunda vez: se ejecuta una sola vez, sobre el
-repositorio ya completo, incluyendo esta misma retrospectiva.
+contenido volvería a tocarse— se regeneraron `checksums.sha256` (raíz, 1005
+entradas) y `07_Datos/checksums_datos.sha256` (36 entradas) sobre un clon
+limpio, y se verificaron ambos con `sha256sum -c --quiet` sin ninguna
+salida de error. Los manifiestos incluyen el estado final del repositorio,
+incluida esta misma retrospectiva.
 
 ### Etiqueta de cierre (§3)
 
-La etiqueta `ers-v4.0-final` se actualiza apuntando al último commit.
+La etiqueta `ers-v4.0-final` se conserva sin modificar, como referencia
+histórica del estado evaluado por la Guía de cierre (commit `7dec14f`, 12
+de septiembre de 2026). Sobre el commit del manifiesto ya regenerado
+(`a79adeb8d9b37486dcbed42be814df7c6944ddd7`) se creó la etiqueta anotada de
+cierre `cierre-v1.0-final`, publicada en el remoto y alcanzable desde la
+rama por defecto, declarada como vigente en `README.md`.
 
 ### Retrospectiva breve del examen suspenso
 
